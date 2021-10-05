@@ -1,4 +1,28 @@
+/*
+    Import file from utils here
+*/
 @import "utils/variables";
 @import "utils/fonts";
+
+
+body{
+    padding: 0;
+    margin: 0;
+}
+a{
+    text-decoration: none;
+}
+
+
+
+
+/*
+    Import file from app here
+*/
+
+//Header
+@import "app/global/header";
+//NavBar
+@import "app/nav/navbar.scss";
 
 
