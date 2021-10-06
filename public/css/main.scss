@@ -1,8 +1,12 @@
 /*
     Import file from utils here
 */
+//Variables
 @import "utils/variables";
+//Fonts
 @import "utils/fonts";
+//Card
+@import "utils/card.scss";
 
 html{
     height: 100%;
@@ -19,12 +23,13 @@ a{
 
 h1{
  font-size: 30px;
+    font-family: Hind-SemiBold;
 }
 h2{
     font-size: 26px;
 }
 h3{
-
+    font-size: 18px;
 }
 h4 {
     font-size: 16px;
@@ -40,12 +45,12 @@ h6{
 /*
     Import file from app here
 */
-
 //Header
 @import "app/global/header";
 //NavBar
 @import "app/sidebar/sidebar";
 //Dashboard
 @import "app/dashboard/dashboard";
+
 
 
