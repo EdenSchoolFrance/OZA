@@ -1,0 +1,30 @@
+.sidebar{
+    background-color: $dark_purple;
+    color: $white;
+    height: 100%;
+    .sidebar-body{
+        width: 100%;
+        ul{
+
+            list-style: none;
+            padding: 0;
+            padding-top: 60px;
+            li{
+                padding: 12px 0 12px 30px;
+                font-size: 20px;
+                font-family: Hind-Regular;
+                border-bottom: 1px $purple_light solid;
+                transition: 0.5s;
+                &:hover{
+                    color: $yellow;
+                    transition: 0.5s;
+                    border-right: 10px $yellow solid;
+                }
+                &.active{
+                    color: $yellow;
+                    border-right: 10px $yellow solid;
+                }
+            }
+        }
+    }
+}

@@ -4,11 +4,14 @@
 @import "utils/variables";
 @import "utils/fonts";
 
-
+html{
+    height: 100%;
+}
 body{
     padding: 0;
     margin: 0;
     background-color: $white_grey;
+    height: 100%;
 }
 a{
     text-decoration: none;
@@ -34,7 +37,6 @@ h6{
 }
 
 
-
 /*
     Import file from app here
 */
@@ -42,6 +44,8 @@ h6{
 //Header
 @import "app/global/header";
 //NavBar
-@import "app/nav/navbar.scss";
+@import "app/sidebar/sidebar";
+//Dashboard
+@import "app/dashboard/dashboard";
 
 

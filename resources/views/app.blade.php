@@ -12,12 +12,8 @@
     <link rel="stylesheet" href="/css/main.min.css">
 </head>
 <body>
-<div class="header">
-    @yield('header')
-</div>
-<div class="content">
+
     @yield('content')
-</div>
 
 <script src="/js/lib/jquery-3.3.1.min.js"></script>
 <script src="/js/lib/bootstrap.min.js"></script>
