@@ -1,0 +1,23 @@
+.header{
+    background-color: $white;
+    .header-body{
+
+        div{
+            border-right: 1px $dark solid;
+            i{
+                color: $yellow;
+            }
+            p{
+                font-size: 14px;
+                text-align: center;
+            }
+            &:last-child{
+                border-right: none;
+                background-color: $dark_purple;
+                i{
+                    color: $white;
+                }
+            }
+        }
+    }
+}
