@@ -1,0 +1,66 @@
+.header{
+    z-index: 1000;
+    position: fixed;
+    width: 100%;
+    .header-body{
+        background-color: $white;
+        .btn-group{
+            button{
+                background-color: $white;
+                color: $dark;
+                border: none;
+                border-radius: 0;
+                &:focus{
+                    box-shadow: none;
+                }
+                &:active{
+                    box-shadow: none;
+                    background-color: $white;
+                    color: $dark;
+                }
+                &:active:focus{
+                    box-shadow: none;
+                }
+            }
+            div{
+                background-color: $white !important;
+                a{
+                    transition: 0.5s;
+                    cursor: pointer;
+                    &:hover{
+                        transition: 0.5s;
+                        background-color: $yellow;
+                        color: $white;
+                    }
+                    &:focus{
+                        transition: 0.5s;
+                        background-color: $yellow;
+                        color: $white;
+                    }
+                    &:active{
+                        transition: 0.5s;
+                        background-color: $yellow;
+                        color: $white;
+                    }
+                }
+            }
+        }
+        div{
+            border-right: 1px $border_head solid;
+            i{
+                color: $yellow;
+            }
+            p{
+                font-size: 14px;
+                text-align: center;
+            }
+            &:last-child{
+                border-right: none;
+                background-color: $dark_purple;
+                i{
+                    color: $white;
+                }
+            }
+        }
+    }
+}
