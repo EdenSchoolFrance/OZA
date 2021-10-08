@@ -1,0 +1,26 @@
+.table{
+    thead{
+        th{
+            border: none;
+        }
+    }
+    td:last-child{
+        border: none;
+        i{
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+    }
+    .agent{
+        min-width: 10vw;
+    }
+    .activity{
+        max-width: 30vw;
+        width: 30vw;
+    }
+    div{
+        h6{
+            color: $yellow;
+        }
+    }
+}
