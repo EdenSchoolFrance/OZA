@@ -7,6 +7,7 @@
     td:last-child{
         border: none;
         i{
+            color: $yellow;
             font-size: 25px;
             margin-bottom: 10px;
         }
@@ -20,7 +21,7 @@
     }
     div{
         h6{
-            color: $yellow;
+            color: $dark;
         }
     }
 }

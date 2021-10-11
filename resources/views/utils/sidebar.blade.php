@@ -8,10 +8,10 @@
                 <a href="#" class="nav-link"><i class="fas fa-info-circle"></i><span>Structure</span></a>
                 <ul class="nav sub-group-menu">
                     <li class="nav-item">
-                        <a href="" class="nav-link"><i class="fas fa-angle-right"></i>Présentation</a>
+                        <a href="/dashboard" class="nav-link"><i class="fas fa-angle-right"></i>Présentation</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link"><i class="fas fa-angle-right"></i>Unité de travail</a>
+                        <a href="/work" class="nav-link"><i class="fas fa-angle-right"></i>Unité de travail</a>
                     </li>
                 </ul>
             </li>
