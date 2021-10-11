@@ -59,11 +59,42 @@ h6{
     height: 40px;
     outline: none;
     cursor: pointer;
+    font-family: Hind-Medium;
     &:focus{
         outline: none;
     }
     &:hover{
 
+    }
+    &--green{
+        background-color: $green;
+    }
+}
+
+.btn-main-inv{
+    background-color: transparent;
+    color: $dark;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-family: Hind-Medium;
+    &:focus{
+        outline: none;
+    }
+    &:hover{
+
+    }
+    i{
+        margin-left: 15px;
+    }
+}
+
+.btn-cancel{
+    color: $red_dark;
+    text-decoration: none;
+    &:hover{
+        text-decoration: none;
+        color: $red_dark;
     }
 }
 

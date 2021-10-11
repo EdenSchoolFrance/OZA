@@ -20,7 +20,37 @@
     }
     .card-body{
         padding: 20px 40px;
-
+        label{
+            padding: 7px 0 7px 10px;
+            margin: 0;
+        }
+        .card-body-title{
+            label{
+                padding: 35px 10px;
+            }
+        }
+        a{
+            cursor: pointer;
+            color: $red;
+        }
+        input[disabled]{
+            border: none;
+            background-color: transparent;
+            padding-left: 0;
+        }
+        select[disabled]{
+            border: none;
+            background-color: transparent;
+            padding-left: 0;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+        textarea[disabled]{
+            border: none;
+            background-color: transparent;
+            padding-left: 0;
+            resize: none;
+        }
     }
 
 }
