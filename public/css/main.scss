@@ -72,6 +72,19 @@ p{
     &--green{
         background-color: $green;
     }
+    &--number{
+        background-color: transparent;
+        color: $dark;
+        font-size: 30px;
+        &:first-child{
+            padding-left: 0;
+        }
+    }
+    &--text{
+        background-color: transparent;
+        color: $yellow;
+        padding: 0;
+    }
 }
 
 .btn-main-inv{
@@ -134,6 +147,8 @@ p{
 @import "app/dashboard/dashboard";
 //Work Unit
 @import "app/dashboard/work";
+//Work Unit Create
+@import "app/dashboard/create";
 
 
 

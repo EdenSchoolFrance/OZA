@@ -22,3 +22,7 @@ Route::get('/dashboard', function () {
 Route::get('/work', function () {
     return view('dashboard.work');
 });
+Route::get('/work/create', function () {
+    return view('dashboard.create');
+});
+

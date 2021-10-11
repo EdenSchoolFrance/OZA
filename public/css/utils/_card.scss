@@ -51,6 +51,9 @@
             padding-left: 0;
             resize: none;
         }
+        input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
     }
     .card-foot{
         .work-unit{
