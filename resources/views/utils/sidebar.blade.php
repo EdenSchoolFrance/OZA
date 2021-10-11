@@ -16,13 +16,13 @@
                 </ul>
             </li>
             <li class="nav-item sidebar-nav-item">
-                <a href="#" class="nav-link"><i class="fas fa-table"></i><span>Risques professionnels</span></a>
+                <a href="#" class="nav-link"><i class="fas fa-info-circle"></i><span>Risques professionnels</span></a>
             </li>
             <li class="nav-item sidebar-nav-item">
-                <a href="#" class="nav-link"><i class="fas fa-table"></i><span>Risques psychosociaux</span></a>
+                <a href="#" class="nav-link"><i class="fas fa-info-circle"></i><span>Risques psychosociaux</span></a>
             </li>
             <li class="nav-item sidebar-nav-item">
-                <a href="#" class="nav-link"><i class="fas fa-table"></i><span>Rappels règlementaires</span></a>
+                <a href="#" class="nav-link"><i class="fas fa-info-circle"></i><span>Rappels règlementaires</span></a>
             </li>
             <li class="nav-item sidebar-nav-item">
                 <a href="#" class="nav-link"><i class="far fa-file"></i><span>Documentations</span></a>

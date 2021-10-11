@@ -52,5 +52,24 @@
             resize: none;
         }
     }
+    .card-foot{
+        .work-unit{
+            border-top: 1px solid #dee2e6;
+            margin: 0 95px 0 25px;
+            .col-12{
+                padding: 0;
+            }
+            p{
+                padding-top: 10px;
+                span{
+                    background-color: $dark_purple;
+                    border-radius: 10px;
+                    color: $white;
+                    padding: 5px 10px;
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
 
 }
