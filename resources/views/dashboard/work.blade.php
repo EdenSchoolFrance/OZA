@@ -153,6 +153,20 @@
                                 </table>
                             </div>
                         </div>
+                        <div class="card-foot">
+                            <div class="row work-unit">
+                                <div class="col-12 pt-3 pb-3">
+                                    <h4>TOTAL</h4>
+                                </div>
+                                <div class="col-12 d-flex justify-content-between">
+                                    <p>
+                                        <span>120</span>
+                                        salarié(s) inscrit(s) sur le registre du personnel
+                                    </p>
+                                    <button class="btn-main mb-5 float-right">+ AJOUTER UNE UNITE DE TRAVAIL</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

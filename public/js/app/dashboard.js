@@ -15,3 +15,5 @@ $('body').on('click','.content .btn-cancel', function (e){
     form.find(".btn-main-inv").removeClass('d-none');
     $(this).closest('form').find(".btn-foot").addClass('d-none')
 });
+
+$('[data-toggle="dropdown"]').dropdown();
