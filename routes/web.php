@@ -25,4 +25,7 @@ Route::get('/work', function () {
 Route::get('/work/create', function () {
     return view('dashboard.create');
 });
+Route::get('/risk/accident', function () {
+    return view('risk.accident');
+});
 

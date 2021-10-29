@@ -48,6 +48,63 @@ h6{
 }
 p{
     font-family: Hind-Medium;
+    margin-bottom: 0;
+}
+.text-yellow{
+    color: $yellow;
+}
+.text-green{
+    color: $green;
+}
+
+/*
+    Point style
+*/
+.point{
+    &--green{
+        margin-right: 10px;
+        &::before {
+            content: "\2022";
+            color: $green;
+            display: inline-block;
+            font-size: 40px;
+            height: 100%;
+            margin-top: -25px;
+        }
+    }
+    &--yellow{
+        margin-right: 10px;
+        &::before {
+            content: "\2022";
+            color: $yellow;
+            display: inline-block;
+            font-size: 40px;
+            height: 100%;
+            margin-top: -25px;
+        }
+    }
+    &--inv{
+        margin-right: 10px;
+        &::before {
+            content: "\2022";
+            color: transparent;
+            display: inline-block;
+            font-size: 40px;
+            height: 100%;
+            margin-top: -25px;
+        }
+    }
+    &--cancel{
+        margin-right: 10px;
+        &::before {
+            content: "\d7";
+            color: $dark;
+            display: inline-block;
+            font-size: 40px;
+            height: 100%;
+            margin-top: -25px;
+        }
+    }
 }
 
 /*
@@ -71,6 +128,25 @@ p{
     }
     &--green{
         background-color: $green;
+        height: 30px;
+        &:disabled{
+            background-color: $grey;
+        }
+    }
+    &--red{
+        background-color: $red;
+        height: 30px;
+        &:disabled{
+            background-color: $grey;
+        }
+    }
+    &--yellow{
+        background-color: $yellow;
+        height: 30px;
+        color: white;
+        &:disabled{
+            background-color: $grey;
+        }
     }
     &--number{
         background-color: transparent;
@@ -82,9 +158,10 @@ p{
     }
     &--text{
         background-color: transparent;
-        color: $yellow;
+        color: $yellow !important;
         padding: 0;
     }
+
 }
 
 .btn-main-inv{
@@ -143,12 +220,8 @@ p{
 @import "app/sidebar/sidebar";
 //Main dashboard
 @import "app/dashboard/main";
-//Dashboard
-@import "app/dashboard/dashboard";
-//Work Unit
-@import "app/dashboard/work";
-//Work Unit Create
-@import "app/dashboard/create";
+//Risk main
+@import "app/risk/mainRisk";
 
 
 

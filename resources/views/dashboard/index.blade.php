@@ -6,6 +6,10 @@
     @include('utils/header')
     <div class="row body">
         <div class="col-2">
+            @php
+                $sidebar = "structure";
+                $sousSidebar = "pres";
+            @endphp
             @include('utils.sidebar')
         </div>
         <div class="col-10 content">
