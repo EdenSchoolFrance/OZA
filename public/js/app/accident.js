@@ -10,6 +10,8 @@ $('body').on('click','.card-dropdown .btn-card-drop', function (e){
     }else{
         console.log("error")
     }
-
-
 });
+
+$(function () {
+    $('[data-toggle="toolHelp"]').tooltip()
+})

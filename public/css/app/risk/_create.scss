@@ -1,0 +1,29 @@
+.risk-add{
+    .row{
+        border-top: 1px solid $grey;
+        &:first-child{
+            border: none;
+        }
+    }
+    .help{
+        font-size: 25px;
+        color: $dark;
+    }
+    .bold{
+        font-weight: 700;
+    }
+    ul{
+        li{
+            display: flex;
+            justify-content: flex-start;
+            margin: 10px 0;
+            i{
+                padding-right: 10px;
+                &:last-child{
+                    padding-left: 10px;
+                    padding-right: 0;
+                }
+            }
+        }
+    }
+}

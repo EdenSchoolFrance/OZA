@@ -17,7 +17,7 @@
                 <div class="col-12 mt-5">
                     <h1>Présentation de la structure</h1>
                 </div>
-                <div class="col-12 d-flex justify-content-start mb-3">
+                <div class="col-12 d-flex justify-content-start mb-3 header-icon">
                     <div class="ml-3 mr-4"><i class="fas fa-info-circle"></i></div>
                     <div>
                         <p>

@@ -14,9 +14,11 @@
                     padding: 10px 0 10px 20px;
                     border-left: 10px $yellow solid;
                 }
-                i{
-                    color: $dark;
-                    font-size: 35px;
+                .header-icon{
+                    i{
+                        color: $dark;
+                        font-size: 35px;
+                    }
                 }
             }
         }

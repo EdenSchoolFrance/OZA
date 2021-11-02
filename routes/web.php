@@ -28,4 +28,7 @@ Route::get('/work/create', function () {
 Route::get('/risk/accident', function () {
     return view('risk.accident');
 });
+Route::get('/risk/accident/create', function () {
+    return view('risk.create');
+});
 

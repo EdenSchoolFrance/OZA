@@ -178,6 +178,51 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-12 mb-5">
+                    <div class="card card-dropdown">
+                        <form action="#">
+                            <div class="card-header">
+                                <h2><i class="fas fa-angle-down btn-card-drop rotate" data-drop="close"></i> UT <span>Unité de travail 4</span></h2>
+                                <div class="d-flex justify-content-end btn-foot">
+                                    <p>Existe-t-il un risque commun à toutes les UT ?</p>
+                                    <button type="button" class="btn-main btn-main--green">OUI</button>
+                                    <button type="button" class="btn-main btn-main--red" disabled>NON</button>
+                                </div>
+                            </div>
+                            <div class="card-body" style="display: none">
+                                <table class="table table--accident">
+                                    <thead>
+                                    <tr>
+                                        <th>Aucun risque identifié</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><a href="/risk/accident/create" class="btn-main btn-main--text">+ AJOUTER UN RISQUE</a></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center mt-5 mb-5">
+                    <button type="button" class="btn-main btn-main--green">CONFIRMER LA COMPLETION</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
