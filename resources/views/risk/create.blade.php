@@ -60,23 +60,23 @@
                                         <div class="form-group">
                                             <div class="radio-bar">
                                                 <label class="con">
-                                                    <input type="radio" checked="checked" name="radio">
+                                                    <input type="radio" checked="checked" name="frequency">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="con">
-                                                    <input type="radio" checked="checked" name="radio">
+                                                    <input type="radio" checked="checked" name="frequency">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="con">
-                                                    <input type="radio" checked="checked" name="radio">
+                                                    <input type="radio" checked="checked" name="frequency">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="con">
-                                                    <input type="radio" checked="checked" name="radio">
+                                                    <input type="radio" checked="checked" name="frequency">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="con">
-                                                    <input type="radio" checked="checked" name="radio">
+                                                    <input type="radio" checked="checked" name="frequency">
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </div>
@@ -99,32 +99,32 @@
                                         <div class="form-group">
                                             <div class="radio-bar radio-bar--white">
                                                 <label class="con">
-                                                    <input type="radio" checked="checked" name="radio">
+                                                    <input type="radio" checked="checked" name="probability">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="con">
-                                                    <input type="radio" checked="checked" name="radio">
+                                                    <input type="radio" checked="checked" name="probability">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="con">
-                                                    <input type="radio" checked="checked" name="radio">
+                                                    <input type="radio" checked="checked" name="probability">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="con">
-                                                    <input type="radio" checked="checked" name="radio">
+                                                    <input type="radio" checked="checked" name="probability">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="con">
-                                                    <input type="radio" checked="checked" name="radio">
+                                                    <input type="radio" checked="checked" name="probability">
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </div>
                                             <div class="radio-title">
-                                                <label>Jour</label>
-                                                <label>Semaine</label>
-                                                <label>Mois</label>
-                                                <label>Années</label>
-                                                <label>>Années</label>
+                                                <label>Très élevée</label>
+                                                <label>Élevée</label>
+                                                <label>Non faible</label>
+                                                <label>Faible</label>
+                                                <label>Très faible</label>
                                             </div>
                                         </div>
                                     </div>
@@ -138,32 +138,32 @@
                                         <div class="form-group">
                                             <div class="radio-bar radio-bar--white">
                                                 <label class="con">
-                                                    <input type="radio" checked="checked" name="radio">
+                                                    <input type="radio" checked="checked" name="gravity">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="con">
-                                                    <input type="radio" checked="checked" name="radio">
+                                                    <input type="radio" checked="checked" name="gravity">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="con">
-                                                    <input type="radio" checked="checked" name="radio">
+                                                    <input type="radio" checked="checked" name="gravity">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="con">
-                                                    <input type="radio" checked="checked" name="radio">
+                                                    <input type="radio" checked="checked" name="gravity">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="con">
-                                                    <input type="radio" checked="checked" name="radio">
+                                                    <input type="radio" checked="checked" name="gravity">
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </div>
                                             <div class="radio-title">
-                                                <label>Jour</label>
-                                                <label>Semaine</label>
-                                                <label>Mois</label>
-                                                <label>Années</label>
-                                                <label>>Années</label>
+                                                <label>Décès</label>
+                                                <label>IPP</label>
+                                                <label>AAA</label>
+                                                <label>ASA</label>
+                                                <label>Impact faible</label>
                                             </div>
                                         </div>
                                     </div>
@@ -176,15 +176,15 @@
                                     <div class="col-6 mt-5 radio-bar-content">
                                         <div class="form-group d-flex justify-content-start">
                                             <label class="con"> Non
-                                                <input type="radio" checked="checked" name="radio">
+                                                <input type="radio" checked="checked" name="gender">
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="con"> Homme
-                                                <input type="radio" checked="checked" name="radio">
+                                                <input type="radio" checked="checked" name="gender">
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="con"> Femme
-                                                <input type="radio" checked="checked" name="radio">
+                                                <input type="radio" checked="checked" name="gender">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </div>
@@ -238,71 +238,61 @@
                                         <div class="form-group">
                                             <div class="radio-bar">
                                                 <label class="con">
-                                                    <input type="radio" checked="checked" name="radio">
+                                                    <input type="radio" checked="checked" name="tech">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="con">
-                                                    <input type="radio" checked="checked" name="radio">
+                                                    <input type="radio" checked="checked" name="tech">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="con">
-                                                    <input type="radio" checked="checked" name="radio">
+                                                    <input type="radio" checked="checked" name="tech">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="con">
-                                                    <input type="radio" checked="checked" name="radio">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <label class="con">
-                                                    <input type="radio" checked="checked" name="radio">
+                                                    <input type="radio" checked="checked" name="tech">
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </div>
                                             <div class="radio-title">
-                                                <label>Jour</label>
-                                                <label>Semaine</label>
-                                                <label>Mois</label>
-                                                <label>Années</label>
-                                                <label>>Années</label>
+                                                <label>Très bon</label>
+                                                <label>Bon</label>
+                                                <label>Moyen</label>
+                                                <label>Nulle</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-3 mt-5 help"><i class="far fa-question-circle" data-toggle="toolHelp" data-placement="top" title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></i></div>
                                     <div class="col-3 mt-5">
                                         <div class="form-group float-right">
-                                            <label>Oragnisationnelle</label>
+                                            <label>Organisationnelle</label>
                                         </div>
                                     </div>
                                     <div class="col-6 mt-5 radio-bar-content">
                                         <div class="form-group">
                                             <div class="radio-bar radio-bar--white">
                                                 <label class="con">
-                                                    <input type="radio" checked="checked" name="radio">
+                                                    <input type="radio" checked="checked" name="orga">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="con">
-                                                    <input type="radio" checked="checked" name="radio">
+                                                    <input type="radio" checked="checked" name="orga">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="con">
-                                                    <input type="radio" checked="checked" name="radio">
+                                                    <input type="radio" checked="checked" name="orga">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="con">
-                                                    <input type="radio" checked="checked" name="radio">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <label class="con">
-                                                    <input type="radio" checked="checked" name="radio">
+                                                    <input type="radio" checked="checked" name="orga">
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </div>
                                             <div class="radio-title">
-                                                <label>Jour</label>
-                                                <label>Semaine</label>
-                                                <label>Mois</label>
-                                                <label>Années</label>
-                                                <label>>Années</label>
+                                                <label>Très bon</label>
+                                                <label>Bon</label>
+                                                <label>Moyen</label>
+                                                <label>Nulle</label>
                                             </div>
                                         </div>
                                     </div>
@@ -316,32 +306,27 @@
                                         <div class="form-group">
                                             <div class="radio-bar radio-bar--white">
                                                 <label class="con">
-                                                    <input type="radio" checked="checked" name="radio">
+                                                    <input type="radio" checked="checked" name="human">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="con">
-                                                    <input type="radio" checked="checked" name="radio">
+                                                    <input type="radio" checked="checked" name="human">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="con">
-                                                    <input type="radio" checked="checked" name="radio">
+                                                    <input type="radio" checked="checked" name="human">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="con">
-                                                    <input type="radio" checked="checked" name="radio">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <label class="con">
-                                                    <input type="radio" checked="checked" name="radio">
+                                                    <input type="radio" checked="checked" name="human">
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </div>
                                             <div class="radio-title">
-                                                <label>Jour</label>
-                                                <label>Semaine</label>
-                                                <label>Mois</label>
-                                                <label>Années</label>
-                                                <label>>Années</label>
+                                                <label>Très bon</label>
+                                                <label>Bon</label>
+                                                <label>Moyen</label>
+                                                <label>Nulle</label>
                                             </div>
                                         </div>
                                     </div>
