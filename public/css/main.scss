@@ -14,6 +14,7 @@
 
 @import "utils/radio";
 
+@import "utils/checkbox";
 
 html{
     height: 100%;
@@ -56,6 +57,15 @@ p{
 }
 .text-green{
     color: $green;
+}
+
+.text-color{
+    &-yellow{
+        color: $yellow;
+    }
+    &-green{
+        color: $green;
+    }
 }
 
 /*
@@ -139,6 +149,15 @@ p{
         height: 30px;
         &:disabled{
             background-color: $grey;
+        }
+    }
+    &--red-text{
+        background-color: transparent;
+        color: $red;
+        height: 30px;
+        &:disabled{
+            background-color: transparent;
+            color: $grey;
         }
     }
     &--yellow{

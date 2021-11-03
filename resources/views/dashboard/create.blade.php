@@ -1,7 +1,6 @@
 @extends('app')
 
 @section('content')
-
 <div class="container-fluid main">
     @include('utils/header')
     <div class="row body">
@@ -78,11 +77,11 @@
                                                         <i class="far fa-times-circle"></i>
                                                         <p>Accueil physique et téléphonique des personnels, des étudiants, des personnes extérieures, réalisation de rondes le soir pour la fermeture des locaux, tenue du registre de sécurité et contrôle des entrées et sorties, gestion des clés (tenue du registre + boîte à clés), réception et diffusion du courrier, gestion des numéros d’urgence en cas de besoin, contrôle des livraisons et réception des bordereaux de livraison avec transmission au service intendance.</p>
                                                     </li>
+                                                    <li>
+                                                        <button class="btn-main btn-main--text" data-toggle="modal" data-target="#modal">+ Ajouter</button>
+                                                    </li>
                                                 </ul>
                                             </div>
-                                        </div>
-                                        <div class="list-foot">
-                                            <button class="btn-main btn-main--text">+ Ajouter une activité</button>
                                         </div>
                                     </div>
                                 </div>
@@ -107,35 +106,8 @@
                                                         <i class="far fa-times-circle"></i>
                                                         <p>Téléphone DECT</p>
                                                     </li>
-                                                </ul>
-                                            </div>
-                                            <div class="form-group col-4">
-                                                <ul>
-                                                    <li class="list-head">
-                                                        Communication
-                                                    </li>
                                                     <li>
-                                                        <i class="far fa-times-circle"></i>
-                                                        <p>Téléphone filaire</p>
-                                                    </li>
-                                                    <li>
-                                                        <i class="far fa-times-circle"></i>
-                                                        <p>Téléphone DECT</p>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="form-group col-4">
-                                                <ul>
-                                                    <li class="list-head">
-                                                        Communication
-                                                    </li>
-                                                    <li>
-                                                        <i class="far fa-times-circle"></i>
-                                                        <p>Téléphone filaire</p>
-                                                    </li>
-                                                    <li>
-                                                        <i class="far fa-times-circle"></i>
-                                                        <p>Téléphone DECT</p>
+                                                        <button class="btn-main btn-main--text" data-toggle="modal" data-target="#modal">+ Ajouter</button>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -152,6 +124,9 @@
                                                         <i class="far fa-times-circle"></i>
                                                         <p>Téléphone DECT</p>
                                                     </li>
+                                                    <li>
+                                                        <button class="btn-main btn-main--text" data-toggle="modal" data-target="#modal">+ Ajouter</button>
+                                                    </li>
                                                 </ul>
                                             </div>
                                             <div class="form-group col-4">
@@ -167,6 +142,9 @@
                                                         <i class="far fa-times-circle"></i>
                                                         <p>Téléphone DECT</p>
                                                     </li>
+                                                    <li>
+                                                        <button class="btn-main btn-main--text" data-toggle="modal" data-target="#modal">+ Ajouter</button>
+                                                    </li>
                                                 </ul>
                                             </div>
                                             <div class="form-group col-4">
@@ -182,18 +160,54 @@
                                                         <i class="far fa-times-circle"></i>
                                                         <p>Téléphone DECT</p>
                                                     </li>
+                                                    <li>
+                                                        <button class="btn-main btn-main--text" data-toggle="modal" data-target="#modal">+ Ajouter</button>
+                                                    </li>
                                                 </ul>
                                             </div>
-                                        </div>
-                                        <div class="list-foot">
-                                            <button class="btn-main btn-main--text">+ Ajouter une activité</button>
+                                            <div class="form-group col-4">
+                                                <ul>
+                                                    <li class="list-head">
+                                                        Communication
+                                                    </li>
+                                                    <li>
+                                                        <i class="far fa-times-circle"></i>
+                                                        <p>Téléphone filaire</p>
+                                                    </li>
+                                                    <li>
+                                                        <i class="far fa-times-circle"></i>
+                                                        <p>Téléphone DECT</p>
+                                                    </li>
+                                                    <li>
+                                                        <button class="btn-main btn-main--text" data-toggle="modal" data-target="#modal">+ Ajouter</button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="form-group col-4">
+                                                <ul>
+                                                    <li class="list-head">
+                                                        Communication
+                                                    </li>
+                                                    <li>
+                                                        <i class="far fa-times-circle"></i>
+                                                        <p>Téléphone filaire</p>
+                                                    </li>
+                                                    <li>
+                                                        <i class="far fa-times-circle"></i>
+                                                        <p>Téléphone DECT</p>
+                                                    </li>
+                                                    <li>
+                                                        <button class="btn-main btn-main--text" data-toggle="modal" data-target="#modal">+ Ajouter</button>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row pb-3 pt-3">
                                     <div class="col-3">
                                         <div class="form-group float-right">
-                                            <label>Matériels</label>
+                                            <label>Véhicules</label>
                                         </div>
                                     </div>
                                     <div class="col-9 ">
@@ -211,35 +225,8 @@
                                                         <i class="far fa-times-circle"></i>
                                                         <p>Téléphone DECT</p>
                                                     </li>
-                                                </ul>
-                                            </div>
-                                            <div class="form-group col-4">
-                                                <ul>
-                                                    <li class="list-head">
-                                                        Communication
-                                                    </li>
                                                     <li>
-                                                        <i class="far fa-times-circle"></i>
-                                                        <p>Téléphone filaire</p>
-                                                    </li>
-                                                    <li>
-                                                        <i class="far fa-times-circle"></i>
-                                                        <p>Téléphone DECT</p>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="form-group col-4">
-                                                <ul>
-                                                    <li class="list-head">
-                                                        Communication
-                                                    </li>
-                                                    <li>
-                                                        <i class="far fa-times-circle"></i>
-                                                        <p>Téléphone filaire</p>
-                                                    </li>
-                                                    <li>
-                                                        <i class="far fa-times-circle"></i>
-                                                        <p>Téléphone DECT</p>
+                                                        <button class="btn-main btn-main--text" data-toggle="modal" data-target="#modal">+ Ajouter</button>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -256,6 +243,9 @@
                                                         <i class="far fa-times-circle"></i>
                                                         <p>Téléphone DECT</p>
                                                     </li>
+                                                    <li>
+                                                        <button class="btn-main btn-main--text" data-toggle="modal" data-target="#modal">+ Ajouter</button>
+                                                    </li>
                                                 </ul>
                                             </div>
                                             <div class="form-group col-4">
@@ -271,6 +261,9 @@
                                                         <i class="far fa-times-circle"></i>
                                                         <p>Téléphone DECT</p>
                                                     </li>
+                                                    <li>
+                                                        <button class="btn-main btn-main--text" data-toggle="modal" data-target="#modal">+ Ajouter</button>
+                                                    </li>
                                                 </ul>
                                             </div>
                                             <div class="form-group col-4">
@@ -286,18 +279,54 @@
                                                         <i class="far fa-times-circle"></i>
                                                         <p>Téléphone DECT</p>
                                                     </li>
+                                                    <li>
+                                                        <button class="btn-main btn-main--text" data-toggle="modal" data-target="#modal">+ Ajouter</button>
+                                                    </li>
                                                 </ul>
                                             </div>
-                                        </div>
-                                        <div class="list-foot">
-                                            <button class="btn-main btn-main--text">+ Ajouter une activité</button>
+                                            <div class="form-group col-4">
+                                                <ul>
+                                                    <li class="list-head">
+                                                        Communication
+                                                    </li>
+                                                    <li>
+                                                        <i class="far fa-times-circle"></i>
+                                                        <p>Téléphone filaire</p>
+                                                    </li>
+                                                    <li>
+                                                        <i class="far fa-times-circle"></i>
+                                                        <p>Téléphone DECT</p>
+                                                    </li>
+                                                    <li>
+                                                        <button class="btn-main btn-main--text" data-toggle="modal" data-target="#modal">+ Ajouter</button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="form-group col-4">
+                                                <ul>
+                                                    <li class="list-head">
+                                                        Communication
+                                                    </li>
+                                                    <li>
+                                                        <i class="far fa-times-circle"></i>
+                                                        <p>Téléphone filaire</p>
+                                                    </li>
+                                                    <li>
+                                                        <i class="far fa-times-circle"></i>
+                                                        <p>Téléphone DECT</p>
+                                                    </li>
+                                                    <li>
+                                                        <button class="btn-main btn-main--text" data-toggle="modal" data-target="#modal">+ Ajouter</button>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row pb-3 pt-3">
                                     <div class="col-3">
                                         <div class="form-group float-right">
-                                            <label>Matériels</label>
+                                            <label>Engins</label>
                                         </div>
                                     </div>
                                     <div class="col-9 ">
@@ -315,35 +344,8 @@
                                                         <i class="far fa-times-circle"></i>
                                                         <p>Téléphone DECT</p>
                                                     </li>
-                                                </ul>
-                                            </div>
-                                            <div class="form-group col-4">
-                                                <ul>
-                                                    <li class="list-head">
-                                                        Communication
-                                                    </li>
                                                     <li>
-                                                        <i class="far fa-times-circle"></i>
-                                                        <p>Téléphone filaire</p>
-                                                    </li>
-                                                    <li>
-                                                        <i class="far fa-times-circle"></i>
-                                                        <p>Téléphone DECT</p>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="form-group col-4">
-                                                <ul>
-                                                    <li class="list-head">
-                                                        Communication
-                                                    </li>
-                                                    <li>
-                                                        <i class="far fa-times-circle"></i>
-                                                        <p>Téléphone filaire</p>
-                                                    </li>
-                                                    <li>
-                                                        <i class="far fa-times-circle"></i>
-                                                        <p>Téléphone DECT</p>
+                                                        <button class="btn-main btn-main--text" data-toggle="modal" data-target="#modal">+ Ajouter</button>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -360,6 +362,9 @@
                                                         <i class="far fa-times-circle"></i>
                                                         <p>Téléphone DECT</p>
                                                     </li>
+                                                    <li>
+                                                        <button class="btn-main btn-main--text" data-toggle="modal" data-target="#modal">+ Ajouter</button>
+                                                    </li>
                                                 </ul>
                                             </div>
                                             <div class="form-group col-4">
@@ -375,6 +380,9 @@
                                                         <i class="far fa-times-circle"></i>
                                                         <p>Téléphone DECT</p>
                                                     </li>
+                                                    <li>
+                                                        <button class="btn-main btn-main--text" data-toggle="modal" data-target="#modal">+ Ajouter</button>
+                                                    </li>
                                                 </ul>
                                             </div>
                                             <div class="form-group col-4">
@@ -390,11 +398,47 @@
                                                         <i class="far fa-times-circle"></i>
                                                         <p>Téléphone DECT</p>
                                                     </li>
+                                                    <li>
+                                                        <button class="btn-main btn-main--text" data-toggle="modal" data-target="#modal">+ Ajouter</button>
+                                                    </li>
                                                 </ul>
                                             </div>
-                                        </div>
-                                        <div class="list-foot">
-                                            <button class="btn-main btn-main--text">+ Ajouter une activité</button>
+                                            <div class="form-group col-4">
+                                                <ul>
+                                                    <li class="list-head">
+                                                        Communication
+                                                    </li>
+                                                    <li>
+                                                        <i class="far fa-times-circle"></i>
+                                                        <p>Téléphone filaire</p>
+                                                    </li>
+                                                    <li>
+                                                        <i class="far fa-times-circle"></i>
+                                                        <p>Téléphone DECT</p>
+                                                    </li>
+                                                    <li>
+                                                        <button class="btn-main btn-main--text" data-toggle="modal" data-target="#modal">+ Ajouter</button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="form-group col-4">
+                                                <ul>
+                                                    <li class="list-head">
+                                                        Communication
+                                                    </li>
+                                                    <li>
+                                                        <i class="far fa-times-circle"></i>
+                                                        <p>Téléphone filaire</p>
+                                                    </li>
+                                                    <li>
+                                                        <i class="far fa-times-circle"></i>
+                                                        <p>Téléphone DECT</p>
+                                                    </li>
+                                                    <li>
+                                                        <button class="btn-main btn-main--text" data-toggle="modal" data-target="#modal">+ Ajouter</button>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -413,9 +457,11 @@
         </div>
     </div>
 </div>
+@include("utils.modal.workCreate")
 
 @endsection
 
 @section('script')
     <script src="/js/app/dashboard.js"></script>
+    <script src="/js/utils/modalWorkCreate.js"></script>
 @endsection
