@@ -22,8 +22,11 @@ Route::get('/dashboard', function () {
 Route::get('/work', function () {
     return view('dashboard.work');
 });
-Route::get('/work/create', function () {
+Route::get('/work/create/', function () {
     return view('dashboard.create');
+});
+Route::get('/work/create/new', function () {
+    return view('dashboard.createNew');
 });
 Route::get('/risk/accident', function () {
     return view('risk.accident');
