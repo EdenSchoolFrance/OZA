@@ -67,7 +67,10 @@ p{
         color: $green !important;
     }
     &-red{
-        color: $red !important;
+        color: $danger !important;
+    }
+    &-blue{
+        color: $info !important;
     }
 }
 

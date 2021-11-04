@@ -36,6 +36,11 @@
                                             <input type="email" class="form-control" id="workName" placeholder="Vente - Boulangerie pâtisserie">
                                         </div>
                                     </div>
+                                    <div class="col-3"></div>
+                                    <div class="col-3"></div>
+                                    <div class="col-6">
+                                        <p><i class="fas fa-search"></i>Rechercher une unité existante </p>
+                                    </div>
                                 </div>
                                 <div class="row pb-3 pt-3">
                                     <div class="col-3">
