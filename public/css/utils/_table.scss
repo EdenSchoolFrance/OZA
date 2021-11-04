@@ -4,6 +4,18 @@
             border: none;
         }
     }
+    td:first-child{
+        border: none;
+        padding-top: 0;
+        i{
+            font-size: 25px;
+            color: $grey;
+            margin-bottom: 20px;
+            &:first-child{
+                cursor: pointer;
+            }
+        }
+    }
     td:last-child{
         border: none;
         i{

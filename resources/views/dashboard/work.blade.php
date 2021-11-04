@@ -33,8 +33,12 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12">
-                    <button class="btn-main mb-5 mr-5 float-right">+ AJOUTER UNE UNITE DE TRAVAIL</button>
+                <div class="col-12 d-flex justify-content-between ">
+                    <h3 class="mt-5 show-detail-work">
+                        <i class="far fa-plus-square ml-2 mr-2"></i>
+                        Afficher le détail de toutes les unités de travail
+                    </h3>
+                    <button class="btn-main mb-5 mr-5">+ AJOUTER UNE UNITE DE TRAVAIL</button>
                 </div>
                 <div class="col-12 mb-5">
                     <div class="card">
@@ -43,6 +47,7 @@
                                 <table class="table">
                                     <thead>
                                     <tr>
+                                        <th></th>
                                         <th><i class="fas fa-male"></i></th>
                                         <th>Unité de travail</th>
                                         <th>Activité</th>
@@ -54,6 +59,10 @@
                                     </thead>
                                     <tbody>
                                     <tr>
+                                        <td>
+                                            <i class="far fa-minus-square"></i>
+                                            <i class="fas fa-check text-color-green"></i>
+                                        </td>
                                         <th>43</th>
                                         <td class="agent">Agent technique</td>
                                         <td class="activity">► Maintenir en propreté l’établissement (intérieur et extérieur), notamment aménager, débarrasser et nettoyer les salles de cours, nettoyer les tableaux et goulottes à craies, nettoyer les bureaux, les circulations et les escaliers, nettoyer et désinfecter les sanitaires, nettoyer les vitrages en face intérieure avec des manches télescopiques, collecter et évacuer les déchets, nettoyer et sortir les conteneurs.
@@ -104,6 +113,10 @@
                                         <td><i class="far fa-edit"></i><i class="fas fa-trash"></i></td>
                                     </tr>
                                     <tr>
+                                        <td>
+                                            <i class="far fa-minus-square"></i>
+                                            <i class="fas fa-check text-color-red"></i>
+                                        </td>
                                         <th>43</th>
                                         <td class="agent">Agent technique</td>
                                         <td class="activity">► Maintenir en propreté l’établissement (intérieur et extérieur), notamment aménager, débarrasser et nettoyer les salles de cours, nettoyer les tableaux et goulottes à craies, nettoyer les bureaux, les circulations et les escaliers, nettoyer et désinfecter les sanitaires, nettoyer les vitrages en face intérieure avec des manches télescopiques, collecter et évacuer les déchets, nettoyer et sortir les conteneurs.

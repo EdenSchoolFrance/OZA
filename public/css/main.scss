@@ -61,10 +61,13 @@ p{
 
 .text-color{
     &-yellow{
-        color: $yellow;
+        color: $yellow !important;
     }
     &-green{
-        color: $green;
+        color: $green !important;
+    }
+    &-red{
+        color: $red !important;
     }
 }
 
