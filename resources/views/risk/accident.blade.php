@@ -142,7 +142,7 @@
                                             <td colspan="2">
                                                 <div class="d-flex justify-content-start">
                                                     <div class="point point--inv"></div>
-                                                    <p class="text-green">Existante(s)</p>
+                                                    <p class="text-color-green">Existante(s)</p>
                                                 </div>
                                                 <div class="d-flex justify-content-start mb-5">
                                                     <div class="point point--cancel"></div>
@@ -150,7 +150,7 @@
                                                 </div>
                                                 <div class="d-flex justify-content-start">
                                                     <div class="point point--inv"></div>
-                                                    <p class="text-yellow">Proposée(s)</p>
+                                                    <p class="text-color-yellow">Proposée(s)</p>
                                                 </div>
                                                 <div class="d-flex justify-content-start mb-5">
                                                     <div class="point point--yellow"></div>

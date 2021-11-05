@@ -16,7 +16,7 @@
             <div class="row header">
                 <div class="col-12 mt-5 mb-5 d-flex justify-content-start">
                     <h1>Evaluation des risques professionnels</h1>
-                    <a href="/risk/accident" class="back ml-4"><i class="fas fa-angle-left"></i> Retour</a>
+                    <a href="/risk/accident" class="btn-main btn-main--back ml-4"><i class="fas fa-angle-left"></i> Retour</a>
                 </div>
                 <div class="col-12 d-flex justify-content-start mb-3">
                     <div class="ml-3 mr-4"><h3>Danger :</h3></div>
