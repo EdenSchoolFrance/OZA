@@ -24,7 +24,7 @@
                         <form action="#">
                             <div class="card-header">
                                 <h2>Informations générales</h2>
-                                <button type="button" class="btn-main-inv">Modifier<i class="far fa-edit"></i></button>
+                                <button type="button" class="btn-main btn-main--inv">Modifier<i class="far fa-edit"></i></button>
                             </div>
                             <div class="card-body">
                                 <div class="row pb-3 pt-3">
@@ -83,7 +83,7 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <button class="btn-main btn-main--green mr-3">Enregistrer</button>
-                                            <a class="btn-cancel">Annuler</a>
+                                            <a class="btn-main btn-main--cancel">Annuler</a>
                                         </div>
                                     </div>
                                 </div>
@@ -98,7 +98,7 @@
                         <form action="#">
                             <div class="card-header">
                                 <h2>Informations générales</h2>
-                                <button type="button" class="btn-main-inv">Modifier<i class="far fa-edit"></i></button>
+                                <button type="button" class="btn-main btn-main--inv">Modifier<i class="far fa-edit"></i></button>
                             </div>
                             <div class="card-body">
                                 <div class="row pb-3 pt-3">
@@ -136,7 +136,7 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <button class="btn-main btn-main--green mr-3">Enregistrer</button>
-                                            <a class="btn-cancel">Annuler</a>
+                                            <a class="btn-main btn-main--cancel">Annuler</a>
                                         </div>
                                     </div>
                                 </div>
@@ -151,7 +151,7 @@
                         <form action="#">
                             <div class="card-header">
                                 <h2>Responsable du document au sein de l’entreprise</h2>
-                                <button type="button" class="btn-main-inv">Modifier<i class="far fa-edit"></i></button>
+                                <button type="button" class="btn-main btn-main--inv">Modifier<i class="far fa-edit"></i></button>
                             </div>
                             <div class="card-body">
                                 <div class="row pb-3 pt-3">
@@ -207,7 +207,7 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <button class="btn-main btn-main--green mr-3">Enregistrer</button>
-                                            <a class="btn-cancel">Annuler</a>
+                                            <a class="btn-main btn-main--cancel">Annuler</a>
                                         </div>
                                     </div>
                                 </div>
