@@ -13,6 +13,9 @@
                     <li class="nav-item @if($sousSidebar === "unit-work") {{ 'active' }}@endif">
                         <a href="/work" class="nav-link"><i class="fas fa-angle-right"></i>Unité de travail</a>
                     </li>
+                    <li class="nav-item @if($sousSidebar === "user") {{ 'active' }}@endif">
+                        <a href="/user" class="nav-link"><i class="fas fa-angle-right"></i>Utilisateurs</a>
+                    </li>
                 </ul>
             </li>
             <li class="nav-item sidebar-nav-item @if($sidebar === "risk-pro") {{ 'active' }}@endif">

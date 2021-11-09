@@ -1,35 +1,38 @@
 .table{
+    &--work{
+
+        td:first-child{
+            border: none;
+            padding-top: 0;
+            i{
+                font-size: 25px;
+                color: $grey;
+                margin-bottom: 20px;
+                &:first-child{
+                    cursor: pointer;
+                }
+            }
+        }
+        td:last-child{
+            border: none;
+            i{
+                color: $yellow;
+                font-size: 25px;
+                margin-bottom: 10px;
+            }
+        }
+        .agent{
+            min-width: 10vw;
+        }
+        .activity{
+            max-width: 30vw;
+            width: 30vw;
+        }
+    }
     thead{
         th{
             border: none;
         }
-    }
-    td:first-child{
-        border: none;
-        padding-top: 0;
-        i{
-            font-size: 25px;
-            color: $grey;
-            margin-bottom: 20px;
-            &:first-child{
-                cursor: pointer;
-            }
-        }
-    }
-    td:last-child{
-        border: none;
-        i{
-            color: $yellow;
-            font-size: 25px;
-            margin-bottom: 10px;
-        }
-    }
-    .agent{
-        min-width: 10vw;
-    }
-    .activity{
-        max-width: 30vw;
-        width: 30vw;
     }
     div{
         h6{
@@ -44,6 +47,48 @@
             i{
                 color: $dark;
             }
+        }
+    }
+
+    &--user{
+
+        div{
+            width: 100%;
+        }
+        i{
+            color: $dark;
+            font-size: 16px;
+            transition: 0.5s;
+        }
+        td:last-child{
+            i{
+                color: $yellow;
+                font-size: 20px;
+                margin: 0 5px;
+                float: right;
+            }
+        }
+        .rot{
+            transform: rotate(-180deg);
+            transition: 0.5s;
+        }
+        .table-sortable th {
+            cursor: pointer;
+        }
+
+        .table-sortable .th-sort-asc::after {
+            font-family: "Font Awesome 5 Free";
+            content: "\f077";
+        }
+
+        .table-sortable .th-sort-desc::after {
+            font-family: "Font Awesome 5 Free";
+            content: "\f078";
+        }
+
+        .table-sortable .th-sort-asc::after,
+        .table-sortable .th-sort-desc::after {
+            margin-left: 5px;
         }
     }
 }
