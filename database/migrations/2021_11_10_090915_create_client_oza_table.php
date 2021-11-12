@@ -15,12 +15,12 @@ class CreateClientOzaTable extends Migration
     {
         Schema::create('client_oza', function (Blueprint $table) {
             $table->foreignUuid('client_id');
-            $table->foreignUuid('oza_id');
+            $table->foreignUuid('user_id');
 
-            $table->primary(['client_id', 'oza_id']);
+            $table->primary(['client_id', 'user_id']);
 
             $table->foreign('client_id')->references('id')->on('clients');
-            $table->foreign('oza_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
