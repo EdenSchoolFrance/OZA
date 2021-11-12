@@ -1,3 +1,70 @@
+.tableNew {
+    display: table;
+
+    margin: 5px;
+    width: 100%;
+    .mini{
+        .cellTable{
+            display: block !important;
+            height: 50px;
+        }
+        transition: 0.5s;
+    }
+    .rowTable {
+        display: table-row;
+        .spaceTable{
+            position: relative;
+            padding: 0 10px;
+            .upTable{
+                i{
+                    position: absolute;
+                    top: -40px;
+                    font-size: 25px;
+                    color: $grey;
+                    margin-bottom: 20px;
+                    cursor: pointer;
+                }
+                div{
+                    position: relative;
+                    top: 10px;
+                    i{
+                        position: relative;
+                        top: 0;
+                        cursor: default;
+                    }
+                }
+            }
+            i{
+                font-size: 25px;
+                color: $yellow;
+                margin-bottom: 20px;
+                cursor: pointer;
+            }
+        }
+        .cellTable {
+            display: table-cell;
+            padding: 30px 10px 10px 10px;
+            border-top: 1px $grey solid;
+        }
+        &:first-child{
+            font-weight: 600;
+            .cellTable{
+                border: none;
+            }
+        }
+    }
+    .agent{
+        min-width: 10vw;
+    }
+    .activity{
+        max-width: 30vw;
+        width: 30vw;
+    }
+}
+
+
+
+
 .table{
     &--work{
 

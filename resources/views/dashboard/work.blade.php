@@ -44,7 +44,214 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="row pb-3 pt-3">
-                                <table class="table">
+                                <div class="tableNew">
+                                    <div class="rowTable">
+                                        <div class="spaceTable"></div>
+                                        <div class="cellTable"><i class="fas fa-male"></i></div>
+                                        <div class="cellTable">Unité de travail</div>
+                                        <div class="cellTable">Activité</div>
+                                        <div class="cellTable">Matériel</div>
+                                        <div class="cellTable">Véhicule</div>
+                                        <div class="cellTable">Engins et appareil</div>
+                                        <div class="spaceTable"></div>
+                                    </div>
+                                    <div class="rowTable">
+                                        <div class="spaceTable">
+                                            <div class="upTable">
+                                                <i class="far fa-minus-square"></i>
+                                                <div>
+                                                    <i class="fas fa-check text-color-green"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="cellTable">43</div>
+                                        <div class="cellTable agent">Agent technique</div>
+                                        <div class="cellTable activity">
+                                            <div>
+                                                ► Maintenir en propreté l’établissement (intérieur et extérieur), notamment aménager, débarrasser et nettoyer les salles de cours, nettoyer les tableaux et goulottes à craies, nettoyer les bureaux, les circulations et les escaliers, nettoyer et désinfecter les sanitaires, nettoyer les vitrages en face intérieure avec des manches télescopiques, collecter et évacuer les déchets, nettoyer et sortir les conteneurs.<br>
+                                                ► Assurer l’alimentation en encre, en toner et en papier des photocopieurs de la salle de reprographie ; réaliser l’impression, la plastification et la reliure de document pour les professeurs et l’administration, effectuer le suivi des entretiens des photocopieurs et des matériels de reprographie ; acheminer des courriers, et transporter des personnes avec un véhicule de l’établissement.<br>
+                                                ► Le gardien d’astreinte est chargé d’assurer la surveillance nocturne de l’établissement, notamment : ouvrir et fermer des accès à l’établissement en assurant une surveillance technique lors de rondes dans les locaux (éclairages, portes, fenêtres, appareils électriques…), contrôler le bon fonctionnement des dispositifs de surveillance et d’alarme, surveiller et contrôler les accès aux bâtiments et équipements, détecter et signaler les comportements ou actes pouvant affecter la sécurité, rédiger un rapport en cas d’incident, gérer les appels téléphoniques aux horaires de fermeture au public, assurer l’accès des secours lorsque nécessaire
+                                            </div>
+                                        </div>
+                                        <div class="cellTable">
+                                            <div>
+                                                <div>
+                                                    <h6>Communication</h6>
+                                                    <p>téléphone filaire, téléphone DECT, téléphone GSM, casque téléphonique filaire, casque téléphonique bluetooth, réseau Wifi, talkie-walkie</p>
+                                                </div>
+                                                <div>
+                                                    <h6>Communication</h6>
+                                                    <p>téléphone filaire, téléphone DECT, téléphone GSM, casque téléphonique filaire, casque téléphonique bluetooth, réseau Wifi, talkie-walkie</p>
+                                                </div>
+                                                <div>
+                                                    <h6>Communication</h6>
+                                                    <p>téléphone filaire, téléphone DECT, téléphone GSM, casque téléphonique filaire, casque téléphonique bluetooth, réseau Wifi, talkie-walkie</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="cellTable">
+                                            <div>
+                                                <h6>Communication</h6>
+                                                <p>téléphone filaire, téléphone DECT, téléphone GSM, casque téléphonique filaire, casque téléphonique bluetooth, réseau Wifi, talkie-walkie</p>
+                                            </div>
+                                            <div>
+                                                <h6>Communication</h6>
+                                                <p>téléphone filaire, téléphone DECT, téléphone GSM, casque téléphonique filaire, casque téléphonique bluetooth, réseau Wifi, talkie-walkie</p>
+                                            </div>
+                                            <div>
+                                                <h6>Communication</h6>
+                                                <p>téléphone filaire, téléphone DECT, téléphone GSM, casque téléphonique filaire, casque téléphonique bluetooth, réseau Wifi, talkie-walkie</p>
+                                            </div>
+                                        </div>
+                                        <div class="cellTable">
+                                            <div>
+                                                <h6>Communication</h6>
+                                                <p>téléphone filaire, téléphone DECT, téléphone GSM, casque téléphonique filaire, casque téléphonique bluetooth, réseau Wifi, talkie-walkie</p>
+                                            </div>
+                                            <div>
+                                                <h6>Communication</h6>
+                                                <p>téléphone filaire, téléphone DECT, téléphone GSM, casque téléphonique filaire, casque téléphonique bluetooth, réseau Wifi, talkie-walkie</p>
+                                            </div>
+                                            <div>
+                                                <h6>Communication</h6>
+                                                <p>téléphone filaire, téléphone DECT, téléphone GSM, casque téléphonique filaire, casque téléphonique bluetooth, réseau Wifi, talkie-walkie</p>
+                                            </div>
+                                        </div>
+                                        <div class="spaceTable">
+                                            <i class="far fa-edit"></i>
+                                            <i class="fas fa-trash"></i>
+                                        </div>
+                                    </div>
+                                    <div class="rowTable">
+                                        <div class="spaceTable">
+                                            <div class="upTable">
+                                                <i class="far fa-minus-square"></i>
+                                                <div>
+                                                    <i class="fas fa-check text-color-green"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="cellTable">43</div>
+                                        <div class="cellTable agent">Agent technique</div>
+                                        <div class="cellTable activity">
+                                            ► Maintenir en propreté l’établissement (intérieur et extérieur), notamment aménager, débarrasser et nettoyer les salles de cours, nettoyer les tableaux et goulottes à craies, nettoyer les bureaux, les circulations et les escaliers, nettoyer et désinfecter les sanitaires, nettoyer les vitrages en face intérieure avec des manches télescopiques, collecter et évacuer les déchets, nettoyer et sortir les conteneurs.<br>
+                                            ► Assurer l’alimentation en encre, en toner et en papier des photocopieurs de la salle de reprographie ; réaliser l’impression, la plastification et la reliure de document pour les professeurs et l’administration, effectuer le suivi des entretiens des photocopieurs et des matériels de reprographie ; acheminer des courriers, et transporter des personnes avec un véhicule de l’établissement.<br>
+                                            ► Le gardien d’astreinte est chargé d’assurer la surveillance nocturne de l’établissement, notamment : ouvrir et fermer des accès à l’établissement en assurant une surveillance technique lors de rondes dans les locaux (éclairages, portes, fenêtres, appareils électriques…), contrôler le bon fonctionnement des dispositifs de surveillance et d’alarme, surveiller et contrôler les accès aux bâtiments et équipements, détecter et signaler les comportements ou actes pouvant affecter la sécurité, rédiger un rapport en cas d’incident, gérer les appels téléphoniques aux horaires de fermeture au public, assurer l’accès des secours lorsque nécessaire
+                                        </div>
+                                        <div class="cellTable">
+                                            <div>
+                                                <h6>Communication</h6>
+                                                <p>téléphone filaire, téléphone DECT, téléphone GSM, casque téléphonique filaire, casque téléphonique bluetooth, réseau Wifi, talkie-walkie</p>
+                                            </div>
+                                            <div>
+                                                <h6>Communication</h6>
+                                                <p>téléphone filaire, téléphone DECT, téléphone GSM, casque téléphonique filaire, casque téléphonique bluetooth, réseau Wifi, talkie-walkie</p>
+                                            </div>
+                                            <div>
+                                                <h6>Communication</h6>
+                                                <p>téléphone filaire, téléphone DECT, téléphone GSM, casque téléphonique filaire, casque téléphonique bluetooth, réseau Wifi, talkie-walkie</p>
+                                            </div>
+                                        </div>
+                                        <div class="cellTable">
+                                            <div>
+                                                <h6>Communication</h6>
+                                                <p>téléphone filaire, téléphone DECT, téléphone GSM, casque téléphonique filaire, casque téléphonique bluetooth, réseau Wifi, talkie-walkie</p>
+                                            </div>
+                                            <div>
+                                                <h6>Communication</h6>
+                                                <p>téléphone filaire, téléphone DECT, téléphone GSM, casque téléphonique filaire, casque téléphonique bluetooth, réseau Wifi, talkie-walkie</p>
+                                            </div>
+                                            <div>
+                                                <h6>Communication</h6>
+                                                <p>téléphone filaire, téléphone DECT, téléphone GSM, casque téléphonique filaire, casque téléphonique bluetooth, réseau Wifi, talkie-walkie</p>
+                                            </div>
+                                        </div>
+                                        <div class="cellTable">
+                                            <div>
+                                                <h6>Communication</h6>
+                                                <p>téléphone filaire, téléphone DECT, téléphone GSM, casque téléphonique filaire, casque téléphonique bluetooth, réseau Wifi, talkie-walkie</p>
+                                            </div>
+                                            <div>
+                                                <h6>Communication</h6>
+                                                <p>téléphone filaire, téléphone DECT, téléphone GSM, casque téléphonique filaire, casque téléphonique bluetooth, réseau Wifi, talkie-walkie</p>
+                                            </div>
+                                            <div>
+                                                <h6>Communication</h6>
+                                                <p>téléphone filaire, téléphone DECT, téléphone GSM, casque téléphonique filaire, casque téléphonique bluetooth, réseau Wifi, talkie-walkie</p>
+                                            </div>
+                                        </div>
+                                        <div class="spaceTable">
+                                            <i class="far fa-edit"></i>
+                                            <i class="fas fa-trash"></i>
+                                        </div>
+                                    </div>
+                                    <div class="rowTable">
+                                        <div class="spaceTable">
+                                            <div class="upTable">
+                                                <i class="far fa-minus-square"></i>
+                                                <div>
+                                                    <i class="fas fa-check text-color-green"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="cellTable">43</div>
+                                        <div class="cellTable agent">Agent technique</div>
+                                        <div class="cellTable activity">
+                                            ► Maintenir en propreté l’établissement (intérieur et extérieur), notamment aménager, débarrasser et nettoyer les salles de cours, nettoyer les tableaux et goulottes à craies, nettoyer les bureaux, les circulations et les escaliers, nettoyer et désinfecter les sanitaires, nettoyer les vitrages en face intérieure avec des manches télescopiques, collecter et évacuer les déchets, nettoyer et sortir les conteneurs.<br>
+                                            ► Assurer l’alimentation en encre, en toner et en papier des photocopieurs de la salle de reprographie ; réaliser l’impression, la plastification et la reliure de document pour les professeurs et l’administration, effectuer le suivi des entretiens des photocopieurs et des matériels de reprographie ; acheminer des courriers, et transporter des personnes avec un véhicule de l’établissement.<br>
+                                            ► Le gardien d’astreinte est chargé d’assurer la surveillance nocturne de l’établissement, notamment : ouvrir et fermer des accès à l’établissement en assurant une surveillance technique lors de rondes dans les locaux (éclairages, portes, fenêtres, appareils électriques…), contrôler le bon fonctionnement des dispositifs de surveillance et d’alarme, surveiller et contrôler les accès aux bâtiments et équipements, détecter et signaler les comportements ou actes pouvant affecter la sécurité, rédiger un rapport en cas d’incident, gérer les appels téléphoniques aux horaires de fermeture au public, assurer l’accès des secours lorsque nécessaire
+                                        </div>
+                                        <div class="cellTable">
+                                            <div>
+                                                <div>
+                                                    <h6>Communication</h6>
+                                                    <p>téléphone filaire, téléphone DECT, téléphone GSM, casque téléphonique filaire, casque téléphonique bluetooth, réseau Wifi, talkie-walkie</p>
+                                                </div>
+                                                <div>
+                                                    <h6>Communication</h6>
+                                                    <p>téléphone filaire, téléphone DECT, téléphone GSM, casque téléphonique filaire, casque téléphonique bluetooth, réseau Wifi, talkie-walkie</p>
+                                                </div>
+                                                <div>
+                                                    <h6>Communication</h6>
+                                                    <p>téléphone filaire, téléphone DECT, téléphone GSM, casque téléphonique filaire, casque téléphonique bluetooth, réseau Wifi, talkie-walkie</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="cellTable">
+                                            <div>
+                                                <h6>Communication</h6>
+                                                <p>téléphone filaire, téléphone DECT, téléphone GSM, casque téléphonique filaire, casque téléphonique bluetooth, réseau Wifi, talkie-walkie</p>
+                                            </div>
+                                            <div>
+                                                <h6>Communication</h6>
+                                                <p>téléphone filaire, téléphone DECT, téléphone GSM, casque téléphonique filaire, casque téléphonique bluetooth, réseau Wifi, talkie-walkie</p>
+                                            </div>
+                                            <div>
+                                                <h6>Communication</h6>
+                                                <p>téléphone filaire, téléphone DECT, téléphone GSM, casque téléphonique filaire, casque téléphonique bluetooth, réseau Wifi, talkie-walkie</p>
+                                            </div>
+                                        </div>
+                                        <div class="cellTable">
+                                            <div>
+                                                <h6>Communication</h6>
+                                                <p>téléphone filaire, téléphone DECT, téléphone GSM, casque téléphonique filaire, casque téléphonique bluetooth, réseau Wifi, talkie-walkie</p>
+                                            </div>
+                                            <div>
+                                                <h6>Communication</h6>
+                                                <p>téléphone filaire, téléphone DECT, téléphone GSM, casque téléphonique filaire, casque téléphonique bluetooth, réseau Wifi, talkie-walkie</p>
+                                            </div>
+                                            <div>
+                                                <h6>Communication</h6>
+                                                <p>téléphone filaire, téléphone DECT, téléphone GSM, casque téléphonique filaire, casque téléphonique bluetooth, réseau Wifi, talkie-walkie</p>
+                                            </div>
+                                        </div>
+                                        <div class="spaceTable">
+                                            <i class="far fa-edit"></i>
+                                            <i class="fas fa-trash"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{--<table class="table">
                                     <thead>
                                     <tr>
                                         <th></th>
@@ -171,7 +378,7 @@
                                         <td><i class="far fa-edit"></i><i class="fas fa-trash"></i></td>
                                     </tr>
                                     </tbody>
-                                </table>
+                                </table>--}}
                             </div>
                         </div>
                         <div class="card-foot">
