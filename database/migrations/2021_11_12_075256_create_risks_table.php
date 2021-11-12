@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSectorActivityTable extends Migration
+class CreateRisksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class CreateSectorActivityTable extends Migration
      */
     public function up()
     {
-        Schema::create('sector_activity', function (Blueprint $table) {
+        Schema::create('risks', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name')->nullable();
+            $table->string('name');
+            $table->string('frequency');
+            $table->string('probability');
+            $table->string('gravity');
+            $table->string('impact');
         });
     }
 
@@ -26,6 +30,6 @@ class CreateSectorActivityTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sector_activity');
+        Schema::dropIfExists('risks');
     }
 }

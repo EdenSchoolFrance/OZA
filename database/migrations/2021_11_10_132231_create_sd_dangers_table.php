@@ -15,7 +15,16 @@ class CreateSdDangersTable extends Migration
     {
         Schema::create('sd_dangers', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->boolean('reflection')->nullable();
+            $table->text('comment')->nullable();
+            $table->boolean('ut_all')->nullable();
+            $table->boolean('validated')->default(0);
+            
+            $table->foreignUuid('single_document_id');
+            $table->foreignUuid('danger_id');
 
+            $table->foreign('single_document_id')->references('id')->on('single_documents');
+            $table->foreign('danger_id')->references('id')->on('dangers');
         });
     }
 

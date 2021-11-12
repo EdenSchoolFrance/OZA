@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSdActivityTable extends Migration
+class CreateSdActivitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateSdActivityTable extends Migration
      */
     public function up()
     {
-        Schema::create('sd_activity', function (Blueprint $table) {
+        Schema::create('sd_activities', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->text('text')->nullable();
-            $table->foreignUuid('sd_work_unit_id')->nullable();
+            $table->text('text');
+            
+            $table->foreignUuid('sd_work_unit_id');
 
             $table->foreign('sd_work_unit_id')->references('id')->on('sd_work_units');
         });
@@ -29,6 +30,6 @@ class CreateSdActivityTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sd_activity');
+        Schema::dropIfExists('sd_activities');
     }
 }

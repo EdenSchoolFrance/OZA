@@ -19,7 +19,7 @@ class CreateSdUserTable extends Migration
 
             $table->primary(['single_document_id', 'user_id']);
 
-            $table->foreign('single_document_id')->references('id')->on('single_document');
+            $table->foreign('single_document_id')->references('id')->on('single_documents');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSingleDocumentTable extends Migration
+class CreateSingleDocumentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateSingleDocumentTable extends Migration
      */
     public function up()
     {
-        Schema::create('single_document', function (Blueprint $table) {
+        Schema::create('single_documents', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name_entreprise')->nullable();
             $table->string('adress')->nullable();
@@ -35,6 +35,6 @@ class CreateSingleDocumentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('single_document');
+        Schema::dropIfExists('single_documents');
     }
 }
