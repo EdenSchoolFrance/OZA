@@ -5,117 +5,120 @@
 <div class="container-fluid main workunit">
     @include('utils/header')
     <div class="row body">
-        <div class="col-2">
-            @php
-                $sidebar = "structure";
-                $sousSidebar = "user";
-            @endphp
-            @include('utils.sidebar')
-        </div>
-        <div class="col-10 content">
-            <div class="row header">
-                <div class="col-12 mt-5">
-                    <h1>Utilisateurs</h1>
-                </div>
-                <div class="col-12 d-flex justify-content-start mb-3 header-icon">
-                    <div class="ml-3 mr-4"><i class="fas fa-info-circle"></i></div>
-                    <div>
-                        <p>
-                            Seul le responsable du DU peut valider la finalisation du DU
-                        </p>
-                    </div>
-                </div>
+
+        <div class="col-12">
+            <div class="side">
+                @php
+                    $sidebar = "structure";
+                    $sousSidebar = "user";
+                @endphp
+                @include('utils.sidebar')
             </div>
-            <div class="row">
-                <div class="col-12 d-flex justify-content-end ">
-                    <button class="btn-main mb-3">+ AJOUTER UN UTILISATEUR</button>
-                </div>
-                <div class="col-12 ">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row pb-3 pt-3 table table--user">
-                                <table id="userTable" class="table-sortable" style="width:100%">
-                                    <thead>
-                                    <tr>
-                                        <th class="th-sort-desc" data-para="0">Nom</th>
-                                        <th data-para="1">Prénom</th>
-                                        <th data-para="2">Email</th>
-                                        <th data-para="3">Accès</th>
-                                        <th></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>NOM</td>
-                                        <td>Prénom</td>
-                                        <td>nom.prénom@email.com</td>
-                                        <td>Lecteur</td>
-                                        <td><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>NOM</td>
-                                        <td>Prénom</td>
-                                        <td>nom.prénom@email.com</td>
-                                        <td>Lecteur</td>
-                                        <td><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>NOM</td>
-                                        <td>Prénom</td>
-                                        <td>nom.prénom@email.com</td>
-                                        <td>Lecteur</td>
-                                        <td><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>NOM</td>
-                                        <td>Prénom</td>
-                                        <td>nom.prénom@email.com</td>
-                                        <td>Lecteur</td>
-                                        <td><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>NOM</td>
-                                        <td>Prénom</td>
-                                        <td>nom.prénom@email.com</td>
-                                        <td>Lecteur</td>
-                                        <td><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>NOM</td>
-                                        <td>Prénom</td>
-                                        <td>nom.prénom@email.com</td>
-                                        <td>Lecteur</td>
-                                        <td><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>NOM</td>
-                                        <td>Prénom</td>
-                                        <td>nom.prénom@email.com</td>
-                                        <td>Lecteur</td>
-                                        <td><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>NOM</td>
-                                        <td>Prénom</td>
-                                        <td>nom.prénom@email.com</td>
-                                        <td>Lecteur</td>
-                                        <td><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Michel</td>
-                                        <td>Prénom</td>
-                                        <td>nom.prénom@email.com</td>
-                                        <td>Lecteur</td>
-                                        <td><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+            <div class="content">
+                <div class="row header">
+                    <div class="col-12">
+                        <h1>Utilisateurs</h1>
+                    </div>
+                    <div class="col-12 d-flex justify-content-start header-icon header-info">
+                        <div class="ml-3 mr-4"><i class="fas fa-info-circle"></i></div>
+                        <div>
+                            <p>
+                                Seul le responsable du DU peut valider la finalisation du DU
+                            </p>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 d-flex justify-content-end ">
-                    <button class="btn-main mt-3">+ AJOUTER UN UTILISATEUR</button>
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-end ">
+                        <button class="btn-main mb-3">+ AJOUTER UN UTILISATEUR</button>
+                    </div>
+                    <div class="col-12 ">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row pb-3 pt-3 table table--user">
+                                    <table id="userTable" class="table-sortable" style="width:100%">
+                                        <thead>
+                                        <tr>
+                                            <th class="th-sort-desc" data-para="0">Nom</th>
+                                            <th data-para="1">Prénom</th>
+                                            <th data-para="2">Email</th>
+                                            <th data-para="3">Accès</th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>NOM</td>
+                                            <td>Prénom</td>
+                                            <td>nom.prénom@email.com</td>
+                                            <td>Lecteur</td>
+                                            <td><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>NOM</td>
+                                            <td>Prénom</td>
+                                            <td>nom.prénom@email.com</td>
+                                            <td>Lecteur</td>
+                                            <td><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>NOM</td>
+                                            <td>Prénom</td>
+                                            <td>nom.prénom@email.com</td>
+                                            <td>Lecteur</td>
+                                            <td><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>NOM</td>
+                                            <td>Prénom</td>
+                                            <td>nom.prénom@email.com</td>
+                                            <td>Lecteur</td>
+                                            <td><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>NOM</td>
+                                            <td>Prénom</td>
+                                            <td>nom.prénom@email.com</td>
+                                            <td>Lecteur</td>
+                                            <td><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>NOM</td>
+                                            <td>Prénom</td>
+                                            <td>nom.prénom@email.com</td>
+                                            <td>Lecteur</td>
+                                            <td><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>NOM</td>
+                                            <td>Prénom</td>
+                                            <td>nom.prénom@email.com</td>
+                                            <td>Lecteur</td>
+                                            <td><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>NOM</td>
+                                            <td>Prénom</td>
+                                            <td>nom.prénom@email.com</td>
+                                            <td>Lecteur</td>
+                                            <td><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Michel</td>
+                                            <td>Prénom</td>
+                                            <td>nom.prénom@email.com</td>
+                                            <td>Lecteur</td>
+                                            <td><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 d-flex justify-content-end ">
+                        <button class="btn-main mt-3">+ AJOUTER UN UTILISATEUR</button>
+                    </div>
                 </div>
             </div>
         </div>

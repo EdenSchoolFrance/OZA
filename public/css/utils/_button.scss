@@ -68,14 +68,16 @@
         }
     }
     &--back{
+        padding: 0;
+        margin-bottom: 10px;
         background-color: transparent;
         text-decoration: none;
         color: $dark;
-        font-size: 35px;
+        font-size: 18px;
         font-family: Hind-Medium;
         transition: 0.5s;
         i{
-            font-size: 35px;
+            font-size: 18px;
         }
         &:hover{
             color: $yellow;
