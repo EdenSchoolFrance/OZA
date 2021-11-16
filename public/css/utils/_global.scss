@@ -1,39 +1,44 @@
-html{
+* {
+    box-sizing: border-box;
+    font-family: 'Hind-Regular';
+}
+
+html {
     height: 100%;
 }
-body{
+
+body {
     padding: 0;
     margin: 0;
     background-color: $white_grey;
     height: 100%;
-}
-a{
-    text-decoration: none;
-    &:hover{
-        text-decoration: none;
-    }
+    min-height: 100vh;
 }
 
-h1{
+h1 {
     font-size: 30px;
-    font-family: Hind-SemiBold;
+    font-family: 'Hind-SemiBold';
 }
-h2{
+
+h2 {
     font-size: 26px;
 }
-h3{
+
+h3 {
     font-size: 18px;
 }
+
 h4 {
     font-size: 16px;
 }
-h5{
 
-}
-h6{
+h5 {}
 
+h6 {}
+
+p {
+    font-family: 'Hind-Medium';
 }
-p{
-    font-family: Hind-Medium;
-    margin-bottom: 0;
-}
+
+
+@import "dashboard";

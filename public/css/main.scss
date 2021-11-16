@@ -7,41 +7,45 @@
 @import "utils/variables";
 //Fonts
 @import "utils/fonts";
-//Card
-@import "utils/card";
-//Table
-@import "utils/table";
-//SideBar
-@import "utils/sidebar";
-// Radio button
-@import "utils/radio";
-// Checkbox button
-@import "utils/checkbox";
-//Button
-@import "utils/button";
-// Point
-@import "utils/point";
-//Text color
-@import "utils/text";
-// Radio bar
-@import "utils/radioBar";
-//Scroll Bar
-@import "utils/scrollBar";
 
-
-
-//Global Style
+// Global Style
 @import "utils/global";
 
+// //Card
+// @import "utils/card";
+// //Table
+// @import "utils/table";
+// //SideBar
+// @import "utils/sidebar";
+// // Radio button
+// @import "utils/radio";
+// // Checkbox button
+// @import "utils/checkbox";
+// //Button
+// @import "utils/button";
+// // Point
+// @import "utils/point";
+// //Text color
+// @import "utils/text";
+// // Radio bar
+// @import "utils/radioBar";
+// //Scroll Bar
+// @import "utils/scrollBar";
 
-/*
-    Import file from app here
-*/
-//Header
-@import "app/global/header";
-//NavBar
-@import "app/sidebar/sidebar";
-//Main dashboard
-@import "app/dashboard/main";
-//Risk main
-@import "app/risk/mainRisk";
+
+
+// //Global Style
+// @import "utils/global";
+
+
+// /*
+//     Import file from app here
+// */
+// //Header
+// @import "app/global/header";
+// //NavBar
+// @import "app/sidebar/sidebar";
+// //Main dashboard
+// @import "app/dashboard/main";
+// //Risk main
+// @import "app/risk/mainRisk";

@@ -1,8 +1,19 @@
 @extends('app')
 
 @section('content')
+<div class="body">
+    <div class="card card--table-works">
+        <div class="card-header">
+            <div></div>
+            <button class="btn btn-add"><i class="fas fa-plus"></i> AJOUTER UN UTILISATEUR</button>
+        </div>
+        <div class="card-body">
+            
+        </div>
+    </div>
+</div>
 
-<div class="container-fluid main workunit">
+{{-- <div class="container-fluid main workunit">
     @include('utils/header')
     <div class="row body">
 
@@ -287,7 +298,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 @endsection
 

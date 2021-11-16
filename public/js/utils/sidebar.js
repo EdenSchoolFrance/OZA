@@ -1,53 +1,27 @@
-/*
-    This code from to main.js
-*/
-$('.sidebar-toggle-view').on('click', '.sidebar-nav-item .nav-link', function (e) {
-    if (!$(this).parents('#wrapper').hasClass('sidebar-collapsed')) {
-        var animationSpeed = 300,
-            subMenuSelector = '.sub-group-menu',
-            $this = $(this),
-            checkElement = $this.next();
-        if (checkElement.is(subMenuSelector) && checkElement.is(':visible')) {
-            checkElement.slideUp(animationSpeed, function () {
-                checkElement.removeClass('menu-open');
-            });
-            checkElement.parent(".sidebar-nav-item").removeClass("active");
-        } else if ((checkElement.is(subMenuSelector)) && (!checkElement.is(':visible'))) {
-            var parent = $this.parents('ul').first();
-            var ul = parent.find('ul:visible').slideUp(animationSpeed);
-            ul.removeClass('menu-open');
-            var parent_li = $this.parent("li");
-            checkElement.slideDown(animationSpeed, function () {
-                checkElement.addClass('menu-open');
-                parent.find('.sidebar-nav-item.active').removeClass('active');
-                parent_li.addClass('active');
-            });
-        }
-        if (checkElement.is(subMenuSelector)) {
-            e.preventDefault();
-        }
-    } else {
-        if ($(this).attr('href') === "#") {
-            e.preventDefault();
-        }
+on('.sidebar .nav-sidebar .sidebar-nav-link', 'click', (el, e) => {
+    let $this = el;
+    let checkElement = $this.nextSibling;
+    let parent = el.closest('.sidebar-nav-item');
+
+    while(checkElement && checkElement.nodeType != 1) {
+        checkElement = checkElement.nextSibling;
     }
-});
 
-/*-------------------------------------
-    Sidebar Menu Control
-  -------------------------------------*/
-$(".sidebar-toggle").on("click", function () {
-    window.setTimeout(function () {
-        $("#wrapper").toggleClass("sidebar-collapsed");
-    }, 500);
-});
+    if (checkElement && checkElement.classList.contains('sub-group-menu')) {
+        e.preventDefault();
 
-/*-------------------------------------
-    Sidebar Menu Control Mobile
-  -------------------------------------*/
-$(".sidebar-toggle-mobile").on("click", function () {
-    $("#wrapper").toggleClass("sidebar-collapsed-mobile");
-    if ($("#wrapper").hasClass("sidebar-collapsed")) {
-        $("#wrapper").removeClass("sidebar-collapsed");
+        if (parent.classList.contains('active')) {
+            DOMAnimations.slideUp(checkElement, '300');
+            parent.classList.remove('active');
+        } else if (!parent.classList.contains('active')) {
+            let oldEl = $('.sidebar>.nav-sidebar>.sidebar-nav-item.active')[0];
+
+            if (oldEl) {
+                DOMAnimations.slideUp($('.sub-group-menu', oldEl)[0], '300');
+                oldEl.classList.remove('active');
+            }
+            DOMAnimations.slideDown(checkElement, '300');
+            parent.classList.add('active');
+        }
     }
 });
