@@ -31,3 +31,11 @@ on('textarea.auto-resize', 'input', (el, e) => {
     el.style.height = "auto";
     el.style.height = (el.scrollHeight) + "px";
 });
+
+const tooltip = (selector, element = document) =>{
+    element.addEventListener("mouseover", (e)=>{
+        if (e.target.closest(selector)){
+
+        }
+    })
+}

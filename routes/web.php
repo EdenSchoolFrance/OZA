@@ -61,8 +61,15 @@ Route::get('/work/create/', function () {
     return view('work_unit.create', compact('page'));
 })->name('work.create');
 
-Route::get('/work/create/new', function () {
-    return view('dashboard.createNew');
+Route::get('/work/new', function () {
+    $page = [
+        'title' => 'Créer une unité de travail',
+        'link_back' => '/work',
+        'sidebar' => 'risk_pro',
+        'sub_sidebar' => 'accident'
+    ];
+
+    return view('dashboard.createNew',compact('page'));
 });
 
 Route::get('/risk/accident', function () {
@@ -76,6 +83,16 @@ Route::get('/risk/accident', function () {
     return view('risk.accident', compact('page'));
 });
 Route::get('/risk/accident/create', function () {
-    return view('risk.create');
+
+    $page = [
+        'title' => 'Créer un risque',
+        'link_back' => '/risk',
+        'text_back'=> 'Retour à l’évaluation des risques',
+        'dangers' => 'Accident, presqu’accident et maladie du travail non ou mal analysés et prévenus pouvant générer la répétition de ces faits.',
+        'sidebar' => 'risk_pro',
+        'sub_sidebar' => 'accident'
+    ];
+
+    return view('risk.create', compact('page'));
 });
 

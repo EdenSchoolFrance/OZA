@@ -34,13 +34,13 @@
 
         &.card-editable {
             .card {
-    
+
                 &-header {
                     .btn-edit-card {
                         display: none;
                     }
                 }
-    
+
                 &-body {
                     .row {
                         .line {
@@ -51,12 +51,12 @@
                                     }
                                 }
                             }
-    
+
                             &.hidden {
                                 display: flex;
                             }
                         }
-    
+
                         &--submit {
                             display: block;
                         }
@@ -73,6 +73,9 @@
                 .line {
                     .left {
                         align-items: center;
+                        &-cancel{
+                            align-items: inherit;
+                        }
                     }
                 }
             }
