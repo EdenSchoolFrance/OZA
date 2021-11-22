@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-<div class="body">
+<div class="content">
     <div class="card card--reflection">
         <form class="card-body" action="" method="POST">
             @csrf
@@ -52,92 +52,124 @@
             <table class="table table--risks">
                 <thead>
                     <tr>
-                        <th>Risque identifié</th>
-                        <th>RB</th>
-                        <th>RR</th>
-                        <th>Mesure  existante</th>
-                        <th>Mesure proposée</th>
-                        <th>Criticité</th>
-                        <th></th>
+                        <th class="th_risk">Risque identifié</th>
+                        <th class="th_rb">RB</th>
+                        <th class="th_rr">RR</th>
+                        <th class="th_existing_measure">Mesure existante</th>
+                        <th class="th_proposed_measure">Mesure proposée</th>
+                        <th class="th_criticality">Criticité</th>
+                        <th class="th_actions"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>
+                        <td class="td_risk">
                             <p>Exposition au sang de la victime en prodiguant des soins à un accidenté du travail.</p>
-                            <p>Rappel engin : Exposition au sang de la victime en prodiguant des soins à un accidenté du travail.</p>
+                            <p><span>Rappel engin :</span> Exposition au sang de la victime en prodiguant des soins à un accidenté du travail.</p>
                         </td>
-                        <td>
+                        <td class="td_rb">
                             <button class="btn btn-yellow btn-small">10</button>
-                            <ul>
-                                <li><span class="light-grey">F</span> An</li>
-                                <li><span class="light-grey">P</span> Faible</li>
-                                <li><span class="light-grey">GP</span> ASA</li>
-                                <li><span class="light-grey">ID</span> NON</li>
-                            </ul>
+                            <div class="list list--text">
+                                <div class="list-row">
+                                    <p class="list-point list-point--text">F</p>
+                                    <p class="list-text">An</p>
+                                </div>
+                                <div class="list-row">
+                                    <p class="list-point list-point--text">P</p>
+                                    <p class="list-text">Faible</p>
+                                </div>
+                                <div class="list-row">
+                                    <p class="list-point list-point--text">GP</p>
+                                    <p class="list-text">ASA</p>
+                                </div>
+                                <div class="list-row">
+                                    <p class="list-point list-point--text">ID</p>
+                                    <p class="list-text">NON</p>
+                                </div>
+                            </div>
                         </td>
-                        <td>
+                        <td class="td_rr">
                             <button class="btn btn-success btn-small">10</button>
                         </td>
-                        <td>
-                            <div>
-                                <div class="list-point list-point--green"></div>
-                                <p>Pas d’antécédent connu d’accident du travail et / ou de maladie professionnelle généré par le CO2.</p>
+                        <td class="td_existing_measure">
+                            <div class="list">
+                                <div class="list-row">
+                                    <div class="list-point list-point--success"></div>
+                                    <p class="list-text">Pas d’antécédent connu d’accident du travail et / ou de maladie professionnelle généré par le CO2.</p>
+                                </div>
                             </div>
                         </td>
-                        <td>
-                            <div>
-                                <div class="list-point list-point--yellow"></div>
-                                <p>Obligation réglementaire : Mettre en place une ventilation mécanique assurant en permanence un débit de 25 m3/h/occupant dans les bureaux et de 30 m3/h/occupant dans les salles de réunion</p>
-                            </div>
-                            <div>
-                                <div class="list-point list-point--yellow"></div>
-                                <p>Réaliser l’évaluation détaillée du risque chimique selon les prescriptions réglementaires.</p>
+                        <td class="td_proposed_measure">
+                            <div class="list">
+                                <div class="list-row">
+                                    <div class="list-point list-point--yellow"></div>
+                                    <p class="list-text">Obligation réglementaire : Mettre en place une ventilation mécanique assurant en permanence un débit de 25 m3/h/occupant dans les bureaux et de 30 m3/h/occupant dans les salles de réunion</p>
+                                </div>
+                                <div class="list-row">
+                                    <div class="list-point list-point--yellow"></div>
+                                    <p class="list-text">Réaliser l’évaluation détaillée du risque chimique selon les prescriptions réglementaires.</p>
+                                </div>
                             </div>
                         </td>
-                        <td>
+                        <td class="td_criticality">
                             <button type="button" class="btn btn-success btn-small">Acceptable</button>
                         </td>
-                        <td><i class="far fa-edit"></i><i class="fas fa-trash"></i></td>
+                        <td class="td_actions"><i class="far fa-edit"></i><i class="fas fa-trash"></i></td>
                     </tr>
 
                     <tr>
-                        <td>
-                            <p>Exposition au sang de la victime en prodiguant des soins à un accidenté du travail.</p>
-                            <p>Rappel engin : Exposition au sang de la victime en prodiguant des soins à un accidenté du travail.</p>
+                        <td class="td_risk">
+                            <p>Activités au cours de la crise sanitaire liée à la pandémie de COVID-19.
+                                Toutes les activités professionnelles au contact d’autres personnes (collègues, collaborateurs, clients, public) pouvant être atteintes de la COVID-19, et, ou, tous les contacts avec des surfaces et ou matières infectées par le virus de la COVID-19.</p>
                         </td>
-                        <td>
+                        <td class="td_rb">
                             <button class="btn btn-yellow btn-small">10</button>
-                            <ul>
-                                <li><span class="light-grey">F</span> An</li>
-                                <li><span class="light-grey">P</span> Faible</li>
-                                <li><span class="light-grey">GP</span> ASA</li>
-                                <li><span class="light-grey">ID</span> NON</li>
-                            </ul>
-                        </td>
-                        <td>
-                            <button class="btn btn-success btn-small">10</button>
-                        </td>
-                        <td>
-                            <div>
-                                <div class="list-point list-point--green"></div>
-                                <p>Pas d’antécédent connu d’accident du travail et / ou de maladie professionnelle généré par le CO2.</p>
+                            <div class="list list--text">
+                                <div class="list-row">
+                                    <p class="list-point list-point--text">F</p>
+                                    <p class="list-text">An</p>
+                                </div>
+                                <div class="list-row">
+                                    <p class="list-point list-point--text">P</p>
+                                    <p class="list-text">Faible</p>
+                                </div>
+                                <div class="list-row">
+                                    <p class="list-point list-point--text">GP</p>
+                                    <p class="list-text">ASA</p>
+                                </div>
+                                <div class="list-row">
+                                    <p class="list-point list-point--text">ID</p>
+                                    <p class="list-text">NON</p>
+                                </div>
                             </div>
                         </td>
-                        <td>
-                            <div>
-                                <div class="list-point list-point--yellow"></div>
-                                <p>Obligation réglementaire : Mettre en place une ventilation mécanique assurant en permanence un débit de 25 m3/h/occupant dans les bureaux et de 30 m3/h/occupant dans les salles de réunion</p>
-                            </div>
-                            <div>
-                                <div class="list-point list-point--yellow"></div>
-                                <p>Réaliser l’évaluation détaillée du risque chimique selon les prescriptions réglementaires.</p>
+                        <td class="td_rr">
+                            <button class="btn btn-danger btn-small">24</button>
+                        </td>
+                        <td class="td_existing_measure">
+                            <div class="list">
+                                <div class="list-row">
+                                    <div class="list-point list-point--text">X</div>
+                                    <p class="list-text">Absence de mesure mises en place</p>
+                                </div>
                             </div>
                         </td>
-                        <td>
-                            <button type="button" class="btn btn-success btn-small">Acceptable</button>
+                        <td class="td_proposed_measure">
+                            <div class="list">
+                                <div class="list-row">
+                                    <div class="list-point list-point--yellow"></div>
+                                    <p class="list-text">Obligation réglementaire : Mettre en place une ventilation mécanique assurant en permanence un débit de 25 m3/h/occupant dans les bureaux et de 30 m3/h/occupant dans les salles de réunion</p>
+                                </div>
+                                <div class="list-row">
+                                    <div class="list-point list-point--yellow"></div>
+                                    <p class="list-text">Réaliser l’évaluation détaillée du risque chimique selon les prescriptions réglementaires.</p>
+                                </div>
+                            </div>
                         </td>
-                        <td><i class="far fa-edit"></i><i class="fas fa-trash"></i></td>
+                        <td class="td_criticality">
+                            <button type="button" class="btn btn-danger btn-small">Stop</button>
+                        </td>
+                        <td class="td_actions"><i class="far fa-edit"></i><i class="fas fa-trash"></i></td>
                     </tr>
                 </tbody>
                 <tfoot>
@@ -169,7 +201,7 @@
                 </tbody>
                 <tfoot>
                     <tr class="no-data">
-                        <td colspan="7"><a href="/risk/accident/create" class="btn btn-add-inv"><i class="fas fa-plus"></i> AJOUTER UN RISQUE</a></td>
+                        <td colspan="7"><a href="/risk/accident/create" class="btn btn-inv btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN RISQUE</a></td>
                     </tr>
                 </tfoot>
             </table>
@@ -183,10 +215,10 @@
         </div>
     </div>
 
-    <div class="card card--validate-risk">
+    <div class="card card--submit">
         <form class="card-body" action="" method="POST">
             @csrf
-            <button class="btn btn-send" disabled>Valider le danger</button>
+            <button class="btn btn-success" disabled>Valider le danger</button>
         </div>
     </div>
 </div>

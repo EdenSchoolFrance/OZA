@@ -5,21 +5,23 @@ class DOMAnimations {
      * @param {Number} duration
      * @returns {Promise<boolean>}
      */
-    static slideUp(element, duration = 500) {
+    static slideUp(element, duration = 500, h = 0) {
         return new Promise(function (resolve, reject) {
             element.style.height = element.offsetHeight + 'px'
             element.style.transitionProperty = `height, margin, padding`
             element.style.transitionDuration = duration + 'ms'
             element.offsetHeight // eslint-disable-line no-unused-expressions
             element.style.overflow = 'hidden'
-            element.style.height = 0
+            element.style.height = h
             element.style.paddingTop = 0
             element.style.paddingBottom = 0
             element.style.marginTop = 0
             element.style.marginBottom = 0
             window.setTimeout(function () {
-                element.style.display = 'none'
-                element.style.removeProperty('height')
+                if (!h) {
+                    element.style.display = 'none'
+                    element.style.removeProperty('height')
+                }
                 element.style.removeProperty('padding-top')
                 element.style.removeProperty('padding-bottom')
                 element.style.removeProperty('margin-top')
@@ -38,15 +40,23 @@ class DOMAnimations {
      * @param {Number} duration
      * @returns {Promise<boolean>}
      */
-    static slideDown(element, duration = 500) {
+    static slideDown(element, duration = 500, h = 0) {
         return new Promise(function (resolve, reject) {
             element.style.removeProperty('display')
             let display = window.getComputedStyle(element).display
             if (display === 'none') display = 'block'
             element.style.display = display
-            let height = element.offsetHeight
+
+            let height;
+            if (!h) {
+                height = element.offsetHeight;
+            } else {
+                element.style.removeProperty('height')
+                height = element.offsetHeight;
+            }
+            
             element.style.overflow = 'hidden'
-            element.style.height = 0
+            element.style.height = h
             element.style.paddingTop = 0
             element.style.paddingBottom = 0
             element.style.marginTop = 0

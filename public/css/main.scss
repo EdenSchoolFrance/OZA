@@ -11,41 +11,12 @@
 // Global Style
 @import "utils/global";
 
-// //Card
-// @import "utils/card";
-// //Table
-// @import "utils/table";
-// //SideBar
-// @import "utils/sidebar";
-// // Radio button
-// @import "utils/radio";
-// // Checkbox button
-// @import "utils/checkbox";
-// //Button
-// @import "utils/button";
-// // Point
-// @import "utils/point";
-// //Text color
-// @import "utils/text";
-// // Radio bar
-// @import "utils/radioBar";
-// //Scroll Bar
-// @import "utils/scrollBar";
+// Template Style
+@import "utils/template";
 
-
-
-// //Global Style
-// @import "utils/global";
-
-
-// /*
-//     Import file from app here
-// */
-// //Header
-// @import "app/global/header";
-// //NavBar
-// @import "app/sidebar/sidebar";
-// //Main dashboard
-// @import "app/dashboard/main";
-// //Risk main
-// @import "app/risk/mainRisk";
+// App
+@import "app/presentation";
+@import "app/users";
+@import "app/work-unit";
+@import "app/risks";
+@import "app/add-work-unit";

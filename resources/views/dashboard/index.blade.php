@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-<div class="body">
+<div class="content">
     <form class="card card--general-infos" action="" method="POST">
         <div class="card-header">
             <h2 class="title">Informations générales</h2>

@@ -1,0 +1,186 @@
+.card {
+    &--reflection {
+        .row {
+            .line {
+                .left {
+                    width: 40% !important;
+                    justify-content: flex-start !important;
+                    flex-direction: row;
+
+                    &>i {
+                        font-size: 30px;
+                        margin-right: 20px;
+                        color: $dark;
+                    }
+
+                    &>div {
+                        display: flex;
+                        flex-direction: column;
+
+                        p {
+                            margin: 0;
+                            font-family: 'Hind-Regular';
+                            color: $dark;
+                        }
+
+                        ul {
+                            list-style: none;
+                            padding: 0;
+
+                            li {
+                                font-family: 'Hind-Regular';
+                                font-size: 14px;
+                                color: $dark;
+                            }
+                        }
+                    }
+                }
+
+                .right {
+                    width: 60% !important;
+
+                    textarea {
+                        resize: vertical;
+                        min-height: 150px;
+                    }
+
+                    .btn {
+                        padding-left: 0;
+                    }
+                }
+            }
+        }
+
+        .card-footer {
+            p {
+                margin: 0;
+                color: $dark;
+            }
+
+            .btn {
+                margin-left: 15px;
+            }
+        }
+    }
+
+    &--risk {
+        .card-header {
+            .title {
+                position: relative;
+
+                &::before {
+                    display: none;
+                    content: '\f054';
+                    font-family: "Font Awesome 5 Free";
+                    color: $dark_purple;
+                    position: absolute;
+                    left: -17px;
+                    top: 7px;
+                    font-size: 16px;
+                    transition: transform ease .3s;
+                }
+            }
+
+            .message-alert {
+                color: $danger;
+                font-size: 16px;
+                margin: 0;
+            }
+
+            form.form-risk-checked {
+                display: flex;
+
+                p {
+                    margin: 0;
+                    color: $dark;
+                }
+    
+                .btn {
+                    margin-left: 15px;
+                }
+            }
+        }
+
+        .card-body {
+            display: none;
+        }
+
+        &-stretchable {
+            .card-header {
+                .title {
+                    cursor: pointer;
+
+                    &::before {
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        &-opened {
+            .card-header {
+                .title {
+                    &::before {
+                        transform: rotate(90deg);
+                    }
+                }
+            }
+
+            .card-body {
+                display: flex;
+            }
+        }
+    }
+}
+
+table.table--risks {
+    thead tr th {
+        &.th {
+            &_criticality {
+                padding-right: 0;
+            }
+            &_actions {
+                border: none;
+                padding-left: 20px;
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            td {
+                &.td {
+                    &_risk {
+                        p {
+                            white-space: pre-line;
+                            margin-top: 0;
+    
+                            &:last-of-type {
+                                margin: 0;
+                            }
+                        }
+                    }
+
+                    &_rb {
+                        .list {
+                            margin-top: 20px;
+                        }
+                    }
+
+                    &_criticality {
+                        padding-right: 0;
+                    }
+
+                    &_actions {
+                        border: none;
+                        padding-left: 20px;
+
+                        i {
+                            margin-bottom: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
