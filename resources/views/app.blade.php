@@ -15,8 +15,9 @@
         @include('utils.nav')
 
         <main>
+            @if($page['sidebar'] !== false)
             @include('utils.sidebar')
-
+            @endif
             <div class="container">
 
                 @include('utils.header')

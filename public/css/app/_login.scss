@@ -1,0 +1,67 @@
+.card--login {
+    margin-right: 250px;
+    .card-body {
+        .row {
+            &:last-child{
+                margin-bottom: 50px;
+            }
+            &--submit{
+                button:first-child{
+                    margin-right: 25px;
+                }
+            }
+            .line {
+                .left{
+                    align-items: center;
+                }
+                .right{
+                    display: flex;
+                    justify-content: flex-start;
+                    p{
+                        i{
+                            margin: 0;
+                            font-size: inherit;
+                        }
+                    }
+                    i{
+                        margin-left: 20px;
+                        font-size: 20px;
+                    }
+                    .message-error {
+                        display: none;
+                    }
+
+                    input,
+                    textarea {
+                        max-width: 600px;
+
+                        &.form-control-small {
+                            max-width: calc(600px / 2);
+                        }
+                    }
+
+                    textarea {
+                        min-height: 125px;
+                        resize: vertical;
+                    }
+                    li{
+                        padding: 5px 0;
+                    }
+                }
+                &--activity {
+                    textarea {
+                        border-color: transparent;
+                        padding: 0;
+
+                        &:focus,
+                        &.active {
+                            padding: 10px 15px;
+                            background-color: #F7F7F7;
+                            border-color: $border_head;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

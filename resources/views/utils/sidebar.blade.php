@@ -1,5 +1,6 @@
 <div class="sidebar">
     <ul class="nav-sidebar">
+        @if($page['sidebar'] !== 'home')
         <li class="sidebar-nav-item">
             <a href="#" class="sidebar-nav-link"><i class="fas fa-table"></i><span>Tableau de bord</span></a>
         </li>
@@ -75,6 +76,7 @@
         <li class="sidebar-nav-item">
             <a href="#" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Risques psychosociaux</span></a>
         </li>
+        @endif
         <li class="sidebar-nav-item">
             <a href="#" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Rappels règlementaires</span></a>
         </li>

@@ -16,6 +16,17 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+Route::get('/', function () {
+
+    $page = [
+        'title' => 'Bienvenue Jhon',
+        'sidebar' => 'home',
+    ];
+
+    return view('dashboard.home', compact('page'));
+});
+
+
 Route::get('/dashboard', function () {
     $page = [
         'title' => 'Présentation de la structure',
@@ -94,5 +105,16 @@ Route::get('/risk/accident/create', function () {
     ];
 
     return view('risk.create', compact('page'));
+});
+
+Route::get('/login', function () {
+
+    $page = [
+        'title' => 'Identification',
+        'sidebar' => false,
+        'nav' => false
+    ];
+
+    return view('auth.login', compact('page'));
 });
 
