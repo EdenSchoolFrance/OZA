@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 Route::get('/', function () {
 
     $page = [
@@ -117,4 +114,31 @@ Route::get('/login', function () {
 
     return view('auth.login', compact('page'));
 });
+/*
+ *
+ * Admin OZA section
+ *
+ * */
+Route::get('/admin/users', function () {
+    $page = [
+        'title' => 'Liste des utilisateurs',
+        'sidebar' => 'users',
+        'sub_sidebar' => 'listUser',
+        'oza' => true,
+        'nav' => 'oza'
+    ];
 
+    return view('admin.users.index', compact('page'));
+});
+
+Route::get('/admin/clients', function () {
+    $page = [
+        'title' => 'Liste des utilisateurs',
+        'sidebar' => 'clients',
+        'sub_sidebar' => 'listClient',
+        'oza' => true,
+        'nav' => 'oza'
+    ];
+
+    return view('admin.client.index', compact('page'));
+});

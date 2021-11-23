@@ -4,7 +4,9 @@
 <nav class="nav">
     <img src="" alt="logo">
     @if($page['nav'] !== false)
+
         <div>
+            @if($page['nav'] !== 'oza')
             <div class="col-3 d-flex justify-content-around">
                 <img src="" alt="Logo BIOCOOP">
                 <div class="btn-group-dropdown">
@@ -22,6 +24,7 @@
                 <i class="far fa-envelope"></i>
                 <p>Contacter <br/> un expert</p>
             </div>
+            @endif
             <div class="nav-link">
                 <i class="far fa-user-circle"></i>
                 <p>Profil</p>
