@@ -110,13 +110,13 @@
                 <a href="#" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Clients</span></a>
                 <ul class="sub-group-menu" style="{{ $page['sidebar'] == "risk_pro" ? 'display: block' : '' }}">
                     <li class="sidebar-nav-item {{ $page['sub_sidebar'] == "addClient" ? 'active' : '' }}">
-                        <a href="/risk/" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Ajouter un client</a>
+                        <a href="/admin/clients/add" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Ajouter un client</a>
                     </li>
                     <li class="sidebar-nav-item {{ $page['sub_sidebar'] == "listClient" ? 'active' : '' }}">
-                        <a href="/risk/accident" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Liste des clients</a>
+                        <a href="/admin/clients/" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Liste des clients</a>
                     </li>
                     <li class="sidebar-nav-item {{ $page['sub_sidebar'] == "listDu" ? 'active' : '' }}">
-                        <a href="/risk/accident" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Liste des DU</a>
+                        <a href="/admin/clients/du" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Liste des DU</a>
                     </li>
                 </ul>
             </li>

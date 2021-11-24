@@ -26,10 +26,10 @@
 
                     input,
                     textarea {
-                        max-width: 600px;
+                        max-width: 480px;
 
                         &.form-control-small {
-                            max-width: calc(600px / 2);
+                            max-width: calc(480px / 2);
                         }
                     }
 

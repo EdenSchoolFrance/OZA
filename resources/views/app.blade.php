@@ -30,6 +30,8 @@
         <script src="/js/utils/main.js"></script>
         <script src="/js/utils/animations.js"></script>
         <script src="/js/utils/sidebar.js"></script>
+        <script src="/js/utils/table.js"></script>
+        <script src="/js/utils/tabs.js"></script>
         <script src="/js/app/dashboard.js"></script>
         @yield('script')
     </body>

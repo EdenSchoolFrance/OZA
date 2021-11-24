@@ -142,3 +142,29 @@ Route::get('/admin/clients', function () {
 
     return view('admin.client.index', compact('page'));
 });
+
+Route::get('/admin/clients/add', function () {
+
+    $page = [
+        'title' => 'Ajouter un client',
+        'sidebar' => 'clients',
+        'sub_sidebar' => 'addClient',
+        'oza' => true,
+        'nav' => 'oza'
+    ];
+
+    return view('admin.client.add', compact('page'));
+});
+
+Route::get('/admin/clients/du', function () {
+
+    $page = [
+        'title' => 'Liste des DU',
+        'sidebar' => 'clients',
+        'sub_sidebar' => 'listDu',
+        'oza' => true,
+        'nav' => 'oza'
+    ];
+
+    return view('admin.client.listDu', compact('page'));
+});

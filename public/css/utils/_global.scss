@@ -120,6 +120,21 @@ ul{
         }
     }
 
+    &-tabs{
+        background-color: white;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        transition: 0.5s;
+        font-size: 18px;
+        &:hover{
+            transition: 0.5s;
+            color: $yellow;
+        }
+        &.active{
+            color: $yellow;
+        }
+    }
+
     &-small {
         padding: 2px 15px;
     }
@@ -252,6 +267,27 @@ ul{
 
     &--small {
         width: calc(100% / 2);
+    }
+
+    &--file{
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        max-width: 480px;
+        span{
+            padding: 10px 15px;
+        }
+        span:last-child{
+            background-color: $white-grey;
+            border-left: 1px solid $border_head;
+            padding-right: 50px;
+        }
+        input[type=file]{
+            position: absolute;
+            width: 0;
+            height: 0;
+            visibility: hidden;
+        }
     }
 }
 
@@ -674,4 +710,9 @@ table.table {
     &-blue{
         color: $info !important;
     }
+}
+
+
+.none{
+    display: none !important;
 }
