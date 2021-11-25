@@ -10,6 +10,14 @@
                     margin-right: 25px;
                 }
             }
+            &--center{
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                &.cancel{
+                    margin: 0;
+                }
+            }
             .line {
                 .left{
                     align-items: center;

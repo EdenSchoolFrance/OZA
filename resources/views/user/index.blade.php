@@ -5,7 +5,7 @@
     <div class="card card--users">
         <div class="card-header">
             <div></div>
-            <button class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN UTILISATEUR</button>
+            <a href="{{route('unavailable')}}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN UTILISATEUR</a>
         </div>
         <div class="card-body">
             <table class="table table--users table-sortable" style="width:100%">
@@ -58,7 +58,7 @@
             </table>
         </div>
         <div class="card-footer">
-            <button class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN UTILISATEUR</button>
+            <a href="{{route('unavailable')}}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN UTILISATEUR</a>
         </div>
     </div>
 </div>

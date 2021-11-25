@@ -8,7 +8,7 @@ class WorkUnitController extends Controller
 {
     public function index(){
         $this->verifLogin();
-        $this->verifPermClient();
+
 
         $page = [
             'title' => 'Définition des unités de travail',
@@ -26,7 +26,7 @@ class WorkUnitController extends Controller
 
     public function create(){
         $this->verifLogin();
-        $this->verifPermClient();
+
 
         $page = [
             'title' => 'Créer une unité de travail ',
@@ -41,11 +41,12 @@ class WorkUnitController extends Controller
 
     public function createNew(){
         $this->verifLogin();
-        $this->verifPermClient();
+
 
         $page = [
             'title' => 'Créer une unité de travail',
             'link_back' => '/work',
+            'text_back' => 'Retour vers les unités de travail',
             'sidebar' => 'risk_pro',
             'sub_sidebar' => 'accident'
         ];

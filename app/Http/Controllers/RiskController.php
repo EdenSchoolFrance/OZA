@@ -8,7 +8,7 @@ class RiskController extends Controller
 {
     public function accident(){
         $this->verifLogin();
-        $this->verifPermClient();
+
 
         $page = [
             'title' => 'Evaluation des risques professionnels',
@@ -23,7 +23,7 @@ class RiskController extends Controller
 
     public function accidentCreate(){
         $this->verifLogin();
-        $this->verifPermClient();
+
 
         $page = [
             'title' => 'Créer un risque',

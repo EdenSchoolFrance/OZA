@@ -32,9 +32,9 @@
                     </div>
                     <div class="right">
                         <div class="btn-group-number">
-                            <button type="button" class="btn btn-text" data-value="less"><i class="fas fa-minus"></i></button>
+                            <button type="button" class="btn btn-text btn-num" data-value="less"><i class="fas fa-minus"></i></button>
                             <input type="number" class="form-control" id="numberSal" placeholder="" value="0">
-                            <button type="button" class="btn btn-text" data-value="more"><i class="fas fa-plus"></i></button>
+                            <button type="button" class="btn btn-text btn-num" data-value="more"><i class="fas fa-plus"></i></button>
                         </div>
                     </div>
                 </div>
@@ -130,5 +130,4 @@
 @endsection
 
 @section('script')
-    <script src="/js/app/dashboard.js"></script>
 @endsection

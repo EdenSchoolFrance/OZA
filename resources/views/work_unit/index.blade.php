@@ -84,7 +84,7 @@
                                 <div class="list_group">
                                     <p class="title">Super Lourd</p>
                                     <p class="content">
-                                        tracteur et remorque tôlée, tracteur et remorque bâchée, tracteur et remorque citerne, camion et remorque, porte-char, 
+                                        tracteur et remorque tôlée, tracteur et remorque bâchée, tracteur et remorque citerne, camion et remorque, porte-char,
                                     </p>
                                 </div>
                             </div>
@@ -94,7 +94,7 @@
                                 <div class="list_group">
                                     <p class="title">Engin</p>
                                     <p class="content">
-                                        tracto-pelle, chargeur, bull, pelle mécanique à roues, pelle à chanilles, mini-pelle, 
+                                        tracto-pelle, chargeur, bull, pelle mécanique à roues, pelle à chanilles, mini-pelle,
                                     </p>
                                 </div>
                                 <div class="list_group">
@@ -175,7 +175,7 @@
                                 <div class="list_group">
                                     <p class="title">Super Lourd</p>
                                     <p class="content">
-                                        tracteur et remorque tôlée, tracteur et remorque bâchée, tracteur et remorque citerne, camion et remorque, porte-char, 
+                                        tracteur et remorque tôlée, tracteur et remorque bâchée, tracteur et remorque citerne, camion et remorque, porte-char,
                                     </p>
                                 </div>
                             </div>
@@ -185,7 +185,7 @@
                                 <div class="list_group">
                                     <p class="title">Engin</p>
                                     <p class="content">
-                                        tracto-pelle, chargeur, bull, pelle mécanique à roues, pelle à chanilles, mini-pelle, 
+                                        tracto-pelle, chargeur, bull, pelle mécanique à roues, pelle à chanilles, mini-pelle,
                                     </p>
                                 </div>
                                 <div class="list_group">
@@ -266,7 +266,7 @@
                                 <div class="list_group">
                                     <p class="title">Super Lourd</p>
                                     <p class="content">
-                                        tracteur et remorque tôlée, tracteur et remorque bâchée, tracteur et remorque citerne, camion et remorque, porte-char, 
+                                        tracteur et remorque tôlée, tracteur et remorque bâchée, tracteur et remorque citerne, camion et remorque, porte-char,
                                     </p>
                                 </div>
                             </div>
@@ -276,7 +276,7 @@
                                 <div class="list_group">
                                     <p class="title">Engin</p>
                                     <p class="content">
-                                        tracto-pelle, chargeur, bull, pelle mécanique à roues, pelle à chanilles, mini-pelle, 
+                                        tracto-pelle, chargeur, bull, pelle mécanique à roues, pelle à chanilles, mini-pelle,
                                     </p>
                                 </div>
                                 <div class="list_group">
@@ -308,7 +308,7 @@
                                         <p>salarié(s) inscrit(s) sur le registre du personnel</p>
                                     </div>
                                 </div>
-                                <a href="/risk/accident/create" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UNE UNITE DE TRAVAIL</a>
+                                <a href="{{route('work.create')}}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UNE UNITE DE TRAVAIL</a>
                             </div>
                         </td>
                         <td></td>
@@ -370,9 +370,9 @@
 
             card.classList.toggle('card--resized');
 
-            
 
-            
+
+
         });
     </script>
 @endsection

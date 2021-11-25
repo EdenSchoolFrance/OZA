@@ -8,7 +8,7 @@ class UsersController extends Controller
 {
     public function index(){
         $this->verifLogin();
-        $this->verifPermClient();
+
 
         $page = [
             'title' => 'Utilisateurs',

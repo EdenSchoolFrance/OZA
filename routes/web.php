@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RiskController;
@@ -17,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/500', [AdminController::class, 'unavailable'])->name('unavailable');
+
+
 Route::get('/login', [AuthController::class, 'index'])->name('auth.index');
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
@@ -39,52 +43,8 @@ Route::get('/risk/accident/create', [RiskController::class, 'accidentCreate'])->
  * Admin OZA section
  *
  * */
-Route::get('/admin/users', function () {
-    $page = [
-        'title' => 'Liste des utilisateurs',
-        'sidebar' => 'users',
-        'sub_sidebar' => 'listUser',
-        'oza' => true,
-        'nav' => 'oza'
-    ];
 
-    return view('admin.users.index', compact('page'));
-});
-
-Route::get('/admin/clients', function () {
-    $page = [
-        'title' => 'Liste des utilisateurs',
-        'sidebar' => 'clients',
-        'sub_sidebar' => 'listClient',
-        'oza' => true,
-        'nav' => 'oza'
-    ];
-
-    return view('admin.client.index', compact('page'));
-});
-
-Route::get('/admin/clients/add', function () {
-
-    $page = [
-        'title' => 'Ajouter un client',
-        'sidebar' => 'clients',
-        'sub_sidebar' => 'addClient',
-        'oza' => true,
-        'nav' => 'oza'
-    ];
-
-    return view('admin.client.add', compact('page'));
-});
-
-Route::get('/admin/clients/du', function () {
-
-    $page = [
-        'title' => 'Liste des DU',
-        'sidebar' => 'clients',
-        'sub_sidebar' => 'listDu',
-        'oza' => true,
-        'nav' => 'oza'
-    ];
-
-    return view('admin.client.listDu', compact('page'));
-});
+Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.user');
+Route::get('/admin/clients', [AdminController::class, 'clients'])->name('admin.client');
+Route::get('/admin/clients/add', [AdminController::class, 'clientsAdd'])->name('admin.client.add');
+Route::get('/admin/clients/du', [AdminController::class, 'clientsDU'])->name('admin.client.du');

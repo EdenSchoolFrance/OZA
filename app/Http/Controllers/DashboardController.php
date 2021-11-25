@@ -8,7 +8,6 @@ class DashboardController extends Controller
 {
     public function index(){
         $this->verifLogin();
-        $this->verifPermClient();
 
         $page = [
             'title' => 'Présentation de la structure',
