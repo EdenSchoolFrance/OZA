@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RiskController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\WorkUnitController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,108 +17,23 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/login', [AuthController::class, 'index'])->name('auth.index');
+Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
+Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+Route::get('/bypass/{role}', [AuthController::class, 'bypass'])->name('auth.bypass');
 
-Route::get('/', function () {
+Route::get('/', [DashboardController::class, 'home'])->name('dashboard.home');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.dashboard');
 
-    $page = [
-        'title' => 'Bienvenue Jhon',
-        'sidebar' => 'home',
-    ];
+Route::get('/user', [UsersController::class, 'index'])->name('user.index');
 
-    return view('dashboard.home', compact('page'));
-});
+Route::get('/work', [WorkUnitController::class, 'index'])->name('work.index');
+Route::get('/work/create', [WorkUnitController::class, 'create'])->name('work.create');
+Route::get('/work/create/new', [WorkUnitController::class, 'createNew'])->name('work.create.new');
 
+Route::get('/risk/accident', [RiskController::class, 'accident'])->name('risk.accident');
+Route::get('/risk/accident/create', [RiskController::class, 'accidentCreate'])->name('risk.accident.create');
 
-Route::get('/dashboard', function () {
-    $page = [
-        'title' => 'Présentation de la structure',
-        'sidebar' => 'structure',
-        'sub_sidebar' => 'presentation'
-    ];
-
-    return view('dashboard.index', compact('page'));
-});
-Route::get('/user', function () {
-    $page = [
-        'title' => 'Utilisateurs',
-        'infos' => 'Seul le responsable du DU peut valider la finalisation du DU',
-        'sidebar' => 'structure',
-        'sub_sidebar' => 'users'
-    ];
-
-    return view('user.index', compact('page'));
-});
-Route::get('/work', function () {
-    $page = [
-        'title' => 'Définition des unités de travail',
-        'infos' => 'L’article R.4121-1 du Code du travail « DOCUMENT UNIQUE D’EVALUATION DES RISQUES » précise :
-            « Cette évaluation comporte un inventaire des risques identifiés dans chaque unité de travail de l’entreprise ou de l’établissement ».
-            Le législateur n’a pas défini « l’unité de travail ». Nous l’entendons ici comme un poste de travail, un métier ou une activité.
-            Les unités de travail sont détaillées dans la partie « Présentation de la structure » à partir de la page 5 de ce Document Unique.
-            ',
-        'sidebar' => 'structure',
-        'sub_sidebar' => 'work_units'
-    ];
-
-    return view('work_unit.index', compact('page'));
-});
-Route::get('/work/create/', function () {
-    $page = [
-        'title' => 'Créer une unité de travail ',
-        'link_back' => '/work',
-        'text_back' => 'Retour vers les unités de travail',
-        'sidebar' => 'structure',
-        'sub_sidebar' => 'work_units'
-    ];
-
-    return view('work_unit.create', compact('page'));
-})->name('work.create');
-
-Route::get('/work/new', function () {
-    $page = [
-        'title' => 'Créer une unité de travail',
-        'link_back' => '/work',
-        'sidebar' => 'risk_pro',
-        'sub_sidebar' => 'accident'
-    ];
-
-    return view('dashboard.createNew',compact('page'));
-});
-
-Route::get('/risk/accident', function () {
-    $page = [
-        'title' => 'Evaluation des risques professionnels',
-        'dangers' => 'Accident, presqu’accident et maladie du travail non ou mal analysés et prévenus pouvant générer la répétition de ces faits.',
-        'sidebar' => 'risk_pro',
-        'sub_sidebar' => 'accident'
-    ];
-
-    return view('risk.accident', compact('page'));
-});
-Route::get('/risk/accident/create', function () {
-
-    $page = [
-        'title' => 'Créer un risque',
-        'link_back' => '/risk',
-        'text_back'=> 'Retour à l’évaluation des risques',
-        'dangers' => 'Accident, presqu’accident et maladie du travail non ou mal analysés et prévenus pouvant générer la répétition de ces faits.',
-        'sidebar' => 'risk_pro',
-        'sub_sidebar' => 'accident'
-    ];
-
-    return view('risk.create', compact('page'));
-});
-
-Route::get('/login', function () {
-
-    $page = [
-        'title' => 'Identification',
-        'sidebar' => false,
-        'nav' => false
-    ];
-
-    return view('auth.login', compact('page'));
-});
 /*
  *
  * Admin OZA section

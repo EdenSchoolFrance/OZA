@@ -10,33 +10,33 @@
     <form action="#" class="card card--home">
         <div class="card-body">
             <div class="row row--center">
-                <p>Intitulé du DU 1</p>
+                <p>Intitulé du DU 1 </p>
             </div>
 
             <div class="row row--center">
-                <button type="submit" class="btn btn-success">Sélectionner</button>
+                <a href="{{ route('dashboard.dashboard') }}" type="submit" class="btn btn-success">Sélectionner</a>
             </div>
         </div>
     </form>
     <form action="#" class="card card--home">
         <div class="card-body">
             <div class="row row--center">
-                <p>Intitulé du DU 1</p>
+                <p>Intitulé du DU 2</p>
             </div>
 
             <div class="row row--center">
-                <button type="submit" class="btn btn-success">Sélectionner</button>
+                <a href="{{ route('dashboard.dashboard') }}" type="submit" class="btn btn-success">Sélectionner</a>
             </div>
         </div>
     </form>
     <form action="#" class="card card--home">
         <div class="card-body">
             <div class="row row--center">
-                <p>Intitulé du DU 1</p>
+                <p>Intitulé du DU 3</p>
             </div>
 
             <div class="row row--center">
-                <button type="submit" class="btn btn-success">Sélectionner</button>
+                <a href="{{ route('dashboard.dashboard') }}" type="submit" class="btn btn-success">Sélectionner</a>
             </div>
         </div>
     </form>

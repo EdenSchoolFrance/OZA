@@ -14,9 +14,9 @@
                         Document unique 1
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#">Document unique 1</a>
-                        <a class="dropdown-item" href="#">Document unique 2</a>
-                        <a class="dropdown-item" href="#">Document unique 3</a>
+                        <a class="dropdown-item" href="{{route('dashboard.dashboard')}}">Document unique 1</a>
+                        <a class="dropdown-item" href="{{route('dashboard.dashboard')}}">Document unique 2</a>
+                        <a class="dropdown-item" href="{{route('dashboard.dashboard')}}">Document unique 3</a>
                     </div>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                 <p>Profil</p>
             </div>
             <div class="nav-link">
-                <a href="#">
+                <a href="{{route('auth.logout')}}">
                     <i class="fas fa-sign-out-alt"></i>
                 </a>
             </div>

@@ -36,3 +36,4 @@
         @yield('script')
     </body>
 </html>
+@php(session()->forget('error'))

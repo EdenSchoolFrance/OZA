@@ -4,7 +4,8 @@
 
 
 <div class="content">
-    <form action="#" class="card card--login">
+    <form action="/login" method="post" class="card card--login">
+        @csrf
         <div class="card-header">
             <h2 class="title">Accéder à votre interface</h2>
         </div>
@@ -15,7 +16,10 @@
                         <label for="loginEmail">Identifiant</label>
                     </div>
                     <div class="right">
-                        <input type="email" class="form-control" id="loginEmail" placeholder="Email">
+                        <input type="email" name="loginEmail" class="form-control" id="loginEmail" placeholder="Email">
+                        @if(session()->has('error'))
+                            <p class="message-error">Les identifiants de connexion ne sont pas valides.</p>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -26,7 +30,10 @@
                         <label for="loginPass">Mot de passe</label>
                     </div>
                     <div class="right">
-                        <input type="password" class="form-control" id="loginPass">
+                        <input type="password" name="loginPass" class="form-control" id="loginPass">
+                        @if(session()->has('error'))
+                            <p class="message-error">Les identifiants de connexion ne sont pas valides.</p>
+                        @endif
                     </div>
                 </div>
             </div>
