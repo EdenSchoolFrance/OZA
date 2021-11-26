@@ -24,7 +24,7 @@ Route::get('/503', [AdminController::class, 'unavailable'])->name('unavailable')
 Route::get('/login', [AuthController::class, 'index'])->name('auth.index');
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
-Route::get('/bypass/{role}', [AuthController::class, 'bypass'])->name('auth.bypass');
+//Route::get('/bypass/{role}', [AuthController::class, 'bypass'])->name('auth.bypass');
 
 Route::get('/', [DashboardController::class, 'home'])->name('dashboard.home');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.dashboard');
