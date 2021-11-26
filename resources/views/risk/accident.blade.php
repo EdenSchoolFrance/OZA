@@ -3,7 +3,7 @@
 @section('content')
 <div class="content">
     <div class="card card--reflection">
-        <form class="card-body" action="" method="POST">
+        <form class="card-body" action="" >
             @csrf
             <div class="row">
                 <div class="line">
@@ -40,7 +40,7 @@
     <div class="card card--risk card--risk-stretchable card--risk-opened">
         <div class="card-header">
             <h2 class="title">UT <span>TOUS</span></h2>
-            <form class="form-risk-checked" action="" method="POST">
+            <form class="form-risk-checked" action="">
                 @csrf
                 <input type="hidden" name="checked" value=""/>
                 <p>Ce danger concerne quelqu’un au sein de l’entreprise ?</p>
@@ -184,7 +184,7 @@
     <div class="card card--risk card--risk-stretchable">
         <div class="card-header">
             <h2 class="title">UT <span>TEST 1</span></h2>
-            <form class="form-risk-checked" action="" method="POST">
+            <form class="form-risk-checked" action="">
                 @csrf
                 <input type="hidden" name="checked" value=""/>
                 <p>Ce danger concerne quelqu’un au sein de l’entreprise ?</p>
@@ -216,10 +216,10 @@
     </div>
 
     <div class="card card--submit">
-        <form class="card-body" action="" method="POST">
+        <form class="card-body" action="">
             @csrf
             <button class="btn btn-success" disabled>Valider le danger</button>
-        </div>
+        </form>
     </div>
 </div>
 @endsection

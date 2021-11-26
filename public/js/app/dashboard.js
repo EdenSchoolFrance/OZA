@@ -19,21 +19,6 @@ on('.card .btn-cancel-edit', 'click', (el, e) => {
 
     card.reset();
 });
-/*
-$('body').on('click','.create .btn-main--number', function (e){
-    if (e.currentTarget.dataset.value === "more"){
-        let number = $(this).closest("div").find('input')
-        number.val(parseInt(number.val())+1)
-    }else if(e.currentTarget.dataset.value === "less") {
-        let number = $(this).closest("div").find('input')
-        if (number.val() != 0){
-            number.val(parseInt(number.val()) - 1)
-        }
-    }else{
-        console.log('crash')
-    }
-})
-*/
 
 on('.btn-group-number .btn-num', 'click', (el, e) => {
     console.log()

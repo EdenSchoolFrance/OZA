@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="content">
-    <form class="card card--add_work_unit" action="" method="POST">
+    <form class="card card--add_work_unit" action="">
         <div class="card-body">
             <div class="row">
                 <div class="line">

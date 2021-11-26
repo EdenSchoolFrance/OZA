@@ -93,7 +93,7 @@
     <div class="sidebar">
         <ul class="nav-sidebar">
             <li class="sidebar-nav-item">
-                <a href="{{route('unavailable')}}" class="sidebar-nav-link"><i class="fas fa-table"></i><span>Tableau de bord</span></a>
+                <a href="{{route('dashboard.home')}}" class="sidebar-nav-link"><i class="fas fa-table"></i><span>Tableau de bord</span></a>
             </li>
             <li class="sidebar-nav-item {{ $page['sidebar'] == "users" ? 'active' : '' }}">
                 <a href="#" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Utilisateurs</span></a>

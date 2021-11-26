@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/500', [AdminController::class, 'unavailable'])->name('unavailable');
+Route::get('/503', [AdminController::class, 'unavailable'])->name('unavailable');
 
 
 Route::get('/login', [AuthController::class, 'index'])->name('auth.index');
