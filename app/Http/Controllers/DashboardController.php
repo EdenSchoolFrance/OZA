@@ -15,7 +15,7 @@ class DashboardController extends Controller
             'sub_sidebar' => 'presentation'
         ];
 
-        return view('dashboard.index', compact('page'));
+        return view('app.dashboard.index', compact('page'));
     }
 
     public function home(){
@@ -26,6 +26,6 @@ class DashboardController extends Controller
             'sidebar' => 'home',
         ];
 
-        return view('dashboard.home', compact('page'));
+        return view('app.dashboard.home', compact('page'));
     }
 }

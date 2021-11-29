@@ -17,7 +17,7 @@ class RiskController extends Controller
             'sub_sidebar' => 'accident'
         ];
 
-        return view('risk.accident', compact('page'));
+        return view('app.risk.accident', compact('page'));
 
     }
 
@@ -34,7 +34,7 @@ class RiskController extends Controller
             'sub_sidebar' => 'accident'
         ];
 
-        return view('risk.create', compact('page'));
+        return view('app.risk.create', compact('page'));
 
     }
 }

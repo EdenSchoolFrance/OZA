@@ -9,7 +9,6 @@ class WorkUnitController extends Controller
     public function index(){
         $this->verifLogin();
 
-
         $page = [
             'title' => 'Définition des unités de travail',
             'infos' => 'L’article R.4121-1 du Code du travail « DOCUMENT UNIQUE D’EVALUATION DES RISQUES » précise :
@@ -21,12 +20,11 @@ class WorkUnitController extends Controller
             'sub_sidebar' => 'work_units'
         ];
 
-        return view('work_unit.index', compact('page'));
+        return view('app.work_unit.index', compact('page'));
     }
 
     public function create(){
         $this->verifLogin();
-
 
         $page = [
             'title' => 'Créer une unité de travail ',
@@ -36,12 +34,11 @@ class WorkUnitController extends Controller
             'sub_sidebar' => 'work_units'
         ];
 
-        return view('work_unit.create', compact('page'));
+        return view('app.work_unit.create', compact('page'));
     }
 
     public function createNew(){
         $this->verifLogin();
-
 
         $page = [
             'title' => 'Créer une unité de travail',
@@ -51,6 +48,6 @@ class WorkUnitController extends Controller
             'sub_sidebar' => 'accident'
         ];
 
-        return view('dashboard.createNew',compact('page'));
+        return view('app.work_unit.createNew',compact('page'));
     }
 }

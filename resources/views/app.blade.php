@@ -12,23 +12,23 @@
         <link rel="stylesheet" href="/css/main.min.css">
     </head>
     <body>
-        @include('utils.nav')
+        @include('utils.structure.nav')
 
         <main>
             @if($page['sidebar'] !== false)
-            @include('utils.sidebar')
+            @include('utils.structure.sidebar')
             @endif
             <div class="container">
 
-                @include('utils.header')
+                @include('utils.structure.header')
 
                 @yield('content')
             </div>
         </main>
 
 
-        <script src="/js/utils/main.js"></script>
-        <script src="/js/utils/animations.js"></script>
+        <script src="/js/global/main.js"></script>
+        <script src="/js/utils/animation/animations.js"></script>
         <script src="/js/utils/sidebar.js"></script>
         <script src="/js/utils/table.js"></script>
         <script src="/js/utils/tabs.js"></script>
