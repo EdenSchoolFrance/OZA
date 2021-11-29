@@ -107,7 +107,7 @@
                 </ul>
             </li>
             <li class="sidebar-nav-item {{ $page['sidebar'] == "clients" ? 'active' : '' }}">
-                <a href="#" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Clients</span></a>
+                <a class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Clients</span></a>
                 <ul class="sub-group-menu" style="{{ $page['sidebar'] == "risk_pro" ? 'display: block' : '' }}">
                     <li class="sidebar-nav-item {{ $page['sub_sidebar'] == "addClient" ? 'active' : '' }}">
                         <a href="{{route('admin.client.add')}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Ajouter un client</a>

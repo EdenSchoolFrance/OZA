@@ -29,9 +29,9 @@
 
         <script src="/js/global/main.js"></script>
         <script src="/js/utils/animation/animations.js"></script>
-        <script src="/js/utils/sidebar.js"></script>
-        <script src="/js/utils/table.js"></script>
-        <script src="/js/utils/tabs.js"></script>
+        <script src="/js/utils/other/sidebar.js"></script>
+        <script src="/js/utils/other/table.js"></script>
+        <script src="/js/utils/other/tabs.js"></script>
         <script src="/js/app/dashboard.js"></script>
         @yield('script')
     </body>

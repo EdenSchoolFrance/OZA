@@ -22,7 +22,7 @@
                             <label for="name_enterprise">Nom de l’entreprise</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="name_enterprise" class="form-control" placeholder="Indiquer le nom de votre entreprise" >
+                            <input type="text" name="name_enterprise" id="name_enterprise" class="form-control" placeholder="Indiquer le nom de votre entreprise" >
                         </div>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                             <label for="adress">Adresse postale</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="adress" class="form-control" placeholder="Ligne 1">
+                            <input type="text" name="adress" id="adress" class="form-control" placeholder="Ligne 1">
                         </div>
                     </div>
                     <div class="line">
@@ -82,7 +82,7 @@
                             <label for="city_zipcode">Code postal</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="city_zipcode" class="form-control" placeholder="Code postal" >
+                            <input type="text" name="city_zipcode" id="city_zipcode" class="form-control" placeholder="Code postal" >
                         </div>
                     </div>
                     <div class="line">
@@ -90,7 +90,7 @@
                             <label for="city">Ville</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="city" class="form-control " placeholder="Ville" >
+                            <input type="text" name="city" id="city" class="form-control " placeholder="Ville" >
                         </div>
                     </div>
                 </div>
@@ -100,7 +100,7 @@
                             <label for="oza_expert">Expert OZA dédié</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="oza_expert" class="form-control" placeholder="Nom prénom de l’expert" >
+                            <input type="text" name="oza_expert" id="oza_expert" class="form-control" placeholder="Nom prénom de l’expert" >
                         </div>
                     </div>
                 </div>
@@ -118,7 +118,7 @@
                             <label for="first_name">Prénom</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="first_name" class="form-control" placeholder="Prénom du responsable client">
+                            <input type="text" name="first_name" id="first_name" class="form-control" placeholder="Prénom du responsable client">
                         </div>
                     </div>
                     <div class="line">
@@ -126,7 +126,7 @@
                             <label for="last_name">Nom</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="last_name" class="form-control" placeholder="Nom du responsable client" >
+                            <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Nom du responsable client" >
                         </div>
                     </div>
                     <div class="line">
@@ -134,7 +134,7 @@
                             <label for="post">Poste</label>
                         </div>
                         <div class="right right--small">
-                            <input type="text" name="post" class="form-control" placeholder="Intitulé du poste" >
+                            <input type="text" name="post" id="post" class="form-control" placeholder="Intitulé du poste" >
                         </div>
                     </div>
                     <div class="line">
@@ -142,7 +142,7 @@
                             <label for="phone">Téléphone</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="phone" class="form-control" placeholder="00 00 00 00 00 " >
+                            <input type="text" name="phone" id="phone" class="form-control" placeholder="00 00 00 00 00 " >
                         </div>
                     </div>
                 </div>
@@ -159,7 +159,7 @@
                             <label for="username">Identifiant (email) </label>
                         </div>
                         <div class="right">
-                            <input type="email" name="username" class="form-control" placeholder="Email">
+                            <input type="email" name="username" id="username" class="form-control" placeholder="Email">
                         </div>
                     </div>
                     <div class="line">
@@ -167,7 +167,7 @@
                             <label for="password">Mot de passe</label>
                         </div>
                         <div class="right">
-                            <input type="password" name="password" class="form-control" placeholder="" >
+                            <input type="password" name="password" id="password" class="form-control" placeholder="" >
                         </div>
                     </div>
                     <div class="line">
@@ -175,7 +175,7 @@
                             <label for="conf_password">Confirmation du mot de passe</label>
                         </div>
                         <div class="right">
-                            <input type="password" name="conf_password" class="form-control" placeholder="" >
+                            <input type="password" name="conf_password" id="conf_password" class="form-control" placeholder="" >
                         </div>
                     </div>
                 </div>
