@@ -1,0 +1,47 @@
+.form-control {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid $border_head;
+    border-radius: 4px;
+    color: $dark_purple;
+    font-family: 'Hind-Regular';
+
+    &.invalid {
+        color: $danger;
+    }
+
+    &::placeholder {
+        color: $dark;
+    }
+
+    &.auto-resize {
+        resize: none;
+        overflow-y: hidden;
+        height: auto;
+    }
+
+    &--small {
+        width: calc(100% / 2);
+    }
+
+    &--file{
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        max-width: 480px;
+        span{
+            padding: 10px 15px;
+        }
+        span:last-child{
+            background-color: $white-grey;
+            border-left: 1px solid $border_head;
+            padding-right: 50px;
+        }
+        input[type=file]{
+            position: absolute;
+            width: 0;
+            height: 0;
+            visibility: hidden;
+        }
+    }
+}

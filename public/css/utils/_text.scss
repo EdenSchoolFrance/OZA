@@ -1,3 +1,7 @@
+.bold{
+    font-weight: 800;
+}
+
 .text-color{
     &-yellow{
         color: $yellow !important;
@@ -11,4 +15,9 @@
     &-blue{
         color: $info !important;
     }
+}
+
+
+.none{
+    display: none !important;
 }

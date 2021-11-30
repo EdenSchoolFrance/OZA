@@ -1,99 +1,195 @@
-.btn-main{
-    background-color: $yellow;
-    color: $white;
+.btn {
+    display: inline-block;
+    text-decoration: none;
     border: none;
-    border-radius: 20px;
-    padding: 0 20px;
-    height: 40px;
-    outline: none;
+    background-color: transparent;
     cursor: pointer;
-    font-family: Hind-Medium;
-    &:focus{
-        outline: none;
+    font-size: 14px;
+    font-family: 'Hind-Medium';
+    border-radius: 15px;
+    padding: 5px 25px;
+    color: $dark_purple;
+
+    i {
+        font-size: 14px;
+        margin-right: 5px;
     }
-    &--green{
-        background-color: $green;
-        height: 30px;
-        &:disabled{
-            background-color: $grey;
-        }
+
+    &:disabled {
+        cursor: not-allowed;
     }
-    &--red{
-        background-color: $red;
-        height: 30px;
-        &:disabled{
-            background-color: $grey;
-        }
-    }
-    &--red-text{
-        background-color: transparent;
-        color: $red;
-        height: 30px;
-        &:disabled{
-            background-color: transparent;
-            color: $grey;
-        }
-    }
-    &--yellow{
+
+    &-yellow {
         background-color: $yellow;
-        height: 30px;
-        color: white;
-        &:disabled{
-            background-color: $grey;
+        color: $white;
+
+        &.btn-inv {
+            border-color: $yellow;
         }
-    }
-    &--number{
-        background-color: transparent;
-        color: $dark;
-        font-size: 30px;
-        &:first-child{
-            padding-left: 0;
-        }
-    }
-    &--text{
-        background-color: transparent;
-        color: $yellow !important;
-        padding: 0;
-    }
-    &--fake{
-        cursor: inherit;
-    }
-    &--cancel{
-        background-color: transparent;
-        color: $red_dark;
-        text-decoration: none;
-        &:hover{
-            text-decoration: none;
-            color: $red_dark;
-        }
-    }
-    &--back{
-        background-color: transparent;
-        text-decoration: none;
-        color: $dark;
-        font-size: 35px;
-        font-family: Hind-Medium;
-        transition: 0.5s;
-        i{
-            font-size: 35px;
-        }
-        &:hover{
+
+        &.btn-text {
             color: $yellow;
-            transition: 0.5s;
         }
     }
-    &--inv{
+
+    &-success {
+        background-color: $success;
+        color: $white;
+
+        &.btn-inv {
+            border-color: $success;
+        }
+
+        &.btn-text {
+            color: $success;
+        }
+    }
+
+    &-danger {
+        background-color: $danger;
+        color: $white;
+
+        &.btn-inv {
+            border-color: $danger;
+        }
+
+        &.btn-text {
+            color: $danger;
+        }
+    }
+
+    &-dark-purple {
+        background-color: $dark_purple;
+        color: $white;
+
+        &.btn-inv {
+            border-color: $dark_purple;
+        }
+
+        &.btn-text {
+            color: $dark_purple;
+        }
+    }
+
+    &-tabs{
+        background-color: white;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        transition: 0.5s;
+        font-size: 18px;
+        &:hover{
+            transition: 0.5s;
+            color: $yellow;
+        }
+        &.active{
+            color: $yellow;
+        }
+    }
+
+    &-small {
+        padding: 2px 15px;
+    }
+
+    &-inv {
         background-color: transparent;
-        color: $dark;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        font-family: Hind-Medium;
-        &:focus{
-            outline: none;
+        border: 1px solid $dark_purple;
+        color: $dark_purple;
+    }
+
+    &-text {
+        background-color: transparent;
+        color: $dark_purple;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    &-radio {
+        background-color: #C3C3C3;
+        padding: 3px 15px;
+        text-transform: uppercase;
+        color: $white;
+        font-family: 'Hind-SemiBold';
+
+        &--checked {
+            background-color: $dark_purple;
         }
-        i{
-            margin-left: 15px;
+    }
+
+    &-edit-card {
+        font-family: 'Hind-Regular';
+        font-size: 16px;
+        color: $dark_purple;
+        padding: 0;
+
+        i {
+            font-size: 20px;
+            margin: 0;
+            margin-left: 10px;
         }
+    }
+}
+
+.btn-group-dropdown {
+    position: relative;
+
+    .btn.toggle-dropdown {
+        font-family: 'Hind-Regular';
+        text-transform: uppercase;
+        color: $dark_purple;
+        font-size: 16px;
+
+        &::after {
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            content: '\f078';
+            margin-left: 10px;
+            color: $yellow;
+            font-size: 19px;
+        }
+    }
+
+    .dropdown-menu {
+        display: none;
+        background-color: $white;
+        position: absolute;
+        top: calc(100% + 5px);
+        left: 0;
+        padding: 10px 0;
+        border: 1px solid rgba(0,0,0,.15);
+        border-radius: 4px;
+
+        &-right {
+            left: auto;
+            right: 0;
+        }
+
+        .dropdown-item {
+            display: block;
+            width: 100%;
+            padding: 5px 25px;
+            font-size: 14px;
+            color: $dark;
+
+            &:hover {
+                background-color: rgba(0,0,0,.05);
+            }
+        }
+    }
+
+    &.open {
+        .dropdown-menu {
+            display: block;
+        }
+    }
+}
+
+.btn-group-number{
+    .btn{
+        font-size: 25px;
+        margin: 0 10px;
+    }
+    input[type=number]{
+        width: 100px;
+        text-align: center;
     }
 }

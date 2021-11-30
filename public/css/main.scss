@@ -4,44 +4,28 @@
     Import file from utils here
 */
 //Variables
-@import "utils/variables";
+@import "global/variables";
 //Fonts
-@import "utils/fonts";
-//Card
-@import "utils/card";
-//Table
-@import "utils/table";
-//SideBar
-@import "utils/sidebar";
-// Radio button
-@import "utils/radio";
-// Checkbox button
-@import "utils/checkbox";
-//Button
-@import "utils/button";
-// Point
-@import "utils/point";
-//Text color
-@import "utils/text";
-// Radio bar
-@import "utils/radioBar";
-//Scroll Bar
-@import "utils/scrollBar";
+@import "global/fonts";
 
+// Global Style
+@import "global/global";
 
+// Template Style
+@import "global/template";
 
-//Global Style
-@import "utils/global";
+// App
+@import "app/structure/presentation";
+@import "app/structure/home";
+@import "app/structure/work-unit";
 
+@import "app/add/add-work-unit";
+@import "app/add/add-risk";
+@import "app/add/add-client";
 
-/*
-    Import file from app here
-*/
-//Header
-@import "app/global/header";
-//NavBar
-@import "app/sidebar/sidebar";
-//Main dashboard
-@import "app/dashboard/main";
-//Risk main
-@import "app/risk/mainRisk";
+@import "app/users/users";
+
+@import "app/risk/risks";
+
+@import "app/auth/login";
+

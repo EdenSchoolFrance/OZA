@@ -1,95 +1,105 @@
-.table{
-    &--work{
+table.table {
+    width: 100%;
+    border-collapse: collapse;
 
-        td:first-child{
-            border: none;
-            padding-top: 0;
-            i{
-                font-size: 25px;
-                color: $grey;
-                margin-bottom: 20px;
-                &:first-child{
+    &.table-sortable {
+        thead {
+            th {
+
+                &.th-sort {
                     cursor: pointer;
+                }
+
+                &.th-sort-asc {
+                    &::after {
+                        font-family: "Font Awesome 5 Free";
+                        content: "\f077";
+                        font-size: 14px;
+                        margin-left: 5px;
+                    }
+                }
+
+                &.th-sort-desc {
+                    &::after {
+                        font-family: "Font Awesome 5 Free";
+                        content: "\f078";
+                        font-size: 14px;
+                        margin-left: 5px;
+                    }
                 }
             }
         }
-        td:last-child{
-            border: none;
-            i{
-                color: $yellow;
-                font-size: 25px;
-                margin-bottom: 10px;
+    }
+
+    thead {
+        th {
+            text-align: start;
+            vertical-align: bottom;
+            color: $dark_purple;
+            padding: 10px;
+            border-bottom: 1px solid rgba(0,0,0,0.2);
+
+            &:first-of-type {
+                padding-left: 0;
             }
-        }
-        .agent{
-            min-width: 10vw;
-        }
-        .activity{
-            max-width: 30vw;
-            width: 30vw;
-        }
-    }
-    thead{
-        th{
-            border: none;
-        }
-    }
-    div{
-        h6{
-            color: $dark;
-        }
-    }
-    &--accident{
-        td:first-child{
-            width: 300px;
-        }
-        td:last-child{
-            i{
-                color: $dark;
+
+            &:last-of-type {
+                padding-right: 0;
             }
         }
     }
 
-    &--user{
+    tbody {
+        tr {
+            td {
+                vertical-align: top;
+                font-size: 14px;
+                color: #576271;
+                padding: 15px 10px;
 
-        div{
-            width: 100%;
-        }
-        i{
-            color: $dark;
-            font-size: 16px;
-            transition: 0.5s;
-        }
-        td:last-child{
-            i{
-                color: $yellow;
-                font-size: 20px;
-                margin: 0 5px;
-                float: right;
+                border-bottom: 1px solid rgba(0,0,0,0.2);
+
+                &:first-of-type {
+                    padding-left: 0;
+                }
+
+                &:last-of-type {
+                    padding-right: 0;
+                }
+
+                &.td {
+                    &_actions {
+                        i {
+                            cursor: pointer;
+                            color: $yellow;
+                            font-size: 18px;
+                        }
+                    }
+                }
+            }
+
+            &:last-of-type {
+                td {
+                    border: none;
+                }
             }
         }
-        .rot{
-            transform: rotate(-180deg);
-            transition: 0.5s;
-        }
-        .table-sortable th {
-            cursor: pointer;
-        }
+    }
 
-        .table-sortable .th-sort-asc::after {
-            font-family: "Font Awesome 5 Free";
-            content: "\f077";
-        }
+    tfoot {
+        tr {
+            td {
+                border-top: 1px solid rgba(0,0,0,0.2);
+                padding: 15px 10px;
 
-        .table-sortable .th-sort-desc::after {
-            font-family: "Font Awesome 5 Free";
-            content: "\f078";
-        }
+                &:first-of-type {
+                    padding-left: 0;
+                }
 
-        .table-sortable .th-sort-asc::after,
-        .table-sortable .th-sort-desc::after {
-            margin-left: 5px;
+                &:last-of-type {
+                    padding-right: 0;
+                }
+            }
         }
     }
 }
-
