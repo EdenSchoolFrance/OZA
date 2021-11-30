@@ -47,4 +47,5 @@ Route::get('/risk/accident/create', [RiskController::class, 'accidentCreate'])->
 Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.user');
 Route::get('/admin/clients', [AdminController::class, 'clients'])->name('admin.client');
 Route::get('/admin/clients/add', [AdminController::class, 'clientsAdd'])->name('admin.client.add');
+Route::post('/admin/clients/add', [AdminController::class, 'clientsAddStore'])->name('admin.client.add');
 Route::get('/admin/clients/du', [AdminController::class, 'clientsDU'])->name('admin.client.du');

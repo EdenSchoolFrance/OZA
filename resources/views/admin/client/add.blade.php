@@ -49,7 +49,7 @@
                             <label for="client_oza">N° client OZA</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="client_oza" class="form-control" placeholder="Indiquer le numéro" >
+                            <input type="text" name="client_oza" id="client_oza" class="form-control" placeholder="Indiquer le numéro" >
                         </div>
                     </div>
                 </div>

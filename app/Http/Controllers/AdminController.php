@@ -51,6 +51,29 @@ class AdminController extends Controller
         return view('admin.client.add', compact('page'));
     }
 
+    public function clientsAddStore(Request $request){
+        $this->verifLogin();
+        $this->verifPermAdmin();
+
+        $request->validate([
+            'name_enterprise' => 'required',
+            'logo' => 'required',
+            'client_oza' => 'required',
+            'adress' => 'required',
+            'city_zipcode' => 'required',
+            'city' => 'required',
+            'oza_expert' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'post' => 'required',
+            'phone' => 'required',
+            'username' => 'required',
+            'password' => 'required',
+            'conf_password' => 'required'
+        ]);
+
+    }
+
     public function clientsDU(){
         $this->verifLogin();
         $this->verifPermAdmin();
