@@ -19,7 +19,16 @@ class Client extends Model
      * @var string[]
      */
     protected $fillable = [
-        'name'
+        'name',
+        'client_number',
+        'adress',
+        'additional_adress',
+        'city_zipcode',
+        'city',
+        'firstname',
+        'lastname',
+        'email',
+        'phone'
     ];
 
     public function experts()

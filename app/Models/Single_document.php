@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Single_documents extends Model
+class Single_document extends Model
 {
     use HasFactory;
 
@@ -30,4 +30,9 @@ class Single_documents extends Model
         'email',
         'phone'
     ];
+
+    public function user()
+    {
+        return $this->belongsToMany(User::class, 'sd_user', 'single_document_id', 'user_id');
+    }
 }

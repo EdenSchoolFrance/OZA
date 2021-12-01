@@ -34,25 +34,4 @@ class AuthController extends Controller
         Auth::logout();
         return redirect()->intended('login')->withSuccess('Logout success');
     }
-
-    // This function it's only for local developement
-    public function bypass($role){
-        if ($role === 'admin'){
-            session(['auth' => [
-                'first-name' => 'admin',
-                'last-name' => 'oza',
-                'perm' => 'admin'
-            ]]);
-            return redirect()->route('admin.user');
-        }else if ($role === 'client'){
-            session(['auth' => [
-                'first-name' => 'client',
-                'last-name' => 'oza',
-                'perm' => 'client'
-            ]]);
-            return redirect()->route('dashboard.home');
-        }else{
-            abort(404);
-        }
-    }
 }

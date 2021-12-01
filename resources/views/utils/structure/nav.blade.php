@@ -9,16 +9,18 @@
             @if($page['nav'] !== 'oza')
             <div class="col-3 d-flex justify-content-around">
                 <img src="" alt="Logo BIOCOOP">
-                <div class="btn-group-dropdown">
-                    <button type="button" class="btn toggle-dropdown">
-                        Document unique 1
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="{{route('dashboard.dashboard')}}">Document unique 1</a>
-                        <a class="dropdown-item" href="{{route('dashboard.dashboard')}}">Document unique 2</a>
-                        <a class="dropdown-item" href="{{route('dashboard.dashboard')}}">Document unique 3</a>
+                @if($page['nav'] === 'nodrop')
+                    <div class="btn-group-dropdown">
+                        <button type="button" class="btn toggle-dropdown">
+                            Document unique 1
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="{{route('dashboard.dashboard', ['id'=> $du->id])}}">Document unique 1</a>
+                            <a class="dropdown-item" href="{{route('dashboard.dashboard', ['id'=> $du->id])}}">Document unique 2</a>
+                            <a class="dropdown-item" href="{{route('dashboard.dashboard', ['id'=> $du->id])}}}">Document unique 3</a>
+                        </div>
                     </div>
-                </div>
+                @endif
             </div>
             <div class="nav-link">
                 <i class="far fa-envelope"></i>

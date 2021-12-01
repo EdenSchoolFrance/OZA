@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Client;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -20,6 +21,8 @@ class UserSeeder extends Seeder
         $role_expert = Role::where('permission', 'EXPERT')->first();
         $role_editor = Role::where('permission', 'EDITOR')->first();
         $role_reader = Role::where('permission', 'READER')->first();
+
+        $client = Client::where('name', 'Biocoop')->first();
 
         $user = new User();
         $user->id = uniqid();
@@ -64,6 +67,7 @@ class UserSeeder extends Seeder
         $user->username = "SuperAdminClient";
         $user->password = "test";
         $user->role()->associate($role_superadmin);
+        $user->client()->associate($client);
         $user->save();
     }
 }

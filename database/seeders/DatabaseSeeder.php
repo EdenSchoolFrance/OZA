@@ -17,8 +17,11 @@ class DatabaseSeeder extends Seeder
 
         $this->call(RoleSeeder::class);
 
-        $this->call(UserSeeder::class);
-        
         $this->call(ClientSeeder::class);
+
+        $this->call(UserSeeder::class);
+
+        $this->call(Single_documentSeeder::class);
+
     }
 }

@@ -20,32 +20,34 @@ use App\Http\Middleware\Role;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/503', [AdminController::class, 'unavailable'])->name('unavailable');
+
 
 
 Route::get('/login', [AuthController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
-//Route::get('/bypass/{role}', [AuthController::class, 'bypass'])->name('auth.bypass');
 
-Route::get('/', [DashboardController::class, 'home'])->name('dashboard.home')->middleware('auth');
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.dashboard')->middleware('auth')->middleware('Role');
-
-Route::get('/user', [UsersController::class, 'index'])->name('user.index')->middleware('auth');
-
-Route::get('/work', [WorkUnitController::class, 'index'])->name('work.index')->middleware('auth');
-Route::get('/work/create', [WorkUnitController::class, 'create'])->name('work.create')->middleware('auth');
-Route::get('/work/create/new', [WorkUnitController::class, 'createNew'])->name('work.create.new')->middleware('auth');
-
-Route::get('/risk/accident', [RiskController::class, 'accident'])->name('risk.accident')->middleware('auth');
-Route::get('/risk/accident/create', [RiskController::class, 'accidentCreate'])->name('risk.accident.create')->middleware('auth');
-
-/*
- *
- * Admin OZA section
- *
- * */
 Route::middleware([Authenticate::class])->group(function() {
+    Route::get('/503', [AdminController::class, 'unavailable'])->name('unavailable');
+
+    Route::get('/', [DashboardController::class, 'home'])->name('dashboard.home');
+    Route::get('/dashboard/{id}', [DashboardController::class, 'index'])->name('dashboard.dashboard');
+
+    Route::get('/user', [UsersController::class, 'index'])->name('user.index');
+
+    Route::get('/work', [WorkUnitController::class, 'index'])->name('work.index');
+    Route::get('/work/create', [WorkUnitController::class, 'create'])->name('work.create');
+    Route::get('/work/create/new', [WorkUnitController::class, 'createNew'])->name('work.create.new');
+
+    Route::get('/risk/accident', [RiskController::class, 'accident'])->name('risk.accident');
+    Route::get('/risk/accident/create', [RiskController::class, 'accidentCreate'])->name('risk.accident.create');
+
+    /*
+     *
+     * Admin OZA section
+     *
+     * */
+
     Route::middleware([Role::class])->group(function () {
 
         Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.user');

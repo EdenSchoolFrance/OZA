@@ -42,6 +42,15 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
+
+    public function single_document()
+    {
+        return $this->belongsToMany(Single_document::class, 'sd_user', 'user_id', 'single_document_id');
+    }
 
     public function setPasswordAttribute($password)
     {
