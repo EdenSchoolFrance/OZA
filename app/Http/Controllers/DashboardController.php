@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 class DashboardController extends Controller
 {
     public function index(){
-        $this->verifLogin();
 
         $page = [
             'title' => 'Présentation de la structure',
@@ -19,7 +18,7 @@ class DashboardController extends Controller
     }
 
     public function home(){
-        $this->verifLogin();
+
 
         $page = [
             'title' => 'Bienvenue '.session()->get('auth.first-name').' '.session()->get('auth.last-name'),

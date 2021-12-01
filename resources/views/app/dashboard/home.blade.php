@@ -6,6 +6,7 @@
 <div class="content home">
     <div class="row-title">
         <h1>Sélectionner le DU de votre choix</h1>
+        {{Auth::user()->role}}
     </div>
     <form action="#" class="card card--home">
         <div class="card-body">

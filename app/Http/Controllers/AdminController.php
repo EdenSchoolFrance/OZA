@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     public function users(){
-        $this->verifLogin();
-        $this->verifPermAdmin();
 
         $page = [
             'title' => 'Liste des utilisateurs',
@@ -22,8 +20,6 @@ class AdminController extends Controller
     }
 
     public function clients(){
-        $this->verifLogin();
-        $this->verifPermAdmin();
 
         $page = [
             'title' => 'Liste des utilisateurs',
@@ -37,8 +33,6 @@ class AdminController extends Controller
     }
 
     public function clientsAdd(){
-        $this->verifLogin();
-        $this->verifPermAdmin();
 
         $page = [
             'title' => 'Ajouter un client',
@@ -52,8 +46,6 @@ class AdminController extends Controller
     }
 
     public function clientsAddStore(Request $request){
-        $this->verifLogin();
-        $this->verifPermAdmin();
 
         $request->validate([
             'name_enterprise' => 'required',
@@ -75,8 +67,6 @@ class AdminController extends Controller
     }
 
     public function clientsDU(){
-        $this->verifLogin();
-        $this->verifPermAdmin();
 
         $page = [
             'title' => 'Liste des DU',
