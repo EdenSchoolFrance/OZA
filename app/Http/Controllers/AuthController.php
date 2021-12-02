@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -20,51 +21,17 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'loginEmail' => 'required',
-            'loginPass' => 'required'
+            'email' => 'required',
+            'password' => 'required'
         ]);
-        if ($request->loginEmail === 'admin@oza.fr' && $request->loginPass === 'admin'){
-            session(['auth' => [
-                'first-name' => 'admin',
-                'last-name' => 'oza',
-                'perm' => 'admin'
-            ]]);
-            return redirect()->route('admin.user');
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)){
+            return redirect()->intended('')->withSuccess('Signed in');
         }
-        if ($request->loginEmail === 'client@oza.fr' && $request->loginPass === 'client'){
-            session(['auth' => [
-                'first-name' => 'client',
-                'last-name' => 'oza',
-                'perm' => 'client'
-            ]]);
-            return redirect()->route('dashboard.home');
-        }
-        session(['error' => true]);
-        return back();
+        return redirect()->intended('login')->withErrors('Login Fail');
     }
     public function logout(){
-        session()->forget('auth');
-        return redirect()->route('auth.index');
-    }
-
-    // This function it's only for local developement
-    public function bypass($role){
-        if ($role === 'admin'){
-            session(['auth' => [
-                'first-name' => 'admin',
-                'last-name' => 'oza',
-                'perm' => 'admin'
-            ]]);
-            return redirect()->route('admin.user');
-        }else if ($role === 'client'){
-            session(['auth' => [
-                'first-name' => 'client',
-                'last-name' => 'oza',
-                'perm' => 'client'
-            ]]);
-            return redirect()->route('dashboard.home');
-        }else{
-            abort(404);
-        }
+        Auth::logout();
+        return redirect()->intended('login')->withSuccess('Logout success');
     }
 }

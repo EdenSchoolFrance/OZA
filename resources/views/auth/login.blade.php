@@ -16,7 +16,7 @@
                         <label for="loginEmail">Identifiant</label>
                     </div>
                     <div class="right">
-                        <input type="email" name="loginEmail" class="form-control" id="loginEmail" placeholder="Email">
+                        <input type="email" name="email" class="form-control" id="loginEmail" placeholder="Email">
                         @if(session()->has('error'))
                             <p class="message-error">Les identifiants de connexion ne sont pas valides.</p>
                         @endif
@@ -30,7 +30,7 @@
                         <label for="loginPass">Mot de passe</label>
                     </div>
                     <div class="right">
-                        <input type="password" name="loginPass" class="form-control" id="loginPass">
+                        <input type="password" name="password" class="form-control" id="loginPass">
                         @if(session()->has('error'))
                             <p class="message-error">Les identifiants de connexion ne sont pas valides.</p>
                         @endif

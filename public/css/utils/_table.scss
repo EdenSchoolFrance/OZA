@@ -1,0 +1,105 @@
+table.table {
+    width: 100%;
+    border-collapse: collapse;
+
+    &.table-sortable {
+        thead {
+            th {
+
+                &.th-sort {
+                    cursor: pointer;
+                }
+
+                &.th-sort-asc {
+                    &::after {
+                        font-family: "Font Awesome 5 Free";
+                        content: "\f077";
+                        font-size: 14px;
+                        margin-left: 5px;
+                    }
+                }
+
+                &.th-sort-desc {
+                    &::after {
+                        font-family: "Font Awesome 5 Free";
+                        content: "\f078";
+                        font-size: 14px;
+                        margin-left: 5px;
+                    }
+                }
+            }
+        }
+    }
+
+    thead {
+        th {
+            text-align: start;
+            vertical-align: bottom;
+            color: $dark_purple;
+            padding: 10px;
+            border-bottom: 1px solid rgba(0,0,0,0.2);
+
+            &:first-of-type {
+                padding-left: 0;
+            }
+
+            &:last-of-type {
+                padding-right: 0;
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            td {
+                vertical-align: top;
+                font-size: 14px;
+                color: #576271;
+                padding: 15px 10px;
+
+                border-bottom: 1px solid rgba(0,0,0,0.2);
+
+                &:first-of-type {
+                    padding-left: 0;
+                }
+
+                &:last-of-type {
+                    padding-right: 0;
+                }
+
+                &.td {
+                    &_actions {
+                        i {
+                            cursor: pointer;
+                            color: $yellow;
+                            font-size: 18px;
+                        }
+                    }
+                }
+            }
+
+            &:last-of-type {
+                td {
+                    border: none;
+                }
+            }
+        }
+    }
+
+    tfoot {
+        tr {
+            td {
+                border-top: 1px solid rgba(0,0,0,0.2);
+                padding: 15px 10px;
+
+                &:first-of-type {
+                    padding-left: 0;
+                }
+
+                &:last-of-type {
+                    padding-right: 0;
+                }
+            }
+        }
+    }
+}

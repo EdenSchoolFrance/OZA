@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 class UsersController extends Controller
 {
     public function index(){
-        $this->verifLogin();
-
 
         $page = [
             'title' => 'Utilisateurs',
@@ -17,6 +15,6 @@ class UsersController extends Controller
             'sub_sidebar' => 'users'
         ];
 
-        return view('user.index', compact('page'));
+        return view('app.user.index', compact('page'));
     }
 }

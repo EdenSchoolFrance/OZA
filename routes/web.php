@@ -6,7 +6,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RiskController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\WorkUnitController;
+use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,33 +20,41 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/503', [AdminController::class, 'unavailable'])->name('unavailable');
 
 
-Route::get('/login', [AuthController::class, 'index'])->name('auth.index');
+
+Route::get('/login', [AuthController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
-//Route::get('/bypass/{role}', [AuthController::class, 'bypass'])->name('auth.bypass');
 
-Route::get('/', [DashboardController::class, 'home'])->name('dashboard.home');
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.dashboard');
+Route::middleware([Authenticate::class])->group(function() {
+    Route::get('/503', [AdminController::class, 'unavailable'])->name('unavailable');
 
-Route::get('/user', [UsersController::class, 'index'])->name('user.index');
+    Route::get('/', [DashboardController::class, 'home'])->name('dashboard.home');
+    Route::get('/dashboard/{id}', [DashboardController::class, 'index'])->name('dashboard.dashboard');
 
-Route::get('/work', [WorkUnitController::class, 'index'])->name('work.index');
-Route::get('/work/create', [WorkUnitController::class, 'create'])->name('work.create');
-Route::get('/work/create/new', [WorkUnitController::class, 'createNew'])->name('work.create.new');
+    Route::get('/user', [UsersController::class, 'index'])->name('user.index');
 
-Route::get('/risk/accident', [RiskController::class, 'accident'])->name('risk.accident');
-Route::get('/risk/accident/create', [RiskController::class, 'accidentCreate'])->name('risk.accident.create');
+    Route::get('/work', [WorkUnitController::class, 'index'])->name('work.index');
+    Route::get('/work/create', [WorkUnitController::class, 'create'])->name('work.create');
+    Route::get('/work/create/new', [WorkUnitController::class, 'createNew'])->name('work.create.new');
 
-/*
- *
- * Admin OZA section
- *
- * */
+    Route::get('/risk/accident', [RiskController::class, 'accident'])->name('risk.accident');
+    Route::get('/risk/accident/create', [RiskController::class, 'accidentCreate'])->name('risk.accident.create');
 
-Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.user');
-Route::get('/admin/clients', [AdminController::class, 'clients'])->name('admin.client');
-Route::get('/admin/clients/add', [AdminController::class, 'clientsAdd'])->name('admin.client.add');
-Route::get('/admin/clients/du', [AdminController::class, 'clientsDU'])->name('admin.client.du');
+    /*
+     *
+     * Admin OZA section
+     *
+     * */
+
+    Route::middleware([Role::class])->group(function () {
+
+        Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.user');
+        Route::get('/admin/clients', [AdminController::class, 'clients'])->name('admin.client');
+        Route::get('/admin/clients/add', [AdminController::class, 'clientsAdd'])->name('admin.client.add');
+        Route::post('/admin/clients/add', [AdminController::class, 'clientsAddStore'])->name('admin.client.add');
+        Route::get('/admin/clients/du', [AdminController::class, 'clientsDU'])->name('admin.client.du');
+
+    });
+});

@@ -4,23 +4,28 @@
     Import file from utils here
 */
 //Variables
-@import "utils/variables";
+@import "global/variables";
 //Fonts
-@import "utils/fonts";
+@import "global/fonts";
 
 // Global Style
-@import "utils/global";
+@import "global/global";
 
 // Template Style
-@import "utils/template";
+@import "global/template";
 
 // App
-@import "app/presentation";
-@import "app/users";
-@import "app/work-unit";
-@import "app/risks";
-@import "app/add-work-unit";
-@import "app/add-risk";
-@import "app/add-client";
-@import "app/login";
-@import "app/home";
+@import "app/structure/presentation";
+@import "app/structure/home";
+@import "app/structure/work-unit";
+
+@import "app/add/add-work-unit";
+@import "app/add/add-risk";
+@import "app/add/add-client";
+
+@import "app/users/users";
+
+@import "app/risk/risks";
+
+@import "app/auth/login";
+

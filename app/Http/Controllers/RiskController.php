@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 class RiskController extends Controller
 {
     public function accident(){
-        $this->verifLogin();
-
 
         $page = [
             'title' => 'Evaluation des risques professionnels',
@@ -17,13 +15,11 @@ class RiskController extends Controller
             'sub_sidebar' => 'accident'
         ];
 
-        return view('risk.accident', compact('page'));
+        return view('app.risk.accident', compact('page'));
 
     }
 
     public function accidentCreate(){
-        $this->verifLogin();
-
 
         $page = [
             'title' => 'Créer un risque',
@@ -34,7 +30,7 @@ class RiskController extends Controller
             'sub_sidebar' => 'accident'
         ];
 
-        return view('risk.create', compact('page'));
+        return view('app.risk.create', compact('page'));
 
     }
 }

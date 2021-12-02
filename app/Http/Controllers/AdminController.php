@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     public function users(){
-        $this->verifLogin();
-        $this->verifPermAdmin();
 
         $page = [
             'title' => 'Liste des utilisateurs',
@@ -22,8 +20,6 @@ class AdminController extends Controller
     }
 
     public function clients(){
-        $this->verifLogin();
-        $this->verifPermAdmin();
 
         $page = [
             'title' => 'Liste des utilisateurs',
@@ -37,8 +33,6 @@ class AdminController extends Controller
     }
 
     public function clientsAdd(){
-        $this->verifLogin();
-        $this->verifPermAdmin();
 
         $page = [
             'title' => 'Ajouter un client',
@@ -51,9 +45,28 @@ class AdminController extends Controller
         return view('admin.client.add', compact('page'));
     }
 
+    public function clientsAddStore(Request $request){
+
+        $request->validate([
+            'name_enterprise' => 'required',
+            'logo' => 'required',
+            'client_oza' => 'required',
+            'adress' => 'required',
+            'city_zipcode' => 'required',
+            'city' => 'required',
+            'oza_expert' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'post' => 'required',
+            'phone' => 'required',
+            'username' => 'required',
+            'password' => 'required',
+            'conf_password' => 'required'
+        ]);
+
+    }
+
     public function clientsDU(){
-        $this->verifLogin();
-        $this->verifPermAdmin();
 
         $page = [
             'title' => 'Liste des DU',
