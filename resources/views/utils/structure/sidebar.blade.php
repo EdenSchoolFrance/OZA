@@ -12,13 +12,13 @@
                 <a href="#" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Structure</span></a>
                 <ul class="sub-group-menu" style="{{ $page['sidebar'] == "structure" ? 'display: block' : '' }}">
                     <li class="sidebar-nav-item {{ $page['sub_sidebar'] == "presentation" ? 'active' : '' }}">
-                        <a href="/dashboard" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Présentation</a>
+                        <a href="{{route('dashboard.dashboard', ['id'=> session()->get('du')])}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Présentation</a>
                     </li>
                     <li class="sidebar-nav-item {{ $page['sub_sidebar'] == "work_units" ? 'active' : '' }}">
-                        <a href="/work" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Unité de travail</a>
+                        <a href="{{route('work.index')}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Unité de travail</a>
                     </li>
                     <li class="sidebar-nav-item {{ $page['sub_sidebar'] == "users" ? 'active' : '' }}">
-                        <a href="/user" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Utilisateurs</a>
+                        <a href="{{route('user.index')}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Utilisateurs</a>
                     </li>
                 </ul>
             </li>

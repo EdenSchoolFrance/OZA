@@ -13,14 +13,14 @@ class DashboardController extends Controller
 
         $page = [
             'title' => 'Présentation de la structure',
-            'nav' => 'nodrop',
             'sidebar' => 'structure',
             'sub_sidebar' => 'presentation'
         ];
 
-        $du = Single_document::find($id);
-        if (!empty($du)){
-            return view('app.dashboard.index', compact('page', 'du'));
+        $single = Single_document::find($id);
+        if (!empty($single)){
+            session(['du' => $id]);
+            return view('app.dashboard.index', compact('page', 'single'));
         }
         return redirect()->route('dashboard.home');
     }
@@ -29,6 +29,7 @@ class DashboardController extends Controller
 
         $page = [
             'title' => 'Bienvenue '.session()->get('auth.first-name').' '.session()->get('auth.last-name'),
+            'nav' => 'nodrop',
             'sidebar' => 'home',
         ];
 

@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 class RiskController extends Controller
 {
     public function accident(){
-        $this->verifLogin();
-
 
         $page = [
             'title' => 'Evaluation des risques professionnels',
@@ -22,8 +20,6 @@ class RiskController extends Controller
     }
 
     public function accidentCreate(){
-        $this->verifLogin();
-
 
         $page = [
             'title' => 'Créer un risque',

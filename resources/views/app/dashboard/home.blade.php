@@ -7,7 +7,7 @@
     <div class="row-title">
         <h1>Sélectionner le DU de votre choix</h1>
     </div>
-    @if(empty(!Auth::user()->single_document))
+    @if(!empty(Auth::user()->single_document[0]))
         @foreach(Auth::user()->single_document as $du)
         <form action="#" class="card card--home">
             <div class="card-body">

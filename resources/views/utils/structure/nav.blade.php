@@ -9,17 +9,19 @@
             @if($page['nav'] !== 'oza')
             <div class="col-3 d-flex justify-content-around">
                 <img src="" alt="Logo BIOCOOP">
-                @if($page['nav'] === 'nodrop')
-                    <div class="btn-group-dropdown">
-                        <button type="button" class="btn toggle-dropdown">
-                            Document unique 1
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="{{route('dashboard.dashboard', ['id'=> $du->id])}}">Document unique 1</a>
-                            <a class="dropdown-item" href="{{route('dashboard.dashboard', ['id'=> $du->id])}}">Document unique 2</a>
-                            <a class="dropdown-item" href="{{route('dashboard.dashboard', ['id'=> $du->id])}}}">Document unique 3</a>
+                @if($page['nav'] !== 'nodrop')
+                    @if(empty(!Auth::user()->single_document))
+                        <div class="btn-group-dropdown">
+                            <button type="button" class="btn toggle-dropdown">
+                                Document unique 1
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                @foreach(Auth::user()->single_document as $du)
+                                    <a class="dropdown-item" href="{{route('dashboard.dashboard', ['id'=> $du->id])}}">{{$du->name}}</a>
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 @endif
             </div>
             <div class="nav-link">

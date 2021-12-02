@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 class UsersController extends Controller
 {
     public function index(){
-        $this->verifLogin();
-
 
         $page = [
             'title' => 'Utilisateurs',
