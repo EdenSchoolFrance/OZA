@@ -32,7 +32,9 @@ class AdminController extends Controller
             'nav' => 'oza'
         ];
 
-        return view('admin.client.index', compact('page'));
+        $clients = Client::all();
+
+        return view('admin.client.index', compact('page','clients'));
     }
 
     public function clientsAdd(){
