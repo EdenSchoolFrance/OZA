@@ -32,6 +32,9 @@ Route::middleware([Authenticate::class])->group(function() {
 
     Route::get('/', [DashboardController::class, 'home'])->name('dashboard.home');
     Route::get('/dashboard/{id}', [DashboardController::class, 'index'])->name('dashboard.dashboard');
+    Route::post('/dashboard/{id}/info-gen', [DashboardController::class, 'storeInfo'])->name('dashboard.store.info-gen');
+    Route::post('/dashboard/{id}/desc', [DashboardController::class, 'storeDesc'])->name('dashboard.store.desc');
+    Route::post('/dashboard/{id}/resp', [DashboardController::class, 'storeResp'])->name('dashboard.store.resp');
 
     Route::get('/user', [UsersController::class, 'index'])->name('user.index');
 

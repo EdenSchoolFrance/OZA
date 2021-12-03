@@ -20,7 +20,7 @@ class Single_documentSeeder extends Seeder
         $sd = new Single_document();
         $sd->id = uniqid();
         $sd->name = "Siege";
-        $sd->name_entreprise = "Biocoop";
+        $sd->name_enterprise = "Biocoop";
         $sd->adress = "12 rue du louvre";
         $sd->city_zipcode = "75000";
         $sd->city = "Paris";

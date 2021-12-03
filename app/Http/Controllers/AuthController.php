@@ -26,7 +26,11 @@ class AuthController extends Controller
         ]);
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)){
-            return redirect()->intended('')->withSuccess('Signed in');
+            if(Auth::user()->role->permission === 'SUPER_ADMIN'){
+                return redirect()->intended('admin/client')->withSuccess('Signed in');
+            }else{
+                return redirect()->intended('')->withSuccess('Signed in');
+            }
         }
         return redirect()->intended('login')->withErrors('Login Fail');
     }
