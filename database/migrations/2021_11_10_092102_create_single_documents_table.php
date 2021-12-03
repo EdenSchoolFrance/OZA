@@ -16,7 +16,7 @@ class CreateSingleDocumentsTable extends Migration
         Schema::create('single_documents', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
-            $table->string('name_entreprise')->nullable();
+            $table->string('name_enterprise')->nullable();
             $table->string('adress')->nullable();
             $table->string('additional_adress')->nullable();
             $table->string('city_zipcode')->nullable();

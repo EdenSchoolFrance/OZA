@@ -26,7 +26,11 @@ class AuthController extends Controller
         ]);
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)){
-            return redirect()->intended('')->withSuccess('Signed in');
+            if(Auth::user()->oza === 1){
+                return redirect()->intended('admin/clients')->withSuccess('Signed in');
+            }else{
+                return redirect()->intended('')->withSuccess('Signed in');
+            }
         }
         return redirect()->intended('login')->withErrors('Login Fail');
     }

@@ -16,173 +16,181 @@
     <div class="card card--add-client">
         <div class="card-body">
             <div id="infoGen" class="tabs-content">
-                <div class="row">
-                    <div class="line">
-                        <div class="left">
-                            <label for="name_enterprise">Nom de l’entreprise</label>
-                        </div>
-                        <div class="right">
-                            <input type="text" name="name_enterprise" id="name_enterprise" class="form-control" placeholder="Indiquer le nom de votre entreprise" >
+                <form action="{{route('admin.client.add.store')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row">
+                        <div class="line">
+                            <div class="left">
+                                <label for="name_enterprise">Nom de l’entreprise</label>
+                            </div>
+                            <div class="right">
+                                <input type="text" name="name_enterprise" id="name_enterprise" class="form-control" placeholder="Indiquer le nom de votre entreprise" required>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="line">
-                        <div class="left">
-                            <label for="logo">Logo</label>
-                        </div>
-                        <div class="right">
-                            <label for="logo" class="form-control form-control--file">
-                                <span>Choisir une image</span>
-                                <span>
-                                    Parcourir
-                                    <input type="file" name="logo" id="logo" class="" placeholder="Choisir une image">
-                                </span>
-                            </label>
+                    <div class="row">
+                        <div class="line">
+                            <div class="left">
+                                <label for="logo">Logo</label>
+                            </div>
+                            <div class="right">
+                                <label for="logo" class="form-control form-control--file selectLogo">
+                                    <span>Choisir une image</span>
+                                    <span>
+                                        Parcourir
+                                        <input type="file" name="logo" id="logo" class="inputLogo" placeholder="Choisir une image" required>
+                                    </span>
+                                </label>
 
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="line">
-                        <div class="left">
-                            <label for="client_oza">N° client OZA</label>
-                        </div>
-                        <div class="right">
-                            <input type="text" name="client_oza" id="client_oza" class="form-control" placeholder="Indiquer le numéro" >
+                    <div class="row">
+                        <div class="line">
+                            <div class="left">
+                                <label for="client_oza">N° client OZA</label>
+                            </div>
+                            <div class="right">
+                                <input type="text" name="client_oza" id="client_oza" class="form-control" placeholder="Indiquer le numéro" required>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="line">
-                        <div class="left">
-                            <h3>Adresse de l’entreprise</h3>
-                        </div>
-                        <div class="right">
+                    <div class="row">
+                        <div class="line">
+                            <div class="left">
+                                <h3>Adresse de l’entreprise</h3>
+                            </div>
+                            <div class="right">
 
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="left">
+                                <label for="adress">Adresse postale</label>
+                            </div>
+                            <div class="right">
+                                <input type="text" name="adress" id="adress" class="form-control" placeholder="Ligne 1" required>
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="left">
+                            </div>
+                            <div class="right">
+                                <input type="text" name="additional_adress" class="form-control" placeholder="Ligne 2">
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="left">
+                                <label for="city_zipcode">Code postal</label>
+                            </div>
+                            <div class="right">
+                                <input type="text" name="city_zipcode" id="city_zipcode" class="form-control" placeholder="Code postal" required>
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="left">
+                                <label for="city">Ville</label>
+                            </div>
+                            <div class="right">
+                                <input type="text" name="city" id="city" class="form-control " placeholder="Ville" required>
+                            </div>
                         </div>
                     </div>
-                    <div class="line">
-                        <div class="left">
-                            <label for="adress">Adresse postale</label>
-                        </div>
-                        <div class="right">
-                            <input type="text" name="adress" id="adress" class="form-control" placeholder="Ligne 1">
-                        </div>
-                    </div>
-                    <div class="line">
-                        <div class="left">
-                        </div>
-                        <div class="right">
-                            <input type="text" name="additional_adress" class="form-control" placeholder="Ligne 2" >
-                        </div>
-                    </div>
-                    <div class="line">
-                        <div class="left">
-                            <label for="city_zipcode">Code postal</label>
-                        </div>
-                        <div class="right">
-                            <input type="text" name="city_zipcode" id="city_zipcode" class="form-control" placeholder="Code postal" >
+                    <div class="row">
+                        <div class="line">
+                            <div class="left">
+                                <label for="oza_expert">Expert OZA dédié</label>
+                            </div>
+                            <div class="right">
+                                <select name="oza_expert" id="oza_expert" class="form-control">
+                                    <option>Sélectionner un expert</option>
+                                    @foreach($experts as $expert)
+                                        <option value="{{$expert->id}}">{{$expert->firstname}} {{$expert->lastname}} {{$expert->role->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div class="line">
-                        <div class="left">
-                            <label for="city">Ville</label>
-                        </div>
-                        <div class="right">
-                            <input type="text" name="city" id="city" class="form-control " placeholder="Ville" >
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="line">
-                        <div class="left">
-                            <label for="oza_expert">Expert OZA dédié</label>
-                        </div>
-                        <div class="right">
-                            <input type="text" name="oza_expert" id="oza_expert" class="form-control" placeholder="Nom prénom de l’expert" >
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="line">
-                        <div class="left">
-                            <h3>Administrateur Responsable client</h3>
-                        </div>
-                        <div class="right">
+                    <div class="row">
+                        <div class="line">
+                            <div class="left">
+                                <h3>Administrateur Responsable client</h3>
+                            </div>
+                            <div class="right">
 
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="left">
+                                <label for="first_name">Prénom</label>
+                            </div>
+                            <div class="right">
+                                <input type="text" name="firstname" id="first_name" class="form-control" placeholder="Prénom du responsable client" required>
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="left">
+                                <label for="last_name">Nom</label>
+                            </div>
+                            <div class="right">
+                                <input type="text" name="lastname" id="last_name" class="form-control" placeholder="Nom du responsable client" required>
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="left">
+                                <label for="post">Poste</label>
+                            </div>
+                            <div class="right right--small">
+                                <input type="text" name="post" id="post" class="form-control" placeholder="Intitulé du poste" required>
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="left">
+                                <label for="phone">Téléphone</label>
+                            </div>
+                            <div class="right">
+                                <input type="tel" name="phone" class="form-control" pattern="^(?:(?:(?:\+|00)33\D?(?:\D?\(0\)\D?)?)|0){1}[1-9]{1}(?:\D?\d{2}){4}$" placeholder="00 00 00 00 00" required>
+                            </div>
                         </div>
                     </div>
-                    <div class="line">
-                        <div class="left">
-                            <label for="first_name">Prénom</label>
+                    <div class="row">
+                        <div class="line">
+                            <div class="left">
+                            </div>
+                            <div class="right">
+                                <h3>Accès à l’outil</h3>
+                            </div>
                         </div>
-                        <div class="right">
-                            <input type="text" name="first_name" id="first_name" class="form-control" placeholder="Prénom du responsable client">
+                        <div class="line">
+                            <div class="left">
+                                <label for="username">Identifiant (email) </label>
+                            </div>
+                            <div class="right">
+                                <input type="email" name="email" id="username" class="form-control" placeholder="Email" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="line">
-                        <div class="left">
-                            <label for="last_name">Nom</label>
+                        <div class="line">
+                            <div class="left">
+                                <label for="password">Mot de passe</label>
+                            </div>
+                            <div class="right">
+                                <input type="password" name="password" id="password" class="form-control" placeholder="" required>
+                            </div>
                         </div>
-                        <div class="right">
-                            <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Nom du responsable client" >
-                        </div>
-                    </div>
-                    <div class="line">
-                        <div class="left">
-                            <label for="post">Poste</label>
-                        </div>
-                        <div class="right right--small">
-                            <input type="text" name="post" id="post" class="form-control" placeholder="Intitulé du poste" >
-                        </div>
-                    </div>
-                    <div class="line">
-                        <div class="left">
-                            <label for="phone">Téléphone</label>
-                        </div>
-                        <div class="right">
-                            <input type="text" name="phone" id="phone" class="form-control" placeholder="00 00 00 00 00 " >
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="line">
-                        <div class="left">
-                        </div>
-                        <div class="right">
-                            <h3>Accès à l’outil</h3>
+                        <div class="line">
+                            <div class="left">
+                                <label for="conf_password">Confirmation du mot de passe</label>
+                            </div>
+                            <div class="right">
+                                <input type="password" name="conf_password" id="conf_password" class="form-control" placeholder="" required>
+                            </div>
                         </div>
                     </div>
-                    <div class="line">
-                        <div class="left">
-                            <label for="username">Identifiant (email) </label>
-                        </div>
-                        <div class="right">
-                            <input type="email" name="username" id="username" class="form-control" placeholder="Email">
-                        </div>
+                    <div class="row row--submit">
+                        <button class="btn btn-success">Enregistrer</button>
+                        <button class="btn btn-danger btn-text">Annuler</button>
                     </div>
-                    <div class="line">
-                        <div class="left">
-                            <label for="password">Mot de passe</label>
-                        </div>
-                        <div class="right">
-                            <input type="password" name="password" id="password" class="form-control" placeholder="" >
-                        </div>
-                    </div>
-                    <div class="line">
-                        <div class="left">
-                            <label for="conf_password">Confirmation du mot de passe</label>
-                        </div>
-                        <div class="right">
-                            <input type="password" name="conf_password" id="conf_password" class="form-control" placeholder="" >
-                        </div>
-                    </div>
-                </div>
-                <div class="row row--submit">
-                    <button class="btn btn-success">Enregistrer</button>
-                    <button class="btn btn-danger btn-text">Annuler</button>
-                </div>
+                </form>
             </div>
             {{--
                 Cut
@@ -762,5 +770,17 @@
 @endsection
 
 @section('script')
+    <script>
+        let inputFile = document.getElementById('logo')
+        let selectFile = document.getElementsByClassName('selectLogo')[0]
+        selectFile.onclick = function (){
+            inputFile.onchange = function (){
+                selectFile.children[0].innerHTML = inputFile.files[0].name
+            }
+        }
 
+        on('.infoGen .inputLogo', 'click', (el, e) => {
+
+        });
+    </script>
 @endsection

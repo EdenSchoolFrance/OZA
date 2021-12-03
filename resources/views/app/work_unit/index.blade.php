@@ -5,7 +5,7 @@
     <div class="card card--work_units">
         <div class="card-header">
             <button class="btn-resize-all btn btn-text"><i class="far fa-minus-square"></i> Afficher/cacher tous les détails</button>
-            <a href="{{ route('work.create') }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UNE UNITE DE TRAVAIL</a>
+            <a href="{{ route('work.create', ['id'=> $id]) }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UNE UNITE DE TRAVAIL</a>
         </div>
         <div class="card-body">
             <table class="table table--work_units table--resizable">
@@ -308,7 +308,7 @@
                                         <p>salarié(s) inscrit(s) sur le registre du personnel</p>
                                     </div>
                                 </div>
-                                <a href="{{route('work.create')}}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UNE UNITE DE TRAVAIL</a>
+                                <a href="{{route('work.create', ['id'=> $id])}}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UNE UNITE DE TRAVAIL</a>
                             </div>
                         </td>
                         <td></td>

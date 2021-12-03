@@ -31,16 +31,19 @@ Route::middleware([Authenticate::class])->group(function() {
     Route::get('/503', [AdminController::class, 'unavailable'])->name('unavailable');
 
     Route::get('/', [DashboardController::class, 'home'])->name('dashboard.home');
-    Route::get('/dashboard/{id}', [DashboardController::class, 'index'])->name('dashboard.dashboard');
+    Route::get('/du/{id}/dashboard/', [DashboardController::class, 'index'])->name('dashboard.dashboard');
+    Route::post('/du/{id}/dashboard/info-gen', [DashboardController::class, 'storeInfo'])->name('dashboard.store.info-gen');
+    Route::post('/du/{id}/dashboard/desc', [DashboardController::class, 'storeDesc'])->name('dashboard.store.desc');
+    Route::post('/du/{id}/dashboard/resp', [DashboardController::class, 'storeResp'])->name('dashboard.store.resp');
 
-    Route::get('/user', [UsersController::class, 'index'])->name('user.index');
+    Route::get('/du/{id}/user', [UsersController::class, 'index'])->name('user.index');
 
-    Route::get('/work', [WorkUnitController::class, 'index'])->name('work.index');
-    Route::get('/work/create', [WorkUnitController::class, 'create'])->name('work.create');
-    Route::get('/work/create/new', [WorkUnitController::class, 'createNew'])->name('work.create.new');
+    Route::get('/du/{id}/work', [WorkUnitController::class, 'index'])->name('work.index');
+    Route::get('/du/{id}/work/create', [WorkUnitController::class, 'create'])->name('work.create');
+    Route::get('/du/{id}/work/create/new', [WorkUnitController::class, 'createNew'])->name('work.create.new');
 
-    Route::get('/risk/accident', [RiskController::class, 'accident'])->name('risk.accident');
-    Route::get('/risk/accident/create', [RiskController::class, 'accidentCreate'])->name('risk.accident.create');
+    Route::get('/du/{id}/risk/accident', [RiskController::class, 'accident'])->name('risk.accident');
+    Route::get('/du/{id}/risk/accident/create', [RiskController::class, 'accidentCreate'])->name('risk.accident.create');
 
     /*
      *
@@ -53,7 +56,7 @@ Route::middleware([Authenticate::class])->group(function() {
         Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.user');
         Route::get('/admin/clients', [AdminController::class, 'clients'])->name('admin.client');
         Route::get('/admin/clients/add', [AdminController::class, 'clientsAdd'])->name('admin.client.add');
-        Route::post('/admin/clients/add', [AdminController::class, 'clientsAddStore'])->name('admin.client.add');
+        Route::post('/admin/clients/add', [AdminController::class, 'clientsAddStore'])->name('admin.client.add.store');
         Route::get('/admin/clients/du', [AdminController::class, 'clientsDU'])->name('admin.client.du');
 
     });

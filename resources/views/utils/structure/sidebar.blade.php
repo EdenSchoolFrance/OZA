@@ -12,13 +12,13 @@
                 <a href="#" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Structure</span></a>
                 <ul class="sub-group-menu" style="{{ $page['sidebar'] == "structure" ? 'display: block' : '' }}">
                     <li class="sidebar-nav-item {{ $page['sub_sidebar'] == "presentation" ? 'active' : '' }}">
-                        <a href="{{route('dashboard.dashboard', ['id'=> session()->get('du')])}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Présentation</a>
+                        <a href="{{route('dashboard.dashboard', ['id'=> $id])}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Présentation</a>
                     </li>
                     <li class="sidebar-nav-item {{ $page['sub_sidebar'] == "work_units" ? 'active' : '' }}">
-                        <a href="{{route('work.index')}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Unité de travail</a>
+                        <a href="{{route('work.index',['id'=> $id])}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Unité de travail</a>
                     </li>
                     <li class="sidebar-nav-item {{ $page['sub_sidebar'] == "users" ? 'active' : '' }}">
-                        <a href="{{route('user.index')}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Utilisateurs</a>
+                        <a href="{{route('user.index',['id'=> $id])}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Utilisateurs</a>
                     </li>
                 </ul>
             </li>
@@ -32,7 +32,7 @@
                     </li>
                     {{-- @if($sousSidebar === "accident") {{ 'active' }}@endif --}}
                     <li class="sidebar-nav-item {{ $page['sub_sidebar'] == "accident" ? 'active' : '' }}">
-                        <a href="{{route('risk.accident')}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Accident</a>
+                        <a href="{{route('risk.accident',['id'=> $id])}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Accident</a>
                         <i class="fas fa-check checked"></i>
                     </li>
                     {{-- @if($sousSidebar === "agent-bio") {{ 'active' }}@endif --}}

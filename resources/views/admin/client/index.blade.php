@@ -5,7 +5,7 @@
     <div class="card card--users">
         <div class="card-header">
             <div></div>
-            <button class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN CLIENT</button>
+            <a href="{{route('admin.client.add')}}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN CLIENT</a>
         </div>
         <div class="card-body">
             <div class="row row--right">
@@ -25,46 +25,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="td_lastname">NOM du client 1</td>
-                        <td class="td_firstname">Nom prénom</td>
-                        <td class="td_email">0000000000</td>
-                        <td class="td_access">En cours</td>
-                        <td class="td_actions"><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="td_lastname">NOM du client 2</td>
-                        <td class="td_firstname">Nom prénom</td>
-                        <td class="td_email">0000000000</td>
-                        <td class="td_access">Archivé</td>
-                        <td class="td_actions"><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="td_lastname">NOM du client 3</td>
-                        <td class="td_firstname">Nom prénom</td>
-                        <td class="td_email">0000000000</td>
-                        <td class="td_access">Archivé</td>
-                        <td class="td_actions"><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="td_lastname">NOM du client 4</td>
-                        <td class="td_firstname">Nom prénom</td>
-                        <td class="td_email">0000000000</td>
-                        <td class="td_access">Archivé</td>
-                        <td class="td_actions"><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="td_lastname">NOM du client 5</td>
-                        <td class="td_firstname">Nom prénom</td>
-                        <td class="td_email">0000000000</td>
-                        <td class="td_access">Archivé</td>
-                        <td class="td_actions"><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
-                    </tr>
+                    @foreach($clients as $client)
+                        <tr>
+                            <td class="td_lastname">{{$client->name}}</td>
+                            <td class="td_firstname">{{$client->experts[0]->firstname}} {{$client->experts[0]->lastname}}</td>
+                            <td class="td_email">{{$client->client_number}}</td>
+                            <td class="td_access">{{$client->archived == 1 ? 'Archivé' : 'En cours' }}</td>
+                            <td class="td_actions"><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
         <div class="card-footer">
-            <button class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN CLIENT</button>
+            <a href="{{route('admin.client.add')}}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN CLIENT</a>
         </div>
     </div>
 </div>

@@ -11,6 +11,10 @@ nav.nav {
     flex-direction: row;
     justify-content: space-between;
 
+    img{
+        max-height: 55px;
+    }
+
     &>div {
         display: flex;
         flex-direction: row;
