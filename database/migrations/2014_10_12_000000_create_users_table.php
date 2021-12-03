@@ -18,7 +18,6 @@ class CreateUsersTable extends Migration
             $table->string('lastname');
             $table->string('firstname');
             $table->string('email');
-            $table->string('username');
             $table->string('password');
             $table->boolean('oza')->default(0);
             $table->foreignUuid('role_id');

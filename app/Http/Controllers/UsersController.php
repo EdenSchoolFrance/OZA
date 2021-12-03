@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
-    public function index(){
+    public function index($id){
 
         $page = [
             'title' => 'Utilisateurs',
@@ -15,6 +15,6 @@ class UsersController extends Controller
             'sub_sidebar' => 'users'
         ];
 
-        return view('app.user.index', compact('page'));
+        return view('app.user.index', compact('page','id'));
     }
 }

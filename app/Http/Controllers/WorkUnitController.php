@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class WorkUnitController extends Controller
 {
-    public function index(){
+    public function index($id){
 
         $page = [
             'title' => 'Définition des unités de travail',
@@ -19,32 +19,32 @@ class WorkUnitController extends Controller
             'sub_sidebar' => 'work_units'
         ];
 
-        return view('app.work_unit.index', compact('page'));
+        return view('app.work_unit.index', compact('page','id'));
     }
 
-    public function create(){
+    public function create($id){
 
         $page = [
             'title' => 'Créer une unité de travail ',
-            'link_back' => '/work',
+            'link_back' => route('work.index',['id'=> $id]),
             'text_back' => 'Retour vers les unités de travail',
             'sidebar' => 'structure',
             'sub_sidebar' => 'work_units'
         ];
 
-        return view('app.work_unit.create', compact('page'));
+        return view('app.work_unit.create', compact('page','id'));
     }
 
-    public function createNew(){
+    public function createNew($id){
 
         $page = [
             'title' => 'Créer une unité de travail',
-            'link_back' => '/work',
+            'link_back' => route('work.index',['id'=> $id]),
             'text_back' => 'Retour vers les unités de travail',
             'sidebar' => 'risk_pro',
             'sub_sidebar' => 'accident'
         ];
 
-        return view('app.work_unit.createNew',compact('page'));
+        return view('app.work_unit.createNew',compact('page','id'));
     }
 }

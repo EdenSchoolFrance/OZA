@@ -8,7 +8,7 @@
         <div>
             @if($page['nav'] !== 'oza')
             <div class="col-3 d-flex justify-content-around">
-                <img src="" alt="Logo BIOCOOP">
+                <img src="/logo/{{Auth::user()->client->picture}}" alt="Logo">
                 @if($page['nav'] !== 'nodrop')
                     @if(empty(!Auth::user()->single_document))
                         <div class="btn-group-dropdown">

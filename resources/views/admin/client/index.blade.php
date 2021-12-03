@@ -5,7 +5,7 @@
     <div class="card card--users">
         <div class="card-header">
             <div></div>
-            <button class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN CLIENT</button>
+            <a href="{{route('admin.client.add')}}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN CLIENT</a>
         </div>
         <div class="card-body">
             <div class="row row--right">
@@ -64,7 +64,7 @@
             </table>
         </div>
         <div class="card-footer">
-            <button class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN CLIENT</button>
+            <a href="{{route('admin.client.add')}}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN CLIENT</a>
         </div>
     </div>
 </div>

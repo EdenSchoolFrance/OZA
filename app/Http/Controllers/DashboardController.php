@@ -28,7 +28,7 @@ class DashboardController extends Controller
     public function home(){
 
         $page = [
-            'title' => 'Bienvenue '.session()->get('auth.first-name').' '.session()->get('auth.last-name'),
+            'title' => 'Bienvenue '.Auth::user()->firstname.' '.Auth::user()->lastname,
             'nav' => 'nodrop',
             'sidebar' => 'home',
         ];

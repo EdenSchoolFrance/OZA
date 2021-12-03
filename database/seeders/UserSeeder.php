@@ -29,7 +29,6 @@ class UserSeeder extends Seeder
         $user->lastname = "Latsname SuperAdmin Oza";
         $user->firstname = "Firstname SuperAdmin Oza";
         $user->email = "superadminoza@gmail.com";
-        $user->username = "SuperAdminOza";
         $user->password = "test";
         $user->oza = 1;
         $user->role()->associate($role_superadmin);
@@ -40,7 +39,6 @@ class UserSeeder extends Seeder
         $user->lastname = "Latsname Admin Oza";
         $user->firstname = "Firstname Admin Oza";
         $user->email = "adminoza@gmail.com";
-        $user->username = "AdminOza";
         $user->password = "test";
         $user->oza = 1;
         $user->role()->associate($role_admin);
@@ -51,7 +49,6 @@ class UserSeeder extends Seeder
         $user->lastname = "Latsname Expert Oza";
         $user->firstname = "Firstname Expert Oza";
         $user->email = "expertoza@gmail.com";
-        $user->username = "ExpertOza";
         $user->password = "test";
         $user->oza = 1;
         $user->role()->associate($role_expert);
@@ -64,7 +61,6 @@ class UserSeeder extends Seeder
         $user->lastname = "Latsname SuperAdmin Client";
         $user->firstname = "Firstname SuperAdmin Client";
         $user->email = "superadminclient@gmail.com";
-        $user->username = "SuperAdminClient";
         $user->password = "test";
         $user->role()->associate($role_superadmin);
         $user->client()->associate($client);
