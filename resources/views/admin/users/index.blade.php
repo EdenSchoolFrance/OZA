@@ -19,41 +19,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="td_lastname">NOM 1</td>
-                        <td class="td_firstname">Prénom</td>
-                        <td class="td_email">nom.prénom@email.com</td>
-                        <td class="td_access">Experts</td>
-                        <td class="td_actions"><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="td_lastname">NOM 2</td>
-                        <td class="td_firstname">Prénom</td>
-                        <td class="td_email">nom.prénom@email.com</td>
-                        <td class="td_access">Administrateur</td>
-                        <td class="td_actions"><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="td_lastname">NOM 3</td>
-                        <td class="td_firstname">Prénom</td>
-                        <td class="td_email">nom.prénom@email.com</td>
-                        <td class="td_access">Experts</td>
-                        <td class="td_actions"><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="td_lastname">NOM 4</td>
-                        <td class="td_firstname">Prénom</td>
-                        <td class="td_email">nom.prénom@email.com</td>
-                        <td class="td_access">Experts</td>
-                        <td class="td_actions"><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="td_lastname">NOM 5</td>
-                        <td class="td_firstname">Tom</td>
-                        <td class="td_email">nom.prénom@email.com</td>
-                        <td class="td_access">Experts</td>
-                        <td class="td_actions"><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
-                    </tr>
+                    @foreach ($users as $user)
+                        <tr>
+                            <td class="td_lastname">NOM 1</td>
+                            <td class="td_firstname">Prénom</td>
+                            <td class="td_email">nom.prénom@email.com</td>
+                            <td class="td_access">Experts</td>
+                            <td class="td_actions"><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

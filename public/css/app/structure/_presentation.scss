@@ -5,6 +5,18 @@
         .card-body {
             .row {
                 .line {
+                    .left {
+                        label {
+                            margin-top: 10px;
+                        }
+
+                        &-cancel {
+                            label {
+                                margin-top: 0;
+                            }
+                        }
+                    }
+                    
                     .right {
                         .message-error {
                             display: none;
@@ -59,22 +71,6 @@
 
                         &--submit {
                             display: block;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    &--general-infos,
-    &--responsible {
-        .card-body {
-            .row {
-                .line {
-                    .left {
-                        align-items: center;
-                        &-cancel{
-                            align-items: inherit;
                         }
                     }
                 }

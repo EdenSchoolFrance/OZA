@@ -1,48 +1,53 @@
-.client{
-    .nav-tabs-group{
+.client {
+    .nav-tabs-group {
         display: flex;
         justify-content: flex-start;
         flex-direction: row;
-        .nav-tabs{
+
+        .nav-tabs {
             margin: 0 5px;
         }
     }
-    .card--add-client {
 
+    .card--add-client {
         .card-body {
             .row {
-                &--submit{
+                &--submit {
                     display: flex;
                     justify-content: center;
                     flex-direction: row;
                 }
-                &--title{
 
-                }
+                &--title {}
+
                 .line {
-                    .left{
+                    .left {
                         align-items: center;
                     }
-                    .right{
+
+                    .right {
                         display: flex;
                         justify-content: flex-start;
 
-                        &--btn{
-                            button{
+                        &--btn {
+                            button {
                                 margin-right: 20px;
                             }
                         }
-                        &--check{
-                            li{
+
+                        &--check {
+                            li {
                                 display: flex;
                                 justify-content: flex-start;
                                 align-items: center;
                             }
-                            label{
+
+                            label {
                                 padding-top: 4px;
                                 padding-left: 10px;
                             }
-                            input[type=checkbox]{
+
+                            input[type=checkbox] {
                                 width: 1.3em;
                                 height: 1.3em;
                                 background-color: white;
@@ -53,6 +58,7 @@
                                 -webkit-appearance: none;
                                 outline: none;
                                 cursor: pointer;
+
                                 &:checked {
                                     background-color: $yellow;
                                     border: 1px solid white;
@@ -60,16 +66,18 @@
                             }
                         }
 
-                        p{
-                            i{
+                        p {
+                            i {
                                 margin: 0;
                                 font-size: inherit;
                             }
                         }
-                        i{
+
+                        i {
                             margin-left: 20px;
                             font-size: 20px;
                         }
+
                         .message-error {
                             display: none;
                         }
@@ -88,10 +96,12 @@
                             min-height: 125px;
                             resize: vertical;
                         }
-                        li{
+
+                        li {
                             padding: 5px 0;
                         }
                     }
+
                     &--activity {
                         textarea {
                             border-color: transparent;

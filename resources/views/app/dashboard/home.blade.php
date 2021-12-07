@@ -7,23 +7,19 @@
     <div class="row-title">
         <h1>Sélectionner le DU de votre choix</h1>
     </div>
-    @if(!empty(Auth::user()->single_document[0]))
-        @foreach(Auth::user()->single_document as $du)
+    @foreach(Auth::user()->single_documents as $single_document)
         <form action="#" class="card card--home">
             <div class="card-body">
                 <div class="row row--center">
-                    <p>{{$du->name}} </p>
+                    <p>{{ $single_document->name }} </p>
                 </div>
 
                 <div class="row row--center">
-                    <a href="{{ route('dashboard.dashboard', ['id'=> $du->id]) }}" type="submit" class="btn btn-success">Sélectionner</a>
+                    <a href="{{ route('dashboard', [$single_document->id]) }}" type="submit" class="btn btn-success">Sélectionner</a>
                 </div>
             </div>
         </form>
-        @endforeach
-    @else
-        <h3>Aucun document unique associe a ce compte</h3>
-    @endif
+    @endforeach
 </div>
 
 @endsection

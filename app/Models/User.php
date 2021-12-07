@@ -42,15 +42,45 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+
+    public function hasPermission($user_type, $role = [])
+    {
+        if ($user_type == "oza" && !$this->oza) {
+            return false;
+        } elseif ($user_type == "client" && $this->oza) {
+            return false;
+        }
+
+        if (count($role) > 0) {
+            if (gettype($role) == 'array') {
+                foreach ($role as $value) {
+                    if ($this->role()->where('permission', $value)->first()) {
+                        return true;
+                    }
+                }
+    
+                return false;
+            } else {
+                return null !== $this->role()->where('permission', $role)->first();
+            }
+        } else {
+            return true;
+        }
+    }
+
+
     public function client()
     {
         return $this->belongsTo(Client::class);
     }
 
-    public function single_document()
+
+    public function single_documents()
     {
         return $this->belongsToMany(Single_document::class, 'sd_user', 'user_id', 'single_document_id');
     }
+
+
 
     public function setPasswordAttribute($password)
     {

@@ -35,4 +35,9 @@ class Client extends Model
     {
         return $this->belongsToMany(User::class, 'client_oza');
     }
+
+    public function single_documents()
+    {
+        return $this->hasMany(Single_document::class);
+    }
 }

@@ -1,8 +1,13 @@
 @extends('app')
 
 @section('content')
-
-
+    @php
+        $page = [
+            'title' => 'Erreur 404',
+            'sidebar' => false,
+            'nav' => false
+        ];
+    @endphp
     <div class="content">
         <form action="#" method="post" class="card card--login">
             <div class="card-body">

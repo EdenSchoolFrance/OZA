@@ -40,13 +40,16 @@ p {
     font-family: 'Hind-Medium';
     margin: 0;
 }
-li{
+
+li {
     list-style: none;
 }
-ul{
+
+ul {
     padding: 0;
     margin: 0;
 }
+
 @import "../utils/button";
 @import "../utils/form";
 @import "../utils/card";

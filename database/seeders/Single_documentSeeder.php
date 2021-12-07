@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Single_document;
 use App\Models\User;
+use App\Models\Client;
+use App\Models\Single_document;
 use Illuminate\Database\Seeder;
 
 class Single_documentSeeder extends Seeder
@@ -15,7 +16,8 @@ class Single_documentSeeder extends Seeder
      */
     public function run()
     {
-        $client = User::where('lastname', 'Latsname SuperAdmin Client')->first();
+        $client = Client::where('name', 'Biocoop')->first();
+        $user = User::where('lastname', 'Latsname SuperAdmin Client')->first();
 
         $sd = new Single_document();
         $sd->id = uniqid();
@@ -29,8 +31,9 @@ class Single_documentSeeder extends Seeder
         $sd->lastname = "Doe";
         $sd->email = "jhon.doe@bicoop.fr";
         $sd->phone = "0614875412";
+        $sd->client()->associate($client);
         $sd->save();
-        $sd->user()->attach($client);
+        $sd->users()->attach($user);
 
     }
 }

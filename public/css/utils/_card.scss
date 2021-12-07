@@ -3,9 +3,9 @@
     border: 1px solid $grey;
     margin-bottom: 30px;
 
-    // &:last-of-type {
-    //     margin-bottom: 0;
-    // }
+    &:last-of-type {
+        margin-bottom: 0;
+    }
 
     &-header {
         padding: 20px 35px;
@@ -77,14 +77,6 @@
                             color: $dark_purple;
                             font-size: 16px;
                             font-family: 'Hind-Medium';
-                        }
-
-                        .message-error {
-                            color: $danger;
-                            margin: 0;
-                            margin-top: 5px;
-                            font-size: 12px;
-                            font-family: 'Hind-Regular';
                         }
                     }
                 }

@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class Role
+class Permission
 {
     /**
      * Handle an incoming request.
@@ -15,11 +15,16 @@ class Role
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, $user_type, ...$roles)
     {
-        if (Auth::user()->role->permission === 'SUPER_ADMIN'){
+        if (!Auth::check()) {
+            return redirect('/login');
+        }
+
+        if (Auth::user()->hasPermission($user_type, $roles)) {
             return $next($request);
         }
-        return redirect('/');
+
+        abort('404');
     }
 }

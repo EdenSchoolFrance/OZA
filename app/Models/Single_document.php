@@ -31,8 +31,13 @@ class Single_document extends Model
         'phone'
     ];
 
-    public function user()
+    public function users()
     {
         return $this->belongsToMany(User::class, 'sd_user', 'single_document_id', 'user_id');
+    }
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
     }
 }

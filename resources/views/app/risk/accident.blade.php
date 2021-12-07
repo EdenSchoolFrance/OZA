@@ -174,7 +174,7 @@
                 </tbody>
                 <tfoot>
                     <tr class="no-data">
-                        <td colspan="7"><a href="{{route('risk.accident.create', ['id'=> $id])}}" class="btn btn-inv btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN RISQUE</a></td>
+                        <td colspan="7"><a href="{{route('risk.accident.create', [$single_document->id])}}" class="btn btn-inv btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN RISQUE</a></td>
                     </tr>
                 </tfoot>
             </table>
@@ -201,7 +201,7 @@
                 </tbody>
                 <tfoot>
                     <tr class="no-data">
-                        <td colspan="7"><a href="{{ route('risk.accident.create', ['id'=> $id]) }}" class="btn btn-inv btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN RISQUE</a></td>
+                        <td colspan="7"><a href="{{ route('risk.accident.create', [$single_document->id]) }}" class="btn btn-inv btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN RISQUE</a></td>
                     </tr>
                 </tfoot>
             </table>

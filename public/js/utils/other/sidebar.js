@@ -17,7 +17,10 @@ on('.sidebar .nav-sidebar .sidebar-nav-link', 'click', (el, e) => {
             let oldEl = $('.sidebar>.nav-sidebar>.sidebar-nav-item.active', document, false);
 
             if (oldEl) {
-                DOMAnimations.slideUp($('.sub-group-menu', oldEl, false), '300');
+                if ($('.sub-group-menu', oldEl, false)) {
+                    DOMAnimations.slideUp($('.sub-group-menu', oldEl, false), '300');
+                }
+                
                 oldEl.classList.remove('active');
             }
             DOMAnimations.slideDown(checkElement, '300');

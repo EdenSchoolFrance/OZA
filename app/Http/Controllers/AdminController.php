@@ -9,18 +9,6 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function users(){
-
-        $page = [
-            'title' => 'Liste des utilisateurs',
-            'sidebar' => 'users',
-            'sub_sidebar' => 'listUser',
-            'oza' => true,
-            'nav' => 'oza'
-        ];
-
-        return view('admin.users.index', compact('page'));
-    }
 
     public function clients(){
 

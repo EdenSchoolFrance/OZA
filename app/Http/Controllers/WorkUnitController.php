@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Single_document;
+use Illuminate\Support\Facades\Auth;
 
 class WorkUnitController extends Controller
 {
-    public function index($id){
+    public function index($id)
+    {
+        $single_document = $this->checkSingleDocument($id);
 
         $page = [
             'title' => 'Définition des unités de travail',
@@ -19,32 +23,36 @@ class WorkUnitController extends Controller
             'sub_sidebar' => 'work_units'
         ];
 
-        return view('app.work_unit.index', compact('page','id'));
+        return view('app.work_unit.index', compact('page', 'single_document'));
     }
 
-    public function create($id){
+    public function create($id)
+    {
+        $single_document = $this->checkSingleDocument($id);
 
         $page = [
             'title' => 'Créer une unité de travail ',
-            'link_back' => route('work.index',['id'=> $id]),
+            'link_back' => route('work.index', [$id]),
             'text_back' => 'Retour vers les unités de travail',
             'sidebar' => 'structure',
             'sub_sidebar' => 'work_units'
         ];
 
-        return view('app.work_unit.create', compact('page','id'));
+        return view('app.work_unit.create', compact('page', 'single_document'));
     }
 
-    public function createNew($id){
+    public function createNew($id)
+    {
+        $single_document = $this->checkSingleDocument($id);
 
         $page = [
             'title' => 'Créer une unité de travail',
-            'link_back' => route('work.index',['id'=> $id]),
+            'link_back' => route('work.index', [$id]),
             'text_back' => 'Retour vers les unités de travail',
             'sidebar' => 'risk_pro',
             'sub_sidebar' => 'accident'
         ];
 
-        return view('app.work_unit.createNew',compact('page','id'));
+        return view('app.work_unit.createNew', compact('page', 'single_document'));
     }
 }

@@ -15,13 +15,13 @@ const on = (selector, event, handler, element = document) => {
 };
 
 
-on('.btn-group-dropdown .btn.toggle-dropdown', 'click', (el, e) => {
+on('.btn-group-dropdown .btn.toggle-dropdown:not(.disabled)', 'click', (el, e) => {
     let btnGroup = el.closest('.btn-group-dropdown');
 
     btnGroup.classList.toggle('open');
 });
 
-on('.btn-group-dropdown .btn.toggle-dropdown', 'focusout', (el, e) => {
+on('.btn-group-dropdown .btn.toggle-dropdown:not(.disabled)', 'focusout', (el, e) => {
     let btnGroup = el.closest('.btn-group-dropdown');
 
     btnGroup.classList.remove('open');

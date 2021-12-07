@@ -16,8 +16,9 @@
 
         <main>
             @if($page['sidebar'] !== false)
-            @include('utils.structure.sidebar')
+                @include('utils.structure.sidebar')
             @endif
+            
             <div class="container">
 
                 @include('utils.structure.header')

@@ -24,24 +24,25 @@
         width: calc(100% / 2);
     }
 
-    &--file{
+    &--file {
         padding: 0;
         display: flex;
         justify-content: space-between;
         max-width: 480px;
-        span{
+
+        span {
             padding: 10px 15px;
+            font-size: 13px;
         }
-        span:last-child{
+
+        span:last-child {
             background-color: $white-grey;
             border-left: 1px solid $border_head;
             padding-right: 50px;
         }
-        input[type=file]{
-            position: absolute;
-            width: 0;
-            height: 0;
-            visibility: hidden;
+
+        input[type=file] {
+            display: none;
         }
     }
 }
