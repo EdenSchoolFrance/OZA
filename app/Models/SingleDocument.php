@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Single_document extends Model
+class SingleDocument extends Model
 {
     use HasFactory;
 

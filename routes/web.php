@@ -22,6 +22,8 @@ use App\Http\Controllers\WorkUnitController;
 |
 */
 
+
+
 Route::middleware(['guest'])->group(function() {
     Route::get('/login', [AuthController::class, 'index'])->name('login')->middleware('guest');
     Route::post('/login', [AuthController::class, 'login'])->name('login.store');
@@ -30,21 +32,38 @@ Route::middleware(['guest'])->group(function() {
 Route::middleware(['auth'])->group(function() {
     Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
-    Route::get('/', [DashboardController::class, 'home'])->name('dashboard.home')->middleware('permission:client');
+    /*===============================
+            CLIENT Private Section
+    ===============================*/
+    Route::middleware(['permission:client'])->group(function () {
+        Route::get('/', [DashboardController::class, 'home'])->name('dashboard.home');
 
-    /*
-     *
-     * Admin OZA section
-     *
-     * */
-    Route::middleware(['permission:oza,SUPER_ADMIN,ADMIN'])->group(function () {
+    });
+
+
+    /*===============================
+            OZA Section
+    ===============================*/
+
+    /*================ ADMIN ================*/
+    Route::middleware(['permission:oza,ADMIN'])->group(function () {
         Route::get('/users', [UserAdminController::class, 'index'])->name('admin.user');
-        
+        Route::get('/users/create', [UserAdminController::class, 'create'])->name('admin.user.create');
+        Route::get('/users/{user}/edit', [UserAdminController::class, 'edit'])->name('admin.user.edit');
+
+        Route::post('/users/store', [UserAdminController::class, 'store'])->name('admin.user.store');
+        Route::post('/users/{user}/update', [UserAdminController::class, 'update'])->name('admin.user.update');
+
         Route::get('/clients', [AdminController::class, 'clients'])->name('admin.client');
         Route::get('/clients/add', [AdminController::class, 'clientsAdd'])->name('admin.client.add');
         Route::post('/clients/add', [AdminController::class, 'clientsAddStore'])->name('admin.client.add.store');
         Route::get('/clients/du', [AdminController::class, 'clientsDU'])->name('admin.client.du');
     });
+
+
+    /*===============================
+            CLIENT Section
+    ===============================*/
 
     Route::get('/{id}/dashboard/', [DashboardController::class, 'index'])->name('dashboard');
 

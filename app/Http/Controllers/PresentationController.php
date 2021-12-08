@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Single_document;
-use Illuminate\Support\Facades\Auth;
+use App\Models\SingleDocument;
 
 class PresentationController extends Controller
 {
@@ -33,7 +32,7 @@ class PresentationController extends Controller
                 'city' => 'required'
             ]);
 
-            $single = Single_document::find($id);
+            $single = SingleDocument::find($id);
             $single->name_enterprise = $request->name_enterprise;
             $single->adress = $request->adress;
             $single->additional_adress = $request->additional_adress;
@@ -45,7 +44,7 @@ class PresentationController extends Controller
                 'desc' => 'required'
             ]);
     
-            $single = Single_document::find($id);
+            $single = SingleDocument::find($id);
             $single->description = $request->desc;
             $single->save();
         } elseif ($type == 'resp') {
@@ -56,7 +55,7 @@ class PresentationController extends Controller
                 'phone' => 'required'
             ]);
     
-            $single = Single_document::find($id);
+            $single = SingleDocument::find($id);
             $single->firstname = $request->firstname;
             $single->lastname = $request->lastname;
             $single->email = $request->email;

@@ -77,7 +77,7 @@ class User extends Authenticatable
 
     public function single_documents()
     {
-        return $this->belongsToMany(Single_document::class, 'sd_user', 'user_id', 'single_document_id');
+        return $this->belongsToMany(SingleDocument::class, 'sd_user', 'user_id', 'single_document_id');
     }
 
 
