@@ -41,7 +41,7 @@
 
             .line {
                 display: flex;
-                justify-content: center;
+                // justify-content: center;
                 margin-bottom: 15px;
 
                 div {
@@ -72,13 +72,13 @@
                                 }
                             }
                         }
+                    }
 
-                        h3 {
-                            margin: 0;
-                            color: $dark_purple;
-                            font-size: 16px;
-                            font-family: 'Hind-Medium';
-                        }
+                    h3 {
+                        margin: 0;
+                        color: $dark_purple;
+                        font-size: 16px;
+                        font-family: 'Hind-Medium';
                     }
                 }
 
@@ -96,9 +96,19 @@
                     margin-right: 25px;
                 }
             }
-            &--double{
-                .btn:first-of-type {
-                    margin-right: 25px;
+
+            &--filter {
+                justify-content: flex-end;
+                flex-direction: row;
+                margin-bottom: 25px;
+
+                input {
+                    width: 300px;
+                    margin-right: 30px;
+                }
+
+                select {
+                    width: 200px;
                 }
             }
         }

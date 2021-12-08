@@ -6,12 +6,16 @@
     color: $dark_purple;
     font-family: 'Hind-Regular';
 
-    &.invalid {
-        color: $danger;
-    }
-
     &::placeholder {
         color: $dark;
+    }
+
+    &.invalid {
+        color: $danger;
+
+        &::placeholder {
+            color: $danger;
+        }
     }
 
     &.auto-resize {
@@ -28,7 +32,6 @@
         padding: 0;
         display: flex;
         justify-content: space-between;
-        max-width: 480px;
 
         span {
             padding: 10px 15px;
@@ -43,6 +46,12 @@
 
         input[type=file] {
             display: none;
+        }
+
+        &.invalid {
+            span:last-of-type {
+                color: $dark_purple;
+            }
         }
     }
 }

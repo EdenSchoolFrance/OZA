@@ -113,7 +113,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row row--double">
+            <div class="row row--submit">
                 <div class="line">
                     <div class="left">
                     </div>

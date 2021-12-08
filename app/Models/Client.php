@@ -28,7 +28,8 @@ class Client extends Model
         'firstname',
         'lastname',
         'email',
-        'phone'
+        'phone',
+        'post'
     ];
 
     public function experts()

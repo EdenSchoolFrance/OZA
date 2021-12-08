@@ -223,3 +223,13 @@ main {
         }
     }
 }
+
+.nav-tabs-group {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+
+    .nav-tabs {
+        margin: 0 5px;
+    }
+}

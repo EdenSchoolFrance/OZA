@@ -29,13 +29,19 @@ on('.btn-group-dropdown .btn.toggle-dropdown:not(.disabled)', 'focusout', (el, e
 
 on('textarea.auto-resize', 'input', (el, e) => {
     el.style.height = "auto";
-    el.style.height = (el.scrollHeight) + "px";
+    el.style.height = el.scrollHeight + "px";
 });
 
-const tooltip = (selector, element = document) =>{
-    element.addEventListener("mouseover", (e)=>{
-        if (e.target.closest(selector)){
+on('input[type="file"]', 'change', (el, e) => {
+    let file = el.closest('.form-control--file');
 
-        }
-    })
-}
+    $('span:first-of-type', file, false).innerHTML = el.files[0].name;
+});
+
+// const tooltip = (selector, element = document) =>{
+//     element.addEventListener("mouseover", (e)=>{
+//         if (e.target.closest(selector)){
+
+//         }
+//     })
+// }

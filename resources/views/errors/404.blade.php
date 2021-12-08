@@ -22,9 +22,7 @@
             </div>
         </form>
     </div>
-
 @endsection
 
 @section('script')
-    <script src="/js/app/accident.js"></script>
 @endsection

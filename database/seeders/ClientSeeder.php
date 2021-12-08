@@ -26,6 +26,7 @@ class ClientSeeder extends Seeder
         $client->lastname = "Doe";
         $client->email = "jhon.doe@bicoop.fr";
         $client->phone = "0614875412";
+        $client->post = "Poste";
         $client->save();
     }
 }

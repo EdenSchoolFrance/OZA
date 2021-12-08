@@ -18,11 +18,11 @@
             </li>
             <li class="sidebar-nav-item {{ $page['sidebar'] == "clients" ? 'active' : '' }}">
                 <a class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Clients</span></a>
-                <ul class="sub-group-menu" style="{{ $page['sidebar'] == "risk_pro" ? 'display: block' : '' }}">
-                    <li class="sidebar-nav-item {{ $page['sub_sidebar'] == "addClient" ? 'active' : '' }}">
-                        <a href="{{route('admin.client.add')}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Ajouter un client</a>
+                <ul class="sub-group-menu" style="{{ $page['sidebar'] == "clients" ? 'display: block' : '' }}">
+                    <li class="sidebar-nav-item {{ $page['sub_sidebar'] == "create" ? 'active' : '' }}">
+                        <a href="{{route('admin.client.create')}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Ajouter un client</a>
                     </li>
-                    <li class="sidebar-nav-item {{ $page['sub_sidebar'] == "listClient" ? 'active' : '' }}">
+                    <li class="sidebar-nav-item {{ $page['sub_sidebar'] == "list" ? 'active' : '' }}">
                         <a href="{{route('admin.client')}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Liste des clients</a>
                     </li>
                     <li class="sidebar-nav-item {{ $page['sub_sidebar'] == "listDu" ? 'active' : '' }}">
