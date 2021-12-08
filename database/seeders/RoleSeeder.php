@@ -16,12 +16,6 @@ class RoleSeeder extends Seeder
     {
         $role = new Role();
         $role->id = uniqid();
-        $role->name = "Super Administrateur";
-        $role->permission = "SUPER_ADMIN";
-        $role->save();
-
-        $role = new Role();
-        $role->id = uniqid();
         $role->name = "Administrateur";
         $role->permission = "ADMIN";
         $role->save();
@@ -30,6 +24,12 @@ class RoleSeeder extends Seeder
         $role->id = uniqid();
         $role->name = "Expert";
         $role->permission = "EXPERT";
+        $role->save();
+
+        $role = new Role();
+        $role->id = uniqid();
+        $role->name = "Responsable";
+        $role->permission = "MANAGER";
         $role->save();
 
         $role = new Role();

@@ -38,6 +38,6 @@ class Client extends Model
 
     public function single_documents()
     {
-        return $this->hasMany(Single_document::class);
+        return $this->hasMany(SingleDocument::class);
     }
 }

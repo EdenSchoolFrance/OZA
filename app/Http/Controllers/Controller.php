@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Single_document;
+use App\Models\SingleDocument;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -16,7 +16,7 @@ class Controller extends BaseController
     protected function checkSingleDocument($id)
     {
         if (Auth::user()->oza) {
-            $single_document = Single_document::find($id);
+            $single_document = SingleDocument::find($id);
         } else {
             $single_document = Auth::user()->single_documents->where('id', $id)->first();
         }
