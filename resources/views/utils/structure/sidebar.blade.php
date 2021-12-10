@@ -8,10 +8,10 @@
             <li class="sidebar-nav-item {{ $page['sidebar'] == "users" ? 'active' : '' }}">
                 <a href="#" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Utilisateurs</span></a>
                 <ul class="sub-group-menu" style="{{ $page['sidebar'] == "users" ? 'display: block' : '' }}">
-                    <li class="sidebar-nav-item {{ $page['sub_sidebar'] == "create" ? 'active' : '' }}">
+                    <li class="sidebar-nav-item {{ $page['sidebar'] == "users" && $page['sub_sidebar'] == "create" ? 'active' : '' }}">
                         <a href="{{ route('admin.user.create') }}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Ajouter un utilisateur</a>
                     </li>
-                    <li class="sidebar-nav-item {{ $page['sub_sidebar'] == "list" ? 'active' : '' }}">
+                    <li class="sidebar-nav-item {{ $page['sidebar'] == "users" && $page['sub_sidebar'] == "list" ? 'active' : '' }}">
                         <a href="{{route('admin.user')}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Liste des utilisateurs</a>
                     </li>
                 </ul>
@@ -19,13 +19,13 @@
             <li class="sidebar-nav-item {{ $page['sidebar'] == "clients" ? 'active' : '' }}">
                 <a class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Clients</span></a>
                 <ul class="sub-group-menu" style="{{ $page['sidebar'] == "clients" ? 'display: block' : '' }}">
-                    <li class="sidebar-nav-item {{ $page['sub_sidebar'] == "create" ? 'active' : '' }}">
+                    <li class="sidebar-nav-item {{ $page['sidebar'] == "clients" && $page['sub_sidebar'] == "create" ? 'active' : '' }}">
                         <a href="{{route('admin.client.create')}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Ajouter un client</a>
                     </li>
-                    <li class="sidebar-nav-item {{ $page['sub_sidebar'] == "list" ? 'active' : '' }}">
+                    <li class="sidebar-nav-item {{ $page['sidebar'] == "clients" && $page['sub_sidebar'] == "list" ? 'active' : '' }}">
                         <a href="{{route('admin.client')}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Liste des clients</a>
                     </li>
-                    <li class="sidebar-nav-item {{ $page['sub_sidebar'] == "listDu" ? 'active' : '' }}">
+                    <li class="sidebar-nav-item {{ $page['sidebar'] == "clients" && $page['sub_sidebar'] == "listDu" ? 'active' : '' }}">
                         <a href="{{route('admin.client.du')}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Liste des DU</a>
                     </li>
                 </ul>

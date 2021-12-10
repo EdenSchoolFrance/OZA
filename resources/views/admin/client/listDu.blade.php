@@ -17,9 +17,9 @@
             <table class="table table--users table-sortable" style="width:100%">
                 <thead>
                 <tr>
-                    <th class="th_lastname th-sort" data-para="0">Intitulé</th>
-                    <th class="th_firstname th-sort" data-para="1">Date de création</th>
-                    <th class="th_email th-sort" data-para="2">Statut</th>
+                    <th class="th_lastname th-sort">Intitulé</th>
+                    <th class="th_firstname th-sort">Date de création</th>
+                    <th class="th_email th-sort">Statut</th>
                     <th class="th_actions"></th>
                 </tr>
                 </thead>

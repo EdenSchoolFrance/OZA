@@ -21,12 +21,10 @@ class CreateClientsTable extends Migration
             $table->string('additional_adress')->nullable();
             $table->string('city_zipcode');
             $table->string('city');
-            $table->string('firstname');
-            $table->string('lastname');
-            $table->string('email');
-            $table->string('phone');
-            $table->string('post');
             $table->boolean('archived')->default(0);
+            $table->foreignUuid('expert_id');
+            
+            $table->foreign('expert_id')->references('id')->on('users');
         });
     }
 

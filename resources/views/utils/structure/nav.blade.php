@@ -1,11 +1,12 @@
 <nav class="nav">
-    <img src="" alt="logo">
+    <div>
+        <img src="" alt="logo">
+        @if (Auth::check() && Auth::user()->oza && isset($single_document))
+            <a href="{{ route('admin.client') }}" class="btn-back"><i class="fas fa-chevron-left"></i> {{ "Retour interface OZA" }}</a>
+        @endif
+    </div>
 
     @if (Auth::check())
-        @if (Auth::user()->oza && isset($single_document))
-            <p>retour</p>
-        @endif
-
         <div>
             @isset($single_document)
                 <div class="col-3 d-flex justify-content-around">

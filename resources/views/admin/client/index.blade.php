@@ -5,7 +5,7 @@
         <div class="card card--users">
             <div class="card-header">
                 <div></div>
-                <a href="{{route('admin.client.create')}}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN CLIENT</a>
+                <a href="{{ route('admin.client.create') }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN CLIENT</a>
             </div>
             <div class="card-body">
                 <form class="row row--filter" method="GET">
@@ -30,7 +30,7 @@
                         @foreach($clients as $client)
                             <tr>
                                 <td class="td_lastname">{{ $client->name }}</td>
-                                <td class="td_firstname">{{ $client->experts[0]->firstname }} {{ $client->experts[0]->lastname }}</td>
+                                <td class="td_firstname">{{ $client->expert->firstname }} {{ $client->expert->lastname }}</td>
                                 <td class="td_email">{{ $client->client_number }}</td>
                                 <td class="td_access">{{ $client->archived == 1 ? 'Archivé' : 'En cours' }}</td>
                                 <td class="td_actions">
