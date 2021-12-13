@@ -228,3 +228,37 @@ main {
         margin: 0 5px;
     }
 }
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    list-style: none;
+
+    .pagination-item {
+        padding: 10px;
+        font-size: 18px;
+
+        a {
+            color: $purple_light;
+            text-decoration: none;
+        }
+
+        &.next,
+        &.prev {
+            font-size: 15px;
+        }
+
+        &.disabled {
+            a {
+                color: $grey_light;
+            }
+        }
+
+        &.active {
+            a {
+                color: $yellow;
+            }
+        }
+    }
+}

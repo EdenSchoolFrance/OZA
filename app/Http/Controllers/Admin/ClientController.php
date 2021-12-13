@@ -98,7 +98,7 @@ class ClientController extends Controller
 
         $experts = User::where('oza', 1)->get();
         $dangers = Danger::all();
-        $single_documents = SingleDocument::where('client_id', $client->id)->paginate(1);
+        $single_documents = SingleDocument::where('client_id', $client->id)->paginate(15);
 
         return view('admin.client.edit', compact('page', 'client', 'experts', 'dangers', 'single_documents'));
     }
