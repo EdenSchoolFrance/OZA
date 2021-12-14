@@ -18,7 +18,7 @@ class UpdateClientSeeder extends Seeder
         $expert_oza = User::where('lastname', 'Latsname Expert Oza')->first();
 
         $client = Client::where('name','Biocoop')->first();
-        $client->experts()->attach($expert_oza);
+        $client->expert()->associate($expert_oza);
         $client->save();
 
     }

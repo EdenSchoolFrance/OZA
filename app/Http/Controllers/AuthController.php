@@ -28,7 +28,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             if (Auth::user()->oza === 1) {
-                return redirect()->intended('/clients');
+                return redirect()->intended('/client');
             } else {
                 return redirect()->intended('');
             }

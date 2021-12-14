@@ -9,7 +9,6 @@ class SingleDocument extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
     public $incrementing = false;
     protected $keyType = 'string';
 
@@ -28,12 +27,26 @@ class SingleDocument extends Model
         'firstname',
         'lastname',
         'email',
-        'phone'
+        'phone',
+        'created_at',
+        'updated_at'
     ];
 
     public function users()
     {
         return $this->belongsToMany(User::class, 'sd_user', 'single_document_id', 'user_id');
+    }
+
+    public function manager()
+    {
+        return $this->belongsToMany(User::class, 'sd_user', 'single_document_id', 'user_id')->whereHas('role', function ($q) {
+            $q->where('permission', 'MANAGER');
+        });
+    }
+
+    public function dangers()
+    {
+        return $this->hasMany(SdDanger::class);
     }
 
     public function client()

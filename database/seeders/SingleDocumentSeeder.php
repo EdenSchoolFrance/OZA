@@ -7,7 +7,7 @@ use App\Models\Client;
 use App\Models\SingleDocument;
 use Illuminate\Database\Seeder;
 
-class Single_documentSeeder extends Seeder
+class SingleDocumentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -34,6 +34,5 @@ class Single_documentSeeder extends Seeder
         $sd->client()->associate($client);
         $sd->save();
         $sd->users()->attach($user);
-
     }
 }

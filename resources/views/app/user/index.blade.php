@@ -11,10 +11,10 @@
                 <table class="table table--users table-sortable" style="width:100%">
                     <thead>
                         <tr>
-                            <th class="th_lastname th-sort" data-para="0">Nom</th>
-                            <th class="th_firstname th-sort" data-para="1">Prénom</th>
-                            <th class="th_email th-sort" data-para="2">Email</th>
-                            <th class="th_access th-sort" data-para="3">Accès</th>
+                            <th class="th_lastname th-sort">Nom</th>
+                            <th class="th_firstname th-sort">Prénom</th>
+                            <th class="th_email th-sort">Email</th>
+                            <th class="th_access th-sort">Accès</th>
                             <th class="th_actions"></th>
                         </tr>
                     </thead>

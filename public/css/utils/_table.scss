@@ -83,6 +83,14 @@ table.table {
                     border: none;
                 }
             }
+
+            &.no-data {
+                &--centered {
+                    td {
+                        text-align: center;
+                    }
+                }
+            }
         }
     }
 

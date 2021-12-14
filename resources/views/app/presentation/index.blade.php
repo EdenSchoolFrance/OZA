@@ -42,7 +42,7 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="line {{empty($single_document->additional_adress) ? 'hidden' : '' }}">
+                    <div class="line {{ !$single_document->additional_adress ? 'hidden' : '' }}">
                         <div class="left">
                         </div>
                         <div class="right">
@@ -102,7 +102,7 @@
                             <label for="desc">Description de l’entreprise</label>
                         </div>
                         <div class="right">
-                            <textarea type="text" name="desc" id="desc" class="form-control @error('desc') invalid @enderror" placeholder="Indiquer le nom de votre entreprise" disabled>{{$single_document->description}}</textarea>
+                            <textarea type="text" name="desc" id="desc" class="form-control auto-resize @error('desc') invalid @enderror" placeholder="Indiquer le nom de votre entreprise" disabled>{{$single_document->description}}</textarea>
                             @error('desc')
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
@@ -193,4 +193,5 @@
 @endsection
 
 @section('script')
+    <script src="/js/app/dashboard.js"></script>
 @endsection

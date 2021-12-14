@@ -7,6 +7,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PresentationController;
 
 use App\Http\Controllers\Admin\UserController as UserAdminController;
+use App\Http\Controllers\Admin\ClientController as ClientAdminController;
+use App\Http\Controllers\Admin\SingleDocumentController as SingleDocumentAdminController;
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RiskController;
@@ -54,10 +56,16 @@ Route::middleware(['auth'])->group(function() {
         Route::post('/users/store', [UserAdminController::class, 'store'])->name('admin.user.store');
         Route::post('/users/{user}/update', [UserAdminController::class, 'update'])->name('admin.user.update');
 
-        Route::get('/clients', [AdminController::class, 'clients'])->name('admin.client');
-        Route::get('/clients/add', [AdminController::class, 'clientsAdd'])->name('admin.client.add');
-        Route::post('/clients/add', [AdminController::class, 'clientsAddStore'])->name('admin.client.add.store');
-        Route::get('/clients/du', [AdminController::class, 'clientsDU'])->name('admin.client.du');
+        Route::get('/client', [ClientAdminController::class, 'index'])->name('admin.client');
+        Route::get('/client/create', [ClientAdminController::class, 'create'])->name('admin.client.create');
+        Route::get('/client/{client}/edit', [ClientAdminController::class, 'edit'])->name('admin.client.edit');
+
+        Route::post('/client/store', [ClientAdminController::class, 'store'])->name('admin.client.store');
+        Route::post('/client/{client}/update', [ClientAdminController::class, 'update'])->name('admin.client.update');
+
+        Route::post('/client/{client}/single_document/store', [SingleDocumentAdminController::class, 'store'])->name('admin.single_document.store');
+
+        Route::get('/clients/du', [SingleDocumentAdminController::class, 'index'])->name('admin.client.single_document');
     });
 
 
