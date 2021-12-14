@@ -50,6 +50,10 @@ ul {
     margin: 0;
 }
 
+a{
+    text-decoration: none;
+}
+
 @import "../utils/button";
 @import "../utils/form";
 @import "../utils/card";
