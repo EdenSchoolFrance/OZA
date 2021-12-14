@@ -57,6 +57,28 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="line">
+                        <div class="left">
+                            <label for="phone">Phone</label>
+                        </div>
+                        <div class="right">
+                            <input type="number" name="phone" class="form-control @error('phone') invalid @enderror" placeholder="Indiquer le numéro de téléphone" value="{{ old('phone') ? old('phone') : $user->phone }}" required>
+                            @error('phone')
+                            <p class="message-error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="line">
+                        <div class="left">
+                            <label for="post">Poste</label>
+                        </div>
+                        <div class="right">
+                            <input type="text" name="post" class="form-control @error('post') invalid @enderror" placeholder="Indiquer le post" value="{{ old('post') ? old('post') : $user->post }}" required>
+                            @error('post')
+                            <p class="message-error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
 
                 <div class="row row--submit">
@@ -68,7 +90,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 @endsection

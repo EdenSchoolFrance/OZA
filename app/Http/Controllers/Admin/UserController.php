@@ -41,6 +41,8 @@ class UserController extends Controller
             'lastname' => 'required',
             'firstname' => 'required',
             'email' => 'required|unique:users',
+            'phone' => 'required',
+            'post' => 'required',
             'role' => 'required|exists:roles,id',
             'password' => 'required|min:8|confirmed',
         ]);
@@ -50,6 +52,8 @@ class UserController extends Controller
         $user->lastname = $request->lastname;
         $user->firstname = $request->firstname;
         $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->post = $request->post;
         $user->password = $request->password;
         $user->oza = 1;
         $user->role()->associate($request->role);
@@ -76,12 +80,16 @@ class UserController extends Controller
         $request->validate([
             'lastname' => 'required',
             'firstname' => 'required',
+            'phone' => 'required',
+            'post' => 'required',
             'email' => 'required|unique:users,email,' . $user->id,
             'role' => 'required|exists:roles,id',
         ]);
 
         $user->lastname = $request->lastname;
         $user->firstname = $request->firstname;
+        $user->phone = $request->phone;
+        $user->post = $request->post;
         $user->email = $request->email;
         $user->role()->associate($request->role);
         $user->save();

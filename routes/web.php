@@ -79,6 +79,10 @@ Route::middleware(['auth'])->group(function() {
     Route::post('/{id}/presentation/{type}', [PresentationController::class, 'store'])->name('presentation.store');
 
     Route::get('/{id}/user', [UserClientController::class, 'index'])->name('user.client.index');
+    Route::get('/{id}/user/create', [UserClientController::class, 'create'])->name('user.client.create');
+    Route::post('/{id}/user/store', [UserClientController::class, 'store'])->name('user.client.store');
+    Route::get('/{id}/user/{user}/edit', [UserClientController::class, 'edit'])->name('user.client.edit');
+    Route::post('/{id}/user/{user}/update', [UserClientController::class, 'update'])->name('user.client.update');
 
     Route::get('/{id}/work', [WorkUnitController::class, 'index'])->name('work.index');
     Route::get('/{id}/work/create', [WorkUnitController::class, 'create'])->name('work.create');
