@@ -1,0 +1,92 @@
+.client {
+    .card--add-client {
+        .card-body {
+            .row {
+                &--submit {
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: row;
+                }
+
+                .line {
+                    .right {
+                        &--btn {
+                            button {
+                                margin-right: 20px;
+                            }
+                        }
+
+                        &--check {
+                            display: grid;
+                            grid-template-columns: repeat(3, 1fr);
+                            column-gap: 30px;
+                            row-gap: 10px;
+
+                            &>div {
+                                display: flex;
+                                align-items: center;
+    
+                                input.radio-checkbox {
+                                    appearance: none;
+                                    -webkit-appearance: none;
+                                    min-width: 15px;
+                                    min-height: 15px;
+                                    margin-right: 10px;
+                                    background-color: white;
+                                    border-radius: 100%;
+                                    border: 1px solid #ddd;
+                                    outline: none;
+                                    cursor: pointer;
+    
+                                    &:checked {
+                                        background-color: $yellow;
+                                        border: 1px solid white;
+                                    }
+                                }
+                            }
+                        }
+
+                        p {
+                            i {
+                                margin: 0;
+                                font-size: inherit;
+                            }
+                        }
+
+                        i {
+                            margin-left: 20px;
+                            font-size: 20px;
+                        }
+
+                        .form-control {
+                            max-width: 480px;
+                        }
+
+                        textarea {
+                            min-height: 125px;
+                            resize: vertical;
+                        }
+
+                        li {
+                            padding: 5px 0;
+                        }
+                    }
+
+                    &--activity {
+                        textarea {
+                            border-color: transparent;
+                            padding: 0;
+
+                            &:focus,
+                            &.active {
+                                padding: 10px 15px;
+                                background-color: #F7F7F7;
+                                border-color: $border_head;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

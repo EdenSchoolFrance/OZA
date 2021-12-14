@@ -6,11 +6,14 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory, Notifiable;
+
+    public $timestamps = false;
+    public $incrementing = false;
+    protected $keyType = 'string';
 
     /**
      * The attributes that are mass assignable.
@@ -18,9 +21,15 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name',
+        'lastname',
+        'firstname',
         'email',
+        'post',
+        'phone',
+        'username',
         'password',
+        'oza',
+        'connected'
     ];
 
     /**
@@ -29,16 +38,55 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        'password'
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function hasPermission($user_type, $role = [])
+    {
+        if ($user_type == "oza" && !$this->oza) {
+            return false;
+        } elseif ($user_type == "client" && $this->oza) {
+            return false;
+        }
+
+        if (count($role) > 0) {
+            if (gettype($role) == 'array') {
+                foreach ($role as $value) {
+                    if ($this->role()->where('permission', $value)->first()) {
+                        return true;
+                    }
+                }
+    
+                return false;
+            } else {
+                return null !== $this->role()->where('permission', $role)->first();
+            }
+        } else {
+            return true;
+        }
+    }
+
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
+
+
+    public function single_documents()
+    {
+        return $this->belongsToMany(SingleDocument::class, 'sd_user', 'user_id', 'single_document_id');
+    }
+
+
+
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
 }

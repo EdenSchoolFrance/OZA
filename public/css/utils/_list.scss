@@ -1,0 +1,65 @@
+.list {
+    padding-left: 20px;
+
+    .list-row {
+        position: relative;
+        margin-bottom: 20px;
+
+        .list-point {
+            position: absolute;
+            right: calc(100% + 10px);
+
+            &--text {
+                color: #868D96;
+                font-size: 14px;
+                margin: 0;
+            }
+
+            &--success {
+                top: 5px;
+                background-color: $success;
+                width: 10px;
+                height: 10px;
+                border-radius: 100%;
+            }
+
+            &--yellow {
+                top: 5px;
+                background-color: $yellow;
+                width: 10px;
+                height: 10px;
+                border-radius: 100%;
+            }
+        }
+
+        .list-text {
+            margin: 0;
+        }
+    }
+
+    &--text {
+        padding-left: 30px;
+
+        .list-row {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.list_group {
+    margin-bottom: 10px;
+
+    .title {
+        margin: 0;
+        color: $dark_purple;
+    }
+    .content {
+        margin: 0;
+        color: $dark;
+        font-size: 13px;
+    }
+
+    &:last-of-type {
+        margin: 0;
+    }
+}

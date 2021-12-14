@@ -1,0 +1,34 @@
+.bold {
+    font-weight: 800;
+}
+
+.text-color {
+    &-yellow {
+        color: $yellow !important;
+    }
+
+    &-green {
+        color: $green !important;
+    }
+
+    &-red {
+        color: $danger !important;
+    }
+
+    &-blue {
+        color: $info !important;
+    }
+}
+
+.message-error {
+    color: $danger;
+    margin: 0;
+    margin-top: 5px;
+    font-size: 12px;
+    font-family: 'Hind-Regular';
+}
+
+
+.none {
+    display: none !important;
+}
