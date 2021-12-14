@@ -65,7 +65,7 @@ Route::middleware(['auth'])->group(function() {
 
         Route::post('/client/{client}/single_document/store', [SingleDocumentAdminController::class, 'store'])->name('admin.single_document.store');
 
-        Route::get('/clients/du', [AdminController::class, 'clientsDU'])->name('admin.client.du');
+        Route::get('/clients/du', [SingleDocumentAdminController::class, 'index'])->name('admin.client.single_document');
     });
 
 

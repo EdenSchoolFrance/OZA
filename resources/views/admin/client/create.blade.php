@@ -9,9 +9,6 @@
             <div class="nav-tabs">
                 <button class="btn btn-tabs" data-tabs="du" disabled>DU associé</button>
             </div>
-            <div class="nav-tabs">
-                <button class="btn btn-tabs" data-tabs="admin" disabled>Administrateur</button>
-            </div>
         </div>
         <div class="card card--add-client">
             <div class="card-body">

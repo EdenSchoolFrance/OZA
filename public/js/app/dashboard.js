@@ -21,14 +21,13 @@ on('.card .btn-cancel-edit', 'click', (el, e) => {
 });
 
 on('.btn-group-number .btn-num', 'click', (el, e) => {
-    console.log()
     if (el.dataset.value === "more"){
-        let number = el.closest("div").querySelector('input')
-        number.value = parseInt(number.value)+1
+        let number = el.closest("div").querySelector('input');
+        number.value = parseInt(number.value)+1;
     }else if(el.dataset.value === "less") {
-        let number = el.closest("div").querySelector('input')
-        if (number.value != 0){
-            number.value = parseInt(number.value) - 1
+        let number = el.closest("div").querySelector('input');
+        if (number.value != 0) {
+            number.value = parseInt(number.value) - 1;
         }
     }else{
         console.log('crash')

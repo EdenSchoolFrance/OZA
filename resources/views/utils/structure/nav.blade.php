@@ -16,8 +16,10 @@
                             DU - {{ $single_document->name }}
                         </button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            @foreach($single_document->client->single_documents as $single_document)
-                                <a class="dropdown-item" href="{{ route('dashboard', [$single_document->id]) }}">{{ $single_document->name }}</a>
+                            @foreach($single_document->client->single_documents as $du)
+                                @if ($du->id !== $single_document->id)
+                                    <a class="dropdown-item" href="{{ route('dashboard', [$du->id]) }}">{{ $du->name }}</a>
+                                @endif
                             @endforeach
                         </div>
                     </div>

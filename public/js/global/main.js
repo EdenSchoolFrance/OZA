@@ -24,7 +24,9 @@ on('.btn-group-dropdown .btn.toggle-dropdown:not(.disabled)', 'click', (el, e) =
 on('.btn-group-dropdown .btn.toggle-dropdown:not(.disabled)', 'focusout', (el, e) => {
     let btnGroup = el.closest('.btn-group-dropdown');
 
-    btnGroup.classList.remove('open');
+    if (!btnGroup.contains(e.relatedTarget)) {
+        btnGroup.classList.remove('open');
+    }
 });
 
 on('textarea.auto-resize', 'input', (el, e) => {

@@ -16,14 +16,33 @@ class ClientController extends Controller
     public function index()
     {
         $page = [
-            'title' => 'Liste des utilisateurs',
+            'title' => 'Liste des clients',
             'sidebar' => 'clients',
             'sub_sidebar' => 'list',
         ];
 
-        $clients = Client::all();
+        $clients = Client::query();
+        $filter = null;
 
-        return view('admin.client.index', compact('page', 'clients'));
+        if (isset($_GET['filter'])) {
+            $filter = $_GET['filter'];
+
+            if ($_GET['filter']['client'] !== "") {
+                $clients = $clients->where('name','LIKE','%' . $_GET['filter']['client'] . '%');
+            }
+
+            if ($_GET['filter']['status'] !== "") {
+                if ($_GET['filter']['status'] == "in_progress") {
+                    $clients = $clients->where('archived', 0);
+                } elseif ($_GET['filter']['status'] == "archived") {
+                    $clients = $clients->where('archived', 1);
+                }
+            }
+        }
+
+        $clients = $clients->paginate(50);
+
+        return view('admin.client.index', compact('page', 'clients', 'filter'));
     }
 
     public function create()
@@ -100,7 +119,13 @@ class ClientController extends Controller
         $dangers = Danger::all();
         $single_documents = SingleDocument::where('client_id', $client->id)->paginate(15);
 
-        return view('admin.client.edit', compact('page', 'client', 'experts', 'dangers', 'single_documents'));
+        if (isset($_GET['tab']) && ($_GET['tab'] == 'info' || $_GET['tab'] == 'du')) {
+            $tab = $_GET['tab'];
+        } else {
+            $tab = 'info';
+        }
+
+        return view('admin.client.edit', compact('page', 'client', 'experts', 'dangers', 'single_documents', 'tab'));
     }
 
     public function update(Request $request, Client $client)

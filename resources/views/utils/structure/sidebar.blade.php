@@ -25,8 +25,8 @@
                     <li class="sidebar-nav-item {{ $page['sidebar'] == "clients" && $page['sub_sidebar'] == "list" ? 'active' : '' }}">
                         <a href="{{route('admin.client')}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Liste des clients</a>
                     </li>
-                    <li class="sidebar-nav-item {{ $page['sidebar'] == "clients" && $page['sub_sidebar'] == "listDu" ? 'active' : '' }}">
-                        <a href="{{route('admin.client.du')}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Liste des DU</a>
+                    <li class="sidebar-nav-item {{ $page['sidebar'] == "clients" && $page['sub_sidebar'] == "single_document" ? 'active' : '' }}">
+                        <a href="{{route('admin.client.single_document')}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Liste des DU</a>
                     </li>
                 </ul>
             </li>
