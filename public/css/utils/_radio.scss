@@ -1,31 +1,31 @@
-.radio-bar-content{
+.radio-bar-content {
     width: 100%;
     max-width: 600px;
-    .radio-title{
+
+    .radio-title {
         display: flex;
         justify-content: space-between;
         margin-top: 5px;
-        label{
+
+        label {
             padding: 0;
             width: 100px;
             text-align: center;
             font-size: 14px;
         }
     }
-    .radio-bar{
+
+    .radio-bar {
         background: linear-gradient(90deg, $danger 0%, $warning 50%, $success 100%);
         display: flex;
         justify-content: space-between;
         border-radius: 50px;
         height: 15px;
 
-        &--white{
+        &--white {
             background: $grey;
         }
-
-
-
-
+        
         .con {
             display: block;
             position: relative;
@@ -55,7 +55,7 @@
             border-radius: 50%;
         }
 
-        .con input:checked ~ .checkmark {
+        .con input:checked~.checkmark {
             background-color: #2196F3;
         }
 
@@ -67,7 +67,7 @@
         }
 
 
-        .con input:checked ~ .checkmark:after {
+        .con input:checked~.checkmark:after {
             display: block;
         }
 
@@ -80,16 +80,19 @@
             border: 1px $dark solid;
             background: white;
         }
-        &--inv{
+
+        &--inv {
             background: transparent;
             display: flex;
             justify-content: flex-start;
-            .con{
+
+            .con {
                 margin: 0;
                 margin-right: 25px;
                 padding-left: 25px;
                 font-size: 16px;
             }
+
             .checkmark {
                 top: 6px;
             }

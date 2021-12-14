@@ -24,18 +24,26 @@ on('.btn-group-dropdown .btn.toggle-dropdown:not(.disabled)', 'click', (el, e) =
 on('.btn-group-dropdown .btn.toggle-dropdown:not(.disabled)', 'focusout', (el, e) => {
     let btnGroup = el.closest('.btn-group-dropdown');
 
-    btnGroup.classList.remove('open');
+    if (!btnGroup.contains(e.relatedTarget)) {
+        btnGroup.classList.remove('open');
+    }
 });
 
 on('textarea.auto-resize', 'input', (el, e) => {
     el.style.height = "auto";
-    el.style.height = (el.scrollHeight) + "px";
+    el.style.height = el.scrollHeight + "px";
 });
 
-const tooltip = (selector, element = document) =>{
-    element.addEventListener("mouseover", (e)=>{
-        if (e.target.closest(selector)){
+on('input[type="file"]', 'change', (el, e) => {
+    let file = el.closest('.form-control--file');
 
-        }
-    })
-}
+    $('span:first-of-type', file, false).innerHTML = el.files[0].name;
+});
+
+// const tooltip = (selector, element = document) =>{
+//     element.addEventListener("mouseover", (e)=>{
+//         if (e.target.closest(selector)){
+
+//         }
+//     })
+// }

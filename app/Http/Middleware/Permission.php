@@ -18,13 +18,17 @@ class Permission
     public function handle(Request $request, Closure $next, $user_type, ...$roles)
     {
         if (!Auth::check()) {
-            return redirect('/login');
+            return redirect()->route('login');
         }
 
         if (Auth::user()->hasPermission($user_type, $roles)) {
             return $next($request);
         }
 
-        abort('404');
+        if (Auth::user()->hasPermission('oza')) {
+            return redirect()->route('admin.client');
+        } else {
+            return redirect()->route('dashboard.home');
+        }
     }
 }

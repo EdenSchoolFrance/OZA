@@ -22,13 +22,13 @@ class UserSeeder extends Seeder
         $role_editor = Role::where('permission', 'EDITOR')->first();
         $role_reader = Role::where('permission', 'READER')->first();
 
-        $client = Client::where('name', 'Biocoop')->first();
-
         $user = new User();
         $user->id = uniqid();
         $user->lastname = "Latsname Admin Oza";
         $user->firstname = "Firstname Admin Oza";
         $user->email = "adminoza@gmail.com";
+        $user->phone = "0614875412";
+        $user->post = "Poste";
         $user->password = "test";
         $user->oza = 1;
         $user->role()->associate($role_admin);
@@ -39,6 +39,8 @@ class UserSeeder extends Seeder
         $user->lastname = "Latsname Expert Oza";
         $user->firstname = "Firstname Expert Oza";
         $user->email = "expertoza@gmail.com";
+        $user->phone = "0614875412";
+        $user->post = "Poste";
         $user->password = "test";
         $user->oza = 1;
         $user->role()->associate($role_expert);
@@ -49,9 +51,10 @@ class UserSeeder extends Seeder
         $user->lastname = "Latsname Admin Client";
         $user->firstname = "Firstname Admin Client";
         $user->email = "adminclient@gmail.com";
+        $user->phone = "0614875412";
+        $user->post = "Poste";
         $user->password = "test";
         $user->role()->associate($role_admin);
-        $user->client()->associate($client);
         $user->save();
     }
 }

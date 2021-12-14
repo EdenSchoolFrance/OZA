@@ -1,6 +1,6 @@
 
 
-tooltip('[data-toggle="toolHelp"]')
+// tooltip('[data-toggle="toolHelp"]')
 
 
 

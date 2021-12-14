@@ -85,6 +85,14 @@
         &.active {
             color: $yellow;
         }
+
+        &:disabled {
+            opacity: .6;
+
+            &:hover {
+                color: $dark_purple;
+            }
+        }
     }
 
     &-small {
@@ -126,6 +134,19 @@
             font-size: 20px;
             margin: 0;
             margin-left: 10px;
+        }
+    }
+
+    &-back {
+        display: block;
+        color: $dark;
+        text-decoration: none;
+        margin-bottom: 20px;
+        font-family: 'Hind-Medium';
+        font-size: 18px;
+
+        i {
+            margin-right: 15px;
         }
     }
 }
