@@ -10,9 +10,11 @@ use App\Http\Controllers\Admin\UserController as UserAdminController;
 use App\Http\Controllers\Admin\ClientController as ClientAdminController;
 use App\Http\Controllers\Admin\SingleDocumentController as SingleDocumentAdminController;
 
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RiskController;
 use App\Http\Controllers\WorkUnitController;
+
+use App\Http\Controllers\DocController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -69,21 +71,28 @@ Route::middleware(['auth'])->group(function() {
     });
 
 
+    Route::get('/{doc_name}', [DocController::class, 'index'])->name('documentation');
+    Route::get('/{doc_name}/edit', [DocController::class, 'edit'])->name('documentation.edit');
+
+    Route::post('/{doc_name}/update', [DocController::class, 'update'])->name('documentation.update');
+    Route::post('/doc/upload', [DocController::class, 'upload'])->name('documentation.upload');
+
+
     /*===============================
             CLIENT Section
     ===============================*/
 
-    Route::get('/{id}/dashboard/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/{single_document}/dashboard/', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('/{id}/presentation', [PresentationController::class, 'index'])->name('presentation');
-    Route::post('/{id}/presentation/{type}', [PresentationController::class, 'store'])->name('presentation.store');
+    Route::get('/{single_document}/presentation', [PresentationController::class, 'index'])->name('presentation');
+    Route::post('/{single_document}/presentation/{type}', [PresentationController::class, 'store'])->name('presentation.store');
 
-    Route::get('/{id}/user', [UserClientController::class, 'index'])->name('user.client.index');
+    Route::get('/{single_document}/user', [UserClientController::class, 'index'])->name('user.client.index');
 
-    Route::get('/{id}/work', [WorkUnitController::class, 'index'])->name('work.index');
-    Route::get('/{id}/work/create', [WorkUnitController::class, 'create'])->name('work.create');
-    Route::get('/{id}/work/create/new', [WorkUnitController::class, 'createNew'])->name('work.create.new');
+    Route::get('/{single_document}/work', [WorkUnitController::class, 'index'])->name('work.index');
+    Route::get('/{single_document}/work/create', [WorkUnitController::class, 'create'])->name('work.create');
+    Route::get('/{single_document}/work/create/new', [WorkUnitController::class, 'createNew'])->name('work.create.new');
 
-    Route::get('/{id}/risk/accident', [RiskController::class, 'accident'])->name('risk.accident');
-    Route::get('/{id}/risk/accident/create', [RiskController::class, 'accidentCreate'])->name('risk.accident.create');
+    Route::get('/{single_document}/risk/accident', [RiskController::class, 'accident'])->name('risk.accident');
+    Route::get('/{single_document}/risk/accident/create', [RiskController::class, 'accidentCreate'])->name('risk.accident.create');
 });
