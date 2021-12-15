@@ -10,9 +10,11 @@ use App\Http\Controllers\Admin\UserController as UserAdminController;
 use App\Http\Controllers\Admin\ClientController as ClientAdminController;
 use App\Http\Controllers\Admin\SingleDocumentController as SingleDocumentAdminController;
 
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RiskController;
 use App\Http\Controllers\WorkUnitController;
+
+use App\Http\Controllers\DocController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,14 +49,9 @@ Route::middleware(['auth'])->group(function() {
             OZA Section
     ===============================*/
 
-    /*================ ADMIN ================*/
-    Route::middleware(['permission:oza,ADMIN'])->group(function () {
+    /*================ ADMIN | EXPERT ================*/
+    Route::middleware(['permission:oza,ADMIN,EXPERT'])->group(function () {
         Route::get('/users', [UserAdminController::class, 'index'])->name('admin.user');
-        Route::get('/users/create', [UserAdminController::class, 'create'])->name('admin.user.create');
-        Route::get('/users/{user}/edit', [UserAdminController::class, 'edit'])->name('admin.user.edit');
-
-        Route::post('/users/store', [UserAdminController::class, 'store'])->name('admin.user.store');
-        Route::post('/users/{user}/update', [UserAdminController::class, 'update'])->name('admin.user.update');
 
         Route::get('/client', [ClientAdminController::class, 'index'])->name('admin.client');
         Route::get('/client/create', [ClientAdminController::class, 'create'])->name('admin.client.create');
@@ -63,9 +60,30 @@ Route::middleware(['auth'])->group(function() {
         Route::post('/client/store', [ClientAdminController::class, 'store'])->name('admin.client.store');
         Route::post('/client/{client}/update', [ClientAdminController::class, 'update'])->name('admin.client.update');
 
-        Route::post('/client/{client}/single_document/store', [SingleDocumentAdminController::class, 'store'])->name('admin.single_document.store');
-
         Route::get('/clients/du', [SingleDocumentAdminController::class, 'index'])->name('admin.client.single_document');
+    });
+
+
+    /*================ ADMIN ================*/
+    Route::middleware(['permission:oza,ADMIN'])->group(function () {
+        Route::get('/users/create', [UserAdminController::class, 'create'])->name('admin.user.create');
+        Route::get('/users/{user}/edit', [UserAdminController::class, 'edit'])->name('admin.user.edit');
+
+        Route::post('/users/store', [UserAdminController::class, 'store'])->name('admin.user.store');
+        Route::post('/users/{user}/update', [UserAdminController::class, 'update'])->name('admin.user.update');
+
+
+        Route::post('/client/{client}/single_document/store', [SingleDocumentAdminController::class, 'store'])->name('admin.single_document.store');
+    });
+
+
+    Route::get('/{doc_name}', [DocController::class, 'index'])->name('documentation');
+
+    Route::middleware(['permission:oza,ADMIN'])->group(function () {
+        Route::get('/{doc_name}/edit', [DocController::class, 'edit'])->name('documentation.edit');
+
+        Route::post('/{doc_name}/update', [DocController::class, 'update'])->name('documentation.update');
+        Route::post('/doc/upload', [DocController::class, 'upload'])->name('documentation.upload');
     });
 
 
@@ -73,21 +91,22 @@ Route::middleware(['auth'])->group(function() {
             CLIENT Section
     ===============================*/
 
-    Route::get('/{id}/dashboard/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/{single_document}/dashboard/', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('/{id}/presentation', [PresentationController::class, 'index'])->name('presentation');
-    Route::post('/{id}/presentation/{type}', [PresentationController::class, 'store'])->name('presentation.store');
+    Route::get('/{single_document}/presentation', [PresentationController::class, 'index'])->name('presentation');
+    Route::post('/{single_document}/presentation/{type}', [PresentationController::class, 'store'])->name('presentation.store');
 
-    Route::get('/{id}/user', [UserClientController::class, 'index'])->name('user.client.index');
-    Route::get('/{id}/user/create', [UserClientController::class, 'create'])->name('user.client.create');
-    Route::post('/{id}/user/store', [UserClientController::class, 'store'])->name('user.client.store');
-    Route::get('/{id}/user/{user}/edit', [UserClientController::class, 'edit'])->name('user.client.edit');
-    Route::post('/{id}/user/{user}/update', [UserClientController::class, 'update'])->name('user.client.update');
+    Route::get('/{single_document}/user', [UserClientController::class, 'index'])->name('user.client.index');
+    Route::get('/{single_document}/user/create', [UserClientController::class, 'create'])->name('user.client.create');
+    Route::get('/{single_document}/user/{user}/edit', [UserClientController::class, 'edit'])->name('user.client.edit');
+  
+    Route::post('/{single_document}/user/store', [UserClientController::class, 'store'])->name('user.client.store');
+    Route::post('/{single_document}/user/{user}/update', [UserClientController::class, 'update'])->name('user.client.update');
 
-    Route::get('/{id}/work', [WorkUnitController::class, 'index'])->name('work.index');
-    Route::get('/{id}/work/create', [WorkUnitController::class, 'create'])->name('work.create');
-    Route::get('/{id}/work/create/new', [WorkUnitController::class, 'createNew'])->name('work.create.new');
+    Route::get('/{single_document}/work', [WorkUnitController::class, 'index'])->name('work.index');
+    Route::get('/{single_document}/work/create', [WorkUnitController::class, 'create'])->name('work.create');
+    Route::get('/{single_document}/work/create/new', [WorkUnitController::class, 'createNew'])->name('work.create.new');
 
-    Route::get('/{id}/risk/accident', [RiskController::class, 'accident'])->name('risk.accident');
-    Route::get('/{id}/risk/accident/create', [RiskController::class, 'accidentCreate'])->name('risk.accident.create');
+    Route::get('/{single_document}/risk/accident', [RiskController::class, 'accident'])->name('risk.accident');
+    Route::get('/{single_document}/risk/accident/create', [RiskController::class, 'accidentCreate'])->name('risk.accident.create');
 });

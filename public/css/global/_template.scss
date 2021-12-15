@@ -151,7 +151,6 @@ main {
     }
 
     .container {
-        height: 100%;
         margin-left: $width_sidebar;
         background-color: $white_grey;
         padding: 35px 20px;
@@ -261,4 +260,10 @@ main {
             }
         }
     }
+}
+
+.menu {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 30px;
 }

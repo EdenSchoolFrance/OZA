@@ -1,0 +1,16 @@
+.tox-tinymce {
+    border: none !important;
+
+    .tox-editor-header {
+        margin-bottom: 10px;
+        border: 1px solid $grey;
+
+        .tox-toolbar__primary {
+            background: none;
+        }
+    }
+
+    .tox-sidebar-wrap {
+        border: 1px solid $grey;
+    }
+}

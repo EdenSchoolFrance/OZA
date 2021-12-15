@@ -4,15 +4,14 @@
 }
 
 html {
-    height: 100%;
+    // height: 100%;
 }
 
 body {
     padding: 0;
     margin: 0;
     background-color: $white_grey;
-    height: 100%;
-    min-height: 100vh;
+    // height: 100%;
 }
 
 h1 {
@@ -61,3 +60,4 @@ a{
 @import "../utils/radio";
 @import "../utils/list";
 @import "../utils/text";
+@import "../utils/tinymce";
