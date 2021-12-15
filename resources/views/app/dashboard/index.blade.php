@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-    <div class="content dash">
+    <div class="content dashboard">
         <div class="row">
             <form class="card card--dash">
                 <div class="card-header">

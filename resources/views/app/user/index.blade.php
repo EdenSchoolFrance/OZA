@@ -5,7 +5,7 @@
         <div class="card card--users">
             <div class="card-header">
                 <div></div>
-                <a href="#" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN UTILISATEUR</a>
+                <a href="{{ route('user.client.create', [$single_document->id]) }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN UTILISATEUR</a>
             </div>
             <div class="card-body">
                 <table class="table table--users table-sortable" style="width:100%">
@@ -19,46 +19,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="td_lastname">NOM 1</td>
-                            <td class="td_firstname">Prénom</td>
-                            <td class="td_email">nom.prénom@email.com</td>
-                            <td class="td_access">Lecteur</td>
-                            <td class="td_actions"><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
-                        </tr>
-                        <tr>
-                            <td class="td_lastname">NOM 2</td>
-                            <td class="td_firstname">Prénom</td>
-                            <td class="td_email">nom.prénom@email.com</td>
-                            <td class="td_access">Lecteur</td>
-                            <td class="td_actions"><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
-                        </tr>
-                        <tr>
-                            <td class="td_lastname">NOM 3</td>
-                            <td class="td_firstname">Prénom</td>
-                            <td class="td_email">nom.prénom@email.com</td>
-                            <td class="td_access">Lecteur</td>
-                            <td class="td_actions"><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
-                        </tr>
-                        <tr>
-                            <td class="td_lastname">NOM 4</td>
-                            <td class="td_firstname">Prénom</td>
-                            <td class="td_email">nom.prénom@email.com</td>
-                            <td class="td_access">Lecteur</td>
-                            <td class="td_actions"><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
-                        </tr>
-                        <tr>
-                            <td class="td_lastname">NOM 5</td>
-                            <td class="td_firstname">Tom</td>
-                            <td class="td_email">nom.prénom@email.com</td>
-                            <td class="td_access">Lecteur</td>
-                            <td class="td_actions"><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
-                        </tr>
+                        @foreach($users as $user)
+                            <tr>
+                                <td class="td_lastname">{{$user->lastname}}</td>
+                                <td class="td_firstname">{{$user->firstname}}</td>
+                                <td class="td_email">{{$user->email}}</td>
+                                <td class="td_access">{{$user->role->name}}</td>
+                                <td class="td_actions">
+                                    <a href=""><i class="fas fa-trash"></i></a>
+                                    <a href="{{ route('user.client.edit', ['user'=>$user->id, 'id' => $single_document->id]) }}"><i class="far fa-edit"></i></a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
             <div class="card-footer">
-                <a href="#" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN UTILISATEUR</a>
+                <a href="{{ route('user.client.create', [$single_document->id]) }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN UTILISATEUR</a>
             </div>
         </div>
     </div>

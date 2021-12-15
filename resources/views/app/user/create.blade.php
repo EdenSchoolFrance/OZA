@@ -3,7 +3,7 @@
 @section('content')
     <div class="content">
         <div class="card card--users">
-            <form class="card-body" action="{{ route('admin.user.store') }}" method="POST">
+            <form class="card-body" action="{{ route('user.client.store', [$single_document->id]) }}" method="POST">
                 @csrf
                 <div class="row">
                     <div class="line">
@@ -73,7 +73,7 @@
                             <label for="post">Poste</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="post" class="form-control @error('post') invalid @enderror" placeholder="Indiquer le poste" value="{{ old('post') }}" required>
+                            <input type="text" name="post" class="form-control @error('post') invalid @enderror" placeholder="Indiquer le post" value="{{ old('post') }}" required>
                             @error('post')
                             <p class="message-error">{{ $message }}</p>
                             @enderror

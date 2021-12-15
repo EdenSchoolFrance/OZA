@@ -97,6 +97,11 @@ Route::middleware(['auth'])->group(function() {
     Route::post('/{single_document}/presentation/{type}', [PresentationController::class, 'store'])->name('presentation.store');
 
     Route::get('/{single_document}/user', [UserClientController::class, 'index'])->name('user.client.index');
+    Route::get('/{single_document}/user/create', [UserClientController::class, 'create'])->name('user.client.create');
+    Route::get('/{single_document}/user/{user}/edit', [UserClientController::class, 'edit'])->name('user.client.edit');
+  
+    Route::post('/{single_document}/user/store', [UserClientController::class, 'store'])->name('user.client.store');
+    Route::post('/{single_document}/user/{user}/update', [UserClientController::class, 'update'])->name('user.client.update');
 
     Route::get('/{single_document}/work', [WorkUnitController::class, 'index'])->name('work.index');
     Route::get('/{single_document}/work/create', [WorkUnitController::class, 'create'])->name('work.create');
