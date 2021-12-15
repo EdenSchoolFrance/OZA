@@ -88,6 +88,8 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/{id}/work/create', [WorkUnitController::class, 'create'])->name('work.create');
     Route::get('/{id}/work/create/new', [WorkUnitController::class, 'createNew'])->name('work.create.new');
 
+    Route::post('/test', [WorkUnitController::class, 'test'])->name('test');
+
     Route::get('/{id}/risk/accident', [RiskController::class, 'accident'])->name('risk.accident');
     Route::get('/{id}/risk/accident/create', [RiskController::class, 'accidentCreate'])->name('risk.accident.create');
 });

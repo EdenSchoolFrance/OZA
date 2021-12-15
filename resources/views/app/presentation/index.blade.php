@@ -193,5 +193,5 @@
 @endsection
 
 @section('script')
-    <script src="/js/app/dashboard.js"></script>
+    <script src="/js/app/presentation.js"></script>
 @endsection

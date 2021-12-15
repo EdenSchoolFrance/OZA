@@ -54,4 +54,10 @@ class WorkUnitController extends Controller
 
         return view('app.work_unit.createNew', compact('page', 'single_document'));
     }
+
+    public function test(Request $request){
+
+        var_dump($request->vehicule);
+
+    }
 }
