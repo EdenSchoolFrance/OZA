@@ -3,10 +3,12 @@
 @section('content')
     <div class="content">
         <div class="card card--users">
-            <div class="card-header">
-                <div></div>
-                <a href="{{ route('admin.client.create') }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN CLIENT</a>
-            </div>
+            @if (Auth::user()->hasPermission('ADMIN'))
+                <div class="card-header">
+                    <div></div>
+                    <a href="{{ route('admin.client.create') }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN CLIENT</a>
+                </div>
+            @endif
             <div class="card-body">
                 <form class="row row--filter" method="GET">
                     <input type="text" class="form-control" name="filter[client]" id="input_filter_client" value="{{ isset($filter) ? $filter['client'] : '' }}" placeholder="Recherche par nom de client">
@@ -35,7 +37,9 @@
                                 <td class="td_nb_client">{{ $client->client_number }}</td>
                                 <td class="td_status">{{ $client->archived == 1 ? 'Archivé' : 'En cours' }}</td>
                                 <td class="td_actions">
-                                    <i class="fas fa-trash"></i>
+                                    @if (Auth::user()->hasPermission('ADMIN'))
+                                        <i class="fas fa-trash"></i>
+                                    @endif
                                     <a href="{{ route('admin.client.edit', [$client->id]) }}"><i class="far fa-edit"></i></a>
                                 </td>
                             </tr>
@@ -50,9 +54,11 @@
                 </table>
                 {{ $clients->links() }}
             </div>
-            <div class="card-footer">
-                <a href="{{ route('admin.client.create') }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN CLIENT</a>
-            </div>
+            @if (Auth::user()->hasPermission('ADMIN'))
+                <div class="card-footer">
+                    <a href="{{ route('admin.client.create') }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN CLIENT</a>
+                </div>
+            @endif
         </div>
     </div>
 @endsection

@@ -3,7 +3,7 @@
 @section('content')
     <div class="content dashboard">
         <div class="row">
-            <form class="card card--dash">
+            <form class="card card--dashboard">
                 <div class="card-header">
                     <h2 class="title">Risque Brut moyen</h2>
                 </div>
@@ -16,7 +16,7 @@
                     </div>
                 </div>
             </form>
-            <form class="card card--dash">
+            <form class="card card--dashboard">
                 <div class="card-header">
                     <h2 class="title">Réduction du risque</h2>
                 </div>
@@ -26,7 +26,7 @@
                     </div>
                 </div>
             </form>
-            <form action="#" class="card card--dash">
+            <form action="#" class="card card--dashboard">
                 <div class="card-header">
                     <h2 class="title">Risque résiduel moyen</h2>
                 </div>
@@ -39,7 +39,7 @@
                     </div>
                 </div>
             </form>
-            <form action="#" class="card card--dash">
+            <form action="#" class="card card--dashboard">
                 <div class="card-header">
                     <h2 class="title">Actualisation en cours</h2>
                 </div>
@@ -58,7 +58,7 @@
                     </div>
                 </div>
             </form>
-            <form action="#" class="card card--dash-double">
+            <form action="#" class="card card--dashboard-double">
                 <div class="card-header">
                     <h2 class="title">Risque résiduel en cours</h2>
                 </div>

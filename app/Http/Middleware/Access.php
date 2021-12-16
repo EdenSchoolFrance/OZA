@@ -6,26 +6,22 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class Permission
+class Access
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
+     * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, ...$roles)
+    public function handle(Request $request, Closure $next, $user_type, ...$roles)
     {
         if (!Auth::check()) {
             return redirect()->route('login');
         }
 
-        if (count($roles) == 0) {
-            $roles = null;
-        }
-
-        if (Auth::user()->hasPermission($roles)) {
+        if (Auth::user()->hasAccess($user_type, $roles)) {
             return $next($request);
         } else {
             abort(404);

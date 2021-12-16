@@ -39,58 +39,59 @@ Route::middleware(['auth'])->group(function() {
     /*===============================
             CLIENT Private Section
     ===============================*/
-    Route::middleware(['permission:client'])->group(function () {
+    Route::middleware(['access:client'])->group(function () {
         Route::get('/', [DashboardController::class, 'home'])->name('dashboard.home');
-
     });
 
 
     /*===============================
-            OZA Section
+                OZA Section
     ===============================*/
+    Route::middleware(['access:oza'])->group(function () {
 
-    /*================ ADMIN | EXPERT ================*/
-    Route::middleware(['permission:oza,ADMIN,EXPERT'])->group(function () {
-        Route::get('/users', [UserAdminController::class, 'index'])->name('admin.user');
-
-        Route::get('/client', [ClientAdminController::class, 'index'])->name('admin.client');
-        Route::get('/client/create', [ClientAdminController::class, 'create'])->name('admin.client.create');
-        Route::get('/client/{client}/edit', [ClientAdminController::class, 'edit'])->name('admin.client.edit');
-
-        Route::post('/client/store', [ClientAdminController::class, 'store'])->name('admin.client.store');
-        Route::post('/client/{client}/update', [ClientAdminController::class, 'update'])->name('admin.client.update');
-
-        Route::get('/clients/du', [SingleDocumentAdminController::class, 'index'])->name('admin.client.single_document');
-    });
-
-
-    /*================ ADMIN ================*/
-    Route::middleware(['permission:oza,ADMIN'])->group(function () {
-        Route::get('/users/create', [UserAdminController::class, 'create'])->name('admin.user.create');
-        Route::get('/users/{user}/edit', [UserAdminController::class, 'edit'])->name('admin.user.edit');
-
-        Route::post('/users/store', [UserAdminController::class, 'store'])->name('admin.user.store');
-        Route::post('/users/{user}/update', [UserAdminController::class, 'update'])->name('admin.user.update');
+        /*================ ADMIN ================*/
+        Route::middleware(['permission:oza,ADMIN'])->group(function () {
+            Route::get('/user/create', [UserAdminController::class, 'create'])->name('admin.user.create');
+            Route::get('/user/{user}/edit', [UserAdminController::class, 'edit'])->name('admin.user.edit');
+    
+            Route::post('/user/store', [UserAdminController::class, 'store'])->name('admin.user.store');
+            Route::post('/user/{user}/update', [UserAdminController::class, 'update'])->name('admin.user.update');
+    
+    
+            Route::get('/client/create', [ClientAdminController::class, 'create'])->name('admin.client.create');
+    
+            Route::post('/client/store', [ClientAdminController::class, 'store'])->name('admin.client.store');
+            Route::post('/client/{client}/single_document/store', [SingleDocumentAdminController::class, 'store'])->name('admin.single_document.store');
 
 
-        Route::post('/client/{client}/single_document/store', [SingleDocumentAdminController::class, 'store'])->name('admin.single_document.store');
+            Route::get('/{doc_name}/edit', [DocController::class, 'edit'])->name('documentation.edit');
+
+            Route::post('/{doc_name}/update', [DocController::class, 'update'])->name('documentation.update');
+            Route::post('/doc/upload', [DocController::class, 'upload'])->name('documentation.upload');
+        });
+    
+        /*================ ADMIN | EXPERT ================*/
+        Route::middleware(['permission:oza,ADMIN,EXPERT'])->group(function () {
+            Route::get('/users', [UserAdminController::class, 'index'])->name('admin.user');
+    
+    
+            Route::get('/clients', [ClientAdminController::class, 'index'])->name('admin.client');
+            Route::get('/client/{client}/edit', [ClientAdminController::class, 'edit'])->name('admin.client.edit');
+    
+            Route::post('/client/{client}/update', [ClientAdminController::class, 'update'])->name('admin.client.update');
+    
+    
+            Route::get('/clients/du', [SingleDocumentAdminController::class, 'index'])->name('admin.client.single_document');
+        });
     });
 
 
     Route::get('/{doc_name}', [DocController::class, 'index'])->name('documentation');
 
-    Route::middleware(['permission:oza,ADMIN'])->group(function () {
-        Route::get('/{doc_name}/edit', [DocController::class, 'edit'])->name('documentation.edit');
-
-        Route::post('/{doc_name}/update', [DocController::class, 'update'])->name('documentation.update');
-        Route::post('/doc/upload', [DocController::class, 'upload'])->name('documentation.upload');
-    });
-
 
     /*===============================
-            CLIENT Section
+              CLIENT Section
     ===============================*/
-
     Route::get('/{single_document}/dashboard/', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/{single_document}/presentation', [PresentationController::class, 'index'])->name('presentation');
