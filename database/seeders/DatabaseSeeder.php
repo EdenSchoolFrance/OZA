@@ -21,9 +21,11 @@ class DatabaseSeeder extends Seeder
 
         $this->call(UpdateUserSeeder::class);
 
+        $this->call(DangerSeeder::class);
+
         $this->call(SingleDocumentSeeder::class);
 
-        $this->call(DangerSeeder::class);
+        $this->call(SdDangerSeeder::class);
 
         $this->call(DocSeeder::class);
     }

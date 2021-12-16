@@ -27,13 +27,13 @@ class SdDanger extends Model
         'danger_id'
     ];
 
-    public function danger()
-    {
-        return $this->belongsTo(Danger::class);
-    }
-
     public function single_document()
     {
         return $this->belongsTo(SingleDocument::class);
+    }
+
+    public function danger()
+    {
+        return $this->belongsTo(Danger::class);
     }
 }
