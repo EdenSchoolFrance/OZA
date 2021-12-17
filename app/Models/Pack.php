@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Danger extends Model
+class Pack extends Model
 {
     use HasFactory;
 
@@ -19,12 +19,6 @@ class Danger extends Model
      * @var string[]
      */
     protected $fillable = [
-        'name',
-        'info'
+        'name'
     ];
-
-    public function packs()
-    {
-        return $this->belongsToMany(Pack::class, 'danger_pack');
-    }
 }

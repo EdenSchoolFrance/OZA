@@ -50,7 +50,7 @@ Route::middleware(['auth'])->group(function() {
     Route::middleware(['access:oza'])->group(function () {
 
         /*================ ADMIN ================*/
-        Route::middleware(['permission:oza,ADMIN'])->group(function () {
+        Route::middleware(['permission:ADMIN'])->group(function () {
             Route::get('/user/create', [UserAdminController::class, 'create'])->name('admin.user.create');
             Route::get('/user/{user}/edit', [UserAdminController::class, 'edit'])->name('admin.user.edit');
     
@@ -71,7 +71,7 @@ Route::middleware(['auth'])->group(function() {
         });
     
         /*================ ADMIN | EXPERT ================*/
-        Route::middleware(['permission:oza,ADMIN,EXPERT'])->group(function () {
+        Route::middleware(['permission:ADMIN,EXPERT'])->group(function () {
             Route::get('/users', [UserAdminController::class, 'index'])->name('admin.user');
     
     

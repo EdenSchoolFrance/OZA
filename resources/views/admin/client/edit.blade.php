@@ -192,9 +192,9 @@
                                     <p>Liste des dangers associés</p>
                                 </div>
                                 <div class="right right--btn">
-                                    <button type="button" class="btn btn-yellow btn-text select-pack" data-pack="compliance">Conformité</button>
-                                    <button type="button" class="btn btn-yellow btn-text select-pack" data-pack="tranquility">Tranquillité</button>
-                                    <button type="button" class="btn btn-yellow btn-text select-pack" data-pack="serenity">Sérénité</button>
+                                    @foreach ($packs as $pack)
+                                        <button type="button" class="btn btn-yellow btn-text select-pack" data-pack="{{ $pack->id }}">{{ $pack->name }}</button>
+                                    @endforeach
                                     <button type="button" class="btn btn-yellow btn-text uncheck-pack">Tout décocher</button>
                                 </div>
                             </div>
@@ -204,7 +204,7 @@
                                 <div class="right right--check">
                                     @foreach ($dangers as $danger)
                                         <div>
-                                            <input type="checkbox" class="radio-checkbox item-pack" data-pack="serenity" id="danger_{{ $danger->id }}" name="danger_{{ $danger->id }}" value="{{ $danger->id }}" {{ old('danger_' . $danger->id) ? 'checked' : '' }}>
+                                            <input type="checkbox" class="radio-checkbox item-pack" data-pack="{{ $danger->packs->pluck('id')->implode(',') }}" id="danger_{{ $danger->id }}" name="dangers[{{ $danger->id }}]" value="{{ $danger->id }}" {{ old('dangers.'. $danger->id) ? 'checked' : '' }}>
                                             <label for="danger_{{ $danger->id }}">{{ $danger->name }}</label>
                                         </div>
                                     @endforeach

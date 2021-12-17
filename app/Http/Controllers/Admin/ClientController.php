@@ -8,6 +8,7 @@ use App\Models\Client;
 use App\Models\Danger;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Pack;
 use App\Models\SingleDocument;
 use Illuminate\Support\Facades\Storage;
 
@@ -117,6 +118,7 @@ class ClientController extends Controller
 
         $experts = User::where('oza', 1)->get();
         $dangers = Danger::all();
+        $packs = Pack::all();
         $single_documents = SingleDocument::where('client_id', $client->id)->paginate(15);
 
         if (isset($_GET['tab']) && ($_GET['tab'] == 'info' || $_GET['tab'] == 'du')) {
@@ -125,7 +127,7 @@ class ClientController extends Controller
             $tab = 'info';
         }
 
-        return view('admin.client.edit', compact('page', 'client', 'experts', 'dangers', 'single_documents', 'tab'));
+        return view('admin.client.edit', compact('page', 'client', 'experts', 'dangers', 'single_documents', 'packs', 'tab'));
     }
 
     public function update(Request $request, Client $client)

@@ -45,25 +45,11 @@ class SingleDocumentController extends Controller
 
     public function store(Request $request, Client $client)
     {
-        $dangers = $request->except(['name_single_document', '_token']);
-
-        $validation = [
+        $request->validate([
             'name_single_document' => 'required',
-        ];
-
-        foreach ($dangers as $key => $danger) {
-            $validation[$key] = 'nullable|exists:dangers,id';
-        }
-
-        $request->validate($validation);
-
-        if (count($dangers) == 0) {
-            return back()->withErrors([
-                'dangers' => [
-                    'Veuillez choisir au moins 1 danger !'
-                ]
-            ]);
-        }
+            'dangers' => 'required|array',
+            'dangers.*' => 'exists:dangers,id'
+        ]);
 
         $users = User::where('client_id', $client->id)->whereHas('role', function ($q) {
             $q->where('permission', 'ADMIN');
@@ -78,7 +64,7 @@ class SingleDocumentController extends Controller
             $single_document->users()->attach($user);
         }
 
-        foreach ($dangers as $danger) {
+        foreach ($request->dangers as $danger) {
             $sd_danger = new SdDanger();
             $sd_danger->id = uniqid();
             $sd_danger->single_document()->associate($single_document);
