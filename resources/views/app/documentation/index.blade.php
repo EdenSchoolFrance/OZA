@@ -4,13 +4,13 @@
     <div class="content">
         <div class="card card--doc">
             @csrf
-            @if (Auth::user()->oza)
+            @if (Auth::user()->hasPermission('oza', 'ADMIN'))
                 <div class="card-header">
                     <a href="{{ route('documentation.edit', [$doc->name]) }}" class="btn btn-yellow">Modifier</a>
                 </div>
             @endif
             <div class="card-body">
-                {{ $doc->content }}
+                {!! $doc->content !!}
             </div>
         </div>
     </div>

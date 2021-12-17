@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Client;
+use App\Models\Danger;
 use App\Models\SingleDocument;
 use Illuminate\Database\Seeder;
 

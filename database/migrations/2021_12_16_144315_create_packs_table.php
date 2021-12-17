@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDangersTable extends Migration
+class CreatePacksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateDangersTable extends Migration
      */
     public function up()
     {
-        Schema::create('dangers', function (Blueprint $table) {
+        Schema::create('packs', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
-            $table->text('info')->nullable();
         });
     }
 
@@ -27,6 +26,6 @@ class CreateDangersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dangers');
+        Schema::dropIfExists('packs');
     }
 }

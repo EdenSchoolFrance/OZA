@@ -1,10 +1,14 @@
 
 on('.select-pack', 'click', (el, e) => {
-    let pack = ['serenity', 'tranquility', 'compliance'];
-    
-    pack = pack.slice(pack.indexOf(el.dataset.pack));
+    let pack = el.dataset.pack;
 
-    pack.forEach(element => $('.item-pack[data-pack="' + element + '"]').forEach(item => item.checked = true));
+    $('.item-pack[data-pack]').forEach(item => {
+        if (item.dataset.pack.split(',').includes(pack)) {
+            item.checked = true;
+        } else {
+            item.checked = false;
+        }
+    });
 });
 
 on('.uncheck-pack', 'click', (el, e) => $('.item-pack:checked').forEach(item => item.checked = false));

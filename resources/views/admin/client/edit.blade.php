@@ -149,8 +149,10 @@
                                         <td class="td_name">{{ $du->name }}</td>
                                         <td class="td_date">{{ $du->created_at->format('d/m/Y') }}</td>
                                         <td class="td_actions">
-                                            <i class="fas fa-trash"></i>
-                                            <i class="far fa-edit"></i>
+                                            @if (Auth::user()->hasPermission('ADMIN'))
+                                                <i class="fas fa-trash"></i>
+                                                <i class="far fa-edit"></i>
+                                            @endif
                                             <a href="{{ route('dashboard', [$du->id]) }}"><i class="far fa-eye"></i></a>
                                         </td>
                                     </tr>
@@ -164,59 +166,61 @@
                     </table>
                     {{ $single_documents->links() }}
                 </div>
-                <form action="{{ route('admin.single_document.store', [$client->id]) }}" method="post">
-                    @csrf
-                    <div class="row">
-                        <h2 class="title">Ajout d’un document unique</h2>
-                    </div>
-                    <div class="row">
-                        <div class="line">
-                            <div class="left">
-                                <label for="name_single_document">Intitulé du DU</label>
+                @if (Auth::user()->hasPermission('ADMIN'))
+                    <form action="{{ route('admin.single_document.store', [$client->id]) }}" method="post">
+                        @csrf
+                        <div class="row">
+                            <h2 class="title">Ajout d’un document unique</h2>
+                        </div>
+                        <div class="row">
+                            <div class="line">
+                                <div class="left">
+                                    <label for="name_single_document">Intitulé du DU</label>
+                                </div>
+                                <div class="right">
+                                    <input type="text" name="name_single_document" id="name_single_document" class="form-control @error('name_single_document') invalid @enderror" value="{{ old('name_single_document') }}" placeholder="Indiquer le nom du DU">
+                                    @error('name_single_document')
+                                        <p class="message-error">{{ $message }}</p>
+                                    @enderror
+                                    @error('dangers')
+                                        <p class="message-error">{{ $message }}</p>
+                                    @enderror
+                                </div>
                             </div>
-                            <div class="right">
-                                <input type="text" name="name_single_document" id="name_single_document" class="form-control @error('name_single_document') invalid @enderror" value="{{ old('name_single_document') }}" placeholder="Indiquer le nom du DU">
-                                @error('name_single_document')
-                                    <p class="message-error">{{ $message }}</p>
-                                @enderror
-                                @error('dangers')
-                                    <p class="message-error">{{ $message }}</p>
-                                @enderror
+                            <div class="line">
+                                <div class="left">
+                                    <p>Liste des dangers associés</p>
+                                </div>
+                                <div class="right right--btn">
+                                    @foreach ($packs as $pack)
+                                        <button type="button" class="btn btn-yellow btn-text select-pack" data-pack="{{ $pack->id }}">{{ $pack->name }}</button>
+                                    @endforeach
+                                    <button type="button" class="btn btn-yellow btn-text uncheck-pack">Tout décocher</button>
+                                </div>
+                            </div>
+                            <div class="line">
+                                <div class="left">
+                                </div>
+                                <div class="right right--check">
+                                    @foreach ($dangers as $danger)
+                                        <div>
+                                            <input type="checkbox" class="radio-checkbox item-pack" data-pack="{{ $danger->packs->pluck('id')->implode(',') }}" id="danger_{{ $danger->id }}" name="dangers[{{ $danger->id }}]" value="{{ $danger->id }}" {{ old('dangers.'. $danger->id) ? 'checked' : '' }}>
+                                            <label for="danger_{{ $danger->id }}">{{ $danger->name }}</label>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
-                        <div class="line">
-                            <div class="left">
-                                <p>Liste des dangers associés</p>
-                            </div>
-                            <div class="right right--btn">
-                                <button type="button" class="btn btn-yellow btn-text select-pack" data-pack="compliance">Conformité</button>
-                                <button type="button" class="btn btn-yellow btn-text select-pack" data-pack="tranquility">Tranquillité</button>
-                                <button type="button" class="btn btn-yellow btn-text select-pack" data-pack="serenity">Sérénité</button>
-                                <button type="button" class="btn btn-yellow btn-text uncheck-pack">Tout décocher</button>
+                        <div class="row">
+                            <div class="line">
+                                <div class="left"></div>
+                                <div class="right">
+                                    <button class="btn btn-yellow btn-inv">Ajouter le DU</button>
+                                </div>
                             </div>
                         </div>
-                        <div class="line">
-                            <div class="left">
-                            </div>
-                            <div class="right right--check">
-                                @foreach ($dangers as $danger)
-                                    <div>
-                                        <input type="checkbox" class="radio-checkbox item-pack" data-pack="serenity" id="danger_{{ $danger->id }}" name="danger_{{ $danger->id }}" value="{{ $danger->id }}" {{ old('danger_' . $danger->id) ? 'checked' : '' }}>
-                                        <label for="danger_{{ $danger->id }}">{{ $danger->name }}</label>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="line">
-                            <div class="left"></div>
-                            <div class="right">
-                                <button class="btn btn-yellow btn-inv">Ajouter le DU</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                @endif
             </div>
         </div>
     </div>

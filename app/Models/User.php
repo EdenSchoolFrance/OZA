@@ -46,7 +46,7 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
-    public function hasPermission($user_type, $role = [])
+    public function hasAccess($user_type, $role = null)
     {
         if ($user_type == "oza" && !$this->oza) {
             return false;
@@ -54,7 +54,7 @@ class User extends Authenticatable
             return false;
         }
 
-        if (count($role) > 0) {
+        if ($role) {
             if (gettype($role) == 'array') {
                 foreach ($role as $value) {
                     if ($this->role()->where('permission', $value)->first()) {
@@ -64,10 +64,26 @@ class User extends Authenticatable
     
                 return false;
             } else {
+                
                 return null !== $this->role()->where('permission', $role)->first();
             }
+        }
+
+        return true;
+    }
+
+    public function hasPermission($role = null)
+    {
+        if (gettype($role) == 'array') {
+            foreach ($role as $value) {
+                if ($this->role()->where('permission', $value)->first()) {
+                    return true;
+                }
+            }
+
+            return false;
         } else {
-            return true;
+            return null !== $this->role()->where('permission', $role)->first();
         }
     }
 
