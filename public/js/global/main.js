@@ -40,6 +40,22 @@ on('input[type="file"]', 'change', (el, e) => {
     $('span:first-of-type', file, false).innerHTML = el.files[0].name;
 });
 
+on('[data-modal]', 'click', (el, e) => {
+    let modal = $(el.dataset.modal, document, 0);
+
+    if (modal) {
+        modal.classList.add('show');
+    }
+});
+
+on('[data-dismiss="modal"]', 'click', (el, e) => {
+    let modal = el.closest('modal');
+
+    if (modal) {
+        modal.classList.remove('show');
+    }
+});
+
 // const tooltip = (selector, element = document) =>{
 //     element.addEventListener("mouseover", (e)=>{
 //         if (e.target.closest(selector)){

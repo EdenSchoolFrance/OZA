@@ -61,6 +61,8 @@ Route::middleware(['auth'])->group(function() {
             Route::get('/client/create', [ClientAdminController::class, 'create'])->name('admin.client.create');
     
             Route::post('/client/store', [ClientAdminController::class, 'store'])->name('admin.client.store');
+            Route::post('/client/archive', [ClientAdminController::class, 'archive'])->name('admin.client.archive');
+            Route::post('/client/{client}/delete', [ClientAdminController::class, 'delete'])->name('admin.client.delete');
             Route::post('/client/{client}/single_document/store', [SingleDocumentAdminController::class, 'store'])->name('admin.single_document.store');
 
 

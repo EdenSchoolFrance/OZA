@@ -165,4 +165,17 @@ class ClientController extends Controller
 
         return redirect()->route('admin.client.edit', [$client->id])->with('status', 'Le client a bien été mis à jours !');
     }
+
+    public function archive(Client $client)
+    {
+        $client->archived = true;
+        $client->save();
+
+        return back();
+    }
+
+    public function delete(Client $client)
+    {
+        
+    }
 }

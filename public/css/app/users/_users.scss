@@ -22,7 +22,7 @@ table.table--users {
             td {
                 &.td {
                     &_actions {
-                        i {
+                        i,button,a {
                             margin: 0 5px;
                             float: right;
                         }
