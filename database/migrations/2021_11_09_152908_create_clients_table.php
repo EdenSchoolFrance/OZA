@@ -15,16 +15,16 @@ class CreateClientsTable extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name')->nullable();
-            $table->string('client_number')->nullable();
-            $table->string('adress')->nullable();
+            $table->string('name');
+            $table->string('client_number');
+            $table->string('adress');
             $table->string('additional_adress')->nullable();
-            $table->string('city_zipcode')->nullable();
-            $table->string('city')->nullable();
-            $table->string('firstname')->nullable();
-            $table->string('lastname')->nullable();
-            $table->string('email')->nullable();
-            $table->string('phone')->nullable();
+            $table->string('city_zipcode');
+            $table->string('city');
+            $table->boolean('archived')->default(0);
+            $table->foreignUuid('expert_id');
+            
+            $table->foreign('expert_id')->references('id')->on('users');
         });
     }
 

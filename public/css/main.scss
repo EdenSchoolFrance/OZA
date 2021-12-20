@@ -1,11 +1,12 @@
-//It's a main file just don't code anythings here, just create file and import here.
+// It's a main file just don't code anythings here, just create file and import here.
 
 /*
     Import file from utils here
 */
-//Variables
+
+// Variables
 @import "global/variables";
-//Fonts
+// Fonts
 @import "global/fonts";
 
 // Global Style
@@ -15,6 +16,8 @@
 @import "global/template";
 
 // App
+@import "app/dashboard/dashboard";
+
 @import "app/structure/presentation";
 @import "app/structure/home";
 @import "app/structure/work-unit";
@@ -28,4 +31,6 @@
 @import "app/risk/risks";
 
 @import "app/auth/login";
+
+@import "app/documentation";
 

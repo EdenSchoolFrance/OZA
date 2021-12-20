@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $page = [
             'title' => 'Identification',
             'sidebar' => false,
@@ -20,18 +21,27 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => 'required',
+        $credentials = $request->validate([
+            'email' => 'required|email',
             'password' => 'required'
         ]);
-        $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)){
-            return redirect()->intended('')->withSuccess('Signed in');
+
+        if (Auth::attempt($credentials)) {
+            if (Auth::user()->hasAccess('oza')) {
+                return redirect()->intended('/clients');
+            } else {
+                return redirect()->intended('');
+            }
         }
-        return redirect()->intended('login')->withErrors('Login Fail');
+
+        return back()->withErrors([
+            'password' => 'Les identifiants de connexion ne sont pas valides.',
+        ]);
     }
-    public function logout(){
+    public function logout()
+    {
         Auth::logout();
-        return redirect()->intended('login')->withSuccess('Logout success');
+
+        return redirect()->route('login');
     }
 }

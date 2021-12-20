@@ -25,14 +25,20 @@ class Client extends Model
         'additional_adress',
         'city_zipcode',
         'city',
-        'firstname',
-        'lastname',
-        'email',
-        'phone'
     ];
 
-    public function experts()
+    public function expert()
     {
-        return $this->belongsToMany(User::class, 'client_oza');
+        return $this->belongsTo(User::class, 'expert_id');
+    }
+
+    public function single_documents()
+    {
+        return $this->hasMany(SingleDocument::class);
+    }
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
     }
 }

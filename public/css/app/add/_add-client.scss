@@ -1,96 +1,77 @@
-.client{
-    .nav-tabs-group{
-        display: flex;
-        justify-content: flex-start;
-        flex-direction: row;
-        .nav-tabs{
-            margin: 0 5px;
-        }
-    }
+.client {
     .card--add-client {
-
         .card-body {
             .row {
-                &--submit{
+                &--submit {
                     display: flex;
                     justify-content: center;
                     flex-direction: row;
                 }
-                &--title{
 
-                }
                 .line {
-                    .left{
-                        align-items: center;
-                    }
-                    .right{
-                        display: flex;
-                        justify-content: flex-start;
-
-                        &--btn{
-                            button{
+                    .right {
+                        &--btn {
+                            button {
                                 margin-right: 20px;
                             }
                         }
-                        &--check{
-                            li{
+
+                        &--check {
+                            display: grid;
+                            grid-template-columns: repeat(3, 1fr);
+                            column-gap: 30px;
+                            row-gap: 10px;
+
+                            &>div {
                                 display: flex;
-                                justify-content: flex-start;
                                 align-items: center;
-                            }
-                            label{
-                                padding-top: 4px;
-                                padding-left: 10px;
-                            }
-                            input[type=checkbox]{
-                                width: 1.3em;
-                                height: 1.3em;
-                                background-color: white;
-                                border-radius: 50%;
-                                vertical-align: middle;
-                                border: 1px solid #ddd;
-                                appearance: none;
-                                -webkit-appearance: none;
-                                outline: none;
-                                cursor: pointer;
-                                &:checked {
-                                    background-color: $yellow;
-                                    border: 1px solid white;
+    
+                                input.radio-checkbox {
+                                    appearance: none;
+                                    -webkit-appearance: none;
+                                    min-width: 15px;
+                                    min-height: 15px;
+                                    margin-right: 10px;
+                                    background-color: white;
+                                    border-radius: 100%;
+                                    border: 1px solid #ddd;
+                                    outline: none;
+                                    cursor: pointer;
+    
+                                    &:checked {
+                                        background-color: $yellow;
+                                        border: 1px solid white;
+                                    }
                                 }
                             }
                         }
 
-                        p{
-                            i{
+                        p {
+                            i {
                                 margin: 0;
                                 font-size: inherit;
                             }
                         }
-                        i{
+
+                        i {
                             margin-left: 20px;
                             font-size: 20px;
                         }
-                        .message-error {
-                            display: none;
-                        }
 
-                        input,
-                        textarea {
+                        .form-control {
                             max-width: 480px;
-
-                            &.form-control-small {
-                                max-width: calc(480px / 2);
-                            }
                         }
 
                         textarea {
                             min-height: 125px;
                             resize: vertical;
                         }
-                        li{
+
+                        li {
                             padding: 5px 0;
                         }
                     }
+
                     &--activity {
                         textarea {
                             border-color: transparent;

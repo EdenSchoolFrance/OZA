@@ -252,7 +252,7 @@
 
                 <form action="" class="">
                     <div class="card-header">
-                        <h2 class="text-color-yellow">Ajouter une nouvelle mesure déjà mise en place</h2>
+                        <h2 class="title">Ajouter une nouvelle mesure déjà mise en place</h2>
                     </div>
                     <div class="card-body">
                         <div class="row">

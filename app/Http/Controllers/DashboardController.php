@@ -9,30 +9,31 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
-    public function index($id){
-
+    public function home()
+    {
         $page = [
-            'title' => 'Présentation de la structure',
-            'sidebar' => 'structure',
-            'sub_sidebar' => 'presentation'
-        ];
-
-        $single = Single_document::find($id);
-        if (!empty($single)){
-            session(['du' => $id]);
-            return view('app.dashboard.index', compact('page', 'single'));
-        }
-        return redirect()->route('dashboard.home');
-    }
-
-    public function home(){
-
-        $page = [
-            'title' => 'Bienvenue '.session()->get('auth.first-name').' '.session()->get('auth.last-name'),
+            'title' => 'Bienvenue ' . Auth::user()->firstname . ' ' . Auth::user()->lastname,
             'nav' => 'nodrop',
             'sidebar' => 'home',
         ];
 
+        if (count(Auth::user()->single_documents) == 1) {
+            return redirect()->route('dashboard', [Auth::user()->single_documents->first()->id]);
+        }
+        
         return view('app.dashboard.home', compact('page'));
+    }
+
+    public function index($id)
+    {
+        $single_document = $this->checkSingleDocument($id);
+
+        $page = [
+            'title' => 'Bienvenue ' . Auth::user()->firstname . ' ' . Auth::user()->lastname,
+            'sidebar' => 'dashboard',
+            'sub_sidebar' => ''
+        ];
+
+        return view('app.dashboard.index', compact('page', 'single_document'));
     }
 }

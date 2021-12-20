@@ -1,67 +1,52 @@
 @extends('app')
 
 @section('content')
-<div class="content">
-    <div class="card card--users">
-        <div class="card-header">
-            <div></div>
-            <button class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN UTILISATEUR</button>
-        </div>
-        <div class="card-body">
-            <table class="table table--users table-sortable" style="width:100%">
-                <thead>
-                    <tr>
-                        <th class="th_lastname th-sort" data-para="0">Nom</th>
-                        <th class="th_firstname th-sort" data-para="1">Prénom</th>
-                        <th class="th_email th-sort" data-para="2">Email</th>
-                        <th class="th_access th-sort" data-para="3">Accès</th>
-                        <th class="th_actions"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="td_lastname">NOM 1</td>
-                        <td class="td_firstname">Prénom</td>
-                        <td class="td_email">nom.prénom@email.com</td>
-                        <td class="td_access">Experts</td>
-                        <td class="td_actions"><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="td_lastname">NOM 2</td>
-                        <td class="td_firstname">Prénom</td>
-                        <td class="td_email">nom.prénom@email.com</td>
-                        <td class="td_access">Administrateur</td>
-                        <td class="td_actions"><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="td_lastname">NOM 3</td>
-                        <td class="td_firstname">Prénom</td>
-                        <td class="td_email">nom.prénom@email.com</td>
-                        <td class="td_access">Experts</td>
-                        <td class="td_actions"><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="td_lastname">NOM 4</td>
-                        <td class="td_firstname">Prénom</td>
-                        <td class="td_email">nom.prénom@email.com</td>
-                        <td class="td_access">Experts</td>
-                        <td class="td_actions"><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="td_lastname">NOM 5</td>
-                        <td class="td_firstname">Tom</td>
-                        <td class="td_email">nom.prénom@email.com</td>
-                        <td class="td_access">Experts</td>
-                        <td class="td_actions"><i class="fas fa-trash"></i><i class="far fa-edit"></i></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="card-footer">
-            <button class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN UTILISATEUR</button>
+    <div class="content">
+        <div class="card card--users">
+            @if (Auth::user()->hasPermission('ADMIN'))
+                <div class="card-header">
+                    <div></div>
+                    <a class="btn btn-yellow" href="{{ route('admin.user.create') }}"><i class="fas fa-plus"></i> AJOUTER UN UTILISATEUR</a>
+                </div>
+            @endif
+            <div class="card-body">
+                <table class="table table--users table-sortable">
+                    <thead>
+                        <tr>
+                            <th class="th_lastname th-sort">Nom</th>
+                            <th class="th_firstname th-sort">Prénom</th>
+                            <th class="th_email th-sort">Email</th>
+                            <th class="th_access th-sort">Accès</th>
+                            @if (Auth::user()->hasPermission('ADMIN'))
+                                <th class="th_actions"></th>
+                            @endif
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($users as $user)
+                            <tr>
+                                <td class="td_lastname">{{ $user->lastname }}</td>
+                                <td class="td_firstname">{{ $user->firstname }}</td>
+                                <td class="td_email">{{ $user->email }}</td>
+                                <td class="td_access">{{ $user->role->name }}</td>
+                                @if (Auth::user()->hasPermission('ADMIN'))
+                                    <td class="td_actions">
+                                        <i class="fas fa-trash"></i>
+                                        <a href="{{ route('admin.user.edit', [$user->id]) }}"><i class="far fa-edit"></i></a>
+                                    </td>
+                                @endif
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            @if (Auth::user()->hasPermission('ADMIN'))
+                <div class="card-footer">
+                    <a class="btn btn-yellow" href="{{ route('admin.user.create') }}"><i class="fas fa-plus"></i> AJOUTER UN UTILISATEUR</a>
+                </div>
+            @endif
         </div>
     </div>
-</div>
 @endsection
 
 @section('script')

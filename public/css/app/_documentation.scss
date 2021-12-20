@@ -1,0 +1,32 @@
+.card.card--doc {
+    border: none;
+
+    .card {
+
+        &-header,
+        &-footer {
+            display: flex;
+            justify-content: flex-end;
+            padding: 20px 0;
+            box-shadow: none;
+            background-color: $white_grey;
+        }
+
+        &-body {
+            border: 1px solid $grey;
+
+            textarea {
+                display: none;
+            }
+        }
+    }
+
+    &-edit {
+        background-color: transparent;
+
+        .card-body {
+            padding: 0;
+            border: none;
+        }
+    }
+}

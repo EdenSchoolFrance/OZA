@@ -16,7 +16,7 @@ class CreateSingleDocumentsTable extends Migration
         Schema::create('single_documents', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
-            $table->string('name_entreprise')->nullable();
+            $table->string('name_enterprise')->nullable();
             $table->string('adress')->nullable();
             $table->string('additional_adress')->nullable();
             $table->string('city_zipcode')->nullable();
@@ -26,6 +26,11 @@ class CreateSingleDocumentsTable extends Migration
             $table->string('lastname')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
+
+            $table->foreignUuid('client_id');
+            $table->foreign('client_id')->references('id')->on('clients');
+
+            $table->timestamps();
         });
     }
 

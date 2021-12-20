@@ -1,165 +1,124 @@
 @extends('app')
 
 @section('content')
-<div class="content">
-    <form class="card card--general-infos" action="" method="POST">
-        <div class="card-header">
-            <h2 class="title">Informations générales</h2>
-            <button type="button" class="btn btn-edit-card">Modifier<i class="far fa-edit"></i></button>
+    <div class="content dashboard">
+        <div class="row">
+            <form class="card card--dashboard">
+                <div class="card-header">
+                    <h2 class="title">Risque Brut moyen</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row row--center">
+                        <label class="text-color-red">15.0</label>
+                    </div>
+                    <div class="row row--center">
+                        <p>Maxi = 50</p>
+                    </div>
+                </div>
+            </form>
+            <form class="card card--dashboard">
+                <div class="card-header">
+                    <h2 class="title">Réduction du risque</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row row--center">
+                        <label class="text-color-green">24.7 %</label>
+                    </div>
+                </div>
+            </form>
+            <form action="#" class="card card--dashboard">
+                <div class="card-header">
+                    <h2 class="title">Risque résiduel moyen</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row row--center">
+                        <label class="">11.3</label>
+                    </div>
+                    <div class="row row--center">
+                        <p>Maxi = 50</p>
+                    </div>
+                </div>
+            </form>
+            <form action="#" class="card card--dashboard">
+                <div class="card-header">
+                    <h2 class="title">Actualisation en cours</h2>
+                </div>
+                <div class="card-body">
+                   <div class="row">
+                       <p>Date de création :  10/10/2022</p>
+                   </div>
+                    <div class="row">
+                        <p>Statut  :  En cours d’édition</p>
+                    </div>
+                    <div class="row">
+                        <button class="btn btn-success">Générer un DU à date</button>
+                    </div>
+                    <div class="row">
+                        <a href="#" class="btn btn-text btn-yellow"><i class="far fa-edit"></i> Pré-remplir le DU sur la base d’un autre DU du compte</a>
+                    </div>
+                </div>
+            </form>
+            <form action="#" class="card card--dashboard-double">
+                <div class="card-header">
+                    <h2 class="title">Risque résiduel en cours</h2>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+            </form>
         </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="line">
-                    <div class="left">
-                        <label for="name_enterprise">Nom de l’entreprise</label>
-                    </div>
-                    <div class="right">
-                        <input type="text" name="name_enterprise" class="form-control" placeholder="Indiquer le nom de votre entreprise" value="Biocoop" disabled>
-                    </div>
-                </div>
+        <div class="card card--full">
+            <div class="card-header">
+                <h2 class="title">Historique du document unique</h2>
             </div>
-
-            <div class="row">
-                <div class="line">
-                    <div class="left">
-                    </div>
-                    <div class="right">
-                        <h3>Adresse de l’entreprise</h3>
-                    </div>
-                </div>
-                <div class="line">
-                    <div class="left">
-                        <label for="adress">Adresse postale</label>
-                    </div>
-                    <div class="right">
-                        <input type="text" name="adress" class="form-control" placeholder="Ligne 1" disabled>
-                    </div>
-                </div>
-                <div class="line hidden"> <!-- add class 'hidden' if value null -->
-                    <div class="left">
-                    </div>
-                    <div class="right">
-                        <input type="text" name="additional_adress" class="form-control" placeholder="Ligne 2" disabled>
-                    </div>
-                </div>
-                <div class="line">
-                    <div class="left">
-                        <label for="city_zipcode">Code postal</label>
-                    </div>
-                    <div class="right right--small">
-                        <input type="text" name="city_zipcode" class="form-control form-control--small" placeholder="Code postal" disabled>
-                    </div>
-                </div>
-                <div class="line">
-                    <div class="left">
-                        <label for="city">Ville</label>
-                    </div>
-                    <div class="right">
-                        <input type="text" name="city" class="form-control form-control--small" placeholder="Ville" disabled>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row row--submit">
-                <div class="line">
-                    <div class="left">
-                    </div>
-                    <div class="right">
-                        <button type="submit" class="btn btn-success">Enregistrer</button>
-                        <button type="button" class="btn btn-danger btn-text btn-cancel-edit">Annuler</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
-
-    <form class="card card--company-activity" action="" method="POST">
-        <div class="card-header">
-            <h2 class="title">Activité de l'entreprise</h2>
-            <button type="button" class="btn btn-edit-card">Modifier<i class="far fa-edit"></i></button>
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="line">
-                    <div class="left">
-                        <label for="name_enterprise">Description de l’entreprise</label>
-                    </div>
-                    <div class="right">
-                        <textarea type="text" name="name_enterprise" class="form-control" placeholder="Indiquer le nom de votre entreprise" disabled>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum voluptatibus voluptatem similique libero fugit placeat distinctio. Quisquam natus officiis praesentium minus dicta, consequuntur, veritatis eius, animi exercitationem voluptate quis voluptas.</textarea>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row row--submit">
-                <div class="line">
-                    <div class="left">
-                    </div>
-                    <div class="right">
-                        <button type="submit" class="btn btn-success">Enregistrer</button>
-                        <button type="button" class="btn btn-danger btn-text btn-cancel-edit">Annuler</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
-
-    <form class="card card--responsible" action="" method="POST">
-        <div class="card-header">
-            <h2 class="title">Responsable du document au sein de l’entreprise</h2>
-            <button type="button" class="btn btn-edit-card">Modifier<i class="far fa-edit"></i></button>
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="line">
-                    <div class="left">
-                        <label for="name_enterprise">Prénom</label>
-                    </div>
-                    <div class="right">
-                        <input type="text" name="firstname" class="form-control" placeholder="Prénom du responsable du DU" disabled>
-                    </div>
-                </div>
-                <div class="line">
-                    <div class="left">
-                        <label for="name_enterprise">Nom</label>
-                    </div>
-                    <div class="right">
-                        <input type="text" name="lastname" class="form-control" placeholder="Nom du responsable du DU" disabled>
-                    </div>
-                </div>
-                <div class="line">
-                    <div class="left">
-                        <label for="name_enterprise">Email</label>
-                    </div>
-                    <div class="right">
-                        <input type="email" name="email" class="form-control invalid" placeholder="Email" disabled>
-                        <p class="message-error">Le format de votre email est invalide</p>
-                    </div>
-                </div>
-                <div class="line">
-                    <div class="left">
-                        <label for="name_enterprise">Téléphone</label>
-                    </div>
-                    <div class="right">
-                        <input type="tel" name="phone" class="form-control" pattern="^(?:(?:(?:\+|00)33\D?(?:\D?\(0\)\D?)?)|0){1}[1-9]{1}(?:\D?\d{2}){4}$" placeholder="00 00 00 00 00" required disabled>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row row--submit">
-                <div class="line">
-                    <div class="left">
-                    </div>
-                    <div class="right">
-                        <button type="submit" class="btn btn-success">Enregistrer</button>
-                        <button type="button" class="btn btn-danger btn-text btn-cancel-edit">Annuler</button>
-                    </div>
-                </div>
+            <div class="card-body">
+                <table class="table table--users table-sortable">
+                    <thead>
+                    <tr>
+                        <th class="th_resp th-sort" data-para="0">Responsable</th>
+                        <th class="th_work th-sort" data-para="1">Travail réalisé</th>
+                        <th class="th_date th-sort" data-para="2">Date d’émission</th>
+                        <th class="th_actions"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="td_resp">Prénom NOM</td>
+                            <td class="td_work">Réalisation initiale du DU</td>
+                            <td class="td_date">10/10/2021</td>
+                            <td class="td_actions">
+                                <a href="#" class="text-color-green">Télécharger le PDF</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_resp">Prénom NOM</td>
+                            <td class="td_work">Modification du risque accident</td>
+                            <td class="td_date">15/10/2021</td>
+                            <td class="td_actions">
+                                <a href="#" class="text-color-green">Télécharger le PDF</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_resp">Prénom NOM</td>
+                            <td class="td_work">Modification du risque xxx</td>
+                            <td class="td_date">21/10/2021</td>
+                            <td class="td_actions">
+                                <a href="#" class="text-color-green">Télécharger le PDF</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-    </form>
-</div>
+    </div>
 @endsection
 
 @section('script')
-    {{-- <script src="/js/app/dashboard.js"></script> --}}
+    <script src="/js/libs/chart.min.js"></script>
+    <script>
+        let tabData = [75,25,0,0]
+    </script>
+    <script src="/js/app/dashboard.js"></script>
 @endsection
