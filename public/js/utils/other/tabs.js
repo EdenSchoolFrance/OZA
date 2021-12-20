@@ -1,19 +1,27 @@
 on('.nav-tabs-group .btn-tabs', 'click', (el, e) => {
-    console.log(el.dataset.tabs)
-    let tabs = $('.tabs-content')
-    let nav = $('.btn-tabs')
-    for (let i = 0; i < tabs.length ; i++) {
-        if (tabs[i].id === el.dataset.tabs){
-            tabs[i].classList.remove('none')
-        }else{
-            tabs[i].classList.add('none')
-        }
+    let tabs = $('.tabs-content');
+    let nav = $('.btn-tabs');
+
+    if (el.dataset.url) {
+        let url = new URL(window.location.href);
+
+        url.searchParams.set('tab', el.dataset.url);
+        window.history.pushState({}, null, url.href);
     }
-    for (let i = 0; i < nav.length ; i++) {
-        if (nav[i].dataset.tabs === el.dataset.tabs){
-            nav[i].classList.add('active')
-        }else{
-            nav[i].classList.remove('active')
+
+    tabs.forEach((tab) => {
+        if (tab.id === el.dataset.tabs) {
+            tab.classList.remove('none')
+        } else {
+            tab.classList.add('none')
         }
-    }
+    });
+
+    nav.forEach((nav) => {
+        if (nav.dataset.tabs === el.dataset.tabs){
+            nav.classList.add('active')
+        } else {
+            nav.classList.remove('active')
+        }
+    });
 });

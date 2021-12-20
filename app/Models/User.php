@@ -24,9 +24,12 @@ class User extends Authenticatable
         'lastname',
         'firstname',
         'email',
+        'post',
+        'phone',
         'username',
         'password',
         'oza',
+        'connected'
     ];
 
     /**
@@ -42,15 +45,61 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+
+    public function hasAccess($user_type, $role = null)
+    {
+        if ($user_type == "oza" && !$this->oza) {
+            return false;
+        } elseif ($user_type == "client" && $this->oza) {
+            return false;
+        }
+
+        if ($role) {
+            if (gettype($role) == 'array') {
+                foreach ($role as $value) {
+                    if ($this->role()->where('permission', $value)->first()) {
+                        return true;
+                    }
+                }
+    
+                return false;
+            } else {
+                
+                return null !== $this->role()->where('permission', $role)->first();
+            }
+        }
+
+        return true;
+    }
+
+    public function hasPermission($role = null)
+    {
+        if (gettype($role) == 'array') {
+            foreach ($role as $value) {
+                if ($this->role()->where('permission', $value)->first()) {
+                    return true;
+                }
+            }
+
+            return false;
+        } else {
+            return null !== $this->role()->where('permission', $role)->first();
+        }
+    }
+
+
     public function client()
     {
         return $this->belongsTo(Client::class);
     }
 
-    public function single_document()
+
+    public function single_documents()
     {
-        return $this->belongsToMany(Single_document::class, 'sd_user', 'user_id', 'single_document_id');
+        return $this->belongsToMany(SingleDocument::class, 'sd_user', 'user_id', 'single_document_id');
     }
+
+
 
     public function setPasswordAttribute($password)
     {

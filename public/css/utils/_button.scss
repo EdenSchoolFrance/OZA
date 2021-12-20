@@ -71,18 +71,27 @@
         }
     }
 
-    &-tabs{
+    &-tabs {
         background-color: white;
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
-        transition: 0.5s;
+        transition: .3s;
         font-size: 18px;
-        &:hover{
-            transition: 0.5s;
+        padding: 10px 20px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+
+        &:hover,
+        &.active {
             color: $yellow;
         }
-        &.active{
-            color: $yellow;
+
+        &:disabled {
+            opacity: .6;
+
+            &:hover {
+                color: $dark_purple;
+            }
         }
     }
 
@@ -127,6 +136,19 @@
             margin-left: 10px;
         }
     }
+
+    &-back {
+        display: block;
+        color: $dark;
+        text-decoration: none;
+        margin-bottom: 20px;
+        font-family: 'Hind-Medium';
+        font-size: 18px;
+
+        i {
+            margin-right: 15px;
+        }
+    }
 }
 
 .btn-group-dropdown {
@@ -137,14 +159,25 @@
         text-transform: uppercase;
         color: $dark_purple;
         font-size: 16px;
+        padding-right: 35px;
 
         &::after {
             font-family: "Font Awesome 5 Free";
             font-weight: 900;
             content: '\f078';
-            margin-left: 10px;
             color: $yellow;
             font-size: 19px;
+            position: absolute;
+            right: 5px;
+        }
+
+        &.disabled {
+            padding-right: 25px;
+            cursor: default;
+
+            &::after {
+                display: none;
+            }
         }
     }
 
@@ -155,7 +188,7 @@
         top: calc(100% + 5px);
         left: 0;
         padding: 10px 0;
-        border: 1px solid rgba(0,0,0,.15);
+        border: 1px solid rgba(0, 0, 0, .15);
         border-radius: 4px;
 
         &-right {
@@ -171,7 +204,7 @@
             color: $dark;
 
             &:hover {
-                background-color: rgba(0,0,0,.05);
+                background-color: rgba(0, 0, 0, .05);
             }
         }
     }
@@ -183,12 +216,13 @@
     }
 }
 
-.btn-group-number{
-    .btn{
+.btn-group-number {
+    .btn {
         font-size: 25px;
         margin: 0 10px;
     }
-    input[type=number]{
+
+    input[type=number] {
         width: 100px;
         text-align: center;
     }

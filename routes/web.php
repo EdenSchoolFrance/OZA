@@ -1,14 +1,19 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\RiskController;
-use App\Http\Controllers\UsersController;
-use App\Http\Controllers\WorkUnitController;
-use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\Role;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Client\UserController as UserClientController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PresentationController;
+
+use App\Http\Controllers\Admin\UserController as UserAdminController;
+use App\Http\Controllers\Admin\ClientController as ClientAdminController;
+use App\Http\Controllers\Admin\SingleDocumentController as SingleDocumentAdminController;
+
+use App\Http\Controllers\RiskController;
+use App\Http\Controllers\WorkUnitController;
+
+use App\Http\Controllers\DocController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,41 +28,86 @@ use App\Http\Middleware\Role;
 
 
 
-Route::get('/login', [AuthController::class, 'index'])->name('login')->middleware('guest');
-Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
-Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+Route::middleware(['guest'])->group(function() {
+    Route::get('/login', [AuthController::class, 'index'])->name('login')->middleware('guest');
+    Route::post('/login', [AuthController::class, 'login'])->name('login.store');
+});
 
-Route::middleware([Authenticate::class])->group(function() {
-    Route::get('/503', [AdminController::class, 'unavailable'])->name('unavailable');
+Route::middleware(['auth'])->group(function() {
+    Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
-    Route::get('/', [DashboardController::class, 'home'])->name('dashboard.home');
-    Route::get('/du/{id}/dashboard/', [DashboardController::class, 'index'])->name('dashboard.dashboard');
-    Route::post('/du/{id}/dashboard/info-gen', [DashboardController::class, 'storeInfo'])->name('dashboard.store.info-gen');
-    Route::post('/du/{id}/dashboard/desc', [DashboardController::class, 'storeDesc'])->name('dashboard.store.desc');
-    Route::post('/du/{id}/dashboard/resp', [DashboardController::class, 'storeResp'])->name('dashboard.store.resp');
-
-    Route::get('/du/{id}/user', [UsersController::class, 'index'])->name('user.index');
-
-    Route::get('/du/{id}/work', [WorkUnitController::class, 'index'])->name('work.index');
-    Route::get('/du/{id}/work/create', [WorkUnitController::class, 'create'])->name('work.create');
-    Route::get('/du/{id}/work/create/new', [WorkUnitController::class, 'createNew'])->name('work.create.new');
-
-    Route::get('/du/{id}/risk/accident', [RiskController::class, 'accident'])->name('risk.accident');
-    Route::get('/du/{id}/risk/accident/create', [RiskController::class, 'accidentCreate'])->name('risk.accident.create');
-
-    /*
-     *
-     * Admin OZA section
-     *
-     * */
-
-    Route::middleware([Role::class])->group(function () {
-
-        Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.user');
-        Route::get('/admin/clients', [AdminController::class, 'clients'])->name('admin.client');
-        Route::get('/admin/clients/add', [AdminController::class, 'clientsAdd'])->name('admin.client.add');
-        Route::post('/admin/clients/add', [AdminController::class, 'clientsAddStore'])->name('admin.client.add.store');
-        Route::get('/admin/clients/du', [AdminController::class, 'clientsDU'])->name('admin.client.du');
-
+    /*===============================
+            CLIENT Private Section
+    ===============================*/
+    Route::middleware(['access:client'])->group(function () {
+        Route::get('/', [DashboardController::class, 'home'])->name('dashboard.home');
     });
+
+
+    /*===============================
+                OZA Section
+    ===============================*/
+    Route::middleware(['access:oza'])->group(function () {
+
+        /*================ ADMIN ================*/
+        Route::middleware(['permission:ADMIN'])->group(function () {
+            Route::get('/user/create', [UserAdminController::class, 'create'])->name('admin.user.create');
+            Route::get('/user/{user}/edit', [UserAdminController::class, 'edit'])->name('admin.user.edit');
+    
+            Route::post('/user/store', [UserAdminController::class, 'store'])->name('admin.user.store');
+            Route::post('/user/{user}/update', [UserAdminController::class, 'update'])->name('admin.user.update');
+    
+    
+            Route::get('/client/create', [ClientAdminController::class, 'create'])->name('admin.client.create');
+    
+            Route::post('/client/store', [ClientAdminController::class, 'store'])->name('admin.client.store');
+            Route::post('/client/{client}/single_document/store', [SingleDocumentAdminController::class, 'store'])->name('admin.single_document.store');
+
+
+            Route::get('/{doc_name}/edit', [DocController::class, 'edit'])->name('documentation.edit');
+
+            Route::post('/{doc_name}/update', [DocController::class, 'update'])->name('documentation.update');
+            Route::post('/doc/upload', [DocController::class, 'upload'])->name('documentation.upload');
+        });
+    
+        /*================ ADMIN | EXPERT ================*/
+        Route::middleware(['permission:ADMIN,EXPERT'])->group(function () {
+            Route::get('/users', [UserAdminController::class, 'index'])->name('admin.user');
+    
+    
+            Route::get('/clients', [ClientAdminController::class, 'index'])->name('admin.client');
+            Route::get('/client/{client}/edit', [ClientAdminController::class, 'edit'])->name('admin.client.edit');
+    
+            Route::post('/client/{client}/update', [ClientAdminController::class, 'update'])->name('admin.client.update');
+    
+    
+            Route::get('/clients/du', [SingleDocumentAdminController::class, 'index'])->name('admin.client.single_document');
+        });
+    });
+
+
+    Route::get('/{doc_name}', [DocController::class, 'index'])->name('documentation');
+
+
+    /*===============================
+              CLIENT Section
+    ===============================*/
+    Route::get('/{single_document}/dashboard/', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::get('/{single_document}/presentation', [PresentationController::class, 'index'])->name('presentation');
+    Route::post('/{single_document}/presentation/{type}', [PresentationController::class, 'store'])->name('presentation.store');
+
+    Route::get('/{single_document}/user', [UserClientController::class, 'index'])->name('user.client.index');
+    Route::get('/{single_document}/user/create', [UserClientController::class, 'create'])->name('user.client.create');
+    Route::get('/{single_document}/user/{user}/edit', [UserClientController::class, 'edit'])->name('user.client.edit');
+  
+    Route::post('/{single_document}/user/store', [UserClientController::class, 'store'])->name('user.client.store');
+    Route::post('/{single_document}/user/{user}/update', [UserClientController::class, 'update'])->name('user.client.update');
+
+    Route::get('/{single_document}/work', [WorkUnitController::class, 'index'])->name('work.index');
+    Route::get('/{single_document}/work/create', [WorkUnitController::class, 'create'])->name('work.create');
+    Route::get('/{single_document}/work/create/new', [WorkUnitController::class, 'createNew'])->name('work.create.new');
+
+    Route::get('/{single_document}/risk/accident', [RiskController::class, 'accident'])->name('risk.accident');
+    Route::get('/{single_document}/risk/accident/create', [RiskController::class, 'accidentCreate'])->name('risk.accident.create');
 });

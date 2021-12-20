@@ -65,20 +65,4 @@
             }
         }
     }
-
-    &--general-infos,
-    &--responsible {
-        .card-body {
-            .row {
-                .line {
-                    .left {
-                        align-items: center;
-                        &-cancel{
-                            align-items: inherit;
-                        }
-                    }
-                }
-            }
-        }
-    }
 }
