@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Item;
+use App\Models\SubItem;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -26,5 +28,11 @@ class DatabaseSeeder extends Seeder
         $this->call(SingleDocumentSeeder::class);
 
         $this->call(DangerSeeder::class);
+
+        $this->call(ItemSeeder::class);
+
+        $this->call(SubItemSeeder::class);
+
+        $this->call(ChildSubItemSeeder::class);
     }
 }

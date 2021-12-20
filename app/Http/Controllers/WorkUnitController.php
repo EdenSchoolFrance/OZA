@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -37,7 +38,9 @@ class WorkUnitController extends Controller
             'sub_sidebar' => 'work_units'
         ];
 
-        return view('app.work_unit.create', compact('page', 'single_document'));
+        $items = Item::all();
+
+        return view('app.work_unit.create', compact('page', 'single_document','items'));
     }
 
     public function createNew($id)
@@ -57,7 +60,13 @@ class WorkUnitController extends Controller
 
     public function test(Request $request){
 
-        var_dump($request->vehicule);
+        $items = Item::all();
+        foreach ($items as $item){
+            foreach ($item->sub_items as $sub_item){
+                $name = $item->id.'-'.$sub_item->id;
+                var_dump($request->$name);
+            }
+        }
 
     }
 }
