@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SubItem extends Model
+class SdWorkUnit extends Model
 {
     use HasFactory;
 
@@ -19,22 +19,23 @@ class SubItem extends Model
      * @var string[]
      */
     protected $fillable = [
-        'name'
+        'name',
+        'number_employee',
+        'validated'
     ];
 
-    public function child()
+    public function activitie()
     {
-        return $this->hasMany(ChildSubItem::class);
+        return $this->hasMany(SdActivitie::class, 'sd_work_unit_id');
     }
 
     public function item()
     {
-        return $this->belongsTo(Item::class,'item_status_id');
+        return $this->hasMany(SdItem::class, 'sd_work_unit_id');
     }
 
-    public function sd_item()
+    public function single_document()
     {
-        return $this->belongsTo(SdItem::class,'sub_item_id');
+        return $this->belongsTo(SingleDocument::class);
     }
-
 }

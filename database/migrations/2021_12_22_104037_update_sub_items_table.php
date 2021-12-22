@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSdItemsTable extends Migration
+class UpdateSubItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateSdItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sd_items', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string('name');
-            $table->foreignUuid('sd_work_unit_id');
-            $table->foreign('sd_work_unit_id')->references('id')->on('sd_work_units');
+        Schema::table('sub_items', function (Blueprint $table) {
+            $table->foreignUuid('sub_item_id')->nullable();
+            $table->foreign('sub_item_id')->references('id')->on('sd_items');
         });
+
     }
 
     /**
@@ -28,6 +27,6 @@ class CreateSdItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sd_items');
+        //
     }
 }

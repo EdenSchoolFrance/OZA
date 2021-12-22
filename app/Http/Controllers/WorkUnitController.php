@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ChildSubItem;
 use App\Models\Item;
+use App\Models\SdActivitie;
+use App\Models\SdItem;
+use App\Models\SdWorkUnit;
+use App\Models\SubItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -58,15 +63,63 @@ class WorkUnitController extends Controller
         return view('app.work_unit.createNew', compact('page', 'single_document'));
     }
 
-    public function test(Request $request){
+    public function store(Request $request, $id){
 
-        $items = Item::all();
-        foreach ($items as $item){
-            foreach ($item->sub_items as $sub_item){
-                $name = $item->id.'-'.$sub_item->id;
-                var_dump($request->$name);
-            }
+        $single_document = $this->checkSingleDocument($id);
+
+        $request->validate([
+            'name_enterprise' => 'required',
+            'number_employee' => 'required'
+        ]);
+
+        $work = new SdWorkUnit();
+        $work->id = uniqid();
+        $work->name = $request->name_enterprise;
+        $work->number_employee = $request->number_employee;
+        $work->validated = 1;
+        $work->single_document()->associate($single_document);
+        $work->save();
+
+        foreach ($request->activitie as $activitie){
+            $acti = new SdActivitie();
+            $acti->id = uniqid();
+            $acti->text = $activitie;
+            $work->activitie()->save($acti);
+            $acti->save();
+
         }
 
+        //Get all example item
+        $items = Item::all();
+        foreach ($items as $item){
+
+            $sd_item = new SdItem();
+            $sd_item->id = uniqid();
+            $sd_item->name = $item->name;
+            $work->item()->save($sd_item);
+            $sd_item->save();
+
+            foreach ($item->sub_items as $sub_item){
+                $name = $item->id.'-'.$sub_item->id;
+
+                $sub = new SubItem();
+                $sub->id = uniqid();
+                $sub->name = $sub_item->name;
+                $sub->sd_item()->associate($sd_item);
+                $sub->save();
+
+                foreach ($request->$name as $child_sub_item){
+
+                    $child = new ChildSubItem();
+                    $child->id = uniqid();
+                    $child->name = $child_sub_item;
+                    $sub->child()->save($child);
+                    $child->save();
+
+                }
+
+            }
+
+        }
     }
 }

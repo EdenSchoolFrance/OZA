@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SubItem extends Model
+class SdItem extends Model
 {
+
     use HasFactory;
 
     public $timestamps = false;
@@ -22,19 +23,13 @@ class SubItem extends Model
         'name'
     ];
 
-    public function child()
+    public function sub()
     {
-        return $this->hasMany(ChildSubItem::class);
+        return $this->hasMany(SubItem::class);
     }
 
-    public function item()
+    public function work()
     {
-        return $this->belongsTo(Item::class,'item_status_id');
+        return $this->belongsTo(SdWorkUnit::class, 'sd_work_unit_id');
     }
-
-    public function sd_item()
-    {
-        return $this->belongsTo(SdItem::class,'sub_item_id');
-    }
-
 }

@@ -49,6 +49,11 @@ class SingleDocument extends Model
         return $this->hasMany(SdDanger::class);
     }
 
+    public function work_unit()
+    {
+        return $this->hasMany(SdWorkUnit::class);
+    }
+
     public function client()
     {
         return $this->belongsTo(Client::class);

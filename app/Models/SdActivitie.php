@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SubItem extends Model
+class SdActivitie extends Model
 {
     use HasFactory;
 
@@ -21,20 +21,5 @@ class SubItem extends Model
     protected $fillable = [
         'name'
     ];
-
-    public function child()
-    {
-        return $this->hasMany(ChildSubItem::class);
-    }
-
-    public function item()
-    {
-        return $this->belongsTo(Item::class,'item_status_id');
-    }
-
-    public function sd_item()
-    {
-        return $this->belongsTo(SdItem::class,'sub_item_id');
-    }
 
 }

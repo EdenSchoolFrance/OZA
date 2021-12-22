@@ -3,7 +3,7 @@
 @section('content')
 <div class="content">
 
-    <form class="card card--add_work_unit" action="{{ route('test') }}" method="post">
+    <form class="card card--add_work_unit" action="{{ route('work.store', [$single_document->id]) }}" method="post">
         @csrf
         <div class="card-body">
             <div class="row">
@@ -13,15 +13,16 @@
                     </div>
                     <div class="right">
                         <input type="text" name="name_enterprise" class="form-control" placeholder="Indiquer le nom de votre entreprise">
-
                     </div>
                 </div>
+                {{--
                 <div class="line">
                     <div class="left"></div>
                     <div class="right">
                         <button type="button" class="btn btn-text"><i class="fas fa-search"></i> Rechercher une unité existante</button>
                     </div>
                 </div>
+                --}}
             </div>
 
             <div class="row">
@@ -32,7 +33,7 @@
                     <div class="right">
                         <div class="btn-group-number">
                             <button type="button" class="btn btn-text btn-num" data-value="less"><i class="fas fa-minus"></i></button>
-                            <input type="number" class="form-control" id="numberSal" placeholder="" value="0">
+                            <input type="number" class="form-control" id="numberSal" placeholder="" value="0" name="number_employee">
                             <button type="button" class="btn btn-text btn-num" data-value="more"><i class="fas fa-plus"></i></button>
                         </div>
                     </div>
@@ -45,15 +46,15 @@
                         <ul class="ul-textarea">
                             <li>
                                 <button type="button" class="btn btn-text btn-small btn-delete"><i class="far fa-times-circle"></i></button>
-                                <textarea type="text" class="form-control auto-resize" placeholder="">Activité 1</textarea>
+                                <textarea class="form-control auto-resize" placeholder="" name="activitie[]">Activité 1</textarea>
                             </li>
                             <li>
                                 <button type="button" class="btn btn-text btn-small btn-delete"><i class="far fa-times-circle"></i></button>
-                                <textarea type="text" class="form-control auto-resize" placeholder="">Activité 1</textarea>
+                                <textarea class="form-control auto-resize" placeholder="" name="activitie[]">Activité 1</textarea>
                             </li>
                             <li>
                                 <button type="button" class="btn btn-text btn-small btn-delete"><i class="far fa-times-circle"></i></button>
-                                <textarea type="text" class="form-control auto-resize" placeholder="">Activité 1</textarea>
+                                <textarea class="form-control auto-resize" placeholder="" name="activitie[]">Activité 1</textarea>
                             </li>
                             <li>
                                 <button type="button" class="btn btn-text btn-yellow btn-add-activity"><i class="fas fa-plus"></i> Ajouter une activité</button>
