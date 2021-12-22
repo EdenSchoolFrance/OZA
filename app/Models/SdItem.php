@@ -25,7 +25,7 @@ class SdItem extends Model
 
     public function sub()
     {
-        return $this->hasMany(SubItem::class);
+        return $this->hasMany(SubItem::class, 'sub_item_id');
     }
 
     public function work()

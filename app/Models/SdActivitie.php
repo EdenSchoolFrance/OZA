@@ -22,4 +22,9 @@ class SdActivitie extends Model
         'name'
     ];
 
+    public function work_unit()
+    {
+        return $this->hasMany(SdWorkUnit::class, 'sd_work_unit_id');
+    }
+
 }

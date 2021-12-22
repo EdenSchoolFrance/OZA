@@ -15,7 +15,7 @@ class UpdateSubItemsTable extends Migration
     {
         Schema::table('sub_items', function (Blueprint $table) {
             $table->foreignUuid('sub_item_id')->nullable();
-            $table->foreign('sub_item_id')->references('id')->on('sd_items');
+            $table->foreign('sub_item_id')->references('id')->on('sd_items')->onDelete('cascade');
         });
 
     }

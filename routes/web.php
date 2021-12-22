@@ -89,6 +89,9 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/{id}/work/create/new', [WorkUnitController::class, 'createNew'])->name('work.create.new');
     Route::post('/{id}/work/store', [WorkUnitController::class, 'store'])->name('work.store');
 
+    Route::get('/{id}/work/edit/{id_work}', [WorkUnitController::class, 'edit'])->name('work.edit');
+    Route::post('/{id}/work/update/{id_work}', [WorkUnitController::class, 'update'])->name('work.update');
+
     Route::get('/{id}/risk/accident', [RiskController::class, 'accident'])->name('risk.accident');
     Route::get('/{id}/risk/accident/create', [RiskController::class, 'accidentCreate'])->name('risk.accident.create');
 });
