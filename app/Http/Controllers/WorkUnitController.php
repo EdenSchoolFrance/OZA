@@ -90,14 +90,15 @@ class WorkUnitController extends Controller
 
         $request->validate([
             'name_enterprise' => 'required',
-            'number_employee' => 'required'
+            'number_employee' => 'required',
+            'type' => 'required'
         ]);
 
         $work = new SdWorkUnit();
         $work->id = uniqid();
         $work->name = $request->name_enterprise;
         $work->number_employee = $request->number_employee;
-        $work->validated = 1;
+        if ($request->type === 'true') $work->validated = 1; else $work->validated = 0;
         $work->single_document()->associate($single_document);
         $work->save();
 
@@ -152,17 +153,16 @@ class WorkUnitController extends Controller
 
         $request->validate([
             'name_enterprise' => 'required',
-            'number_employee' => 'required'
+            'number_employee' => 'required',
+            'type' => 'required'
         ]);
-
-
 
 
         $work = new SdWorkUnit();
         $work->id = uniqid();
         $work->name = $request->name_enterprise;
         $work->number_employee = $request->number_employee;
-        $work->validated = 1;
+        if ($request->type === 'true') $work->validated = 1; else $work->validated = 0;
         $work->single_document()->associate($single_document);
         $work->save();
 
@@ -172,7 +172,6 @@ class WorkUnitController extends Controller
             $acti->text = $activitie;
             $work->activitie()->save($acti);
             $acti->save();
-
         }
         $work1 = SdWorkUnit::find($id_work);
 

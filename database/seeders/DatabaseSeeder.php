@@ -28,8 +28,10 @@ class DatabaseSeeder extends Seeder
         $this->call(SingleDocumentSeeder::class);
 
         $this->call(DangerSeeder::class);
-        
+
         $this->call(SdWorkUnitSeeder::class);
+
+        $this->call(SdActivitieSeeder::class);
 
         $this->call(ItemSeeder::class);
 

@@ -26,7 +26,7 @@
                             <tr>
                                 <td class="td_status">
                                     <button class="btn-resize-row btn btn-text"><i class="far fa-minus-square"></i></button>
-                                    <i class="fas fa-check fa-check-checked"></i>
+                                    <i class="fas fa-check {{ $work->validated === 1 ? 'fa-check-checked' : '' }}"></i>
                                 </td>
                                 <td class="td_number_employee">{{ $work->number_employee }}</td>
                                 <td class="td_work_unit">

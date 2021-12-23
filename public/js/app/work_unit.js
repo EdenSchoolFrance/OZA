@@ -100,3 +100,14 @@ on('.btn-num', 'click', (el, e) => {
         input.value = parseInt(input.value)+1
     }
 });
+
+
+on('.btn-validate', 'click', (el, e) => {
+    $('#inputTypeWorkUnit', document,0).value = "false"
+    $('#formWorkUnit', document, 0).submit();
+});
+
+on('.btn-send', 'click', (el, e) => {
+    $('#inputTypeWorkUnit', document, 0).value = "true";
+    $('#formWorkUnit', document, 0).submit();
+});

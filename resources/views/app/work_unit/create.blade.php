@@ -3,7 +3,7 @@
 @section('content')
 <div class="content">
 
-    <form class="card card--add_work_unit" action="{{ route('work.store', [$single_document->id]) }}" method="post">
+    <form class="card card--add_work_unit" action="{{ route('work.store', [$single_document->id]) }}" method="post" id="formWorkUnit">
         @csrf
         <div class="card-body">
             <div class="row">
@@ -101,8 +101,9 @@
                     <div class="left">
                     </div>
                     <div class="right">
-                        <button type="submit" class="btn btn-success">Valider l’unité de travail</button>
-                        <button type="button" class="btn btn-text">Enregistrer le brouillon</button>
+                        <input type="hidden" name="type" id="inputTypeWorkUnit" value="true">
+                        <button type="button" class="btn btn-success btn-send">Valider l’unité de travail</button>
+                        <button type="button" class="btn btn-text btn-validate">Enregistrer le brouillon</button>
                     </div>
                 </div>
             </div>

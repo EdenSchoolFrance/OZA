@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\SdActivitie;
 use App\Models\SdItem;
 use App\Models\SdWorkUnit;
 use App\Models\SingleDocument;

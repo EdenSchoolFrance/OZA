@@ -29,14 +29,12 @@ class SubItemSeeder extends Seeder
         $sub_item = new SubItem();
         $sub_item->id = uniqid();
         $sub_item->name = 'Communication';
-        $sub_item->item()->associate($mat);
         $sub_item->sd_item()->associate($mat2);
         $sub_item->save();
 
         $sub_item = new SubItem();
         $sub_item->id = uniqid();
         $sub_item->name = 'Bureautique';
-        $sub_item->item()->associate($mat);
         $sub_item->sd_item()->associate($mat2);
         $sub_item->save();
 
@@ -44,28 +42,24 @@ class SubItemSeeder extends Seeder
         $sub_item = new SubItem();
         $sub_item->id = uniqid();
         $sub_item->name = 'Sous-catégorie 3';
-        $sub_item->item()->associate($mat);
         $sub_item->sd_item()->associate($mat2);
         $sub_item->save();
 
         $sub_item = new SubItem();
         $sub_item->id = uniqid();
         $sub_item->name = 'Sous-catégorie 4';
-        $sub_item->item()->associate($mat);
         $sub_item->sd_item()->associate($mat2);
         $sub_item->save();
 
         $sub_item = new SubItem();
         $sub_item->id = uniqid();
         $sub_item->name = 'Sous-catégorie 5';
-        $sub_item->item()->associate($mat);
         $sub_item->sd_item()->associate($mat2);
         $sub_item->save();
 
         $sub_item = new SubItem();
         $sub_item->id = uniqid();
         $sub_item->name = 'Sous-catégorie 6';
-        $sub_item->item()->associate($mat);
         $sub_item->sd_item()->associate($mat2);
         $sub_item->save();
 
@@ -76,42 +70,36 @@ class SubItemSeeder extends Seeder
         $sub_item = new SubItem();
         $sub_item->id = uniqid();
         $sub_item->name = 'Deux roues';
-        $sub_item->item()->associate($veh);
         $sub_item->sd_item()->associate($veh2);
         $sub_item->save();
 
         $sub_item = new SubItem();
         $sub_item->id = uniqid();
         $sub_item->name = 'Véhicules léger';
-        $sub_item->item()->associate($veh);
         $sub_item->sd_item()->associate($veh2);
         $sub_item->save();
 
         $sub_item = new SubItem();
         $sub_item->id = uniqid();
         $sub_item->name = 'Sous-catégorie 3';
-        $sub_item->item()->associate($veh);
         $sub_item->sd_item()->associate($veh2);
         $sub_item->save();
 
         $sub_item = new SubItem();
         $sub_item->id = uniqid();
         $sub_item->name = 'Sous-catégorie 4';
-        $sub_item->item()->associate($veh);
         $sub_item->sd_item()->associate($veh2);
         $sub_item->save();
 
         $sub_item = new SubItem();
         $sub_item->id = uniqid();
         $sub_item->name = 'Sous-catégorie 5';
-        $sub_item->item()->associate($veh);
         $sub_item->sd_item()->associate($veh2);
         $sub_item->save();
 
         $sub_item = new SubItem();
         $sub_item->id = uniqid();
         $sub_item->name = 'Sous-catégorie 6';
-        $sub_item->item()->associate($veh);
         $sub_item->sd_item()->associate($veh2);
         $sub_item->save();
 
@@ -122,43 +110,164 @@ class SubItemSeeder extends Seeder
         $sub_item = new SubItem();
         $sub_item->id = uniqid();
         $sub_item->name = 'Deux roues';
-        $sub_item->item()->associate($eng);
         $sub_item->sd_item()->associate($eng2);
         $sub_item->save();
 
         $sub_item = new SubItem();
         $sub_item->id = uniqid();
         $sub_item->name = 'Véhicules léger';
-        $sub_item->item()->associate($eng);
         $sub_item->sd_item()->associate($eng2);
         $sub_item->save();
 
         $sub_item = new SubItem();
         $sub_item->id = uniqid();
         $sub_item->name = 'Sous-catégorie 3';
-        $sub_item->item()->associate($eng);
         $sub_item->sd_item()->associate($eng2);
         $sub_item->save();
 
         $sub_item = new SubItem();
         $sub_item->id = uniqid();
         $sub_item->name = 'Sous-catégorie 4';
-        $sub_item->item()->associate($eng);
         $sub_item->sd_item()->associate($eng2);
         $sub_item->save();
 
         $sub_item = new SubItem();
         $sub_item->id = uniqid();
         $sub_item->name = 'Sous-catégorie 5';
-        $sub_item->item()->associate($eng);
         $sub_item->sd_item()->associate($eng2);
         $sub_item->save();
 
         $sub_item = new SubItem();
         $sub_item->id = uniqid();
         $sub_item->name = 'Sous-catégorie 6';
-        $sub_item->item()->associate($eng);
         $sub_item->sd_item()->associate($eng2);
+        $sub_item->save();
+
+
+
+
+
+
+        /*===============================
+                Item need for example
+        ===============================*/
+
+
+        $sub_item = new SubItem();
+        $sub_item->id = uniqid();
+        $sub_item->name = 'Communication';
+        $sub_item->item()->associate($mat);
+        $sub_item->save();
+
+        $sub_item = new SubItem();
+        $sub_item->id = uniqid();
+        $sub_item->name = 'Bureautique';
+        $sub_item->item()->associate($mat);
+        $sub_item->save();
+
+
+        $sub_item = new SubItem();
+        $sub_item->id = uniqid();
+        $sub_item->name = 'Sous-catégorie 3';
+        $sub_item->item()->associate($mat);
+        $sub_item->save();
+
+        $sub_item = new SubItem();
+        $sub_item->id = uniqid();
+        $sub_item->name = 'Sous-catégorie 4';
+        $sub_item->item()->associate($mat);
+        $sub_item->save();
+
+        $sub_item = new SubItem();
+        $sub_item->id = uniqid();
+        $sub_item->name = 'Sous-catégorie 5';
+        $sub_item->item()->associate($mat);
+        $sub_item->save();
+
+        $sub_item = new SubItem();
+        $sub_item->id = uniqid();
+        $sub_item->name = 'Sous-catégorie 6';
+        $sub_item->item()->associate($mat);
+        $sub_item->save();
+
+        /*===============================
+            VEHICULE Section
+        ===============================*/
+
+        $sub_item = new SubItem();
+        $sub_item->id = uniqid();
+        $sub_item->name = 'Deux roues';
+        $sub_item->item()->associate($veh);
+        $sub_item->save();
+
+        $sub_item = new SubItem();
+        $sub_item->id = uniqid();
+        $sub_item->name = 'Véhicules léger';
+        $sub_item->item()->associate($veh);
+        $sub_item->save();
+
+        $sub_item = new SubItem();
+        $sub_item->id = uniqid();
+        $sub_item->name = 'Sous-catégorie 3';
+        $sub_item->item()->associate($veh);
+        $sub_item->save();
+
+        $sub_item = new SubItem();
+        $sub_item->id = uniqid();
+        $sub_item->name = 'Sous-catégorie 4';
+        $sub_item->item()->associate($veh);
+        $sub_item->save();
+
+        $sub_item = new SubItem();
+        $sub_item->id = uniqid();
+        $sub_item->name = 'Sous-catégorie 5';
+        $sub_item->item()->associate($veh);
+        $sub_item->save();
+
+        $sub_item = new SubItem();
+        $sub_item->id = uniqid();
+        $sub_item->name = 'Sous-catégorie 6';
+        $sub_item->item()->associate($veh);
+        $sub_item->save();
+
+        /*===============================
+            VEHICULE Section
+        ===============================*/
+
+        $sub_item = new SubItem();
+        $sub_item->id = uniqid();
+        $sub_item->name = 'Deux roues';
+        $sub_item->item()->associate($eng);
+        $sub_item->save();
+
+        $sub_item = new SubItem();
+        $sub_item->id = uniqid();
+        $sub_item->name = 'Véhicules léger';
+        $sub_item->item()->associate($eng);
+        $sub_item->save();
+
+        $sub_item = new SubItem();
+        $sub_item->id = uniqid();
+        $sub_item->name = 'Sous-catégorie 3';
+        $sub_item->item()->associate($eng);
+        $sub_item->save();
+
+        $sub_item = new SubItem();
+        $sub_item->id = uniqid();
+        $sub_item->name = 'Sous-catégorie 4';
+        $sub_item->item()->associate($eng);
+        $sub_item->save();
+
+        $sub_item = new SubItem();
+        $sub_item->id = uniqid();
+        $sub_item->name = 'Sous-catégorie 5';
+        $sub_item->item()->associate($eng);
+        $sub_item->save();
+
+        $sub_item = new SubItem();
+        $sub_item->id = uniqid();
+        $sub_item->name = 'Sous-catégorie 6';
+        $sub_item->item()->associate($eng);
         $sub_item->save();
     }
 }
