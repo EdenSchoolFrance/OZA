@@ -38,7 +38,11 @@
                                 <td class="td_status">{{ $client->archived == 1 ? 'Archivé' : 'En cours' }}</td>
                                 <td class="td_actions">
                                     @if (Auth::user()->hasPermission('ADMIN'))
-                                        <button data-modal=".modal--archive" data-client_cefe="{{ $client->id }}"><i class="fas fa-archive"></i></button>
+                                        @if ($client->archived == 1)
+                                            <button data-modal=".modal--unarchive" data-id="{{ $client->id }}"><i class="fas fa-box-open"></i></button>
+                                        @else
+                                            <button data-modal=".modal--archive" data-id="{{ $client->id }}"><i class="fas fa-archive"></i></button>
+                                        @endif
                                     @endif
                                     <a href="{{ route('admin.client.edit', [$client->id]) }}"><i class="far fa-edit"></i></a>
                                 </td>
@@ -65,6 +69,46 @@
             <div class="modal-dialog">
                 <form class="modal-content" action="{{ route('admin.client.archive') }}" method="POST">
                     @csrf
+                    <input type="hidden" name="id" value="">
+                    <div class="modal-header">
+                        <p class="title">Confirmer l'archivage</p>
+                        <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Êtes-vous sûr du vouloir archiver ce client ?</p>
+                        <div>
+                            <button type="submit" class="btn btn-danger btn-text">Archiver</button>
+                            <button type="button" class="btn btn-inv btn-yellow btn-small" data-dismiss="modal"> Annuler</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="modal modal--unarchive">
+            <div class="modal-dialog">
+                <form class="modal-content" action="{{ route('admin.client.archive') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="id" value="">
+                    <div class="modal-header">
+                        <p class="title">Confirmer le désarchivage</p>
+                        <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Êtes-vous sûr du vouloir désarchiver ce client ?</p>
+                        <div>
+                            <button type="submit" class="btn btn-danger btn-text">Désarchiver</button>
+                            <button type="button" class="btn btn-inv btn-yellow btn-small" data-dismiss="modal"> Annuler</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        {{-- <div class="modal modal--delete">
+            <div class="modal-dialog">
+                <form class="modal-content" action="{{ route('admin.client.delete') }}" method="POST">
+                    @csrf
                     <input type="hidden" name="client" value="">
                     <div class="modal-header">
                         <p class="title">Confirmer l'archivage</p>
@@ -73,13 +117,13 @@
                     <div class="modal-body">
                         <p>Êtes-vous sûr du vouloir archiver ce client ?</p>
                         <div>
-                            <button type="submit" class="btn btn-danger btn-text">Supprimer</button>
+                            <button type="submit" class="btn btn-danger btn-text">Archiver</button>
                             <button class="btn btn-inv btn-yellow btn-small"> Annuler</button>
                         </div>
                     </div>
                 </form>
             </div>
-        </div>
+        </div> --}}
     </div>
 @endsection
 
