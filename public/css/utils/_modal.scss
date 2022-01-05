@@ -73,8 +73,8 @@
 
 
     &--archive,
-    &--unarchive {
-
+    &--unarchive,
+    &--delete {
         .modal-body {
             display: flex;
             align-items: center;

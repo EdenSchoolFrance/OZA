@@ -23,8 +23,8 @@ class CreateSdDangersTable extends Migration
             $table->foreignUuid('single_document_id');
             $table->foreignUuid('danger_id');
 
-            $table->foreign('single_document_id')->references('id')->on('single_documents');
-            $table->foreign('danger_id')->references('id')->on('dangers');
+            $table->foreign('single_document_id')->references('id')->on('single_documents')->onDelete('cascade');
+            $table->foreign('danger_id')->references('id')->on('dangers')->onDelete('cascade');
         });
     }
 

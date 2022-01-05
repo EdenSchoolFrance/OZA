@@ -35,10 +35,10 @@
                                 <td class="td_name">{{ $client->name }}</td>
                                 <td class="td_expert">{{ $client->expert->firstname }} {{ $client->expert->lastname }}</td>
                                 <td class="td_nb_client">{{ $client->client_number }}</td>
-                                <td class="td_status">{{ $client->archived == 1 ? 'Archivé' : 'En cours' }}</td>
+                                <td class="td_status">{{ $client->archived ? 'Archivé' : 'En cours' }}</td>
                                 <td class="td_actions">
                                     @if (Auth::user()->hasPermission('ADMIN'))
-                                        @if ($client->archived == 1)
+                                        @if ($client->archived)
                                             <button data-modal=".modal--unarchive" data-id="{{ $client->id }}"><i class="fas fa-box-open"></i></button>
                                         @else
                                             <button data-modal=".modal--archive" data-id="{{ $client->id }}"><i class="fas fa-archive"></i></button>
@@ -87,7 +87,7 @@
 
         <div class="modal modal--unarchive">
             <div class="modal-dialog">
-                <form class="modal-content" action="{{ route('admin.client.archive') }}" method="POST">
+                <form class="modal-content" action="{{ route('admin.client.unarchive') }}" method="POST">
                     @csrf
                     <input type="hidden" name="id" value="">
                     <div class="modal-header">

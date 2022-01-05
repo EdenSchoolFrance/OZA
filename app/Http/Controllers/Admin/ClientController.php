@@ -105,7 +105,7 @@ class ClientController extends Controller
 
         Storage::putFileAs('/client/logo', $file, $client->id . '.' . $file->extension());
 
-        return redirect()->route('admin.client.edit', [$client->id])->with('status', 'Le client a bien été créé !');
+        return redirect()->route('admin.client.edit', [$client->id, 'tab' => 'du'])->with('status', 'Le client a bien été créé !');
     }
 
     public function edit(Client $client)
@@ -155,11 +155,6 @@ class ClientController extends Controller
         $client->additional_adress = $request->additional_adress;
         $client->city_zipcode = $request->city_zipcode;
         $client->city = $request->city;
-        $client->firstname = $request->firstname;
-        $client->lastname = $request->lastname;
-        $client->email = $request->email;
-        $client->phone = $request->phone;
-        $client->post = $request->post;
         $client->expert()->associate($request->expert);
         $client->save();
 
@@ -175,15 +170,33 @@ class ClientController extends Controller
         $client = Client::find($request->id);
 
         if ($client) {
-            $client->archived = $client->archived ? false : true;
+            $client->archived = true;
             $client->save();
         }
 
-        return back();
+        return back()->with('status', 'Le client a bien été archivé !');
+    }
+
+    public function unarchive(Request $request)
+    {
+        $request->validate([
+            'id' => 'required'
+        ]);
+
+        $client = Client::find($request->id);
+
+        if ($client) {
+            $client->archived = false;
+            $client->save();
+        }
+
+        return back()->with('status', 'Le client a bien été désarchivé !');
     }
 
     public function delete(Client $client)
     {
-        
+        $client->delete();
+
+        return redirect()->route('admin.clients')->with('status', 'Le client a bien été supprimé !');
     }
 }

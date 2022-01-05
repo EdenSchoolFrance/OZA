@@ -62,8 +62,13 @@ Route::middleware(['auth'])->group(function() {
     
             Route::post('/client/store', [ClientAdminController::class, 'store'])->name('admin.client.store');
             Route::post('/client/archive', [ClientAdminController::class, 'archive'])->name('admin.client.archive');
+            Route::post('/client/unarchive', [ClientAdminController::class, 'unarchive'])->name('admin.client.unarchive');
             Route::post('/client/{client}/delete', [ClientAdminController::class, 'delete'])->name('admin.client.delete');
+
             Route::post('/client/{client}/single_document/store', [SingleDocumentAdminController::class, 'store'])->name('admin.single_document.store');
+            Route::post('/single_document/archive', [SingleDocumentAdminController::class, 'archive'])->name('admin.single_document.archive');
+            Route::post('/single_document/unarchive', [SingleDocumentAdminController::class, 'unarchive'])->name('admin.single_document.unarchive');
+            Route::post('/client/{client}/single_document/{single_document}/delete', [SingleDocumentAdminController::class, 'delete'])->name('admin.single_document.delete');
 
 
             Route::get('/{doc_name}/edit', [DocController::class, 'edit'])->name('documentation.edit');
@@ -74,16 +79,19 @@ Route::middleware(['auth'])->group(function() {
     
         /*================ ADMIN | EXPERT ================*/
         Route::middleware(['permission:ADMIN,EXPERT'])->group(function () {
-            Route::get('/users', [UserAdminController::class, 'index'])->name('admin.user');
-    
-    
-            Route::get('/clients', [ClientAdminController::class, 'index'])->name('admin.client');
+            Route::get('/users', [UserAdminController::class, 'index'])->name('admin.users');
+
+
+            Route::get('/clients', [ClientAdminController::class, 'index'])->name('admin.clients');
             Route::get('/client/{client}/edit', [ClientAdminController::class, 'edit'])->name('admin.client.edit');
-    
+
             Route::post('/client/{client}/update', [ClientAdminController::class, 'update'])->name('admin.client.update');
-    
-    
-            Route::get('/clients/du', [SingleDocumentAdminController::class, 'index'])->name('admin.client.single_document');
+
+
+            Route::get('/clients/single_documents', [SingleDocumentAdminController::class, 'index'])->name('admin.single_documents');
+            Route::get('/client/{client}/single_document/{single_document}/edit', [SingleDocumentAdminController::class, 'edit'])->name('admin.single_document.edit');
+
+            Route::post('/client/{client}/single_document/{single_document}/update', [SingleDocumentAdminController::class, 'update'])->name('admin.single_document.update');
         });
     });
 

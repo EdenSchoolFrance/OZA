@@ -26,9 +26,10 @@ class CreateSingleDocumentsTable extends Migration
             $table->string('lastname')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
+            $table->boolean('archived')->default(0);
 
             $table->foreignUuid('client_id');
-            $table->foreign('client_id')->references('id')->on('clients');
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
 
             $table->timestamps();
         });

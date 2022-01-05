@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Single_document;
-use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -13,15 +10,17 @@ class DashboardController extends Controller
     {
         $page = [
             'title' => 'Bienvenue ' . Auth::user()->firstname . ' ' . Auth::user()->lastname,
-            'nav' => 'nodrop',
             'sidebar' => 'home',
+            'sub_sidebar' => ''
         ];
 
-        if (count(Auth::user()->single_documents) == 1) {
-            return redirect()->route('dashboard', [Auth::user()->single_documents->first()->id]);
+        $single_documents = Auth::user()->single_documents->where('archived', 0);
+
+        if (count($single_documents) == 1) {
+            return redirect()->route('dashboard', [$single_documents->first()->id]);
         }
-        
-        return view('app.dashboard.home', compact('page'));
+
+        return view('app.dashboard.home', compact('page', 'single_documents'));
     }
 
     public function index($id)

@@ -24,7 +24,7 @@ class CreateClientsTable extends Migration
             $table->boolean('archived')->default(0);
             $table->foreignUuid('expert_id');
             
-            $table->foreign('expert_id')->references('id')->on('users');
+            $table->foreign('expert_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

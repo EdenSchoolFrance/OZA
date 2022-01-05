@@ -10,7 +10,7 @@
                         </li>
                     @endif
                     <li class="sidebar-nav-item {{ $page['sidebar'] == "users" && $page['sub_sidebar'] == "list" ? 'active' : '' }}">
-                        <a href="{{route('admin.user')}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Liste des utilisateurs</a>
+                        <a href="{{route('admin.users')}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Liste des utilisateurs</a>
                     </li>
                 </ul>
             </li>
@@ -23,10 +23,10 @@
                         </li>
                     @endif
                     <li class="sidebar-nav-item {{ $page['sidebar'] == "clients" && $page['sub_sidebar'] == "list" ? 'active' : '' }}">
-                        <a href="{{ route('admin.client') }}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Liste des clients</a>
+                        <a href="{{ route('admin.clients') }}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Liste des clients</a>
                     </li>
                     <li class="sidebar-nav-item {{ $page['sidebar'] == "clients" && $page['sub_sidebar'] == "single_document" ? 'active' : '' }}">
-                        <a href="{{ route('admin.client.single_document') }}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Liste des DU</a>
+                        <a href="{{ route('admin.single_documents') }}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Liste des DU</a>
                     </li>
                 </ul>
             </li>

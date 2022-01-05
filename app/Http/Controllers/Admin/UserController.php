@@ -59,7 +59,7 @@ class UserController extends Controller
         $user->role()->associate($request->role);
         $user->save();
 
-        return redirect()->route('admin.user')->with('status', 'L\'utilisateur a bien été créé !');
+        return redirect()->route('admin.users')->with('status', 'L\'utilisateur a bien été créé !');
     }
 
     public function edit(User $user)
@@ -94,6 +94,6 @@ class UserController extends Controller
         $user->role()->associate($request->role);
         $user->save();
 
-        return redirect()->route('admin.user')->with('status', 'L\'utilisateur a bien été modifié !');
+        return redirect()->route('admin.users')->with('status', 'L\'utilisateur a bien été modifié !');
     }
 }
