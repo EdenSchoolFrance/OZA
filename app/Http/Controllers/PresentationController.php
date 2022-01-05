@@ -9,7 +9,7 @@ class PresentationController extends Controller
 {
     public function index($id)
     {
-        $single_document = $this->checkSingleDocument($id);
+        $sd = $this->checkSingleDocument($id);
 
         $page = [
             'title' => 'Présentation de la structure',
@@ -17,7 +17,7 @@ class PresentationController extends Controller
             'sub_sidebar' => 'presentation'
         ];
 
-        return view('app.presentation.index', compact('page', 'single_document'));
+        return view('app.presentation.index', compact('page', 'sd'));
     }
 
     public function store(Request $request, $id, $type)
@@ -43,7 +43,7 @@ class PresentationController extends Controller
             $request->validate([
                 'desc' => 'required'
             ]);
-    
+
             $single = SingleDocument::find($id);
             $single->description = $request->desc;
             $single->save();
@@ -54,7 +54,7 @@ class PresentationController extends Controller
                 'email' => 'required',
                 'phone' => 'required'
             ]);
-    
+
             $single = SingleDocument::find($id);
             $single->firstname = $request->firstname;
             $single->lastname = $request->lastname;

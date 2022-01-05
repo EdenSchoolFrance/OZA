@@ -20,13 +20,13 @@ class DashboardController extends Controller
         if (count(Auth::user()->single_documents) == 1) {
             return redirect()->route('dashboard', [Auth::user()->single_documents->first()->id]);
         }
-        
+
         return view('app.dashboard.home', compact('page'));
     }
 
     public function index($id)
     {
-        $single_document = $this->checkSingleDocument($id);
+        $sd = $this->checkSingleDocument($id);
 
         $page = [
             'title' => 'Bienvenue ' . Auth::user()->firstname . ' ' . Auth::user()->lastname,
@@ -34,6 +34,6 @@ class DashboardController extends Controller
             'sub_sidebar' => ''
         ];
 
-        return view('app.dashboard.index', compact('page', 'single_document'));
+        return view('app.dashboard.index', compact('page', 'sd'));
     }
 }

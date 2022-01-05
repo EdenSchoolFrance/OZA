@@ -13,7 +13,7 @@ class UserController extends Controller
 {
     public function index($id)
     {
-        $single_document = $this->checkSingleDocument($id);
+        $sd = $this->checkSingleDocument($id);
         $users = User::whereHas('single_documents', function ($q) use ($id) {
             $q->where('id', $id);
         })->get();
@@ -24,12 +24,12 @@ class UserController extends Controller
             'sub_sidebar' => 'users'
         ];
 
-        return view('app.user.index', compact('page', 'single_document','users'));
+        return view('app.user.index', compact('page', 'sd','users'));
     }
 
     public function create($id)
     {
-        $single_document = $this->checkSingleDocument($id);
+        $sd = $this->checkSingleDocument($id);
         $roles = Role::where('permission', '!=', 'EXPERT')->get();
 
         $page = [
@@ -38,12 +38,12 @@ class UserController extends Controller
             'sub_sidebar' => 'users'
         ];
 
-        return view('app.user.create', compact('page', 'single_document','roles'));
+        return view('app.user.create', compact('page', 'sd','roles'));
     }
 
     public function store(Request $request, $id)
     {
-        $single_document = $this->checkSingleDocument($id);
+        $sd = $this->checkSingleDocument($id);
         $admin = Role::where('permission', 'ADMIN');
 
         $request->validate([
@@ -65,20 +65,20 @@ class UserController extends Controller
         $user->post = $request->post;
         $user->password = $request->password;
         $user->role()->associate($request->role);
-        $user->client()->associate($single_document->client->id);
+        $user->client()->associate($sd->client->id);
         $user->save();
         if ($request->role === $admin){
-            $user->single_documents()->attach($single_document->client->single_documents->id);
+            $user->single_documents()->attach($sd->client->single_documents->id);
         }else{
-            $user->single_documents()->attach($single_document->id);
+            $user->single_documents()->attach($sd->id);
         }
 
-        return redirect()->route('user.client.index', [$single_document->id])->with('status', 'L\'utilisateur a bien été créé !');
+        return redirect()->route('user.client.index', [$sd->id])->with('status', 'L\'utilisateur a bien été créé !');
     }
 
     public function edit($id, User $user)
     {
-        $single_document = $this->checkSingleDocument($id);
+        $sd = $this->checkSingleDocument($id);
 
         $page = [
             'title' => 'Modification de l\'utilisateur : ' . $user->lastname . ' ' . $user->firstname,
@@ -88,12 +88,12 @@ class UserController extends Controller
 
         $roles = Role::where('permission', '!=', 'EXPERT')->get();
 
-        return view('app.user.edit', compact('page', 'user', 'roles','single_document'));
+        return view('app.user.edit', compact('page', 'user', 'roles','sd'));
     }
 
     public function update(Request $request, $id, User $user)
     {
-        $single_document = $this->checkSingleDocument($id);
+        $sd = $this->checkSingleDocument($id);
 
         $request->validate([
             'lastname' => 'required',
@@ -112,6 +112,6 @@ class UserController extends Controller
         $user->role()->associate($request->role);
         $user->save();
 
-        return redirect()->route('user.client.index', [$single_document->id])->with('status', 'L\'utilisateur a bien été modifié !');
+        return redirect()->route('user.client.index', [$sd->id])->with('status', 'L\'utilisateur a bien été modifié !');
     }
 }

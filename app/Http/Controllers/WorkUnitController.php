@@ -17,7 +17,7 @@ class WorkUnitController extends Controller
 {
     public function index($id)
     {
-        $single_document = $this->checkSingleDocument($id);
+        $sd = $this->checkSingleDocument($id);
 
         $page = [
             'title' => 'Définition des unités de travail',
@@ -38,12 +38,12 @@ class WorkUnitController extends Controller
 
 
 
-        return view('app.work_unit.index', compact('page', 'single_document','works','items'));
+        return view('app.work_unit.index', compact('page', 'sd','works','items'));
     }
 
-    public function create($id)
+    public function create($id,$id_work = null)
     {
-        $single_document = $this->checkSingleDocument($id);
+        $sd = $this->checkSingleDocument($id);
 
         $page = [
             'title' => 'Créer une unité de travail ',
@@ -59,77 +59,38 @@ class WorkUnitController extends Controller
 
         $works = WorkUnit::all()->take(10);
 
-        if (Auth::user()->oza === 1) {
-            return view('app.work_unit.create', compact('page', 'single_document', 'items','sectors','works'));
+        if ($id_work !== null){
+            $workUnit = WorkUnit::find($id_work);
+
+            return view('app.work_unit.createNew', compact('page', 'sd', 'items','sectors','works','workUnit'));
         }else{
-            return view('app.work_unit.createNew', compact('page', 'single_document', 'items','sectors','works'));
+            return view('app.work_unit.createNew', compact('page', 'sd', 'items','sectors','works'));
         }
-
-
-    }
-
-    public function template($id,$id_work_unit)
-    {
-        $single_document = $this->checkSingleDocument($id);
-
-        $page = [
-            'title' => 'Créer une unité de travail ',
-            'link_back' => route('work.index', [$id]),
-            'text_back' => 'Retour vers les unités de travail',
-            'sidebar' => 'structure',
-            'sub_sidebar' => 'work_units'
-        ];
-
-        $items = Item::all();
-
-        $sectors = SectorActivitie::all();
-
-        if (Auth::user()->oza === 1) {
-            return view('app.work_unit.create', compact('page', 'single_document', 'items','sectors'));
-        }else{
-            return view('app.work_unit.createNew', compact('page', 'single_document', 'items','sectors'));
-        }
-
-
     }
 
     public function edit($id,$id_work)
     {
-        $single_document = $this->checkSingleDocument($id);
+        $sd = $this->checkSingleDocument($id);
+
+
+        $work = SdWorkUnit::find($id_work);
 
         $page = [
-            'title' => 'Créer une unité de travail ',
+            'title' => 'Modifier l\'unité de travail : '.$work->name,
             'link_back' => route('work.index', [$id]),
             'text_back' => 'Retour vers les unités de travail',
             'sidebar' => 'structure',
             'sub_sidebar' => 'work_units'
         ];
 
-        $work = SdWorkUnit::find($id_work);
-
         $items = Item::all();
 
-        return view('app.work_unit.edit', compact('page', 'single_document','work','items'));
-    }
-
-    public function createNew($id)
-    {
-        $single_document = $this->checkSingleDocument($id);
-
-        $page = [
-            'title' => 'Créer une unité de travail',
-            'link_back' => route('work.index', [$id]),
-            'text_back' => 'Retour vers les unités de travail',
-            'sidebar' => 'risk_pro',
-            'sub_sidebar' => 'accident'
-        ];
-
-        return view('app.work_unit.createNew', compact('page', 'single_document'));
+        return view('app.work_unit.edit', compact('page', 'sd','work','items'));
     }
 
     public function store(Request $request, $id){
 
-        $single_document = $this->checkSingleDocument($id);
+        $sd = $this->checkSingleDocument($id);
 
         $request->validate([
             'name_enterprise' => 'required',
@@ -142,7 +103,7 @@ class WorkUnitController extends Controller
         $work->name = $request->name_enterprise;
         $work->number_employee = $request->number_employee;
         if ($request->type === 'true') $work->validated = 1; else $work->validated = 0;
-        $work->single_document()->associate($single_document);
+        $work->single_document()->associate($sd);
         $work->save();
 
         foreach ($request->activitie as $activitie) {
@@ -179,13 +140,13 @@ class WorkUnitController extends Controller
             }
 
         }
-        return redirect()->route('work.index', [$single_document->id]);
+        return redirect()->route('work.index', [$sd->id]);
     }
 
 
     public function update(Request $request, $id, $id_work){
 
-        $single_document = $this->checkSingleDocument($id);
+        $sd = $this->checkSingleDocument($id);
 
         $request->validate([
             'name_enterprise' => 'required',
@@ -199,7 +160,7 @@ class WorkUnitController extends Controller
         $work->name = $request->name_enterprise;
         $work->number_employee = $request->number_employee;
         if ($request->type === 'true') $work->validated = 1; else $work->validated = 0;
-        $work->single_document()->associate($single_document);
+        $work->single_document()->associate($sd);
         $work->save();
 
         foreach ($request->activitie as $activitie){
@@ -236,22 +197,22 @@ class WorkUnitController extends Controller
 
         $work1->delete();
 
-        return redirect()->route('work.index', [$single_document->id]);
+        return redirect()->route('work.index', [$sd->id]);
     }
 
     public function delete($id,$id_work){
 
-        $single_document = $this->checkSingleDocument($id);
+        $sd = $this->checkSingleDocument($id);
 
         $work = SdWorkUnit::find($id_work);
         $work->delete();
 
-        return redirect()->route('work.index', [$single_document->id]);
+        return redirect()->route('work.index', [$sd->id]);
     }
 
     public function filter(Request $request, $id){
 
-        $single_document = $this->checkSingleDocument($id);
+        $sd = $this->checkSingleDocument($id);
 
         if ($request->ajax()){
 

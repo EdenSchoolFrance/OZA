@@ -5,7 +5,7 @@
         <div class="card card--work_units">
             <div class="card-header">
                 <button class="btn-resize-all btn btn-text"><i class="far fa-minus-square"></i> Afficher/cacher tous les détails</button>
-                <a href="{{ route('work.create', [$single_document->id]) }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UNE UNITE DE TRAVAIL</a>
+                <a href="{{ route('work.create', [$sd->id]) }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UNE UNITE DE TRAVAIL</a>
             </div>
             <div class="card-body">
                 <table class="table table--work_units table--resizable">
@@ -60,10 +60,10 @@
                                     </td>
                                 @endforeach
                                 <td class="td_actions">
-                                    <a href="{{ route('work.edit', ['id' => $single_document->id, 'id_work'=> $work->id]) }}">
+                                    <a href="{{ route('work.edit', ['id' => $sd->id, 'id_work'=> $work->id]) }}">
                                         <i class="far fa-edit"></i>
                                     </a>
-                                    <a href="{{ route('work.delete', ['id' => $single_document->id, 'id_work'=> $work->id]) }}">
+                                    <a href="{{ route('work.delete', ['id' => $sd->id, 'id_work'=> $work->id]) }}">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 </td>
@@ -82,7 +82,7 @@
                                             <p>salarié(s) inscrit(s) sur le registre du personnel</p>
                                         </div>
                                     </div>
-                                    <a href="{{route('work.create', [$single_document->id])}}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UNE UNITE DE TRAVAIL</a>
+                                    <a href="{{route('work.create', [$sd->id])}}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UNE UNITE DE TRAVAIL</a>
                                 </div>
                             </td>
                             <td></td>

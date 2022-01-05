@@ -3,7 +3,7 @@
 @section('content')
 <div class="content">
 
-    <form class="card card--add_work_unit" action="{{ route('work.update', ["id"=>$single_document->id, "id_work"=>$work->id]) }}" method="post" id="formWorkUnit">
+    <form class="card card--add_work_unit" action="{{ route('work.update', ["id"=>$sd->id, "id_work"=>$work->id]) }}" method="post" id="formWorkUnit">
         @csrf
         <div class="card-body">
             <div class="row">
@@ -42,6 +42,9 @@
                                     <textarea class="form-control auto-resize" placeholder="" name="activitie[]">{{ $activitie->text }}</textarea>
                                 </li>
                             @endforeach
+                            <li>
+                                <button type="button" class="btn btn-text btn-yellow btn-add-activity"><i class="fas fa-plus"></i> Ajouter une activité</button>
+                            </li>
                         </ul>
                     </div>
                 </div>

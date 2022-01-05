@@ -8,7 +8,7 @@ class RiskController extends Controller
 {
     public function accident($id)
     {
-        $single_document = $this->checkSingleDocument($id);
+        $sd = $this->checkSingleDocument($id);
 
         $page = [
             'title' => 'Evaluation des risques professionnels',
@@ -17,12 +17,12 @@ class RiskController extends Controller
             'sub_sidebar' => 'accident'
         ];
 
-        return view('app.risk.accident', compact('page', 'single_document'));
+        return view('app.risk.accident', compact('page', 'sd'));
     }
 
     public function accidentCreate($id)
     {
-        $single_document = $this->checkSingleDocument($id);
+        $sd = $this->checkSingleDocument($id);
 
         $page = [
             'title' => 'Créer un risque',
@@ -33,6 +33,6 @@ class RiskController extends Controller
             'sub_sidebar' => 'accident'
         ];
 
-        return view('app.risk.create', compact('page', 'single_document'));
+        return view('app.risk.create', compact('page', 'sd'));
     }
 }

@@ -3,8 +3,8 @@
         {{-- <li class="sidebar-nav-item">
             <a href="{{ route('dashboard.home') }}" class="sidebar-nav-link"><i class="fas fa-table"></i><span>Tableau de bord</span></a>
         </li> --}}
-        
-        @if (Auth::user()->oza && !isset($single_document))
+
+        @if (Auth::user()->oza && !isset($sd))
             <li class="sidebar-nav-item {{ $page['sidebar'] == "users" ? 'active' : '' }}">
                 <a href="#" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Utilisateurs</span></a>
                 <ul class="sub-group-menu" style="{{ $page['sidebar'] == "users" ? 'display: block' : '' }}">
@@ -38,22 +38,22 @@
             </li>
         @endif
 
-        @isset($single_document)
+        @isset($sd)
             @if($page['sidebar'] !== 'home')
                 <li class="sidebar-nav-item {{ $page['sidebar'] == "dashboard" ? 'active' : '' }}">
-                    <a href="{{route('dashboard', [$single_document->id])}}" class="sidebar-nav-link"><i class="fas fa-table"></i><span>Tableau de bord</span></a>
+                    <a href="{{route('dashboard', [$sd->id])}}" class="sidebar-nav-link"><i class="fas fa-table"></i><span>Tableau de bord</span></a>
                 </li>
                 <li class="sidebar-nav-item {{ $page['sidebar'] == "structure" ? 'active' : '' }}">
                     <a href="#" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Structure</span></a>
                     <ul class="sub-group-menu" style="{{ $page['sidebar'] == "structure" ? 'display: block' : '' }}">
                         <li class="sidebar-nav-item {{ $page['sub_sidebar'] == "presentation" ? 'active' : '' }}">
-                            <a href="{{route('presentation', [$single_document->id])}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Présentation</a>
+                            <a href="{{route('presentation', [$sd->id])}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Présentation</a>
                         </li>
                         <li class="sidebar-nav-item {{ $page['sub_sidebar'] == "work_units" ? 'active' : '' }}">
-                            <a href="{{route('work.index',[$single_document->id])}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Unité de travail</a>
+                            <a href="{{route('work.index',[$sd->id])}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Unité de travail</a>
                         </li>
                         <li class="sidebar-nav-item {{ $page['sub_sidebar'] == "users" ? 'active' : '' }}">
-                            <a href="{{route('user.client.index',[$single_document->id])}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Utilisateurs</a>
+                            <a href="{{route('user.client.index',[$sd->id])}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Utilisateurs</a>
                         </li>
                     </ul>
                 </li>
@@ -67,7 +67,7 @@
                         </li>
                         {{-- @if($sousSidebar === "accident") {{ 'active' }}@endif --}}
                         <li class="sidebar-nav-item {{ $page['sub_sidebar'] == "accident" ? 'active' : '' }}">
-                            <a href="{{route('risk.accident',[$single_document->id])}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Accident</a>
+                            <a href="{{route('risk.accident',[$sd->id])}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Accident</a>
                             <i class="fas fa-check checked"></i>
                         </li>
                         {{-- @if($sousSidebar === "agent-bio") {{ 'active' }}@endif --}}

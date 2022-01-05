@@ -85,16 +85,13 @@ Route::middleware(['auth'])->group(function() {
     Route::post('/{id}/user/{user}/update', [UserClientController::class, 'update'])->name('user.client.update');
 
     Route::get('/{id}/work', [WorkUnitController::class, 'index'])->name('work.index');
-    Route::get('/{id}/work/create', [WorkUnitController::class, 'create'])->name('work.create');
-    Route::get('/{id}/work/create/new', [WorkUnitController::class, 'createNew'])->name('work.create.new');
+    Route::get('/{id}/work/create/{id_work?}', [WorkUnitController::class, 'create'])->name('work.create');
     Route::post('/{id}/work/store', [WorkUnitController::class, 'store'])->name('work.store');
 
     Route::post('/{id}/work/create/filter', [WorkUnitController::class, 'filter'])->name('work.filter');
 
     Route::get('/{id}/work/edit/{id_work}', [WorkUnitController::class, 'edit'])->name('work.edit');
     Route::post('/{id}/work/update/{id_work}', [WorkUnitController::class, 'update'])->name('work.update');
-
-    Route::get('/{id}/work/create/template/{id_work_unit}', [WorkUnitController::class, 'template'])->name('work.create.template');
 
     Route::get('/{id}/work/delete/{id_work}', [WorkUnitController::class, 'delete'])->name('work.delete');
 

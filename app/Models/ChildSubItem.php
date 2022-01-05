@@ -26,4 +26,9 @@ class ChildSubItem extends Model
     {
         return $this->belongsTo(SubItem::class, 'sub_item_id');
     }
+
+    public function work_unit()
+    {
+        return $this->belongsToMany(WorkUnit::class, 'work_unit_item', 'child_sub_item_id', 'work_unit_id');
+    }
 }

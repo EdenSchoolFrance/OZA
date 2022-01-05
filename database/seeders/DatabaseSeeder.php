@@ -27,6 +27,12 @@ class DatabaseSeeder extends Seeder
 
         $this->call(SingleDocumentSeeder::class);
 
+        $this->call(SectorActivitieSeeder::class);
+
+        $this->call(ActivitieSeeder::class);
+
+        $this->call(WorkUnitSeeder::class);
+
         $this->call(DangerSeeder::class);
 
         $this->call(SdWorkUnitSeeder::class);
@@ -41,11 +47,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(SdItemSeeder::class);
 
-        $this->call(SectorActivitieSeeder::class);
 
-        $this->call(ActivitieSeeder::class);
-
-        $this->call(WorkUnitSeeder::class);
 
 
 
