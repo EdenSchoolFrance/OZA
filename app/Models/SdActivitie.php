@@ -19,7 +19,7 @@ class SdActivitie extends Model
      * @var string[]
      */
     protected $fillable = [
-        'name'
+        'text'
     ];
 
     public function work_unit()

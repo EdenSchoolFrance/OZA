@@ -15,7 +15,7 @@
                             <th class="th_number_employee"><i class="fas fa-user"></i></th>
                             <th class="th_work_unit">Unité de travail</th>
                             <th class="th_activity">Activité</th>
-                            @foreach($works[0]->item as $item)
+                            @foreach($items as $item)
                             <th class="th_{{ $item->id }}">{{ $item->name }}</th>
                             @endforeach
                             <th class="th_actions"></th>
@@ -41,15 +41,17 @@
                                         @endforeach
                                     </div>
                                 </td>
-                                @foreach($work->item as $item)
+                                @foreach($items as $item)
                                     <td class="td_{{ $item->id }}">
                                         <div class="table-resizable">
-                                            @foreach($item->sub as $sub)
+                                            @foreach($item->sub_items as $sub_item)
                                                 <div class="list_group">
-                                                    <p class="title">{{ $sub->name }}</p>
+                                                    <p class="title">{{ $sub_item->name }}</p>
                                                     <p class="content">
-                                                        @foreach($sub->child as $child)
-                                                            {{ $child->name.', ' }}
+                                                        @foreach($sub_item->sd_item as $child)
+                                                            @if($child->sd_work_unit->id === $work->id)
+                                                                {{ $child->name . ', ' }}
+                                                            @endif
                                                         @endforeach
                                                     </p>
                                                 </div>
@@ -61,7 +63,7 @@
                                     <a href="{{ route('work.edit', ['id' => $single_document->id, 'id_work'=> $work->id]) }}">
                                         <i class="far fa-edit"></i>
                                     </a>
-                                    <a href="">
+                                    <a href="{{ route('work.delete', ['id' => $single_document->id, 'id_work'=> $work->id]) }}">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 </td>

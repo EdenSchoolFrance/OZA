@@ -35,11 +35,17 @@ class DatabaseSeeder extends Seeder
 
         $this->call(ItemSeeder::class);
 
-        $this->call(SdItemSeeder::class);
-
         $this->call(SubItemSeeder::class);
 
         $this->call(ChildSubItemSeeder::class);
+
+        $this->call(SdItemSeeder::class);
+
+        $this->call(SectorActivitieSeeder::class);
+
+        $this->call(ActivitieSeeder::class);
+
+        $this->call(WorkUnitSeeder::class);
 
 
 

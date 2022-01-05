@@ -72,3 +72,23 @@
         }
     }
 }
+
+.modal--oza{
+    .row--ut{
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: inherit;
+        .group-form{
+            margin-right: 10%;
+            width: 40%;
+        }
+    }
+    .list-ut-template{
+        a{
+            color: $dark;
+        }
+        a:hover{
+            color: $info;
+        }
+    }
+}

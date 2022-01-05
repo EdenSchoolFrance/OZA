@@ -89,8 +89,14 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/{id}/work/create/new', [WorkUnitController::class, 'createNew'])->name('work.create.new');
     Route::post('/{id}/work/store', [WorkUnitController::class, 'store'])->name('work.store');
 
+    Route::post('/{id}/work/create/filter', [WorkUnitController::class, 'filter'])->name('work.filter');
+
     Route::get('/{id}/work/edit/{id_work}', [WorkUnitController::class, 'edit'])->name('work.edit');
     Route::post('/{id}/work/update/{id_work}', [WorkUnitController::class, 'update'])->name('work.update');
+
+    Route::get('/{id}/work/create/template/{id_work_unit}', [WorkUnitController::class, 'template'])->name('work.create.template');
+
+    Route::get('/{id}/work/delete/{id_work}', [WorkUnitController::class, 'delete'])->name('work.delete');
 
     Route::get('/{id}/risk/accident', [RiskController::class, 'accident'])->name('risk.accident');
     Route::get('/{id}/risk/accident/create', [RiskController::class, 'accidentCreate'])->name('risk.accident.create');

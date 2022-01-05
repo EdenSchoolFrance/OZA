@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ChildSubItem extends Model
+class WorkUnit extends Model
 {
     use HasFactory;
 
@@ -22,8 +22,13 @@ class ChildSubItem extends Model
         'name'
     ];
 
-    public function sub_item()
+    public function activitie()
     {
-        return $this->belongsTo(SubItem::class, 'sub_item_id');
+        return $this->belongsToMany(Activitie::class, 'work_unit_activity', 'work_unit_id', 'activity_id');
+    }
+
+    public function sector_activitie()
+    {
+        return $this->belongsTo(SectorActivitie::class, 'sector_activity_id');
     }
 }

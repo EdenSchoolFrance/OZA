@@ -24,7 +24,7 @@ class Item extends Model
 
     public function sub_items()
     {
-        return $this->hasMany(SubItem::class, 'item_status_id');
+        return $this->hasMany(SubItem::class, 'item_id');
     }
 
 }

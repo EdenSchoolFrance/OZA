@@ -7,7 +7,9 @@ use App\Models\Item;
 use App\Models\SdActivitie;
 use App\Models\SdItem;
 use App\Models\SdWorkUnit;
+use App\Models\SectorActivitie;
 use App\Models\SubItem;
+use App\Models\WorkUnit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,7 +34,11 @@ class WorkUnitController extends Controller
             $q->where('id', $id);
         })->get();
 
-        return view('app.work_unit.index', compact('page', 'single_document','works'));
+        $items = Item::all();
+
+
+
+        return view('app.work_unit.index', compact('page', 'single_document','works','items'));
     }
 
     public function create($id)
@@ -49,7 +55,42 @@ class WorkUnitController extends Controller
 
         $items = Item::all();
 
-        return view('app.work_unit.create', compact('page', 'single_document','items'));
+        $sectors = SectorActivitie::all();
+
+        $works = WorkUnit::all()->take(10);
+
+        if (Auth::user()->oza === 1) {
+            return view('app.work_unit.create', compact('page', 'single_document', 'items','sectors','works'));
+        }else{
+            return view('app.work_unit.createNew', compact('page', 'single_document', 'items','sectors','works'));
+        }
+
+
+    }
+
+    public function template($id,$id_work_unit)
+    {
+        $single_document = $this->checkSingleDocument($id);
+
+        $page = [
+            'title' => 'Créer une unité de travail ',
+            'link_back' => route('work.index', [$id]),
+            'text_back' => 'Retour vers les unités de travail',
+            'sidebar' => 'structure',
+            'sub_sidebar' => 'work_units'
+        ];
+
+        $items = Item::all();
+
+        $sectors = SectorActivitie::all();
+
+        if (Auth::user()->oza === 1) {
+            return view('app.work_unit.create', compact('page', 'single_document', 'items','sectors'));
+        }else{
+            return view('app.work_unit.createNew', compact('page', 'single_document', 'items','sectors'));
+        }
+
+
     }
 
     public function edit($id,$id_work)
@@ -66,7 +107,9 @@ class WorkUnitController extends Controller
 
         $work = SdWorkUnit::find($id_work);
 
-        return view('app.work_unit.edit', compact('page', 'single_document','work'));
+        $items = Item::all();
+
+        return view('app.work_unit.edit', compact('page', 'single_document','work','items'));
     }
 
     public function createNew($id)
@@ -102,7 +145,7 @@ class WorkUnitController extends Controller
         $work->single_document()->associate($single_document);
         $work->save();
 
-        foreach ($request->activitie as $activitie){
+        foreach ($request->activitie as $activitie) {
             $acti = new SdActivitie();
             $acti->id = uniqid();
             $acti->text = $activitie;
@@ -115,28 +158,21 @@ class WorkUnitController extends Controller
         $items = Item::all();
         foreach ($items as $item){
 
-            $sd_item = new SdItem();
-            $sd_item->id = uniqid();
-            $sd_item->name = $item->name;
-            $work->item()->save($sd_item);
-            $sd_item->save();
+
 
             foreach ($item->sub_items as $sub_item){
                 $name = $item->id.'-'.$sub_item->id;
 
-                $sub = new SubItem();
-                $sub->id = uniqid();
-                $sub->name = $sub_item->name;
-                $sub->sd_item()->associate($sd_item);
-                $sub->save();
+
                 if (isset($request->$name)){
                     foreach ($request->$name as $child_sub_item){
 
-                        $child = new ChildSubItem();
-                        $child->id = uniqid();
-                        $child->name = $child_sub_item;
-                        $sub->child()->save($child);
-                        $child->save();
+                        $sd_item = new SdItem();
+                        $sd_item->id = uniqid();
+                        $sd_item->name = $child_sub_item;
+                        $sd_item->sub_item()->associate($sub_item);
+                        $sd_item->sd_work_unit()->associate($work);
+                        $sd_item->save();
 
                     }
                 }
@@ -175,30 +211,22 @@ class WorkUnitController extends Controller
         }
         $work1 = SdWorkUnit::find($id_work);
 
-        foreach ($work1->item as $item){
+        $items = Item::all();
+        foreach ($items as $item){
 
-            $sd_item = new SdItem();
-            $sd_item->id = uniqid();
-            $sd_item->name = $item->name;
-            $work->item()->save($sd_item);
-            $sd_item->save();
-
-            foreach ($item->sub as $sub_item){
+            foreach ($item->sub_items as $sub_item){
                 $name = $item->id.'-'.$sub_item->id;
 
-                $sub = new SubItem();
-                $sub->id = uniqid();
-                $sub->name = $sub_item->name;
-                $sub->sd_item()->associate($sd_item);
-                $sub->save();
-                if (isset($request->$name)) {
-                    foreach ($request->$name as $child_sub_item) {
 
-                        $child = new ChildSubItem();
-                        $child->id = uniqid();
-                        $child->name = $child_sub_item;
-                        $sub->child()->save($child);
-                        $child->save();
+                if (isset($request->$name)){
+                    foreach ($request->$name as $child_sub_item){
+
+                        $sd_item = new SdItem();
+                        $sd_item->id = uniqid();
+                        $sd_item->name = $child_sub_item;
+                        $sd_item->sub_item()->associate($sub_item);
+                        $sd_item->sd_work_unit()->associate($work);
+                        $sd_item->save();
 
                     }
                 }
@@ -210,4 +238,47 @@ class WorkUnitController extends Controller
 
         return redirect()->route('work.index', [$single_document->id]);
     }
+
+    public function delete($id,$id_work){
+
+        $single_document = $this->checkSingleDocument($id);
+
+        $work = SdWorkUnit::find($id_work);
+        $work->delete();
+
+        return redirect()->route('work.index', [$single_document->id]);
+    }
+
+    public function filter(Request $request, $id){
+
+        $single_document = $this->checkSingleDocument($id);
+
+        if ($request->ajax()){
+
+            if (empty($request->filterUt)){
+
+                $data = WorkUnit::whereHas('sector_activitie', function ($q) use ($request) {
+                    $q->where('id', $request->filterSa);
+                })->get();
+
+            }else if ($request->filterSa === 'none' || empty($request->filterSa)){
+
+                $data = WorkUnit::where('name', 'like', '%' . $request->filterUt . '%')->get();
+
+            }else{
+
+                $data = WorkUnit::whereHas('sector_activitie', function ($q) use ($request) {
+                    $q->where('id', $request->filterSa);
+                })->where('name', 'like', '%' . $request->filterUt . '%')->get();
+
+            }
+
+            return response()->json($data);
+
+        }
+
+        abort(404);
+
+    }
+
 }

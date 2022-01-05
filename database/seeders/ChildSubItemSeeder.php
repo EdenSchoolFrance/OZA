@@ -23,19 +23,19 @@ class ChildSubItemSeeder extends Seeder
             $child = new ChildSubItem();
             $child->id = uniqid();
             $child->name = 'Item 1';
-            $sub_item->child()->save($child);
+            $child->sub_item()->associate($sub_item);
             $child->save();
 
             $child = new ChildSubItem();
             $child->id = uniqid();
             $child->name = 'Item 2';
-            $sub_item->child()->save($child);
+            $child->sub_item()->associate($sub_item);
             $child->save();
 
             $child = new ChildSubItem();
             $child->id = uniqid();
             $child->name = 'Item 3';
-            $sub_item->child()->save($child);
+            $child->sub_item()->associate($sub_item);
             $child->save();
 
         }

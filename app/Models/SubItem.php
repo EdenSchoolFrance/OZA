@@ -29,12 +29,12 @@ class SubItem extends Model
 
     public function item()
     {
-        return $this->belongsTo(Item::class,'item_status_id');
+        return $this->belongsTo(Item::class,'item_id');
     }
 
     public function sd_item()
     {
-        return $this->belongsTo(SdItem::class,'sub_item_id');
+        return $this->hasMany(SdItem::class);
     }
 
 }

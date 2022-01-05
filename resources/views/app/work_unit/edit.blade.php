@@ -45,13 +45,13 @@
                         </ul>
                     </div>
                 </div>
-                @foreach($work->item as $item)
+                @foreach($items as $item)
                     <div class="line">
                         <div class="left left-cancel">
                             <label>{{ $item->name }}</label>
                         </div>
                         <div class="right right--wrap">
-                            @foreach($item->sub as $subItem)
+                            @foreach($item->sub_items as $subItem)
                                 <div>
                                     <ul class="list-main">
                                         <li>
@@ -59,12 +59,14 @@
                                         </li>
                                         <li>
                                             <ul class="list-content" data-list="{{ $item->id.'-'.$subItem->id }}">
-                                                @foreach($subItem->child as $child)
+                                                @foreach($subItem->sd_item as $child)
+                                                    @if($child->sd_work_unit->id === $work->id)
                                                     <li class="list-item">
                                                         <button type="button" class="btn btn-text btn-small btn-delete" data-value="{{ $child->name }}"><i class="far fa-times-circle"></i></button>
                                                         <p>{{ $child->name }}</p>
                                                         <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[]" value="{{ $child->name }}" data-id="{{ $child->id }}">
                                                     </li>
+                                                    @endif
                                                 @endforeach
                                             </ul>
                                         </li>
@@ -106,14 +108,16 @@
                     <a class="btn-modal-check">Tout cocher</a>
                     <a class="btn-modal-uncheck">Tout decocher</a>
                     <div id="modal-list">
-                        @foreach($work->item as $item)
-                            @foreach($item->sub as $subItem)
+                        @foreach($items as $item)
+                            @foreach($item->sub_items as $subItem)
                                 <div data-id="{{ $item->id.'-'.$subItem->id }}" style="display: none">
-                                    @foreach($subItem->child as $child)
+                                    @foreach($subItem->sd_item as $child)
+                                        @if($child->sd_work_unit->id === $work->id)
                                         <label class="contain">
                                             <input type="checkbox" value="{{ $child->id }}" data-name="{{$child->name}}">
                                             <span class="checkmark">{{ $child->name }}</span>
                                         </label>
+                                        @endif
                                     @endforeach
                                 </div>
                             @endforeach

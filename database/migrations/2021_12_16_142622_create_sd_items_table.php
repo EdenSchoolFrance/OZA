@@ -16,6 +16,8 @@ class CreateSdItemsTable extends Migration
         Schema::create('sd_items', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
+            $table->foreignUuid('sub_item_id');
+            $table->foreign('sub_item_id')->references('id')->on('sub_items');
             $table->foreignUuid('sd_work_unit_id');
             $table->foreign('sd_work_unit_id')->references('id')->on('sd_work_units')->onDelete('cascade');
         });

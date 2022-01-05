@@ -23,12 +23,12 @@ class SdItem extends Model
         'name'
     ];
 
-    public function sub()
+    public function sub_item()
     {
-        return $this->hasMany(SubItem::class, 'sub_item_id');
+        return $this->belongsTo(SubItem::class, 'sub_item_id');
     }
 
-    public function work()
+    public function sd_work_unit()
     {
         return $this->belongsTo(SdWorkUnit::class, 'sd_work_unit_id');
     }

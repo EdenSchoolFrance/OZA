@@ -34,6 +34,7 @@ on('.btn-modal-add', 'click', (el, e) => {
         input.setAttribute('type', 'checkbox');
         input.setAttribute('value', name[i] + Date.now());
         input.setAttribute('data-name',name[i])
+        input.checked = true
         span.setAttribute('class', 'checkmark');
         span.innerText = name[i]
         label.appendChild(input);
@@ -58,8 +59,10 @@ on('.btn-modal-uncheck', 'click', (el, e) => {
 });
 
 on('.btn-modal-close', 'click', (el, e) => {
-    document.getElementsByClassName('modal')[0].style.display = 'none';
-    $('.modal div[data-id="' + el.dataset.list + '"]', document, 0).style.display = "none";
+    let modal = document.getElementsByClassName('modal')
+    for (let i = 0; i < modal.length ; i++) {
+        modal[i].style.display = 'none';
+    }
 });
 
 on('.btn-modal-valid', 'click', (el, e) => {
@@ -84,7 +87,7 @@ on('.btn-modal-valid', 'click', (el, e) => {
 
 on('.btn-add-activity', 'click', (el, e) => {
     let content ='<button type="button" class="btn btn-text btn-small btn-delete"><i class="far fa-times-circle"></i></button>\n' +
-        '<textarea class="form-control auto-resize" placeholder=""></textarea>'
+        '<textarea class="form-control auto-resize" name="activitie[]" placeholder=""></textarea>'
     let li = document.createElement('li');
     li.innerHTML = content;
     el.closest('li').before(li);
@@ -110,4 +113,10 @@ on('.btn-validate', 'click', (el, e) => {
 on('.btn-send', 'click', (el, e) => {
     $('#inputTypeWorkUnit', document, 0).value = "true";
     $('#formWorkUnit', document, 0).submit();
+});
+
+
+
+on('.btn-open-modal-oza', 'click', (el, e) => {
+    $('.modal--oza')[0].style.display = 'flex';
 });

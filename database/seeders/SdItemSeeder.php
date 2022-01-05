@@ -16,25 +16,35 @@ class SdItemSeeder extends Seeder
      */
     public function run()
     {
+
+        $sub_items = SubItem::all();
+
         $work = SdWorkUnit::where('name','test')->first();
 
-        $item = new SdItem();
-        $item->id = uniqid();
-        $item->name = 'Matériels';
-        $item->work()->associate($work);
-        $item->save();
+        foreach ($sub_items as $sub_item){
 
-        $item = new SdItem();
-        $item->id = uniqid();
-        $item->name = 'Véhicules';
-        $item->work()->associate($work);
-        $item->save();
+            $child = new SdItem();
+            $child->id = uniqid();
+            $child->name = 'Item 34';
+            $child->sub_item()->associate($sub_item);
+            $child->sd_work_unit()->associate($work);
+            $child->save();
 
-        $item = new SdItem();
-        $item->id = uniqid();
-        $item->name = 'Engins';
-        $item->work()->associate($work);
-        $item->save();
+            $child = new SdItem();
+            $child->id = uniqid();
+            $child->name = 'Item 2';
+            $child->sub_item()->associate($sub_item);
+            $child->sd_work_unit()->associate($work);
+            $child->save();
+
+            $child = new SdItem();
+            $child->id = uniqid();
+            $child->name = 'Item 3';
+            $child->sub_item()->associate($sub_item);
+            $child->sd_work_unit()->associate($work);
+            $child->save();
+
+        }
 
     }
 }
