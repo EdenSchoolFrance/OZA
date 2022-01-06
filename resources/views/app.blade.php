@@ -23,6 +23,8 @@
 
                 @include('utils.structure.header')
 
+                @include('utils.structure.alert')
+
                 @yield('content')
             </div>
         </main>

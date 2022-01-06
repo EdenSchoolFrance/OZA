@@ -56,18 +56,6 @@ on('[data-modal]', 'click', (el, e) => {
     }
 });
 
-on('[data-dismiss="modal"]', 'click', (el, e) => {
-    let modal = el.closest('.modal');
-
-    if (modal) {
-        modal.classList.remove('show');
-
-        setTimeout(() => {
-            modal.style.display = "none"
-        }, 150);
-    }
-});
-
 on('.modal', 'click', (el, e) => {
     if (!$('.modal-content', document, 0).contains(e.target)){
         el.classList.remove('show');
@@ -87,10 +75,26 @@ on('[data-modal=".modal--archive"], [data-modal=".modal--unarchive"]', 'click', 
 });
 
 
-// const tooltip = (selector, element = document) =>{
-//     element.addEventListener("mouseover", (e)=>{
-//         if (e.target.closest(selector)){
+on('[data-dismiss="modal"]', 'click', (el, e) => {
+    let modal = el.closest('.modal');
 
-//         }
-//     })
-// }
+    if (modal) {
+        modal.classList.remove('show');
+
+        setTimeout(() => {
+            modal.style.display = "none"
+        }, 150);
+    }
+});
+
+on('[data-dismiss="alert"]', 'click', (el, e) => {
+    let alert = el.closest('.alert');
+
+    if (alert) {
+        alert.classList.add('hide');
+
+        setTimeout(() => {
+            alert.remove();
+        }, 150);
+    }
+});
