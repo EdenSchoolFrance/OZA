@@ -105,7 +105,7 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/{single_document}/dashboard/', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/{single_document}/presentation', [PresentationController::class, 'index'])->name('presentation');
-    Route::post('/{single_document}/presentation/{type}', [PresentationController::class, 'store'])->name('presentation.store');
+    Route::post('/{single_document}/presentation/{type}', [PresentationController::class, 'update'])->name('presentation.update');
 
     Route::get('/{single_document}/user', [UserClientController::class, 'index'])->name('user.client.index');
     Route::get('/{single_document}/user/create', [UserClientController::class, 'create'])->name('user.client.create');
