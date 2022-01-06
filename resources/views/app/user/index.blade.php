@@ -27,7 +27,7 @@
                                 <td class="td_access">{{$user->role->name}}</td>
                                 <td class="td_actions">
                                     <a href=""><i class="fas fa-trash"></i></a>
-                                    <a href="{{ route('user.client.edit', ['user'=>$user->id, 'id' => $single_document->id]) }}"><i class="far fa-edit"></i></a>
+                                    <a href="{{ route('user.client.edit', [$single_document->id, $user->id]) }}"><i class="far fa-edit"></i></a>
                                 </td>
                             </tr>
                         @endforeach

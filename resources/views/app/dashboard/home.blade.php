@@ -5,16 +5,16 @@
         <div class="row-title">
             <h1>Sélectionner le DU de votre choix</h1>
         </div>
-        @if (count(Auth::user()->single_documents) > 0)
-            @foreach(Auth::user()->single_documents as $single_document)
+        @if (count($single_documents) > 0)
+            @foreach($single_documents as $sd)
                 <form action="#" class="card card--home">
                     <div class="card-body">
                         <div class="row row--center">
-                            <p>{{ $single_document->name }} </p>
+                            <p>{{ $sd->name }} </p>
                         </div>
 
                         <div class="row row--center">
-                            <a href="{{ route('dashboard', [$single_document->id]) }}" type="submit" class="btn btn-success">Sélectionner</a>
+                            <a href="{{ route('dashboard', [$sd->id]) }}" type="submit" class="btn btn-success">Sélectionner</a>
                         </div>
                     </div>
                 </form>

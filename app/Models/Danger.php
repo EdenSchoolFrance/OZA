@@ -22,4 +22,9 @@ class Danger extends Model
         'name',
         'info'
     ];
+
+    public function packs()
+    {
+        return $this->belongsToMany(Pack::class, 'danger_pack');
+    }
 }

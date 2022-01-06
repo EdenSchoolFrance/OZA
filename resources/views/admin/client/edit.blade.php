@@ -13,6 +13,16 @@
         <div class="card card--add-client">
             <form id="tab-content-info" class="card-body tabs-content @if($tab != 'info') none @endif" action="{{ route('admin.client.update', [$client->id]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @if (Auth::user()->hasPermission('ADMIN'))
+                    <div class="row">
+                        <div class="line">
+                            <div class="left"></div>
+                            <div class="right">
+                                <button type="button" class="btn btn-danger" data-modal=".modal--delete">Supprimer le Client</button>
+                            </div>
+                        </div>
+                    </div>
+                @endif
                 <div class="row">
                     <div class="line">
                         <div class="left">
@@ -125,7 +135,7 @@
                 </div>
                 <div class="row row--submit">
                     <button class="btn btn-success">Enregistrer</button>
-                    <a href="{{ route('admin.client') }}" class="btn btn-danger btn-text">Annuler</a>
+                    <a href="{{ route('admin.clients') }}" class="btn btn-danger btn-text">Annuler</a>
                 </div>
             </form>
 
@@ -139,19 +149,27 @@
                             <tr>
                                 <th class="th_name th-sort">Intitulé</th>
                                 <th class="th_date th-sort">Date de création</th>
+                                <th class="th_status th-sort">Status</th>
                                 <th class="th_actions"></th>
                             </tr>
                         </thead>
                         <tbody>
                             @if (count($single_documents) > 0)
-                                @foreach ($single_documents as $du)
+                                @foreach ($single_documents as $sd)
                                     <tr>
-                                        <td class="td_name">{{ $du->name }}</td>
-                                        <td class="td_date">{{ $du->created_at->format('d/m/Y') }}</td>
+                                        <td class="td_name">{{ $sd->name }}</td>
+                                        <td class="td_date">{{ $sd->created_at->format('d/m/Y') }}</td>
+                                        <td class="td_status">{{ $sd->archived ? 'Archivé' : 'En cours' }}</td>
                                         <td class="td_actions">
-                                            <i class="fas fa-trash"></i>
-                                            <i class="far fa-edit"></i>
-                                            <a href="{{ route('dashboard', [$du->id]) }}"><i class="far fa-eye"></i></a>
+                                            @if (Auth::user()->hasPermission('ADMIN'))
+                                                @if ($sd->archived)
+                                                    <button data-modal=".modal--unarchive" data-id="{{ $sd->id }}"><i class="fas fa-box-open"></i></button>
+                                                @else
+                                                    <button data-modal=".modal--archive" data-id="{{ $sd->id }}"><i class="fas fa-archive"></i></button>
+                                                @endif
+                                            @endif
+                                            <a href="{{ route('admin.single_document.edit', [$client->id, $sd->id]) }}"><i class="far fa-edit"></i></a>
+                                            <a href="{{ route('dashboard', [$sd->id]) }}"><i class="far fa-eye"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -164,61 +182,124 @@
                     </table>
                     {{ $single_documents->links() }}
                 </div>
-                <form action="{{ route('admin.single_document.store', [$client->id]) }}" method="post">
+                @if (Auth::user()->hasPermission('ADMIN'))
+                    <form action="{{ route('admin.single_document.store', [$client->id]) }}" method="post">
+                        @csrf
+                        <div class="row">
+                            <h2 class="title">Ajout d’un document unique</h2>
+                        </div>
+                        <div class="row">
+                            <div class="line">
+                                <div class="left">
+                                    <label for="name_single_document">Intitulé du DU</label>
+                                </div>
+                                <div class="right">
+                                    <input type="text" name="name_single_document" id="name_single_document" class="form-control @error('name_single_document') invalid @enderror" value="{{ old('name_single_document') }}" placeholder="Indiquer le nom du DU">
+                                    @error('name_single_document')
+                                        <p class="message-error">{{ $message }}</p>
+                                    @enderror
+                                    @error('dangers')
+                                        <p class="message-error">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="line">
+                                <div class="left">
+                                    <p>Liste des dangers associés</p>
+                                </div>
+                                <div class="right right--btn">
+                                    @foreach ($packs as $pack)
+                                        <button type="button" class="btn btn-yellow btn-text select-pack" data-pack="{{ $pack->id }}">{{ $pack->name }}</button>
+                                    @endforeach
+                                    <button type="button" class="btn btn-yellow btn-text uncheck-pack">Tout décocher</button>
+                                </div>
+                            </div>
+                            <div class="line">
+                                <div class="left">
+                                </div>
+                                <div class="right right--check">
+                                    @foreach ($dangers as $danger)
+                                        <div>
+                                            <input type="checkbox" class="radio-checkbox item-pack" data-pack="{{ $danger->packs->pluck('id')->implode(',') }}" id="danger_{{ $danger->id }}" name="dangers[{{ $danger->id }}]" value="{{ $danger->id }}" {{ old('dangers.'. $danger->id) ? 'checked' : '' }}>
+                                            <label for="danger_{{ $danger->id }}">{{ $danger->name }}</label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="line">
+                                <div class="left"></div>
+                                <div class="right">
+                                    <button class="btn btn-yellow btn-inv">Ajouter le DU</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                @endif
+            </div>
+        </div>
+
+        <div class="modal modal--archive">
+            <div class="modal-dialog">
+                <form class="modal-content" action="{{ route('admin.single_document.archive', [$client->id]) }}" method="POST">
                     @csrf
-                    <div class="row">
-                        <h2 class="title">Ajout d’un document unique</h2>
+                    <input type="hidden" name="id" value="">
+                    <div class="modal-header">
+                        <p class="title">Confirmer l'archivage</p>
+                        <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
                     </div>
-                    <div class="row">
-                        <div class="line">
-                            <div class="left">
-                                <label for="name_single_document">Intitulé du DU</label>
-                            </div>
-                            <div class="right">
-                                <input type="text" name="name_single_document" id="name_single_document" class="form-control @error('name_single_document') invalid @enderror" value="{{ old('name_single_document') }}" placeholder="Indiquer le nom du DU">
-                                @error('name_single_document')
-                                    <p class="message-error">{{ $message }}</p>
-                                @enderror
-                                @error('dangers')
-                                    <p class="message-error">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="line">
-                            <div class="left">
-                                <p>Liste des dangers associés</p>
-                            </div>
-                            <div class="right right--btn">
-                                <button type="button" class="btn btn-yellow btn-text select-pack" data-pack="compliance">Conformité</button>
-                                <button type="button" class="btn btn-yellow btn-text select-pack" data-pack="tranquility">Tranquillité</button>
-                                <button type="button" class="btn btn-yellow btn-text select-pack" data-pack="serenity">Sérénité</button>
-                                <button type="button" class="btn btn-yellow btn-text uncheck-pack">Tout décocher</button>
-                            </div>
-                        </div>
-                        <div class="line">
-                            <div class="left">
-                            </div>
-                            <div class="right right--check">
-                                @foreach ($dangers as $danger)
-                                    <div>
-                                        <input type="checkbox" class="radio-checkbox item-pack" data-pack="serenity" id="danger_{{ $danger->id }}" name="danger_{{ $danger->id }}" value="{{ $danger->id }}" {{ old('danger_' . $danger->id) ? 'checked' : '' }}>
-                                        <label for="danger_{{ $danger->id }}">{{ $danger->name }}</label>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="line">
-                            <div class="left"></div>
-                            <div class="right">
-                                <button class="btn btn-yellow btn-inv">Ajouter le DU</button>
-                            </div>
+                    <div class="modal-body">
+                        <p>Êtes-vous sûr du vouloir archiver ce document unique ?</p>
+                        <div>
+                            <button type="submit" class="btn btn-danger btn-text">Archiver</button>
+                            <button type="button" class="btn btn-inv btn-yellow btn-small" data-dismiss="modal"> Annuler</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
+
+        <div class="modal modal--unarchive">
+            <div class="modal-dialog">
+                <form class="modal-content" action="{{ route('admin.single_document.unarchive', [$client->id]) }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="id" value="">
+                    <div class="modal-header">
+                        <p class="title">Confirmer le désarchivage</p>
+                        <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Êtes-vous sûr du vouloir désarchiver ce document unique ?</p>
+                        <div>
+                            <button type="submit" class="btn btn-danger btn-text">Désarchiver</button>
+                            <button type="button" class="btn btn-inv btn-yellow btn-small" data-dismiss="modal"> Annuler</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        @if (Auth::user()->hasPermission('ADMIN'))
+            <div class="modal modal--delete">
+                <div class="modal-dialog">
+                    <form class="modal-content" action="{{ route('admin.client.delete', [$client->id]) }}" method="POST">
+                        @csrf
+                        <div class="modal-header">
+                            <p class="title">Confirmer la suppression</p>
+                            <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Êtes-vous sûr du vouloir supprimer ce client ?</p>
+                            <div>
+                                <button type="submit" class="btn btn-danger btn-text">Supprimer</button>
+                                <button type="button" class="btn btn-inv btn-yellow btn-small" data-dismiss="modal"> Annuler</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        @endif
     </div>
 @endsection
 

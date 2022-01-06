@@ -1,0 +1,98 @@
+.modal {
+    position: fixed;
+    width: 100%;
+    min-height: 100vh;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    background-color: rgba(0,0,0,0.5);
+    display: none;
+    opacity: 0;
+    transition: opacity .15s linear;
+
+    &.show {
+        opacity: 1;
+
+        .modal-dialog {
+            transform: translate(0,0);
+        }
+    }
+
+    &-dialog {
+        min-height: calc(100% - (1.75rem * 2));
+        max-width: 600px;
+        margin: 1.75rem auto;
+        display: flex;
+        align-items: center;
+        transform: translate(0,-25%);
+        transition: transform .3s ease-out;
+    }
+
+    &-content {
+        width: 100%;
+        min-height: 200px;
+        background-color: white;
+        border-radius: 3px;
+        border: 1px solid $grey;
+    }
+
+    &-header {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 30px;
+        -webkit-box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, .1);
+        box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, .1);
+
+        .title {
+            font-size: 24px;
+            color: $yellow;
+        }
+
+        .btn-close {
+            font-size: 17px;
+            background-color: transparent;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: $dark_purple;
+        }
+    }
+
+    &-body {
+        padding: 20px 30px;
+    }
+
+    &-footer {
+        padding: 20px 30px;
+    }
+
+
+
+    &--archive,
+    &--unarchive,
+    &--delete {
+        .modal-body {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            
+            div {
+                display: flex;
+                justify-content: center;
+                margin-top: 15px;
+
+                button {
+                    margin-right: 20px;
+
+                    &:last-of-type {
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+}

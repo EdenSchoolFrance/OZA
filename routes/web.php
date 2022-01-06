@@ -10,9 +10,11 @@ use App\Http\Controllers\Admin\UserController as UserAdminController;
 use App\Http\Controllers\Admin\ClientController as ClientAdminController;
 use App\Http\Controllers\Admin\SingleDocumentController as SingleDocumentAdminController;
 
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RiskController;
 use App\Http\Controllers\WorkUnitController;
+
+use App\Http\Controllers\DocController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,64 +39,90 @@ Route::middleware(['auth'])->group(function() {
     /*===============================
             CLIENT Private Section
     ===============================*/
-    Route::middleware(['permission:client'])->group(function () {
+    Route::middleware(['access:client'])->group(function () {
         Route::get('/', [DashboardController::class, 'home'])->name('dashboard.home');
-
     });
 
 
     /*===============================
-            OZA Section
+                OZA Section
     ===============================*/
+    Route::middleware(['access:oza'])->group(function () {
 
-    /*================ ADMIN ================*/
-    Route::middleware(['permission:oza,ADMIN'])->group(function () {
-        Route::get('/users', [UserAdminController::class, 'index'])->name('admin.user');
-        Route::get('/users/create', [UserAdminController::class, 'create'])->name('admin.user.create');
-        Route::get('/users/{user}/edit', [UserAdminController::class, 'edit'])->name('admin.user.edit');
+        /*================ ADMIN ================*/
+        Route::middleware(['permission:ADMIN'])->group(function () {
+            Route::get('/user/create', [UserAdminController::class, 'create'])->name('admin.user.create');
+            Route::get('/user/{user}/edit', [UserAdminController::class, 'edit'])->name('admin.user.edit');
+    
+            Route::post('/user/store', [UserAdminController::class, 'store'])->name('admin.user.store');
+            Route::post('/user/{user}/update', [UserAdminController::class, 'update'])->name('admin.user.update');
+    
+    
+            Route::get('/client/create', [ClientAdminController::class, 'create'])->name('admin.client.create');
+    
+            Route::post('/client/store', [ClientAdminController::class, 'store'])->name('admin.client.store');
+            Route::post('/client/archive', [ClientAdminController::class, 'archive'])->name('admin.client.archive');
+            Route::post('/client/unarchive', [ClientAdminController::class, 'unarchive'])->name('admin.client.unarchive');
+            Route::post('/client/{client}/delete', [ClientAdminController::class, 'delete'])->name('admin.client.delete');
 
-        Route::post('/users/store', [UserAdminController::class, 'store'])->name('admin.user.store');
-        Route::post('/users/{user}/update', [UserAdminController::class, 'update'])->name('admin.user.update');
+            Route::post('/client/{client}/single_document/store', [SingleDocumentAdminController::class, 'store'])->name('admin.single_document.store');
+            Route::post('/single_document/archive', [SingleDocumentAdminController::class, 'archive'])->name('admin.single_document.archive');
+            Route::post('/single_document/unarchive', [SingleDocumentAdminController::class, 'unarchive'])->name('admin.single_document.unarchive');
+            Route::post('/client/{client}/single_document/{single_document}/delete', [SingleDocumentAdminController::class, 'delete'])->name('admin.single_document.delete');
 
-        Route::get('/client', [ClientAdminController::class, 'index'])->name('admin.client');
-        Route::get('/client/create', [ClientAdminController::class, 'create'])->name('admin.client.create');
-        Route::get('/client/{client}/edit', [ClientAdminController::class, 'edit'])->name('admin.client.edit');
 
-        Route::post('/client/store', [ClientAdminController::class, 'store'])->name('admin.client.store');
-        Route::post('/client/{client}/update', [ClientAdminController::class, 'update'])->name('admin.client.update');
+            Route::get('/{doc_name}/edit', [DocController::class, 'edit'])->name('documentation.edit');
 
-        Route::post('/client/{client}/single_document/store', [SingleDocumentAdminController::class, 'store'])->name('admin.single_document.store');
+            Route::post('/{doc_name}/update', [DocController::class, 'update'])->name('documentation.update');
+            Route::post('/doc/upload', [DocController::class, 'upload'])->name('documentation.upload');
+        });
+    
+        /*================ ADMIN | EXPERT ================*/
+        Route::middleware(['permission:ADMIN,EXPERT'])->group(function () {
+            Route::get('/users', [UserAdminController::class, 'index'])->name('admin.users');
 
-        Route::get('/clients/du', [SingleDocumentAdminController::class, 'index'])->name('admin.client.single_document');
+
+            Route::get('/clients', [ClientAdminController::class, 'index'])->name('admin.clients');
+            Route::get('/client/{client}/edit', [ClientAdminController::class, 'edit'])->name('admin.client.edit');
+
+            Route::post('/client/{client}/update', [ClientAdminController::class, 'update'])->name('admin.client.update');
+
+
+            Route::get('/clients/single_documents', [SingleDocumentAdminController::class, 'index'])->name('admin.single_documents');
+            Route::get('/client/{client}/single_document/{single_document}/edit', [SingleDocumentAdminController::class, 'edit'])->name('admin.single_document.edit');
+
+            Route::post('/client/{client}/single_document/{single_document}/update', [SingleDocumentAdminController::class, 'update'])->name('admin.single_document.update');
+        });
     });
 
 
+    Route::get('/{doc_name}', [DocController::class, 'index'])->name('documentation');
+
+
     /*===============================
-            CLIENT Section
+              CLIENT Section
     ===============================*/
+    Route::get('/{single_document}/dashboard/', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('/{id}/dashboard/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/{single_document}/presentation', [PresentationController::class, 'index'])->name('presentation');
+    Route::post('/{single_document}/presentation/{type}', [PresentationController::class, 'update'])->name('presentation.update');
 
-    Route::get('/{id}/presentation', [PresentationController::class, 'index'])->name('presentation');
-    Route::post('/{id}/presentation/{type}', [PresentationController::class, 'store'])->name('presentation.store');
+    Route::get('/{single_document}/user', [UserClientController::class, 'index'])->name('user.client.index');
+    Route::get('/{single_document}/user/create', [UserClientController::class, 'create'])->name('user.client.create');
+    Route::get('/{single_document}/user/{user}/edit', [UserClientController::class, 'edit'])->name('user.client.edit');
+  
+    Route::post('/{single_document}/user/store', [UserClientController::class, 'store'])->name('user.client.store');
+    Route::post('/{single_document}/user/{user}/update', [UserClientController::class, 'update'])->name('user.client.update');
 
-    Route::get('/{id}/user', [UserClientController::class, 'index'])->name('user.client.index');
-    Route::get('/{id}/user/create', [UserClientController::class, 'create'])->name('user.client.create');
-    Route::post('/{id}/user/store', [UserClientController::class, 'store'])->name('user.client.store');
-    Route::get('/{id}/user/{user}/edit', [UserClientController::class, 'edit'])->name('user.client.edit');
-    Route::post('/{id}/user/{user}/update', [UserClientController::class, 'update'])->name('user.client.update');
+    Route::get('/{single_document}/work', [WorkUnitController::class, 'index'])->name('work.index');
+    Route::get('/{single_document}/work/create/{work_unit?}', [WorkUnitController::class, 'create'])->name('work.create');
+    Route::get('/{single_document}/work/edit/{id_work}', [WorkUnitController::class, 'edit'])->name('work.edit');
+  
+    Route::post('/{single_document}/work/create/filter', [WorkUnitController::class, 'filter'])->name('work.filter');
+    Route::post('/{single_document}/work/store', [WorkUnitController::class, 'store'])->name('work.store');
+    Route::post('/{single_document}/work/update/{work_unit}', [WorkUnitController::class, 'update'])->name('work.update');
+    Route::get('/{single_document}/work/delete/{work_unit}', [WorkUnitController::class, 'delete'])->name('work.delete'); // change post
 
-    Route::get('/{id}/work', [WorkUnitController::class, 'index'])->name('work.index');
-    Route::get('/{id}/work/create/{id_work?}', [WorkUnitController::class, 'create'])->name('work.create');
-    Route::post('/{id}/work/store', [WorkUnitController::class, 'store'])->name('work.store');
-
-    Route::post('/{id}/work/create/filter', [WorkUnitController::class, 'filter'])->name('work.filter');
-
-    Route::get('/{id}/work/edit/{id_work}', [WorkUnitController::class, 'edit'])->name('work.edit');
-    Route::post('/{id}/work/update/{id_work}', [WorkUnitController::class, 'update'])->name('work.update');
-
-    Route::get('/{id}/work/delete/{id_work}', [WorkUnitController::class, 'delete'])->name('work.delete');
-
-    Route::get('/{id}/risk/accident', [RiskController::class, 'accident'])->name('risk.accident');
-    Route::get('/{id}/risk/accident/create', [RiskController::class, 'accidentCreate'])->name('risk.accident.create');
+    Route::get('/{single_document}/risk/accident', [RiskController::class, 'accident'])->name('risk.accident');
+    Route::get('/{single_document}/risk/accident/create', [RiskController::class, 'accidentCreate'])->name('risk.accident.create');
 });

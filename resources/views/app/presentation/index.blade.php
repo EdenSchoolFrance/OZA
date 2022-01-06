@@ -2,7 +2,8 @@
 
 @section('content')
     <div class="content">
-        <form class="card card--general-infos" action="{{ route('presentation.store', [$single_document->id, 'info']) }}" method="POST">
+        
+        <form class="card card--general-infos {{ session('type') == 'info' ? 'card-editable' : '' }}" action="{{ route('presentation.update', [$single_document->id, 'info']) }}" method="POST">
             @csrf
             <div class="card-header">
                 <h2 class="title">Informations générales</h2>
@@ -15,7 +16,7 @@
                             <label for="name_enterprise">Nom de l’entreprise</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="name_enterprise" class="form-control @error('name_enterprise') invalid @enderror" placeholder="Indiquer le nom de votre entreprise" value="{{ $single_document->name_enterprise }}" disabled>
+                            <input type="text" name="name_enterprise" class="form-control @error('name_enterprise') invalid @enderror" placeholder="Indiquer le nom de votre entreprise" value="{{ old('name_enterprise') ? old('name_enterprise') : $single_document->name_enterprise }}" {{ session('type') == 'info' ?: 'disabled' }}>
                             @error('name_enterprise')
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
@@ -36,7 +37,7 @@
                             <label for="adress">Adresse postale</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="adress" class="form-control @error('adress') invalid @enderror" placeholder="Ligne 1" value="{{ $single_document->adress }}" disabled>
+                            <input type="text" name="adress" class="form-control @error('adress') invalid @enderror" placeholder="Ligne 1" value="{{ old('adress') ? old('adress') : $single_document->adress }}" {{ session('type') == 'info' ?: 'disabled' }}>
                             @error('adress')
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
@@ -46,7 +47,7 @@
                         <div class="left">
                         </div>
                         <div class="right">
-                            <input type="text" name="additional_adress" class="form-control @error('additional_adress') invalid @enderror" placeholder="Ligne 2" value="{{$single_document->additional_adress}}" disabled>
+                            <input type="text" name="additional_adress" class="form-control @error('additional_adress') invalid @enderror" placeholder="Ligne 2" value="{{ old('additional_adress') ? old('additional_adress') : $single_document->additional_adress }}" {{ session('type') == 'info' ?: 'disabled' }}>
                             @error('additional_adress')
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
@@ -57,7 +58,7 @@
                             <label for="city_zipcode">Code postal</label>
                         </div>
                         <div class="right right--small">
-                            <input type="text" name="city_zipcode" class="form-control form-control--small @error('city_zipcode') invalid @enderror" placeholder="Code postal" value="{{$single_document->city_zipcode}}" disabled>
+                            <input type="text" name="city_zipcode" class="form-control form-control--small @error('city_zipcode') invalid @enderror" placeholder="Code postal" value="{{ old('city_zipcode') ? old('city_zipcode') : $single_document->city_zipcode }}" {{ session('type') == 'info' ?: 'disabled' }}>
                             @error('city_zipcode')
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
@@ -68,7 +69,7 @@
                             <label for="city">Ville</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="city" class="form-control form-control--small @error('city') invalid @enderror" placeholder="Ville" value="{{$single_document->city}}" disabled>
+                            <input type="text" name="city" class="form-control form-control--small @error('city') invalid @enderror" placeholder="Ville" value="{{ old('city') ? old('city') : $single_document->city }}" {{ session('type') == 'info' ?: 'disabled' }}>
                             @error('city')
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
@@ -89,7 +90,7 @@
             </div>
         </form>
 
-        <form class="card card--company-activity" action="{{route('presentation.store', [$single_document->id, 'desc'])}}" method="POST">
+        <form class="card card--company-activity {{ session('type') == 'desc' ? 'card-editable' : '' }}" action="{{route('presentation.update', [$single_document->id, 'desc'])}}" method="POST">
             @csrf
             <div class="card-header">
                 <h2 class="title">Activité de l'entreprise</h2>
@@ -102,7 +103,7 @@
                             <label for="desc">Description de l’entreprise</label>
                         </div>
                         <div class="right">
-                            <textarea type="text" name="desc" id="desc" class="form-control auto-resize @error('desc') invalid @enderror" placeholder="Indiquer le nom de votre entreprise" disabled>{{$single_document->description}}</textarea>
+                            <textarea type="text" name="desc" id="desc" class="form-control auto-resize @error('desc') invalid @enderror" placeholder="Indiquer le nom de votre entreprise"  {{ session('type') == 'desc' ?: 'disabled' }}>{{ old('description') ? old('description') : $single_document->description }}</textarea>
                             @error('desc')
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
@@ -123,7 +124,7 @@
             </div>
         </form>
 
-        <form class="card card--responsible" action="{{ route('presentation.store', [$single_document->id, 'resp']) }}" method="POST">
+        <form class="card card--responsible {{ session('type') == 'resp' ? 'card-editable' : '' }}" action="{{ route('presentation.update', [$single_document->id, 'resp']) }}" method="POST">
             @csrf
             <div class="card-header">
                 <h2 class="title">Responsable du document au sein de l’entreprise</h2>
@@ -136,7 +137,7 @@
                             <label for="firstname">Prénom</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="firstname" class="form-control @error('firstname') invalid @enderror" placeholder="Prénom du responsable du DU" value="{{$single_document->firstname}}" disabled>
+                            <input type="text" name="firstname" class="form-control @error('firstname') invalid @enderror" placeholder="Prénom du responsable du DU" value="{{ old('firstname') ? old('firstname') : $single_document->firstname }}" {{ session('type') == 'resp' ?: 'disabled' }}>
                             @error('firstname')
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
@@ -147,7 +148,7 @@
                             <label for="lastname">Nom</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="lastname" class="form-control @error('lastname') invalid @enderror" placeholder="Nom du responsable du DU" value="{{$single_document->lastname}}" disabled>
+                            <input type="text" name="lastname" class="form-control @error('lastname') invalid @enderror" placeholder="Nom du responsable du DU" value="{{ old('lastname') ? old('lastname') : $single_document->lastname }}" {{ session('type') == 'resp' ?: 'disabled' }}>
                             @error('lastname')
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
@@ -158,7 +159,7 @@
                             <label for="email">Email</label>
                         </div>
                         <div class="right">
-                            <input type="email" name="email" class="form-control @error('email') invalid @enderror" placeholder="Email" value="{{$single_document->email}}" disabled>
+                            <input type="email" name="email" class="form-control @error('email') invalid @enderror" placeholder="Email" value="{{ old('email') ? old('email') : $single_document->email }}" {{ session('type') == 'resp' ?: 'disabled' }}>
                             @error('email')
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
@@ -169,7 +170,7 @@
                             <label for="phone">Téléphone</label>
                         </div>
                         <div class="right">
-                            <input type="tel" name="phone" class="form-control @error('phone') invalid @enderror" pattern="^(?:(?:(?:\+|00)33\D?(?:\D?\(0\)\D?)?)|0){1}[1-9]{1}(?:\D?\d{2}){4}$" placeholder="00 00 00 00 00" value="{{$single_document->phone}}" required disabled>
+                            <input type="tel" name="phone" class="form-control @error('phone') invalid @enderror" pattern="^(?:(?:(?:\+|00)33\D?(?:\D?\(0\)\D?)?)|0){1}[1-9]{1}(?:\D?\d{2}){4}$" placeholder="00 00 00 00 00" value="{{ old('phone') ? old('phone') : $single_document->phone }}" required {{ session('type') == 'resp' ?: 'disabled' }}>
                             @error('phone')
                                 <p class="message-error">{{ $message }}</p>
                             @enderror

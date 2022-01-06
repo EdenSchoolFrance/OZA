@@ -8,6 +8,7 @@ use App\Models\Client;
 use App\Models\Danger;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Pack;
 use App\Models\SingleDocument;
 use Illuminate\Support\Facades\Storage;
 
@@ -104,7 +105,7 @@ class ClientController extends Controller
 
         Storage::putFileAs('/client/logo', $file, $client->id . '.' . $file->extension());
 
-        return redirect()->route('admin.client.edit', [$client->id])->with('status', 'Le client a bien été créé !');
+        return redirect()->route('admin.client.edit', [$client->id, 'tab' => 'du'])->with('status', 'Le client a bien été créé !');
     }
 
     public function edit(Client $client)
@@ -117,6 +118,7 @@ class ClientController extends Controller
 
         $experts = User::where('oza', 1)->get();
         $dangers = Danger::all();
+        $packs = Pack::all();
         $single_documents = SingleDocument::where('client_id', $client->id)->paginate(15);
 
         if (isset($_GET['tab']) && ($_GET['tab'] == 'info' || $_GET['tab'] == 'du')) {
@@ -125,7 +127,7 @@ class ClientController extends Controller
             $tab = 'info';
         }
 
-        return view('admin.client.edit', compact('page', 'client', 'experts', 'dangers', 'single_documents', 'tab'));
+        return view('admin.client.edit', compact('page', 'client', 'experts', 'dangers', 'single_documents', 'packs', 'tab'));
     }
 
     public function update(Request $request, Client $client)
@@ -153,14 +155,48 @@ class ClientController extends Controller
         $client->additional_adress = $request->additional_adress;
         $client->city_zipcode = $request->city_zipcode;
         $client->city = $request->city;
-        $client->firstname = $request->firstname;
-        $client->lastname = $request->lastname;
-        $client->email = $request->email;
-        $client->phone = $request->phone;
-        $client->post = $request->post;
         $client->expert()->associate($request->expert);
         $client->save();
 
         return redirect()->route('admin.client.edit', [$client->id])->with('status', 'Le client a bien été mis à jours !');
+    }
+
+    public function archive(Request $request)
+    {
+        $request->validate([
+            'id' => 'required'
+        ]);
+
+        $client = Client::find($request->id);
+
+        if ($client) {
+            $client->archived = true;
+            $client->save();
+        }
+
+        return back()->with('status', 'Le client a bien été archivé !');
+    }
+
+    public function unarchive(Request $request)
+    {
+        $request->validate([
+            'id' => 'required'
+        ]);
+
+        $client = Client::find($request->id);
+
+        if ($client) {
+            $client->archived = false;
+            $client->save();
+        }
+
+        return back()->with('status', 'Le client a bien été désarchivé !');
+    }
+
+    public function delete(Client $client)
+    {
+        $client->delete();
+
+        return redirect()->route('admin.clients')->with('status', 'Le client a bien été supprimé !');
     }
 }

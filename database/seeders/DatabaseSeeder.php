@@ -15,8 +15,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
         $this->call(RoleSeeder::class);
 
         $this->call(UserSeeder::class);
@@ -25,7 +23,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(UpdateUserSeeder::class);
 
-        $this->call(SingleDocumentSeeder::class);
+        $this->call(PackSeeder::class);
 
         $this->call(SectorActivitieSeeder::class);
 
@@ -34,7 +32,13 @@ class DatabaseSeeder extends Seeder
         $this->call(WorkUnitSeeder::class);
 
         $this->call(DangerSeeder::class);
+      
+        $this->call(SingleDocumentSeeder::class);
 
+        $this->call(SdDangerSeeder::class);
+
+        $this->call(DocSeeder::class);
+      
         $this->call(SdWorkUnitSeeder::class);
 
         $this->call(SdActivitieSeeder::class);
@@ -46,12 +50,5 @@ class DatabaseSeeder extends Seeder
         $this->call(ChildSubItemSeeder::class);
 
         $this->call(SdItemSeeder::class);
-
-
-
-
-
-
-
     }
 }

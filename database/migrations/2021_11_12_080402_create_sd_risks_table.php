@@ -25,9 +25,9 @@ class CreateSdRisksTable extends Migration
             $table->foreignUuid('sd_danger_id');
             $table->foreignUuid('risk_id')->nullable();
 
-            $table->foreign('sd_work_unit_id')->references('id')->on('sd_work_units');
-            $table->foreign('sd_danger_id')->references('id')->on('sd_dangers');
-            $table->foreign('risk_id')->references('id')->on('risks');
+            $table->foreign('sd_work_unit_id')->references('id')->on('sd_work_units')->onDelete('cascade');
+            $table->foreign('sd_danger_id')->references('id')->on('sd_dangers')->onDelete('cascade');
+            $table->foreign('risk_id')->references('id')->on('risks')->onDelete('cascade');
         });
     }
 

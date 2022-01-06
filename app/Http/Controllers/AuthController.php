@@ -27,9 +27,17 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            if (Auth::user()->oza === 1) {
-                return redirect()->intended('/client');
+            if (Auth::user()->hasAccess('oza')) {
+                return redirect()->intended('/clients');
             } else {
+                if (Auth::user()->client->archived) {
+                    Auth::logout();
+
+                    return back()->withErrors([
+                        'password' => 'Vous ne pouvez pas vous connecter ! Contactez un administrateur si vous pensez que c\'est une erreur',
+                    ]);
+                }
+
                 return redirect()->intended('');
             }
         }

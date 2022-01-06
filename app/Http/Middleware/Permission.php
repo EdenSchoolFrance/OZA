@@ -15,20 +15,20 @@ class Permission
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, $user_type, ...$roles)
+    public function handle(Request $request, Closure $next, ...$roles)
     {
         if (!Auth::check()) {
             return redirect()->route('login');
         }
 
-        if (Auth::user()->hasPermission($user_type, $roles)) {
-            return $next($request);
+        if (count($roles) == 0) {
+            $roles = null;
         }
 
-        if (Auth::user()->hasPermission('oza')) {
-            return redirect()->route('admin.client');
+        if (Auth::user()->hasPermission($roles)) {
+            return $next($request);
         } else {
-            return redirect()->route('dashboard.home');
+            abort(404);
         }
     }
 }

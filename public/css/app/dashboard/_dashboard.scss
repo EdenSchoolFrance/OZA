@@ -19,7 +19,7 @@
         grid-column: 3;
         grid-row: 3;
     }
-    .card--dash {
+    .card--dashboard {
         &:nth-child(4){
             grid-row: 2;
         }
@@ -66,7 +66,7 @@
         .row{
             grid-template-columns: repeat(2, 1fr);
         }
-        .card--dash {
+        .card--dashboard {
             &:nth-child(3){
                 grid-row: 2;
             }

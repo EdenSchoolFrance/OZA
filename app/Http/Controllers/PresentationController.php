@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SingleDocument;
+use Illuminate\Support\Facades\Validator;
 
 class PresentationController extends Controller
 {
@@ -20,17 +21,21 @@ class PresentationController extends Controller
         return view('app.presentation.index', compact('page', 'single_document'));
     }
 
-    public function store(Request $request, $id, $type)
+    public function update(Request $request, $id, $type)
     {
         $this->checkSingleDocument($id);
 
         if ($type == 'info') {
-            $request->validate([
+            $validator = Validator::make($request->all(), [
                 'name_enterprise' => 'required',
                 'adress' => 'required',
                 'city_zipcode' => 'required',
                 'city' => 'required'
             ]);
+    
+            if ($validator->fails()) {
+                return back()->withErrors($validator)->withInput()->with('type', $type);
+            }
 
             $single = SingleDocument::find($id);
             $single->name_enterprise = $request->name_enterprise;
@@ -40,21 +45,29 @@ class PresentationController extends Controller
             $single->city = $request->city;
             $single->save();
         } elseif ($type == 'desc') {
-            $request->validate([
-                'desc' => 'required'
+            $validator = Validator::make($request->all(), [
+                'desc' => 'required',
             ]);
-
+          
+            if ($validator->fails()) {
+                return back()->withErrors($validator)->withInput()->with('type', $type);
+            }
+          
             $single = SingleDocument::find($id);
             $single->description = $request->desc;
             $single->save();
         } elseif ($type == 'resp') {
-            $request->validate([
+            $validator = Validator::make($request->all(), [
                 'firstname' => 'required',
                 'lastname' => 'required',
                 'email' => 'required',
                 'phone' => 'required'
             ]);
-
+          
+            if ($validator->fails()) {
+                return back()->withErrors($validator)->withInput()->with('type', $type);
+            }
+          
             $single = SingleDocument::find($id);
             $single->firstname = $request->firstname;
             $single->lastname = $request->lastname;

@@ -23,15 +23,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($single_documents as $du)
+                        @foreach($single_documents as $sd)
                             <tr>
-                                <td class="td_name">{{ $du->name }}</td>
-                                <td class="td_client">{{ $du->client->name }}</td>
-                                <td class="td_access">{{ $du->archived == 1 ? 'Archivé' : 'En cours' }}</td>
+                                <td class="td_name">{{ $sd->name }}</td>
+                                <td class="td_client">{{ $sd->client->name }}</td>
+                                <td class="td_access">{{ $sd->archived ? 'Archivé' : 'En cours' }}</td>
                                 <td class="td_actions">
-                                    <i class="fas fa-trash"></i>
-                                    <i class="far fa-edit"></i>
-                                    <a href="{{ route('dashboard', [$du->id]) }}"><i class="far fa-eye"></i></a>
+                                    @if (Auth::user()->hasPermission('ADMIN'))
+                                        @if ($sd->archived)
+                                            <button data-modal=".modal--unarchive" data-id="{{ $sd->id }}"><i class="fas fa-box-open"></i></button>
+                                        @else
+                                            <button data-modal=".modal--archive" data-id="{{ $sd->id }}"><i class="fas fa-archive"></i></button>
+                                        @endif
+                                    @endif
+                                    <a href="{{ route('admin.single_document.edit', [$sd->client->id, $sd->id]) }}"><i class="far fa-edit"></i></a>
+                                    <a href="{{ route('dashboard', [$sd->id]) }}"><i class="far fa-eye"></i></a>
                                 </td>
                             </tr>
                         @endforeach
@@ -46,98 +52,47 @@
                 {{ $single_documents->links() }}
             </div>
         </div>
-    </div>
-    {{-- <div class="content">
-        <div class="card card--users">
-            <div class="card-header">
-                <div></div>
-                <button class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN CLIENT</button>
-            </div>
-            <div class="card-body">
-                <div class="row row--right">
-                    <input type="email" class="form-control" id="workName" placeholder="Recherche par nom de client">
-                    <select name="status" class="form-control">
-                        <option value="">Status</option>
-                    </select>
-                </div>
-                <table class="table table--users table-sortable" style="width:100%">
-                    <thead>
-                    <tr>
-                        <th class="th_lastname th-sort">Intitulé</th>
-                        <th class="th_firstname th-sort">Date de création</th>
-                        <th class="th_email th-sort">Statut</th>
-                        <th class="th_actions"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td class="td_lastname">Intitulé du DU 1</td>
-                        <td class="td_firstname">12/12/2021</td>
-                        <td class="td_email">En cours</td>
-                        <td class="td_actions"><i class="fas fa-trash"></i><i class="far fa-edit"></i><i class="far fa-eye"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="td_lastname">Intitulé du DU 2</td>
-                        <td class="td_firstname">12/12/2021</td>
-                        <td class="td_email">En cours</td>
-                        <td class="td_actions"><i class="fas fa-trash"></i><i class="far fa-edit"></i><i class="far fa-eye"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="td_lastname">Intitulé du DU 3</td>
-                        <td class="td_firstname">12/12/2021</td>
-                        <td class="td_email">En cours</td>
-                        <td class="td_actions"><i class="fas fa-trash"></i><i class="far fa-edit"></i><i class="far fa-eye"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="td_lastname">Intitulé du DU 4</td>
-                        <td class="td_firstname">12/12/2021</td>
-                        <td class="td_email">En cours</td>
-                        <td class="td_actions"><i class="fas fa-trash"></i><i class="far fa-edit"></i><i class="far fa-eye"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="td_lastname">Intitulé du DU 5</td>
-                        <td class="td_firstname">12/12/2021</td>
-                        <td class="td_email">En cours</td>
-                        <td class="td_actions"><i class="fas fa-trash"></i><i class="far fa-edit"></i><i class="far fa-eye"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="td_lastname">Intitulé du DU 6</td>
-                        <td class="td_firstname">12/12/2021</td>
-                        <td class="td_email">En cours</td>
-                        <td class="td_actions"><i class="fas fa-trash"></i><i class="far fa-edit"></i><i class="far fa-eye"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="td_lastname">Intitulé du DU 7</td>
-                        <td class="td_firstname">12/12/2021</td>
-                        <td class="td_email">En cours</td>
-                        <td class="td_actions"><i class="fas fa-trash"></i><i class="far fa-edit"></i><i class="far fa-eye"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="td_lastname">Intitulé du DU 8</td>
-                        <td class="td_firstname">12/12/2021</td>
-                        <td class="td_email">En cours</td>
-                        <td class="td_actions"><i class="fas fa-trash"></i><i class="far fa-edit"></i><i class="far fa-eye"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="td_lastname">Intitulé du DU 9</td>
-                        <td class="td_firstname">12/12/2021</td>
-                        <td class="td_email">En cours</td>
-                        <td class="td_actions"><i class="fas fa-trash"></i><i class="far fa-edit"></i><i class="far fa-eye"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="td_lastname">Intitulé du DU 10</td>
-                        <td class="td_firstname">12/12/2021</td>
-                        <td class="td_email">En cours</td>
-                        <td class="td_actions"><i class="fas fa-trash"></i><i class="far fa-edit"></i><i class="far fa-eye"></i></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="card-footer">
-                <button class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN CLIENT</button>
+
+        <div class="modal modal--archive">
+            <div class="modal-dialog">
+                <form class="modal-content" action="{{ route('admin.single_document.archive') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="id" value="">
+                    <div class="modal-header">
+                        <p class="title">Confirmer l'archivage</p>
+                        <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Êtes-vous sûr du vouloir archiver ce document unique ?</p>
+                        <div>
+                            <button type="submit" class="btn btn-danger btn-text">Archiver</button>
+                            <button type="button" class="btn btn-inv btn-yellow btn-small" data-dismiss="modal"> Annuler</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-    </div> --}}
+
+        <div class="modal modal--unarchive">
+            <div class="modal-dialog">
+                <form class="modal-content" action="{{ route('admin.single_document.unarchive') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="id" value="">
+                    <div class="modal-header">
+                        <p class="title">Confirmer le désarchivage</p>
+                        <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Êtes-vous sûr du vouloir désarchiver ce document unique ?</p>
+                        <div>
+                            <button type="submit" class="btn btn-danger btn-text">Désarchiver</button>
+                            <button type="button" class="btn btn-inv btn-yellow btn-small" data-dismiss="modal"> Annuler</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('script')

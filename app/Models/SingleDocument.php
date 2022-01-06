@@ -28,6 +28,7 @@ class SingleDocument extends Model
         'lastname',
         'email',
         'phone',
+        'archived',
         'created_at',
         'updated_at'
     ];
