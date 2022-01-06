@@ -51,7 +51,14 @@
                         </div>
                         <div class="right">
                             <ul class="ul-textarea">
-                                @if(isset($workUnit))
+                                @if(old('activities'))
+                                    @foreach(old('activities') as $activitie)
+                                        <li>
+                                            <button type="button" class="btn btn-text btn-small btn-delete"><i class="far fa-times-circle"></i></button>
+                                            <textarea class="form-control auto-resize" placeholder="" name="activities[]">{{ $activitie }}</textarea>
+                                        </li>
+                                    @endforeach
+                                @elseif(isset($workUnit))
                                     @foreach($workUnit->activitie as $activitie)
                                         <li>
                                             <button type="button" class="btn btn-text btn-small btn-delete"><i class="far fa-times-circle"></i></button>
@@ -84,7 +91,15 @@
                                             </li>
                                             <li>
                                                 <ul class="list-content" data-list="{{ $item->id.'-'.$subItem->id }}">
-                                                    @if(isset($workUnit))
+                                                    @if(old(($item->id.'-'.$subItem->id)))
+                                                        @foreach(old(($item->id.'-'.$subItem->id)) as $child)
+                                                            <li class="list-item">
+                                                                <button type="button" class="btn btn-text btn-small btn-delete" data-value="{{ $child }}"><i class="far fa-times-circle"></i></button>
+                                                                <p>{{ $child }}</p>
+                                                                <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[]" value="{{ $child }}" data-id="{{ $child.now() }}">
+                                                            </li>
+                                                        @endforeach
+                                                    @elseif(isset($workUnit))
                                                         @foreach($workUnit->items as $child)
                                                             @if($child->sub_item->id === $subItem->id)
                                                                 <li class="list-item">
@@ -209,8 +224,8 @@
     @if (Auth::user()->oza === 1)
     <script>
 
-        let url = {{ route('work.filter', [$single_document->id]) }};
-        let single_document_id = {{ $single_document->id }};
+        let url = '{{ route('work.filter', [$single_document->id]) }}';
+        let single_document_id = '{{ $single_document->id }}';
 
     </script>
     @endif

@@ -16,7 +16,7 @@ on('.btn-add', 'click', (el, e) => {
     for (let i = 0; i < check.length ; i++) {
         check[i].checked = false
         for (let j = 0; j < input.length ; j++) {
-            if (input[j].dataset.id === check[i].value){
+            if (input[j].value === check[i].dataset.name){
                 check[i].checked = true
             }
         }

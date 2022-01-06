@@ -12,7 +12,7 @@
                         <label for="name_enterprise">Intitulé de l’unité de travail</label>
                     </div>
                     <div class="right">
-                        <input type="text" name="name_enterprise" class="form-control" placeholder="Indiquer le nom de votre entreprise" value="{{ $work->name }}">
+                        <input type="text" name="name_enterprise" class="form-control" placeholder="Indiquer le nom de votre entreprise" value="{{ old('name_enterprise') ? old('name_enterprise') :$work->name }}">
                         @error('name_enterprise')
                         <p class="message-error">{{ $message }}</p>
                         @enderror
@@ -28,7 +28,7 @@
                     <div class="right">
                         <div class="btn-group-number">
                             <button type="button" class="btn btn-text btn-num" data-value="less"><i class="fas fa-minus"></i></button>
-                            <input type="number" class="form-control" id="numberSal" placeholder="" value="{{ $work->number_employee }}" name="number_employee">
+                            <input type="number" class="form-control" id="numberSal" placeholder="" value="{{ old('number_employee') ? old('number_employee') : $work->number_employee }}" name="number_employee">
                             <button type="button" class="btn btn-text btn-num" data-value="more"><i class="fas fa-plus"></i></button>
                         </div>
                         @error('employee_number')
@@ -42,12 +42,21 @@
                     </div>
                     <div class="right">
                         <ul class="ul-textarea">
-                            @foreach($work->activities as $activitie)
-                                <li>
-                                    <button type="button" class="btn btn-text btn-small btn-delete"><i class="far fa-times-circle"></i></button>
-                                    <textarea class="form-control auto-resize" placeholder="" name="activities[]">{{ $activitie->text }}</textarea>
-                                </li>
-                            @endforeach
+                            @if(old('activities'))
+                                @foreach(old('activities') as $activitie)
+                                    <li>
+                                        <button type="button" class="btn btn-text btn-small btn-delete"><i class="far fa-times-circle"></i></button>
+                                        <textarea class="form-control auto-resize" placeholder="" name="activities[]">{{ $activitie }}</textarea>
+                                    </li>
+                                @endforeach
+                            @else
+                                @foreach($work->activities as $activitie)
+                                    <li>
+                                        <button type="button" class="btn btn-text btn-small btn-delete"><i class="far fa-times-circle"></i></button>
+                                        <textarea class="form-control auto-resize" placeholder="" name="activities[]">{{ $activitie->text }}</textarea>
+                                    </li>
+                                @endforeach
+                            @endif
                             <li>
                                 <button type="button" class="btn btn-text btn-yellow btn-add-activity"><i class="fas fa-plus"></i> Ajouter une activité</button>
                             </li>
@@ -73,15 +82,25 @@
                                         </li>
                                         <li>
                                             <ul class="list-content" data-list="{{ $item->id.'-'.$subItem->id }}">
-                                                @foreach($subItem->sd_item as $child)
-                                                    @if($child->sd_work_unit->id === $work->id)
-                                                    <li class="list-item">
-                                                        <button type="button" class="btn btn-text btn-small btn-delete" data-value="{{ $child->name }}"><i class="far fa-times-circle"></i></button>
-                                                        <p>{{ $child->name }}</p>
-                                                        <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[]" value="{{ $child->name }}" data-id="{{ $child->id }}">
-                                                    </li>
-                                                    @endif
-                                                @endforeach
+                                                @if(old(($item->id.'-'.$subItem->id)))
+                                                    @foreach(old(($item->id.'-'.$subItem->id)) as $child)
+                                                        <li class="list-item">
+                                                            <button type="button" class="btn btn-text btn-small btn-delete" data-value="{{ $child }}"><i class="far fa-times-circle"></i></button>
+                                                            <p>{{ $child }}</p>
+                                                            <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[]" value="{{ $child }}" data-id="{{ $child.now() }}">
+                                                        </li>
+                                                    @endforeach
+                                                @else
+                                                    @foreach($subItem->sd_item as $child)
+                                                        @if($child->sd_work_unit->id === $work->id)
+                                                            <li class="list-item">
+                                                                <button type="button" class="btn btn-text btn-small btn-delete" data-value="{{ $child->name }}"><i class="far fa-times-circle"></i></button>
+                                                                <p>{{ $child->name }}</p>
+                                                                <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[]" value="{{ $child->name }}" data-id="{{ $child->id }}">
+                                                            </li>
+                                                        @endif
+                                                    @endforeach
+                                                @endif
                                             </ul>
                                         </li>
                                         <li class="list-item-btn">
