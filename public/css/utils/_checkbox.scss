@@ -1,0 +1,55 @@
+.contain {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: 200px;
+}
+.contain input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+.contain input:checked ~ span {
+    background-color: $white_grey;
+}
+.checkmark{
+    display: inline-block;
+    width: 100%;
+}
+.checkmark:hover{
+    color: $info;
+    &:after{
+        content: "\f067";
+        position: absolute;
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        color: $info;
+        display: block;
+    }
+}
+
+.contain input:checked ~ {
+    .checkmark{
+        color: inherit;
+    }
+    .checkmark:after {
+        content: "\f00c";
+        position: absolute;
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        color: $dark;
+    }
+}
+.contain .checkmark:after {
+    top: 5px;
+    right: 20px;
+    width: 5px;
+    height: 10px;
+}
