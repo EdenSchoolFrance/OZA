@@ -24,7 +24,7 @@ class SdActivitie extends Model
 
     public function work_unit()
     {
-        return $this->hasMany(SdActivitie::class, 'sd_work_unit_id');
+        return $this->belongsTo(SdActivitie::class, 'sd_work_unit_id');
     }
 
 }

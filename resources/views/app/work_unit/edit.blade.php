@@ -2,8 +2,7 @@
 
 @section('content')
 <div class="content">
-
-    <form class="card card--add_work_unit" action="{{ route('work.update', ["id"=>$single_document->id, "id_work"=>$work->id]) }}" method="post" id="formWorkUnit">
+    <form class="card card--add_work_unit" action="{{ route('work.update', [$single_document->id, $work->id]) }}" method="post" id="formWorkUnit">
         @csrf
         <div class="card-body">
             <div class="row">

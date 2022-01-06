@@ -104,26 +104,6 @@
                 </form>
             </div>
         </div>
-
-        {{-- <div class="modal modal--delete">
-            <div class="modal-dialog">
-                <form class="modal-content" action="{{ route('admin.client.delete') }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="client" value="">
-                    <div class="modal-header">
-                        <p class="title">Confirmer l'archivage</p>
-                        <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Êtes-vous sûr du vouloir archiver ce client ?</p>
-                        <div>
-                            <button type="submit" class="btn btn-danger btn-text">Archiver</button>
-                            <button class="btn btn-inv btn-yellow btn-small"> Annuler</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div> --}}
     </div>
 @endsection
 

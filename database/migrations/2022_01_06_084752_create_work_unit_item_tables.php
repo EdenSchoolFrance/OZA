@@ -13,7 +13,7 @@ class CreateWorkUnitItemTables extends Migration
      */
     public function up()
     {
-        Schema::create('work_unit_item_tables', function (Blueprint $table) {
+        Schema::create('work_unit_item', function (Blueprint $table) {
             $table->foreignUuid('work_unit_id');
             $table->foreignUuid('child_sub_item_id');
 
@@ -31,6 +31,6 @@ class CreateWorkUnitItemTables extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('work_unit_item_tables');
+        Schema::dropIfExists('work_unit_item');
     }
 }

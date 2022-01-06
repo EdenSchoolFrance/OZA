@@ -65,10 +65,10 @@
                                     </td>
                                 @endforeach
                                 <td class="td_actions">
-                                    <a href="{{ route('work.edit', ['id' => $single_document->id, 'id_work'=> $work->id]) }}">
+                                    <a href="{{ route('work.edit', [$single_document->id, $work->id]) }}">
                                         <i class="far fa-edit"></i>
                                     </a>
-                                    <a href="{{ route('work.delete', ['id' => $single_document->id, 'id_work'=> $work->id]) }}">
+                                    <a href="{{ route('work.delete', [$single_document->id, $work->id]) }}">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 </td>

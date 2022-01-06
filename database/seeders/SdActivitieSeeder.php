@@ -15,12 +15,12 @@ class SdActivitieSeeder extends Seeder
      */
     public function run()
     {
-        $work = SdWorkUnit::where('name','test')->first();
+        $work_unit = SdWorkUnit::where('name', 'test')->first();
 
-        $acti = new SdActivitie();
-        $acti->id = uniqid();
-        $acti->text = "Test du test qui deviens un test";
-        $work->activitie()->save($acti);
-        $acti->save();
+        $activity = new SdActivitie();
+        $activity->id = uniqid();
+        $activity->text = "Test du test qui deviens un test";
+        $activity->work_unit()->associate($work_unit);
+        $activity->save();
     }
 }

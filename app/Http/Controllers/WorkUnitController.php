@@ -60,9 +60,9 @@ class WorkUnitController extends Controller
         if ($id_work !== null && Auth::user()->oza){
             $workUnit = WorkUnit::find($id_work);
 
-            return view('app.work_unit.createNew', compact('page', 'single_document', 'items','sectors','works','workUnit'));
+            return view('app.work_unit.create', compact('page', 'single_document', 'items','sectors','works','workUnit'));
         }else{
-            return view('app.work_unit.createNew', compact('page', 'single_document', 'items','sectors','works'));
+            return view('app.work_unit.create', compact('page', 'single_document', 'items','sectors','works'));
         }
     }
 

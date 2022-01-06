@@ -2,7 +2,33 @@ on('.btn-delete', 'click', (el, e) => {
     el.closest('li').remove();
 });
 
-on('.btn-add', 'click', (el, e) => {
+on('[data-modal=".modal--work_unit"]', 'click', (el, e) => {
+    let modal = $(el.dataset.modal, document, 0);
+
+    $('div[data-id="' + el.dataset.list + '"]', modal, 0).style.display = "flex";
+    $('.title', modal, 0).innerText = 'Modifier la liste des ' + el.dataset.item + ' de ' + el.dataset.sub;
+
+    $('.btn-modal-valid', modal, 0).setAttribute('data-list',el.dataset.list);
+    $('.btn-modal-add', modal, 0).setAttribute('data-list',el.dataset.list);
+    $('.btn-modal-check', modal, 0).setAttribute('data-list',el.dataset.list);
+    $('.btn-modal-uncheck', modal, 0).setAttribute('data-list',el.dataset.list);
+    $('[data-dismiss="modal"]', modal, 0).setAttribute('data-list',el.dataset.list);
+
+    let input = $('input', el.closest('ul.list-main'))
+    let check = $('.modal div[data-id="' + el.dataset.list + '"] input')
+
+    for (let i = 0; i < check.length ; i++) {
+        check[i].checked = false
+
+        for (let j = 0; j < input.length ; j++) {
+            if (input[j].value === check[i].dataset.name){
+                check[i].checked = true
+            }
+        }
+    }
+});
+
+on('.modal--work_unit .btn-add', 'click', (el, e) => {
     $('.modal')[0].style.display = 'flex';
     $('.modal div[data-id="' + el.dataset.list + '"]', document, 0).style.display = "flex";
     $('.modal .title')[0].innerText = 'Modifier la liste des ' + el.dataset.item + ' de ' + el.dataset.sub
@@ -23,7 +49,7 @@ on('.btn-add', 'click', (el, e) => {
     }
 });
 
-on('.btn-modal-add', 'click', (el, e) => {
+on('.modal--work_unit .btn-modal-add', 'click', (el, e) => {
     let name = el.closest('.modal-input').getElementsByTagName('input')[0].value.split(',')
     let check = $('.modal div[data-id="' + el.dataset.list + '"]', document, 0)
     for (let i = 0; i < name.length ; i++) {
@@ -44,29 +70,27 @@ on('.btn-modal-add', 'click', (el, e) => {
 
 });
 
-on('.btn-modal-check', 'click', (el, e) => {
+on('.modal--work_unit .btn-modal-check', 'click', (el, e) => {
     let check = $('.modal div[data-id="' + el.dataset.list + '"] input')
     for (let i = 0; i < check.length; i++) {
         check[i].checked = true
     }
 });
 
-on('.btn-modal-uncheck', 'click', (el, e) => {
+on('.modal--work_unit .btn-modal-uncheck', 'click', (el, e) => {
     let check = $('.modal div[data-id="' + el.dataset.list + '"] input')
     for (let i = 0; i < check.length; i++) {
         check[i].checked = false
     }
 });
 
-on('.btn-modal-close', 'click', (el, e) => {
-    let modal = document.getElementsByClassName('modal')
-    for (let i = 0; i < modal.length ; i++) {
-        modal[i].style.display = 'none';
-    }
-    $('.modal div[data-id="' + el.dataset.list + '"]', document, 0).style.display = "none";
+on('.modal--work_unit [data-dismiss="modal"]', 'click', (el, e) => {
+    let modal = el.closest('.modal');
+
+    $('div[data-id="' + el.dataset.list + '"]', modal, 0).style.display = "none";
 });
 
-on('.btn-modal-valid', 'click', (el, e) => {
+on('.modal--work_unit .btn-modal-valid', 'click', (el, e) => {
     let ul = $('.list-content[data-list="' + el.dataset.list + '"]', document, 0)
     ul.innerHTML = ""
     let inputAdd = $('.modal div[data-id="' + el.dataset.list + '"] input:checked')
@@ -115,13 +139,6 @@ on('.btn-send', 'click', (el, e) => {
     $('#inputTypeWorkUnit', document, 0).value = "true";
     $('#formWorkUnit', document, 0).submit();
 });
-
-
-
-on('.btn-open-modal-oza', 'click', (el, e) => {
-    $('.modal--oza')[0].style.display = 'flex';
-});
-
 
 document.getElementById('filter-sa').addEventListener('change', filter);
 document.getElementById('filter-ut').addEventListener('keyup', filter);
