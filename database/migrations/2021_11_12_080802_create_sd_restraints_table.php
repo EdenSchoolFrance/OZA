@@ -23,8 +23,8 @@ class CreateSdRestraintsTable extends Migration
             $table->foreignUuid('sd_risk_id');
             $table->foreignUuid('restraint_id')->nullable();
 
-            $table->foreign('sd_risk_id')->references('id')->on('sd_risks');
-            $table->foreign('restraint_id')->references('id')->on('restraints');
+            $table->foreign('sd_risk_id')->references('id')->on('sd_risks')->onDelete('cascade');
+            $table->foreign('restraint_id')->references('id')->on('restraints')->onDelete('cascade');
         });
     }
 

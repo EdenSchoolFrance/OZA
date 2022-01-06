@@ -22,7 +22,7 @@ class CreateRestraintsTable extends Migration
 
             $table->foreignUuid('risk_id');
 
-            $table->foreign('risk_id')->references('id')->on('risks');
+            $table->foreign('risk_id')->references('id')->on('risks')->onDelete('cascade');
         });
     }
 

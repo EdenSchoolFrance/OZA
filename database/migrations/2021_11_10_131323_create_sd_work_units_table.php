@@ -22,8 +22,8 @@ class CreateSdWorkUnitsTable extends Migration
             $table->foreignUuid('work_unit_id')->nullable();
             $table->foreignUuid('single_document_id');
 
-            $table->foreign('work_unit_id')->references('id')->on('work_units');
-            $table->foreign('single_document_id')->references('id')->on('single_documents');
+            $table->foreign('work_unit_id')->references('id')->on('work_units')->onDelete('cascade');
+            $table->foreign('single_document_id')->references('id')->on('single_documents')->onDelete('cascade');
 
         });
     }

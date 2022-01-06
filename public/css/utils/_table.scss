@@ -56,7 +56,6 @@ table.table {
                 font-size: 14px;
                 color: #576271;
                 padding: 15px 10px;
-
                 border-bottom: 1px solid rgba(0,0,0,0.2);
 
                 &:first-of-type {
@@ -69,6 +68,12 @@ table.table {
 
                 &.td {
                     &_actions {
+                        button {
+                            background-color: transparent;
+                            border: none;
+                            padding: 0;
+                        }
+
                         i {
                             cursor: pointer;
                             color: $yellow;

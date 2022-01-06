@@ -20,8 +20,8 @@ class CreateDangerPackTable extends Migration
 
             $table->primary(['danger_id', 'pack_id']);
 
-            $table->foreign('danger_id')->references('id')->on('dangers');
-            $table->foreign('pack_id')->references('id')->on('packs');
+            $table->foreign('danger_id')->references('id')->on('dangers')->onDelete('cascade');
+            $table->foreign('pack_id')->references('id')->on('packs')->onDelete('cascade');
         });
     }
 
