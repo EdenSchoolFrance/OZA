@@ -27,7 +27,7 @@ class WorkUnit extends Model
         return $this->belongsToMany(Activitie::class, 'work_unit_activity', 'work_unit_id', 'activity_id');
     }
 
-    public function child()
+    public function items()
     {
         return $this->belongsToMany(ChildSubItem::class, 'work_unit_item', 'work_unit_id', 'child_sub_item_id');
     }

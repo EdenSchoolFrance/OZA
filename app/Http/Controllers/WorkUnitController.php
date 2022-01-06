@@ -17,7 +17,7 @@ class WorkUnitController extends Controller
 {
     public function index($id)
     {
-        $sd = $this->checkSingleDocument($id);
+        $single_document = $this->checkSingleDocument($id);
 
         $page = [
             'title' => 'Définition des unités de travail',
@@ -36,14 +36,12 @@ class WorkUnitController extends Controller
 
         $items = Item::all();
 
-
-
-        return view('app.work_unit.index', compact('page', 'sd','works','items'));
+        return view('app.work_unit.index', compact('page', 'single_document','works','items'));
     }
 
     public function create($id,$id_work = null)
     {
-        $sd = $this->checkSingleDocument($id);
+        $single_document = $this->checkSingleDocument($id);
 
         $page = [
             'title' => 'Créer une unité de travail ',
@@ -59,18 +57,18 @@ class WorkUnitController extends Controller
 
         $works = WorkUnit::all()->take(10);
 
-        if ($id_work !== null){
+        if ($id_work !== null && Auth::user()->oza){
             $workUnit = WorkUnit::find($id_work);
 
-            return view('app.work_unit.createNew', compact('page', 'sd', 'items','sectors','works','workUnit'));
+            return view('app.work_unit.createNew', compact('page', 'single_document', 'items','sectors','works','workUnit'));
         }else{
-            return view('app.work_unit.createNew', compact('page', 'sd', 'items','sectors','works'));
+            return view('app.work_unit.createNew', compact('page', 'single_document', 'items','sectors','works'));
         }
     }
 
     public function edit($id,$id_work)
     {
-        $sd = $this->checkSingleDocument($id);
+        $single_document = $this->checkSingleDocument($id);
 
 
         $work = SdWorkUnit::find($id_work);
@@ -85,17 +83,18 @@ class WorkUnitController extends Controller
 
         $items = Item::all();
 
-        return view('app.work_unit.edit', compact('page', 'sd','work','items'));
+        return view('app.work_unit.edit', compact('page', 'single_document','work','items'));
     }
 
     public function store(Request $request, $id){
 
-        $sd = $this->checkSingleDocument($id);
+        $single_document = $this->checkSingleDocument($id);
 
         $request->validate([
             'name_enterprise' => 'required',
-            'number_employee' => 'required',
-            'type' => 'required'
+            'number_employee' => 'required|min:1',
+            'type' => 'required',
+            'activities' => 'required|array'
         ]);
 
         $work = new SdWorkUnit();
@@ -103,14 +102,14 @@ class WorkUnitController extends Controller
         $work->name = $request->name_enterprise;
         $work->number_employee = $request->number_employee;
         if ($request->type === 'true') $work->validated = 1; else $work->validated = 0;
-        $work->single_document()->associate($sd);
+        $work->single_document()->associate($single_document);
         $work->save();
 
-        foreach ($request->activitie as $activitie) {
+        foreach ($request->activities as $activitie) {
             $acti = new SdActivitie();
             $acti->id = uniqid();
             $acti->text = $activitie;
-            $work->activitie()->save($acti);
+            $work->activities()->save($acti);
             $acti->save();
 
         }
@@ -140,18 +139,19 @@ class WorkUnitController extends Controller
             }
 
         }
-        return redirect()->route('work.index', [$sd->id]);
+        return redirect()->route('work.index', [$single_document->id]);
     }
 
 
     public function update(Request $request, $id, $id_work){
 
-        $sd = $this->checkSingleDocument($id);
+        $single_document = $this->checkSingleDocument($id);
 
         $request->validate([
             'name_enterprise' => 'required',
-            'number_employee' => 'required',
-            'type' => 'required'
+            'number_employee' => 'required|min:1',
+            'type' => 'required',
+            'activities' => 'required|array'
         ]);
 
 
@@ -160,14 +160,14 @@ class WorkUnitController extends Controller
         $work->name = $request->name_enterprise;
         $work->number_employee = $request->number_employee;
         if ($request->type === 'true') $work->validated = 1; else $work->validated = 0;
-        $work->single_document()->associate($sd);
+        $work->single_document()->associate($single_document);
         $work->save();
 
-        foreach ($request->activitie as $activitie){
+        foreach ($request->activities as $activitie){
             $acti = new SdActivitie();
             $acti->id = uniqid();
             $acti->text = $activitie;
-            $work->activitie()->save($acti);
+            $work->activities()->save($acti);
             $acti->save();
         }
         $work1 = SdWorkUnit::find($id_work);
@@ -197,22 +197,22 @@ class WorkUnitController extends Controller
 
         $work1->delete();
 
-        return redirect()->route('work.index', [$sd->id]);
+        return redirect()->route('work.index', [$single_document->id]);
     }
 
     public function delete($id,$id_work){
 
-        $sd = $this->checkSingleDocument($id);
+        $single_document = $this->checkSingleDocument($id);
 
         $work = SdWorkUnit::find($id_work);
         $work->delete();
 
-        return redirect()->route('work.index', [$sd->id]);
+        return redirect()->route('work.index', [$single_document->id]);
     }
 
     public function filter(Request $request, $id){
 
-        $sd = $this->checkSingleDocument($id);
+        $single_document = $this->checkSingleDocument($id);
 
         if ($request->ajax()){
 

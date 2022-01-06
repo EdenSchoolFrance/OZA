@@ -63,6 +63,7 @@ on('.btn-modal-close', 'click', (el, e) => {
     for (let i = 0; i < modal.length ; i++) {
         modal[i].style.display = 'none';
     }
+    $('.modal div[data-id="' + el.dataset.list + '"]', document, 0).style.display = "none";
 });
 
 on('.btn-modal-valid', 'click', (el, e) => {
@@ -87,7 +88,7 @@ on('.btn-modal-valid', 'click', (el, e) => {
 
 on('.btn-add-activity', 'click', (el, e) => {
     let content ='<button type="button" class="btn btn-text btn-small btn-delete"><i class="far fa-times-circle"></i></button>\n' +
-        '<textarea class="form-control auto-resize" name="activitie[]" placeholder=""></textarea>'
+        '<textarea class="form-control auto-resize" name="activities[]" placeholder=""></textarea>'
     let li = document.createElement('li');
     li.innerHTML = content;
     el.closest('li').before(li);
@@ -120,3 +121,43 @@ on('.btn-send', 'click', (el, e) => {
 on('.btn-open-modal-oza', 'click', (el, e) => {
     $('.modal--oza')[0].style.display = 'flex';
 });
+
+
+document.getElementById('filter-sa').addEventListener('change', filter);
+document.getElementById('filter-ut').addEventListener('keyup', filter);
+
+function filter(){
+    let filterSelect = $('#filter-sa')[0].value
+    let filterInput = $('#filter-ut')[0].value
+
+    fetch(url, {
+        headers: {
+            "Content-Type": "application/json",
+            "X-Requested-With": "XMLHttpRequest",
+            "X-CSRF-Token": document.head.querySelector("[name=csrf-token][content]").content
+        },
+        method: 'post',
+        body: JSON.stringify ({
+            filterSa: filterSelect,
+            filterUt: filterInput
+        })
+    }).then(response => {
+        return response.json()
+    }).then(json => {
+        let list = $('.list-ut-template', document, 0)
+        list.innerHTML = "";
+        if (json.length === 0){
+            let li = document.createElement('li');
+            let content = '<a href="#">Aucune données trouvé</a>'
+            li.innerHTML = content;
+            list.appendChild(li);
+        }else{
+            for (let i = 0; i < json.length ; i++) {
+                let li = document.createElement('li');
+                let content = '<a href="/'+single_document_id+'/work/create/'+json[i].id+'">'+json[i].name+'</a>'
+                li.innerHTML = content;
+                list.appendChild(li);
+            }
+        }
+    });
+}

@@ -5,7 +5,7 @@
         <div class="card card--users">
             <div class="card-header">
                 <div></div>
-                <a href="{{ route('user.client.create', [$sd->id]) }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN UTILISATEUR</a>
+                <a href="{{ route('user.client.create', [$single_document->id]) }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN UTILISATEUR</a>
             </div>
             <div class="card-body">
                 <table class="table table--users table-sortable" style="width:100%">
@@ -27,7 +27,7 @@
                                 <td class="td_access">{{$user->role->name}}</td>
                                 <td class="td_actions">
                                     <a href=""><i class="fas fa-trash"></i></a>
-                                    <a href="{{ route('user.client.edit', ['user'=>$user->id, 'id' => $sd->id]) }}"><i class="far fa-edit"></i></a>
+                                    <a href="{{ route('user.client.edit', ['user'=>$user->id, 'id' => $single_document->id]) }}"><i class="far fa-edit"></i></a>
                                 </td>
                             </tr>
                         @endforeach
@@ -35,7 +35,7 @@
                 </table>
             </div>
             <div class="card-footer">
-                <a href="{{ route('user.client.create', [$sd->id]) }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN UTILISATEUR</a>
+                <a href="{{ route('user.client.create', [$single_document->id]) }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN UTILISATEUR</a>
             </div>
         </div>
     </div>

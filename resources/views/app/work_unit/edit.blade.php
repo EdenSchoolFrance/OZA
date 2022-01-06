@@ -3,7 +3,7 @@
 @section('content')
 <div class="content">
 
-    <form class="card card--add_work_unit" action="{{ route('work.update', ["id"=>$sd->id, "id_work"=>$work->id]) }}" method="post" id="formWorkUnit">
+    <form class="card card--add_work_unit" action="{{ route('work.update', ["id"=>$single_document->id, "id_work"=>$work->id]) }}" method="post" id="formWorkUnit">
         @csrf
         <div class="card-body">
             <div class="row">
@@ -13,6 +13,9 @@
                     </div>
                     <div class="right">
                         <input type="text" name="name_enterprise" class="form-control" placeholder="Indiquer le nom de votre entreprise" value="{{ $work->name }}">
+                        @error('name_enterprise')
+                        <p class="message-error">{{ $message }}</p>
+                        @enderror
                     </div>
                 </div>
             </div>
@@ -28,6 +31,9 @@
                             <input type="number" class="form-control" id="numberSal" placeholder="" value="{{ $work->number_employee }}" name="number_employee">
                             <button type="button" class="btn btn-text btn-num" data-value="more"><i class="fas fa-plus"></i></button>
                         </div>
+                        @error('employee_number')
+                        <p class="message-error">{{ $message }}</p>
+                        @enderror
                     </div>
                 </div>
                 <div class="line line--activity">
@@ -36,14 +42,19 @@
                     </div>
                     <div class="right">
                         <ul class="ul-textarea">
-                            @foreach($work->activitie as $activitie)
+                            @foreach($work->activities as $activitie)
                                 <li>
                                     <button type="button" class="btn btn-text btn-small btn-delete"><i class="far fa-times-circle"></i></button>
-                                    <textarea class="form-control auto-resize" placeholder="" name="activitie[]">{{ $activitie->text }}</textarea>
+                                    <textarea class="form-control auto-resize" placeholder="" name="activities[]">{{ $activitie->text }}</textarea>
                                 </li>
                             @endforeach
                             <li>
                                 <button type="button" class="btn btn-text btn-yellow btn-add-activity"><i class="fas fa-plus"></i> Ajouter une activité</button>
+                            </li>
+                            <li>
+                                @error('activities')
+                                <p class="message-error">{{ $message }}</p>
+                                @enderror
                             </li>
                         </ul>
                     </div>
@@ -114,13 +125,19 @@
                         @foreach($items as $item)
                             @foreach($item->sub_items as $subItem)
                                 <div data-id="{{ $item->id.'-'.$subItem->id }}" style="display: none">
-                                    @foreach($subItem->sd_item as $child)
-                                        @if($child->sd_work_unit->id === $work->id)
+                                    @foreach($subItem->child_sub_items as $child)
+                                        @if(!in_array($child->name, $work->items->where('sub_item_id', $subItem->id)->pluck('name')->toArray()))
                                         <label class="contain">
                                             <input type="checkbox" value="{{ $child->id }}" data-name="{{$child->name}}">
                                             <span class="checkmark">{{ $child->name }}</span>
                                         </label>
                                         @endif
+                                    @endforeach
+                                    @foreach($work->items->where('sub_item_id', $subItem->id) as $child)
+                                        <label class="contain">
+                                            <input type="checkbox" value="{{ $child->id }}" data-name="{{$child->name}}" checked>
+                                            <span class="checkmark">{{ $child->name }}</span>
+                                        </label>
                                     @endforeach
                                 </div>
                             @endforeach

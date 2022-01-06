@@ -3,7 +3,7 @@
 @section('content')
     <div class="content">
         <div class="card card--users">
-            <form class="card-body" action="{{ route('user.client.store', [$sd->id]) }}" method="POST">
+            <form class="card-body" action="{{ route('user.client.store', [$single_document->id]) }}" method="POST">
                 @csrf
                 <div class="row">
                     <div class="line">

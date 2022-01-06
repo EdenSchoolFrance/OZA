@@ -24,12 +24,12 @@ class SdWorkUnit extends Model
         'validated'
     ];
 
-    public function activitie()
+    public function activities()
     {
         return $this->hasMany(SdActivitie::class, 'sd_work_unit_id');
     }
 
-    public function item()
+    public function items()
     {
         return $this->hasMany(SdItem::class, 'sd_work_unit_id');
     }

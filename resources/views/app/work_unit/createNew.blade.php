@@ -4,7 +4,7 @@
 
     <div class="content">
 
-        <form class="card card--add_work_unit" action="{{ route('work.store', [$sd->id]) }}" method="post" id="formWorkUnit">
+        <form class="card card--add_work_unit" action="{{ route('work.store', [$single_document->id]) }}" method="post" id="formWorkUnit">
             @csrf
             <div class="card-body">
                 <div class="row">
@@ -13,7 +13,10 @@
                             <label for="name_enterprise">Intitulé de l’unité de travail</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="name_enterprise" class="form-control" placeholder="Indiquer le nom de votre entreprise" @if(isset($workUnit)) value="{{ $workUnit->name }}" @endif>
+                            <input type="text" name="name_enterprise" class="form-control" placeholder="Indiquer le nom de votre entreprise" value="{{ old('name_enterprise') }}" @if(isset($workUnit)) value="{{ $workUnit->name }}" @endif >
+                            @error('name_enterprise')
+                                <p class="message-error">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
                     @if (Auth::user()->oza === 1)
@@ -34,9 +37,12 @@
                         <div class="right">
                             <div class="btn-group-number">
                                 <button type="button" class="btn btn-text btn-num" data-value="less"><i class="fas fa-minus"></i></button>
-                                <input type="number" class="form-control" id="numberSal" placeholder="" value="0" name="number_employee">
+                                <input type="number" class="form-control" id="numberSal" placeholder="" value="{{ old('number_employee') ? old('number_employee') : '0' }}" name="number_employee">
                                 <button type="button" class="btn btn-text btn-num" data-value="more"><i class="fas fa-plus"></i></button>
                             </div>
+                            @error('employee_number')
+                                <p class="message-error">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
                     <div class="line line--activity">
@@ -49,13 +55,17 @@
                                     @foreach($workUnit->activitie as $activitie)
                                         <li>
                                             <button type="button" class="btn btn-text btn-small btn-delete"><i class="far fa-times-circle"></i></button>
-                                            <textarea class="form-control auto-resize" placeholder="" name="activitie[]">{{ $activitie->text }}</textarea>
+                                            <textarea class="form-control auto-resize" placeholder="" name="activities[]">{{ $activitie->text }}</textarea>
                                         </li>
                                     @endforeach
                                 @endif
-
                                 <li>
                                     <button type="button" class="btn btn-text btn-yellow btn-add-activity"><i class="fas fa-plus"></i> Ajouter une activité</button>
+                                </li>
+                                <li>
+                                    @error('activities')
+                                        <p class="message-error">{{ $message }}</p>
+                                    @enderror
                                 </li>
                             </ul>
                         </div>
@@ -75,7 +85,7 @@
                                             <li>
                                                 <ul class="list-content" data-list="{{ $item->id.'-'.$subItem->id }}">
                                                     @if(isset($workUnit))
-                                                        @foreach($workUnit->child as $child)
+                                                        @foreach($workUnit->items as $child)
                                                             @if($child->sub_item->id === $subItem->id)
                                                                 <li class="list-item">
                                                                     <button type="button" class="btn btn-text btn-small btn-delete" data-value="{{ $child->name }}"><i class="far fa-times-circle"></i></button>
@@ -128,16 +138,12 @@
                             @foreach($items as $item)
                                 @foreach($item->sub_items as $subItem)
                                     <div data-id="{{ $item->id.'-'.$subItem->id }}" style="display: none">
-                                        @if(isset($workUnit))
-                                            @foreach($workUnit->child as $child)
-                                                @if($child->sub_item->id === $subItem->id)
-                                                    <label class="contain">
-                                                        <input type="checkbox" value="{{ $child->id }}" data-name="{{$child->name}}">
-                                                        <span class="checkmark">{{ $child->name }}</span>
-                                                    </label>
-                                                @endif
-                                            @endforeach
-                                        @endif
+                                        @foreach($subItem->child_sub_items as $child)
+                                            <label class="contain">
+                                                <input type="checkbox" value="{{ $child->id }}" data-name="{{$child->name}}" >
+                                                <span class="checkmark">{{ $child->name }}</span>
+                                            </label>
+                                        @endforeach
                                     </div>
                                 @endforeach
                             @endforeach
@@ -163,38 +169,38 @@
         </div>
     </div>
     @if (Auth::user()->oza === 1)
-    <div class="modal modal--work_unit modal--oza">
-        <div class="card modal-content">
-            <div class="card-header">
-                <h2 class="title">Liste des unités de travail existantes</h2>
-                <button class="btn btn-text btn-modal-close"><i class="fas fa-times"></i></button>
-            </div>
-            <div class="card-body">
-                <div class="row row--ut">
-                    <div class="group-form">
-                        <label for="filter-ut">Recherche par intitulé</label>
-                        <input type="text" name="filter[ut]" id="filter-ut" class="form-control" placeholder="Taper les premières lettres de l’unité">
-                    </div>
-                    <div class="group-form">
-                        <label for="filter-sa">Filtrer les unités de travail</label>
-                        <select name="filter[sa]" id="filter-sa" class="form-control">
-                            <option value="none" selected>Sélectionner un secteur d’activité</option>
-                            @foreach($sectors as $sector)
-                                <option value="{{ $sector->id }}">{{ $sector->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+        <div class="modal modal--work_unit modal--oza">
+            <div class="card modal-content">
+                <div class="card-header">
+                    <h2 class="title">Liste des unités de travail existantes</h2>
+                    <button class="btn btn-text btn-modal-close"><i class="fas fa-times"></i></button>
                 </div>
-                <div class="row">
-                    <ul class="list-ut-template">
-                        @foreach($works as $work)
-                            <li><a href="{{ route('work.create', ['id' => $sd->id, 'id_work' => $work->id]) }}">{{ $work->name }}</a></li>
-                        @endforeach
-                    </ul>
+                <div class="card-body">
+                    <div class="row row--ut">
+                        <div class="group-form">
+                            <label for="filter-ut">Recherche par intitulé</label>
+                            <input type="text" name="filter[ut]" id="filter-ut" class="form-control" placeholder="Taper les premières lettres de l’unité">
+                        </div>
+                        <div class="group-form">
+                            <label for="filter-sa">Filtrer les unités de travail</label>
+                            <select name="filter[sa]" id="filter-sa" class="form-control">
+                                <option value="none" selected>Sélectionner un secteur d’activité</option>
+                                @foreach($sectors as $sector)
+                                    <option value="{{ $sector->id }}">{{ $sector->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <ul class="list-ut-template">
+                            @foreach($works as $work)
+                                <li><a href="{{ route('work.create', ['id' => $single_document->id, 'id_work' => $work->id]) }}">{{ $work->name }}</a></li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     @endif
 @endsection
 
@@ -203,44 +209,8 @@
     @if (Auth::user()->oza === 1)
     <script>
 
-        document.getElementById('filter-sa').addEventListener('change', filter);
-        document.getElementById('filter-ut').addEventListener('keyup', filter);
-
-        function filter(){
-            let filterSelect = $('#filter-sa')[0].value
-            let filterInput = $('#filter-ut')[0].value
-
-            fetch('{{ route('work.filter', [$sd->id]) }}', {
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-Requested-With": "XMLHttpRequest",
-                    "X-CSRF-Token": document.head.querySelector("[name=csrf-token][content]").content
-                },
-                method: 'post',
-                body: JSON.stringify ({
-                    filterSa: filterSelect,
-                    filterUt: filterInput
-                })
-            }).then(response => {
-                return response.json()
-            }).then(json => {
-                let list = $('.list-ut-template', document, 0)
-                list.innerHTML = "";
-                if (json.length === 0){
-                    let li = document.createElement('li');
-                    let content = '<a href="#">Aucune données trouvé</a>'
-                    li.innerHTML = content;
-                    list.appendChild(li);
-                }else{
-                    for (let i = 0; i < json.length ; i++) {
-                        let li = document.createElement('li');
-                        let content = '<a href="/{{ $sd->id }}/work/create/'+json[i].id+'">'+json[i].name+'</a>'
-                        li.innerHTML = content;
-                        list.appendChild(li);
-                    }
-                }
-            });
-        }
+        let url = {{ route('work.filter', [$single_document->id]) }};
+        let single_document_id = {{ $single_document->id }};
 
     </script>
     @endif

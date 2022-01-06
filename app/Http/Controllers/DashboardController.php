@@ -26,7 +26,7 @@ class DashboardController extends Controller
 
     public function index($id)
     {
-        $sd = $this->checkSingleDocument($id);
+        $single_document = $this->checkSingleDocument($id);
 
         $page = [
             'title' => 'Bienvenue ' . Auth::user()->firstname . ' ' . Auth::user()->lastname,
@@ -34,6 +34,6 @@ class DashboardController extends Controller
             'sub_sidebar' => ''
         ];
 
-        return view('app.dashboard.index', compact('page', 'sd'));
+        return view('app.dashboard.index', compact('page', 'single_document'));
     }
 }

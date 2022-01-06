@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class WorkUnitItemTables extends Migration
+class CreateWorkUnitItemTables extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class WorkUnitItemTables extends Migration
      */
     public function up()
     {
-        Schema::create('work_unit_item', function (Blueprint $table) {
+        Schema::create('work_unit_item_tables', function (Blueprint $table) {
             $table->foreignUuid('work_unit_id');
             $table->foreignUuid('child_sub_item_id');
-            $table->boolean('checked')->default(0);
 
             $table->primary(['work_unit_id', 'child_sub_item_id']);
 
@@ -32,6 +31,6 @@ class WorkUnitItemTables extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('work_unit_item');
+        Schema::dropIfExists('work_unit_item_tables');
     }
 }

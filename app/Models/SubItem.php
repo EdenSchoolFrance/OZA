@@ -22,7 +22,7 @@ class SubItem extends Model
         'name'
     ];
 
-    public function child()
+    public function child_sub_items()
     {
         return $this->hasMany(ChildSubItem::class);
     }

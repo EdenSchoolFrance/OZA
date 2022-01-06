@@ -9,7 +9,7 @@ class PresentationController extends Controller
 {
     public function index($id)
     {
-        $sd = $this->checkSingleDocument($id);
+        $single_document = $this->checkSingleDocument($id);
 
         $page = [
             'title' => 'Présentation de la structure',
@@ -17,7 +17,7 @@ class PresentationController extends Controller
             'sub_sidebar' => 'presentation'
         ];
 
-        return view('app.presentation.index', compact('page', 'sd'));
+        return view('app.presentation.index', compact('page', 'single_document'));
     }
 
     public function store(Request $request, $id, $type)
