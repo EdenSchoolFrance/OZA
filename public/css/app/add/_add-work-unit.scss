@@ -7,6 +7,9 @@
                     &-cancel{
                         align-items: inherit;
                     }
+                    label{
+                        margin-top: 0;
+                    }
                 }
                 .right{
 
@@ -81,9 +84,14 @@
         .group-form{
             margin-right: 10%;
             width: 40%;
+            margin-bottom: 20px;
         }
     }
     .list-ut-template{
+        .checked{
+            color: $info;
+            cursor: not-allowed;
+        }
         a{
             color: $dark;
         }

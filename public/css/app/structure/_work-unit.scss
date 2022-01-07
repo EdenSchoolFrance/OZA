@@ -208,8 +208,17 @@ table.table--work_units {
                 }
             }
 
-
         }
+
+        .modal-footer{
+            display: flex;
+            justify-content: flex-end;
+        }
+        .row--center{
+            display: flex;
+            justify-content: center;
+        }
+
         #modal-list {
             div {
                 display: flex;
@@ -217,7 +226,7 @@ table.table--work_units {
                 flex-wrap: wrap;
 
                 .contain {
-                    margin-right: 100px;
+                    margin-right: 70px;
                 }
             }
         }

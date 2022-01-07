@@ -171,8 +171,13 @@ function filter(){
         }else{
             for (let i = 0; i < json.length ; i++) {
                 let li = document.createElement('li');
-                let content = '<a href="/'+single_document_id+'/work/create/'+json[i].id+'">'+json[i].name+'</a>'
-                li.innerHTML = content;
+                if (json[i].id === workUnit){
+                    let content = '<a href="#" class="checked">'+json[i].name+'</a>'
+                    li.innerHTML = content;
+                }else{
+                    let content = '<a href="/'+single_document_id+'/work/create/'+json[i].id+'">'+json[i].name+'</a>'
+                    li.innerHTML = content;
+                }
                 list.appendChild(li);
             }
         }

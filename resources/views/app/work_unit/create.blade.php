@@ -11,7 +11,7 @@
                             <label for="name_enterprise">Intitulé de l’unité de travail</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="name_enterprise" class="form-control" placeholder="Indiquer le nom de votre entreprise" value="{{ old('name_enterprise') }}" @if(isset($workUnit)) value="{{ $workUnit->name }}" @endif >
+                            <input type="text" name="name_enterprise" class="form-control" placeholder="Indiquer le nom de votre entreprise" value="@if(isset($workUnit)){{ old('name_enterprise') ? old('name_enterprise') : $workUnit->name }}@else{{ old('name_enterprise') ? old('name_enterprise') : "" }}@endif">
                             @error('name_enterprise')
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
@@ -165,15 +165,17 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="row">
-                        <p>Ajouter des nouveaux matériels</p>
-                        <div class="right right--inline modal-input">
-                            <label for="name">Intitulé</label>
-                            <div>
-                                <input type="text" name="name" class="form-control" placeholder="matériel 1, matériel 2, ">
-                                <p class="info-input">Il est possible d’ajouter plusieurs matériels en les séparant par une virgule</p>
+                    <div class="row row--center">
+                        <div>
+                            <p>Ajouter des nouveaux matériels</p>
+                            <div class="right right--inline modal-input">
+                                <label for="name">Intitulé</label>
+                                <div>
+                                    <input type="text" name="name" class="form-control" placeholder="matériel 1, matériel 2, ">
+                                    <p class="info-input">Il est possible d’ajouter plusieurs matériels en les séparant par une virgule</p>
+                                </div>
+                                <button class="btn btn-text btn-yellow btn-modal-add">Ajouter</button>
                             </div>
-                            <button class="btn btn-text btn-yellow btn-modal-add">Ajouter</button>
                         </div>
                     </div>
                 </div>
@@ -211,7 +213,15 @@
                         <div class="row">
                             <ul class="list-ut-template">
                                 @foreach($works as $work)
-                                    <li><a href="{{ route('work.create', [$single_document->id, $work->id]) }}">{{ $work->name }}</a></li>
+                                    @if(isset($workUnit))
+                                        @if($work->id === $workUnit->id)
+                                            <li><a href="#" class="checked">{{ $work->name }}</a></li>
+                                        @else
+                                            <li><a href="{{ route('work.create', [$single_document->id, $work->id]) }}">{{ $work->name }}</a></li>
+                                        @endif
+                                    @else
+                                        <li><a href="{{ route('work.create', [$single_document->id, $work->id]) }}">{{ $work->name }}</a></li>
+                                    @endif
                                 @endforeach
                             </ul>
                         </div>
@@ -228,6 +238,7 @@
         <script>
             let url = '{{ route('work.filter', [$single_document->id]) }}';
             let single_document_id = '{{ $single_document->id }}';
+            let workUnit = '{{ isset($workUnit) ? $workUnit->id : null }}'
         </script>
     @endif
 @endsection

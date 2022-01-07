@@ -217,15 +217,16 @@ class WorkUnitController extends Controller
         if ($request->ajax()){
 
             if (empty($request->filterUt)){
+                if ($request->filterSa === 'none'){
+                    $data = WorkUnit::all();
+                }else{
+                    $data = WorkUnit::whereHas('sector_activitie', function ($q) use ($request) {
+                        $q->where('id', $request->filterSa);
+                    })->get();
+                }
 
-                $data = WorkUnit::whereHas('sector_activitie', function ($q) use ($request) {
-                    $q->where('id', $request->filterSa);
-                })->get();
-
-            }else if ($request->filterSa === 'none' || empty($request->filterSa)){
-
+            }else if ($request->filterSa === 'none' && $request->filterUt){
                 $data = WorkUnit::where('name', 'like', '%' . $request->filterUt . '%')->get();
-
             }else{
 
                 $data = WorkUnit::whereHas('sector_activitie', function ($q) use ($request) {
