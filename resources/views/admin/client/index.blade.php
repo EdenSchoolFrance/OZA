@@ -33,7 +33,7 @@
                         @foreach($clients as $client)
                             <tr>
                                 <td class="td_name">{{ $client->name }}</td>
-                                <td class="td_expert">{{ $client->expert->firstname }} {{ $client->expert->lastname }}</td>
+                                <td class="td_expert">{{ $client->expert ? $client->expert->firstname . ' ' . $client->expert->lastname : 'Non renseigné' }}</td>
                                 <td class="td_nb_client">{{ $client->client_number }}</td>
                                 <td class="td_status">{{ $client->archived ? 'Archivé' : 'En cours' }}</td>
                                 <td class="td_actions">

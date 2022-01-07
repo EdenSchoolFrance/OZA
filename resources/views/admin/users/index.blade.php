@@ -3,12 +3,10 @@
 @section('content')
     <div class="content">
         <div class="card card--users">
-            @if (Auth::user()->hasPermission('ADMIN'))
-                <div class="card-header">
-                    <div></div>
-                    <a class="btn btn-yellow" href="{{ route('admin.user.create') }}"><i class="fas fa-plus"></i> AJOUTER UN UTILISATEUR</a>
-                </div>
-            @endif
+            <div class="card-header">
+                <div></div>
+                <a class="btn btn-yellow" href="{{ route('admin.user.create') }}"><i class="fas fa-plus"></i> AJOUTER UN UTILISATEUR</a>
+            </div>
             <div class="card-body">
                 <table class="table table--users table-sortable">
                     <thead>
@@ -17,9 +15,7 @@
                             <th class="th_firstname th-sort">Prénom</th>
                             <th class="th_email th-sort">Email</th>
                             <th class="th_access th-sort">Accès</th>
-                            @if (Auth::user()->hasPermission('ADMIN'))
-                                <th class="th_actions"></th>
-                            @endif
+                            <th class="th_actions"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,22 +25,40 @@
                                 <td class="td_firstname">{{ $user->firstname }}</td>
                                 <td class="td_email">{{ $user->email }}</td>
                                 <td class="td_access">{{ $user->role->name }}</td>
-                                @if (Auth::user()->hasPermission('ADMIN'))
-                                    <td class="td_actions">
-                                        <i class="fas fa-trash"></i>
-                                        <a href="{{ route('admin.user.edit', [$user->id]) }}"><i class="far fa-edit"></i></a>
-                                    </td>
-                                @endif
+                                <td class="td_actions">
+                                    @if (Auth::user()->id != $user->id)
+                                        <button data-modal=".modal--delete" data-id="{{ $user->id }}"><i class="fas fa-trash"></i></button>
+                                    @endif
+                                    <a href="{{ route('admin.user.edit', [$user->id]) }}"><i class="far fa-edit"></i></a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
-            @if (Auth::user()->hasPermission('ADMIN'))
-                <div class="card-footer">
-                    <a class="btn btn-yellow" href="{{ route('admin.user.create') }}"><i class="fas fa-plus"></i> AJOUTER UN UTILISATEUR</a>
-                </div>
-            @endif
+            <div class="card-footer">
+                <a class="btn btn-yellow" href="{{ route('admin.user.create') }}"><i class="fas fa-plus"></i> AJOUTER UN UTILISATEUR</a>
+            </div>
+        </div>
+
+        <div class="modal modal--delete">
+            <div class="modal-dialog">
+                <form class="modal-content" action="{{ route('admin.user.delete') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="id" value="">
+                    <div class="modal-header">
+                        <p class="title">Confirmer la suppression</p>
+                        <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Êtes-vous sûr du vouloir supprimer cet utilisateur ?</p>
+                        <div>
+                            <button type="submit" class="btn btn-danger btn-text">Supprimer</button>
+                            <button type="button" class="btn btn-inv btn-yellow btn-small" data-dismiss="modal"> Annuler</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 @endsection

@@ -20,5 +20,17 @@ class UpdateUserSeeder extends Seeder
         $user = User::where('lastname', 'Latsname Admin Client')->first();
         $user->client()->associate($client);
         $user->save();
+
+        $user = User::where('lastname', 'Latsname Manager Client')->first();
+        $user->client()->associate($client);
+        $user->save();
+
+        $user = User::where('lastname', 'Latsname Editor Client')->first();
+        $user->client()->associate($client);
+        $user->save();
+
+        $user = User::where('lastname', 'Latsname Reader Client')->first();
+        $user->client()->associate($client);
+        $user->save();
     }
 }
