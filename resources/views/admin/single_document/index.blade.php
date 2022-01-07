@@ -44,7 +44,7 @@
 
                         @if (count($single_documents) == 0)
                             <tr class="no-data no-data--centered">
-                                <td colspan="5">Aucun client</td>
+                                <td colspan="5">Aucun document unique</td>
                             </tr>
                         @endif
                     </tbody>

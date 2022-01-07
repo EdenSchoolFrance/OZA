@@ -66,10 +66,10 @@ on('.modal', 'click', (el, e) => {
     }
 });
 
-on('[data-modal=".modal--archive"], [data-modal=".modal--unarchive"]', 'click', (el, e) => {
+on('[data-modal=".modal--archive"], [data-modal=".modal--unarchive"], [data-modal=".modal--delete"]', 'click', (el, e) => {
     let modal = $(el.dataset.modal, document, 0);
 
-    if (modal) {
+    if (modal && el.dataset.id) {
         $('input[name="id"]', modal, 0).value = el.dataset.id;
     }
 });

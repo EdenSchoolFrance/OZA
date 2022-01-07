@@ -25,7 +25,7 @@
                     </div>
                 </div>
             @endisset
-            @if (!Auth::user()->oza)
+            @if (Auth::user()->hasAccess('client'))
                 <div class="nav-link">
                     <i class="far fa-envelope"></i>
                     <p>Contacter <br/> un expert</p>

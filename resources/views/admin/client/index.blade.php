@@ -33,7 +33,7 @@
                         @foreach($clients as $client)
                             <tr>
                                 <td class="td_name">{{ $client->name }}</td>
-                                <td class="td_expert">{{ $client->expert->firstname }} {{ $client->expert->lastname }}</td>
+                                <td class="td_expert">{{ $client->expert ? $client->expert->firstname . ' ' . $client->expert->lastname : 'Non renseigné' }}</td>
                                 <td class="td_nb_client">{{ $client->client_number }}</td>
                                 <td class="td_status">{{ $client->archived ? 'Archivé' : 'En cours' }}</td>
                                 <td class="td_actions">
@@ -104,26 +104,6 @@
                 </form>
             </div>
         </div>
-
-        {{-- <div class="modal modal--delete">
-            <div class="modal-dialog">
-                <form class="modal-content" action="{{ route('admin.client.delete') }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="client" value="">
-                    <div class="modal-header">
-                        <p class="title">Confirmer l'archivage</p>
-                        <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Êtes-vous sûr du vouloir archiver ce client ?</p>
-                        <div>
-                            <button type="submit" class="btn btn-danger btn-text">Archiver</button>
-                            <button class="btn btn-inv btn-yellow btn-small"> Annuler</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div> --}}
     </div>
 @endsection
 

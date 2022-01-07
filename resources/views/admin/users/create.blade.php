@@ -29,7 +29,7 @@
                             <label for="lastname">Nom</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="lastname" class="form-control @error('lastname') invalid @enderror" placeholder="Indiquer le nom" value="{{ old('lastname') }}" required>
+                            <input type="text" name="lastname" id="lastname" class="form-control @error('lastname') invalid @enderror" placeholder="Indiquer le nom" value="{{ old('lastname') }}" required>
                             @error('lastname')
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
@@ -40,7 +40,7 @@
                             <label for="firstname">Prénom</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="firstname" class="form-control @error('firstname') invalid @enderror" placeholder="Indiquer le prénom" value="{{ old('firstname') }}" required>
+                            <input type="text" name="firstname" id="firstname" class="form-control @error('firstname') invalid @enderror" placeholder="Indiquer le prénom" value="{{ old('firstname') }}" required>
                             @error('firstname')
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
@@ -51,7 +51,7 @@
                             <label for="email">Email</label>
                         </div>
                         <div class="right">
-                            <input type="email" name="email" class="form-control @error('email') invalid @enderror" placeholder="Indiquer l'email" value="{{ old('email') }}" required>
+                            <input type="email" name="email" id="email" class="form-control @error('email') invalid @enderror" placeholder="Indiquer l'email" value="{{ old('email') }}" required>
                             @error('email')
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
@@ -62,9 +62,9 @@
                             <label for="phone">Phone</label>
                         </div>
                         <div class="right">
-                            <input type="number" name="phone" class="form-control @error('phone') invalid @enderror" placeholder="Indiquer le numéro de téléphone" value="{{ old('phone') }}" required>
+                            <input type="tel" name="phone" id="phone" class="form-control @error('phone') invalid @enderror" pattern="^(?:(?:(?:\+|00)33\D?(?:\D?\(0\)\D?)?)|0){1}[1-9]{1}(?:\D?\d{2}){4}$" placeholder="00 00 00 00 00" value="{{ old('phone') }}" required>
                             @error('phone')
-                            <p class="message-error">{{ $message }}</p>
+                                <p class="message-error">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                             <label for="post">Poste</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="post" class="form-control @error('post') invalid @enderror" placeholder="Indiquer le poste" value="{{ old('post') }}" required>
+                            <input type="text" name="post" id="post" class="form-control @error('post') invalid @enderror" placeholder="Indiquer le poste" value="{{ old('post') }}" required>
                             @error('post')
                             <p class="message-error">{{ $message }}</p>
                             @enderror
@@ -84,7 +84,7 @@
                             <label for="password">Mot de passe</label>
                         </div>
                         <div class="right">
-                            <input type="password" name="password" class="form-control @error('password') invalid @enderror" placeholder="Indiquer le mot de passe" required>
+                            <input type="password" name="password" id="password" class="form-control @error('password') invalid @enderror" placeholder="Indiquer le mot de passe" required>
                             @error('password')
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
