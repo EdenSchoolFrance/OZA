@@ -72,7 +72,7 @@ class ClientController extends Controller
             'firstname' => 'required',
             'lastname' => 'required',
             'post' => 'required',
-            'phone' => 'required',
+            'phone' => ['required', 'regex:/^(?:(?:(?:\+|00)33\D?(?:\D?\(0\)\D?)?)|0){1}[1-9]{1}(?:\D?\d{2}){4}$/'],
             'email' => 'required|unique:users',
             'password' => 'required|confirmed',
         ]);

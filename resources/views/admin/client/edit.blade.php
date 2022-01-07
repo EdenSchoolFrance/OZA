@@ -124,7 +124,7 @@
                             <select name="expert" id="expert" class="form-control">
                                 <option>Sélectionner un expert</option>
                                 @foreach($experts as $expert)
-                                    <option value="{{ $expert->id }}" {{ old('expert') ? (old('expert') == $expert->id ? 'selected' : '') : ($client->expert->id == $expert->id ? 'selected' : '') }}>{{ $expert->firstname }} {{ $expert->lastname }} {{ $expert->role->name }}</option>
+                                    <option value="{{ $expert->id }}" {{ old('expert') ? (old('expert') == $expert->id ? 'selected' : '') : ($client->expert && $client->expert->id == $expert->id ? 'selected' : '') }}>{{ $expert->firstname }} {{ $expert->lastname }} {{ $expert->role->name }}</option>
                                 @endforeach
                             </select>
                             @error('expert')

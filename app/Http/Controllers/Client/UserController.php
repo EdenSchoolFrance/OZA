@@ -50,7 +50,7 @@ class UserController extends Controller
             'lastname' => 'required',
             'firstname' => 'required',
             'email' => 'required|unique:users',
-            'phone' => 'required',
+            'phone' => ['required', 'regex:/^(?:(?:(?:\+|00)33\D?(?:\D?\(0\)\D?)?)|0){1}[1-9]{1}(?:\D?\d{2}){4}$/'],
             'post' => 'required',
             'role' => 'required|exists:roles,id',
             'password' => 'required|min:8|confirmed',
@@ -98,7 +98,7 @@ class UserController extends Controller
         $request->validate([
             'lastname' => 'required',
             'firstname' => 'required',
-            'phone' => 'required',
+            'phone' => ['required', 'regex:/^(?:(?:(?:\+|00)33\D?(?:\D?\(0\)\D?)?)|0){1}[1-9]{1}(?:\D?\d{2}){4}$/'],
             'post' => 'required',
             'email' => 'required|unique:users,email,' . $user->id,
             'role' => 'required|exists:roles,id',
@@ -113,5 +113,20 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('user.client.index', [$single_document->id])->with('status', 'L\'utilisateur a bien été modifié !');
+    }
+
+    public function delete(Request $request)
+    {
+        $request->validate([
+            'id' => 'required'
+        ]);
+
+        $user = User::find($request->id);
+
+        if ($user && $user->id != Auth::user()->id) {
+            $user->delete();
+        }
+
+        return back()->with('status', 'L\'utilisateur a bien été supprimé !');
     }
 }

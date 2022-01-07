@@ -18,7 +18,10 @@ class SingleDocumentSeeder extends Seeder
     public function run()
     {
         $client = Client::where('name', 'Biocoop')->first();
-        $user = User::where('lastname', 'Latsname Admin Client')->first();
+        $admin = User::where('lastname', 'Latsname Admin Client')->first();
+        $manager = User::where('lastname', 'Latsname Manager Client')->first();
+        $editor = User::where('lastname', 'Latsname Editor Client')->first();
+        $reader = User::where('lastname', 'Latsname Reader Client')->first();
 
         $sd = new SingleDocument();
         $sd->id = uniqid();
@@ -34,6 +37,9 @@ class SingleDocumentSeeder extends Seeder
         $sd->phone = "0614875412";
         $sd->client()->associate($client);
         $sd->save();
-        $sd->users()->attach($user);
+        $sd->users()->attach($admin);
+        $sd->users()->attach($manager);
+        $sd->users()->attach($editor);
+        $sd->users()->attach($reader);
     }
 }
