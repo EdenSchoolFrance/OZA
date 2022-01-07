@@ -16,7 +16,7 @@
                     </div>
                 </div>
             </div>
-
+            <hr>
             <div class="row">
                 <div class="line">
                     <div class="left">
@@ -187,7 +187,7 @@
                 </div>
             </div>
 
-
+            <hr>
 
             <div class="row">
                 <div class="line">
@@ -199,7 +199,7 @@
                 </div>
             </div>
 
-            <div class="row">
+            {{--<div class="row">
                 <div class="line">
                     <div class="left">
                         <label>Mesures existantes</label>
@@ -207,7 +207,11 @@
                     <div class="right">
                         <ul>
                             <li>
-                                <p> <i class="far fa-times-circle"></i> Matériels conformes, utilisés et entretenus dans les règles de l’art, en respectant les préconisations de la notice du constructeur <i class="far fa-edit text-color-yellow"></i></p>
+                                <p>
+                                    <i class="far fa-times-circle"></i>
+                                    Matériels conformes, utilisés et entretenus dans les règles de l’art, en respectant les préconisations de la notice du constructeur
+                                    <button data-modal=".modal--delete" data-id="{{ $restrain->id }}"><i class="far fa-edit text-color-yellow"></i></button>
+                                </p>
                             </li>
 
                             <li>
@@ -231,7 +235,11 @@
                     <div class="right">
                         <ul>
                             <li>
-                                <p> <i class="far fa-times-circle"></i> Matériels conformes, utilisés et entretenus dans les règles de l’art, en respectant les préconisations de la notice du constructeur <i class="far fa-edit text-color-yellow"></i></p>
+                                <p>
+                                    <i class="far fa-times-circle"></i>
+                                    Matériels conformes, utilisés et entretenus dans les règles de l’art, en respectant les préconisations de la notice du constructeur
+                                    <button data-modal=".modal--delete" data-id="{{ $restrain->id }}"><i class="far fa-edit text-color-yellow"></i></button>
+                                </p>
                             </li>
 
                             <li>
@@ -246,9 +254,11 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div>--}}
+            <div class="restraint">
 
-            <div class="row card card--add-risk">
+            </div>
+            {{--<div class="row card card--add-risk">
 
                 <form action="" class="">
                     <div class="card-header">
@@ -396,7 +406,29 @@
                         </div>
                     </div>
                 </form>
+            </div>--}}
+
+            <div class="row">
+                <div class="line">
+                    <div class="left">
+                    </div>
+                    <div class="right">
+                        <ul>
+                            <li>
+                                <button data-modal=".modal--risk" data-id="" type="button" class="btn btn-yellow btn-text">+ Ajouter une mesure existante</button>
+                            </li>
+                            <li>
+                                <span class="bold">Valeur du risque résiduel évaluée :&nbsp;</span> <button type="button" class="btn btn-danger btn-small">24</button>
+                            </li>
+                            <li>
+                                <span class="bold">Criticité de la situation actuelle :&nbsp;</span> <button type="button" class="btn btn-danger btn-small">STOP</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
+
+            <hr>
 
             <div class="row">
                 <div class="line">
@@ -444,10 +476,168 @@
             </div>
         </div>
     </form>
+
+
+
+
+
+
+    <div class="modal modal--risk">
+        <div class="modal-dialog modal-dialog-large">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p class="title">Ajouter une nouvelle mesure déjà mise en place</p>
+                    <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="line">
+                            <div class="left">
+                                <label for="nameRisk">Intitulé du risque</label>
+                            </div>
+                            <div class="right">
+                                <input type="email" class="form-control" id="workName" placeholder="Vente - Boulangerie pâtisserie">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="line">
+                            <div class="left">
+                                <h3>Evaluation du risque identifié</h3>
+                            </div>
+                            <div class="right">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="line">
+                            <div class="left">
+                                <label>Technique</label>
+                            </div>
+                            <div class="right">
+                                <div class="radio-bar-content">
+                                    <div class="radio-bar radio-bar-tech">
+                                        <label class="con">
+                                            <input type="radio" checked name="tech" value="Très bon">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="con">
+                                            <input type="radio" name="tech" value="Bon">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="con">
+                                            <input type="radio" name="tech" value="Moyen">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="con">
+                                            <input type="radio" name="tech" value="Nulle">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                    <div class="radio-title">
+                                        <label>Très bon</label>
+                                        <label>Bon</label>
+                                        <label>Moyen</label>
+                                        <label>Nulle</label>
+                                    </div>
+                                </div>
+                                <i class="far fa-question-circle" data-toggle="toolHelp" data-placement="top" title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="line">
+                            <div class="left">
+                                <label>Organisationnelle</label>
+                            </div>
+                            <div class="right">
+                                <div class="radio-bar-content">
+                                    <div class="radio-bar radio-bar-orga">
+                                        <label class="con">
+                                            <input type="radio" checked name="orga" value="Très bon">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="con">
+                                            <input type="radio" name="orga" value="Bon">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="con">
+                                            <input type="radio" name="orga" value="Moyen">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="con">
+                                            <input type="radio" name="orga" value="Nulle">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                    <div class="radio-title">
+                                        <label>Très bon</label>
+                                        <label>Bon</label>
+                                        <label>Moyen</label>
+                                        <label>Nulle</label>
+                                    </div>
+                                </div>
+                                <i class="far fa-question-circle" data-toggle="toolHelp" data-placement="top" title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="line">
+                            <div class="left">
+                                <label>Humaine</label>
+                            </div>
+                            <div class="right">
+                                <div class="radio-bar-content">
+                                    <div class="radio-bar radio-bar-human">
+                                        <label class="con">
+                                            <input type="radio" checked="checked" name="human" value="Très bon">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="con">
+                                            <input type="radio" name="human" value="Bon">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="con">
+                                            <input type="radio" name="human" value="Moyen">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="con">
+                                            <input type="radio" name="human" value="Nulle">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                    <div class="radio-title">
+                                        <label>Très bon</label>
+                                        <label>Bon</label>
+                                        <label>Moyen</label>
+                                        <label>Nulle</label>
+                                    </div>
+                                </div>
+                                <i class="far fa-question-circle" data-toggle="toolHelp" data-placement="top" title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="line">
+                            <div class="left">
+                            </div>
+                            <div class="right">
+                                <button type="button" class="btn btn-success btn-modal-risk-add">Ajouter</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 @endsection
 
 @section('script')
-    <script src="/js/app/accident.js"></script>
+    <script src="/js/app/risk.js"></script>
 @endsection

@@ -56,5 +56,99 @@
                 }
             }
         }
+
+        hr{
+            opacity: 0.4;
+            margin: 40px 0;
+        }
+
+    }
+}
+
+.modal--risk{
+    .row {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 35px;
+        .line {
+            display: flex;
+            // justify-content: center;
+            margin-bottom: 15px;
+            div {
+                &.left {
+                    width: 20%;
+                    margin-right: 20px;
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: flex-start;
+
+                    p {
+                        font-family: 'Hind-Regular';
+                        color: $dark_purple;
+                    }
+
+                    label {
+                        margin-top: 10px;
+                        color: $dark_purple;
+                    }
+                    h3{
+                        text-align: right;
+                    }
+                }
+
+                &.right {
+                    width: 80%;
+                    display: flex;
+                    justify-content: flex-start;
+
+                    p{
+                        i{
+                            margin: 0;
+                            font-size: inherit;
+                        }
+                    }
+                    i{
+                        margin-left: 20px;
+                        font-size: 20px;
+                    }
+
+                    input,
+                    textarea {
+                        max-width: 480px;
+                        &.form-control-small {
+                            max-width: calc(480px / 2);
+                        }
+                        &:disabled {
+                            background-color: transparent;
+                            border: 1px solid transparent;
+
+                            &::placeholder {
+                                color: transparent;
+                            }
+                        }
+                    }
+                }
+
+                h3 {
+                    margin: 0;
+                    color: $dark_purple;
+                    font-size: 16px;
+                    font-family: 'Hind-Medium';
+                }
+            }
+            &--activity {
+                textarea {
+                    border-color: transparent;
+                    padding: 0;
+
+                    &:focus,
+                    &.active {
+                        padding: 10px 15px;
+                        background-color: #F7F7F7;
+                        border-color: $border_head;
+                    }
+                }
+            }
+        }
     }
 }
