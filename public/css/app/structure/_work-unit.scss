@@ -173,3 +173,62 @@ table.table--work_units {
         }
     }
 }
+
+.modal--work_unit{
+    .modal-content{
+
+        a{
+            color: $info;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        hr{
+            opacity: 0.5;
+        }
+        .right--float{
+            display: flex;
+            justify-content: flex-end;
+        }
+        .right--inline{
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            label, button{
+                padding-top: 10px;
+            }
+            div{
+                margin-left: 30px;
+                margin-right: 30px;
+                input{
+                    width: 480px;
+                }
+                .info-input{
+                    font-size: 14px;
+                    margin-left: 10px;
+                }
+            }
+
+        }
+
+        .modal-footer{
+            display: flex;
+            justify-content: flex-end;
+        }
+        .row--center{
+            display: flex;
+            justify-content: center;
+        }
+
+        #modal-list {
+            div {
+                display: flex;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+
+                .contain {
+                    margin-right: 70px;
+                }
+            }
+        }
+    }
+}

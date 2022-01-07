@@ -48,11 +48,11 @@ class PresentationController extends Controller
             $validator = Validator::make($request->all(), [
                 'desc' => 'required',
             ]);
-    
+          
             if ($validator->fails()) {
                 return back()->withErrors($validator)->withInput()->with('type', $type);
             }
-    
+          
             $single = SingleDocument::find($id);
             $single->description = $request->desc;
             $single->save();
@@ -63,11 +63,11 @@ class PresentationController extends Controller
                 'email' => 'required',
                 'phone' => 'required'
             ]);
-    
+          
             if ($validator->fails()) {
                 return back()->withErrors($validator)->withInput()->with('type', $type);
             }
-    
+          
             $single = SingleDocument::find($id);
             $single->firstname = $request->firstname;
             $single->lastname = $request->lastname;

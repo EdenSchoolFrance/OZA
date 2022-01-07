@@ -117,8 +117,13 @@ Route::middleware(['auth'])->group(function() {
     });
 
     Route::get('/{single_document}/work', [WorkUnitController::class, 'index'])->name('work.index');
-    Route::get('/{single_document}/work/create', [WorkUnitController::class, 'create'])->name('work.create');
-    Route::get('/{single_document}/work/create/new', [WorkUnitController::class, 'createNew'])->name('work.create.new');
+    Route::get('/{single_document}/work/create/{work_unit?}', [WorkUnitController::class, 'create'])->name('work.create');
+    Route::get('/{single_document}/work/edit/{id_work}', [WorkUnitController::class, 'edit'])->name('work.edit');
+
+    Route::post('/{single_document}/work/create/filter', [WorkUnitController::class, 'filter'])->name('work.filter');
+    Route::post('/{single_document}/work/store', [WorkUnitController::class, 'store'])->name('work.store');
+    Route::post('/{single_document}/work/update/{work_unit}', [WorkUnitController::class, 'update'])->name('work.update');
+    Route::post('/{single_document}/work/delete', [WorkUnitController::class, 'delete'])->name('work.delete'); // change post
 
     Route::get('/{single_document}/risk/accident', [RiskController::class, 'accident'])->name('risk.accident');
     Route::get('/{single_document}/risk/accident/create', [RiskController::class, 'accidentCreate'])->name('risk.accident.create');

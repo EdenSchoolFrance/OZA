@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSdWorkUnitsTable extends Migration
+class CreateSubItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class CreateSdWorkUnitsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sd_work_units', function (Blueprint $table) {
+        Schema::create('sub_items', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
-            $table->integer('number_employee');
-            $table->boolean('validated')->default(0);
-
-            $table->foreignUuid('single_document_id');
-
-            $table->foreign('single_document_id')->references('id')->on('single_documents')->onDelete('cascade');
+            $table->foreignUuid('item_id')->nullable();
+            $table->foreign('item_id')->references('id')->on('items');
         });
     }
 
@@ -32,6 +28,6 @@ class CreateSdWorkUnitsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sd_work_units');
+        Schema::dropIfExists('sub_items');
     }
 }
