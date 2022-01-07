@@ -68,9 +68,7 @@
                                     <a href="{{ route('work.edit', [$single_document->id, $work->id]) }}">
                                         <i class="far fa-edit"></i>
                                     </a>
-                                    <a href="{{ route('work.delete', [$single_document->id, $work->id]) }}">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
+                                    <button data-modal=".modal--delete" data-id="{{ $work->id }}"><i class="fas fa-trash"></i></button>
                                 </td>
                             </tr>
                         @endforeach
@@ -94,6 +92,25 @@
                         </tr>
                     </tfoot>
                 </table>
+            </div>
+        </div>
+        <div class="modal modal--delete">
+            <div class="modal-dialog">
+                <form class="modal-content" action="{{ route('work.delete',[$single_document->id]) }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="id" value="">
+                    <div class="modal-header">
+                        <p class="title">Confirmer la suppression</p>
+                        <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Êtes-vous sûr du vouloir supprimer cette unité de travail ?</p>
+                        <div>
+                            <button type="submit" class="btn btn-danger btn-text">Supprimer</button>
+                            <button type="button" class="btn btn-inv btn-yellow btn-small" data-dismiss="modal"> Annuler</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

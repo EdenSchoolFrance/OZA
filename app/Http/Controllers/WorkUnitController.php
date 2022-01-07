@@ -200,14 +200,19 @@ class WorkUnitController extends Controller
         return redirect()->route('work.index', [$single_document->id]);
     }
 
-    public function delete($id,$id_work){
+    public function delete(Request $request)
+    {
+        $request->validate([
+            'id' => 'required'
+        ]);
 
-        $single_document = $this->checkSingleDocument($id);
+        $work_unit = SdWorkUnit::find($request->id);
 
-        $work = SdWorkUnit::find($id_work);
-        $work->delete();
+        if ($work_unit) {
+            $work_unit->delete();
+        }
 
-        return redirect()->route('work.index', [$single_document->id]);
+        return back()->with('status', 'L\'unité de travail a bien été supprimé !');
     }
 
     public function filter(Request $request, $id){
