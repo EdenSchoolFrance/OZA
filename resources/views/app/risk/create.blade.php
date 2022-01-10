@@ -226,187 +226,38 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div>--}}
 
-            <div class="row">
-                <div class="line">
-                    <div class="left">
-                    </div>
-                    <div class="right">
-                        <ul>
-                            <li>
-                                <p>
-                                    <i class="far fa-times-circle"></i>
-                                    Matériels conformes, utilisés et entretenus dans les règles de l’art, en respectant les préconisations de la notice du constructeur
-                                    <button data-modal=".modal--delete" data-id="{{ $restrain->id }}"><i class="far fa-edit text-color-yellow"></i></button>
-                                </p>
-                            </li>
-
-                            <li>
-                                Technique : <span class="text-color-green bold">BON</span>
-                            </li>
-                            <li>
-                                Organisationnelle : <span class="text-color-green bold">BON</span>
-                            </li>
-                            <li>
-                                Humain : <span class="text-color-red bold">NULLE</span>
-                            </li>
-                        </ul>
+            <div class="restraint">
+                <div class="row">
+                    <div class="line">
+                        <div class="left">
+                        </div>
+                        <div class="right">
+                            <ul>
+                                <li>
+                                    <p>
+                                        <i class="far fa-times-circle btn-delete"></i>
+                                        Matériels conformes, utilisés et entretenus dans les règles de l’art, en respectant les préconisations de la notice du constructeur
+                                        <button data-modal=".modal--risk" data-id="576312553" class="btn btn-yellow btn-text btn-edit-modal-risk" type="button"><i class="far fa-edit text-color-yellow"></i></button>
+                                        <input type="hidden" value="good,good,null" name="restraint[]">
+                                    </p>
+                                </li>
+                                <li>
+                                    Technique : <span class="text-color-green bold">BON</span>
+                                </li>
+                                <li>
+                                    Organisationnelle : <span class="text-color-green bold">BON</span>
+                                </li>
+                                <li>
+                                    Humain : <span class="text-color-red bold">NULLE</span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>--}}
-            <div class="restraint">
-
             </div>
-            {{--<div class="row card card--add-risk">
 
-                <form action="" class="">
-                    <div class="card-header">
-                        <h2 class="title">Ajouter une nouvelle mesure déjà mise en place</h2>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="line">
-                                <div class="left">
-                                    <label for="nameRisk">Intitulé du risque</label>
-                                </div>
-                                <div class="right">
-                                    <input type="email" class="form-control" id="workName" placeholder="Vente - Boulangerie pâtisserie">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="line">
-                                <div class="left">
-                                    <h3>Evaluation du risque identifié</h3>
-                                </div>
-                                <div class="right">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="line">
-                                <div class="left">
-                                    <label>Technique</label>
-                                </div>
-                                <div class="right">
-                                    <div class="radio-bar-content">
-                                        <div class="radio-bar">
-                                            <label class="con">
-                                                <input type="radio" checked="checked" name="tech">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                            <label class="con">
-                                                <input type="radio" checked="checked" name="tech">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                            <label class="con">
-                                                <input type="radio" checked="checked" name="tech">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                            <label class="con">
-                                                <input type="radio" checked="checked" name="tech">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </div>
-                                        <div class="radio-title">
-                                            <label>Très bon</label>
-                                            <label>Bon</label>
-                                            <label>Moyen</label>
-                                            <label>Nulle</label>
-                                        </div>
-                                    </div>
-                                    <i class="far fa-question-circle" data-toggle="toolHelp" data-placement="top" title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="line">
-                                <div class="left">
-                                    <label>Organisationnelle</label>
-                                </div>
-                                <div class="right">
-                                    <div class="radio-bar-content">
-                                        <div class="radio-bar">
-                                            <label class="con">
-                                                <input type="radio" checked="checked" name="orga">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                            <label class="con">
-                                                <input type="radio" checked="checked" name="orga">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                            <label class="con">
-                                                <input type="radio" checked="checked" name="orga">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                            <label class="con">
-                                                <input type="radio" checked="checked" name="orga">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </div>
-                                        <div class="radio-title">
-                                            <label>Très bon</label>
-                                            <label>Bon</label>
-                                            <label>Moyen</label>
-                                            <label>Nulle</label>
-                                        </div>
-                                    </div>
-                                    <i class="far fa-question-circle" data-toggle="toolHelp" data-placement="top" title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="line">
-                                <div class="left">
-                                    <label>Humaine</label>
-                                </div>
-                                <div class="right">
-                                    <div class="radio-bar-content">
-                                        <div class="radio-bar">
-                                            <label class="con">
-                                                <input type="radio" checked="checked" name="human">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                            <label class="con">
-                                                <input type="radio" checked="checked" name="human">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                            <label class="con">
-                                                <input type="radio" checked="checked" name="human">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                            <label class="con">
-                                                <input type="radio" checked="checked" name="human">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </div>
-                                        <div class="radio-title">
-                                            <label>Très bon</label>
-                                            <label>Bon</label>
-                                            <label>Moyen</label>
-                                            <label>Nulle</label>
-                                        </div>
-                                    </div>
-                                    <i class="far fa-question-circle" data-toggle="toolHelp" data-placement="top" title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="line">
-                                <div class="left">
-                                </div>
-                                <div class="right">
-                                    <button type="button" class="btn btn-success">Ajouter</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>--}}
 
             <div class="row">
                 <div class="line">
@@ -415,7 +266,7 @@
                     <div class="right">
                         <ul>
                             <li>
-                                <button data-modal=".modal--risk" data-id="" type="button" class="btn btn-yellow btn-text">+ Ajouter une mesure existante</button>
+                                <button data-modal=".modal--risk" data-id="" type="button" class="btn btn-yellow btn-text btn-open-risk">+ Ajouter une mesure existante</button>
                             </li>
                             <li>
                                 <span class="bold">Valeur du risque résiduel évaluée :&nbsp;</span> <button type="button" class="btn btn-danger btn-small">24</button>
@@ -436,7 +287,7 @@
                         <label>Mesures proposées</label>
                     </div>
                     <div class="right">
-                        <ul>
+                        <ul class="restraint-proposed">
                             <li>
                                 <p> <i class="far fa-times-circle"></i> Accueil des clients</p>
                             </li>
@@ -472,7 +323,7 @@
                 </div>
             </div>
             <div class="row row--submit">
-                <button class="btn btn-success" disabled>Valider le danger</button>
+                <button class="btn btn-success">Valider le danger</button>
             </div>
         </div>
     </form>
@@ -496,7 +347,7 @@
                                 <label for="nameRisk">Intitulé du risque</label>
                             </div>
                             <div class="right">
-                                <input type="email" class="form-control" id="workName" placeholder="Vente - Boulangerie pâtisserie">
+                                <input type="email" class="form-control" id="nameRisk" placeholder="Vente - Boulangerie pâtisserie">
                             </div>
                         </div>
                     </div>
@@ -520,19 +371,19 @@
                                 <div class="radio-bar-content">
                                     <div class="radio-bar radio-bar-tech">
                                         <label class="con">
-                                            <input type="radio" checked name="tech" value="Très bon">
+                                            <input type="radio" checked name="tech" value="very good">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="con">
-                                            <input type="radio" name="tech" value="Bon">
+                                            <input type="radio" name="tech" value="good">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="con">
-                                            <input type="radio" name="tech" value="Moyen">
+                                            <input type="radio" name="tech" value="medium">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="con">
-                                            <input type="radio" name="tech" value="Nulle">
+                                            <input type="radio" name="tech" value="null">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
@@ -556,19 +407,19 @@
                                 <div class="radio-bar-content">
                                     <div class="radio-bar radio-bar-orga">
                                         <label class="con">
-                                            <input type="radio" checked name="orga" value="Très bon">
+                                            <input type="radio" checked name="orga" value="very good">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="con">
-                                            <input type="radio" name="orga" value="Bon">
+                                            <input type="radio" name="orga" value="good">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="con">
-                                            <input type="radio" name="orga" value="Moyen">
+                                            <input type="radio" name="orga" value="medium">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="con">
-                                            <input type="radio" name="orga" value="Nulle">
+                                            <input type="radio" name="orga" value="null">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
@@ -592,19 +443,19 @@
                                 <div class="radio-bar-content">
                                     <div class="radio-bar radio-bar-human">
                                         <label class="con">
-                                            <input type="radio" checked="checked" name="human" value="Très bon">
+                                            <input type="radio" checked="checked" name="human" value="very good">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="con">
-                                            <input type="radio" name="human" value="Bon">
+                                            <input type="radio" name="human" value="good">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="con">
-                                            <input type="radio" name="human" value="Moyen">
+                                            <input type="radio" name="human" value="medium">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="con">
-                                            <input type="radio" name="human" value="Nulle">
+                                            <input type="radio" name="human" value="null">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
@@ -625,7 +476,7 @@
                             <div class="left">
                             </div>
                             <div class="right">
-                                <button type="button" class="btn btn-success btn-modal-risk-add">Ajouter</button>
+                                <button type="button" class="btn btn-success btn-modal-risk-add btn-close" data-dismiss="modal">Ajouter</button>
                             </div>
                         </div>
                     </div>
