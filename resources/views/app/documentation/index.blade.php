@@ -4,7 +4,7 @@
     <div class="content">
         <div class="card card--doc">
             @csrf
-            @if (Auth::user()->hasPermission('oza', 'ADMIN'))
+            @if (Auth::user()->hasAccess('oza', 'ADMIN'))
                 <div class="card-header">
                     <a href="{{ route('documentation.edit', [$doc->name]) }}" class="btn btn-yellow">Modifier</a>
                 </div>

@@ -19,8 +19,8 @@ class CreateWorkUnitActivityTable extends Migration
 
             $table->primary(['work_unit_id', 'activity_id']);
 
-            $table->foreign('work_unit_id')->references('id')->on('work_units');
-            $table->foreign('activity_id')->references('id')->on('activities');
+            $table->foreign('work_unit_id')->references('id')->on('work_units')->onDelete('cascade');
+            $table->foreign('activity_id')->references('id')->on('activities')->onDelete('cascade');
         });
     }
 

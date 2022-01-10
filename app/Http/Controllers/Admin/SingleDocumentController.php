@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Pack;
 use App\Models\User;
 use App\Models\Client;
+use App\Models\Danger;
 use App\Models\SdDanger;
 use Illuminate\Http\Request;
 use App\Models\SingleDocument;
@@ -72,6 +74,97 @@ class SingleDocumentController extends Controller
             $sd_danger->save();
         }
 
-        return redirect()->route('admin.client.edit', [$client->id])->with('status', 'Le document unique a bien été créé !');
+        return back()->with('status', 'Le document unique a bien été créé !');
+    }
+
+    public function edit(Client $client, SingleDocument $single_document)
+    {
+        $page = [
+            'title' => 'Modification du document unique : ' . $single_document->name,
+            'sidebar' => 'clients',
+            'sub_sidebar' => '',
+        ];
+
+        $dangers = Danger::all();
+        $packs = Pack::all();
+
+        $sd = $single_document;
+
+        return view('admin.single_document.edit', compact('page', 'sd', 'dangers', 'packs'));
+    }
+
+    public function update(Request $request, Client $client, SingleDocument $single_document)
+    {
+        $request->validate([
+            'name_single_document' => 'required',
+            'dangers' => 'required|array',
+            'dangers.*' => 'exists:dangers,id'
+        ]);
+
+        $single_document->name = $request->name_single_document;
+        $single_document->save();
+
+        $dangers = SdDanger::whereHas('single_document', function ($q) use ($single_document) {
+            $q->where('id', $single_document->id);
+        })->get();
+
+        $dangers_request = $request->dangers;
+
+        foreach ($dangers as $danger) {
+            if (in_array($danger->danger_id, $dangers_request)) {
+                unset($dangers_request[$danger->danger_id]);
+            } else {
+                $danger->delete();
+            }
+        }
+
+        foreach ($dangers_request as $danger) {
+            $sd_danger = new SdDanger();
+            $sd_danger->id = uniqid();
+            $sd_danger->single_document()->associate($single_document);
+            $sd_danger->danger()->associate($danger);
+            $sd_danger->save();
+        }
+
+        return back()->with('status', 'Le document unique a bien été mis à jour !');
+    }
+
+    public function archive(Request $request)
+    {
+        $request->validate([
+            'id' => 'required'
+        ]);
+
+        $single_document = SingleDocument::find($request->id);
+
+        if ($single_document) {
+            $single_document->archived = true;
+            $single_document->save();
+        }
+
+        return back()->with('status', 'Le document unique a bien été archivé !');
+    }
+
+    public function unarchive(Request $request)
+    {
+        $request->validate([
+            'id' => 'required'
+        ]);
+
+        $single_document = SingleDocument::find($request->id);
+
+        if ($single_document) {
+            $single_document->archived = false;
+            $single_document->save();
+        }
+
+        return back()->with('status', 'Le document unique a bien été désarchivé !');
+    }
+
+    public function delete(Client $client, SingleDocument $single_document)
+    {
+        $single_document->delete();
+
+        return redirect()->route('admin.client.edit', [$client->id, 'tab' => 'du'])->with('status', 'Le document unique a bien été supprimé !');
     }
 }

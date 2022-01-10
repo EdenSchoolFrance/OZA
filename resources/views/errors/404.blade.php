@@ -17,7 +17,7 @@
             </div>
             <div class="card-body">
                 <div class="row row--center cancel">
-                    <a href="{{url()->previous()}}" class="btn btn-yellow">Retour</a>
+                    <a href="{{ url()->previous() }}" class="btn btn-yellow">Retour</a>
                 </div>
             </div>
         </form>

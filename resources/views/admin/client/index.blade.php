@@ -33,12 +33,16 @@
                         @foreach($clients as $client)
                             <tr>
                                 <td class="td_name">{{ $client->name }}</td>
-                                <td class="td_expert">{{ $client->expert->firstname }} {{ $client->expert->lastname }}</td>
+                                <td class="td_expert">{{ $client->expert ? $client->expert->firstname . ' ' . $client->expert->lastname : 'Non renseigné' }}</td>
                                 <td class="td_nb_client">{{ $client->client_number }}</td>
-                                <td class="td_status">{{ $client->archived == 1 ? 'Archivé' : 'En cours' }}</td>
+                                <td class="td_status">{{ $client->archived ? 'Archivé' : 'En cours' }}</td>
                                 <td class="td_actions">
                                     @if (Auth::user()->hasPermission('ADMIN'))
-                                        <i class="fas fa-trash"></i>
+                                        @if ($client->archived)
+                                            <button data-modal=".modal--unarchive" data-id="{{ $client->id }}"><i class="fas fa-box-open"></i></button>
+                                        @else
+                                            <button data-modal=".modal--archive" data-id="{{ $client->id }}"><i class="fas fa-archive"></i></button>
+                                        @endif
                                     @endif
                                     <a href="{{ route('admin.client.edit', [$client->id]) }}"><i class="far fa-edit"></i></a>
                                 </td>
@@ -59,6 +63,46 @@
                     <a href="{{ route('admin.client.create') }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN CLIENT</a>
                 </div>
             @endif
+        </div>
+
+        <div class="modal modal--archive">
+            <div class="modal-dialog">
+                <form class="modal-content" action="{{ route('admin.client.archive') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="id" value="">
+                    <div class="modal-header">
+                        <p class="title">Confirmer l'archivage</p>
+                        <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Êtes-vous sûr du vouloir archiver ce client ?</p>
+                        <div>
+                            <button type="submit" class="btn btn-danger btn-text">Archiver</button>
+                            <button type="button" class="btn btn-inv btn-yellow btn-small" data-dismiss="modal"> Annuler</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="modal modal--unarchive">
+            <div class="modal-dialog">
+                <form class="modal-content" action="{{ route('admin.client.unarchive') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="id" value="">
+                    <div class="modal-header">
+                        <p class="title">Confirmer le désarchivage</p>
+                        <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Êtes-vous sûr du vouloir désarchiver ce client ?</p>
+                        <div>
+                            <button type="submit" class="btn btn-danger btn-text">Désarchiver</button>
+                            <button type="button" class="btn btn-inv btn-yellow btn-small" data-dismiss="modal"> Annuler</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 @endsection

@@ -18,7 +18,7 @@ class CreateWorkUnitsTable extends Migration
             $table->string('name')->nullable();
             $table->foreignUuid('sector_activity_id');
 
-            $table->foreign('sector_activity_id')->references('id')->on('sector_activities');
+            $table->foreign('sector_activity_id')->references('id')->on('sector_activities')->onDelete('cascade');
         });
     }
 

@@ -18,7 +18,7 @@ class Controller extends BaseController
         if (Auth::user()->oza) {
             $single_document = SingleDocument::find($id);
         } else {
-            $single_document = Auth::user()->single_documents->where('id', $id)->first();
+            $single_document = Auth::user()->single_documents->where('id', $id)->where('archived', 0)->first();
         }
 
         if (!$single_document) {

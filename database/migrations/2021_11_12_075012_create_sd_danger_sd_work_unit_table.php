@@ -20,8 +20,8 @@ class CreateSdDangerSdWorkUnitTable extends Migration
 
             $table->primary(['sd_danger_id', 'sd_work_unit_id']);
 
-            $table->foreign('sd_danger_id')->references('id')->on('sd_dangers');
-            $table->foreign('sd_work_unit_id')->references('id')->on('sd_work_units');
+            $table->foreign('sd_danger_id')->references('id')->on('sd_dangers')->onDelete('cascade');
+            $table->foreign('sd_work_unit_id')->references('id')->on('sd_work_units')->onDelete('cascade');
         });
     }
 

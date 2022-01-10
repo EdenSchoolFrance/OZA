@@ -56,5 +56,38 @@ class UserSeeder extends Seeder
         $user->password = "test";
         $user->role()->associate($role_admin);
         $user->save();
+
+        $user = new User();
+        $user->id = uniqid();
+        $user->lastname = "Latsname Manager Client";
+        $user->firstname = "Firstname Manager Client";
+        $user->email = "managerclient@gmail.com";
+        $user->phone = "0614875412";
+        $user->post = "Poste";
+        $user->password = "test";
+        $user->role()->associate($role_manager);
+        $user->save();
+
+        $user = new User();
+        $user->id = uniqid();
+        $user->lastname = "Latsname Editor Client";
+        $user->firstname = "Firstname Editor Client";
+        $user->email = "editorclient@gmail.com";
+        $user->phone = "0614875412";
+        $user->post = "Poste";
+        $user->password = "test";
+        $user->role()->associate($role_editor);
+        $user->save();
+
+        $user = new User();
+        $user->id = uniqid();
+        $user->lastname = "Latsname Reader Client";
+        $user->firstname = "Firstname Reader Client";
+        $user->email = "readerclient@gmail.com";
+        $user->phone = "0614875412";
+        $user->post = "Poste";
+        $user->password = "test";
+        $user->role()->associate($role_reader);
+        $user->save();
     }
 }

@@ -22,9 +22,9 @@ class CreateClientsTable extends Migration
             $table->string('city_zipcode');
             $table->string('city');
             $table->boolean('archived')->default(0);
-            $table->foreignUuid('expert_id');
+            $table->foreignUuid('expert_id')->nullable();
             
-            $table->foreign('expert_id')->references('id')->on('users');
+            $table->foreign('expert_id')->references('id')->on('users')->onDelete('set null');
         });
     }
 

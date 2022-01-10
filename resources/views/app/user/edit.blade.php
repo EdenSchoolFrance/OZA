@@ -3,7 +3,7 @@
 @section('content')
     <div class="content">
         <div class="card card--users">
-            <form class="card-body" action="{{ route('user.client.update', ['user'=>$user->id, 'single_document' => $single_document->id]) }}" method="POST">
+            <form class="card-body" action="{{ route('user.client.update', [$single_document->id, $user->id]) }}" method="POST">
                 @csrf
                 <div class="row">
                     <div class="line">
@@ -62,9 +62,9 @@
                             <label for="phone">Phone</label>
                         </div>
                         <div class="right">
-                            <input type="number" name="phone" class="form-control @error('phone') invalid @enderror" placeholder="Indiquer le numéro de téléphone" value="{{ old('phone') ? old('phone') : $user->phone }}" required>
+                            <input type="tel" name="phone" id="phone" class="form-control @error('phone') invalid @enderror" pattern="^(?:(?:(?:\+|00)33\D?(?:\D?\(0\)\D?)?)|0){1}[1-9]{1}(?:\D?\d{2}){4}$" placeholder="00 00 00 00 00" value="{{ old('phone') ? old('phone') : $user->phone }}" required>
                             @error('phone')
-                            <p class="message-error">{{ $message }}</p>
+                                <p class="message-error">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
@@ -75,7 +75,7 @@
                         <div class="right">
                             <input type="text" name="post" class="form-control @error('post') invalid @enderror" placeholder="Indiquer le post" value="{{ old('post') ? old('post') : $user->post }}" required>
                             @error('post')
-                            <p class="message-error">{{ $message }}</p>
+                                <p class="message-error">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>

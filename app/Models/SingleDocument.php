@@ -28,6 +28,7 @@ class SingleDocument extends Model
         'lastname',
         'email',
         'phone',
+        'archived',
         'created_at',
         'updated_at'
     ];
@@ -47,6 +48,11 @@ class SingleDocument extends Model
     public function dangers()
     {
         return $this->hasMany(SdDanger::class);
+    }
+
+    public function work_unit()
+    {
+        return $this->hasMany(SdWorkUnit::class);
     }
 
     public function client()
