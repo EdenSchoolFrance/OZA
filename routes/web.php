@@ -124,11 +124,11 @@ Route::middleware(['auth'])->group(function() {
         Route::post('/{single_document}/work/update/{work_unit}', [WorkUnitController::class, 'update'])->name('work.update');
         Route::post('/{single_document}/work/delete', [WorkUnitController::class, 'delete'])->name('work.delete');
     });
-    
+
 
     Route::get('/{single_document}/risk/accident', [RiskController::class, 'accident'])->name('risk.accident');
     Route::get('/{single_document}/risk/accident/create', [RiskController::class, 'accidentCreate'])->name('risk.accident.create');
 
 
-    Route::get('/{doc_name}', [DocController::class, 'index'])->name('documentation');
+    Route::get('/{single_document}/{doc_name?}', [DocController::class, 'index'])->name('documentation');
 });

@@ -65,45 +65,47 @@
             @endif
         </div>
 
-        <div class="modal modal--archive">
-            <div class="modal-dialog">
-                <form class="modal-content" action="{{ route('admin.client.archive') }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="id" value="">
-                    <div class="modal-header">
-                        <p class="title">Confirmer l'archivage</p>
-                        <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Êtes-vous sûr du vouloir archiver ce client ?</p>
-                        <div>
-                            <button type="submit" class="btn btn-danger btn-text">Archiver</button>
-                            <button type="button" class="btn btn-inv btn-yellow btn-small" data-dismiss="modal"> Annuler</button>
+        @if (Auth::user()->hasPermission('ADMIN'))
+            <div class="modal modal--archive">
+                <div class="modal-dialog">
+                    <form class="modal-content" action="{{ route('admin.client.archive') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="id" value="">
+                        <div class="modal-header">
+                            <p class="title">Confirmer l'archivage</p>
+                            <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
                         </div>
-                    </div>
-                </form>
+                        <div class="modal-body">
+                            <p>Êtes-vous sûr du vouloir archiver ce client ?</p>
+                            <div>
+                                <button type="submit" class="btn btn-danger btn-text">Archiver</button>
+                                <button type="button" class="btn btn-inv btn-yellow btn-small" data-dismiss="modal"> Annuler</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
 
-        <div class="modal modal--unarchive">
-            <div class="modal-dialog">
-                <form class="modal-content" action="{{ route('admin.client.unarchive') }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="id" value="">
-                    <div class="modal-header">
-                        <p class="title">Confirmer le désarchivage</p>
-                        <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Êtes-vous sûr du vouloir désarchiver ce client ?</p>
-                        <div>
-                            <button type="submit" class="btn btn-danger btn-text">Désarchiver</button>
-                            <button type="button" class="btn btn-inv btn-yellow btn-small" data-dismiss="modal"> Annuler</button>
+            <div class="modal modal--unarchive">
+                <div class="modal-dialog">
+                    <form class="modal-content" action="{{ route('admin.client.unarchive') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="id" value="">
+                        <div class="modal-header">
+                            <p class="title">Confirmer le désarchivage</p>
+                            <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
                         </div>
-                    </div>
-                </form>
+                        <div class="modal-body">
+                            <p>Êtes-vous sûr du vouloir désarchiver ce client ?</p>
+                            <div>
+                                <button type="submit" class="btn btn-danger btn-text">Désarchiver</button>
+                                <button type="button" class="btn btn-inv btn-yellow btn-small" data-dismiss="modal"> Annuler</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
+        @endif
     </div>
 @endsection
 

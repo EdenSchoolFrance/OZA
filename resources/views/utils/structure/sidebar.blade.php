@@ -81,10 +81,10 @@
         @endisset
 
         <li class="sidebar-nav-item {{ $page['sidebar'] == "regulatory_reminders" ? 'active' : '' }}">
-            <a href="{{ route('documentation', ['regulatory_reminders']) }}" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Rappels règlementaires</span></a>
+            <a href="{{ route('documentation', isset($single_document) ? [$single_document->id, 'regulatory_reminders'] : ['regulatory_reminders']) }}" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Rappels règlementaires</span></a>
         </li>
         <li class="sidebar-nav-item {{ $page['sidebar'] == "documentations" ? 'active' : '' }}">
-            <a href="{{ route('documentation', ['documentations']) }}" class="sidebar-nav-link"><i class="far fa-file"></i><span>Documentations</span></a>
+            <a href="{{ route('documentation', isset($single_document) ? [$single_document->id, 'documentations'] : ['documentations']) }}" class="sidebar-nav-link"><i class="far fa-file"></i><span>Documentations</span></a>
         </li>
     </ul>
 </div>
