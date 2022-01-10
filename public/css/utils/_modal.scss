@@ -28,6 +28,10 @@
         align-items: center;
         transform: translate(0,-25%);
         transition: transform .3s ease-out;
+
+        &-large {
+            max-width: 900px;
+        }
     }
 
     &-content {

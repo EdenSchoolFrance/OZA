@@ -16,7 +16,7 @@ class CreateSdActivitiesTable extends Migration
         Schema::create('sd_activities', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->text('text');
-            
+
             $table->foreignUuid('sd_work_unit_id');
 
             $table->foreign('sd_work_unit_id')->references('id')->on('sd_work_units')->onDelete('cascade');

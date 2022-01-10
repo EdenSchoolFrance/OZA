@@ -7,6 +7,9 @@
                     &-cancel{
                         align-items: inherit;
                     }
+                    label{
+                        margin-top: 0;
+                    }
                 }
                 .right{
 
@@ -26,6 +29,11 @@
                         }
                         li:first-child{
                             margin-bottom: 15px;
+                        }
+                    }
+                    .list-content{
+                        li:first-child{
+                            margin-bottom: 0;
                         }
                     }
                     .ul-textarea{
@@ -64,6 +72,31 @@
                     }
                 }
             }
+        }
+    }
+}
+
+.modal--oza{
+    .row--ut{
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: inherit;
+        .group-form{
+            margin-right: 10%;
+            width: 40%;
+            margin-bottom: 20px;
+        }
+    }
+    .list-ut-template{
+        .checked{
+            color: $info;
+            cursor: not-allowed;
+        }
+        a{
+            color: $dark;
+        }
+        a:hover{
+            color: $info;
         }
     }
 }

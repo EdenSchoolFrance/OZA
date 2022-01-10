@@ -57,7 +57,7 @@ on('[data-modal]', 'click', (el, e) => {
 });
 
 on('.modal', 'click', (el, e) => {
-    if (!$('.modal-content', document, 0).contains(e.target)){
+    if (!$('.modal-content', el, 0).contains(e.target)) {
         el.classList.remove('show');
 
         setTimeout(() => {
