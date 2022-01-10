@@ -14,9 +14,11 @@ class UserController extends Controller
     public function index($id)
     {
         $single_document = $this->checkSingleDocument($id);
+
         $users = User::whereHas('single_documents', function ($q) use ($id) {
             $q->where('id', $id);
         })->get();
+        
         $page = [
             'title' => 'Utilisateurs',
             'infos' => 'Seul le responsable du DU peut valider la finalisation du DU',
