@@ -26,7 +26,7 @@
                 </div>
             @endisset
             @if (Auth::user()->hasAccess('client'))
-                <div class="nav-link">
+                <div class="nav-link" data-tooltip=".tooltip--contact-expert">
                     <i class="far fa-envelope"></i>
                     <p>Contacter <br/> un expert</p>
                 </div>
@@ -41,6 +41,10 @@
                     <i class="fas fa-sign-out-alt"></i>
                 </a>
             </div>
+        </div>
+
+        <div class="tooltip tooltip--contact-expert">
+            <p>Tootltip</p>
         </div>
     @endif
 </nav>
