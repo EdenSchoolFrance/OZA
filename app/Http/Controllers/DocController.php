@@ -7,9 +7,14 @@ use Illuminate\Http\Request;
 
 class DocController extends Controller
 {
-    public function index($doc_name)
+    public function index($id, $name = null)
     {
-        $doc = Doc::where('name', $doc_name)->first();
+        if ($name) {
+            $single_document = $this->checkSingleDocument($id);
+            $doc = Doc::where('name', $name)->first();
+        } else {
+            $doc = Doc::where('name', $id)->first();
+        }
 
         if (!$doc) {
             abort(404);
@@ -21,7 +26,11 @@ class DocController extends Controller
             'sub_sidebar' => '',
         ];
 
-        return view('app.documentation.index', compact('page', 'doc'));
+        if ($name) {
+            return view('app.documentation.index', compact('page', 'doc', 'single_document'));
+        } else {
+            return view('app.documentation.index', compact('page', 'doc'));
+        }
     }
 
     public function edit($doc_name)

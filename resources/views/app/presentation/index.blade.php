@@ -7,7 +7,9 @@
             @csrf
             <div class="card-header">
                 <h2 class="title">Informations générales</h2>
-                <button type="button" class="btn btn-edit-card">Modifier<i class="far fa-edit"></i></button>
+                @if (!Auth::user()->hasPermission('READER'))
+                    <button type="button" class="btn btn-edit-card">Modifier<i class="far fa-edit"></i></button>
+                @endif
             </div>
             <div class="card-body">
                 <div class="row">
@@ -94,7 +96,9 @@
             @csrf
             <div class="card-header">
                 <h2 class="title">Activité de l'entreprise</h2>
-                <button type="button" class="btn btn-edit-card">Modifier<i class="far fa-edit"></i></button>
+                @if (!Auth::user()->hasPermission('READER'))
+                    <button type="button" class="btn btn-edit-card">Modifier<i class="far fa-edit"></i></button>
+                @endif
             </div>
             <div class="card-body">
                 <div class="row">
@@ -128,7 +132,9 @@
             @csrf
             <div class="card-header">
                 <h2 class="title">Responsable du document au sein de l’entreprise</h2>
-                <button type="button" class="btn btn-edit-card">Modifier<i class="far fa-edit"></i></button>
+                @if (!Auth::user()->hasPermission('READER'))
+                    <button type="button" class="btn btn-edit-card">Modifier<i class="far fa-edit"></i></button>
+                @endif
             </div>
             <div class="card-body">
                 <div class="row">
