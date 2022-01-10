@@ -4,7 +4,8 @@
 
 
 <div class="content">
-    <form action="#" class="card card--add-risk">
+    <form action="{{ route('risk.store', [$single_document->id, $danger->id]) }}" class="card card--add-risk" method="post">
+        @csrf
         <div class="card-body">
             <div class="row">
                 <div class="line">
@@ -12,7 +13,7 @@
                         <label for="nameRisk">Intitulé du risque</label>
                     </div>
                     <div class="right">
-                        <input type="email" class="form-control" id="workName" placeholder="Vente - Boulangerie pâtisserie">
+                        <input type="text" class="form-control" name="name_risk" id="workName" placeholder="Vente - Boulangerie pâtisserie">
                     </div>
                 </div>
             </div>
@@ -36,23 +37,23 @@
                         <div class="radio-bar-content">
                             <div class="radio-bar">
                                 <label class="con">
-                                    <input type="radio" checked="checked" name="frequency">
+                                    <input type="radio" checked="checked" name="frequency" value="day">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio" checked="checked" name="frequency">
+                                    <input type="radio" checked="checked" name="frequency" value="week">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio" checked="checked" name="frequency">
+                                    <input type="radio" checked="checked" name="frequency" value="month">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio" checked="checked" name="frequency">
+                                    <input type="radio" checked="checked" name="frequency" value="year">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio" checked="checked" name="frequency">
+                                    <input type="radio" checked="checked" name="frequency" value="year+">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
@@ -77,23 +78,23 @@
                         <div class="radio-bar-content">
                             <div class="radio-bar">
                                 <label class="con">
-                                    <input type="radio" checked="checked" name="probability">
+                                    <input type="radio" checked="checked" name="probability" value="very high">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio" checked="checked" name="probability">
+                                    <input type="radio" checked="checked" name="probability" value="high">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio" checked="checked" name="probability">
+                                    <input type="radio" checked="checked" name="probability" value="medium">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio" checked="checked" name="probability">
+                                    <input type="radio" checked="checked" name="probability" value="weak">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio" checked="checked" name="probability">
+                                    <input type="radio" checked="checked" name="probability" value="very weak">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
@@ -118,23 +119,23 @@
                         <div class="radio-bar-content">
                             <div class="radio-bar">
                                 <label class="con">
-                                    <input type="radio" checked="checked" name="gravity">
+                                    <input type="radio" checked="checked" name="gravity" value="death">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio" checked="checked" name="gravity">
+                                    <input type="radio" checked="checked" name="gravity" value="ipp">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio" checked="checked" name="gravity">
+                                    <input type="radio" checked="checked" name="gravity" value="aaa">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio" checked="checked" name="gravity">
+                                    <input type="radio" checked="checked" name="gravity" value="asa">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio" checked="checked" name="gravity">
+                                    <input type="radio" checked="checked" name="gravity" value="weak impact">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
@@ -160,15 +161,15 @@
                         <div class="radio-bar-content">
                             <div class="radio-bar radio-bar--inv">
                                 <label class="con"> Non
-                                    <input type="radio" checked="checked" name="gender">
+                                    <input type="radio" checked="checked" name="gender" value="null">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con"> Homme
-                                    <input type="radio" checked="checked" name="gender">
+                                    <input type="radio" checked="checked" name="gender" value="male">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con"> Femme
-                                    <input type="radio" checked="checked" name="gender">
+                                    <input type="radio" checked="checked" name="gender" value="female">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
@@ -199,35 +200,6 @@
                 </div>
             </div>
 
-            {{--<div class="row">
-                <div class="line">
-                    <div class="left">
-                        <label>Mesures existantes</label>
-                    </div>
-                    <div class="right">
-                        <ul>
-                            <li>
-                                <p>
-                                    <i class="far fa-times-circle"></i>
-                                    Matériels conformes, utilisés et entretenus dans les règles de l’art, en respectant les préconisations de la notice du constructeur
-                                    <button data-modal=".modal--delete" data-id="{{ $restrain->id }}"><i class="far fa-edit text-color-yellow"></i></button>
-                                </p>
-                            </li>
-
-                            <li>
-                                Technique : <span class="text-color-green bold">BON</span>
-                            </li>
-                            <li>
-                                Organisationnelle : <span class="text-color-green bold">BON</span>
-                            </li>
-                            <li>
-                                Humain : <span class="text-color-red bold">NULLE</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>--}}
-
             <div class="restraint">
                 <div class="row">
                     <div class="line">
@@ -240,17 +212,17 @@
                                         <i class="far fa-times-circle btn-delete"></i>
                                         Matériels conformes, utilisés et entretenus dans les règles de l’art, en respectant les préconisations de la notice du constructeur
                                         <button data-modal=".modal--risk" data-id="576312553" class="btn btn-yellow btn-text btn-edit-modal-risk" type="button"><i class="far fa-edit text-color-yellow"></i></button>
-                                        <input type="hidden" value="good,good,null" name="restraint[]">
+                                        <input type="hidden" value="good|good|null|Matériels conformes, utilisés et entretenus dans les règles de l’art, en respectant les préconisations de la notice du constructeur" name="restraint[]">
                                     </p>
                                 </li>
                                 <li>
-                                    Technique : <span class="text-color-green bold">BON</span>
+                                    Technique :&nbsp;<span class="text-color-green bold">BON</span>
                                 </li>
                                 <li>
-                                    Organisationnelle : <span class="text-color-green bold">BON</span>
+                                    Organisationnelle :&nbsp;<span class="text-color-green bold">BON</span>
                                 </li>
                                 <li>
-                                    Humain : <span class="text-color-red bold">NULLE</span>
+                                    Humain :&nbsp;<span class="text-color-red bold">NULLE</span>
                                 </li>
                             </ul>
                         </div>
@@ -282,20 +254,22 @@
             <hr>
 
             <div class="row">
-                <div class="line">
+                <div class="line line--activity">
                     <div class="left">
                         <label>Mesures proposées</label>
                     </div>
-                    <div class="right">
+                    <div class="right right--cancel">
                         <ul class="restraint-proposed">
                             <li>
-                                <p> <i class="far fa-times-circle"></i> Accueil des clients</p>
+                                <button type="button" class="btn btn-text btn-small btn-delete-restraint"><i class="far fa-times-circle"></i></button>
+                                <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed[]">Accueil des clients</textarea>
                             </li>
                             <li>
-                                <p> <i class="far fa-times-circle"></i> Présentation et conseils sur les produits</p>
+                                <button type="button" class="btn btn-text btn-small btn-delete-restraint"><i class="far fa-times-circle"></i></button>
+                                <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed[]">Présentation et conseils sur les produits</textarea>
                             </li>
                             <li>
-                                <button class="btn btn-yellow btn-text">+ Ajouter une mesure proposée</button>
+                                <button class="btn btn-yellow btn-text btn-add-restraint" type="button">+ Ajouter une mesure proposée</button>
                             </li>
                         </ul>
                     </div>

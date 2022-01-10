@@ -127,4 +127,5 @@ Route::middleware(['auth'])->group(function() {
 
     Route::get('/{single_document}/risk/{danger}', [RiskController::class, 'index'])->name('risk.index');
     Route::get('/{single_document}/risk/{danger}/create', [RiskController::class, 'create'])->name('risk.create');
+    Route::post('/{single_document}/risk/{danger}/store', [RiskController::class, 'store'])->name('risk.store');
 });

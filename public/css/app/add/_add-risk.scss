@@ -10,6 +10,7 @@
                 .right{
                     display: flex;
                     justify-content: flex-start;
+
                     p{
                         i{
                             margin: 0;
@@ -32,13 +33,23 @@
                             max-width: calc(480px / 2);
                         }
                     }
-
-                    textarea {
-                        min-height: 125px;
-                        resize: vertical;
+                    ul{
+                        li{
+                            display: flex;
+                            justify-content: flex-start;
+                        }
                     }
                     li{
                         padding: 5px 0;
+                    }
+                    &--cancel{
+                        display: block;
+                        i{
+                            font-size: 18px;
+                            padding-bottom: 22px;
+                            margin-right: 10px;
+                            margin-left: 0;
+                        }
                     }
                 }
                 &--activity {

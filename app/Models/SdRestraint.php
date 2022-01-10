@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SdDanger extends Model
+class SdRestraint extends Model
 {
     use HasFactory;
 
@@ -19,26 +19,15 @@ class SdDanger extends Model
      * @var string[]
      */
     protected $fillable = [
-        'reflection',
-        'comment',
-        'ut_all',
-        'validated',
-        'single_document_id',
-        'danger_id'
+        'name',
+        'technical',
+        'organizational',
+        'human',
+        'exist'
     ];
-
-    public function single_document()
-    {
-        return $this->belongsTo(SingleDocument::class);
-    }
-
-    public function danger()
-    {
-        return $this->belongsTo(Danger::class);
-    }
 
     public function sd_risk()
     {
-        return $this->hasMany(SdRisk::class);
+        return $this->belongsTo(SdRisk::class);
     }
 }

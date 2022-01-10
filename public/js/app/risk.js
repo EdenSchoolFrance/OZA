@@ -42,18 +42,18 @@ on('.modal--risk .btn-modal-risk-add', 'click', (el, e) => {
         '     <i class="far fa-times-circle btn-delete"></i>\n' +
         '     '+title+'\n' +
         '     <button data-modal=".modal--risk" data-id="'+id+'" class="btn btn-yellow btn-text btn-edit-modal-risk" type="button"><i class="far fa-edit text-color-yellow"></i></button>\n' +
-        '     <input type="hidden" value="'+tech+','+orga+','+human+','+title+'" name="restraint[]">' +
+        '     <input type="hidden" value="'+tech+'|'+orga+'|'+human+'|'+title+'" name="restraint[]">' +
         '    </p>\n' +
         '   </li>\n' +
         '   \n' +
         '   <li>\n' +
-        '    Technique : <span class="text-color-'+color(tech)+' bold">'+translate(tech)+'</span>\n' +
+        '    Technique :&nbsp;<span class="text-color-'+color(tech)+' bold">'+translate(tech)+'</span>\n' +
         '   </li>\n' +
         '   <li>\n' +
-        '    Organisationnelle : <span class="text-color-'+color(orga)+' bold">'+translate(orga)+'</span>\n' +
+        '    Organisationnelle :&nbsp;<span class="text-color-'+color(orga)+' bold">'+translate(orga)+'</span>\n' +
         '   </li>\n' +
         '   <li>\n' +
-        '    Humain : <span class="text-color-'+color(human)+' bold">'+translate(human)+'</span>\n' +
+        '    Humain :&nbsp;<span class="text-color-'+color(human)+' bold">'+translate(human)+'</span>\n' +
         '   </li>\n' +
         '  </ul>\n' +
         ' </div>\n' +
@@ -69,7 +69,7 @@ on('.btn-edit-modal-risk', 'click', (el, e) => {
     let tech = $('.radio-bar-tech input')
     let orga = $('.radio-bar-orga input')
     let human = $('.radio-bar-human input')
-    let data = el.closest('p').querySelector('input').value.split(',')
+    let data = el.closest('p').querySelector('input').value.split('|')
     $('#nameRisk', document, 0).value = el.closest('p').innerText;
     for (let i = 0; i < tech.length ; i++) {
         tech[i].checked = tech[i].value === data[0];
@@ -94,6 +94,18 @@ on('.btn-open-risk', 'click', (el, e) => {
 
 on('.btn-delete', 'click', (el, e) => {
     el.closest('div.row').remove();
+});
+
+on('.btn-delete-restraint', 'click', (el, e) => {
+    el.closest('li').remove();
+});
+
+on('.btn-add-restraint', 'click', (el, e) => {
+    let content ='<button type="button" class="btn btn-text btn-small btn-delete-restraint"><i class="far fa-times-circle"></i></button>\n' +
+        '<textarea class="form-control auto-resize" placeholder="" name="restraint_proposed[]"></textarea>'
+    let li = document.createElement('li');
+    li.innerHTML = content;
+    el.closest('li').before(li);
 });
 
 

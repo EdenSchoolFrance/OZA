@@ -38,4 +38,9 @@ class SdWorkUnit extends Model
     {
         return $this->belongsTo(SingleDocument::class);
     }
+
+    public function SdDangers()
+    {
+        return $this->belongsToMany(SdDanger::class, 'sd_danger_sd_work_unit', 'sd_work_unit_id', 'sd_danger_id');
+    }
 }
