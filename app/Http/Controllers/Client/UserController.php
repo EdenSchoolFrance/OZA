@@ -46,7 +46,7 @@ class UserController extends Controller
     public function store(Request $request, $id)
     {
         $single_document = $this->checkSingleDocument($id);
-        $admin = Role::where('permission', 'ADMIN');
+        $admin = Role::where('permission', 'ADMIN')->first();
 
         $request->validate([
             'lastname' => 'required',
@@ -69,8 +69,9 @@ class UserController extends Controller
         $user->role()->associate($request->role);
         $user->client()->associate($single_document->client->id);
         $user->save();
-        if ($request->role === $admin){
-            $user->single_documents()->attach($single_document->client->single_documents->id);
+        
+        if ($request->role === $admin->id) {
+            $user->single_documents()->attach($single_document->client->single_documents);
         }else{
             $user->single_documents()->attach($single_document->id);
         }
