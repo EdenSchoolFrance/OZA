@@ -25,6 +25,7 @@
                     </div>
                 </div>
             @endisset
+            
             @if (Auth::user()->hasAccess('client'))
                 <div class="nav-link" data-tooltip=".tooltip--contact-expert">
                     <i class="far fa-envelope"></i>
@@ -32,12 +33,14 @@
                 </div>
             @endif
 
+            @if (Auth::user()->first_connection !== 1)
+                <div class="nav-link">
+                    <i class="far fa-user-circle"></i>
+                    <p>Profil</p>
+                </div>
+            @endif
             <div class="nav-link">
-                <i class="far fa-user-circle"></i>
-                <p>Profil</p>
-            </div>
-            <div class="nav-link">
-                <a href="{{ route('auth.logout') }}">
+                <a href="{{ route('logout') }}">
                     <i class="fas fa-sign-out-alt"></i>
                 </a>
             </div>

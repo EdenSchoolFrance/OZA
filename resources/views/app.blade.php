@@ -20,7 +20,6 @@
             @endif
             
             <div class="container">
-
                 @include('utils.structure.header')
 
                 @include('utils.structure.alert')
@@ -37,4 +36,3 @@
         @yield('script')
     </body>
 </html>
-@php(session()->forget('error'))
