@@ -12,16 +12,29 @@
                 <div class="col-3 d-flex justify-content-around">
                     <img src="/logo" alt="Logo">
                     <div class="btn-group-dropdown">
-                        <button type="button" class="btn toggle-dropdown @if(count($single_document->client->single_documents->where('archived', 0)) == 1) disabled @endif">
-                            DU - {{ $single_document->name }}
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            @foreach($single_document->client->single_documents->where('archived', 0) as $sd)
-                                @if ($sd->id !== $single_document->id)
-                                    <a class="dropdown-item" href="{{ route('dashboard', [$sd->id]) }}">{{ $sd->name }}</a>
-                                @endif
-                            @endforeach
-                        </div>
+                        @if (Auth::user()->hasAccess('oza'))
+                            <button type="button" class="btn toggle-dropdown @if(count($single_document->client->single_documents) == 1) disabled @endif">
+                                DU - {{ $single_document->name }}
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                @foreach($single_document->client->single_documents as $sd)
+                                    @if ($sd->id !== $single_document->id)
+                                        <a class="dropdown-item" href="{{ route('dashboard', [$sd->id]) }}">{{ $sd->name }}</a>
+                                    @endif
+                                @endforeach
+                            </div>
+                        @else
+                            <button type="button" class="btn toggle-dropdown @if(count(Auth::user()->single_documents->where('archived', 0)) == 1) disabled @endif">
+                                DU - {{ $single_document->name }}
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                @foreach(Auth::user()->single_documents->where('archived', 0) as $sd)
+                                    @if ($sd->id !== $single_document->id)
+                                        <a class="dropdown-item" href="{{ route('dashboard', [$sd->id]) }}">{{ $sd->name }}</a>
+                                    @endif
+                                @endforeach
+                            </div>
+                        @endif
                     </div>
                 </div>
             @endisset
@@ -40,7 +53,7 @@
                 </div>
             @endif
             <div class="nav-link">
-                <a href="{{ route('logout') }}">
+                <a href="{{ route('logout') }}" class="nav-link">
                     <i class="fas fa-sign-out-alt"></i>
                 </a>
             </div>
