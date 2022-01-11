@@ -103,7 +103,7 @@
                                             </ul>
                                         </li>
                                         <li class="list-item-btn">
-                                            <button type="button" class="btn btn-text btn-yellow btn-add" data-list="{{ $item->id.'-'.$subItem->id }}" data-item="{{ $item->name }}" data-sub="{{ $subItem->name }}"><i class="fas fa-plus"></i> Ajouter</button>
+                                            <button type="button" class="btn btn-text btn-yellow btn-add" data-modal=".modal--work_unit" data-list="{{ $item->id.'-'.$subItem->id }}" data-item="{{ $item->name }}" data-sub="{{ $subItem->name }}"><i class="fas fa-plus"></i> Ajouter</button>
                                         </li>
                                     </ul>
                                 </div>
@@ -128,56 +128,61 @@
     </form>
 </div>
 
+
 <div class="modal modal--work_unit">
-    <div class="card modal-content">
-        <div class="card-header">
-            <h2 class="title">Modifier la liste des matériels de communication</h2>
-            <button class="btn btn-text btn-modal-close"><i class="fas fa-times"></i></button>
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="right">
-                    <a class="btn-modal-check">Tout cocher</a>
-                    <a class="btn-modal-uncheck">Tout decocher</a>
-                    <div id="modal-list">
-                        @foreach($items as $item)
-                            @foreach($item->sub_items as $subItem)
-                                <div data-id="{{ $item->id.'-'.$subItem->id }}" style="display: none">
-                                    @foreach($subItem->child_sub_items as $child)
-                                        @if(!in_array($child->name, $work->items->where('sub_item_id', $subItem->id)->pluck('name')->toArray()))
-                                        <label class="contain">
-                                            <input type="checkbox" value="{{ $child->id }}" data-name="{{$child->name}}">
-                                            <span class="checkmark">{{ $child->name }}</span>
-                                        </label>
-                                        @endif
-                                    @endforeach
-                                    @foreach($work->items->where('sub_item_id', $subItem->id) as $child)
-                                        <label class="contain">
-                                            <input type="checkbox" value="{{ $child->id }}" data-name="{{$child->name}}" checked>
-                                            <span class="checkmark">{{ $child->name }}</span>
-                                        </label>
-                                    @endforeach
-                                </div>
+    <div class="modal-dialog modal-dialog-large">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="title">Modifier la liste des matériels de communication</p>
+                <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="right">
+                        <a class="btn-modal-check">Tout cocher</a>
+                        <a class="btn-modal-uncheck">Tout decocher</a>
+                        <div id="modal-list">
+                            @foreach($items as $item)
+                                @foreach($item->sub_items as $subItem)
+                                    <div data-id="{{ $item->id.'-'.$subItem->id }}" style="display: none">
+                                        @foreach($subItem->child_sub_items as $child)
+                                            @if(!in_array($child->name, $work->items->where('sub_item_id', $subItem->id)->pluck('name')->toArray()))
+                                                <label class="contain">
+                                                    <input type="checkbox" value="{{ $child->id }}" data-name="{{$child->name}}">
+                                                    <span class="checkmark">{{ $child->name }}</span>
+                                                </label>
+                                            @endif
+                                        @endforeach
+                                        @foreach($work->items->where('sub_item_id', $subItem->id) as $child)
+                                            <label class="contain">
+                                                <input type="checkbox" value="{{ $child->id }}" data-name="{{$child->name}}" checked>
+                                                <span class="checkmark">{{ $child->name }}</span>
+                                            </label>
+                                        @endforeach
+                                    </div>
+                                @endforeach
                             @endforeach
-                        @endforeach
+                        </div>
                     </div>
                 </div>
-            </div>
-            <hr>
-            <div class="row">
-                <p>Ajouter des nouveaux matériels</p>
-                <div class="right right--inline modal-input">
-                    <label for="name">Intitulé</label>
+                <hr>
+                <div class="row row--center">
                     <div>
-                        <input type="text" name="name" class="form-control" placeholder="matériel 1, matériel 2, ">
-                        <p class="info-input">Il est possible d’ajouter plusieurs matériels en les séparant par une virgule</p>
+                        <p>Ajouter des nouveaux matériels</p>
+                        <div class="right right--inline modal-input">
+                            <label for="name">Intitulé</label>
+                            <div>
+                                <input type="text" name="name" class="form-control" placeholder="matériel 1, matériel 2, ">
+                                <p class="info-input">Il est possible d’ajouter plusieurs matériels en les séparant par une virgule</p>
+                            </div>
+                            <button class="btn btn-text btn-yellow btn-modal-add">Ajouter</button>
+                        </div>
                     </div>
-                    <button class="btn btn-text btn-yellow btn-modal-add">Ajouter</button>
                 </div>
             </div>
-        </div>
-        <div class="card-footer">
-            <button class="btn btn-text btn-yellow btn-modal-valid">Valider la liste</button>
+            <div class="modal-footer">
+                <button class="btn btn-text btn-yellow btn-modal-valid">Valider la liste</button>
+            </div>
         </div>
     </div>
 </div>
