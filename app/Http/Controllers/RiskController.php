@@ -44,12 +44,12 @@ class RiskController extends Controller
         return view('app.risk.create', compact('page', 'single_document','danger'));
     }
 
-    public function store(Request $request, $id, $id_sd_danger, $id_work_unit = null){
+    public function store(Request $request, $id, $id_sd_danger, $id_sd_work_unit = null){
 
         $single_document = $this->checkSingleDocument($id);
         $sd_danger = SdDanger::find($id_sd_danger);
         if (!$sd_danger) abort(404);
-        $workUnit = SdWorkUnit::find($id_work_unit);
+        $sd_work_unit = SdWorkUnit::find($id_sd_work_unit);
 
         $request->validate([
             'name_risk' => 'required',
@@ -69,7 +69,7 @@ class RiskController extends Controller
         $sd_risk->gravity = $request->gravity;
         $sd_risk->impact = $request->gender;
         $sd_risk->sd_danger()->associate($sd_danger);
-        if ($workUnit) $sd_risk->sd_work_unit()->associate($workUnit);
+        if ($sd_work_unit) $sd_risk->sd_work_unit()->associate($sd_work_unit);
         $sd_risk->save();
 
         foreach ($request->restraint as $restraint){

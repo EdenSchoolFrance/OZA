@@ -126,6 +126,6 @@ Route::middleware(['auth'])->group(function() {
     Route::post('/{single_document}/work/delete', [WorkUnitController::class, 'delete'])->name('work.delete'); // change post
 
     Route::get('/{single_document}/risk/{danger}', [RiskController::class, 'index'])->name('risk.index');
-    Route::get('/{single_document}/risk/{danger}/create', [RiskController::class, 'create'])->name('risk.create');
+    Route::get('/{single_document}/risk/{danger}/create/{sd_work_unit?}', [RiskController::class, 'create'])->name('risk.create');
     Route::post('/{single_document}/risk/{danger}/store', [RiskController::class, 'store'])->name('risk.store');
 });
