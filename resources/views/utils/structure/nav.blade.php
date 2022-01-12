@@ -1,6 +1,6 @@
 <nav class="nav">
     <div>
-        <img src="" alt="logo">
+        <img src="{{ asset('/img/logo.png') }}" alt="Logo OZA">
         @if (Auth::check() && Auth::user()->oza && isset($single_document))
             <a href="{{ route('admin.clients') }}" class="btn-back"><i class="fas fa-chevron-left"></i> {{ "Retour interface OZA" }}</a>
         @endif
@@ -38,7 +38,7 @@
                     </div>
                 </div>
             @endisset
-            
+
             @if (Auth::user()->hasAccess('client'))
                 <div class="nav-link" data-tooltip=".tooltip--contact-expert">
                     <i class="far fa-envelope"></i>

@@ -113,7 +113,7 @@ Route::middleware(['auth'])->group(function() {
         Route::post('/{single_document}/presentation/{type}', [PresentationController::class, 'update'])->name('presentation.update');
 
         Route::middleware(['permission:ADMIN,EXPERT,MANAGER'])->group(function () {
-            Route::get('/{single_document}/user', [UserClientController::class, 'index'])->name('user.client.index');
+            Route::get('/{single_document}/users', [UserClientController::class, 'index'])->name('user.client.index');
             Route::get('/{single_document}/user/create', [UserClientController::class, 'create'])->name('user.client.create');
             Route::get('/{single_document}/user/{user}/edit', [UserClientController::class, 'edit'])->name('user.client.edit');
 
