@@ -13,9 +13,17 @@
                         <label for="nameRisk">Intitulé du risque</label>
                     </div>
                     <div class="right">
-                        <input type="text" class="form-control" name="name_risk" id="workName" placeholder="Vente - Boulangerie pâtisserie" value="{{ isset($risk) ? $risk->name : '' }}">
+                        <input type="text" class="form-control" name="name_risk" id="workName" placeholder="Vente - Boulangerie pâtisserie" value="@if(old('name_risk')){{ old('name_risk') }}@else{{ isset($risk) ? $risk->name : '' }}@endif">
                     </div>
                 </div>
+                @error('name_risk')
+                <div class="line">
+                    <div class="left"></div>
+                    <div class="right">
+                        <p class="message-error">{{ $message }}</p>
+                    </div>
+                </div>
+                @enderror
                 @if (Auth::user()->hasAccess('oza'))
                     <div class="line">
                         <div class="left"></div>
@@ -36,7 +44,7 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row row--radio">
                 <div class="line">
                     <div class="left">
                         <label>Fréquence</label>
@@ -45,23 +53,23 @@
                         <div class="radio-bar-content">
                             <div class="radio-bar radio-bar-frequency">
                                 <label class="con">
-                                    <input type="radio" name="frequency" value="day" {{ isset($risk) && $risk->frequency === 'day' ? 'checked' : '' }}>
+                                    <input type="radio" name="frequency" value="day" @if(old('frequency')){{ old('frequency') === 'day' ? 'checked' : '' }}@else{{ isset($risk) && $risk->frequency === 'day' ? 'checked' : '' }}@endif >
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio" name="frequency" value="week" {{ isset($risk) && $risk->frequency === 'week' ? 'checked' : '' }}>
+                                    <input type="radio" name="frequency" value="week" @if(old('frequency')){{ old('frequency') === 'week' ? 'checked' : '' }}@else{{ isset($risk) && $risk->frequency === 'week' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio"  name="frequency" value="month" {{ isset($risk) && $risk->frequency === 'mouth' ? 'checked' : '' }}>
+                                    <input type="radio"  name="frequency" value="month" @if(old('frequency')){{ old('frequency') === 'mouth' ? 'checked' : '' }}@else{{ isset($risk) && $risk->frequency === 'mouth' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio"  name="frequency" value="year" {{ isset($risk) && $risk->frequency === 'year' ? 'checked' : '' }}>
+                                    <input type="radio"  name="frequency" value="year" @if(old('frequency')){{ old('frequency') === 'year' ? 'checked' : '' }}@else{{ isset($risk) && $risk->frequency === 'year' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio" name="frequency" value="year+" {{ isset($risk) && $risk->frequency === 'year+' ? 'checked' : '' }}>
+                                    <input type="radio" name="frequency" value="year+" @if(old('frequency')){{ old('frequency') === 'year+' ? 'checked' : '' }}@else{{ isset($risk) && $risk->frequency === 'year+' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
@@ -72,12 +80,15 @@
                                 <label>Années</label>
                                 <label>>Années</label>
                             </div>
+                            @error('frequency')
+                                <p class="message-error">{{ $message }}</p>
+                            @enderror
                         </div>
                         <i class="far fa-question-circle" data-toggle="toolHelp" data-placement="top" title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></i>
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row row--radio">
                 <div class="line">
                     <div class="left">
                         <label>Probabilité</label>
@@ -86,23 +97,23 @@
                         <div class="radio-bar-content">
                             <div class="radio-bar radio-bar-probability">
                                 <label class="con">
-                                    <input type="radio" name="probability" value="very high" {{ isset($risk) && $risk->probability === 'very high' ? 'checked' : '' }}>
+                                    <input type="radio" name="probability" value="very high" @if(old('probability')){{ old('probability') === 'very high' ? 'checked' : '' }}@else{{ isset($risk) && $risk->probability === 'very high' ? 'checked' : '' }}@endif >
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio" name="probability" value="high" {{ isset($risk) && $risk->probability === 'high' ? 'checked' : '' }}>
+                                    <input type="radio" name="probability" value="high" @if(old('probability')){{ old('probability') === 'high' ? 'checked' : '' }}@else{{ isset($risk) && $risk->probability === 'high' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio" name="probability" value="medium" {{ isset($risk) && $risk->probability === 'medium' ? 'checked' : '' }}>
+                                    <input type="radio" name="probability" value="medium" @if(old('probability')){{ old('probability') === 'medium' ? 'checked' : '' }}@else{{ isset($risk) && $risk->probability === 'medium' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio" name="probability" value="weak" {{ isset($risk) && $risk->probability === 'weak' ? 'checked' : '' }}>
+                                    <input type="radio" name="probability" value="weak" @if(old('probability')){{ old('probability') === 'weak' ? 'checked' : '' }}@else{{ isset($risk) && $risk->probability === 'weak' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio" name="probability" value="very weak" {{ isset($risk) && $risk->probability === 'very weak' ? 'checked' : '' }}>
+                                    <input type="radio" name="probability" value="very weak" @if(old('probability')){{ old('probability') === 'very weak' ? 'checked' : '' }}@else{{ isset($risk) && $risk->probability === 'very weak' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
@@ -113,12 +124,15 @@
                                 <label>Faible</label>
                                 <label>Très faible</label>
                             </div>
+                            @error('probability')
+                                <p class="message-error">{{ $message }}</p>
+                            @enderror
                         </div>
                         <i class="far fa-question-circle" data-toggle="toolHelp" data-placement="top" title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></i>
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row row--radio">
                 <div class="line">
                     <div class="left">
                         <label>Gravité potentiel</label>
@@ -127,23 +141,23 @@
                         <div class="radio-bar-content">
                             <div class="radio-bar radio-bar-gravity">
                                 <label class="con">
-                                    <input type="radio" name="gravity" value="death" {{ isset($risk) && $risk->gravity === 'death' ? 'checked' : '' }}>
+                                    <input type="radio" name="gravity" value="death" @if(old('gravity')){{ old('gravity') === 'death' ? 'checked' : '' }}@else{{ isset($risk) && $risk->gravity === 'death' ? 'checked' : '' }}@endif >
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio" name="gravity" value="ipp" {{ isset($risk) && $risk->gravity === 'ipp' ? 'checked' : '' }}>
+                                    <input type="radio" name="gravity" value="ipp" @if(old('gravity')){{ old('gravity') === 'ipp' ? 'checked' : '' }}@else{{ isset($risk) && $risk->gravity === 'ipp' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio" name="gravity" value="aaa" {{ isset($risk) && $risk->gravity === 'aaa' ? 'checked' : '' }}>
+                                    <input type="radio" name="gravity" value="aaa" @if(old('gravity')){{ old('gravity') === 'aaa' ? 'checked' : '' }}@else{{ isset($risk) && $risk->gravity === 'aaa' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio" name="gravity" value="asa" {{ isset($risk) && $risk->gravity === 'asa' ? 'checked' : '' }}>
+                                    <input type="radio" name="gravity" value="asa" @if(old('gravity')){{ old('gravity') === 'asa' ? 'checked' : '' }}@else{{ isset($risk) && $risk->gravity === 'asa' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio" name="gravity" value="weak impact" {{ isset($risk) && $risk->gravity === 'weak impact' ? 'checked' : '' }}>
+                                    <input type="radio" name="gravity" value="weak impact" @if(old('gravity')){{ old('gravity') === 'weak impact' ? 'checked' : '' }}@else{{ isset($risk) && $risk->gravity === 'weak impact' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
@@ -154,13 +168,16 @@
                                 <label>ASA</label>
                                 <label>Impact faible</label>
                             </div>
+                            @error('gravity')
+                                <p class="message-error">{{ $message }}</p>
+                            @enderror
                         </div>
                         <i class="far fa-question-circle" data-toggle="toolHelp" data-placement="top" title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></i>
                     </div>
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row row--radio">
                 <div class="line">
                     <div class="left">
                         <label>Gravité potentiel</label>
@@ -169,18 +186,21 @@
                         <div class="radio-bar-content">
                             <div class="radio-bar radio-bar--inv">
                                 <label class="con"> Non
-                                    <input type="radio" name="gender" value="null" {{ isset($risk) && $risk->impact === 'null' ? 'checked' : '' }}>
+                                    <input type="radio" name="gender" value="null" @if(old('gender')){{ old('gender') === 'null' ? 'checked' : '' }}@else{{ isset($risk) && $risk->impact === 'null' ? 'checked' : '' }}@endif >
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con"> Homme
-                                    <input type="radio" name="gender" value="male" {{ isset($risk) && $risk->impact === 'male' ? 'checked' : '' }}>
+                                    <input type="radio" name="gender" value="male" @if(old('gender')){{ old('gender') === 'male' ? 'checked' : '' }}@else{{ isset($risk) && $risk->impact === 'male' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con"> Femme
-                                    <input type="radio" name="gender" value="female" {{ isset($risk) && $risk->impact === 'female' ? 'checked' : '' }}>
+                                    <input type="radio" name="gender" value="female" @if(old('gender')){{ old('gender') === 'female' ? 'checked' : '' }}@else{{ isset($risk) && $risk->impact === 'female' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
+                            @error('gender')
+                                <p class="message-error">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -224,6 +244,11 @@
                             <li>
                                 <span class="bold">Valeur du risque résiduel évaluée :&nbsp;</span> <button type="button" class="btn btn-danger btn-small">24</button>
                             </li>
+                            @error('restraint')
+                                <li>
+                                    <p class="message-error">{{ $message }}</p>
+                                </li>
+                            @enderror
                         </ul>
                     </div>
                 </div>
@@ -241,6 +266,11 @@
                             <li>
                                 <button class="btn btn-yellow btn-text btn-add-restraint" type="button">+ Ajouter une mesure proposée</button>
                             </li>
+                            @error('restraint_proposed')
+                                <li>
+                                    <p class="message-error">{{ $message }}</p>
+                                </li>
+                            @enderror
                         </ul>
                     </div>
                 </div>
@@ -289,7 +319,7 @@
                                 </div>
                             </div>
                             <div class="restraint-modal-content">
-                                <div class="row">
+                                <div class="row row--radio">
                                     <div class="line">
                                         <div class="left">
                                             <label>Technique</label>
@@ -325,7 +355,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row row--radio">
                                     <div class="line">
                                         <div class="left">
                                             <label>Organisationnelle</label>
@@ -361,7 +391,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row row--radio">
                                     <div class="line">
                                         <div class="left">
                                             <label>Humaine</label>
@@ -446,7 +476,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row row--radio">
                         <div class="line">
                             <div class="left">
                                 <label>Technique</label>
@@ -482,7 +512,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row row--radio">
                         <div class="line">
                             <div class="left">
                                 <label>Organisationnelle</label>
@@ -518,7 +548,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row row--radio">
                         <div class="line">
                             <div class="left">
                                 <label>Humaine</label>
@@ -619,6 +649,20 @@
 
 @section('script')
     <script src="/js/app/risk.js"></script>
+    @if(old('restraint'))
+        <script>
+            @foreach(old('restraint') as $restraint)
+                createRestraint('{{ explode('|',$restraint)[0] }}','{{ explode('|',$restraint)[1] }}','{{ explode('|',$restraint)[2] }}','{{ explode('|',$restraint)[3] }}' )
+            @endforeach
+        </script>
+    @endif
+    @if(old('restraint_proposed'))
+        <script>
+            @foreach(old('restraint_proposed') as $restraint)
+                createRestraintProposed('{{ $restraint }}')
+            @endforeach
+        </script>
+    @endif
     @if (Auth::user()->hasAccess('oza'))
         <script>
 

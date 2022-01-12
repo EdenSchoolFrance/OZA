@@ -21,9 +21,6 @@
                         margin-left: 20px;
                         font-size: 20px;
                     }
-                    .message-error {
-                        display: none;
-                    }
 
                     input,
                     textarea {
@@ -63,6 +60,13 @@
                             background-color: #F7F7F7;
                             border-color: $border_head;
                         }
+                    }
+                }
+            }
+            &--radio{
+                .left{
+                    label{
+                        margin-top: 0 !important;
                     }
                 }
             }
@@ -163,6 +167,13 @@
                 }
             }
         }
+        &--radio{
+            .left{
+                label{
+                    margin-top: 0 !important;
+                }
+            }
+        }
     }
 }
 
@@ -175,6 +186,13 @@
         }
         .row{
             margin-bottom: 10px;
+            &--radio{
+                .left{
+                    label{
+                        margin-top: 0 !important;
+                    }
+                }
+            }
         }
     }
     .con {
