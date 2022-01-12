@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRestraintsTable extends Migration
+class CreateReflectionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateRestraintsTable extends Migration
      */
     public function up()
     {
-        Schema::create('restraints', function (Blueprint $table) {
+        Schema::create('reflections', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
 
-            $table->foreignUuid('risk_id');
+            $table->foreignUuid('danger_id');
 
-            $table->foreign('risk_id')->references('id')->on('risks')->onDelete('cascade');
+            $table->foreign('danger_id')->references('id')->on('dangers')->onDelete('cascade');
         });
     }
 
@@ -30,6 +30,6 @@ class CreateRestraintsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('restraints');
+        Schema::dropIfExists('reflections');
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DomainActivitie;
+use App\Models\Risk;
 use App\Models\SdDanger;
 use App\Models\SdRestraint;
 use App\Models\SdRisk;
@@ -26,7 +28,7 @@ class RiskController extends Controller
         return view('app.risk.index', compact('page', 'single_document','danger'));
     }
 
-    public function create($id, $id_danger)
+    public function create($id, $id_danger, $id_work_unit, $id_risk = null)
     {
         $single_document = $this->checkSingleDocument($id);
 
@@ -41,7 +43,23 @@ class RiskController extends Controller
 
         $danger = SdDanger::find($id_danger);
 
-        return view('app.risk.create', compact('page', 'single_document','danger'));
+        $domaine_activities = DomainActivitie::all();
+
+        if ($id_work_unit !== 'all'){
+
+            $sd_work_unit = SdWorkUnit::find($id_work_unit);
+            if ($id_risk !== null){
+                $risk = Risk::find($id_risk);
+                return view('app.risk.create', compact('page', 'single_document','danger','domaine_activities','sd_work_unit','risk'));
+            }
+            return view('app.risk.create', compact('page', 'single_document','danger','domaine_activities','sd_work_unit'));
+        }
+        if ($id_risk !== null){
+            $risk = Risk::find($id_risk);
+            return view('app.risk.create', compact('page', 'single_document','danger','domaine_activities','risk'));
+        }
+
+        return view('app.risk.create', compact('page', 'single_document','danger','domaine_activities'));
     }
 
     public function store(Request $request, $id, $id_sd_danger, $id_sd_work_unit = null){
@@ -96,6 +114,41 @@ class RiskController extends Controller
         }
 
         return redirect()->route('risk.index', [$single_document->id, $sd_danger->id]);
+
+    }
+
+    public function filter(Request $request, $id, $id_sd_danger){
+
+        $single_document = $this->checkSingleDocument($id);
+        $sd_danger = SdDanger::find($id_sd_danger);
+        if (!$sd_danger) abort(404);
+
+        if ($request->ajax()){
+
+            if (empty($request->filterUt)){
+                if ($request->filterSa === 'none'){
+                    $data = Risk::all();
+                }else{
+                    $data = Risk::whereHas('domain_activitie', function ($q) use ($request) {
+                        $q->where('id', $request->filterSa);
+                    })->get();
+                }
+
+            }else if ($request->filterSa === 'none' && $request->filterUt){
+                $data = Risk::where('name', 'like', '%' . $request->filterUt . '%')->get();
+            }else{
+
+                $data = Risk::whereHas('domain_activitie', function ($q) use ($request) {
+                    $q->where('id', $request->filterSa);
+                })->where('name', 'like', '%' . $request->filterUt . '%')->get();
+
+            }
+
+            return response()->json($data);
+
+        }
+
+        abort(404);
 
     }
 }
