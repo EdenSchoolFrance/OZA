@@ -128,6 +128,8 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/{single_document}/risk/{danger}', [RiskController::class, 'index'])->name('risk.index');
     Route::post('/{single_document}/risk/{danger}/create/filter', [RiskController::class, 'filter'])->name('risk.filter');
     Route::get('/{single_document}/risk/{danger}/create/{sd_work_unit}/{risk?}', [RiskController::class, 'create'])->name('risk.create');
+    Route::get('/{single_document}/risk/{danger}/edit/{risk}', [RiskController::class, 'edit'])->name('risk.edit');
     Route::post('/{single_document}/risk/{danger}/store/{sd_work_unit?}', [RiskController::class, 'store'])->name('risk.store');
+    Route::post('/{single_document}/risk/{danger}/update/{sd_work_unit}/{risk}', [RiskController::class, 'update'])->name('risk.update');
 
 });
