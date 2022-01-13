@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Danger extends Model
+class Risk extends Model
 {
     use HasFactory;
 
@@ -20,16 +20,24 @@ class Danger extends Model
      */
     protected $fillable = [
         'name',
-        'info'
+        'frequency',
+        'probability',
+        'gravity',
+        'impact'
     ];
 
-    public function packs()
+    public function danger()
     {
-        return $this->belongsToMany(Pack::class, 'danger_pack');
+        return $this->belongsTo(Danger::class);
     }
 
-    public function risk()
+    public function domain_activitie()
     {
-        return $this->hasMany(Risk::class,'danger_id');
+        return $this->belongsTo(DomainActivitie::class, 'domain_activity_id');
+    }
+
+    public function restraint()
+    {
+        return $this->hasMany(Restraint::class);
     }
 }

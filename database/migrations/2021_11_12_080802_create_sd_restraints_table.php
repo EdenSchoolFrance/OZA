@@ -16,15 +16,14 @@ class CreateSdRestraintsTable extends Migration
         Schema::create('sd_restraints', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
-            $table->string('technical');
-            $table->string('organizational');
-            $table->string('human');
+            $table->string('technical')->nullable();
+            $table->string('organizational')->nullable();
+            $table->string('human')->nullable();
+            $table->boolean('exist')->default(0);
 
             $table->foreignUuid('sd_risk_id');
-            $table->foreignUuid('restraint_id')->nullable();
 
             $table->foreign('sd_risk_id')->references('id')->on('sd_risks')->onDelete('cascade');
-            $table->foreign('restraint_id')->references('id')->on('restraints')->onDelete('cascade');
         });
     }
 

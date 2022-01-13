@@ -36,4 +36,9 @@ class SdDanger extends Model
     {
         return $this->belongsTo(Danger::class);
     }
+
+    public function sd_risk()
+    {
+        return $this->hasMany(SdRisk::class);
+    }
 }

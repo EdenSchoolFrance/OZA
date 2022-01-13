@@ -56,7 +56,7 @@ on('[data-modal]', 'click', (el, e) => {
     }
 });
 
-on('.modal', 'click', (el, e) => {
+on('.modal:not([data-backdrop="static"])', 'click', (el, e) => {
     if (!$('.modal-content', el, 0).contains(e.target)) {
         el.classList.remove('show');
 

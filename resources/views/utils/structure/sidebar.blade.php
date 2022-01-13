@@ -65,7 +65,7 @@
                 <ul class="sub-group-menu" style="{{ $page['sidebar'] == "risk_pro" ? 'display: block' : '' }}">
                     @foreach ($single_document->dangers as $danger)
                         <li class="sidebar-nav-item {{ $page['sidebar'] == "structure" && $page['sub_sidebar'] == "danger_" . $danger->id ? 'active' : '' }}">
-                            <a href="{{ route('risk.index', [$single_document->id, $danger->danger->id]) }}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>{{ $danger->danger->name }}</a>
+                            <a href="{{ route('risk.index', [$single_document->id, $danger->id]) }}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>{{ $danger->danger->name }}</a>
                             <i class="fas fa-check {{ $danger->validated ? 'checked' : 'unchecked' }}"></i>
                         </li>
                     @endforeach

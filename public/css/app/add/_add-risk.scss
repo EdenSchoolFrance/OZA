@@ -10,6 +10,7 @@
                 .right{
                     display: flex;
                     justify-content: flex-start;
+
                     p{
                         i{
                             margin: 0;
@@ -20,9 +21,6 @@
                         margin-left: 20px;
                         font-size: 20px;
                     }
-                    .message-error {
-                        display: none;
-                    }
 
                     input,
                     textarea {
@@ -32,13 +30,23 @@
                             max-width: calc(480px / 2);
                         }
                     }
-
-                    textarea {
-                        min-height: 125px;
-                        resize: vertical;
+                    ul{
+                        li{
+                            display: flex;
+                            justify-content: flex-start;
+                        }
                     }
                     li{
                         padding: 5px 0;
+                    }
+                    &--cancel{
+                        display: block;
+                        i{
+                            font-size: 18px;
+                            padding-bottom: 22px;
+                            margin-right: 10px;
+                            margin-left: 0;
+                        }
                     }
                 }
                 &--activity {
@@ -55,6 +63,13 @@
                     }
                 }
             }
+            &--radio{
+                .left{
+                    label{
+                        margin-top: 0 !important;
+                    }
+                }
+            }
         }
         .btn-delete{
             cursor: pointer;
@@ -67,7 +82,7 @@
     }
 }
 
-.modal--risk{
+.modal-add-risk{
     .row {
         display: flex;
         flex-direction: column;
@@ -152,5 +167,91 @@
                 }
             }
         }
+        &--radio{
+            .left{
+                label{
+                    margin-top: 0 !important;
+                }
+            }
+        }
+    }
+}
+
+.modal--risk-restraint-oza{
+    .modal-body{
+        max-height: 80vh;
+        overflow: auto;
+        .restraint-modal-content{
+            display: none;
+        }
+        .row{
+            margin-bottom: 10px;
+            &--radio{
+                .left{
+                    label{
+                        margin-top: 0 !important;
+                    }
+                }
+            }
+        }
+    }
+    .con {
+        display: block;
+        position: relative;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        margin: 0;
+        margin-right: 25px;
+        padding-left: 25px;
+        font-size: 16px;
+    }
+
+    .con input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+
+    .checkmark {
+        position: absolute;
+        top: 6px;
+        left: 0;
+        height: 10px;
+        width: 10px;
+        background-color: #eee;
+        border-radius: 50%;
+    }
+
+    .con input:checked~.checkmark {
+        background-color: #2196F3;
+    }
+
+
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+
+    .con input:checked~.checkmark:after {
+        display: block;
+    }
+
+    .con .checkmark:after {
+        top: -5px;
+        left: -5px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 1px $dark solid;
+        background: white;
+    }
+    .checkmark:hover{
+
     }
 }

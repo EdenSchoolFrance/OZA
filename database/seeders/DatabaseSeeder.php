@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\DomainActivitie;
 use App\Models\Item;
 use App\Models\SubItem;
 use Illuminate\Database\Seeder;
@@ -32,13 +33,13 @@ class DatabaseSeeder extends Seeder
         $this->call(WorkUnitSeeder::class);
 
         $this->call(DangerSeeder::class);
-      
+
         $this->call(SingleDocumentSeeder::class);
 
         $this->call(SdDangerSeeder::class);
 
         $this->call(DocSeeder::class);
-      
+
         $this->call(SdWorkUnitSeeder::class);
 
         $this->call(SdActivitieSeeder::class);
@@ -50,5 +51,11 @@ class DatabaseSeeder extends Seeder
         $this->call(ChildSubItemSeeder::class);
 
         $this->call(SdItemSeeder::class);
+
+        $this->call(DomainActivitieSeeder::class);
+
+        $this->call(RiskSeeder::class);
+
+        $this->call(RestraintSeeder::class);
     }
 }
