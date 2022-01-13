@@ -133,6 +133,11 @@ on('.radio-bar .con input', 'click', (el, e) => {
     setColor(total,riskCalcul());
 });
 
+on('.btn-check-work-unit', 'click', (el, e) => {
+    el.closest('form').querySelector('input[name="checked"]').value = el.dataset.value
+    el.closest('form').submit()
+});
+
 
 /*==============================
           Calcul function

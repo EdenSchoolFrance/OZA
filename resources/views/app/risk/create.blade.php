@@ -4,7 +4,7 @@
 
 
 <div class="content">
-    <form action="{{ route('risk.store', [$single_document->id, $danger->id]) }}" class="card card--add-risk" method="post">
+    <form action="{{ route('risk.store', [$single_document->id, $danger->id, $id_sd_work_unit]) }}" class="card card--add-risk" method="post">
         @csrf
         <div class="card-body">
             <div class="row">
@@ -628,10 +628,10 @@
                                         @if($child->id === $risk->id)
                                             <li><a href="#" class="checked">{{ $child->name }}</a></li>
                                         @else
-                                            <li><a href="{{ route('risk.create', [$single_document->id, $danger->id, isset($sd_work_unit) ? $sd_work_unit->id : 'all', $child->id]) }}">{{ $child->name }}</a></li>
+                                            <li><a href="{{ route('risk.create', [$single_document->id, $danger->id, $id_sd_work_unit, $child->id]) }}">{{ $child->name }}</a></li>
                                         @endif
                                     @else
-                                        <li><a href="{{ route('risk.create', [$single_document->id, $danger->id, isset($sd_work_unit) ? $sd_work_unit->id : 'all', $child->id]) }}">{{ $child->name }}</a></li>
+                                        <li><a href="{{ route('risk.create', [$single_document->id, $danger->id, $id_sd_work_unit, $child->id]) }}">{{ $child->name }}</a></li>
                                     @endif
                                 @endforeach
                             </ul>
@@ -668,7 +668,7 @@
             let url = '{{ route('risk.filter', [$single_document->id, $danger->id]) }}';
             let single_document_id = '{{ $single_document->id }}';
             let risk = '{{ isset($risk) ? $risk->id : null }}';
-            let workUnit = '{{ isset($sd_work_unit) ? $sd_work_unit->id : 'all' }}';
+            let workUnit = '{{ $id_sd_work_unit }}';
 
             document.getElementById('filter-sa').addEventListener('change', filterRisk);
             document.getElementById('filter-ut').addEventListener('keyup', filterRisk);

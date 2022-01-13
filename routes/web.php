@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DangerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Client\UserController as UserClientController;
@@ -125,11 +126,16 @@ Route::middleware(['auth'])->group(function() {
     Route::post('/{single_document}/work/update/{work_unit}', [WorkUnitController::class, 'update'])->name('work.update');
     Route::post('/{single_document}/work/delete', [WorkUnitController::class, 'delete'])->name('work.delete'); // change post
 
-    Route::get('/{single_document}/risk/{danger}', [RiskController::class, 'index'])->name('risk.index');
-    Route::post('/{single_document}/risk/{danger}/create/filter', [RiskController::class, 'filter'])->name('risk.filter');
-    Route::get('/{single_document}/risk/{danger}/create/{sd_work_unit}/{risk?}', [RiskController::class, 'create'])->name('risk.create');
-    Route::get('/{single_document}/risk/{danger}/edit/{risk}', [RiskController::class, 'edit'])->name('risk.edit');
-    Route::post('/{single_document}/risk/{danger}/store/{sd_work_unit?}', [RiskController::class, 'store'])->name('risk.store');
-    Route::post('/{single_document}/risk/{danger}/update/{sd_work_unit}/{risk}', [RiskController::class, 'update'])->name('risk.update');
+    Route::get('/{single_document}/danger/{danger}', [DangerController::class, 'index'])->name('danger.index');
+    Route::get('/{single_document}/danger/{danger}/validated/{work_unit}', [DangerController::class, 'validated'])->name('danger.validated');
+
+
+    Route::get('/{single_document}/danger/{danger}/create/{sd_work_unit}/{risk?}', [RiskController::class, 'create'])->name('risk.create');
+    Route::get('/{single_document}/danger/{danger}/edit/{risk}', [RiskController::class, 'edit'])->name('risk.edit');
+
+    Route::post('/{single_document}/danger/{danger}/create/filter', [RiskController::class, 'filter'])->name('risk.filter');
+    Route::post('/{single_document}/danger/{danger}/store/{sd_work_unit}', [RiskController::class, 'store'])->name('risk.store');
+    Route::post('/{single_document}/danger/{danger}/update/{sd_work_unit}/{risk}', [RiskController::class, 'update'])->name('risk.update');
+    Route::post('/{single_document}/danger/{danger}/delete/{risk}', [RiskController::class, 'delete'])->name('risk.delete');
 
 });

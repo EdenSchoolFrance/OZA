@@ -94,7 +94,7 @@
                     margin: 0;
                     color: $dark;
                 }
-    
+
                 .btn {
                     margin-left: 15px;
                 }
@@ -151,10 +151,11 @@ table.table--risks {
             td {
                 &.td {
                     &_risk {
+                        min-width: 400px;
                         p {
                             white-space: pre-line;
                             margin-top: 0;
-    
+
                             &:last-of-type {
                                 margin: 0;
                             }
@@ -177,6 +178,11 @@ table.table--risks {
 
                         i {
                             margin-bottom: 20px;
+                        }
+                    }
+                    &_actions{
+                        div{
+                            max-width: 35px;
                         }
                     }
                 }
