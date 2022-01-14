@@ -20,6 +20,12 @@ class CreateRisksTable extends Migration
             $table->string('probability');
             $table->string('gravity');
             $table->string('impact');
+
+            $table->foreignUuid('danger_id');
+            $table->foreignUuid('domain_activity_id');
+
+            $table->foreign('domain_activity_id')->references('id')->on('domain_activities')->onDelete('cascade');
+            $table->foreign('danger_id')->references('id')->on('dangers')->onDelete('cascade');
         });
     }
 

@@ -38,4 +38,27 @@ class SdWorkUnit extends Model
     {
         return $this->belongsTo(SingleDocument::class);
     }
+
+    public function sd_dangers()
+    {
+        return $this->belongsToMany(SdDanger::class, 'sd_danger_sd_work_unit', 'sd_work_unit_id', 'sd_danger_id')->withPivot('exist');
+    }
+
+    public function sd_danger($id)
+    {
+        return $this->sd_dangers->where('id', $id)->first();
+    }
+
+    public function sd_risks()
+    {
+        return $this->hasMany(SdRisk::class);
+    }
+
+    public function sd_danger_risks($id)
+    {
+        /*return $this->sd_risks->whereHas('sd_danger', function ($q) use ($id){
+            $q->where('id', $id);
+        })->get();*/
+        return $this->sd_risks->where('sd_danger_id', $id);
+    }
 }

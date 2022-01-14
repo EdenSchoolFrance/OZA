@@ -1,4 +1,10 @@
 .card--add_work_unit {
+    label{
+        color: $black;
+    }
+    p{
+        color: $dark;
+    }
     .card-body {
         .row {
             .line {
@@ -80,7 +86,7 @@
     .row--ut{
         display: flex;
         justify-content: flex-start;
-        flex-direction: inherit;
+        flex-direction: inherit !important;
         .group-form{
             margin-right: 10%;
             width: 40%;
