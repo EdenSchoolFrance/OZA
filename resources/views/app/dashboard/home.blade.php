@@ -20,7 +20,7 @@
                 </form>
             @endforeach
         @else
-            <p>Vous n'avez pas du Document Unique</p>
+            <p>Vous n'avez pas de Document Unique</p>
         @endif
     </div>
 @endsection

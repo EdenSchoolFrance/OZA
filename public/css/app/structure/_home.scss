@@ -11,7 +11,11 @@
 
     .card--home {
         width: 30%;
-        margin: 0 1%;
+        margin: 15px 1%;
+
+        &:last-child{
+            margin: 15px 1% !important;
+        }
 
         .card-body {
             .row {
