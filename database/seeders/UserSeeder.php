@@ -29,8 +29,9 @@ class UserSeeder extends Seeder
         $user->email = "adminoza@gmail.com";
         $user->phone = "0614875412";
         $user->post = "Poste";
-        $user->password = "test";
+        $user->password = "password";
         $user->oza = 1;
+        $user->first_connection = 0;
         $user->role()->associate($role_admin);
         $user->save();
 
@@ -41,8 +42,9 @@ class UserSeeder extends Seeder
         $user->email = "expertoza@gmail.com";
         $user->phone = "0614875412";
         $user->post = "Poste";
-        $user->password = "test";
+        $user->password = "password";
         $user->oza = 1;
+        $user->first_connection = 0;
         $user->role()->associate($role_expert);
         $user->save();
 
@@ -53,7 +55,8 @@ class UserSeeder extends Seeder
         $user->email = "adminclient@gmail.com";
         $user->phone = "0614875412";
         $user->post = "Poste";
-        $user->password = "test";
+        $user->password = "password";
+        $user->first_connection = 0;
         $user->role()->associate($role_admin);
         $user->save();
 
@@ -64,7 +67,8 @@ class UserSeeder extends Seeder
         $user->email = "managerclient@gmail.com";
         $user->phone = "0614875412";
         $user->post = "Poste";
-        $user->password = "test";
+        $user->password = "password";
+        $user->first_connection = 0;
         $user->role()->associate($role_manager);
         $user->save();
 
@@ -75,7 +79,8 @@ class UserSeeder extends Seeder
         $user->email = "editorclient@gmail.com";
         $user->phone = "0614875412";
         $user->post = "Poste";
-        $user->password = "test";
+        $user->password = "password";
+        $user->first_connection = 0;
         $user->role()->associate($role_editor);
         $user->save();
 
@@ -86,7 +91,8 @@ class UserSeeder extends Seeder
         $user->email = "readerclient@gmail.com";
         $user->phone = "0614875412";
         $user->post = "Poste";
-        $user->password = "test";
+        $user->password = "password";
+        $user->first_connection = 0;
         $user->role()->associate($role_reader);
         $user->save();
     }

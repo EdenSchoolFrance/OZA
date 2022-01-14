@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 
 class DangerController extends Controller
 {
-
     public function index($id, $id_danger)
     {
         $single_document = $this->checkSingleDocument($id);
@@ -27,7 +26,6 @@ class DangerController extends Controller
             'sub_sidebar' => 'danger_'.$danger->id
         ];
 
-
         $risks_all = SdRisk::where('sd_work_unit_id', null)->whereHas('sd_danger', function ($q) use ($danger) {
             $q->where('id', $danger->id);
         })->get();
@@ -36,7 +34,6 @@ class DangerController extends Controller
     }
 
     public function validated(Request $request, $id, $id_sd_danger, $id_sd_work_unit){
-
         $single_document = $this->checkSingleDocument($id);
 
         $sd_danger = SdDanger::where('id',$id_sd_danger)->whereHas('single_document', function ($q) use ($single_document){
@@ -48,8 +45,7 @@ class DangerController extends Controller
             'checked' => 'required'
         ]);
 
-        if ($id_sd_work_unit === 'all'){
-
+        if ($id_sd_work_unit === 'global'){
             $sd_works_units = SdWorkUnit::whereHas('single_document', function ($q) use ($single_document){
                 $q->where('id', $single_document->id);
             })->get();
@@ -81,12 +77,10 @@ class DangerController extends Controller
                 }
             }
 
-        }else if ($id_sd_work_unit === 'ut_all'){
-
+        } elseif ($id_sd_work_unit === 'all'){
             $sd_danger->ut_all = $request->checked === 'true' ? 1 : 0;
             $sd_danger->save();
-
-        } else{
+        } else {
             $sd_work_unit = SdWorkUnit::where('id',$id_sd_work_unit)->whereHas('single_document', function ($q) use ($single_document){
                 $q->where('id', $single_document->id);
             })->first();
@@ -100,7 +94,7 @@ class DangerController extends Controller
             if (isset($danger)){
                 $danger->sd_works_units()->detach($sd_work_unit);
                 $sd_danger->sd_works_units()->attach($sd_work_unit, ['exist' => $request->checked === 'true' ? 1 : 0]);
-            }else{
+            } else {
                 $sd_danger->sd_works_units()->attach($sd_work_unit, ['exist' => $request->checked === 'true' ? 1 : 0]);
             }
         }
@@ -108,12 +102,7 @@ class DangerController extends Controller
         return redirect()->route('danger.index', [$single_document->id, $sd_danger->id]);
     }
 
-    public function comment(Request $request, $id, $id_sd_danger){
-
-        $request->validate([
-            'comment' => 'required'
-        ]);
-
+    public function comment(Request $request, $id, $id_sd_danger) {
         $single_document = $this->checkSingleDocument($id);
 
         $danger = SdDanger::where('id',$id_sd_danger)->whereHas('single_document', function ($q) use ($single_document){
@@ -128,13 +117,12 @@ class DangerController extends Controller
         return redirect()->route('danger.index', [$single_document->id, $danger->id]);
     }
 
-    public function store(Request $request, $id, $id_sd_danger){
+    public function store(Request $request, $id, $id_sd_danger) {
+        $single_document = $this->checkSingleDocument($id);
 
         $request->validate([
             'checked' => 'required'
         ]);
-
-        $single_document = $this->checkSingleDocument($id);
 
         $danger = SdDanger::where('id',$id_sd_danger)->whereHas('single_document', function ($q) use ($single_document){
             $q->where('id', $single_document->id);
