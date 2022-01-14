@@ -82,7 +82,6 @@ class RiskController extends Controller
     }
 
     public function store(Request $request, $id, $id_sd_danger, $id_sd_work_unit){
-
         $single_document = $this->checkSingleDocument($id);
         $sd_danger = SdDanger::find($id_sd_danger);
         if (!$sd_danger) abort(404);
@@ -133,15 +132,15 @@ class RiskController extends Controller
         }
 
         return redirect()->route('danger.index', [$single_document->id, $sd_danger->id]);
-
     }
 
 
     public function update(Request $request, $id, $id_sd_danger, $id_sd_work_unit ,$id_risk){
-
         $single_document = $this->checkSingleDocument($id);
         $sd_danger = SdDanger::find($id_sd_danger);
+
         if (!$sd_danger) abort(404);
+
         $sd_work_unit = SdWorkUnit::find($id_sd_work_unit);
 
         $request->validate([
@@ -192,7 +191,6 @@ class RiskController extends Controller
         }
 
         return redirect()->route('danger.index', [$single_document->id, $sd_danger->id]);
-
     }
 
     public function filter(Request $request, $id, $id_sd_danger){
