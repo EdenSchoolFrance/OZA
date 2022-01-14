@@ -18,10 +18,10 @@ class SingleDocumentSeeder extends Seeder
     public function run()
     {
         $client = Client::where('name', 'Biocoop')->first();
-        $admin = User::where('lastname', 'Latsname Admin Client')->first();
-        $manager = User::where('lastname', 'Latsname Manager Client')->first();
-        $editor = User::where('lastname', 'Latsname Editor Client')->first();
-        $reader = User::where('lastname', 'Latsname Reader Client')->first();
+        $admin = User::where('email', 'adminclient@gmail.com')->first();
+        $manager = User::where('email', 'managerclient@gmail.com')->first();
+        $editor = User::where('email', 'editorclient@gmail.com')->first();
+        $reader = User::where('email', 'readerclient@gmail.com')->first();
 
         $sd = new SingleDocument();
         $sd->id = uniqid();

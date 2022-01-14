@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DangerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DocController;
 use App\Http\Controllers\AuthController;
@@ -143,6 +144,21 @@ Route::middleware(['auth'])->group(function() {
 
         Route::get('/{single_document}/risk/accident', [RiskController::class, 'accident'])->name('risk.accident');
         Route::get('/{single_document}/risk/accident/create', [RiskController::class, 'accidentCreate'])->name('risk.accident.create');
+
+
+        Route::get('/{single_document}/danger/{danger}', [DangerController::class, 'index'])->name('danger.index');
+
+        Route::post('/{single_document}/danger/{danger}/store', [DangerController::class, 'store'])->name('danger.store');
+        Route::post('/{single_document}/danger/{danger}/validated/{work_unit}', [DangerController::class, 'validated'])->name('danger.validated');
+        Route::post('/{single_document}/danger/{danger}/comment', [DangerController::class, 'comment'])->name('danger.comment');
+
+        Route::get('/{single_document}/danger/{danger}/create/{sd_work_unit}/{risk?}', [RiskController::class, 'create'])->name('risk.create');
+        Route::get('/{single_document}/danger/{danger}/edit/{risk}', [RiskController::class, 'edit'])->name('risk.edit');
+
+        Route::post('/{single_document}/danger/{danger}/create/filter', [RiskController::class, 'filter'])->name('risk.filter');
+        Route::post('/{single_document}/danger/{danger}/store/{sd_work_unit}', [RiskController::class, 'store'])->name('risk.store');
+        Route::post('/{single_document}/danger/{danger}/update/{sd_work_unit}/{risk}', [RiskController::class, 'update'])->name('risk.update');
+        Route::post('/{single_document}/danger/{danger}/delete/{risk}', [RiskController::class, 'delete'])->name('risk.delete');
 
 
         Route::get('/{single_document}/{doc_name?}', [DocController::class, 'index'])->name('documentation');

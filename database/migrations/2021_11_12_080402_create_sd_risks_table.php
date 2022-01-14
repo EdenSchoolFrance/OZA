@@ -21,13 +21,11 @@ class CreateSdRisksTable extends Migration
             $table->string('gravity');
             $table->string('impact');
 
-            $table->foreignUuid('sd_work_unit_id');
+            $table->foreignUuid('sd_work_unit_id')->nullable();
             $table->foreignUuid('sd_danger_id');
-            $table->foreignUuid('risk_id')->nullable();
 
             $table->foreign('sd_work_unit_id')->references('id')->on('sd_work_units')->onDelete('cascade');
             $table->foreign('sd_danger_id')->references('id')->on('sd_dangers')->onDelete('cascade');
-            $table->foreign('risk_id')->references('id')->on('risks')->onDelete('cascade');
         });
     }
 

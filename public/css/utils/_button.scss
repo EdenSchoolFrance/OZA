@@ -32,6 +32,19 @@
         }
     }
 
+    &-warning {
+        background-color: $orange;
+        color: $white;
+
+        &.btn-inv {
+            border-color: $orange;
+        }
+
+        &.btn-text {
+            color: $orange;
+        }
+    }
+
     &-success {
         background-color: $success;
         color: $white;

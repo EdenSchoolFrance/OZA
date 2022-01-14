@@ -36,4 +36,15 @@ class SdDanger extends Model
     {
         return $this->belongsTo(Danger::class);
     }
+
+    public function sd_risk()
+    {
+        return $this->hasMany(SdRisk::class);
+    }
+
+    public function sd_works_units()
+    {
+        return $this->belongsToMany(SdWorkUnit::class, 'sd_danger_sd_work_unit', 'sd_danger_id', 'sd_work_unit_id')->withPivot('exist');
+    }
+
 }

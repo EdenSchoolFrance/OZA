@@ -175,7 +175,7 @@ function filter(){
                     let content = '<a href="#" class="checked">'+json[i].name+'</a>'
                     li.innerHTML = content;
                 }else{
-                    let content = '<a href="/'+single_document_id+'/work/create/'+json[i].id+'">'+json[i].name+'</a>'
+                    let content = '<a href="/'+single_document_id+'/risk/'+risk+'/create/all/'+json[i].id+'">'+json[i].name+'</a>'
                     li.innerHTML = content;
                 }
                 list.appendChild(li);
