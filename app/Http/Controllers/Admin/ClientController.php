@@ -83,6 +83,7 @@ class ClientController extends Controller
         $client = new Client();
         $client->id = uniqid();
         $client->name = $request->name_enterprise;
+        $client->image_type = $file->extension();
         $client->client_number = $request->client_number;
         $client->adress = $request->adress;
         $client->additional_adress = $request->additional_adress;
@@ -103,7 +104,7 @@ class ClientController extends Controller
         $user->client()->associate($client->id);
         $user->save();
 
-        Storage::putFileAs('/client/logo', $file, $client->id . '.' . $file->extension());
+        Storage::putFileAs('/public/logo', $file, $client->id . '.' . $file->extension());
 
         return redirect()->route('admin.client.edit', [$client->id, 'tab' => 'du'])->with('status', 'Le client a bien été créé !');
     }
@@ -146,10 +147,11 @@ class ClientController extends Controller
         $file = $request->file('logo');
 
         if ($file) {
-            Storage::putFileAs('/client/logo', $file, $client->id . '.' . $file->extension());
+            Storage::putFileAs('/public/logo', $file, $client->id . '.' . $file->extension());
         }
 
         $client->name = $request->name_enterprise;
+        if ($file) $client->image_type = $file->extension();
         $client->client_number = $request->client_number;
         $client->adress = $request->adress;
         $client->additional_adress = $request->additional_adress;

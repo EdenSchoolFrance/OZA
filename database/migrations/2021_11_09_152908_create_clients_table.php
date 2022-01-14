@@ -16,6 +16,7 @@ class CreateClientsTable extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
+            $table->string('image_type');
             $table->string('client_number');
             $table->string('adress');
             $table->string('additional_adress')->nullable();
@@ -23,7 +24,7 @@ class CreateClientsTable extends Migration
             $table->string('city');
             $table->boolean('archived')->default(0);
             $table->foreignUuid('expert_id')->nullable();
-            
+
             $table->foreign('expert_id')->references('id')->on('users')->onDelete('set null');
         });
     }
