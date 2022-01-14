@@ -33,6 +33,8 @@ class DatabaseSeeder extends Seeder
         $this->call(WorkUnitSeeder::class);
 
         $this->call(DangerSeeder::class);
+        
+        $this->call(ReflectionSeeder::class);
 
         $this->call(SingleDocumentSeeder::class);
 

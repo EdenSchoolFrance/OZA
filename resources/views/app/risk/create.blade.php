@@ -623,7 +623,7 @@
                         </div>
                         <div class="row">
                             <ul class="list-ut-template">
-                                @foreach($danger->danger->risk as $child)
+                                @foreach($danger->danger->risks as $child)
                                     @if(isset($risk))
                                         @if($child->id === $risk->id)
                                             <li><a href="#" class="checked">{{ $child->name }}</a></li>

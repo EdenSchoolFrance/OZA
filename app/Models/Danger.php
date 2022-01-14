@@ -28,8 +28,13 @@ class Danger extends Model
         return $this->belongsToMany(Pack::class, 'danger_pack');
     }
 
-    public function risk()
+    public function risks()
     {
         return $this->hasMany(Risk::class,'danger_id');
+    }
+
+    public function reflections()
+    {
+        return $this->hasMany(Reflection::class, 'danger_id');
     }
 }
