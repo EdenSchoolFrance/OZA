@@ -26,10 +26,12 @@
                                 <td class="td_email">{{$user->email}}</td>
                                 <td class="td_access">{{$user->role->name}}</td>
                                 <td class="td_actions">
-                                    @if (Auth::user()->id != $user->id)
+                                    @if ((($user->hasPermission('ADMIN') && Auth::user()->hasPermission(['ADMIN', 'EXPERT'])) || (!$user->hasPermission('ADMIN'))) && Auth::user()->id != $user->id)
                                         <button data-modal=".modal--delete" data-id="{{ $user->id }}"><i class="fas fa-trash"></i></button>
                                     @endif
-                                    <a href="{{ route('user.client.edit', [$single_document->id, $user->id]) }}"><i class="far fa-edit"></i></a>
+                                    @if (($user->hasPermission('ADMIN') && Auth::user()->hasPermission(['ADMIN', 'EXPERT'])) || (!$user->hasPermission('ADMIN')))
+                                        <a href="{{ Auth::user()->id == $user->id ? "#" : route('user.client.edit', [$single_document->id, $user->id]) }}"><i class="far fa-edit"></i></a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

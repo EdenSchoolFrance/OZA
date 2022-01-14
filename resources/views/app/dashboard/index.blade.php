@@ -50,12 +50,16 @@
                     <div class="row">
                         <p>Statut  :  En cours d’édition</p>
                     </div>
-                    <div class="row">
-                        <button class="btn btn-success">Générer un DU à date</button>
-                    </div>
-                    <div class="row">
-                        <a href="#" class="btn btn-text btn-yellow"><i class="far fa-edit"></i> Pré-remplir le DU sur la base d’un autre DU du compte</a>
-                    </div>
+                    @if (Auth::user()->hasPermission(['ADMIN', 'EXPERT', 'MANAGER']))
+                        <div class="row">
+                            <button class="btn btn-success">Générer un DU à date</button>
+                        </div>
+                    @endif
+                    @if (Auth::user()->hasPermission(['ADMIN', 'EXPERT', 'MANAGER', 'EDITOR']))
+                        <div class="row">
+                            <a href="#" class="btn btn-text btn-yellow"><i class="far fa-edit"></i> Pré-remplir le DU sur la base d’un autre DU du compte</a>
+                        </div>
+                    @endif
                 </div>
             </form>
             <form action="#" class="card card--dashboard-double">

@@ -29,7 +29,8 @@ class User extends Authenticatable
         'username',
         'password',
         'oza',
-        'connected'
+        'connected',
+        'first_connection'
     ];
 
     /**
