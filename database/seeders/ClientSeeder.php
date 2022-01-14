@@ -20,6 +20,7 @@ class ClientSeeder extends Seeder
         $client = new Client();
         $client->id = uniqid();
         $client->name = "Biocoop";
+        $client->image_type = 'png';
         $client->client_number = "087474175";
         $client->adress = "12 rue du louvre";
         $client->city_zipcode = "75000";
