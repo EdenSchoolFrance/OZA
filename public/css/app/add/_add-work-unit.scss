@@ -1,4 +1,10 @@
 .card--add_work_unit {
+    label{
+        color: $black;
+    }
+    p{
+        color: $dark;
+    }
     .card-body {
         .row {
             .line {
