@@ -24,8 +24,8 @@ class UserSeeder extends Seeder
 
         $user = new User();
         $user->id = uniqid();
-        $user->lastname = "Latsname Admin Oza";
-        $user->firstname = "Firstname Admin Oza";
+        $user->lastname = "Delafontaine";
+        $user->firstname = "Eric";
         $user->email = "adminoza@gmail.com";
         $user->phone = "0614875412";
         $user->post = "Poste";
@@ -36,8 +36,8 @@ class UserSeeder extends Seeder
 
         $user = new User();
         $user->id = uniqid();
-        $user->lastname = "Latsname Expert Oza";
-        $user->firstname = "Firstname Expert Oza";
+        $user->lastname = "Delacours";
+        $user->firstname = "Jean";
         $user->email = "expertoza@gmail.com";
         $user->phone = "0614875412";
         $user->post = "Poste";
@@ -48,8 +48,8 @@ class UserSeeder extends Seeder
 
         $user = new User();
         $user->id = uniqid();
-        $user->lastname = "Latsname Admin Client";
-        $user->firstname = "Firstname Admin Client";
+        $user->lastname = "Vic";
+        $user->firstname = "Julien";
         $user->email = "adminclient@gmail.com";
         $user->phone = "0614875412";
         $user->post = "Poste";
@@ -59,8 +59,8 @@ class UserSeeder extends Seeder
 
         $user = new User();
         $user->id = uniqid();
-        $user->lastname = "Latsname Manager Client";
-        $user->firstname = "Firstname Manager Client";
+        $user->lastname = "Doe";
+        $user->firstname = "Julie";
         $user->email = "managerclient@gmail.com";
         $user->phone = "0614875412";
         $user->post = "Poste";
@@ -70,8 +70,8 @@ class UserSeeder extends Seeder
 
         $user = new User();
         $user->id = uniqid();
-        $user->lastname = "Latsname Editor Client";
-        $user->firstname = "Firstname Editor Client";
+        $user->lastname = "Martinez";
+        $user->firstname = "Jean pierre";
         $user->email = "editorclient@gmail.com";
         $user->phone = "0614875412";
         $user->post = "Poste";
@@ -81,8 +81,8 @@ class UserSeeder extends Seeder
 
         $user = new User();
         $user->id = uniqid();
-        $user->lastname = "Latsname Reader Client";
-        $user->firstname = "Firstname Reader Client";
+        $user->lastname = "Auriol";
+        $user->firstname = "Jhon";
         $user->email = "readerclient@gmail.com";
         $user->phone = "0614875412";
         $user->post = "Poste";
