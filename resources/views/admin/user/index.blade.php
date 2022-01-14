@@ -29,7 +29,7 @@
                                     @if (Auth::user()->id != $user->id)
                                         <button data-modal=".modal--delete" data-id="{{ $user->id }}"><i class="fas fa-trash"></i></button>
                                     @endif
-                                    <a href="{{ route('admin.user.edit', [$user->id]) }}"><i class="far fa-edit"></i></a>
+                                    <a href="{{ Auth::user()->id == $user->id ? route('profile') : route('admin.user.edit', [$user->id]) }}"><i class="far fa-edit"></i></a>
                                 </td>
                             </tr>
                         @endforeach

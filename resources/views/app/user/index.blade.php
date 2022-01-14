@@ -30,7 +30,7 @@
                                         <button data-modal=".modal--delete" data-id="{{ $user->id }}"><i class="fas fa-trash"></i></button>
                                     @endif
                                     @if (($user->hasPermission('ADMIN') && Auth::user()->hasPermission(['ADMIN', 'EXPERT'])) || (!$user->hasPermission('ADMIN')))
-                                        <a href="{{ Auth::user()->id == $user->id ? "#" : route('user.client.edit', [$single_document->id, $user->id]) }}"><i class="far fa-edit"></i></a>
+                                        <a href="{{ Auth::user()->id == $user->id ? route('profile', [$single_document->id]) : route('user.client.edit', [$single_document->id, $user->id]) }}"><i class="far fa-edit"></i></a>
                                     @endif
                                 </td>
                             </tr>

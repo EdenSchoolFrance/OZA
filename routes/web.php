@@ -1,19 +1,20 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DocController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Client\UserController as UserClientController;
+use App\Http\Controllers\RiskController;
+use App\Http\Controllers\ProfileController;
+
+use App\Http\Controllers\WorkUnitController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PresentationController;
 
 use App\Http\Controllers\Admin\UserController as UserAdminController;
+use App\Http\Controllers\Client\UserController as UserClientController;
+
 use App\Http\Controllers\Admin\ClientController as ClientAdminController;
 use App\Http\Controllers\Admin\SingleDocumentController as SingleDocumentAdminController;
-
-use App\Http\Controllers\RiskController;
-use App\Http\Controllers\WorkUnitController;
-
-use App\Http\Controllers\DocController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,11 @@ Route::middleware(['auth'])->group(function() {
         Route::middleware(['access:client'])->group(function () {
             Route::get('/dashboard', [DashboardController::class, 'home'])->name('dashboard.home');
         });
+
+
+        Route::get('/profile/{single_document?}', [ProfileController::class, 'edit'])->name('profile');
+        
+        Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 
 
         /*===============================
