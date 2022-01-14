@@ -10,7 +10,7 @@
         <div>
             @isset($single_document)
                 <div class="col-3 d-flex justify-content-around">
-                    <img src="/logo" alt="Logo">
+                    <img src="{{ asset('/storage/logo/'.$single_document->client->id.'.'.$single_document->client->image_type) }}" alt="Logo">
                     <div class="btn-group-dropdown">
                         @if (Auth::user()->hasAccess('oza'))
                             <button type="button" class="btn toggle-dropdown @if(count($single_document->client->single_documents) == 1) disabled @endif">
@@ -48,8 +48,10 @@
 
             @if (Auth::user()->first_connection !== 1)
                 <div class="nav-link">
-                    <i class="far fa-user-circle"></i>
-                    <p>Profil</p>
+                    <a href="{{ route('profile', isset($single_document) ?? [$single_document->id]) }}">
+                        <i class="far fa-user-circle"></i>
+                        <p>Profil</p>
+                    </a>
                 </div>
             @endif
             <div class="nav-link">

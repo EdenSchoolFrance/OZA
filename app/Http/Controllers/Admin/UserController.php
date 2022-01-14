@@ -20,7 +20,7 @@ class UserController extends Controller
 
         $users = User::where('oza', 1)->get();
 
-        return view('admin.users.index', compact('page', 'users'));
+        return view('admin.user.index', compact('page', 'users'));
     }
 
     public function create()
@@ -33,7 +33,7 @@ class UserController extends Controller
 
         $roles = Role::where('permission', 'EXPERT')->orWhere('permission', 'ADMIN')->get();
 
-        return view('admin.users.create', compact('page', 'roles'));
+        return view('admin.user.create', compact('page', 'roles'));
     }
 
     public function store(Request $request)
@@ -65,6 +65,10 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
+        if ($user->id == Auth::user()->id) {
+            abort(404);
+        }
+
         $page = [
             'title' => 'Modification de l\'utilisateur : ' . $user->lastname . ' ' . $user->firstname,
             'sidebar' => 'users',
@@ -73,11 +77,15 @@ class UserController extends Controller
 
         $roles = Role::where('permission', 'EXPERT')->orWhere('permission', 'ADMIN')->get();
 
-        return view('admin.users.edit', compact('page', 'user', 'roles'));
+        return view('admin.user.edit', compact('page', 'user', 'roles'));
     }
 
     public function update(Request $request, User $user)
     {
+        if ($user->id == Auth::user()->id) {
+            abort(404);
+        }
+        
         $request->validate([
             'lastname' => 'required',
             'firstname' => 'required',
