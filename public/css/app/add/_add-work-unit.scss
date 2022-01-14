@@ -80,7 +80,7 @@
     .row--ut{
         display: flex;
         justify-content: flex-start;
-        flex-direction: inherit;
+        flex-direction: inherit !important;
         .group-form{
             margin-right: 10%;
             width: 40%;

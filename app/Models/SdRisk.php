@@ -155,6 +155,98 @@ class SdRisk extends Model
         return ($fre + $proba) * $gra;
     }
 
+    public function totalRR($restraints){
+        $totalEnd = 0;
+        foreach ($restraints as $restraint){
+            if($restraint->exist === 1){
+                $tech = 0;
+                $orga = 0;
+                $human = 0;
+
+                switch ($restraint->technical) {
+                    case 'very good' :
+                        $tech = 4;
+                        break;
+                    case 'good' :
+                        $tech = 3;
+                        break;
+                    case 'medium' :
+                        $tech = 2;
+                        break;
+                    case 'null' :
+                        $tech = 0;
+                        break;
+                }
+
+                switch ($restraint->organizational) {
+                    case 'very good' :
+                        $tech = 3;
+                        break;
+                    case 'good' :
+                        $tech = 2;
+                        break;
+                    case 'medium' :
+                        $tech = 1;
+                        break;
+                    case 'null' :
+                        $tech = 0;
+                        break;
+                }
+
+                switch ($restraint->human) {
+                    case 'very good' :
+                        $tech = 3;
+                        break;
+                    case 'good' :
+                        $tech = 2;
+                        break;
+                    case 'medium' :
+                        $tech = 1;
+                        break;
+                    case 'null' :
+                        $tech = 0;
+                        break;
+                }
+                $total = $tech + $orga + $human;
+                $result = 0;
+                switch ($total) {
+                    case 10 :
+                        $result= $total * 0.2;
+                        break;
+                    case 9 :
+                        $result= $total * 0.25;
+                        break;
+                    case 8 :
+                        $result= $total * 0.3;
+                        break;
+                    case 7 :
+                        $result= $total * 0.35;
+                        break;
+                    case 6 :
+                        $result= $total * 0.4;
+                        break;
+                    case 5 :
+                        $result= $total * 0.5;
+                        break;
+                    case 4 :
+                        $result= $total * 0.6;
+                        break;
+                    case 3 :
+                        $result= $total * 0.7;
+                        break;
+                    case 2 :
+                        $result= $total * 0.8;
+                        break;
+                    case 1 :
+                        $result= $total * 0.9;
+                        break;
+                }
+                $totalEnd = $totalEnd+$result;
+            }
+        }
+        return $totalEnd;
+    }
+
     public function color($number){
         switch (true) {
             case ($number <= 15) :
@@ -164,6 +256,19 @@ class SdRisk extends Model
                 return 'btn-warning';
             case ($number >= 30) :
                 return 'btn-danger';
+        }
+    }
+
+    public function colorTotal($number){
+        switch (true) {
+            case ($number <= 15) :
+                return 'Acceptable';
+            case ($number < 20) :
+                return 'A améliorer';
+            case ($number < 30):
+                return 'Agir vite';
+            case ($number >= 30) :
+                return 'STOP';
         }
     }
 

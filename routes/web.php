@@ -127,8 +127,10 @@ Route::middleware(['auth'])->group(function() {
     Route::post('/{single_document}/work/delete', [WorkUnitController::class, 'delete'])->name('work.delete'); // change post
 
     Route::get('/{single_document}/danger/{danger}', [DangerController::class, 'index'])->name('danger.index');
-    Route::get('/{single_document}/danger/{danger}/validated/{work_unit}', [DangerController::class, 'validated'])->name('danger.validated');
 
+    Route::post('/{single_document}/danger/{danger}/store', [DangerController::class, 'store'])->name('danger.store');
+    Route::post('/{single_document}/danger/{danger}/validated/{work_unit}', [DangerController::class, 'validated'])->name('danger.validated');
+    Route::post('/{single_document}/danger/{danger}/comment', [DangerController::class, 'comment'])->name('danger.comment');
 
     Route::get('/{single_document}/danger/{danger}/create/{sd_work_unit}/{risk?}', [RiskController::class, 'create'])->name('risk.create');
     Route::get('/{single_document}/danger/{danger}/edit/{risk}', [RiskController::class, 'edit'])->name('risk.edit');

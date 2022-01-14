@@ -2,182 +2,154 @@
 
 @section('content')
 <div class="content">
-    <div class="card card--reflection">
-        <form class="card-body" action="" >
-            @csrf
-            <div class="row">
-                <div class="line">
-                    <div class="left">
-                        <i class="far fa-question-circle"></i>
-                        <div>
-                            <p>Pistes de réflexion :</p>
-                            <ul>
-                                <li>Y-a-t-il des SST</li>
-                                <li>Y-a-t-il une trousse de secours à disposition</li>
-                                <li>Combien</li>
-                                <li>Où est elle (sont-elles)</li>
-                                <li>Est-elle vérifiée régulièrement</li>
-                            </ul>
+    @if(Auth::user()->hasAccess('oza'))
+        <div class="card card--reflection">
+            <form class="card-body" action="{{ route('danger.comment', [$single_document->id, $danger->id]) }}" method="post">
+                @csrf
+                <div class="row">
+                    <div class="line">
+                        <div class="left">
+                            <i class="far fa-question-circle"></i>
+                            <div>
+                                <p>Pistes de réflexion :</p>
+                                <ul>
+                                    <li>Y-a-t-il des SST</li>
+                                    <li>Y-a-t-il une trousse de secours à disposition</li>
+                                    <li>Combien</li>
+                                    <li>Où est elle (sont-elles)</li>
+                                    <li>Est-elle vérifiée régulièrement</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <textarea name="comment" class="form-control" placeholder="Commentaire">{{ $danger->comment }}</textarea>
+                            <button class="btn" type="submit">Enregistrer le commentaire</button>
                         </div>
                     </div>
-                    <div class="right">
-                        <textarea type="text" name="comment" class="form-control" placeholder="Commentaire"></textarea>
-                        <button class="btn" type="submit">Enregistrer le commentaire</button>
-                    </div>
                 </div>
-            </div>
-        </form>
-        <form class="card-footer card-footer--exist" action="" method="POST">
-            @csrf
-            <input type="hidden" name="checked" value=""/>
-            <p>Ce danger concerne quelqu’un au sein de l’entreprise ?</p>
-            <button type="submit" data-value="true" class="btn btn-radio btn-radio--checked">Oui</button>
-            <button type="submit" data-value="false" class="btn btn-radio">Non</button>
-        </form>
-    </div>
-
-
-    <div class="card card--risk card--resizable card--risk-stretchable card--risk-opened">
-        <div class="card-header">
-            <h2 class="title">UT <span>TOUS</span></h2>
-            <form class="form-risk-checked" action="">
+            </form>
+            <form class="card-footer card-footer--exist" action="{{ route('danger.validated', [$single_document->id, $danger->id, 'all']) }}" method="POST">
                 @csrf
                 <input type="hidden" name="checked" value=""/>
                 <p>Ce danger concerne quelqu’un au sein de l’entreprise ?</p>
-                <button type="submit" data-value="true" class="btn btn-radio">Oui</button>
-                <button type="submit" data-value="false" class="btn btn-radio">Non</button>
+                <button type="button" data-value="true" class="btn btn-radio btn-check-work-unit {{ $danger->exist === 1 ? 'btn-radio--checked' : '' }}">Oui</button>
+                <button type="button" data-value="false" class="btn btn-radio btn-check-work-unit {{ $danger->exist === 0 ? 'btn-radio--checked' : '' }}">Non</button>
             </form>
         </div>
-        <div class="card-body" style="display: block">
-            <table class="table table--risks">
-                <thead>
-                    <tr>
-                        <th class="th_risk">Risque identifié</th>
-                        <th class="th_rb">RB</th>
-                        <th class="th_rr">RR</th>
-                        <th class="th_existing_measure">Mesure existante</th>
-                        <th class="th_proposed_measure">Mesure proposée</th>
-                        <th class="th_criticality">Criticité</th>
-                        <th class="th_actions"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="td_risk">
-                            <p>Exposition au sang de la victime en prodiguant des soins à un accidenté du travail.</p>
-                            <p><span>Rappel engin :</span> Exposition au sang de la victime en prodiguant des soins à un accidenté du travail.</p>
-                        </td>
-                        <td class="td_rb">
-                            <button class="btn btn-yellow btn-small">10</button>
-                            <div class="list list--text">
-                                <div class="list-row">
-                                    <p class="list-point list-point--text">F</p>
-                                    <p class="list-text">An</p>
-                                </div>
-                                <div class="list-row">
-                                    <p class="list-point list-point--text">P</p>
-                                    <p class="list-text">Faible</p>
-                                </div>
-                                <div class="list-row">
-                                    <p class="list-point list-point--text">GP</p>
-                                    <p class="list-text">ASA</p>
-                                </div>
-                                <div class="list-row">
-                                    <p class="list-point list-point--text">ID</p>
-                                    <p class="list-text">NON</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="td_rr">
-                            <button class="btn btn-success btn-small">10</button>
-                        </td>
-                        <td class="td_existing_measure">
-                            <div class="list">
-                                <div class="list-row">
-                                    <div class="list-point list-point--success"></div>
-                                    <p class="list-text">Pas d’antécédent connu d’accident du travail et / ou de maladie professionnelle généré par le CO2.</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="td_proposed_measure">
-                            <div class="list">
-                                <div class="list-row">
-                                    <div class="list-point list-point--yellow"></div>
-                                    <p class="list-text">Obligation réglementaire : Mettre en place une ventilation mécanique assurant en permanence un débit de 25 m3/h/occupant dans les bureaux et de 30 m3/h/occupant dans les salles de réunion</p>
-                                </div>
-                                <div class="list-row">
-                                    <div class="list-point list-point--yellow"></div>
-                                    <p class="list-text">Réaliser l’évaluation détaillée du risque chimique selon les prescriptions réglementaires.</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="td_criticality">
-                            <button type="button" class="btn btn-success btn-small">Acceptable</button>
-                        </td>
-                        <td class="td_actions"><i class="far fa-edit"></i><i class="fas fa-trash"></i></td>
-                    </tr>
+    @endif
 
-                    <tr>
-                        <td class="td_risk">
-                            <p>Activités au cours de la crise sanitaire liée à la pandémie de COVID-19.
-                                Toutes les activités professionnelles au contact d’autres personnes (collègues, collaborateurs, clients, public) pouvant être atteintes de la COVID-19, et, ou, tous les contacts avec des surfaces et ou matières infectées par le virus de la COVID-19.</p>
-                        </td>
-                        <td class="td_rb">
-                            <button class="btn btn-yellow btn-small">10</button>
-                            <div class="list list--text">
-                                <div class="list-row">
-                                    <p class="list-point list-point--text">F</p>
-                                    <p class="list-text">An</p>
-                                </div>
-                                <div class="list-row">
-                                    <p class="list-point list-point--text">P</p>
-                                    <p class="list-text">Faible</p>
-                                </div>
-                                <div class="list-row">
-                                    <p class="list-point list-point--text">GP</p>
-                                    <p class="list-text">ASA</p>
-                                </div>
-                                <div class="list-row">
-                                    <p class="list-point list-point--text">ID</p>
-                                    <p class="list-text">NON</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="td_rr">
-                            <button class="btn btn-danger btn-small">24</button>
-                        </td>
-                        <td class="td_existing_measure">
-                            <div class="list">
-                                <div class="list-row">
-                                    <div class="list-point list-point--text">X</div>
-                                    <p class="list-text">Absence de mesure mises en place</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="td_proposed_measure">
-                            <div class="list">
-                                <div class="list-row">
-                                    <div class="list-point list-point--yellow"></div>
-                                    <p class="list-text">Obligation réglementaire : Mettre en place une ventilation mécanique assurant en permanence un débit de 25 m3/h/occupant dans les bureaux et de 30 m3/h/occupant dans les salles de réunion</p>
-                                </div>
-                                <div class="list-row">
-                                    <div class="list-point list-point--yellow"></div>
-                                    <p class="list-text">Réaliser l’évaluation détaillée du risque chimique selon les prescriptions réglementaires.</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="td_criticality">
-                            <button type="button" class="btn btn-danger btn-small">Stop</button>
-                        </td>
-                        <td class="td_actions"><i class="far fa-edit"></i><i class="fas fa-trash"></i></td>
-                    </tr>
-                </tbody>
-                <tfoot>
+    <div class="card card--risk  {{ $danger->ut_all ? 'card--risk-stretchable card--risk-opened' : '' }}">
+        <div class="card-header">
+            <h2 class="title">UT <span>TOUS</span></h2>
+            <form class="form-risk-checked" action="{{ route('danger.validated', [$single_document->id, $danger->id, 'ut_all']) }}" method="post">
+                @csrf
+                <input type="hidden" name="checked" value=""/>
+                <p>Ce danger concerne quelqu’un au sein de l’entreprise ?</p>
+                <button type="button" data-value="true" class="btn btn-radio btn-check-work-unit {{ $danger->ut_all === 1 ? 'btn-radio--checked' : '' }}">Oui</button>
+                <button type="button" data-value="false" class="btn btn-radio btn-check-work-unit {{ $danger->ut_all === 0 ? 'btn-radio--checked' : '' }}">Non</button>
+            </form>
+        </div>
+        <div class="card-body" style="{{ $danger->ut_all ? 'display: block' : '' }}">
+            @if(count($risks_all) > 0)
+                <table class="table table--risks">
+                    <thead>
+                        <tr>
+                            <th class="th_risk">Risque identifié</th>
+                            <th class="th_rb">RB</th>
+                            <th class="th_rr">RR</th>
+                            <th class="th_existing_measure">Mesure existante</th>
+                            <th class="th_proposed_measure">Mesure proposée</th>
+                            <th class="th_criticality">Criticité</th>
+                            <th class="th_actions"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($risks_all as $risk)
+                            <tr>
+                                <td class="td_risk">
+                                    <p>{{ $risk->name }}</p>
+                                </td>
+                                <td class="td_rb">
+                                    <button class="btn {{ $risk->color($risk->total($risk->frequency,$risk->probability,$risk->gravity)) }} btn-small">{{ $risk->total($risk->frequency,$risk->probability,$risk->gravity) }}</button>
+                                    <div class="list list--text">
+                                        <div class="list-row">
+                                            <p class="list-point list-point--text">F</p>
+                                            <p class="list-text">{{ $risk->translate($risk->frequency,'frequency') }}</p>
+                                        </div>
+                                        <div class="list-row">
+                                            <p class="list-point list-point--text">P</p>
+                                            <p class="list-text">{{ $risk->translate($risk->probability,'probability') }}</p>
+                                        </div>
+                                        <div class="list-row">
+                                            <p class="list-point list-point--text">GP</p>
+                                            <p class="list-text">{{ $risk->translate($risk->gravity,'gravity') }}</p>
+                                        </div>
+                                        <div class="list-row">
+                                            <p class="list-point list-point--text">ID</p>
+                                            <p class="list-text">{{ $risk->translate($risk->impact,'impact') }}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="td_rr">
+                                    <button class="btn {{ $risk->color($risk->totalRR($risk->sd_restraint)) }} btn-small">{{ $risk->totalRR($risk->sd_restraint) }}</button>
+                                </td>
+                                <td class="td_existing_measure">
+                                    <div class="list">
+                                        @foreach($risk->sd_restraint as $restraint)
+                                            @if($restraint->exist === 1)
+                                                <div class="list-row">
+                                                    <div class="list-point list-point--success"></div>
+                                                    <p class="list-text">{{ $restraint->name }}</p>
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                </td>
+                                <td class="td_proposed_measure">
+                                    <div class="list">
+                                        @foreach($risk->sd_restraint as $restraint)
+                                            @if($restraint->exist === 0)
+                                                <div class="list-row">
+                                                    <div class="list-point list-point--yellow"></div>
+                                                    <p class="list-text">{{ $restraint->name }}</p>
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                </td>
+                                <td class="td_criticality">
+                                    <button type="button" class="btn btn-success btn-small">Acceptable</button>
+                                </td>
+                                <td class="td_actions">
+                                    <div>
+                                        <a href="{{ route('risk.edit', [$single_document->id, $danger->id, $risk->id]) }}"><i class="far fa-edit"></i></a>
+                                        <form action="{{ route('risk.delete', [$single_document->id, $danger->id, $risk->id]) }}" method="post">@csrf<i class="fas fa-trash"></i></form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+
+                    </tbody>
+                    <tfoot>
+                        <tr class="no-data">
+                            <td colspan="7"><a href="{{route('risk.create', [$single_document->id, $danger->id, 'all'])}}" class="btn btn-inv btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN RISQUE</a></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            @else
+                <table class="table table--accident">
+                    <tbody>
                     <tr class="no-data">
-                        <td colspan="7"><a href="{{route('risk.create', [$single_document->id, $danger->id, 'all'])}}" class="btn btn-inv btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN RISQUE</a></td>
+                        <td colspan="7">Aucun risque identifié</td>
                     </tr>
-                </tfoot>
-            </table>
+                    </tbody>
+                    <tfoot>
+                    <tr class="no-data">
+                        <td colspan="7"><a href="{{ route('risk.create', [$single_document->id, $danger->id, 'all']) }}" class="btn btn-inv btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN RISQUE</a></td>
+                    </tr>
+                    </tfoot>
+                </table>
+            @endif
         </div>
     </div>
 
@@ -187,7 +159,7 @@
             <div class="card card--risk {{ $sd_work_unit->sd_danger($danger->id) ? ($sd_work_unit->sd_danger($danger->id)->pivot->exist ? 'card--risk-stretchable card--risk-opened' : '') : '' }}" >
                 <div class="card-header">
                     <h2 class="title">UT <span>{{ $sd_work_unit->name }}</span></h2>
-                    <form class="form-risk-checked" action="{{ route('danger.validated', [$single_document->id, $danger->id, $sd_work_unit->id]) }}">
+                    <form class="form-risk-checked" action="{{ route('danger.validated', [$single_document->id, $danger->id, $sd_work_unit->id]) }}" method="post">
                         @csrf
 
                         <input type="hidden" name="checked" value=""/>
@@ -241,7 +213,7 @@
                                             </div>
                                         </td>
                                         <td class="td_rr">
-                                            <button class="btn {{ $risk->color($risk->total($risk->frequency,$risk->probability,$risk->gravity)) }} btn-small">{{ $risk->total($risk->frequency,$risk->probability,$risk->gravity) }}</button>
+                                            <button class="btn {{ $risk->color($risk->totalRR($risk->sd_restraint)) }} btn-small">{{ $risk->totalRR($risk->sd_restraint) }}</button>
                                         </td>
                                         <td class="td_existing_measure">
                                             <div class="list">
@@ -268,7 +240,7 @@
                                             </div>
                                         </td>
                                         <td class="td_criticality">
-                                            <button type="button" class="btn btn-success btn-small">Acceptable</button>
+                                            <button type="button" class="btn {{ $risk->color(($risk->totalRR($risk->sd_restraint)+$risk->total($risk->frequency,$risk->probability,$risk->gravity))) }} btn-small">{{ $risk->colorTotal(($risk->totalRR($risk->sd_restraint)+$risk->total($risk->frequency,$risk->probability,$risk->gravity))) }}</button>
                                         </td>
                                         <td class="td_actions">
                                             <div>
@@ -313,10 +285,12 @@
 
     @endforeach
 
-    <div class="card card--submit">
-        <form class="card-body" action="">
+    <div class="card card--submit card--submit-danger">
+        <form class="card-body" action="{{ route('danger.store', [$single_document->id, $danger->id]) }}" method="post">
             @csrf
-            <button class="btn btn-success">Valider le danger</button>
+            <input type="hidden" name="checked" value=""/>
+            <button type="button" data-value="true" class="btn btn-success btn-check-work-unit">Valider le danger</button>
+            <button type="button" data-value="false" class="btn btn-text btn-check-work-unit">Enregistrer le brouillon</button>
         </form>
     </div>
 

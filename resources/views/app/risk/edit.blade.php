@@ -17,12 +17,12 @@
                     </div>
                 </div>
                 @error('name_risk')
-                <div class="line">
-                    <div class="left"></div>
-                    <div class="right">
-                        <p class="message-error">{{ $message }}</p>
+                    <div class="line">
+                        <div class="left"></div>
+                        <div class="right">
+                            <p class="message-error">{{ $message }}</p>
+                        </div>
                     </div>
-                </div>
                 @enderror
             </div>
             <hr>
