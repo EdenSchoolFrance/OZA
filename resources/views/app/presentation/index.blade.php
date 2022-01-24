@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="content">
-        
+
         <form class="card card--general-infos {{ session('type') == 'info' ? 'card-editable' : '' }}" action="{{ route('presentation.update', [$single_document->id, 'info']) }}" method="POST">
             @csrf
             <div class="card-header">
@@ -84,7 +84,7 @@
                         <div class="left">
                         </div>
                         <div class="right">
-                            <button type="submit" class="btn btn-success">Enregistrer</button>
+                            <button type="submit" class="btn btn-success">Mettre à jour</button>
                             <button type="button" class="btn btn-danger btn-text btn-cancel-edit">Annuler</button>
                         </div>
                     </div>
@@ -120,7 +120,7 @@
                         <div class="left">
                         </div>
                         <div class="right">
-                            <button type="submit" class="btn btn-success">Enregistrer</button>
+                            <button type="submit" class="btn btn-success">Mettre à jour</button>
                             <button type="button" class="btn btn-danger btn-text btn-cancel-edit">Annuler</button>
                         </div>
                     </div>
@@ -189,7 +189,7 @@
                         <div class="left">
                         </div>
                         <div class="right">
-                            <button type="submit" class="btn btn-success">Enregistrer</button>
+                            <button type="submit" class="btn btn-success">Mettre à jour</button>
                             <button type="button" class="btn btn-danger btn-text btn-cancel-edit">Annuler</button>
                         </div>
                     </div>

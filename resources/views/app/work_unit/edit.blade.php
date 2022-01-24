@@ -119,7 +119,7 @@
                     </div>
                     <div class="right">
                         <input type="hidden" name="type" id="inputTypeWorkUnit" value="true">
-                        <button type="button" class="btn btn-success btn-send">Valider l’unité de travail</button>
+                        <button type="button" class="btn btn-success btn-send">Mettre à jour l’unité de travail</button>
                         <button type="button" class="btn btn-text btn-validate">Enregistrer le brouillon</button>
                     </div>
                 </div>

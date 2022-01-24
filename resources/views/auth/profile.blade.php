@@ -68,7 +68,7 @@
                         <div class="left">
                         </div>
                         <div class="right">
-                            <button type="submit" class="btn btn-success">Enregistrer</button>
+                            <button type="submit" class="btn btn-success">Mettre à jour</button>
                         </div>
                     </div>
                 </div>

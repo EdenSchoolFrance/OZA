@@ -55,9 +55,9 @@ Route::middleware(['auth'])->group(function() {
         });
 
 
-        Route::get('/profile/{single_document?}', [ProfileController::class, 'edit'])->name('profile');
-        
-        Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+        Route::get('/mon-profile/{single_document?}', [ProfileController::class, 'edit'])->name('profile');
+
+        Route::post('/mon-profile/update', [ProfileController::class, 'update'])->name('profile.update');
 
 
         /*===============================

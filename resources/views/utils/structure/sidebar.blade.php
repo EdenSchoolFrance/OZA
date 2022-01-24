@@ -3,7 +3,7 @@
         @if (Auth::user()->hasAccess('oza') && !isset($single_document))
             @if (Auth::user()->hasPermission('ADMIN'))
                 <li class="sidebar-nav-item {{ $page['sidebar'] == "users" ? 'active' : '' }}">
-                    <a href="#" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Utilisateurs</span></a>
+                    <a href="#" class="sidebar-nav-link"><i class="fas fa-user"></i><span>Utilisateurs</span></a>
                     <ul class="sub-group-menu" style="{{ $page['sidebar'] == "users" ? 'display: block' : '' }}">
                         @if (Auth::user()->hasPermission('ADMIN'))
                             <li class="sidebar-nav-item {{ $page['sidebar'] == "users" && $page['sub_sidebar'] == "create" ? 'active' : '' }}">
@@ -17,7 +17,7 @@
                 </li>
             @endif
             <li class="sidebar-nav-item {{ $page['sidebar'] == "clients" ? 'active' : '' }}">
-                <a class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Clients</span></a>
+                <a class="sidebar-nav-link"><i class="fas fa-building"></i><span>Clients</span></a>
                 <ul class="sub-group-menu" style="{{ $page['sidebar'] == "clients" ? 'display: block' : '' }}">
                     @if (Auth::user()->hasPermission('ADMIN'))
                         <li class="sidebar-nav-item {{ $page['sidebar'] == "clients" && $page['sub_sidebar'] == "create" ? 'active' : '' }}">
@@ -33,7 +33,7 @@
                 </ul>
             </li>
             <li class="sidebar-nav-item">
-                <a href="#" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Aide à la complétion</span></a>
+                <a href="#" class="sidebar-nav-link"><i class="fas fa-database"></i><span>Aide à la complétion</span></a>
             </li>
             <li class="sidebar-nav-item">
                 <a href="#" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Liste des risques</span></a>
@@ -61,7 +61,7 @@
                 </ul>
             </li>
             <li class="sidebar-nav-item {{ $page['sidebar'] == "risk_pro" ? 'active' : '' }}">
-                <a href="#" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Risques professionnels</span></a>
+                <a href="#" class="sidebar-nav-link"><i class="fas fa-exclamation-triangle"></i><span>Risques professionnels</span></a>
                 <ul class="sub-group-menu" style="{{ $page['sidebar'] == "risk_pro" ? 'display: block' : '' }}">
                     @foreach ($single_document->dangers as $danger)
                         <li class="sidebar-nav-item {{ $page['sidebar'] == "risk_pro" && $page['sub_sidebar'] == "danger_" . $danger->id ? 'active' : '' }}">
