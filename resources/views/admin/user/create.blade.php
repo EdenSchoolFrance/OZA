@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-    <div class="content">
+    <div class="content users">
         <div class="card card--users">
             <form class="card-body" action="{{ route('admin.user.store') }}" method="POST">
                 @csrf
