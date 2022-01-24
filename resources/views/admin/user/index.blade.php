@@ -51,9 +51,9 @@
                         <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
                     </div>
                     <div class="modal-body">
-                        <p>Êtes-vous sûr du vouloir supprimer cet utilisateur ?</p>
+                        <p>Êtes-vous sûr.e du vouloir supprimer cet utilisateur ?</p>
                         <div>
-                            <button type="submit" class="btn btn-danger btn-text">Supprimer</button>
+                            <button type="submit" class="btn btn-yellow">Supprimer</button>
                             <button type="button" class="btn btn-inv btn-yellow btn-small" data-dismiss="modal"> Annuler</button>
                         </div>
                     </div>

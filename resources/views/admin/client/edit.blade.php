@@ -250,9 +250,9 @@
                         <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
                     </div>
                     <div class="modal-body">
-                        <p>Êtes-vous sûr du vouloir archiver ce document unique ?</p>
+                        <p>Êtes-vous sûr.e du vouloir archiver ce document unique ?</p>
                         <div>
-                            <button type="submit" class="btn btn-danger btn-text">Archiver</button>
+                            <button type="submit" class="btn btn-yellow">Archiver</button>
                             <button type="button" class="btn btn-inv btn-yellow btn-small" data-dismiss="modal"> Annuler</button>
                         </div>
                     </div>
@@ -270,9 +270,9 @@
                         <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
                     </div>
                     <div class="modal-body">
-                        <p>Êtes-vous sûr du vouloir désarchiver ce document unique ?</p>
+                        <p>Êtes-vous sûr.e du vouloir désarchiver ce document unique ?</p>
                         <div>
-                            <button type="submit" class="btn btn-danger btn-text">Désarchiver</button>
+                            <button type="submit" class="btn btn-yellow">Désarchiver</button>
                             <button type="button" class="btn btn-inv btn-yellow btn-small" data-dismiss="modal"> Annuler</button>
                         </div>
                     </div>
@@ -290,9 +290,9 @@
                             <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
                         </div>
                         <div class="modal-body">
-                            <p>Êtes-vous sûr du vouloir supprimer ce client ?</p>
+                            <p>Êtes-vous sûr.e du vouloir supprimer ce client ?</p>
                             <div>
-                                <button type="submit" class="btn btn-danger btn-text">Supprimer</button>
+                                <button type="submit" class="btn btn-yellow">Supprimer</button>
                                 <button type="button" class="btn btn-inv btn-yellow btn-small" data-dismiss="modal"> Annuler</button>
                             </div>
                         </div>
