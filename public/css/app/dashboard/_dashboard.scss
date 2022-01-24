@@ -87,3 +87,10 @@
         }
     }
 }
+
+table.table--history-single-document{
+    .td_actions{
+        display: flex;
+        justify-content: flex-end;
+    }
+}

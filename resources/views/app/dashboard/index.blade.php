@@ -78,7 +78,7 @@
                 <h2 class="title">Historique du document unique</h2>
             </div>
             <div class="card-body">
-                <table class="table table--users table-sortable">
+                <table class="table table--history-single-document table-sortable">
                     <thead>
                     <tr>
                         <th class="th_resp th-sort" data-para="0">Responsable</th>
