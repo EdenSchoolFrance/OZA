@@ -48,7 +48,7 @@
 
             @if (Auth::user()->first_connection !== 1)
                 <div class="nav-link">
-                    <a href="{{ route('profile', isset($single_document) ?? [$single_document->id]) }}">
+                    <a href="{{ route('profile', isset($single_document) ? [$single_document->id] : '') }}">
                         <i class="far fa-user-circle"></i>
                         <p>Profil</p>
                     </a>

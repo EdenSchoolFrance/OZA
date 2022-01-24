@@ -15,7 +15,7 @@ class ProfileController extends Controller
         }
 
         $page = [
-            'title' => 'Profile',
+            'title' => 'Mon profile',
             'sidebar' => null,
             'sub_sidebar' => null
         ];
