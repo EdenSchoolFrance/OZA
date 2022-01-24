@@ -134,7 +134,7 @@
                     </div>
                 </div>
                 <div class="row row--submit">
-                    <button class="btn btn-success">Enregistrer</button>
+                    <button class="btn btn-success">Mettre à jour</button>
                     <a href="{{ route('admin.clients') }}" class="btn btn-danger btn-text">Annuler</a>
                 </div>
             </form>

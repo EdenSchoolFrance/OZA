@@ -279,7 +279,7 @@
                 </div>
             </div>
             <div class="row row--submit">
-                <button class="btn btn-success">Valider le danger</button>
+                <button class="btn btn-success">Mettre à jour le danger</button>
             </div>
         </div>
     </form>

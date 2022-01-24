@@ -58,7 +58,7 @@
                     <div class="line">
                         <div class="left"></div>
                         <div class="right">
-                            <button class="btn btn-yellow btn-inv">Modifier le DU</button>
+                            <button class="btn btn-yellow btn-inv">Mettre à jour le DU</button>
                         </div>
                     </div>
                 </div>
