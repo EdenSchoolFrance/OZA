@@ -128,6 +128,8 @@ class DangerController extends Controller
             $q->where('id', $single_document->id);
         })->first();
 
+        if ($danger->exist === 0) abort(404);
+
         $danger->validated = $request->checked === 'true' ? 1 : 0;
         $danger->save();
 
