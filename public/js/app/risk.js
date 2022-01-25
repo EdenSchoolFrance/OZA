@@ -134,9 +134,8 @@ on('.btn-modal-risk-oza-add', 'click', (el, e) => {
 on('.radio-bar .con input', 'click', (el, e) => {
     let total = $('.btn-calcul-risk', document, 0)
     total.innerText = riskCalcul()
-    total.removeAttribute('class');
-    total.setAttribute('class','btn btn-small btn-calcul-risk')
     setColor(total,riskCalcul());
+    total.classList.add('btn-small', 'btn-calcul-risk')
 });
 
 on('.btn-check-work-unit', 'click', (el, e) => {
@@ -159,11 +158,20 @@ on('a[data-modal=".modal--delete"]', 'click', (el, e) => {
 
 
 function riskCalcul(){
-    let frequency = $('.radio-bar-frequency input:checked',document,0).value
-    let probability = $('.radio-bar-probability input:checked',document,0).value
-    let gravity = $('.radio-bar-gravity input:checked',document,0).value
-
-    switch (frequency) {
+    let frequencyEl = $('.radio-bar-frequency input:checked',document,0)
+    let probabilityEl = $('.radio-bar-probability input:checked',document,0)
+    let gravityEl = $('.radio-bar-gravity input:checked',document,0)
+    let frequency;
+    let probability;
+    let gravity;
+    if (frequencyEl && probabilityEl && gravityEl){
+        frequencyEl = frequencyEl.value
+        probabilityEl = probabilityEl.value
+        gravityEl = gravityEl.value
+    }else{
+        return '10'
+    }
+    switch (frequencyEl) {
         case 'day' :
             frequency = 5;
             break;
@@ -181,7 +189,7 @@ function riskCalcul(){
             break;
     }
 
-    switch (probability) {
+    switch (probabilityEl) {
         case 'very high' :
             probability = 5;
             break;
@@ -199,7 +207,7 @@ function riskCalcul(){
             break;
     }
 
-    switch (gravity) {
+    switch (gravityEl) {
         case 'death' :
             gravity = 5;
             break;
@@ -219,48 +227,137 @@ function riskCalcul(){
     return (frequency + probability) * gravity;
 }
 
+function calculRestraintColorDisplay(){
+    let total = restraintCalcul()
+    let statusNumber = $('button[data-id="status-number"]', document, 0)
+    let status = $('button[data-id="status"]', document, 0)
+    setColor(statusNumber,total);
+    statusNumber.innerText = total;
+    totalEnd(status,total)
+    setColor(status,total);
+}
+
 function restraintCalcul(){
+    let totalEnd = 0;
+    let all = $('input[name="restraint[]"]');
+    for (let i = 0; i < all.length ; i++) {
+        let allValue = all[i].value.split('|');
+        let tech;
+        let orga;
+        let human;
 
-    let all = $('input[name="restraint[]"]')
-    for (let i = 0; i < all.length; i++) {
-        let temp = all[i].value.split('|');
-        for (let j = 0; j < temp.length - 1; j++) {
-            switch (temp[i]) {
-                case 'very good' :
-                    gravity = 5;
-                    break;
-                case 'ipp' :
-                    gravity = 4;
-                    break;
-                case 'aaa' :
-                    gravity = 3;
-                    break;
-                case 'asa' :
-                    gravity = 2;
-                    break;
-                case 'weak impact' :
-                    gravity = 1;
-                    break;
-            }
+        switch (allValue[0]){
+            case "very good" :
+                tech = 4
+                break
+            case "good" :
+                tech = 3
+                break
+            case "medium" :
+                tech = 2
+                break
+            case "null" :
+                tech = 0
+                break
         }
+        switch (allValue[1]){
+            case "very good" :
+                orga = 3
+                break
+            case "good" :
+                orga = 2
+                break
+            case "medium" :
+                orga = 1
+                break
+            case "null" :
+                orga = 0
+                break
+        }
+        switch (allValue[2]){
+            case "very good" :
+                human = 3
+                break
+            case "good" :
+                human = 2
+                break
+            case "medium" :
+                human = 1
+                break
+            case "null" :
+                human = 0
+                break
+        }
+        let total = tech + orga + human;
+        let result = 0;
+        switch (total){
+            case 10 :
+                result = total * 0.2
+                break
+            case 9 :
+                result = total * 0.25
+                break
+            case 8 :
+                result = total * 0.3
+                break
+            case 7 :
+                result = total * 0.35
+                break
+            case 6 :
+                result = total * 0.4
+                break
+            case 5 :
+                result = total * 0.5
+                break
+            case 4 :
+                result = total * 0.6
+                break
+            case 3 :
+                result = total * 0.7
+                break
+            case 2 :
+                result = total * 0.8
+                break
+            case 1 :
+                result = total * 0.9
+                break
+        }
+        totalEnd = totalEnd+result;
     }
-
+    return totalEnd;
 }
 
 function setColor(el,total){
+    el.classList = ""
+    el.classList.add('btn')
     switch (true) {
         case (total <= 15) :
             el.classList.add('btn-success');
             break
         case (total < 20) :
-            el.classList.add('btn-warning');
-            break;
         case (total < 30) :
             el.classList.add('btn-warning');
             break;
         case (total >= 30) :
             el.classList.add('btn-danger');
             break;
+    }
+}
+
+function totalEnd(el,number){
+    switch (true){
+        case (number <= 15) :
+            el.innerText = "Acceptable"
+            break
+        case (number < 20) :
+            el.innerText = "A améliorer"
+            break
+        case (number < 30) :
+            el.innerText = "Agir vite"
+            break
+        case (number >= 30) :
+            el.innerText = "STOP"
+            break
     }
 }
 
@@ -281,7 +378,7 @@ function createRestraint(tech,orga,human,title,id){
         '   <li>\n' +
         '    <p>\n' +
         '     <i class="far fa-times-circle btn-delete"></i>\n' +
-        '     '+title+'\n' +
+        '     <p class="title-restraint"></p> \n' +
         '     <button data-modal=".modal--risk" data-id="'+id+'" class="btn btn-yellow btn-text btn-edit-modal-risk" type="button"><i class="far fa-edit text-color-yellow"></i></button>\n' +
         '     <input type="hidden" value="'+tech+'|'+orga+'|'+human+'|'+title+'" name="restraint[]">' +
         '    </p>\n' +
@@ -303,6 +400,8 @@ function createRestraint(tech,orga,human,title,id){
     row.setAttribute('class','row');
     row.innerHTML = content;
     restraint.appendChild(row)
+    row.querySelector('.title-restraint').innerText = title;
+    calculRestraintColorDisplay();
 }
 
 function createRestraintProposed(title){

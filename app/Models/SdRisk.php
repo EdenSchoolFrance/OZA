@@ -180,31 +180,31 @@ class SdRisk extends Model
 
                 switch ($restraint->organizational) {
                     case 'very good' :
-                        $tech = 3;
+                        $orga = 3;
                         break;
                     case 'good' :
-                        $tech = 2;
+                        $orga = 2;
                         break;
                     case 'medium' :
-                        $tech = 1;
+                        $orga = 1;
                         break;
                     case 'null' :
-                        $tech = 0;
+                        $orga = 0;
                         break;
                 }
 
                 switch ($restraint->human) {
                     case 'very good' :
-                        $tech = 3;
+                        $human = 3;
                         break;
                     case 'good' :
-                        $tech = 2;
+                        $human = 2;
                         break;
                     case 'medium' :
-                        $tech = 1;
+                        $human = 1;
                         break;
                     case 'null' :
-                        $tech = 0;
+                        $human = 0;
                         break;
                 }
                 $total = $tech + $orga + $human;
@@ -252,7 +252,7 @@ class SdRisk extends Model
             case ($number <= 15) :
                 return 'btn-success';
             case ($number < 20) :
-            case ($number < 30):
+            case ($number < 30) :
                 return 'btn-warning';
             case ($number >= 30) :
                 return 'btn-danger';
