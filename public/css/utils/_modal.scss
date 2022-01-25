@@ -78,7 +78,8 @@
 
     &--archive,
     &--unarchive,
-    &--delete {
+    &--delete,
+    &--duplicate {
         .modal-body {
             display: flex;
             align-items: center;

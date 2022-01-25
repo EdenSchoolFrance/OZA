@@ -229,5 +229,68 @@ class RiskController extends Controller
     }
 
 
+    public function duplicate(Request $request, $id, $id_danger){
+
+        $request->validate([
+            'id_risk' => 'required',
+            'work_unit' => 'required'
+        ]);
+
+        $single_document = $this->checkSingleDocument($id);
+
+        $danger = SdDanger::where('id',$id_danger)->whereHas('single_document', function ($q) use ($single_document){
+            $q->where('id', $single_document->id);
+        })->first();
+        if (!$danger) abort(404);
+
+        if ($request->work_unit !== 'all'){
+            $work_unit = SdWorkUnit::where('id',$request->work_unit)->whereHas('single_document', function ($q) use ($single_document){
+                $q->where('id', $single_document->id);
+            })->first();
+            if (!$work_unit) abort(404);
+        }
+
+        $risk = SdRisk::where('id',$request->id_risk)->whereHas('sd_danger', function ($q) use ($danger){
+            $q->where('id', $danger->id);
+        })->first();
+        if (!$risk) abort(404);
+
+        $new_risk = $risk->replicate();
+        $new_risk->id = uniqid();
+        $new_risk->sd_work_unit()->associate($request->work_unit !== 'all' ? $work_unit : null);
+        $new_risk->save();
+
+        foreach ($risk->sd_restraint as $restraint){
+            $new_restraint = $restraint->replicate();
+            $new_restraint->id = uniqid();
+            $new_restraint->sd_risk()->associate($new_risk);
+            $new_restraint->save();
+        }
+
+        return redirect()->route('danger.index', [$single_document->id, $danger->id]);
+    }
+
+    public function delete(Request $request, $id, $id_sd_danger){
+
+        $request->validate([
+            'id_risk' => 'required'
+        ]);
+
+        $single_document = $this->checkSingleDocument($id);
+
+        $danger = SdDanger::where('id',$id_sd_danger)->whereHas('single_document', function ($q) use ($single_document){
+            $q->where('id', $single_document->id);
+        })->first();
+        if (!$danger) abort(404);
+
+        $risk = SdRisk::where('id',$request->id_risk)->whereHas('sd_danger', function ($q) use ($danger){
+            $q->where('id', $danger->id);
+        })->first();
+        if (!$risk) abort(404);
+
+        $risk->delete();
+
+        return redirect()->route('danger.index', [$single_document->id, $danger->id]);
+    }
 
 }

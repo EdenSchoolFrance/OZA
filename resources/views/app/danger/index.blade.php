@@ -123,7 +123,8 @@
                                         <td class="td_actions">
                                             <div>
                                                 <a href="{{ route('risk.edit', [$single_document->id, $danger->id, $risk->id]) }}"><i class="far fa-edit"></i></a>
-                                                <form action="{{ route('risk.delete', [$single_document->id, $danger->id, $risk->id]) }}" method="post">@csrf<i class="fas fa-trash"></i></form>
+                                                <a data-modal=".modal--duplicate" data-risk="{{ $risk->id }}" ><i class="far fa-clone"></i></a>
+                                                <a data-modal=".modal--delete" data-risk="{{ $risk->id }}"><i class="fas fa-trash"></i></a>
                                             </div>
                                         </td>
                                     </tr>
@@ -244,7 +245,8 @@
                                                 <td class="td_actions">
                                                     <div>
                                                         <a href="{{ route('risk.edit', [$single_document->id, $danger->id, $risk->id]) }}"><i class="far fa-edit"></i></a>
-                                                        <form action="{{ route('risk.delete', [$single_document->id, $danger->id, $risk->id]) }}" method="post">@csrf<i class="fas fa-trash"></i></form>
+                                                        <a data-modal=".modal--duplicate" data-risk="{{ $risk->id }}" ><i class="far fa-clone"></i></a>
+                                                        <a data-modal=".modal--delete" data-risk="{{ $risk->id }}"><i class="fas fa-trash"></i></a>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -292,6 +294,53 @@
                     <button type="button" data-value="false" class="btn btn-text btn-check-work-unit">Enregistrer le brouillon</button>
                 </form>
             </div>
+
+            <div class="modal modal--duplicate">
+                <div class="modal-dialog">
+                    <form class="modal-content" action="{{ route('risk.duplicate', [$single_document->id, $danger->id]) }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="id_risk" value="">
+                        <div class="modal-header">
+                            <p class="title">Duplication de risque</p>
+                            <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Sélectioner une unité de travail</p>
+                            <select name="work_unit" class="form-control">
+                                <option value="all">Tous</option>
+                                @foreach($single_document->work_unit as $work_unit)
+                                    <option value="{{ $work_unit->id }}">{{ $work_unit->name }}</option>
+                                @endforeach
+                            </select>
+                            <div>
+                                <button type="submit" class="btn btn-yellow">Dupliqué</button>
+                                <button type="button" class="btn btn-danger btn-text" data-dismiss="modal">Annuler</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal modal--delete">
+                <div class="modal-dialog">
+                    <form class="modal-content" action="{{ route('risk.delete', [$single_document->id, $danger->id]) }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="id_risk" value="">
+                        <div class="modal-header">
+                            <p class="title">Confirmer la suppression</p>
+                            <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Êtes-vous sûr.e du vouloir supprimer ce risque ?</p>
+                            <div>
+                                <button type="submit" class="btn btn-yellow">Supprimer</button>
+                                <button type="button" class="btn btn-inv btn-yellow btn-small" data-dismiss="modal"> Annuler</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
         </div>
     @else
         <div class="card card--no-work-unit">

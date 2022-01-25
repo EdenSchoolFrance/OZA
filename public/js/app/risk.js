@@ -139,6 +139,14 @@ on('.btn-check-work-unit', 'click', (el, e) => {
 });
 
 
+on('a[data-modal=".modal--duplicate"]', 'click', (el, e) => {
+    $('.modal--duplicate input[name="id_risk"]', document, 0).value = el.dataset.risk
+});
+
+on('a[data-modal=".modal--delete"]', 'click', (el, e) => {
+    $('.modal--delete input[name="id_risk"]', document, 0).value = el.dataset.risk
+});
+
 /*==============================
           Calcul function
 ==============================*/
@@ -345,3 +353,7 @@ function filterRisk(){
         }
     });
 }
+
+
+
+
