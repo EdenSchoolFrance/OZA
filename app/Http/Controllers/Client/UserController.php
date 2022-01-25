@@ -57,7 +57,7 @@ class UserController extends Controller
 
         $page = [
             'title' => 'Ajouter un utilisateur',
-            'link_back' => route('user.client.index', [$id]),
+            'url_back' => route('user.client.index', [$id]),
             'text_back' => 'Retour vers les utilisateurs',
             'sidebar' => 'structure',
             'sub_sidebar' => 'users'
@@ -173,7 +173,7 @@ class UserController extends Controller
 
         $page = [
             'title' => 'Modification de l\'utilisateur : ' . $user->lastname . ' ' . $user->firstname,
-            'link_back' => route('user.client.index', [$id]),
+            'url_back' => route('user.client.index', [$id]),
             'text_back' => 'Retour vers les utilisateurs',
             'sidebar' => 'structure',
             'sub_sidebar' => 'users'

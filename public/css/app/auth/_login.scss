@@ -1,10 +1,7 @@
 .card--login {
-    margin-right: 250px;
+    margin-right: $width_sidebar;
     .card-body {
         .row {
-            &:last-child{
-                margin-bottom: 50px;
-            }
             &--submit{
                 button:first-child{
                     margin-right: 25px;

@@ -45,7 +45,7 @@ class WorkUnitController extends Controller
 
         $page = [
             'title' => 'Créer une unité de travail ',
-            'link_back' => route('work.index', [$id]),
+            'url_back' => route('work.index', [$id]),
             'text_back' => 'Retour vers les unités de travail',
             'sidebar' => 'structure',
             'sub_sidebar' => 'work_units'
@@ -75,7 +75,7 @@ class WorkUnitController extends Controller
 
         $page = [
             'title' => 'Modifier l\'unité de travail : '.$work->name,
-            'link_back' => route('work.index', [$id]),
+            'url_back' => route('work.index', [$id]),
             'text_back' => 'Retour vers les unités de travail',
             'sidebar' => 'structure',
             'sub_sidebar' => 'work_units'

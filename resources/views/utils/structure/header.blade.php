@@ -1,8 +1,10 @@
 <div class="header">
-    @if (isset($page['link_back']))
-        <a href="{{ $page['link_back'] }}" class="btn-back"><i class="fas fa-chevron-left"></i> {{ isset($page['text_back']) ? $page['text_back'] : "Retour" }}</a>
+    @if (isset($page['text_back']))
+        <a href="{{ $page['url_back'] }}" class="btn-back"><i class="fas fa-chevron-left"></i> {{ $page['text_back'] }}</a>
     @endif
-    <h1>{{ $page['title'] }}</h1>
+    @if (isset($page['title']))
+        <h1>{{ $page['title'] }}</h1>
+    @endif
     @if (isset($page['infos']))
         <div class="infos">
             <i class="fas fa-info-circle"></i>
