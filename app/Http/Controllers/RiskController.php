@@ -19,7 +19,7 @@ class RiskController extends Controller
 
         $page = [
             'title' => 'Créer un risque',
-            'link_back' => route('danger.index', [$id,$id_danger]),
+            'url_back' => route('danger.index', [$id,$id_danger]),
             'text_back' => 'Retour à l’évaluation des risques',
             'dangers' => 'Accident, presqu’accident et maladie du travail non ou mal analysés et prévenus pouvant générer la répétition de ces faits.',
             'sidebar' => 'risk_pro',
@@ -57,7 +57,7 @@ class RiskController extends Controller
 
         $page = [
             'title' => 'Editer un risque',
-            'link_back' => route('danger.index', [$id,$id_danger]),
+            'url_back' => route('danger.index', [$id,$id_danger]),
             'text_back' => 'Retour à l’évaluation des risques',
             'dangers' => 'Accident, presqu’accident et maladie du travail non ou mal analysés et prévenus pouvant générer la répétition de ces faits.',
             'sidebar' => 'risk_pro',

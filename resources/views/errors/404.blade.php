@@ -4,8 +4,7 @@
     @php
         $page = [
             'title' => 'Erreur 404',
-            'sidebar' => false,
-            'nav' => false
+            'sidebar' => false
         ];
     @endphp
     <div class="content">
