@@ -56,9 +56,6 @@ class SdWorkUnit extends Model
 
     public function sd_danger_risks($id)
     {
-        /*return $this->sd_risks->whereHas('sd_danger', function ($q) use ($id){
-            $q->where('id', $id);
-        })->get();*/
         return $this->sd_risks->where('sd_danger_id', $id);
     }
 }

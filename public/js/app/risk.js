@@ -62,6 +62,7 @@ on('.btn-open-risk', 'click', (el, e) => {
 
 on('.btn-delete', 'click', (el, e) => {
     el.closest('div.row').remove();
+    calculRestraintColorDisplay();
 });
 
 on('.btn-delete-restraint', 'click', (el, e) => {
@@ -328,7 +329,8 @@ function restraintCalcul(){
 }
 
 function setColor(el,total){
-    el.classList = ""
+    console.log(el)
+    el.className = ""
     el.classList.add('btn')
     switch (true) {
         case (total <= 15) :

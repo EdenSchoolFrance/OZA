@@ -30,7 +30,9 @@ class DangerController extends Controller
             $q->where('id', $danger->id);
         })->get();
 
-        return view('app.danger.index', compact('page', 'single_document','danger','risks_all'));
+        $sd_works_units = $danger->sd_works_units()->wherePivot('exist',1)->get();
+
+        return view('app.danger.index', compact('page', 'single_document','danger','risks_all','sd_works_units'));
     }
 
     public function validated(Request $request, $id, $id_sd_danger, $id_sd_work_unit){
@@ -99,7 +101,7 @@ class DangerController extends Controller
             }
         }
 
-        return redirect()->route('danger.index', [$single_document->id, $sd_danger->id]);
+        return back()->with('status', 'Le risque a bien changé de statut !');
     }
 
     public function comment(Request $request, $id, $id_sd_danger) {
@@ -114,7 +116,7 @@ class DangerController extends Controller
         $danger->comment = $request->comment;
         $danger->save();
 
-        return redirect()->route('danger.index', [$single_document->id, $danger->id]);
+        return back()->with('status', 'Le commentaire du danger a bien été modifié !');
     }
 
     public function store(Request $request, $id, $id_sd_danger) {
@@ -128,12 +130,28 @@ class DangerController extends Controller
             $q->where('id', $single_document->id);
         })->first();
 
-        if ($danger->exist === 0) abort(404);
+        if ($danger->exist === 1){
+            $all = 0;
+
+            if ($danger->ut_all === null) return back()->with('status', 'Vous devez valider tout les unités de travail !')->with('status_type','danger');
+            else if ($danger->ut_all === 0) $all++;
+
+            $sd_works_units = SdWorkUnit::where('validated',1)->whereHas('single_document', function ($q) use ($single_document){
+                $q->where('id', $single_document->id);
+            })->get();
+
+            foreach ($sd_works_units as $sd_work_unit){
+                if ($sd_work_unit->sd_danger($danger->id) === null) return back()->with('status', 'Vous devez valider tout les unités de travail !')->with('status_type','danger');
+                else if ($sd_work_unit->sd_danger($danger->id)->pivot->exist === 0) $all++;
+                else if ($sd_work_unit->sd_danger($danger->id)->pivot->exist === 1 && $sd_work_unit->sd_risk === null) return back()->with('status', 'Vous devez valider tout les unités de travail !')->with('status_type','danger');
+            }
+            if ($all === (count($sd_works_units) + 1) ) return back()->with('status', 'Vous devez valider au moins une unité de travail !')->with('status_type','danger');
+        }
 
         $danger->validated = $request->checked === 'true' ? 1 : 0;
         $danger->save();
 
-        return redirect()->route('danger.index', [$single_document->id, $danger->id]);
+        return back()->with('status', 'Le danger a bien été enregisté !');
     }
 
 }

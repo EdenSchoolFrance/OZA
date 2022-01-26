@@ -308,8 +308,8 @@
                             <p>Sélectioner une unité de travail</p>
                             <select name="work_unit" class="form-control">
                                 <option value="all">Tous</option>
-                                @foreach($single_document->work_unit as $work_unit)
-                                    <option value="{{ $work_unit->id }}">{{ $work_unit->name }}</option>
+                                @foreach($sd_works_units as $sd_work_unit)
+                                    <option value="{{ $sd_work_unit->id }}">{{ $sd_work_unit->name }}</option>
                                 @endforeach
                             </select>
                             <div>

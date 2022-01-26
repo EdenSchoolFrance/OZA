@@ -131,7 +131,7 @@ class RiskController extends Controller
             $sd_restraint->save();
         }
 
-        return redirect()->route('danger.index', [$single_document->id, $sd_danger->id]);
+        return redirect()->route('danger.index', [$single_document->id, $sd_danger->id])->with('status', 'Le risque a bien été créé !');
     }
 
 
@@ -190,7 +190,7 @@ class RiskController extends Controller
             $sd_restraint->save();
         }
 
-        return redirect()->route('danger.index', [$single_document->id, $sd_danger->id]);
+        return redirect()->route('danger.index', [$single_document->id, $sd_danger->id])->with('status', 'Le risque a bien été modifié !');
     }
 
     public function filter(Request $request, $id, $id_sd_danger){
@@ -267,7 +267,7 @@ class RiskController extends Controller
             $new_restraint->save();
         }
 
-        return redirect()->route('danger.index', [$single_document->id, $danger->id]);
+        return redirect()->route('risk.edit', [$single_document->id, $danger->id, $new_risk->id])->with('status', 'Le risque a bien été dupliqué !');
     }
 
     public function delete(Request $request, $id, $id_sd_danger){
@@ -290,7 +290,7 @@ class RiskController extends Controller
 
         $risk->delete();
 
-        return redirect()->route('danger.index', [$single_document->id, $danger->id]);
+        return back()->with('status', 'Le risque a bien été supprimé !');
     }
 
 }
