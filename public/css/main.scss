@@ -16,6 +16,8 @@
 @import "global/template";
 
 // App
+@import "app/auth/login";
+
 @import "app/dashboard/dashboard";
 
 @import "app/structure/presentation";
@@ -30,8 +32,6 @@
 @import "app/user/create";
 
 @import "app/risk/risks";
-
-@import "app/auth/login";
 
 @import "app/documentation";
 

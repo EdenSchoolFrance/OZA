@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <form action="{{ route('login.store') }}" id="form-login" method="post" class="card card--login">
+    <form action="{{ route('login.store') }}" id="form-login" method="post" class="card">
         @csrf
         <div class="card-header">
             <h2 class="title">Accéder à votre interface</h2>
@@ -45,7 +45,7 @@
                     </div>
                     <div class="right">
                         {!! htmlFormButton("Valider", [ "class" => "btn btn-success" ]) !!}
-                        <button type="button" class="btn btn-yellow btn-text">Mot de passe oublié</button>
+                        <a href="{{ route('forgetPassword') }}" class="btn btn-yellow btn-text">Mot de passe oublié</a>
                     </div>
                 </div>
             </div>

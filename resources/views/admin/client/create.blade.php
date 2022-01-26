@@ -224,13 +224,14 @@
                             <button class="btn btn-success">Enregistrer</button>
                             <a href="{{ route('admin.clients') }}" class="btn btn-danger btn-text">Annuler</a>
                         </div>
-                        <div class="tooltip tooltip--password">
-                            <p>Votre mot de passe doit contenir au moins 8 caractères, dont : </p>
-                            <p>1 majuscule, 1 minuscule, 1 chiffre et 1 caractère spécial</p>
-                        </div>
                     </form>
                 </div>
             </div>
+        </div>
+
+        <div class="tooltip tooltip--password">
+            <p>Votre mot de passe doit contenir au moins 8 caractères, dont : </p>
+            <p>1 majuscule, 1 minuscule, 1 chiffre et 1 caractère spécial</p>
         </div>
     </div>
 @endsection
