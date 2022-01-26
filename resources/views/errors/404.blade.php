@@ -8,7 +8,7 @@
         ];
     @endphp
     <div class="content">
-        <form action="#" method="post" class="card card--login">
+        <form action="#" method="post" class="card">
             <div class="card-body">
                 <div class="row row--center cancel">
                     <h1 class="text-color-yellow">Page indisponible pour cette version de OZA</h1>

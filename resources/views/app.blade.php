@@ -30,11 +30,11 @@
     <body>
         @include('utils.structure.nav')
 
-        <main class="{{ $page['sidebar'] == false ? 'sidebar-hided' : '' }}">
+        <main class="{{ $page['sidebar'] == false ? 'disable-sidebar' : '' }}">
             @if($page['sidebar'] !== false)
                 @include('utils.structure.sidebar')
             @endif
-            
+
             <div class="container {{ isset($page['name']) ? "container--" . $page['name'] : "" }}">
                 @include('utils.structure.header')
 
@@ -48,6 +48,7 @@
 
         <script src="/js/global/main.js"></script>
         <script src="/js/utils/animation/animations.js"></script>
+        <script src="/js/utils/other/nav.js"></script>
         <script src="/js/utils/other/sidebar.js"></script>
         <script src="/js/utils/other/table.js"></script>
         <script src="/js/utils/other/tabs.js"></script>

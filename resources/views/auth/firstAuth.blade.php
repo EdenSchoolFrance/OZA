@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="content">
-        <form action="" method="post" class="card card--login">
+        <form action="" method="post" class="card">
             @csrf
             <div class="card-header">
                 <h2 class="title">Veuillez renseigner un nouveau mot de passe</h2>
