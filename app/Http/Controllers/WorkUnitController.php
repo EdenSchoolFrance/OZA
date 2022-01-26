@@ -92,7 +92,7 @@ class WorkUnitController extends Controller
 
         $request->validate([
             'name_enterprise' => 'required',
-            'number_employee' => 'required|min:1',
+            'number_employee' => 'required|numeric|min:1',
             'type' => 'required',
             'activities' => 'required|array'
         ]);

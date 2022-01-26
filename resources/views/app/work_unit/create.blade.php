@@ -38,7 +38,7 @@
                                 <input type="number" class="form-control" id="numberSal" placeholder="" value="{{ old('number_employee') ? old('number_employee') : '0' }}" name="number_employee">
                                 <button type="button" class="btn btn-text btn-num" data-value="more"><i class="fas fa-plus"></i></button>
                             </div>
-                            @error('employee_number')
+                            @error('number_employee')
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
                         </div>

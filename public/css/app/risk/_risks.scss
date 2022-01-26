@@ -63,6 +63,14 @@
         }
     }
 
+    &--no-work-unit{
+        .row--center{
+            display: flex;
+            justify-content: center;
+            flex-direction: inherit;
+        }
+    }
+
     &--submit-danger{
         .card-body{
             button{
@@ -199,5 +207,13 @@ table.table--risks {
                 }
             }
         }
+    }
+}
+
+.modal--duplicate{
+    .modal-body{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
     }
 }
