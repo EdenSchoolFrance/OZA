@@ -45,7 +45,6 @@
 
             .line {
                 display: flex;
-                // justify-content: center;
                 margin-bottom: 15px;
 
                 div {
@@ -64,6 +63,7 @@
                         label {
                             margin-top: 10px;
                             color: $dark_purple;
+                            text-align: end;
                         }
                     }
 
@@ -103,6 +103,16 @@
             &--submit {
                 .btn:first-of-type {
                     margin-right: 25px;
+                }
+            }
+
+            &--center{
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+
+                &.cancel{
+                    margin: 0;
                 }
             }
 

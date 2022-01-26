@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -11,6 +10,7 @@ class AuthController extends Controller
     public function login()
     {
         $page = [
+            'name' => 'login',
             'title' => 'Identification',
             'sidebar' => false
         ];
@@ -20,10 +20,13 @@ class AuthController extends Controller
 
     public function login_store(Request $request)
     {
-        $credentials = $request->validate([
+        $request->validate([
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required',
+            'g-recaptcha-response' => 'recaptcha',
         ]);
+
+        $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
             if (Auth::user()->first_connection == null && Auth::user()->first_connection !== 0) {

@@ -1,19 +1,21 @@
 <?php
 
-use App\Http\Controllers\DangerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DocController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RiskController;
+use App\Http\Controllers\DangerController;
 use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\WorkUnitController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PresentationController;
 
+use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\ForgotPasswordController;
+
 use App\Http\Controllers\Admin\UserController as UserAdminController;
 use App\Http\Controllers\Client\UserController as UserClientController;
-
 use App\Http\Controllers\Admin\ClientController as ClientAdminController;
 use App\Http\Controllers\Admin\SingleDocumentController as SingleDocumentAdminController;
 
@@ -28,11 +30,15 @@ use App\Http\Controllers\Admin\SingleDocumentController as SingleDocumentAdminCo
 |
 */
 
-
-
 Route::middleware(['guest'])->group(function() {
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/login', [AuthController::class, 'login_store'])->name('login.store');
+
+    Route::get('forget-password', [ForgotPasswordController::class, 'index'])->name('forgetPassword');
+    Route::get('reset-password/{token}', [ResetPasswordController::class, 'index'])->name('resetPassword');
+
+    Route::post('forget-password', [ForgotPasswordController::class, 'store'])->name('forgetPassword.store');
+    Route::post('reset-password', [ResetPasswordController::class, 'store'])->name('resetPassword.store');
 });
 
 Route::middleware(['auth'])->group(function() {
