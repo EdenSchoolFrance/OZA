@@ -41,6 +41,16 @@ class SdRisk extends Model
         return $this->hasMany(SdRestraint::class);
     }
 
+    public function sd_restraint_porposed()
+    {
+        return $this->sd_restraint()->where('exist',0);
+    }
+
+    public function sd_restraint_archived()
+    {
+        return $this->sd_restraint()->where('exist',1)->whereNotNull('date');
+    }
+
     public function translate($name,$setting){
         switch ($setting){
             case 'frequency' :

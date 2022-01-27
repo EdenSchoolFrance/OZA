@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RestraintController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DocController;
 use App\Http\Controllers\AuthController;
@@ -159,6 +160,14 @@ Route::middleware(['auth'])->group(function() {
             Route::post('/{single_document}/danger/{danger}/update/{sd_work_unit}/{risk}', [RiskController::class, 'update'])->name('risk.update');
             Route::post('/{single_document}/danger/{danger}/delete', [RiskController::class, 'delete'])->name('risk.delete');
             Route::post('/{single_document}/danger/{danger}/duplicate', [RiskController::class, 'duplicate'])->name('risk.duplicate');
+        });
+
+        Route::get('/{single_document}/restraint/', [RestraintController::class, 'index'])->name('restraint.index');
+        Route::get('/{single_document}/restraint/archived', [RestraintController::class, 'archived'])->name('restraint.archived');
+
+        Route::middleware(['permission:ADMIN,EXPERT,MANAGER,EDITOR'])->group(function () {
+            Route::post('/{single_document}/restraint/store/', [RestraintController::class, 'store'])->name('restraint.store');
+
         });
 
         Route::middleware(['access:oza'])->group(function () {

@@ -20,6 +20,7 @@ class SdRestraint extends Model
      */
     protected $fillable = [
         'name',
+        'date',
         'technical',
         'organizational',
         'human',
