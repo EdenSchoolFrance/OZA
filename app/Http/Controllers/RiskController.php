@@ -94,11 +94,11 @@ class RiskController extends Controller
             'sidebar' => 'risk_post'
         ];
 
-        $risks = SdRisk::whereHas('sd_danger', function ($q) use ($single_document){
+        $sd_risks = SdRisk::whereHas('sd_danger', function ($q) use ($single_document){
             $q->where('single_document_id', $single_document->id);
         })->get();
 
-        return view('app.risk.post', compact('page', 'single_document','risks'));
+        return view('app.risk.post', compact('page', 'single_document','sd_risks'));
     }
 
     public function store(Request $request, $id, $id_sd_danger, $id_sd_work_unit){
