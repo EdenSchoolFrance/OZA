@@ -26,7 +26,7 @@
                         </div>
                         <div class="right">
                             <div class="align">
-                                <input type="password" name="password" id="password" class="form-control @error('password') invalid @enderror" placeholder="">
+                                <input type="password" name="password" id="password" class="form-control @error('password') invalid @enderror" placeholder="Mot de passe">
                                 <i class="far fa-question-circle" data-tooltip=".tooltip--password" data-placement="top"></i>
                             </div>
                             @error('password')
