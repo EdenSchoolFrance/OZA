@@ -72,7 +72,7 @@
                 </ul>
             </li>
             <li class="sidebar-nav-item {{ $page['sidebar'] == "risk_post" ? 'active' : '' }}">
-                <a href="#" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Postes à risque</span></a>
+                <a href="{{ route('risk.post',[$single_document->id]) }}" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Postes à risque</span></a>
             </li>
             <li class="sidebar-nav-item {{ $page['sidebar'] == "action_plan" ? 'active' : '' }}">
                 <a href="#" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Plan d'action</span></a>

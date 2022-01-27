@@ -165,6 +165,15 @@ class SdRisk extends Model
         return ($fre + $proba) * $gra;
     }
 
+    public function total2(){
+
+        $fre = $this->convert($this->frequency,'frequency');
+        $proba = $this->convert($this->probability, 'probability');
+        $gra = $this->convert($this->gravity,'gravity');
+
+        return ($fre + $proba) * $gra;
+    }
+
     public function totalRR($restraints){
         $totalEnd = 0;
         foreach ($restraints as $restraint){
