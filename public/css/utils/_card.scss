@@ -70,6 +70,18 @@
                     &.right {
                         width: 70%;
 
+                        &>div {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+
+                            i {
+                                margin-left: 10px;
+                                font-size: 22px;
+                                color: $dark;
+                            }
+                        }
+
                         input,
                         textarea {
                             &:disabled {

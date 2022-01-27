@@ -1,8 +1,12 @@
 @extends('app')
 
+@section('head_script')
+    {!! htmlScriptTagJsApi([ "form_id" => "form-forgetPassword" ]) !!}
+@endsection
+
 @section('content')
     <div class="content">
-        <form action="{{ route('forgetPassword.store') }}" method="post" class="card card--forget-password">
+        <form action="{{ route('forgetPassword.store') }}" id="form-forgetPassword" method="post" class="card">
             @csrf
             <div class="card-header">
                 <h2 class="title">Reset du mot de passe</h2>
@@ -14,7 +18,7 @@
                             <label for="email">Identifiant</label>
                         </div>
                         <div class="right">
-                            <input type="email" name="email" class="form-control" id="email" placeholder="Email">
+                            <input type="email" name="email" class="form-control" id="email" placeholder="Email" value="{{ old('email') }}">
                             @error('email')
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
@@ -27,7 +31,8 @@
                         <div class="left">
                         </div>
                         <div class="right">
-                            <button type="submit" class="btn btn-success">Envoyer la demande de reset</button>
+                            {!! htmlFormButton("Envoyer la demande de reset", [ "class" => "btn btn-success" ]) !!}
+                            {{-- <button type="submit" class="btn btn-success">Envoyer la demande de reset</button> --}}
                         </div>
                     </div>
                 </div>

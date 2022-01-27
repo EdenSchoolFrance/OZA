@@ -40,9 +40,7 @@
 
                 @include('utils.structure.alert')
 
-                <div class="content">
-                    @yield('content')
-                </div>
+                @yield('content')
             </div>
         </main>
 
