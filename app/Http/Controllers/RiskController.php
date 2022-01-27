@@ -81,6 +81,26 @@ class RiskController extends Controller
         return view('app.risk.edit', compact('page', 'single_document','danger','domaine_activities', 'risk'));
     }
 
+
+    public function post($id)
+    {
+        $single_document = $this->checkSingleDocument($id);
+
+        $page = [
+            'title' => 'Editer un risque',
+            'infos' => 'Tous les salariés embauchés pour travailler à l’un de ces postes, en contrat de travail précaire (autre que CDI), doivent bénéficier d’une formation renforcée à la sécurité,
+                        ainsi que d’un accueil et d’une formation adaptés dans l’entreprise. Obtenir l’avis du médecin du travail, du CSE ou, à défaut, des représentants du personnel, s’il en existe.
+                        Liste tenue à la disposition des agents de contrôle de l’inspection du travail (amende de 10 000 €uros en cas de non présentation : art. L.4741-1).',
+            'sidebar' => 'risk_post'
+        ];
+
+        $sd_risks = SdRisk::whereHas('sd_danger', function ($q) use ($single_document){
+            $q->where('single_document_id', $single_document->id);
+        })->get();
+
+        return view('app.risk.post', compact('page', 'single_document','sd_risks'));
+    }
+
     public function store(Request $request, $id, $id_sd_danger, $id_sd_work_unit){
         $single_document = $this->checkSingleDocument($id);
         $sd_danger = SdDanger::find($id_sd_danger);

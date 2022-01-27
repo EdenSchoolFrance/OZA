@@ -167,8 +167,9 @@ Route::middleware(['auth'])->group(function() {
 
         Route::middleware(['permission:ADMIN,EXPERT,MANAGER,EDITOR'])->group(function () {
             Route::post('/{single_document}/restraint/store/', [RestraintController::class, 'store'])->name('restraint.store');
-
         });
+
+        Route::get('/{single_document}/risk/post', [RiskController::class, 'post'])->name('risk.post');
 
         Route::middleware(['access:oza'])->group(function () {
             Route::post('/{single_document}/work/create/filter', [WorkUnitController::class, 'filter'])->name('work.filter');
