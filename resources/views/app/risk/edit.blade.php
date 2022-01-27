@@ -76,7 +76,7 @@
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
                         </div>
-                        <i class="far fa-question-circle" data-toggle="toolHelp" data-placement="top" title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></i>
+                        <i class="far fa-question-circle" data-toggle="tooltip" data-placement="top" title="Tooltip"></i>
                     </div>
                 </div>
             </div>
@@ -120,7 +120,7 @@
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
                         </div>
-                        <i class="far fa-question-circle" data-toggle="toolHelp" data-placement="top" title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></i>
+                        <i class="far fa-question-circle" data-toggle="tooltip" data-placement="top" title="Tooltip."></i>
                     </div>
                 </div>
             </div>
@@ -164,7 +164,7 @@
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
                         </div>
-                        <i class="far fa-question-circle" data-toggle="toolHelp" data-placement="top" title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></i>
+                        <i class="far fa-question-circle" data-toggle="tooltip" data-placement="top" title="Tooltip."></i>
                     </div>
                 </div>
             </div>
@@ -327,11 +327,7 @@
                                 <div class="radio-bar-content">
                                     <div class="radio-bar radio-bar-tech">
                                         <label class="con">
-                                            <input type="radio" name="tech-modal" value="very good" checked>
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <label class="con">
-                                            <input type="radio" name="tech-modal" value="good">
+                                            <input type="radio" name="tech-modal" value="null">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="con">
@@ -339,18 +335,22 @@
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="con">
-                                            <input type="radio" name="tech-modal" value="null">
+                                            <input type="radio" name="tech-modal" value="good">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="con">
+                                            <input type="radio" name="tech-modal" value="very good" checked>
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
                                     <div class="radio-title">
-                                        <label>Très bon</label>
-                                        <label>Bon</label>
-                                        <label>Moyen</label>
                                         <label>Nulle</label>
+                                        <label>Moyen</label>
+                                        <label>Bon</label>
+                                        <label>Très bon</label>
                                     </div>
                                 </div>
-                                <i class="far fa-question-circle" data-toggle="toolHelp" data-placement="top" title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></i>
+                                <i class="far fa-question-circle" data-toggle="tooltip" data-placement="top" title="Tooltip."></i>
                             </div>
                         </div>
                     </div>
@@ -363,11 +363,7 @@
                                 <div class="radio-bar-content">
                                     <div class="radio-bar radio-bar-orga">
                                         <label class="con">
-                                            <input type="radio" name="orga-modal" value="very good" checked>
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <label class="con">
-                                            <input type="radio" name="orga-modal" value="good">
+                                            <input type="radio" name="orga-modal" value="null">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="con">
@@ -375,18 +371,22 @@
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="con">
-                                            <input type="radio" name="orga-modal" value="null">
+                                            <input type="radio" name="orga-modal" value="good">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="con">
+                                            <input type="radio" name="orga-modal" value="very good" checked>
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
                                     <div class="radio-title">
-                                        <label>Très bon</label>
-                                        <label>Bon</label>
-                                        <label>Moyen</label>
                                         <label>Nulle</label>
+                                        <label>Moyen</label>
+                                        <label>Bon</label>
+                                        <label>Très bon</label>
                                     </div>
                                 </div>
-                                <i class="far fa-question-circle" data-toggle="toolHelp" data-placement="top" title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></i>
+                                <i class="far fa-question-circle" data-toggle="tooltip" data-placement="top" title="Tooltip."></i>
                             </div>
                         </div>
                     </div>
@@ -399,11 +399,7 @@
                                 <div class="radio-bar-content">
                                     <div class="radio-bar radio-bar-human">
                                         <label class="con">
-                                            <input type="radio" name="human-modal" value="very good" checked>
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <label class="con">
-                                            <input type="radio" name="human-modal" value="good">
+                                            <input type="radio" name="human-modal" value="null">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="con">
@@ -411,18 +407,22 @@
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="con">
-                                            <input type="radio" name="human-modal" value="null">
+                                            <input type="radio" name="human-modal" value="good">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="con">
+                                            <input type="radio" name="human-modal" value="very good" checked>
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
                                     <div class="radio-title">
-                                        <label>Très bon</label>
-                                        <label>Bon</label>
-                                        <label>Moyen</label>
                                         <label>Nulle</label>
+                                        <label>Moyen</label>
+                                        <label>Bon</label>
+                                        <label>Très bon</label>
                                     </div>
                                 </div>
-                                <i class="far fa-question-circle" data-toggle="toolHelp" data-placement="top" title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></i>
+                                <i class="far fa-question-circle" data-toggle="tooltip" data-placement="top" title="Tooltip."></i>
                             </div>
                         </div>
                     </div>
