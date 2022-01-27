@@ -70,6 +70,6 @@ class DocController extends Controller
 
         $path = $request->file('file')->storeAs('documentations', $fileName, 'public');
 
-        return response()->json(['location' => '/storage/' . $path]);
+        return response()->json(['location' => '/storage/' . $path, 'link' => '/storage/' . $path]);
     }
 }
