@@ -27,6 +27,24 @@ class RestraintController extends Controller
         return view('app.restraint.index', compact('page', 'single_document','sd_works_units'));
     }
 
+    public function archived($id)
+    {
+        $single_document = $this->checkSingleDocument($id);
+
+        $page = [
+            'title' => 'Mesures archivée',
+            'infos' => null,
+            'sidebar' => 'action_plan',
+            'sub_sidebar' => 'restraint_archived'
+        ];
+
+        $sd_works_units = SdWorkUnit::whereHas('single_document', function ($q) use ($single_document) {
+            $q->where('id', $single_document->id);
+        })->get();
+
+        return view('app.restraint.archived', compact('page', 'single_document','sd_works_units'));
+    }
+
     public function store(Request $request,$id){
 
         $request->validate([

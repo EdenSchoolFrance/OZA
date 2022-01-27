@@ -2,21 +2,6 @@
 
 @section('content')
     <div class="content">
-        @error('id_restraint')
-            <p>restraint id</p>
-        @enderror
-        @error('date_restraint')
-            <p>date</p>
-        @enderror
-        @error('tech_modal')
-            <p>tech</p>
-        @enderror
-        @error('orga_modal')
-            <p>orga</p>
-        @enderror
-        @error('human_modal')
-            <p>human</p>
-        @enderror
         <div class="card card--work_units">
             <div class="card-body">
                 <table class="table table--restraint">

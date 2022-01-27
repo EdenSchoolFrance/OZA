@@ -81,7 +81,7 @@
                         <a href="{{route('restraint.index', [$single_document->id])}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Mesure à prendre</a>
                     </li>
                     <li class="sidebar-nav-item {{ $page['sidebar'] == "action_plan" && $page['sub_sidebar'] == "restraint_archived" ? 'active' : '' }}">
-                        <a href="{{route('work.index',[$single_document->id])}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Mesures archivées</a>
+                        <a href="{{route('restraint.archived',[$single_document->id])}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Mesures archivées</a>
                     </li>
                 </ul>
             </li>
