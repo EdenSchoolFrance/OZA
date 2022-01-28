@@ -22,12 +22,8 @@ class FirstAuthentication
         }
 
         if ($boolean == "false" && Auth::user()->first_connection) {
-            var_dump("U can't access at this route !");
-
             return redirect()->route('first_auth');
         } elseif ($boolean == "true" && !Auth::user()->first_connection) {
-            var_dump("U can't access at this route !");
-
             if (Auth::user()->hasAccess('oza')) {
                 return redirect()->route('admin.clients');
             } else {

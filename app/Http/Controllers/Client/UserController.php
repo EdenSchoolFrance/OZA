@@ -201,6 +201,7 @@ class UserController extends Controller
             'post' => 'required',
             'email' => 'required|unique:users,email,' . $user->id,
             'role' => 'required|exists:roles,id',
+            'password' => 'nullable|confirmed'
         ]);
 
         $roles_array = ['EXPERT'];
@@ -229,6 +230,12 @@ class UserController extends Controller
         $user->phone = $request->phone;
         $user->post = $request->post;
         $user->email = $request->email;
+        
+        if ($request->password) {
+            $user->password = $request->password;
+            $user->first_connection = 1;
+        }
+
         $user->role()->associate($request->role);
         $user->save();
 
