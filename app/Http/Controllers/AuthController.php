@@ -29,11 +29,6 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            if (Auth::user()->first_connection == null && Auth::user()->first_connection !== 0) {
-                Auth::user()->first_connection = 1;
-                Auth::user()->save();
-            }
-
             if (Auth::user()->hasAccess('oza')) {
                 return redirect()->route('admin.clients');
             } else {

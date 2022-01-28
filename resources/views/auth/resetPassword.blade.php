@@ -36,7 +36,7 @@
                     </div>
                     <div class="line">
                         <div class="left">
-                            <label for="password_confirmation">Identifiant</label>
+                            <label for="password_confirmation">Confirmation du mot de passe</label>
                         </div>
                         <div class="right">
                             <input type="password" name="password_confirmation" class="form-control @error('password_confirmation') invalid @enderror" id="password_confirmation" placeholder="Confirmer le mot de passe">

@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('phone');
             $table->string('post');
             $table->boolean('oza')->default(0);
-            $table->boolean('first_connection')->nullable();
+            $table->boolean('first_connection')->default(1);
             
             $table->foreignUuid('role_id');
             $table->foreignUuid('client_id')->nullable();
