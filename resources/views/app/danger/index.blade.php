@@ -45,8 +45,8 @@
                         @csrf
                         <input type="hidden" name="checked" value=""/>
                         <p>Ce danger concerne quelqu’un au sein de l’entreprise ?</p>
-                        <button type="button" data-value="true" class="btn btn-radio btn-check-work-unit {{ $danger->ut_all === 1 && $danger->exist === 1 ? 'btn-radio--checked' : '' }}" {{ $danger->exist === 0 ? 'disabled' : ''}}>Oui</button>
-                        <button type="button" data-value="false" class="btn btn-radio btn-check-work-unit {{ $danger->ut_all === 0 && $danger->exist === 1 ? 'btn-radio--checked' : '' }}" {{ $danger->exist === 0 ? 'disabled' : ''}}>Non</button>
+                        <button type="button" data-value="true" class="btn btn-radio btn-check-work-unit {{ $danger->ut_all === 1 && $danger->exist === 1 ? 'btn-radio--checked' : '' }}" {{ $danger->exist === 0 || $danger->exist === null ? 'disabled' : ''}}>Oui</button>
+                        <button type="button" data-value="false" class="btn btn-radio btn-check-work-unit {{ $danger->ut_all === 0 && $danger->exist === 1 ? 'btn-radio--checked' : '' }}" {{ $danger->exist === 0 || $danger->exist === null ? 'disabled' : ''}}>Non</button>
                     </form>
                 </div>
                 <div class="card-body" style="{{ $danger->ut_all ? 'display: block' : '' }}">
@@ -165,8 +165,8 @@
                                 <input type="hidden" name="checked" value=""/>
                                 <p>Ce danger concerne quelqu’un au sein de l’entreprise ?</p>
 
-                                <button type="button" data-value="true" class="btn btn-radio btn-check-work-unit {{ $sd_work_unit->sd_danger($danger->id) ? ($sd_work_unit->sd_danger($danger->id)->pivot->exist === 1 && $danger->exist === 1 ? 'btn-radio--checked' : '') : '' }}" {{ $danger->exist === 0 ? 'disabled' : ''}}>Oui</button>
-                                <button type="button" data-value="false" class="btn btn-radio btn-check-work-unit {{ $sd_work_unit->sd_danger($danger->id) ? ($sd_work_unit->sd_danger($danger->id)->pivot->exist === 0 && $danger->exist === 1 ? 'btn-radio--checked' : '') : '' }}" {{ $danger->exist === 0 ? 'disabled' : ''}}>Non</button>
+                                <button type="button" data-value="true" class="btn btn-radio btn-check-work-unit {{ $sd_work_unit->sd_danger($danger->id) ? ($sd_work_unit->sd_danger($danger->id)->pivot->exist === 1 && $danger->exist === 1 ? 'btn-radio--checked' : '') : '' }}" {{ $danger->exist === 0 || $danger->exist === null ? 'disabled' : ''}}>Oui</button>
+                                <button type="button" data-value="false" class="btn btn-radio btn-check-work-unit {{ $sd_work_unit->sd_danger($danger->id) ? ($sd_work_unit->sd_danger($danger->id)->pivot->exist === 0 && $danger->exist === 1 ? 'btn-radio--checked' : '') : '' }}" {{ $danger->exist === 0 || $danger->exist === null ? 'disabled' : ''}}>Non</button>
                             </form>
                         </div>
                         @if($sd_work_unit->sd_danger($danger->id) && $sd_work_unit->sd_danger($danger->id)->pivot->exist)

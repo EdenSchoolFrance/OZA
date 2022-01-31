@@ -42,9 +42,9 @@
                                         </td>
                                         @if (!Auth::user()->hasPermission('READER'))
                                             <td class="td_actions">
-                                                <button data-modal=".modal--restraint" data-id="{{ $sd_restraint->id }}" data-name="{{ $sd_restraint->name }}">
+                                                <a data-modal=".modal--restraint" data-id="{{ $sd_restraint->id }}" data-name="{{ $sd_restraint->name }}">
                                                     <i class="far fa-edit"></i>
-                                                </button>
+                                                </a>
                                             </td>
                                         @endif
                                     </tr>
@@ -59,9 +59,9 @@
                                         </td>
                                         @if (!Auth::user()->hasPermission('READER'))
                                             <td class="td_actions">
-                                                <button data-modal=".modal--restraint" data-id="{{ $sd_restraint->id }}" data-name="{{ $sd_restraint->name }}">
+                                                <a data-modal=".modal--restraint" data-id="{{ $sd_restraint->id }}" data-name="{{ $sd_restraint->name }}">
                                                     <i class="far fa-edit"></i>
-                                                </button>
+                                                </a>
                                             </td>
                                         @endif
                                     </tr>
