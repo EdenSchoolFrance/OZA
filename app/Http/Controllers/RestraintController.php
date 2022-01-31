@@ -20,11 +20,13 @@ class RestraintController extends Controller
             'sub_sidebar' => 'restraint_porposed'
         ];
 
-        $sd_works_units = SdWorkUnit::whereHas('single_document', function ($q) use ($single_document) {
-            $q->where('id', $single_document->id);
+        $sd_risks = SdRisk::whereHas('sd_danger', function ($q) use ($single_document){
+            $q->where('single_document_id', $single_document->id);
+        })->whereHas('sd_restraints', function ($q) {
+            $q->where('exist', 0);
         })->get();
 
-        return view('app.restraint.index', compact('page', 'single_document','sd_works_units'));
+        return view('app.restraint.index', compact('page', 'single_document', 'sd_risks'));
     }
 
     public function archived($id)
@@ -38,11 +40,13 @@ class RestraintController extends Controller
             'sub_sidebar' => 'restraint_archived'
         ];
 
-        $sd_works_units = SdWorkUnit::whereHas('single_document', function ($q) use ($single_document) {
-            $q->where('id', $single_document->id);
+        $sd_risks = SdRisk::whereHas('sd_danger', function ($q) use ($single_document){
+            $q->where('single_document_id', $single_document->id);
+        })->whereHas('sd_restraints', function ($q) {
+            $q->where('exist', 1)->whereNotNull('date');
         })->get();
 
-        return view('app.restraint.archived', compact('page', 'single_document','sd_works_units'));
+        return view('app.restraint.archived', compact('page', 'single_document', 'sd_risks'));
     }
 
     public function store(Request $request,$id){
