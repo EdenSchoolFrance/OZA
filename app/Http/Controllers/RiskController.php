@@ -96,7 +96,9 @@ class RiskController extends Controller
 
         $sd_risks = SdRisk::whereHas('sd_danger', function ($q) use ($single_document){
             $q->where('single_document_id', $single_document->id);
-        })->get();
+        })->get()->filter(function ($sd_risk, $key) {
+            return $sd_risk->total() > 23;
+        })->all();
 
         return view('app.risk.post', compact('page', 'single_document','sd_risks'));
     }
@@ -280,7 +282,7 @@ class RiskController extends Controller
         $new_risk->sd_work_unit()->associate($request->work_unit !== 'all' ? $work_unit : null);
         $new_risk->save();
 
-        foreach ($risk->sd_restraint as $restraint){
+        foreach ($risk->sd_restraints as $restraint){
             $new_restraint = $restraint->replicate();
             $new_restraint->id = uniqid();
             $new_restraint->sd_risk()->associate($new_risk);

@@ -12,62 +12,68 @@
                             <th class="th_risk">Risque</th>
                             <th class="th_evaluation">Évaluations</th>
                             <th class="th_restraint">Mesure proposée</th>
-                            <th class="th_actions"></th>
+                            @if (!Auth::user()->hasPermission('READER'))
+                                <th class="th_actions"></th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($sd_works_units as $sd_work_unit)
-                            @foreach($sd_work_unit->sd_dangers as $sd_danger)
-                                @foreach($sd_danger->sd_risk as $sd_risk)
-                                    @if(count($sd_risk->sd_restraint_porposed) > 0)
-                                        @foreach($sd_risk->sd_restraint_porposed as $sd_restraint)
-                                            @if($sd_restraint->id === $sd_risk->sd_restraint_porposed[0]->id)
-                                                <tr>
-                                                    <td class="td_work_unit">{{ $sd_work_unit->name }}</td>
-                                                    <td class="td_danger">{{ $sd_danger->danger->name }}</td>
-                                                    <td class="td_risk">{{ $sd_risk->name }}</td>
-                                                    <td class="td_evaluation">
-                                                        <div class="list list--text list--space">
-                                                            <div class="list-row">
-                                                                <p class="list-point list-point--text">RR</p>
-                                                                <button class="btn {{ $sd_risk->color($sd_risk->totalRR($sd_risk->sd_restraint)) }} btn-small">{{ $sd_risk->totalRR($sd_risk->sd_restraint) }}</button></li>
-                                                            </div>
-                                                            <div class="list-row">
-                                                                <p class="list-point list-point--text">C</p>
-                                                                <button type="button" class="btn {{ $sd_risk->color(($sd_risk->totalRR($sd_risk->sd_restraint)+$sd_risk->total($sd_risk->frequency,$sd_risk->probability,$sd_risk->gravity))) }} btn-small">{{ $sd_risk->colorTotal(($sd_risk->totalRR($sd_risk->sd_restraint)+$sd_risk->total($sd_risk->frequency,$sd_risk->probability,$sd_risk->gravity))) }}</button></li>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="td_restraint">
-                                                        {{ $sd_restraint->name }}
-                                                    </td>
-                                                    <td class="td_actions">
-                                                        <a href="#" data-modal=".modal--restraint" data-id="{{ $sd_restraint->id }}" data-name="{{ $sd_restraint->name }}">
-                                                            <i class="far fa-edit"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            @else
-                                                <tr>
-                                                    <td class="td_none"></td>
-                                                    <td class="td_none"></td>
-                                                    <td class="td_none"></td>
-                                                    <td class="td_none"></td>
-                                                    <td class="td_restraint">
-                                                        {{ $sd_restraint->name }}
-                                                    </td>
-                                                    <td class="td_actions">
-                                                        <a href="#" data-modal=".modal--restraint" data-id="{{ $sd_restraint->id }}" data-name="{{ $sd_restraint->name }}">
-                                                            <i class="far fa-edit"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            @endif
-                                        @endforeach
-                                    @endif
-                                @endforeach
+                        @foreach ($sd_risks as $sd_risk)
+                            @foreach ($sd_risk->sd_restraints_porposed as $sd_restraint)
+                                @if ($sd_restraint->id === $sd_risk->sd_restraints_porposed[0]->id)
+                                    <tr>
+                                        <td class="td_work_unit">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "UT Tous" }}</td>
+                                        <td class="td_danger">{{ $sd_risk->sd_danger->danger->name }}</td>
+                                        <td class="td_risk">{{ $sd_risk->name }}</td>
+                                        <td class="td_evaluation">
+                                            <div class="list list--text list--space">
+                                                <div class="list-row">
+                                                    <p class="list-point list-point--text">RR</p>
+                                                    <button class="btn {{ $sd_risk->color($sd_risk->totalRR($sd_risk->sd_restraints)) }} btn-small">{{ $sd_risk->totalRR($sd_risk->sd_restraints) }}</button></li>
+                                                </div>
+                                                <div class="list-row">
+                                                    <p class="list-point list-point--text">C</p>
+                                                    <button type="button" class="btn {{ $sd_risk->color(($sd_risk->totalRR($sd_risk->sd_restraints) + $sd_risk->total())) }} btn-small">{{ $sd_risk->colorTotal(($sd_risk->totalRR($sd_risk->sd_restraints)+$sd_risk->total())) }}</button></li>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="td_restraint">
+                                            {{ $sd_restraint->name }}
+                                        </td>
+                                        @if (!Auth::user()->hasPermission('READER'))
+                                            <td class="td_actions">
+                                                <button data-modal=".modal--restraint" data-id="{{ $sd_restraint->id }}" data-name="{{ $sd_restraint->name }}">
+                                                    <i class="far fa-edit"></i>
+                                                </button>
+                                            </td>
+                                        @endif
+                                    </tr>
+                                @else
+                                    <tr>
+                                        <td class="td_none"></td>
+                                        <td class="td_none"></td>
+                                        <td class="td_none"></td>
+                                        <td class="td_none"></td>
+                                        <td class="td_restraint">
+                                            {{ $sd_restraint->name }}
+                                        </td>
+                                        @if (!Auth::user()->hasPermission('READER'))
+                                            <td class="td_actions">
+                                                <button data-modal=".modal--restraint" data-id="{{ $sd_restraint->id }}" data-name="{{ $sd_restraint->name }}">
+                                                    <i class="far fa-edit"></i>
+                                                </button>
+                                            </td>
+                                        @endif
+                                    </tr>
+                                @endif
                             @endforeach
                         @endforeach
+
+                        @if (count($sd_risks) == 0)
+                            <tr class="no-data no-data--centered">
+                                <td colspan="{{ !Auth::user()->hasPermission('READER') ? 6 : 5 }}">Aucun mesure à prendre</td>
+                            </tr>
+                        @endif
                     </tbody>
                 </table>
             </div>

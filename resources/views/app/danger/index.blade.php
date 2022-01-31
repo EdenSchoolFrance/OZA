@@ -70,7 +70,7 @@
                                             <p>{{ $risk->name }}</p>
                                         </td>
                                         <td class="td_rb">
-                                            <button class="btn {{ $risk->color($risk->total($risk->frequency,$risk->probability,$risk->gravity)) }} btn-small">{{ $risk->total($risk->frequency,$risk->probability,$risk->gravity) }}</button>
+                                            <button class="btn {{ $risk->color($risk->total()) }} btn-small">{{ $risk->total() }}</button>
                                             <div class="list list--text">
                                                 <div class="list-row">
                                                     <p class="list-point list-point--text">F</p>
@@ -91,11 +91,11 @@
                                             </div>
                                         </td>
                                         <td class="td_rr">
-                                            <button class="btn {{ $risk->color($risk->totalRR($risk->sd_restraint)) }} btn-small">{{ $risk->totalRR($risk->sd_restraint) }}</button>
+                                            <button class="btn {{ $risk->color($risk->totalRR($risk->sd_restraints)) }} btn-small">{{ $risk->totalRR($risk->sd_restraints) }}</button>
                                         </td>
                                         <td class="td_existing_measure">
                                             <div class="list">
-                                                @foreach($risk->sd_restraint as $restraint)
+                                                @foreach($risk->sd_restraints as $restraint)
                                                     @if($restraint->exist === 1)
                                                         <div class="list-row">
                                                             <div class="list-point list-point--success"></div>
@@ -107,7 +107,7 @@
                                         </td>
                                         <td class="td_proposed_measure">
                                             <div class="list">
-                                                @foreach($risk->sd_restraint as $restraint)
+                                                @foreach($risk->sd_restraints as $restraint)
                                                     @if($restraint->exist === 0)
                                                         <div class="list-row">
                                                             <div class="list-point list-point--yellow"></div>
@@ -192,7 +192,7 @@
                                                     <p>{{ $risk->name }}</p>
                                                 </td>
                                                 <td class="td_rb">
-                                                    <button class="btn {{ $risk->color($risk->total($risk->frequency,$risk->probability,$risk->gravity)) }} btn-small">{{ $risk->total($risk->frequency,$risk->probability,$risk->gravity) }}</button>
+                                                    <button class="btn {{ $risk->color($risk->total()) }} btn-small">{{ $risk->total() }}</button>
                                                     <div class="list list--text">
                                                         <div class="list-row">
                                                             <p class="list-point list-point--text">F</p>
@@ -213,11 +213,11 @@
                                                     </div>
                                                 </td>
                                                 <td class="td_rr">
-                                                    <button class="btn {{ $risk->color($risk->totalRR($risk->sd_restraint)) }} btn-small">{{ $risk->totalRR($risk->sd_restraint) }}</button>
+                                                    <button class="btn {{ $risk->color($risk->totalRR($risk->sd_restraints)) }} btn-small">{{ $risk->totalRR($risk->sd_restraints) }}</button>
                                                 </td>
                                                 <td class="td_existing_measure">
                                                     <div class="list">
-                                                        @foreach($risk->sd_restraint as $restraint)
+                                                        @foreach($risk->sd_restraints as $restraint)
                                                             @if($restraint->exist === 1)
                                                                 <div class="list-row">
                                                                     <div class="list-point list-point--success"></div>
@@ -229,7 +229,7 @@
                                                 </td>
                                                 <td class="td_proposed_measure">
                                                     <div class="list">
-                                                    @foreach($risk->sd_restraint as $restraint)
+                                                    @foreach($risk->sd_restraints as $restraint)
                                                         @if($restraint->exist === 0)
                                                             <div class="list-row">
                                                                 <div class="list-point list-point--yellow"></div>
@@ -240,7 +240,7 @@
                                                     </div>
                                                 </td>
                                                 <td class="td_criticality">
-                                                    <button type="button" class="btn {{ $risk->color(($risk->totalRR($risk->sd_restraint)+$risk->total($risk->frequency,$risk->probability,$risk->gravity))) }} btn-small">{{ $risk->colorTotal(($risk->totalRR($risk->sd_restraint)+$risk->total($risk->frequency,$risk->probability,$risk->gravity))) }}</button>
+                                                    <button type="button" class="btn {{ $risk->color(($risk->totalRR($risk->sd_restraints)+$risk->total())) }} btn-small">{{ $risk->colorTotal(($risk->totalRR($risk->sd_restraints)+$risk->total())) }}</button>
                                                 </td>
                                                 <td class="td_actions">
                                                     <div>

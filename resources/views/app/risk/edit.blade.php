@@ -203,7 +203,7 @@
                     <div class="left">
                     </div>
                     <div class="right">
-                        <span class="bold">Valeur du risque brut évaluée :&nbsp;</span> <button type="button" class="btn btn-success btn-small btn-calcul-risk">10</button>
+                        <span class="bold">Valeur du risque brut évaluée :&nbsp;</span> <button type="button" class="btn {{ $risk->color($risk->total()) }} btn-small btn-calcul-risk">{{ $risk->total() }}</button>
                     </div>
                 </div>
             </div>
@@ -453,7 +453,7 @@
         </script>
     @elseif(isset($risk))
         <script>
-            @foreach($risk->sd_restraint as $restraint)
+            @foreach($risk->sd_restraints as $restraint)
                 @if($restraint->exist === 1)
                     createRestraint('{{ $restraint->technical }}','{{ $restraint->organizational }}','{{ $restraint->human }}','{{ $restraint->name }}')
                 @endif
@@ -468,7 +468,7 @@
         </script>
     @elseif(isset($risk))
         <script>
-            @foreach($risk->sd_restraint as $restraint)
+            @foreach($risk->sd_restraints as $restraint)
                 @if($restraint->exist === 0)
                     createRestraintProposed('{{ $restraint->name }}')
                 @endif

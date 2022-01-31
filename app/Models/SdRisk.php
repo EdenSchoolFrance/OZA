@@ -36,19 +36,19 @@ class SdRisk extends Model
         return $this->belongsTo(SdWorkUnit::class);
     }
 
-    public function sd_restraint()
+    public function sd_restraints()
     {
         return $this->hasMany(SdRestraint::class);
     }
 
-    public function sd_restraint_porposed()
+    public function sd_restraints_porposed()
     {
-        return $this->sd_restraint()->where('exist',0);
+        return $this->sd_restraints()->where('exist',0);
     }
 
-    public function sd_restraint_archived()
+    public function sd_restraints_archived()
     {
-        return $this->sd_restraint()->where('exist',1)->whereNotNull('date');
+        return $this->sd_restraints()->where('exist',1)->whereNotNull('date');
     }
 
     public function translate($name,$setting){
@@ -109,7 +109,6 @@ class SdRisk extends Model
     }
 
     public function convert($name,$setting){
-
         switch ($setting){
             case 'frequency' :
                 switch ($name){
@@ -156,20 +155,10 @@ class SdRisk extends Model
         }
     }
 
-    public function total($frequency, $probability, $gravity){
-
-        $fre = $this->convert($frequency,'frequency');
-        $proba = $this->convert($probability, 'probability');
-        $gra = $this->convert($gravity,'gravity');
-
-        return ($fre + $proba) * $gra;
-    }
-
-    public function total2(){
-
-        $fre = $this->convert($this->frequency,'frequency');
+    public function total(){
+        $fre = $this->convert($this->frequency, 'frequency');
         $proba = $this->convert($this->probability, 'probability');
-        $gra = $this->convert($this->gravity,'gravity');
+        $gra = $this->convert($this->gravity, 'gravity');
 
         return ($fre + $proba) * $gra;
     }
