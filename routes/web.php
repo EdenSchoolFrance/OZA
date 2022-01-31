@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\RestraintController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DocController;
@@ -178,6 +179,10 @@ Route::middleware(['auth'])->group(function() {
             Route::post('/{single_document}/danger/{danger}/comment', [DangerController::class, 'comment'])->name('danger.comment');
         });
 
+        Route::get('/{single_document}/pdf', [PDFController::class, 'viewpdf'])->name('pdf.view');
+        Route::get('/{single_document}/pdf/download', [PDFController::class, 'create'])->name('pdf.download');
+
         Route::get('/{single_document}/{doc_name?}', [DocController::class, 'index'])->name('documentation');
+
     });
 });

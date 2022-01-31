@@ -174,7 +174,7 @@
                     <div class="left">
                         <label>Gravité potentiel</label>
                     </div>
-                    <div class="right ">
+                    <div class="right">
                         <div class="radio-bar-content">
                             <div class="radio-bar radio-bar--inv">
                                 <label class="con"> Non

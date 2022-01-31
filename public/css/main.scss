@@ -15,9 +15,6 @@
 // Template Style
 @import "global/template";
 
-// App
-@import "app/auth/login";
-
 @import "app/dashboard/dashboard";
 
 @import "app/structure/presentation";
@@ -34,6 +31,8 @@
 @import "app/risk/risks";
 
 @import "app/restraint/index";
+
+@import "app/pdf/pdf";
 
 @import "app/documentation";
 

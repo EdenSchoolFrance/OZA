@@ -52,7 +52,7 @@
                     </div>
                     @if (Auth::user()->hasPermission(['ADMIN', 'EXPERT', 'MANAGER']))
                         <div class="row">
-                            <button class="btn btn-success">Générer un DU à date</button>
+                            <a href="{{ route('pdf.view', [$single_document->id]) }}" class="btn btn-success">Générer un DU à date</a>
                         </div>
                     @endif
                     @if (Auth::user()->hasPermission(['ADMIN', 'EXPERT', 'MANAGER', 'EDITOR']))
