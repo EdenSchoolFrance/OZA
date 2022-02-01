@@ -87,7 +87,7 @@ class RiskController extends Controller
         $single_document = $this->checkSingleDocument($id);
 
         $page = [
-            'title' => 'Editer un risque',
+            'title' => 'Liste des postes à risque particulier',
             'infos' => 'Tous les salariés embauchés pour travailler à l’un de ces postes, en contrat de travail précaire (autre que CDI), doivent bénéficier d’une formation renforcée à la sécurité,
                         ainsi que d’un accueil et d’une formation adaptés dans l’entreprise. Obtenir l’avis du médecin du travail, du CSE ou, à défaut, des représentants du personnel, s’il en existe.
                         Liste tenue à la disposition des agents de contrôle de l’inspection du travail (amende de 10 000 €uros en cas de non présentation : art. L.4741-1).',
