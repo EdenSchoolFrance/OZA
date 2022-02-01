@@ -79,7 +79,7 @@
             </div>
         </div>
 
-        <div class="modal modal--restraint modal-add-risk">
+        <div class="modal modal--restraint modal-add-risk @if(old('id_restraint') || old('date_restraint') || old('tech_modal') || old('orga_modal') || old('human_modal'))  @endif">
             <div class="modal-dialog modal-dialog-large">
                 <form action="{{ route('restraint.store', [$single_document->id]) }}" method="post" class="modal-content">
                     @csrf
@@ -100,7 +100,10 @@
                                     <label for="nameRisk">Date de mise en place</label>
                                 </div>
                                 <div class="right">
-                                    <input type="date" class="form-control" name="date_restraint" placeholder="JJ/MM/AAAA">
+                                    <input type="date" class="form-control" name="date_restraint" placeholder="JJ/MM/AAAA" value="{{ old('date_restraint') }}">
+                                    @error('date_restraint')
+                                        <p class="message-error">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -124,19 +127,19 @@
                                     <div class="radio-bar-content">
                                         <div class="radio-bar radio-bar-tech">
                                             <label class="con">
-                                                <input type="radio" name="tech_modal" value="null">
+                                                <input type="radio" name="tech_modal" value="null" @if(old('tech_modal')){{ old('tech_modal') === 'null' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="con">
-                                                <input type="radio" name="tech_modal" value="medium">
+                                                <input type="radio" name="tech_modal" value="medium" @if(old('tech_modal')){{ old('tech_modal') === 'medium' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="con">
-                                                <input type="radio" name="tech_modal" value="good">
+                                                <input type="radio" name="tech_modal" value="good" @if(old('tech_modal')){{ old('tech_modal') === 'good' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="con">
-                                                <input type="radio" name="tech_modal" value="very good" checked>
+                                                <input type="radio" name="tech_modal" value="very good" @if(old('tech_modal')){{ old('tech_modal') === 'very good' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                         </div>
@@ -146,6 +149,9 @@
                                             <label>Bon</label>
                                             <label>Très bon</label>
                                         </div>
+                                        @error('tech_modal')
+                                            <p class="message-error">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                     <i class="far fa-question-circle" data-toggle="toolHelp" data-placement="top" title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></i>
                                 </div>
@@ -160,19 +166,19 @@
                                     <div class="radio-bar-content">
                                         <div class="radio-bar radio-bar-orga">
                                             <label class="con">
-                                                <input type="radio" name="orga_modal" value="null">
+                                                <input type="radio" name="orga_modal" value="null" @if(old('orga_modal')){{ old('orga_modal') === 'null' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="con">
-                                                <input type="radio" name="orga_modal" value="medium">
+                                                <input type="radio" name="orga_modal" value="medium" @if(old('orga_modal')){{ old('orga_modal') === 'medium' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="con">
-                                                <input type="radio" name="orga_modal" value="good">
+                                                <input type="radio" name="orga_modal" value="good" @if(old('orga_modal')){{ old('orga_modal') === 'good' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="con">
-                                                <input type="radio" name="orga_modal" value="very good" checked>
+                                                <input type="radio" name="orga_modal" value="very good" @if(old('orga_modal')){{ old('orga_modal') === 'very good' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                         </div>
@@ -182,6 +188,9 @@
                                             <label>Bon</label>
                                             <label>Très bon</label>
                                         </div>
+                                        @error('orga_modal')
+                                        <p class="message-error">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                     <i class="far fa-question-circle" data-toggle="toolHelp" data-placement="top" title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></i>
                                 </div>
@@ -196,19 +205,19 @@
                                     <div class="radio-bar-content">
                                         <div class="radio-bar radio-bar-human">
                                             <label class="con">
-                                                <input type="radio" name="human_modal" value="null">
+                                                <input type="radio" name="human_modal" value="null" @if(old('human_modal')){{ old('human_modal') === 'null' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="con">
-                                                <input type="radio" name="human_modal" value="medium">
+                                                <input type="radio" name="human_modal" value="medium" @if(old('human_modal')){{ old('human_modal') === 'medium' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="con">
-                                                <input type="radio" name="human_modal" value="good">
+                                                <input type="radio" name="human_modal" value="good" @if(old('human_modal')){{ old('human_modal') === 'good' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="con">
-                                                <input type="radio" name="human_modal" value="very good" checked>
+                                                <input type="radio" name="human_modal" value="very good" @if(old('human_modal')){{ old('human_modal') === 'very good' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                         </div>
@@ -218,6 +227,9 @@
                                             <label>Bon</label>
                                             <label>Très bon</label>
                                         </div>
+                                        @error('human_modal')
+                                        <p class="message-error">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                     <i class="far fa-question-circle" data-toggle="toolHelp" data-placement="top" title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></i>
                                 </div>
@@ -236,10 +248,15 @@
                 </form>
             </div>
         </div>
-
     </div>
 @endsection
 
 @section('script')
     <script src="/js/app/restraint.js"></script>
+    @if(old('id_restraint'))
+        <script>
+            let id = '{{ old('id_restraint') }}'
+            $('a[data-id="'+id+'"]',document, 0).click();
+        </script>
+    @endif
 @endsection
