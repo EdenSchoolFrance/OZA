@@ -32,5 +32,9 @@ return [
         'title'                 => 'titre',
         'username'              => 'nom d\'utilisateur',
         'year'                  => 'année',
+        'tech'                  => 'technique',
+        'orga'                  => 'organisationnelle',
+        'human'                 => 'humain',
+        'city_zipcode'          => 'code postal',
     ],
 ];

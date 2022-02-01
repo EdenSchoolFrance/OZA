@@ -25,10 +25,10 @@ on('.modal--risk .btn-modal-risk-add', 'click', (el, e) => {
         $('button[data-id="'+el.dataset.id+'"]', document, 0).closest('div.row').remove();
         el.removeAttribute('data-id');
     }
-    let tech = $('.radio-bar-tech input:checked',document,0).value
-    let orga = $('.radio-bar-orga input:checked',document,0).value
-    let human = $('.radio-bar-human input:checked',document,0).value
-    let title = $('#nameRisk', document, 0).value
+    let tech = $('.radio-bar-tech input:checked',document,0).value || 'null'
+    let orga = $('.radio-bar-orga input:checked',document,0).value || 'null'
+    let human = $('.radio-bar-human input:checked',document,0).value || 'null'
+    let title = $('#nameRisk', document, 0).value || "Mesure"
     createRestraint(tech,orga,human,title,id)
 });
 
@@ -125,7 +125,7 @@ on('.btn-modal-risk-oza-add', 'click', (el, e) => {
             let tech = all[i].querySelector('.radio-bar-tech input:checked').value || 'null'
             let orga = all[i].querySelector('.radio-bar-orga input:checked').value || 'null'
             let human = all[i].querySelector('.radio-bar-human input:checked').value || 'null'
-            let title = all[i].querySelector('.con').innerText
+            let title = all[i].querySelector('.con').innerText || "Mesure"
             createRestraint(tech,orga,human,title,id);
         }else{
             let title = all[i].querySelector('.con').innerText

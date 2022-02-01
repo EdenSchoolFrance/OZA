@@ -54,9 +54,9 @@ class RestraintController extends Controller
         $request->validate([
             'id_restraint' => 'required',
             'date_restraint' => 'required',
-            'tech_modal' => 'required',
-            'orga_modal' => 'required',
-            'human_modal' => 'required'
+            'tech' => 'required',
+            'orga' => 'required',
+            'human' => 'required'
         ]);
 
         $single_document = $this->checkSingleDocument($id);
@@ -66,9 +66,9 @@ class RestraintController extends Controller
         if($restraint->sd_risk->sd_danger->single_document->id !== $single_document->id) return back()->with('status','Une erreur est survenue')->with('status-type','danger');
 
         $restraint->date = $request->date_restraint;
-        $restraint->technical = $request->tech_modal;
-        $restraint->organizational = $request->orga_modal;
-        $restraint->human = $request->human_modal;
+        $restraint->technical = $request->tech;
+        $restraint->organizational = $request->orga;
+        $restraint->human = $request->human;
         $restraint->exist = 1;
         $restraint->save();
 

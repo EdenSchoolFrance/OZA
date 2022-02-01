@@ -132,6 +132,7 @@ class RiskController extends Controller
 
         foreach ($request->restraint as $restraint){
             $restraint = explode('|', $restraint);
+            if( empty($restraint[0]) || empty($restraint[1]) || empty($restraint[2]) || empty($restraint[3]) ) return back()->with('status','Des mesures sont incomplete')->with('status-type','danger');
             $sd_restraint = new SdRestraint();
             $sd_restraint->id = uniqid();
             $sd_restraint->name = $restraint[3];

@@ -79,7 +79,7 @@
             </div>
         </div>
 
-        <div class="modal modal--restraint modal-add-risk @if(old('id_restraint') || old('date_restraint') || old('tech_modal') || old('orga_modal') || old('human_modal'))  @endif">
+        <div class="modal modal--restraint modal-add-risk @if(old('id_restraint') || old('date_restraint') || old('tech') || old('orga') || old('human'))  @endif">
             <div class="modal-dialog modal-dialog-large">
                 <form action="{{ route('restraint.store', [$single_document->id]) }}" method="post" class="modal-content">
                     @csrf
@@ -127,19 +127,19 @@
                                     <div class="radio-bar-content">
                                         <div class="radio-bar radio-bar-tech">
                                             <label class="con">
-                                                <input type="radio" name="tech_modal" value="null" @if(old('tech_modal')){{ old('tech_modal') === 'null' ? 'checked' : '' }}@endif>
+                                                <input type="radio" name="tech" value="null" @if(old('tech')){{ old('tech') === 'null' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="con">
-                                                <input type="radio" name="tech_modal" value="medium" @if(old('tech_modal')){{ old('tech_modal') === 'medium' ? 'checked' : '' }}@endif>
+                                                <input type="radio" name="tech" value="medium" @if(old('tech')){{ old('tech') === 'medium' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="con">
-                                                <input type="radio" name="tech_modal" value="good" @if(old('tech_modal')){{ old('tech_modal') === 'good' ? 'checked' : '' }}@endif>
+                                                <input type="radio" name="tech" value="good" @if(old('tech')){{ old('tech') === 'good' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="con">
-                                                <input type="radio" name="tech_modal" value="very good" @if(old('tech_modal')){{ old('tech_modal') === 'very good' ? 'checked' : '' }}@endif>
+                                                <input type="radio" name="tech" value="very good" @if(old('tech')){{ old('tech') === 'very good' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                         </div>
@@ -149,7 +149,7 @@
                                             <label>Bon</label>
                                             <label>Très bon</label>
                                         </div>
-                                        @error('tech_modal')
+                                        @error('tech')
                                             <p class="message-error">{{ $message }}</p>
                                         @enderror
                                     </div>
@@ -166,19 +166,19 @@
                                     <div class="radio-bar-content">
                                         <div class="radio-bar radio-bar-orga">
                                             <label class="con">
-                                                <input type="radio" name="orga_modal" value="null" @if(old('orga_modal')){{ old('orga_modal') === 'null' ? 'checked' : '' }}@endif>
+                                                <input type="radio" name="orga" value="null" @if(old('orga')){{ old('orga') === 'null' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="con">
-                                                <input type="radio" name="orga_modal" value="medium" @if(old('orga_modal')){{ old('orga_modal') === 'medium' ? 'checked' : '' }}@endif>
+                                                <input type="radio" name="orga" value="medium" @if(old('orga')){{ old('orga') === 'medium' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="con">
-                                                <input type="radio" name="orga_modal" value="good" @if(old('orga_modal')){{ old('orga_modal') === 'good' ? 'checked' : '' }}@endif>
+                                                <input type="radio" name="orga" value="good" @if(old('orga')){{ old('orga') === 'good' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="con">
-                                                <input type="radio" name="orga_modal" value="very good" @if(old('orga_modal')){{ old('orga_modal') === 'very good' ? 'checked' : '' }}@endif>
+                                                <input type="radio" name="orga" value="very good" @if(old('orga')){{ old('orga') === 'very good' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                         </div>
@@ -188,7 +188,7 @@
                                             <label>Bon</label>
                                             <label>Très bon</label>
                                         </div>
-                                        @error('orga_modal')
+                                        @error('orga')
                                         <p class="message-error">{{ $message }}</p>
                                         @enderror
                                     </div>
@@ -205,19 +205,19 @@
                                     <div class="radio-bar-content">
                                         <div class="radio-bar radio-bar-human">
                                             <label class="con">
-                                                <input type="radio" name="human_modal" value="null" @if(old('human_modal')){{ old('human_modal') === 'null' ? 'checked' : '' }}@endif>
+                                                <input type="radio" name="human" value="null" @if(old('human')){{ old('human') === 'null' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="con">
-                                                <input type="radio" name="human_modal" value="medium" @if(old('human_modal')){{ old('human_modal') === 'medium' ? 'checked' : '' }}@endif>
+                                                <input type="radio" name="human" value="medium" @if(old('human')){{ old('human') === 'medium' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="con">
-                                                <input type="radio" name="human_modal" value="good" @if(old('human_modal')){{ old('human_modal') === 'good' ? 'checked' : '' }}@endif>
+                                                <input type="radio" name="human" value="good" @if(old('human')){{ old('human') === 'good' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="con">
-                                                <input type="radio" name="human_modal" value="very good" @if(old('human_modal')){{ old('human_modal') === 'very good' ? 'checked' : '' }}@endif>
+                                                <input type="radio" name="human" value="very good" @if(old('human')){{ old('human') === 'very good' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                         </div>
@@ -227,7 +227,7 @@
                                             <label>Bon</label>
                                             <label>Très bon</label>
                                         </div>
-                                        @error('human_modal')
+                                        @error('human')
                                         <p class="message-error">{{ $message }}</p>
                                         @enderror
                                     </div>
