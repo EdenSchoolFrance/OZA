@@ -23,14 +23,16 @@ class SingleDocument extends Model
         'additional_adress',
         'city_zipcode',
         'city',
-        'description',
+        'sector',
+        'activity_description',
+        'premise_description',
         'firstname',
         'lastname',
         'email',
         'phone',
         'archived',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
     public function users()
