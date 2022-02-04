@@ -95,7 +95,7 @@
         <form class="card card--company-activity {{ session('type') == 'desc' ? 'card-editable' : '' }}" action="{{route('presentation.update', [$single_document->id, 'desc'])}}" method="POST">
             @csrf
             <div class="card-header">
-                <h2 class="title">Activité de l'entreprise</h2>
+                <h2 class="title">Description de la structure</h2>
                 @if (!Auth::user()->hasPermission('READER'))
                     <button type="button" class="btn btn-edit-card">Modifier<i class="far fa-edit"></i></button>
                 @endif
@@ -104,11 +104,33 @@
                 <div class="row">
                     <div class="line">
                         <div class="left">
-                            <label for="desc">Description de l’entreprise</label>
+                            <label for="sector">Secteur d’activité</label>
                         </div>
                         <div class="right">
-                            <textarea type="text" name="desc" id="desc" class="form-control auto-resize @error('desc') invalid @enderror" placeholder="Indiquer le nom de votre entreprise"  {{ session('type') == 'desc' ?: 'disabled' }}>{{ old('description') ? old('description') : $single_document->description }}</textarea>
-                            @error('desc')
+                            <input type="text" name="sector" class="form-control form-control--small @error('sector') invalid @enderror" placeholder="Secteur d’activité" value="{{ old('sector') ? old('sector') : $single_document->sector }}" {{ session('type') == 'desc' ?: 'disabled' }}>
+                            @error('sector')
+                                <p class="message-error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="line">
+                        <div class="left">
+                            <label for="activity_description">Activité(s) détaillée(s)</label>
+                        </div>
+                        <div class="right">
+                            <textarea type="text" name="activity_description" id="activity_description" class="form-control auto-resize @error('activity_description') invalid @enderror" placeholder="Activité(s) détaillée(s)"  {{ session('type') == 'desc' ?: 'disabled' }}>{{ old('activity_description') ? old('activity_description') : $single_document->activity_description }}</textarea>
+                            @error('activity_description')
+                                <p class="message-error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="line">
+                        <div class="left">
+                            <label for="premise_description">Description des locaux</label>
+                        </div>
+                        <div class="right">
+                            <textarea type="text" name="premise_description" id="premise_description" class="form-control auto-resize @error('premise_description') invalid @enderror" placeholder="Description des locaux"  {{ session('type') == 'desc' ?: 'disabled' }}>{{ old('premise_description') ? old('premise_description') : $single_document->premise_description }}</textarea>
+                            @error('premise_description')
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
                         </div>

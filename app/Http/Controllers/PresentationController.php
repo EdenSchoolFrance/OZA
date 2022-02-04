@@ -46,15 +46,19 @@ class PresentationController extends Controller
             $single->save();
         } elseif ($type == 'desc') {
             $validator = Validator::make($request->all(), [
-                'desc' => 'required',
+                'sector' => 'required',
+                'activity_description' => 'required',
+                'premise_description' => 'required',
             ]);
-          
+
             if ($validator->fails()) {
                 return back()->withErrors($validator)->withInput()->with('type', $type);
             }
           
             $single = SingleDocument::find($id);
-            $single->description = $request->desc;
+            $single->sector = $request->sector;
+            $single->activity_description = $request->activity_description;
+            $single->premise_description = $request->premise_description;
             $single->save();
         } elseif ($type == 'resp') {
             $validator = Validator::make($request->all(), [
@@ -76,6 +80,6 @@ class PresentationController extends Controller
             $single->save();
         }
 
-        return back();
+        return back()->with('status', 'Les données ont bien été modifié !');
     }
 }

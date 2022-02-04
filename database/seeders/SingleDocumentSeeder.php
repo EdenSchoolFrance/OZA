@@ -30,7 +30,9 @@ class SingleDocumentSeeder extends Seeder
         $sd->adress = "12 rue du louvre";
         $sd->city_zipcode = "75000";
         $sd->city = "Paris";
-        $sd->description = "Bicoop description";
+        $sd->sector = "Secteur";
+        $sd->activity_description = "Description de l'activité";
+        $sd->premise_description = "Description des locaux";
         $sd->firstname = "Jhon";
         $sd->lastname = "Doe";
         $sd->email = "jhon.doe@bicoop.fr";
