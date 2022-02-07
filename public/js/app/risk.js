@@ -25,20 +25,21 @@ on('.modal--risk .btn-modal-risk-add', 'click', (el, e) => {
         $('button[data-id="'+el.dataset.id+'"]', document, 0).closest('div.row').remove();
         el.removeAttribute('data-id');
     }
-    let tech = $('.radio-bar-tech input:checked',document,0).value
-    let orga = $('.radio-bar-orga input:checked',document,0).value
-    let human = $('.radio-bar-human input:checked',document,0).value
-    let title = $('#nameRisk', document, 0).value
+    let tech = $('.radio-bar-tech input:checked',document,0).value || 'null'
+    let orga = $('.radio-bar-orga input:checked',document,0).value || 'null'
+    let human = $('.radio-bar-human input:checked',document,0).value || 'null'
+    let title = $('#nameRisk', document, 0).value || "Mesure"
     createRestraint(tech,orga,human,title,id)
 });
 
 on('.btn-edit-modal-risk', 'click', (el, e) => {
+    $('.modal-add-risk .title',document, 0).innerText = "Modifier la mesure déjà mise en place"
     $('.btn-modal-risk-add', document, 0).setAttribute('data-id',el.dataset.id)
     let tech = $('.radio-bar-tech input')
     let orga = $('.radio-bar-orga input')
     let human = $('.radio-bar-human input')
-    let data = el.closest('p').querySelector('input').value.split('|')
-    $('#nameRisk', document, 0).value = el.closest('p').innerText;
+    let data = el.closest('li').querySelector('input').value.split('|')
+    $('#nameRisk', document, 0).value = data[3]
     for (let i = 0; i < tech.length ; i++) {
         tech[i].checked = tech[i].value === data[0];
     }
@@ -51,6 +52,7 @@ on('.btn-edit-modal-risk', 'click', (el, e) => {
 });
 
 on('.btn-open-risk', 'click', (el, e) => {
+    $('.modal-add-risk .title',document, 0).innerText = "Ajouter une nouvelle mesure déjà mise en place"
     let tech = $('.radio-bar-tech input')[0].checked = true
     let orga = $('.radio-bar-orga input')[0].checked = true
     let human = $('.radio-bar-human input')[0].checked = true
@@ -123,7 +125,7 @@ on('.btn-modal-risk-oza-add', 'click', (el, e) => {
             let tech = all[i].querySelector('.radio-bar-tech input:checked').value || 'null'
             let orga = all[i].querySelector('.radio-bar-orga input:checked').value || 'null'
             let human = all[i].querySelector('.radio-bar-human input:checked').value || 'null'
-            let title = all[i].querySelector('.con').innerText
+            let title = all[i].querySelector('.con').innerText || "Mesure"
             createRestraint(tech,orga,human,title,id);
         }else{
             let title = all[i].querySelector('.con').innerText
@@ -329,7 +331,6 @@ function restraintCalcul(){
 }
 
 function setColor(el,total){
-    console.log(el)
     el.className = ""
     el.classList.add('btn')
     switch (true) {
@@ -382,7 +383,7 @@ function createRestraint(tech,orga,human,title,id){
         '     <i class="far fa-times-circle btn-delete"></i>\n' +
         '     <p class="title-restraint"></p> \n' +
         '     <button data-modal=".modal--risk" data-id="'+id+'" class="btn btn-yellow btn-text btn-edit-modal-risk" type="button"><i class="far fa-edit text-color-yellow"></i></button>\n' +
-        '     <input type="hidden" value="'+tech+'|'+orga+'|'+human+'|'+title+'" name="restraint[]">' +
+        '     <input type="hidden" value="'+tech+'|'+orga+'|'+human+'|'+title+'|'+id+'" name="restraint[]">' +
         '    </p>\n' +
         '   </li>\n' +
         '   \n' +

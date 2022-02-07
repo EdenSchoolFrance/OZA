@@ -12,68 +12,74 @@
                             <th class="th_risk">Risque</th>
                             <th class="th_evaluation">Évaluations</th>
                             <th class="th_restraint">Mesure proposée</th>
-                            <th class="th_actions"></th>
+                            @if (!Auth::user()->hasPermission('READER'))
+                                <th class="th_actions"></th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($sd_works_units as $sd_work_unit)
-                            @foreach($sd_work_unit->sd_dangers as $sd_danger)
-                                @foreach($sd_danger->sd_risk as $sd_risk)
-                                    @if(count($sd_risk->sd_restraint_porposed) > 0)
-                                        @foreach($sd_risk->sd_restraint_porposed as $sd_restraint)
-                                            @if($sd_restraint->id === $sd_risk->sd_restraint_porposed[0]->id)
-                                                <tr>
-                                                    <td class="td_work_unit">{{ $sd_work_unit->name }}</td>
-                                                    <td class="td_danger">{{ $sd_danger->danger->name }}</td>
-                                                    <td class="td_risk">{{ $sd_risk->name }}</td>
-                                                    <td class="td_evaluation">
-                                                        <div class="list list--text list--space">
-                                                            <div class="list-row">
-                                                                <p class="list-point list-point--text">RR</p>
-                                                                <button class="btn {{ $sd_risk->color($sd_risk->totalRR($sd_risk->sd_restraint)) }} btn-small">{{ $sd_risk->totalRR($sd_risk->sd_restraint) }}</button></li>
-                                                            </div>
-                                                            <div class="list-row">
-                                                                <p class="list-point list-point--text">C</p>
-                                                                <button type="button" class="btn {{ $sd_risk->color(($sd_risk->totalRR($sd_risk->sd_restraint)+$sd_risk->total($sd_risk->frequency,$sd_risk->probability,$sd_risk->gravity))) }} btn-small">{{ $sd_risk->colorTotal(($sd_risk->totalRR($sd_risk->sd_restraint)+$sd_risk->total($sd_risk->frequency,$sd_risk->probability,$sd_risk->gravity))) }}</button></li>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="td_restraint">
-                                                        {{ $sd_restraint->name }}
-                                                    </td>
-                                                    <td class="td_actions">
-                                                        <a href="#" data-modal=".modal--restraint" data-id="{{ $sd_restraint->id }}" data-name="{{ $sd_restraint->name }}">
-                                                            <i class="far fa-edit"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            @else
-                                                <tr>
-                                                    <td class="td_none"></td>
-                                                    <td class="td_none"></td>
-                                                    <td class="td_none"></td>
-                                                    <td class="td_none"></td>
-                                                    <td class="td_restraint">
-                                                        {{ $sd_restraint->name }}
-                                                    </td>
-                                                    <td class="td_actions">
-                                                        <a href="#" data-modal=".modal--restraint" data-id="{{ $sd_restraint->id }}" data-name="{{ $sd_restraint->name }}">
-                                                            <i class="far fa-edit"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            @endif
-                                        @endforeach
-                                    @endif
-                                @endforeach
+                        @foreach ($sd_risks as $sd_risk)
+                            @foreach ($sd_risk->sd_restraints_porposed as $sd_restraint)
+                                @if ($sd_restraint->id === $sd_risk->sd_restraints_porposed[0]->id)
+                                    <tr>
+                                        <td class="td_work_unit">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "UT Tous" }}</td>
+                                        <td class="td_danger">{{ $sd_risk->sd_danger->danger->name }}</td>
+                                        <td class="td_risk">{{ $sd_risk->name }}</td>
+                                        <td class="td_evaluation">
+                                            <div class="list list--text list--space">
+                                                <div class="list-row">
+                                                    <p class="list-point list-point--text">RR</p>
+                                                    <button class="btn {{ $sd_risk->color($sd_risk->totalRR($sd_risk->sd_restraints)) }} btn-small">{{ $sd_risk->totalRR($sd_risk->sd_restraints) }}</button></li>
+                                                </div>
+                                                <div class="list-row">
+                                                    <p class="list-point list-point--text">C</p>
+                                                    <button type="button" class="btn {{ $sd_risk->color(($sd_risk->totalRR($sd_risk->sd_restraints) + $sd_risk->total())) }} btn-small">{{ $sd_risk->colorTotal(($sd_risk->totalRR($sd_risk->sd_restraints)+$sd_risk->total())) }}</button></li>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="td_restraint">
+                                            {{ $sd_restraint->name }}
+                                        </td>
+                                        @if (!Auth::user()->hasPermission('READER'))
+                                            <td class="td_actions">
+                                                <a data-modal=".modal--restraint" data-id="{{ $sd_restraint->id }}" data-name="{{ $sd_restraint->name }}">
+                                                    <i class="far fa-edit"></i>
+                                                </a>
+                                            </td>
+                                        @endif
+                                    </tr>
+                                @else
+                                    <tr>
+                                        <td class="td_none"></td>
+                                        <td class="td_none"></td>
+                                        <td class="td_none"></td>
+                                        <td class="td_none"></td>
+                                        <td class="td_restraint">
+                                            {{ $sd_restraint->name }}
+                                        </td>
+                                        @if (!Auth::user()->hasPermission('READER'))
+                                            <td class="td_actions">
+                                                <a data-modal=".modal--restraint" data-id="{{ $sd_restraint->id }}" data-name="{{ $sd_restraint->name }}">
+                                                    <i class="far fa-edit"></i>
+                                                </a>
+                                            </td>
+                                        @endif
+                                    </tr>
+                                @endif
                             @endforeach
                         @endforeach
+
+                        @if (count($sd_risks) == 0)
+                            <tr class="no-data no-data--centered">
+                                <td colspan="{{ !Auth::user()->hasPermission('READER') ? 6 : 5 }}">Aucun mesure à prendre</td>
+                            </tr>
+                        @endif
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <div class="modal modal--restraint modal-add-risk">
+        <div class="modal modal--restraint modal-add-risk @if(old('id_restraint') || old('date_restraint') || old('tech') || old('orga') || old('human'))  @endif">
             <div class="modal-dialog modal-dialog-large">
                 <form action="{{ route('restraint.store', [$single_document->id]) }}" method="post" class="modal-content">
                     @csrf
@@ -94,7 +100,10 @@
                                     <label for="nameRisk">Date de mise en place</label>
                                 </div>
                                 <div class="right">
-                                    <input type="date" class="form-control" name="date_restraint" placeholder="JJ/MM/AAAA">
+                                    <input type="date" class="form-control" name="date_restraint" placeholder="JJ/MM/AAAA" value="{{ old('date_restraint') }}">
+                                    @error('date_restraint')
+                                        <p class="message-error">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -118,19 +127,19 @@
                                     <div class="radio-bar-content">
                                         <div class="radio-bar radio-bar-tech">
                                             <label class="con">
-                                                <input type="radio" name="tech_modal" value="null">
+                                                <input type="radio" name="tech" value="null" @if(old('tech')){{ old('tech') === 'null' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="con">
-                                                <input type="radio" name="tech_modal" value="medium">
+                                                <input type="radio" name="tech" value="medium" @if(old('tech')){{ old('tech') === 'medium' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="con">
-                                                <input type="radio" name="tech_modal" value="good">
+                                                <input type="radio" name="tech" value="good" @if(old('tech')){{ old('tech') === 'good' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="con">
-                                                <input type="radio" name="tech_modal" value="very good" checked>
+                                                <input type="radio" name="tech" value="very good" @if(old('tech')){{ old('tech') === 'very good' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                         </div>
@@ -140,6 +149,9 @@
                                             <label>Bon</label>
                                             <label>Très bon</label>
                                         </div>
+                                        @error('tech')
+                                            <p class="message-error">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                     <i class="far fa-question-circle" data-toggle="toolHelp" data-placement="top" title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></i>
                                 </div>
@@ -154,19 +166,19 @@
                                     <div class="radio-bar-content">
                                         <div class="radio-bar radio-bar-orga">
                                             <label class="con">
-                                                <input type="radio" name="orga_modal" value="null">
+                                                <input type="radio" name="orga" value="null" @if(old('orga')){{ old('orga') === 'null' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="con">
-                                                <input type="radio" name="orga_modal" value="medium">
+                                                <input type="radio" name="orga" value="medium" @if(old('orga')){{ old('orga') === 'medium' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="con">
-                                                <input type="radio" name="orga_modal" value="good">
+                                                <input type="radio" name="orga" value="good" @if(old('orga')){{ old('orga') === 'good' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="con">
-                                                <input type="radio" name="orga_modal" value="very good" checked>
+                                                <input type="radio" name="orga" value="very good" @if(old('orga')){{ old('orga') === 'very good' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                         </div>
@@ -176,6 +188,9 @@
                                             <label>Bon</label>
                                             <label>Très bon</label>
                                         </div>
+                                        @error('orga')
+                                        <p class="message-error">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                     <i class="far fa-question-circle" data-toggle="toolHelp" data-placement="top" title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></i>
                                 </div>
@@ -190,19 +205,19 @@
                                     <div class="radio-bar-content">
                                         <div class="radio-bar radio-bar-human">
                                             <label class="con">
-                                                <input type="radio" name="human_modal" value="null">
+                                                <input type="radio" name="human" value="null" @if(old('human')){{ old('human') === 'null' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="con">
-                                                <input type="radio" name="human_modal" value="medium">
+                                                <input type="radio" name="human" value="medium" @if(old('human')){{ old('human') === 'medium' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="con">
-                                                <input type="radio" name="human_modal" value="good">
+                                                <input type="radio" name="human" value="good" @if(old('human')){{ old('human') === 'good' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="con">
-                                                <input type="radio" name="human_modal" value="very good" checked>
+                                                <input type="radio" name="human" value="very good" @if(old('human')){{ old('human') === 'very good' ? 'checked' : '' }}@endif>
                                                 <span class="checkmark"></span>
                                             </label>
                                         </div>
@@ -212,6 +227,9 @@
                                             <label>Bon</label>
                                             <label>Très bon</label>
                                         </div>
+                                        @error('human')
+                                        <p class="message-error">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                     <i class="far fa-question-circle" data-toggle="toolHelp" data-placement="top" title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></i>
                                 </div>
@@ -230,10 +248,15 @@
                 </form>
             </div>
         </div>
-
     </div>
 @endsection
 
 @section('script')
     <script src="/js/app/restraint.js"></script>
+    @if(old('id_restraint'))
+        <script>
+            let id = '{{ old('id_restraint') }}'
+            $('a[data-id="'+id+'"]',document, 0).click();
+        </script>
+    @endif
 @endsection

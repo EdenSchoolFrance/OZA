@@ -76,7 +76,7 @@
             </li>
             <li class="sidebar-nav-item {{ $page['sidebar'] == "action_plan" ? 'active' : '' }}">
                 <a href="#" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Plan d'action</span></a>
-                <ul class="sub-group-menu" style="{{ $page['sidebar'] == "structure" ? 'display: block' : '' }}">
+                <ul class="sub-group-menu" style="{{ $page['sidebar'] == "action_plan" ? 'display: block' : '' }}">
                     <li class="sidebar-nav-item {{ $page['sidebar'] == "action_plan" && $page['sub_sidebar'] == "restraint_porposed" ? 'active' : '' }}">
                         <a href="{{route('restraint.index', [$single_document->id])}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Mesure à prendre</a>
                     </li>

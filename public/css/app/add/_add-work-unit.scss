@@ -32,9 +32,17 @@
                         li{
                             display: flex;
                             justify-content: flex-start;
+                            i{
+                                font-size: 16px;
+                            }
                         }
                         li:first-child{
                             margin-bottom: 15px;
+                        }
+                        .list-item-btn{
+                            i{
+                                color: $yellow;
+                            }
                         }
                     }
                     .list-content{
@@ -50,6 +58,11 @@
                             font-size: 18px;
                             padding-bottom: 22px;
                             margin-right: 10px;
+                        }
+                    }
+                    .btn-group-number{
+                        i{
+                            font-size: 16px;
                         }
                     }
                     &--wrap{

@@ -21,7 +21,9 @@ class CreateSingleDocumentsTable extends Migration
             $table->string('additional_adress')->nullable();
             $table->string('city_zipcode')->nullable();
             $table->string('city')->nullable();
-            $table->text('description')->nullable();
+            $table->string('sector')->nullable();
+            $table->text('activity_description')->nullable();
+            $table->text('premise_description')->nullable();
             $table->string('firstname')->nullable();
             $table->string('lastname')->nullable();
             $table->string('email')->nullable();

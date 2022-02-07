@@ -87,7 +87,7 @@ class RiskController extends Controller
         $single_document = $this->checkSingleDocument($id);
 
         $page = [
-            'title' => 'Editer un risque',
+            'title' => 'Liste des postes à risque particulier',
             'infos' => 'Tous les salariés embauchés pour travailler à l’un de ces postes, en contrat de travail précaire (autre que CDI), doivent bénéficier d’une formation renforcée à la sécurité,
                         ainsi que d’un accueil et d’une formation adaptés dans l’entreprise. Obtenir l’avis du médecin du travail, du CSE ou, à défaut, des représentants du personnel, s’il en existe.
                         Liste tenue à la disposition des agents de contrôle de l’inspection du travail (amende de 10 000 €uros en cas de non présentation : art. L.4741-1).',
@@ -96,7 +96,9 @@ class RiskController extends Controller
 
         $sd_risks = SdRisk::whereHas('sd_danger', function ($q) use ($single_document){
             $q->where('single_document_id', $single_document->id);
-        })->get();
+        })->get()->filter(function ($sd_risk, $key) {
+            return $sd_risk->total() > 23;
+        })->all();
 
         return view('app.risk.post', compact('page', 'single_document','sd_risks'));
     }
@@ -130,6 +132,7 @@ class RiskController extends Controller
 
         foreach ($request->restraint as $restraint){
             $restraint = explode('|', $restraint);
+            if( empty($restraint[0]) || empty($restraint[1]) || empty($restraint[2]) || empty($restraint[3]) ) return back()->with('status','Des mesures sont incomplete')->with('status-type','danger');
             $sd_restraint = new SdRestraint();
             $sd_restraint->id = uniqid();
             $sd_restraint->name = $restraint[3];
@@ -280,7 +283,7 @@ class RiskController extends Controller
         $new_risk->sd_work_unit()->associate($request->work_unit !== 'all' ? $work_unit : null);
         $new_risk->save();
 
-        foreach ($risk->sd_restraint as $restraint){
+        foreach ($risk->sd_restraints as $restraint){
             $new_restraint = $restraint->replicate();
             $new_restraint->id = uniqid();
             $new_restraint->sd_risk()->associate($new_risk);

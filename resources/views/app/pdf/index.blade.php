@@ -25,12 +25,12 @@
         <div class="body">
             <div class="header">
                 <p class="subtitle">Document Unique</p>
-                <h1 class="title">{ Titre du Document unique }</h1>
+                <h1 class="title">{{ $single_document->name }}</h1>
                 <p class="info">Code de Travail article L.4121-3</p>
                 <p class="info">Transcription des résultats de l'évaluation des risques pour la santé et la sécurité du personnel</p>
             </div>
 
-            <img src="{{ public_path('storage/logo/logo.png') }}" alt="">
+            <img src="{{ public_path('storage/logo/'.$single_document->client->id.'.'.$single_document->client->image_type) }}" alt="">
 
             <div class="info-single_document">
                 <p>Document Unique élaboré le : <span class="bold">16 Décembre 2021</span></p>
@@ -245,33 +245,34 @@
                         <td colspan="2">
                             Ce Document Unique, y compris ses annexes, est protégé par les droits d'auteur. Il a été réalisé avec l'assistance d'un IPRP de la
                             société OZA, sous l'entière responsabilité et selon les indications de : <br>
-                            Mr Prénom NOM, Fonction (responsable du DU)
+                            {{ $single_document->firstname }} {{ $single_document->lastname }}, Fonction (responsable du DU)
                         </td>
                     </tr>
                     <tr>
                         <td>
                             Pour : <br>
-                            Nom de l’entreprise
+                            {{ $single_document->client->name }}
                         </td>
                         <td>
                             Téléphone : <br>
-                            Téléphone du responsable du DU
+                            {{ $single_document->phone }}
                         </td>
                     </tr>
                     <tr>
                         <td>
                             Adresse postale : <br>
-                            Adresse postale de l’entreprise
+                            {{ $single_document->adress }}
                         </td>
                         <td>
                             Email : <br>
-                            Email du responsable du DU
+                            {{ $single_document->email }}
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
-                            Nombre de salariés inscrits sur le registre du personnel au moment de la rédaction du Document Unique : <br>
-                            XX salaries
+                            Nombre de salariés inscrits sur le registre du personnel au moment de la rédaction du Document Unique : <br>
+                            {{ $single_document->work_unit->pluck('number_employee')->sum() }} salaries <br>
+
                         </td>
                     </tr>
                 </tbody>
@@ -297,13 +298,13 @@
                     <tr>
                         <td>
                             Activité détaillée de la structure : <br>
-                            Description de l’activité (dans DU)
+                            {{ $single_document->activity_description }}
                         </td>
                     </tr>
                     <tr>
                         <td>
                             Locaux de la structure :<br>
-                            Description des locaux (à ajouter dans DU)
+                            {{ $single_document->premise_description }}
                         </td>
                     </tr>
                 </tbody>
@@ -314,55 +315,71 @@
             <p class="page-num">Page <span></span></p>
         </div>
     </section>
-
-    <section class="page">
-        <div class="header"></div>
-        <div class="body">
-            <p class="text-color-red">
-                <span class="bold">Rappel :</span> Pour chaque unité de travail, l’évaluation des risques porte sur les activités principales.<br>
-                Lorsqu’une personne affectée à une unité de travail met en œuvre de la polyvalence sur d’autres unités de travail, l’exposition globale de la personne considérée doit être appréciée en fonction du temps travaillé dans chaque unité de travail en moyenne sur l’année.
-            </p>
-            <table class="table table--work_unit">
-                <thead>
-                <tr>
-                    <th class="yellow">UNITÉ DE TRAVAIL</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        <p class="bold">
-                            Titre de l’unité de travail dans DU
-                        </p>
-
-                        <p>
-                            <span class="bold">Principales activités : </span><br>
-                            - activité 1 <br>
-                        </p>
-
-                        <p>
-                            <span class="bold">Machines : </span><br>
-                            Item machine, item machine,
-                        </p>
-                        <p>
-                            <span class="bold">Véhicules : </span><br>
-                            Item véhicule, item véhicule,
-                        </p>
-                        <p>
-                            <span class="bold">Engins et appareils de manutention mécanique :</span><br>
-                            Item engin, Item engin, …
-                        </p>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="footer">
-            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
-            <p class="page-num">Page <span></span></p>
-        </div>
-    </section>
-
+    @foreach($single_document->work_unit as $key => $sd_work_unit)
+        <section class="page">
+            <div class="header"></div>
+            <div class="body">
+                @if($key === 0)
+                    <p class="text-color-red">
+                        <span class="bold">Rappel :</span> Pour chaque unité de travail, l’évaluation des risques porte sur les activités principales.<br>
+                        Lorsqu’une personne affectée à une unité de travail met en œuvre de la polyvalence sur d’autres unités de travail, l’exposition globale de la personne considérée doit être appréciée en fonction du temps travaillé dans chaque unité de travail en moyenne sur l’année.
+                    </p>
+                @endif
+                <table class="table table--work_unit">
+                    <thead>
+                    <tr>
+                        <th class="yellow" colspan="2">UNITÉ DE TRAVAIL</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td colspan="2">{{ $sd_work_unit->name }}</td>
+                    </tr>
+                        <tr>
+                            <td>
+                                <p>
+                                    <span class="bold">Principales activités : </span><br>
+                                    @foreach($sd_work_unit->activities as $activitie)
+                                    - {{ $activitie->text }} <br>
+                                    @endforeach
+                                </p>
+                                <p>
+                                    <span class="bold">Machines : </span><br>
+                                    @foreach($item_mat->sub_items as $sub_item)
+                                        @if(count($sd_work_unit->items->where('sub_item_id', $sub_item->id)) !== 0)
+                                            {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }},
+                                        @endif
+                                    @endforeach
+                                </p>
+                            </td>
+                            <td>
+                                <p>
+                                    <span class="bold">Véhicules : </span><br>
+                                    @foreach($item_veh->sub_items as $sub_item)
+                                        @if(count($sd_work_unit->items->where('sub_item_id', $sub_item->id)) !== 0)
+                                            {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }},
+                                        @endif
+                                    @endforeach
+                                </p>
+                                <p>
+                                    <span class="bold">Engins et appareils de manutention mécanique :</span><br>
+                                    @foreach($item_eng->sub_items as $sub_item)
+                                        @if(count($sd_work_unit->items->where('sub_item_id', $sub_item->id)) !== 0)
+                                            {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }},
+                                        @endif
+                                    @endforeach
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="footer">
+                <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+                <p class="page-num">Page <span></span></p>
+            </div>
+        </section>
+    @endforeach
     <section class="page">
         <div class="header"></div>
         <div class="body">
@@ -417,10 +434,10 @@
         <div class="body body--notif">
             <h1 class="head-title">1. PLAN D'ACTION DE RÉDUCTION DES RISQUES</h1>
             <p class="bold">Le Plan d’action reprend et présente tous les risques identifiés et évalués dans le chapitre 4 « Evaluation des risques » classés ici selon leur criticité (priorité) dans la colonne « Criticité ».</p>
-            <p class="bold">Le Plan d’action reprend et présente également toutes les situations de « non-conformité réglementaire » dans la colonne « Mesures de prévention et de protection proposées », sous le libellé « Obligation réglementaire ».</p>
+            <p class="bold">Le Plan d’action reprend et présente également toutes les situations de « non-conformité réglementaire » dans la colonne « Mesures de prévention et de protection proposées », sous le libellé « Obligation réglementaire ».</p>
             <p>
                 <span class="bold">Colonne « Mesures de prévention et de protection proposées » :</span><br>
-                Les mesures de prévention et de protection proposées se déclinent en 3 catégories énoncées dans les 9 principes de prévention de l’article L.4121-2 du Code du Travail (Loi n° 91-1414 du 31 décembre 1991 art. 1 Journal Officiel du 7 janvier 1992 en vigueur le 31 décembre 1992) :<br>
+                Les mesures de prévention et de protection proposées se déclinent en 3 catégories énoncées dans les 9 principes de prévention de l’article L.4121-2 du Code du Travail (Loi n° 91-1414 du 31 décembre 1991 art. 1 Journal Officiel du 7 janvier 1992 en vigueur le 31 décembre 1992) :<br>
                 - Mesure Technique, <br>
                 - Mesure Organisationnelle, <br>
                 - Mesure Humaine (Information et formation, protection collective et individuelle).
@@ -433,7 +450,7 @@
                 <span class="bold">Colonne « Date de réalisation » :</span><br>
                 Inscrire la date à laquelle l’action de prévention ou de protection a réellement été mise en place et a été opérationnelle.<br>
                 <span class="bold">Colonne « Commentaire, complément, autres actions » :</span><br>
-                L’employeur inscrira éventuellement ici des commentaires sur les décisions prises, des compléments d’explications, et, ou des actions complémentaires.
+                L’employeur inscrira éventuellement ici des commentaires sur les décisions prises, des compléments d’explications, et, ou des actions complémentaires.
             </p>
         </div>
         <div class="footer">
@@ -509,7 +526,7 @@
         <div class="body body--notif">
             <h1 class="head-title">2. RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</h1>
             <p class="bold">L’EVALUATION DES RISQUES, LE DOCUMENT UNIQUE ET SON ANNEXE « FACTEURS DE RISQUES PROFESSIONNELS »</p>
-            <p class="bold">Le Plan d’action reprend et présente également toutes les situations de « non-conformité réglementaire » dans la colonne « Mesures de prévention et de protection proposées », sous le libellé « Obligation réglementaire ».</p>
+            <p class="bold">Le Plan d’action reprend et présente également toutes les situations de « non-conformité réglementaire » dans la colonne « Mesures de prévention et de protection proposées », sous le libellé « Obligation réglementaire ».</p>
             <p>
                 <span class="bold">1. Pourquoi évaluer les risques professionnels ?</span><br>
                 L’évaluation des risques professionnels est imposée par le Code du Travail à tout employeur, dès lors qu’il emploie au moins un salarié. Code du travail, article R4121-1 :<br>
@@ -541,22 +558,22 @@
                 <span class="bold">Postes de travail à « RISQUE PARTICULIER »</span><br>
                 Tous les postes de travail comportant au moins une situation de travail dont le risque brut est >= à 24 font partie de la « Liste des postes de travail à risque particulier ».<br>
                 Tous les salariés embauchés pour travailler à l’un de ces postes, en contrat de travail précaire (autre que CDI), doivent bénéficier d’une formation renforcée à la sécurité, ainsi que d’un accueil et d’une formation adaptés dans l’entreprise.<br>
-                Liste établie par l’employeur, après avis du médecin du travail, du CHSCT ou, à défaut, des représentants du personnel, s’il en existe.<br>
+                Liste établie par l’employeur, après avis du médecin du travail, du CHSCT ou, à défaut, des représentants du personnel, s’il en existe.<br>
                 Liste tenue à la disposition des agents de contrôle des agents de l’inspection du travail (amende de 10 000 € euros en cas de non présentation art).
             </p>
             <p>
                 <span class="bold">Le risque résiduel correspond donc à : ((F + P) x G) x pondération de (T + O + H)</span><br>
                 <span class="bold">Criticité = situation actuelle</span><br>
-                Le Document Unique doit réglementairement permettre d’identifier les risques les plus critiques afin de planifier leur suppression ou leur réduction.<br>
+                Le Document Unique doit réglementairement permettre d’identifier les risques les plus critiques afin de planifier leur suppression ou leur réduction.<br>
                 La « criticité » traduit donc les risques résiduels en « état de la situation actuelle » de la façon suivante :<br>
-                <span class="text-color-green">« Acceptable »</span> associé à la couleur verte, elle correspond à une criticité &lt; 12,5.<br>
+                <span class="text-color-green">« Acceptable »</span> associé à la couleur verte, elle correspond à une criticité &lt; 12,5.<br>
                 La diminution de ce risque n’est pas une priorité. <br>
                 <span class="text-color-yellow">« A améliorer »</span> associé à la couleur jaune, elle correspond à une criticité >= 12,5.<br>
                 La diminution de ces risque peut être planifiée à moyen / long terme. <br>
-                <span class="text-color-orange">« Agir vite »</span> est associé à la couleur orange, elle correspond à une criticité >= 20.<br>
+                <span class="text-color-orange">« Agir vite »</span> est associé à la couleur orange, elle correspond à une criticité >= 20.<br>
                 La diminution de ces risques est à planifier en priorité. <br>
                 <span class="text-color-red">« STOP »</span> est associé à la couleur rouge, elle correspond à une criticité >=30 <= 50.<br>
-                Ces activités doivent être stoppées immédiatement afin d’identifier et de mettre en place une activité plus sûre.
+                Ces activités doivent être stoppées immédiatement afin d’identifier et de mettre en place une activité plus sûre.
             </p>
         </div>
         <div class="footer">
@@ -590,7 +607,7 @@
             </p>
             <p>
                 Le harcèlement sexuel se caractérise par le fait d’imposer à une personne, de façon répétée, des propos ou comportements à connotation sexuelle qui :<br>
-                - portent atteinte à sa dignité en raison de leur caractère dégradant ou humiliant, ou<br>
+                - portent atteinte à sa dignité en raison de leur caractère dégradant ou humiliant, ou<br>
                 - créent à son encontre une situation intimidante, hostile ou offensante.<br>
                 Est assimilée au harcèlement sexuel toute forme de pression grave (même non répétée) dans le but réel ou apparent d’obtenir un acte sexuel, au profit de l’auteur des faits ou d’un tiers.<br>
                 Dans le milieu professionnel, il y a harcèlement sexuel même s’il n’y a aucune relation hiérarchique entre l’agressé(e) et l’auteur des faits (entre collègues de même niveau, de services différents…)<br>
@@ -638,13 +655,13 @@
                 14. Circulation à pied pouvant provoquer des chutes de plain-pied (glissades, trébuchements, pertes d’équilibre sur une surface “plane” : surfaces ne présentant aucune rupture de niveau ou bien des ruptures de niveau réduites (trottoir, petites marches, plan incliné, etc.)) ; ou provoquer des chocs à l’origine de traumatismes, plaies, fractures.
             </p>
             <p>
-                15. Consommation de substances psychoactives (alcool, drogues, médicaments détournés) pouvant être à l’origine d’accidents du travail, notamment par la diminution de la vigilance, l’altération des capacités de jugement, de la motricité, de la vision et des réflexes.
+                15. Consommation de substances psychoactives (alcool, drogues, médicaments détournés) pouvant être à l’origine d’accidents du travail, notamment par la diminution de la vigilance, l’altération des capacités de jugement, de la motricité, de la vision et des réflexes.
             </p>
             <p>
                 16. Dangers des produits, matériels, installations et activités de l’atelier pouvant générer des blessures et des atteintes à la santé.
             </p>
             <p class="bold">
-                17. Déplacements dans l’enceinte de la structure avec un véhicule motorisé ou non pouvant générer des TMS, dorso-lombalgies, plaies, traumatismes, fractures, écrasement.
+                17. Déplacements dans l’enceinte de la structure avec un véhicule motorisé ou non pouvant générer des TMS, dorso-lombalgies, plaies, traumatismes, fractures, écrasement.
             </p>
         </div>
         <div class="footer">
@@ -668,28 +685,31 @@
                 21. Espaces confinés et manque d’aération pouvant générer intoxication ou asphyxie.
             </p>
             <p>
-                22. Incapacité à porter secours dans des délais raisonnables, pouvant aggraver la situation initiale.
+                22. Incapacité à porter secours dans des délais raisonnables, pouvant aggraver la situation initiale.
             </p>
             <p>
-                23. Incapacité à stopper et prévenir une situation de danger grave et imminent pour la santé ou la sécurité.
+                23. Incapacité à stopper et prévenir une situation de danger grave et imminent pour la santé ou la sécurité.
             </p>
             <p class="bold">
-                12. Chute d’objets, renversements et effondrements pouvant générer traumatismes, plaies, fractures, écrasement.
-            </p>
-            <p class="bold">
-                13. Chutes de hauteur y compris chute dans les escaliers, pouvant générer traumatismes, plaies, fractures, noyade.
-            </p>
-            <p class="bold">
-                14. Circulation à pied pouvant provoquer des chutes de plain-pied (glissades, trébuchements, pertes d’équilibre sur une surface “plane” : surfaces ne présentant aucune rupture de niveau ou bien des ruptures de niveau réduites (trottoir, petites marches, plan incliné, etc.)) ; ou provoquer des chocs à l’origine de traumatismes, plaies, fractures.
+                24. Incendie et explosion pouvant générer des brûlures, plaies, traumatismes, fractures.
             </p>
             <p>
-                15. Consommation de substances psychoactives (alcool, drogues, médicaments détournés) pouvant être à l’origine d’accidents du travail, notamment par la diminution de la vigilance, l’altération des capacités de jugement, de la motricité, de la vision et des réflexes.
-            </p>
-            <p>
-                16. Dangers des produits, matériels, installations et activités de l’atelier pouvant générer des blessures et des atteintes à la santé.
+                25. Intempéries telles que la pluie, le vent, la neige, le brouillard, … , hors températures extérieures ; pouvant générer des atteintes à la santé, des glissades et des chutes, des risques d’effondrement ou d’ensevelissement
             </p>
             <p class="bold">
-                17. Déplacements dans l’enceinte de la structure avec un véhicule motorisé ou non pouvant générer des TMS, dorso-lombalgies, plaies, traumatismes, fractures, écrasement.
+                26. Machines ; outils électroportatifs, thermiques et pneumatiques ; outils à main et équipements de travail ; pouvant générer des plaies, coupures, lacérations, amputations, brulures, traumatismes, fractures, écrasements.
+            </p>
+            <p class="bold">
+                27. Manutentions manuelles pouvant générer TMS, dorso-lombalgie, traumatisme, plaie, coupure, brûlures.
+            </p>
+            <p class="bold">
+                28. Manutentions mécaniques pouvant générer écrasement, traumatisme, plaie, coupure.
+            </p>
+            <p>
+                29. Méconnaissance de l’évolution de la règlemention en santé et sécurité au travail pouvant générer des atteintes à la santé et des accidents du travail.
+            </p>
+            <p>
+                30. Méconnaissance des risques et des consignes de sécurité pouvant générer des atteintes à la santé et des accidents du travail.
             </p>
         </div>
         <div class="footer">
@@ -697,5 +717,165 @@
             <p class="page-num">Page <span></span></p>
         </div>
     </section>
+    <section class="page">
+        <div class="header"></div>
+        <div class="body body--rules">
+            <p class="bold">
+                31. Milieu hyperbare pouvant générer des accidents et / ou des pathologies de décompression FACTEUR DE RISQUE PROFESSIONNEL.
+            </p>
+            <p>
+                32. Nanomatériaux et nanoparticules pouvant générer des intoxications principalement par inhalation ou ingestion.
+            </p>
+            <p>
+                33. Opérations de chargement et de déchargement de véhicule réalisées en coactivité entre la structure utilisatrice et une entreprise de transport, pouvant générer des atteintes à la santé et / ou des accidents.
+            </p>
+            <p>
+                34. Organisation du travail, pouvant générer notamment des risques psychosociaux, troubles musculosquelettiques, accidents.
+            </p>
+            <p>
+                35. Plomb pouvant entrainer des atteintes graves au niveau du système nerveux, au niveau des reins, au niveau du sang, au niveau du système digestif, et sur le système reproducteur.
+            </p>
+            <p>
+                36. Postures pénibles, travail statique pouvant générer fatigue et douleurs, accidents traumatiques et cardiovasculaires, TMS, dorso-lombalgies.
+            </p>
+            <p class="bold">
+                37. Rayonnements ionisants pouvant générer des brûlures, des lésions cellulaires, des effets cancérogènes, mutagènes et reprotoxiques.
+            </p>
+            <p class="bold">
+                38. Rayonnements optiques pouvant générer des atteintes de la peau (brulure, vieillissement, cancer) et de l’œil (lésions de cornée, conjonctivite, rétine et opacification du cristallin).
+            </p>
+            <p>
+                39. Risques liés à la l’interférence entre plusieurs activités pouvant générer des atteintes à la santé et / ou des accidents.
+            </p>
+            <p class="bold">
+                40. Risques psychosociaux dont harcèlement moral et sexuel, agression, harcèlement et violence internes et externes (morale, verbale, physique, à caractère sexuel) pouvant mettre en péril la santé et la sécurité des salariés, affecter la dignité et le devenir professionnel et / ou générer des maladies cardio-vasculaires, troubles anxiodépressifs, stress, épuisement professionnel ou burnout, suicide.
+            </p>
+            <p class="bold">
+                41. Risques routiers durant le trajet domicile travail pouvant générer des atteintes traumatiques plus ou moins sévères ou le décès (1ère cause de mortalité au travail).
+            <p>
+        </div>
+        <div class="footer">
+            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="page-num">Page <span></span></p>
+        </div>
+    </section>
+
+    <section class="page">
+        <div class="header"></div>
+        <div class="body body--rules">
+            <p class="bold">
+                42 Risques routiers en mission à l’extérieur des locaux de la structure pouvant générer stress, TMS, dorso-lombalgies, et atteintes traumatiques plus ou moins sévères.
+            </p>
+            <p class="bold">
+                43 Télétravail réalisé au domicile pouvant engendrer des risques physiques (musculosquelettiques, visuels, électriques, …), des risques liés à une mauvaise ergonomie du poste de travail ou à une installation défectueuse ; et des risques psychosociaux.
+            </p>
+            <p>
+                44 Températures extrêmes liées aux postes de travail (hors températures extérieures) pouvant générer fatigue, sueurs, nausées, maux de tête, vertiges, crampes, déshydratation, coup de chaleur, engourdissement, gelures, hypothermieFACTEUR DE RISQUE PROFESSIONNEL.
+            </p>
+            <p>
+                45 Travail de nuit entre 21h et 6 heures, ou en équipes successives alternantes pouvant générer des troubles du sommeil, des troubles cardiovasculaires, des cancers FACTEUR DE RISQUE PROFESSIONNEL
+            </p>
+            <p>
+                46 Travail isolé pouvant générer des contraintes supplémentaires et augmenter les difficultés à secourir.
+            </p>
+            <p>
+                47 Travail répétitif pouvant générer stress, TMS, dorso-lombalgies FACTEUR DE RISQUE PROFESSIONNEL
+            </p>
+            <p class="bold">
+                48 Vibrations transmises au corps entier pouvant générer des dorso-lombalgies, hernies discales.
+            </p>
+            <p class="bold">
+                49 Vibrations transmises aux mains et aux bras pouvant générer des pathologies des articulations du poignet ou du coude, un syndrome de Raynaud ou des troubles neurologiques.
+            </p>
+        </div>
+        <div class="footer">
+            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="page-num">Page <span></span></p>
+        </div>
+    </section>
+
+    <section class="page">
+        <div class="header"></div>
+        <div class="body">
+            <table class="table table--risk-pro">
+                <tr>
+                    <th colspan="15" class="green">1. PLAN D'ACTION</th>
+                </tr>
+                <tr>
+                    <td class="theader">
+                        Unité de Travail = poste de travail
+                    </td>
+                    <td class="theader">
+                        DANGER et dommages potentiels à la personne
+                    </td>
+                    <td class="theader">
+                        RISQUE Phase de travail modes et caractéristiques de l'exposition (outil, matériel, produit, situation, opération, fréquence, durée)
+                    </td>
+                    <td class="theader">
+                        <span>test</span>
+                    </td>
+                    <td class="theader">
+                        test
+                    </td>
+                    <td class="theader">
+                        test
+                    </td>
+                    <td class="theader">
+                        test
+                    </td>
+                    <td class="theader">
+                        test
+                    </td>
+                    <td class="theader">
+                        Mesures de prévention et de protection proposées
+                    </td>
+                    <td class="theader">
+                        test
+                    </td>
+                    <td class="theader">
+                        test
+                    </td>
+                    <td class="theader">
+                        test
+                    </td>
+                    <td class="theader">
+                        test
+                    </td>
+                    <td class="theader">
+                        Criticité = situation actuelle
+                    </td>
+                    <td class="theader">
+                        Mesures de prévention et de protection proposées
+                    </td>
+                </tr>
+                <tr>
+                    <td>Céramique</td>
+                    <td>Agents chimiques pouvant générer des intoxications aigües ou chroniques, cancers, brûlures.</td>
+                    <td>Utilisation des colorants Kaolins, argiles, silice nécessaires aux activités.</td>
+                    <td>20</td>
+                    <td class="yellow">A améliorer</td>
+                    <td>
+                        * Obligation réglementaire : Mettre en place une ventilation mécanique adaptée à un atelier à pollution spécifique.<br>
+                        * Obligation réglementaire : Se procurer les Fiches de données de sécurité de tous les agents chimiques utilisés et les rendre accessibles aux utilisateurs.
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <div class="footer">
+            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="page-num">Page <span></span></p>
+        </div>
+    </section>
+
+
 </body>
 </html>

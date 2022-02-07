@@ -211,7 +211,7 @@
                     <div class="left">
                     </div>
                     <div class="right">
-                        <span class="bold">Valeur du risque brut évaluée :&nbsp;</span> <button type="button" class="btn btn-success btn-small btn-calcul-risk">10</button>
+                        <span class="bold">Valeur du risque brut évaluée :&nbsp;</span> <button type="button" class="btn btn-success btn-small btn-calcul-risk">{{ isset($risk) ? $risk->total() : '0' }}</button>
                     </div>
                 </div>
             </div>
