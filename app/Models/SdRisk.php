@@ -267,6 +267,18 @@ class SdRisk extends Model
         }
     }
 
+    public function colorPDF($number){
+        switch (true) {
+            case ($number <= 15) :
+                return 'green';
+            case ($number < 20) :
+            case ($number < 30) :
+                return 'yellow';
+            case ($number >= 30) :
+                return 'red';
+        }
+    }
+
     public function colorTotal($number){
         switch (true) {
             case ($number <= 15) :

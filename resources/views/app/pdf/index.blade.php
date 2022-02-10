@@ -245,7 +245,7 @@
                         <td colspan="2">
                             Ce Document Unique, y compris ses annexes, est protégé par les droits d'auteur. Il a été réalisé avec l'assistance d'un IPRP de la
                             société OZA, sous l'entière responsabilité et selon les indications de : <br>
-                            {{ $single_document->firstname }} {{ $single_document->lastname }}, Fonction (responsable du DU)
+                            Mr {{ $single_document->firstname }} {{ $single_document->lastname }}, Fonction (responsable du DU)
                         </td>
                     </tr>
                     <tr>
@@ -362,7 +362,7 @@
                                     @endforeach
                                 </p>
                                 <p>
-                                    <span class="bold">Engins et appareils de manutention mécanique :</span><br>
+                                    <span class="bold">Engins et appareils de manutention mécanique : </span><br>
                                     @foreach($item_eng->sub_items as $sub_item)
                                         @if(count($sd_work_unit->items->where('sub_item_id', $sub_item->id)) !== 0)
                                             {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }},
@@ -463,7 +463,7 @@
     <section class="page">
         <div class="header"></div>
         <div class="body">
-            <p>Ce Document Unique, y compris ses annexes, est protégé par les droits d'auteur. Il a été réalisé avec l'assistance d'un IPRP de la société OZA, sous l'entière responsabilité et selon les indications fournies par : <span class="bold">Mr Prénom NOM, Fonction</span> </p>
+            <p>Ce Document Unique, y compris ses annexes, est protégé par les droits d'auteur. Il a été réalisé avec l'assistance d'un IPRP de la société OZA, sous l'entière responsabilité et selon les indications fournies par : <span class="bold">=Mr {{ $single_document->firstname }} {{ $single_document->lastname }}, Fonction</span> </p>
             <table class="table table--action-plan">
                 <tr>
                     <th colspan="9" class="green">1. PLAN D'ACTION</th>
@@ -499,20 +499,23 @@
                         Commentaire, complément, autres actions
                     </td>
                 </tr>
-                <tr>
-                    <td>Céramique</td>
-                    <td>Agents chimiques pouvant générer des intoxications aigües ou chroniques, cancers, brûlures.</td>
-                    <td>Utilisation des colorants Kaolins, argiles, silice nécessaires aux activités.</td>
-                    <td>20</td>
-                    <td class="yellow">A améliorer</td>
-                    <td>
-                        * Obligation réglementaire : Mettre en place une ventilation mécanique adaptée à un atelier à pollution spécifique.<br>
-                        * Obligation réglementaire : Se procurer les Fiches de données de sécurité de tous les agents chimiques utilisés et les rendre accessibles aux utilisateurs.
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                @foreach($sd_risks as $sd_risk)
+                    <tr>
+                        <td>{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "Tous" }}</td>
+                        <td>{{ $sd_risk->sd_danger->danger->name }}</td>
+                        <td>{{ $sd_risk->name }}</td>
+                        <td>{{ $sd_risk->totalRR($sd_risk->sd_restraints) }}</td>
+                        <td class="{{ $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints)) }}">{{ $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints)) }}</td>
+                        <td>
+                            @foreach($sd_risk->sd_restraints as $sd_restraint)
+                                {{ $sd_restraint->name }}<br>
+                            @endforeach
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                @endforeach
             </table>
         </div>
         <div class="footer">
