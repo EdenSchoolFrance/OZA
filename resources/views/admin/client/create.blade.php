@@ -89,7 +89,7 @@
                                     <label for="city_zipcode">Code postal</label>
                                 </div>
                                 <div class="right">
-                                    <input type="text" name="city_zipcode" id="city_zipcode" class="form-control form-control--small @error('city_zipcode') invalid @enderror" placeholder="Code postal" value="{{ old('city_zipcode') }}">
+                                    <input type="text" name="city_zipcode" id="city_zipcode" class="form-control @error('city_zipcode') invalid @enderror" placeholder="Code postal" value="{{ old('city_zipcode') }}">
                                     @error('city_zipcode')
                                         <p class="message-error">{{ $message }}</p>
                                     @enderror
@@ -100,7 +100,7 @@
                                     <label for="city">Ville</label>
                                 </div>
                                 <div class="right">
-                                    <input type="text" name="city" id="city" class="form-control form-control--small @error('city') invalid @enderror" placeholder="Ville" value="{{ old('city') }}">
+                                    <input type="text" name="city" id="city" class="form-control @error('city') invalid @enderror" placeholder="Ville" value="{{ old('city') }}">
                                     @error('city')
                                         <p class="message-error">{{ $message }}</p>
                                     @enderror

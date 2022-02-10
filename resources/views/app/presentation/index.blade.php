@@ -60,7 +60,7 @@
                             <label for="city_zipcode">Code postal</label>
                         </div>
                         <div class="right right--small">
-                            <input type="text" name="city_zipcode" class="form-control form-control--small @error('city_zipcode') invalid @enderror" placeholder="Code postal" value="{{ old('city_zipcode') ? old('city_zipcode') : $single_document->city_zipcode }}" {{ session('type') == 'info' ?: 'disabled' }}>
+                            <input type="text" name="city_zipcode" class="form-control @error('city_zipcode') invalid @enderror" placeholder="Code postal" value="{{ old('city_zipcode') ? old('city_zipcode') : $single_document->city_zipcode }}" {{ session('type') == 'info' ?: 'disabled' }}>
                             @error('city_zipcode')
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
@@ -71,7 +71,7 @@
                             <label for="city">Ville</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="city" class="form-control form-control--small @error('city') invalid @enderror" placeholder="Ville" value="{{ old('city') ? old('city') : $single_document->city }}" {{ session('type') == 'info' ?: 'disabled' }}>
+                            <input type="text" name="city" class="form-control @error('city') invalid @enderror" placeholder="Ville" value="{{ old('city') ? old('city') : $single_document->city }}" {{ session('type') == 'info' ?: 'disabled' }}>
                             @error('city')
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
@@ -107,7 +107,7 @@
                             <label for="sector">Secteur d’activité</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="sector" class="form-control form-control--small @error('sector') invalid @enderror" placeholder="Secteur d’activité" value="{{ old('sector') ? old('sector') : $single_document->sector }}" {{ session('type') == 'desc' ?: 'disabled' }}>
+                            <input type="text" name="sector" class="form-control @error('sector') invalid @enderror" placeholder="Secteur d’activité" value="{{ old('sector') ? old('sector') : $single_document->sector }}" {{ session('type') == 'desc' ?: 'disabled' }}>
                             @error('sector')
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
