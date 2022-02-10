@@ -167,5 +167,12 @@ return [
         'orga'                  => 'organisationnelle',
         'human'                 => 'humain',
         'city_zipcode'          => 'code postal',
+        'frequency'             => 'fréquence',
+        'probability'           => 'probabilité',
+        'gravity'               => 'gravité potentiel',
+        'impact'                => 'impact différencié',
+        'name_risk'             => 'nom du risque',
+        'restraint'             => 'mesure',
+        'restraint_proposed'    => 'mesure proposée'
     ]
 ];
