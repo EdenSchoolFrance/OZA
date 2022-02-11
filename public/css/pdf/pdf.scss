@@ -224,10 +224,16 @@ html {
                     padding: 10px 0;
                     color: $white;
                     &.green{
-                        background-color: $green;
+                        background-color: $success;
+                        color: $white;
                     }
                     &.yellow{
-                        background-color: $yellow;
+                        background-color: $warning;
+                        color: $white;
+                    }
+                    &.red{
+                        background-color: $danger;
+                        color: $white;
                     }
                 }
                 .theader{
@@ -244,10 +250,16 @@ html {
                         min-height: 40px;
                     }
                     &.green{
-                        background-color: $green;
+                        background-color: $success;
+                        color: $white;
                     }
                     &.yellow{
-                        background-color: $yellow;
+                        background-color: $warning;
+                        color: $white;
+                    }
+                    &.red{
+                        background-color: $danger;
+                        color: $white;
                     }
                 }
             }
@@ -314,6 +326,9 @@ html {
                     }
                 }
                 &--action-plan{
+                    font-size: 13px;
+                }
+                &--action{
                     font-size: 13px;
                 }
                 &--risk-pro{

@@ -31,4 +31,45 @@ class SdRestraint extends Model
     {
         return $this->belongsTo(SdRisk::class);
     }
+
+    public function convert($name,$setting){
+        switch ($setting) {
+            case 'technical' :
+                switch ($name) {
+                    case 'very good' :
+                        return 4;
+                    case 'good' :
+                        return 3;
+                    case 'medium' :
+                        return 2;
+                    case 'null' :
+                        return 0;
+                }
+                break;
+            case 'organizational' :
+                switch ($name) {
+                    case 'very good' :
+                        return 3;
+                    case 'good' :
+                        return 2;
+                    case 'medium' :
+                        return 1;
+                    case 'null' :
+                        return 0;
+                }
+                break;
+            case 'human' :
+                switch ($name) {
+                    case 'very good' :
+                        return 3;
+                    case 'good' :
+                        return 2;
+                    case 'medium' :
+                        return 1;
+                    case 'null' :
+                        return 0;
+                }
+        }
+    }
+
 }

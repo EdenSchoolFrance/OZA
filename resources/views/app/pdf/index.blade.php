@@ -800,7 +800,7 @@
     <section class="page">
         <div class="header"></div>
         <div class="body">
-            <table class="table table--risk-pro">
+            <table class="table table--action">
                 <tr>
                     <th colspan="15" class="green">1. PLAN D'ACTION</th>
                 </tr>
@@ -815,34 +815,34 @@
                         RISQUE Phase de travail modes et caractéristiques de l'exposition (outil, matériel, produit, situation, opération, fréquence, durée)
                     </td>
                     <td class="theader">
-                        <span>test</span>
+                        F
                     </td>
                     <td class="theader">
-                        test
+                        P
                     </td>
                     <td class="theader">
-                        test
+                        GP
                     </td>
                     <td class="theader">
-                        test
+                        ID
                     </td>
                     <td class="theader">
-                        test
+                        RB
                     </td>
                     <td class="theader">
                         Mesures de prévention et de protection proposées
                     </td>
                     <td class="theader">
-                        test
+                        T
                     </td>
                     <td class="theader">
-                        test
+                        O
                     </td>
                     <td class="theader">
-                        test
+                        H
                     </td>
                     <td class="theader">
-                        test
+                        RR
                     </td>
                     <td class="theader">
                         Criticité = situation actuelle
@@ -851,26 +851,33 @@
                         Mesures de prévention et de protection proposées
                     </td>
                 </tr>
-                <tr>
-                    <td>Céramique</td>
-                    <td>Agents chimiques pouvant générer des intoxications aigües ou chroniques, cancers, brûlures.</td>
-                    <td>Utilisation des colorants Kaolins, argiles, silice nécessaires aux activités.</td>
-                    <td>20</td>
-                    <td class="yellow">A améliorer</td>
-                    <td>
-                        * Obligation réglementaire : Mettre en place une ventilation mécanique adaptée à un atelier à pollution spécifique.<br>
-                        * Obligation réglementaire : Se procurer les Fiches de données de sécurité de tous les agents chimiques utilisés et les rendre accessibles aux utilisateurs.
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                @foreach($sd_risks as $sd_risk)
+                    <tr>
+                        <td>{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "Tous" }}</td>
+                        <td>{{ $sd_risk->sd_danger->danger->name }}</td>
+                        <td>{{ $sd_risk->name }}</td>
+                        <td>{{ $sd_risk->translate($sd_risk->frequency,'frequency') }}</td>
+                        <td>{{ $sd_risk->translate($sd_risk->probability,'probability') }}</td>
+                        <td>{{ $sd_risk->translate($sd_risk->gravity,'gravity') }}</td>
+                        <td>{{ $sd_risk->translate($sd_risk->impact,'impact') }}</td>
+                        <td class="{{ $sd_risk->colorPDF($sd_risk->total()) }}">{{ $sd_risk->colorTotal($sd_risk->total()) }}</td>
+                        <td>
+                            @foreach($sd_risk->sd_restraints_exist as $sd_restraint)
+                                {{ "* ".$sd_restraint->name }} <br>
+                            @endforeach
+                        </td>
+                        <td>{{ round($sd_risk->moyenneTech(), 1) }}</td>
+                        <td>{{ round($sd_risk->moyenneOrga(), 1) }}</td>
+                        <td>{{ round($sd_risk->moyenneHum(), 1) }}</td>
+                        <td> {{ $sd_risk->totalRR($sd_risk->sd_restraints) }}</td>
+                        <td class="{{ $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints)) }}">{{ $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints)) }}</td>
+                        <td>
+                            @foreach($sd_risk->sd_restraints_porposed as $sd_restraint)
+                                {{ "* ".$sd_restraint->name }} <br>
+                            @endforeach
+                        </td>
+                    </tr>
+                @endforeach
             </table>
         </div>
         <div class="footer">
