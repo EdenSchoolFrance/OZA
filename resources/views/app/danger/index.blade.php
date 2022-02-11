@@ -301,11 +301,11 @@
                         @csrf
                         <input type="hidden" name="id_risk" value="">
                         <div class="modal-header">
-                            <p class="title">Duplication de risque</p>
+                            <p class="title">Dupliquer le risque</p>
                             <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
                         </div>
                         <div class="modal-body">
-                            <p>Sélectioner une unité de travail</p>
+                            <p>Sélectionner une unité de travail</p>
                             <select name="work_unit" class="form-control">
                                 <option value="all">Tous</option>
                                 @foreach($sd_works_units as $sd_work_unit)
@@ -313,7 +313,7 @@
                                 @endforeach
                             </select>
                             <div>
-                                <button type="submit" class="btn btn-yellow">Dupliqué</button>
+                                <button type="submit" class="btn btn-yellow">Dupliquer</button>
                                 <button type="button" class="btn btn-danger btn-text" data-dismiss="modal">Annuler</button>
                             </div>
                         </div>

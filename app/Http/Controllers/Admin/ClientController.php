@@ -74,7 +74,7 @@ class ClientController extends Controller
             'post' => 'required',
             'phone' => ['required', 'regex:/^(?:(?:(?:\+|00)33\D?(?:\D?\(0\)\D?)?)|0){1}[1-9]{1}(?:\D?\d{2}){4}$/'],
             'email' => 'required|unique:users',
-            'password' => 'required|confirmed',
+            'password' => 'required|min:8|regex:/^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/|confirmed',
         ]);
 
         $admin_client = Role::where('permission', 'ADMIN')->first();

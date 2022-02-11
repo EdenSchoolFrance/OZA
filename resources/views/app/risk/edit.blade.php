@@ -172,25 +172,25 @@
             <div class="row row--radio">
                 <div class="line">
                     <div class="left">
-                        <label>Gravité potentiel</label>
+                        <label>Impact différencié</label>
                     </div>
                     <div class="right">
                         <div class="radio-bar-content">
                             <div class="radio-bar radio-bar--inv">
                                 <label class="con"> Non
-                                    <input type="radio" name="gender" value="null" @if(old('gender')){{ old('gender') === 'null' ? 'checked' : '' }}@else{{ isset($risk) && $risk->impact === 'null' ? 'checked' : '' }}@endif >
+                                    <input type="radio" name="impact" value="null" @if(old('impact')){{ old('impact') === 'null' ? 'checked' : '' }}@else{{ isset($risk) && $risk->impact === 'null' ? 'checked' : '' }}@endif >
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con"> Homme
-                                    <input type="radio" name="gender" value="male" @if(old('gender')){{ old('gender') === 'male' ? 'checked' : '' }}@else{{ isset($risk) && $risk->impact === 'male' ? 'checked' : '' }}@endif>
+                                    <input type="radio" name="impact" value="male" @if(old('impact')){{ old('impact') === 'male' ? 'checked' : '' }}@else{{ isset($risk) && $risk->impact === 'male' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con"> Femme
-                                    <input type="radio" name="gender" value="female" @if(old('gender')){{ old('gender') === 'female' ? 'checked' : '' }}@else{{ isset($risk) && $risk->impact === 'female' ? 'checked' : '' }}@endif>
+                                    <input type="radio" name="impact" value="female" @if(old('impact')){{ old('impact') === 'female' ? 'checked' : '' }}@else{{ isset($risk) && $risk->impact === 'female' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
-                            @error('gender')
+                            @error('impact')
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
                         </div>

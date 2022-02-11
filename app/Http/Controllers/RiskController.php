@@ -114,7 +114,7 @@ class RiskController extends Controller
             'frequency' => 'required',
             'probability' => 'required',
             'gravity' => 'required',
-            'gender' => 'required',
+            'impact' => 'required',
             'restraint' => 'required|array',
             'restraint_proposed' => 'required|array',
         ]);
@@ -125,7 +125,7 @@ class RiskController extends Controller
         $sd_risk->frequency = $request->frequency;
         $sd_risk->probability = $request->probability;
         $sd_risk->gravity = $request->gravity;
-        $sd_risk->impact = $request->gender;
+        $sd_risk->impact = $request->impact;
         $sd_risk->sd_danger()->associate($sd_danger);
         if ($sd_work_unit) $sd_risk->sd_work_unit()->associate($sd_work_unit);
         $sd_risk->save();
@@ -171,7 +171,7 @@ class RiskController extends Controller
             'frequency' => 'required',
             'probability' => 'required',
             'gravity' => 'required',
-            'gender' => 'required',
+            'impact' => 'required',
             'restraint' => 'required|array',
             'restraint_proposed' => 'required|array',
         ]);
@@ -185,7 +185,7 @@ class RiskController extends Controller
         $sd_risk->frequency = $request->frequency;
         $sd_risk->probability = $request->probability;
         $sd_risk->gravity = $request->gravity;
-        $sd_risk->impact = $request->gender;
+        $sd_risk->impact = $request->impact;
         $sd_risk->sd_danger()->associate($sd_danger);
         if ($sd_work_unit) $sd_risk->sd_work_unit()->associate($sd_work_unit);
         $sd_risk->save();

@@ -45,7 +45,7 @@ class UserController extends Controller
             'phone' => ['required', 'regex:/^(?:(?:(?:\+|00)33\D?(?:\D?\(0\)\D?)?)|0){1}[1-9]{1}(?:\D?\d{2}){4}$/'],
             'post' => 'required',
             'role' => 'required|exists:roles,id',
-            'password' => 'required|min:8|confirmed',
+            'password' => 'required|min:8|regex:/^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/|confirmed',
         ]);
 
         $user = new User();
@@ -85,7 +85,7 @@ class UserController extends Controller
         if ($user->id == Auth::user()->id) {
             abort(404);
         }
-        
+
         $request->validate([
             'lastname' => 'required',
             'firstname' => 'required',
