@@ -29,11 +29,11 @@
                                             <div class="list list--text list--space">
                                                 <div class="list-row">
                                                     <p class="list-point list-point--text">RR</p>
-                                                    <button class="btn {{ $sd_risk->color($sd_risk->totalRR($sd_risk->sd_restraints)) }} btn-small">{{ $sd_risk->totalRR($sd_risk->sd_restraints) }}</button></li>
+                                                    <button class="btn {{ $sd_risk->color($sd_risk->totalRR($sd_risk->sd_restraints)) }} btn-small">{{ $sd_risk->totalRR($sd_risk->sd_restraints) }}</button>
                                                 </div>
                                                 <div class="list-row">
                                                     <p class="list-point list-point--text">C</p>
-                                                    <button type="button" class="btn {{ $sd_risk->color(($sd_risk->totalRR($sd_risk->sd_restraints) + $sd_risk->total())) }} btn-small">{{ $sd_risk->colorTotal(($sd_risk->totalRR($sd_risk->sd_restraints)+$sd_risk->total())) }}</button></li>
+                                                    <button type="button" class="btn {{ $sd_risk->color(($sd_risk->totalRR($sd_risk->sd_restraints) + $sd_risk->total())) }} btn-small">{{ $sd_risk->colorTotal(($sd_risk->totalRR($sd_risk->sd_restraints)+$sd_risk->total())) }}</button>
                                                 </div>
                                             </div>
                                         </td>

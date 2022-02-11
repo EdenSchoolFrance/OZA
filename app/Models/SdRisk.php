@@ -45,6 +45,10 @@ class SdRisk extends Model
     {
         return $this->sd_restraints()->where('exist',0);
     }
+    public function sd_restraints_exist()
+    {
+        return $this->sd_restraints()->where('exist',1);
+    }
 
     public function sd_restraints_archived()
     {
@@ -267,6 +271,18 @@ class SdRisk extends Model
         }
     }
 
+    public function colorPDF($number){
+        switch (true) {
+            case ($number <= 15) :
+                return 'green';
+            case ($number < 20) :
+            case ($number < 30) :
+                return 'yellow';
+            case ($number >= 30) :
+                return 'red';
+        }
+    }
+
     public function colorTotal($number){
         switch (true) {
             case ($number <= 15) :
@@ -278,6 +294,36 @@ class SdRisk extends Model
             case ($number >= 30) :
                 return 'STOP';
         }
+    }
+
+    public function moyenneTech(){
+        $total = 0;
+        $count = 0;
+        foreach ($this->sd_restraints_exist as $sd_restraint){
+            $total = $total+$sd_restraint->convert($sd_restraint->technical, 'technical');
+            $count++;
+        }
+        return $total / $count;
+    }
+
+    public function moyenneOrga(){
+        $total = 0;
+        $count = 0;
+        foreach ($this->sd_restraints_exist as $sd_restraint){
+            $total = $total+$sd_restraint->convert($sd_restraint->organizational, 'organizational');
+            $count++;
+        }
+        return $total / $count;
+    }
+
+    public function moyenneHum(){
+        $total = 0;
+        $count = 0;
+        foreach ($this->sd_restraints_exist as $sd_restraint){
+            $total = $total+$sd_restraint->convert($sd_restraint->human, 'human');
+            $count++;
+        }
+        return $total / $count;
     }
 
 }

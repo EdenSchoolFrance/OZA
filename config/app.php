@@ -166,7 +166,7 @@ return [
          * Package Service Providers...
          */
         Biscolab\ReCaptcha\ReCaptchaServiceProvider::class,
-
+        Barryvdh\DomPDF\ServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -231,6 +231,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'ReCaptcha' => Biscolab\ReCaptcha\Facades\ReCaptcha::class,
+
+        "PDF" => Barryvdh\DomPDF\Facade::class,
 
     ],
 
