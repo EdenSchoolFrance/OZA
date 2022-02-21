@@ -5,7 +5,7 @@ new Chart(document.getElementById("myChart"), {
         datasets: [{
             label: "",
             backgroundColor: ["#43A389", "#F9CA62","#F8912A","#B32A3C"],
-            data: [75,25,0,0],
+            data: tabData,
         }]
     },
     options: {

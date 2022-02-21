@@ -165,6 +165,8 @@ Route::middleware(['auth'])->group(function() {
 
         Route::get('/{single_document}/restraint/', [RestraintController::class, 'index'])->name('restraint.index');
         Route::get('/{single_document}/restraint/archived', [RestraintController::class, 'archived'])->name('restraint.archived');
+        Route::get('/{single_document}/restraint/all', [RestraintController::class, 'all'])->name('restraint.all');
+
 
         Route::middleware(['permission:ADMIN,EXPERT,MANAGER,EDITOR'])->group(function () {
             Route::post('/{single_document}/restraint/store/', [RestraintController::class, 'store'])->name('restraint.store');

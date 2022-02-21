@@ -9,7 +9,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row row--center">
-                        <label class="text-color-red">15.0</label>
+                        <label class="{{ $single_document->color($single_document->moyenneRB()) }}">{{ $single_document->moyenneRB() }}</label>
                     </div>
                     <div class="row row--center">
                         <p>Maxi = 50</p>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row row--center">
-                        <label class="">11.3</label>
+                        <label class="{{ $single_document->color($single_document->moyenneRR()) }}">{{ $single_document->moyenneRR() }}</label>
                     </div>
                     <div class="row row--center">
                         <p>Maxi = 50</p>
@@ -122,7 +122,8 @@
 @section('script')
     <script src="/js/libs/chart.min.js"></script>
     <script>
-        let tabData = [75,25,0,0]
+        let tabData =[{!! $single_document->graphique()[0] !!},{!! $single_document->graphique()[1] !!},{!! $single_document->graphique()[2] !!},{!! $single_document->graphique()[3] !!}];
+        let tab = [75,25,0,0]
     </script>
     <script src="/js/app/dashboard.js"></script>
 @endsection

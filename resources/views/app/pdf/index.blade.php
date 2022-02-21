@@ -389,7 +389,7 @@
                     <td>
                         <div>
                             <p>Risque brut moyen</p>
-                            <p class="text-color-green number">15.0</p>
+                            <p class="{{ $single_document->color($single_document->moyenneRB()) }} number">{{ $single_document->moyenneRB() }}</p>
                             <p>Maxi = 50</p>
                         </div>
                     </td>
@@ -402,7 +402,7 @@
                     <td>
                         <div>
                             <p>Risque résiduel  moyen</p>
-                            <p class="text-color-green number">11.3</p>
+                            <p class="{{ $single_document->color($single_document->moyenneRR()) }} number">{{ $single_document->moyenneRR() }}</p>
                             <p>Maxi = 50</p>
                         </div>
                     </td>
