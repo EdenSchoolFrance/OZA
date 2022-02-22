@@ -161,11 +161,13 @@ Route::middleware(['auth'])->group(function() {
             Route::post('/{single_document}/danger/{danger}/update/{sd_work_unit}/{risk}', [RiskController::class, 'update'])->name('risk.update');
             Route::post('/{single_document}/danger/{danger}/delete', [RiskController::class, 'delete'])->name('risk.delete');
             Route::post('/{single_document}/danger/{danger}/duplicate', [RiskController::class, 'duplicate'])->name('risk.duplicate');
+
+            Route::get('/{single_document}/risk/all', [RiskController::class, 'all'])->name('risk.all');
         });
 
         Route::get('/{single_document}/restraint/', [RestraintController::class, 'index'])->name('restraint.index');
         Route::get('/{single_document}/restraint/archived', [RestraintController::class, 'archived'])->name('restraint.archived');
-        Route::get('/{single_document}/restraint/all', [RestraintController::class, 'all'])->name('restraint.all');
+
 
 
         Route::middleware(['permission:ADMIN,EXPERT,MANAGER,EDITOR'])->group(function () {

@@ -49,25 +49,6 @@ class RestraintController extends Controller
         return view('app.restraint.archived', compact('page', 'single_document', 'sd_risks'));
     }
 
-    public function all($id)
-    {
-        $single_document = $this->checkSingleDocument($id);
-
-        $page = [
-            'title' => 'Toutes les mesures',
-            'infos' => null,
-            'sidebar' => 'action_plan',
-            'sub_sidebar' => 'restraint_all'
-        ];
-
-        $sd_risks = SdRisk::whereHas('sd_danger', function ($q) use ($single_document){
-            $q->where('single_document_id', $single_document->id);
-        })->whereHas('sd_restraints', function ($q) {
-            $q->where('exist', 1);
-        })->get();
-
-        return view('app.restraint.all', compact('page', 'single_document', 'sd_risks'));
-    }
 
     public function store(Request $request,$id){
 
