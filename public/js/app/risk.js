@@ -241,7 +241,9 @@ function calculRestraintColorDisplay(){
 }
 
 function restraintCalcul(){
+    let RB = riskCalcul();
     let totalEnd = 0;
+    let count = 0;
     let all = $('input[name="restraint[]"]');
     for (let i = 0; i < all.length ; i++) {
         let allValue = all[i].value.split('|');
@@ -295,39 +297,40 @@ function restraintCalcul(){
         let result = 0;
         switch (total){
             case 10 :
-                result = total * 0.2
+                result = 0.2
                 break
             case 9 :
-                result = total * 0.25
+                result = 0.25
                 break
             case 8 :
-                result = total * 0.3
+                result = 0.3
                 break
             case 7 :
-                result = total * 0.35
+                result = 0.35
                 break
             case 6 :
-                result = total * 0.4
+                result = 0.4
                 break
             case 5 :
-                result = total * 0.5
+                result = 0.5
                 break
             case 4 :
-                result = total * 0.6
+                result = 0.6
                 break
             case 3 :
-                result = total * 0.7
+                result = 0.7
                 break
             case 2 :
-                result = total * 0.8
+                result = 0.8
                 break
             case 1 :
-                result = total * 0.9
+                result = 0.9
                 break
         }
         totalEnd = totalEnd+result;
+        count++;
     }
-    return totalEnd;
+    return (RB * totalEnd) / count;
 }
 
 function setColor(el,total){

@@ -118,7 +118,7 @@
                                             </div>
                                         </td>
                                         <td class="td_criticality">
-                                            <button type="button" class="btn btn-success btn-small">Acceptable</button>
+                                            <button type="button" class="btn {{ $risk->color(($risk->totalRR($risk->sd_restraints))) }} btn-small">{{ $risk->colorTotal(($risk->totalRR($risk->sd_restraints))) }}</button>
                                         </td>
                                         <td class="td_actions">
                                             <div>
@@ -133,7 +133,7 @@
                             </tbody>
                             <tfoot>
                                 <tr class="no-data">
-                                    <td colspan="7"><a href="{{route('risk.create', [$single_document->id, $danger->id, 'all'])}}" class="btn btn-inv btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN RISQUE</a></td>
+                                    <td colspan="7"><a href="{{route('risk.create', [$single_document->id, $danger->id, 'all'])}}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN RISQUE</a></td>
                                 </tr>
                             </tfoot>
                         </table>
@@ -146,7 +146,7 @@
                             </tbody>
                             <tfoot>
                             <tr class="no-data">
-                                <td colspan="7"><a href="{{ route('risk.create', [$single_document->id, $danger->id, 'all']) }}" class="btn btn-inv btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN RISQUE</a></td>
+                                <td colspan="7"><a href="{{ route('risk.create', [$single_document->id, $danger->id, 'all']) }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN RISQUE</a></td>
                             </tr>
                             </tfoot>
                         </table>
@@ -240,7 +240,7 @@
                                                     </div>
                                                 </td>
                                                 <td class="td_criticality">
-                                                    <button type="button" class="btn {{ $risk->color(($risk->totalRR($risk->sd_restraints)+$risk->total())) }} btn-small">{{ $risk->colorTotal(($risk->totalRR($risk->sd_restraints)+$risk->total())) }}</button>
+                                                    <button type="button" class="btn {{ $risk->color(($risk->totalRR($risk->sd_restraints))) }} btn-small">{{ $risk->colorTotal(($risk->totalRR($risk->sd_restraints))) }}</button>
                                                 </td>
                                                 <td class="td_actions">
                                                     <div>
@@ -254,7 +254,7 @@
                                         </tbody>
                                         <tfoot>
                                         <tr class="no-data">
-                                            <td colspan="7"><a href="{{ route('risk.create', [$single_document->id, $danger->id, $sd_work_unit->id]) }}" class="btn btn-inv btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN RISQUE</a></td>
+                                            <td colspan="7"><a href="{{ route('risk.create', [$single_document->id, $danger->id, $sd_work_unit->id]) }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN RISQUE</a></td>
                                         </tr>
                                         </tfoot>
                                     </table>
@@ -267,7 +267,7 @@
                                         </tbody>
                                         <tfoot>
                                         <tr class="no-data">
-                                            <td colspan="7"><a href="{{ route('risk.create', [$single_document->id, $danger->id, $sd_work_unit->id]) }}" class="btn btn-inv btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN RISQUE</a></td>
+                                            <td colspan="7"><a href="{{ route('risk.create', [$single_document->id, $danger->id, $sd_work_unit->id]) }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN RISQUE</a></td>
                                         </tr>
                                         </tfoot>
                                     </table>

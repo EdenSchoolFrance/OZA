@@ -168,7 +168,9 @@ class SdRisk extends Model
     }
 
     public function totalRR($restraints){
+        $RB = $this->total();
         $totalEnd = 0;
+        $count = 0;
         foreach ($restraints as $restraint){
             if($restraint->exist === 1){
                 $tech = 0;
@@ -223,40 +225,42 @@ class SdRisk extends Model
                 $result = 0;
                 switch ($total) {
                     case 10 :
-                        $result= $total * 0.2;
+                        $result= 0.2;
                         break;
                     case 9 :
-                        $result= $total * 0.25;
+                        $result= 0.25;
                         break;
                     case 8 :
-                        $result= $total * 0.3;
+                        $result= 0.3;
                         break;
                     case 7 :
-                        $result= $total * 0.35;
+                        $result= 0.35;
                         break;
                     case 6 :
-                        $result= $total * 0.4;
+                        $result= 0.4;
                         break;
                     case 5 :
-                        $result= $total * 0.5;
+                        $result= 0.5;
                         break;
                     case 4 :
-                        $result= $total * 0.6;
+                        $result= 0.6;
                         break;
                     case 3 :
-                        $result= $total * 0.7;
+                        $result= 0.7;
                         break;
                     case 2 :
-                        $result= $total * 0.8;
+                        $result= 0.8;
                         break;
                     case 1 :
-                        $result= $total * 0.9;
+                        $result= 0.9;
                         break;
                 }
                 $totalEnd = $totalEnd+$result;
+                $count++;
             }
         }
-        return $totalEnd;
+
+        return ($RB * $totalEnd) / $count;
     }
 
     public function color($number){

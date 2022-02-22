@@ -146,37 +146,37 @@ class SingleDocument extends Model
                     $result = 0;
                     switch ($total) {
                         case 10 :
-                            $result= $total * 0.2;
+                            $result= 0.2;
                             break;
                         case 9 :
-                            $result= $total * 0.25;
+                            $result= 0.25;
                             break;
                         case 8 :
-                            $result= $total * 0.3;
+                            $result= 0.3;
                             break;
                         case 7 :
-                            $result= $total * 0.35;
+                            $result= 0.35;
                             break;
                         case 6 :
-                            $result= $total * 0.4;
+                            $result= 0.4;
                             break;
                         case 5 :
-                            $result= $total * 0.5;
+                            $result= 0.5;
                             break;
                         case 4 :
-                            $result= $total * 0.6;
+                            $result= 0.6;
                             break;
                         case 3 :
-                            $result= $total * 0.7;
+                            $result= 0.7;
                             break;
                         case 2 :
-                            $result= $total * 0.8;
+                            $result= 0.8;
                             break;
                         case 1 :
-                            $result= $total * 0.9;
+                            $result= 0.9;
                             break;
                     }
-                    $end = $end+$result;
+                    $end = $end+$total;
                     $count++;
                 }
             }
@@ -240,50 +240,18 @@ class SingleDocument extends Model
                             break;
                     }
                     $total = $tech + $orga + $human;
-                    $result = 0;
-                    switch ($total) {
-                        case 10 :
-                            $result= $total * 0.2;
-                            break;
-                        case 9 :
-                            $result= $total * 0.25;
-                            break;
-                        case 8 :
-                            $result= $total * 0.3;
-                            break;
-                        case 7 :
-                            $result= $total * 0.35;
-                            break;
-                        case 6 :
-                            $result= $total * 0.4;
-                            break;
-                        case 5 :
-                            $result= $total * 0.5;
-                            break;
-                        case 4 :
-                            $result= $total * 0.6;
-                            break;
-                        case 3 :
-                            $result= $total * 0.7;
-                            break;
-                        case 2 :
-                            $result= $total * 0.8;
-                            break;
-                        case 1 :
-                            $result= $total * 0.9;
-                            break;
-                    }
+
                     switch (true) {
-                        case ($result <= 15) :
+                        case ($total >= 9) :
                             $tab[0] = $tab[0]+1;
                             break;
-                        case ($result < 20) :
+                        case ($total > 6) :
                             $tab[1] = $tab[1]+1;
                             break;
-                        case ($result < 30) :
+                        case ($total > 3) :
                             $tab[2] = $tab[2]+1;
                             break;
-                        case ($result >= 30) :
+                        case ($total <= 0) :
                             $tab[3] = $tab[3]+1;
                             break;
                     }
