@@ -5,7 +5,7 @@
         <div class="row">
             <form class="card card--dashboard">
                 <div class="card-header">
-                    <h2 class="title">Risque Brut moyen</h2>
+                    <h2 class="title">Risque brut moyen</h2>
                 </div>
                 <div class="card-body">
                     <div class="row row--center">
@@ -22,7 +22,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row row--center">
-                        <label class="text-color-green">24.7 %</label>
+                        <label class="text-color-green">{{ $single_document->discountRisk() }} %</label>
                     </div>
                 </div>
             </form>
@@ -53,11 +53,6 @@
                     @if (Auth::user()->hasPermission(['ADMIN', 'EXPERT', 'MANAGER']))
                         <div class="row">
                             <a href="{{ route('pdf.view', [$single_document->id]) }}" class="btn btn-success">Générer un DU à date</a>
-                        </div>
-                    @endif
-                    @if (Auth::user()->hasPermission(['ADMIN', 'EXPERT', 'MANAGER', 'EDITOR']))
-                        <div class="row">
-                            <a href="#" class="btn btn-text btn-yellow"><i class="far fa-edit"></i> Pré-remplir le DU sur la base d’un autre DU du compte</a>
                         </div>
                     @endif
                 </div>

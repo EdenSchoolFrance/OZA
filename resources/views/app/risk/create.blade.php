@@ -13,7 +13,7 @@
                         <label for="nameRisk">Intitulé du risque</label>
                     </div>
                     <div class="right">
-                        <input type="text" class="form-control" name="name_risk" id="workName" placeholder="Vente - Boulangerie pâtisserie" value="@if(old('name_risk')){{ old('name_risk') }}@else{{ isset($risk) ? $risk->name : '' }}@endif">
+                        <input type="text" class="form-control" name="name_risk" id="workName" placeholder="Préciser le risque" value="@if(old('name_risk')){{ old('name_risk') }}@else{{ isset($risk) ? $risk->name : '' }}@endif">
                     </div>
                 </div>
                 @error('name_risk')
@@ -135,7 +135,7 @@
             <div class="row row--radio">
                 <div class="line">
                     <div class="left">
-                        <label>Gravité potentiel</label>
+                        <label>Gravité potentielle</label>
                     </div>
                     <div class="right">
                         <div class="radio-bar-content">
@@ -287,7 +287,7 @@
                 </div>
             </div>
             <div class="row row--submit">
-                <button class="btn btn-success">Valider le danger</button>
+                <button class="btn btn-success">Valider le risque</button>
             </div>
         </div>
     </form>
@@ -450,7 +450,7 @@
         <div class="modal-dialog modal-dialog-large">
             <div class="modal-content">
                 <div class="modal-header">
-                    <p class="title">Ajouter une nouvelle mesure déjà mise en place</p>
+                    <p class="title">Ajouter une mesure déjà mise en place</p>
                     <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
                 </div>
                 <div class="modal-body">
@@ -458,10 +458,10 @@
                     <div class="row">
                         <div class="line">
                             <div class="left">
-                                <label for="nameRisk">Intitulé du risque</label>
+                                <label for="nameRisk">Mesure</label>
                             </div>
                             <div class="right">
-                                <input type="email" class="form-control" id="nameRisk" placeholder="Vente - Boulangerie pâtisserie">
+                                <input type="email" class="form-control" id="nameRisk" placeholder="Décrire la mesure mise en place">
                             </div>
                         </div>
                     </div>

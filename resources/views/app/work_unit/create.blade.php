@@ -11,7 +11,7 @@
                             <label for="name_enterprise">Intitulé de l’unité de travail</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="name_enterprise" class="form-control" placeholder="Indiquer le nom de votre entreprise" value="@if(isset($workUnit)){{ old('name_enterprise') ? old('name_enterprise') : $workUnit->name }}@else{{ old('name_enterprise') ? old('name_enterprise') : "" }}@endif">
+                            <input type="text" name="name_enterprise" class="form-control" placeholder="Indiquer le nom de votre unité de travail" value="@if(isset($workUnit)){{ old('name_enterprise') ? old('name_enterprise') : $workUnit->name }}@else{{ old('name_enterprise') ? old('name_enterprise') : "" }}@endif">
                             @error('name_enterprise')
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
@@ -30,7 +30,7 @@
                 <div class="row">
                     <div class="line">
                         <div class="left">
-                            <label for="number_employee">Nombre de salariés concernés</label>
+                            <label for="number_employee">Nombre de salarié(s) concerné(s)</label>
                         </div>
                         <div class="right">
                             <div class="btn-group-number">
@@ -45,7 +45,7 @@
                     </div>
                     <div class="line line--activity">
                         <div class="left left-cancel">
-                            <label for="number_employee">Activités associées</label>
+                            <label for="number_employee">Activité(s) associée(s)</label>
                         </div>
                         <div class="right">
                             <ul class="ul-textarea">

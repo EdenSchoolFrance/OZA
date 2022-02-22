@@ -28,8 +28,7 @@
 
                 <div class="row">
                     <div class="line">
-                        <div class="left">
-                        </div>
+                        <div class="left"></div>
                         <div class="right">
                             <h3>Adresse de l’entreprise</h3>
                         </div>

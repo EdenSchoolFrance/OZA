@@ -44,7 +44,7 @@
                     <form class="form-risk-checked" action="{{ route('danger.validated', [$single_document->id, $danger->id, 'all']) }}" method="post">
                         @csrf
                         <input type="hidden" name="checked" value=""/>
-                        <p>Ce danger concerne quelqu’un au sein de l’entreprise ?</p>
+                        <p>Ce danger concerne quelqu’un au sein de cette unité de travail</p>
                         <button type="button" data-value="true" class="btn btn-radio btn-check-work-unit {{ $danger->ut_all === 1 && $danger->exist === 1 ? 'btn-radio--checked' : '' }}" {{ $danger->exist === 0 || $danger->exist === null ? 'disabled' : ''}}>Oui</button>
                         <button type="button" data-value="false" class="btn btn-radio btn-check-work-unit {{ $danger->ut_all === 0 && $danger->exist === 1 ? 'btn-radio--checked' : '' }}" {{ $danger->exist === 0 || $danger->exist === null ? 'disabled' : ''}}>Non</button>
                     </form>
@@ -163,7 +163,7 @@
                                 @csrf
 
                                 <input type="hidden" name="checked" value=""/>
-                                <p>Ce danger concerne quelqu’un au sein de l’entreprise ?</p>
+                                <p>Ce danger concerne quelqu’un au sein de cette unité de travail</p>
 
                                 <button type="button" data-value="true" class="btn btn-radio btn-check-work-unit {{ $sd_work_unit->sd_danger($danger->id) ? ($sd_work_unit->sd_danger($danger->id)->pivot->exist === 1 && $danger->exist === 1 ? 'btn-radio--checked' : '') : '' }}" {{ $danger->exist === 0 || $danger->exist === null ? 'disabled' : ''}}>Oui</button>
                                 <button type="button" data-value="false" class="btn btn-radio btn-check-work-unit {{ $sd_work_unit->sd_danger($danger->id) ? ($sd_work_unit->sd_danger($danger->id)->pivot->exist === 0 && $danger->exist === 1 ? 'btn-radio--checked' : '') : '' }}" {{ $danger->exist === 0 || $danger->exist === null ? 'disabled' : ''}}>Non</button>

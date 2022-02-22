@@ -13,16 +13,7 @@
         <div class="card card--add-client">
             <form id="tab-content-info" class="card-body tabs-content @if($tab != 'info') none @endif" action="{{ route('admin.client.update', [$client->id]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                @if (Auth::user()->hasPermission('ADMIN'))
-                    <div class="row">
-                        <div class="line">
-                            <div class="left"></div>
-                            <div class="right">
-                                <button type="button" class="btn btn-danger" data-modal=".modal--delete">Supprimer le Client</button>
-                            </div>
-                        </div>
-                    </div>
-                @endif
+
                 <div class="row">
                     <div class="line">
                         <div class="left">
@@ -136,6 +127,9 @@
                 <div class="row row--submit">
                     <button class="btn btn-success">Mettre à jour</button>
                     <a href="{{ route('admin.clients') }}" class="btn btn-danger btn-text">Annuler</a>
+                    @if (Auth::user()->hasPermission('ADMIN'))
+                        <button type="button" class="btn btn-danger" data-modal=".modal--delete">Supprimer le Client</button>
+                    @endif
                 </div>
             </form>
 
@@ -149,7 +143,7 @@
                             <tr>
                                 <th class="th_name th-sort">Intitulé</th>
                                 <th class="th_date th-sort">Date de création</th>
-                                <th class="th_status th-sort">Status</th>
+                                <th class="th_status th-sort">Statut</th>
                                 <th class="th_actions"></th>
                             </tr>
                         </thead>
@@ -231,7 +225,7 @@
                             <div class="line">
                                 <div class="left"></div>
                                 <div class="right">
-                                    <button class="btn btn-yellow btn-inv">Ajouter le DU</button>
+                                    <button class="btn btn-success">Ajouter le DU</button>
                                 </div>
                             </div>
                         </div>

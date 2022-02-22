@@ -52,7 +52,7 @@ on('.btn-edit-modal-risk', 'click', (el, e) => {
 });
 
 on('.btn-open-risk', 'click', (el, e) => {
-    $('.modal-add-risk .title',document, 0).innerText = "Ajouter une nouvelle mesure déjà mise en place"
+    $('.modal-add-risk .title',document, 0).innerText = "Ajouter une mesure déjà mise en place"
     let tech = $('.radio-bar-tech input')[0].checked = true
     let orga = $('.radio-bar-orga input')[0].checked = true
     let human = $('.radio-bar-human input')[0].checked = true
