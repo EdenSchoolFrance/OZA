@@ -33,7 +33,7 @@
             <img src="{{ public_path('storage/logo/'.$single_document->client->id.'.'.$single_document->client->image_type) }}" alt="">
 
             <div class="info-single_document">
-                <p>Document Unique élaboré le : <span class="bold">16 Décembre 2021</span></p>
+                <p>Document Unique élaboré le : <span class="bold">{{ date("d F Y") }}</span></p>
                 <p>Version : <span class="bold">2</span></p>
             </div>
         </div>
@@ -86,10 +86,10 @@
             <h1 class="head-title">SOMMAIRE</h1>
             <ul class="list-item">
                 <li>
-                    <p><span class="line">Actualisation du Document Unique <a href="#" class="link">4</a></span></p>
+                    <p><span class="line">ACTUALISATION DU DOCUMENT UNIQUE<a href="#" class="link">4</a></span></p>
                 </li>
                 <li>
-                    <p><span class="line">Présentation détaillée de la structure et des unités de travail <a href="#" class="link">4</a></span></p>
+                    <p><span class="line">PRÉSENTATION DÉTAILLÉE DE LA STRUCTURE ET DES UNITÉS DE TAVAIL<a href="#" class="link">4</a></span></p>
                 </li>
                 <li>
                     <p><span class="line">TABLEAU DE BORD DE L’EVALUATION DES RISQUES <a href="#" class="link">4</a></span></p>
@@ -205,13 +205,15 @@
                         <td class="theader">Visa</td>
                     </tr>
                     {{--Data line--}}
-                    <tr>
-                        <td>Prénom NOM du responsable DU</td>
-                        <td>Fonction</td>
-                        <td></td>
-                        <td>Réalisation initiale du DU et de son annexe "Facteurs de risques…"</td>
-                        <td>16/12/2021</td>
-                    </tr>
+                    @foreach($single_document->histories as $historie)
+                        <tr>
+                            <td>{{ $single_document->firstname }} {{ $single_document->lastname }}</td>
+                            <td>{{ $single_document->function }}</td>
+                            <td></td>
+                            <td>{{ $historie->work }}</td>
+                            <td>{{ date("d/m/Y", strtotime($historie->date)) }}</td>
+                        </tr>
+                    @endforeach
                     {{--No data line--}}
                     <tr>
                         <td><div></div></td>
@@ -237,7 +239,7 @@
             <table class="table table--info-gen">
                 <thead>
                     <tr>
-                        <th colspan="2" class="yellow">INFORMATION GÉNÉRALES</th>
+                        <th colspan="2" class="yellow">INFORMATIONS GÉNÉRALES</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -245,32 +247,32 @@
                         <td colspan="2">
                             Ce Document Unique, y compris ses annexes, est protégé par les droits d'auteur. Il a été réalisé avec l'assistance d'un IPRP de la
                             société OZA, sous l'entière responsabilité et selon les indications de : <br>
-                            Mr {{ $single_document->firstname }} {{ $single_document->lastname }}, Fonction (responsable du DU)
+                            Mr {{ $single_document->firstname }} {{ $single_document->lastname }}, {{ $single_document->function }}
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            Pour : <br>
+                            <span class="bold">Pour : </span><br>
                             {{ $single_document->client->name }}
                         </td>
                         <td>
-                            Téléphone : <br>
+                            <span class="bold">Téléphone : </span><br>
                             {{ $single_document->phone }}
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            Adresse postale : <br>
+                            <span class="bold">Adresse postale : </span><br>
                             {{ $single_document->adress }}
                         </td>
                         <td>
-                            Email : <br>
+                            <span class="bold">Email : </span><br>
                             {{ $single_document->email }}
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
-                            Nombre de salariés inscrits sur le registre du personnel au moment de la rédaction du Document Unique : <br>
+                            <span class="bold">Nombre de salariés inscrits sur le registre du personnel au moment de la rédaction du Document Unique : </span><br>
                             {{ $single_document->work_unit->pluck('number_employee')->sum() }} salaries <br>
 
                         </td>
@@ -333,18 +335,18 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td colspan="2">{{ $sd_work_unit->name }}</td>
+                        <td colspan="2"><span class="bold">{{ $sd_work_unit->name }}</span></td>
                     </tr>
                         <tr>
                             <td>
                                 <p>
-                                    <span class="bold">Principales activités : </span><br>
+                                    <span class="bold">Principale(s) activité(s) : </span><br>
                                     @foreach($sd_work_unit->activities as $activitie)
                                     - {{ $activitie->text }} <br>
                                     @endforeach
                                 </p>
                                 <p>
-                                    <span class="bold">Machines : </span><br>
+                                    <span class="bold">Machine(s) : </span><br>
                                     @foreach($item_mat->sub_items as $sub_item)
                                         @if(count($sd_work_unit->items->where('sub_item_id', $sub_item->id)) !== 0)
                                             {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }},
@@ -354,7 +356,7 @@
                             </td>
                             <td>
                                 <p>
-                                    <span class="bold">Véhicules : </span><br>
+                                    <span class="bold">Véhicule(s) : </span><br>
                                     @foreach($item_veh->sub_items as $sub_item)
                                         @if(count($sd_work_unit->items->where('sub_item_id', $sub_item->id)) !== 0)
                                             {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }},
@@ -362,7 +364,7 @@
                                     @endforeach
                                 </p>
                                 <p>
-                                    <span class="bold">Engins et appareils de manutention mécanique : </span><br>
+                                    <span class="bold">Engin(s) et appareil(s) de manutention mécanique : </span><br>
                                     @foreach($item_eng->sub_items as $sub_item)
                                         @if(count($sd_work_unit->items->where('sub_item_id', $sub_item->id)) !== 0)
                                             {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }},
@@ -388,20 +390,20 @@
                 <tr>
                     <td>
                         <div>
-                            <p>Risque brut moyen</p>
+                            <p class="bold">Risque brut moyen</p>
                             <p class="{{ $single_document->color($single_document->moyenneRB()) }} number">{{ $single_document->moyenneRB() }}</p>
                             <p>Maxi = 50</p>
                         </div>
                     </td>
                     <td>
                         <div>
-                            <p>Réduction du risque</p>
-                            <p class="text-color-green number">24.7 %</p>
+                            <p class="bold">Réduction du risque</p>
+                            <p class="text-color-green number">{{ $single_document->discountRisk() }} %</p>
                         </div>
                     </td>
                     <td>
                         <div>
-                            <p>Risque résiduel  moyen</p>
+                            <p class="bold">Risque résiduel  moyen</p>
                             <p class="{{ $single_document->color($single_document->moyenneRR()) }} number">{{ $single_document->moyenneRR() }}</p>
                             <p>Maxi = 50</p>
                         </div>
@@ -432,7 +434,7 @@
     <section class="page">
         <div class="header"></div>
         <div class="body body--notif">
-            <h1 class="head-title">1. PLAN D'ACTION DE RÉDUCTION DES RISQUES</h1>
+            <h1 class="head-title">1. NOTICE EXPLICATIVE DU PLAN D'ACTION DE RÉDUCTION DES RISQUES</h1>
             <p class="bold">Le Plan d’action reprend et présente tous les risques identifiés et évalués dans le chapitre 4 « Evaluation des risques » classés ici selon leur criticité (priorité) dans la colonne « Criticité ».</p>
             <p class="bold">Le Plan d’action reprend et présente également toutes les situations de « non-conformité réglementaire » dans la colonne « Mesures de prévention et de protection proposées », sous le libellé « Obligation réglementaire ».</p>
             <p>

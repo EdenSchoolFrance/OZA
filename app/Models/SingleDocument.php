@@ -30,6 +30,7 @@ class SingleDocument extends Model
         'lastname',
         'email',
         'phone',
+        'function',
         'archived',
         'created_at',
         'updated_at',
@@ -62,6 +63,11 @@ class SingleDocument extends Model
         return $this->belongsTo(Client::class);
     }
 
+    public function histories()
+    {
+        return $this->hasMany(Historie::class);
+    }
+
     public function moyenneRB()
     {
         $total = 0;
@@ -72,10 +78,12 @@ class SingleDocument extends Model
                 $count++;
             }
         }
-        return $total / $count;
+        if ($count === 0) return "NaN";
+        else return $total / $count;
     }
 
     public function color($number){
+        if ($number === "NaN") return "text-color-green";
         switch (true) {
             case ($number <= 15) :
                 return 'text-color-green';
@@ -90,6 +98,7 @@ class SingleDocument extends Model
     public function discountRisk(){
         $RB = 0;
         $RR = 0;
+        $count = 0;
         foreach ($this->dangers as $sd_danger) {
             foreach ($sd_danger->sd_risk as $sd_risk) {
                 $RB = $RB+$sd_risk->total();
@@ -141,11 +150,13 @@ class SingleDocument extends Model
                             $human = 0;
                             break;
                     }
+                    $count++;
                     $RR = $RR + ($tech + $orga + $human);
                 }
             }
         }
-        return ($RB - $RR) / $RB;
+        if ($count === 0) return "NaN";
+        else return ($RB - $RR) / $RB;
     }
 
     public function moyenneRR()
@@ -242,7 +253,8 @@ class SingleDocument extends Model
                 }
             }
         }
-        return $end / $count;
+        if ($count === 0) return "NaN";
+        else return $end / $count;
     }
 
 

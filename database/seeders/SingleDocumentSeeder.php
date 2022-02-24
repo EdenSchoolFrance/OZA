@@ -37,6 +37,7 @@ class SingleDocumentSeeder extends Seeder
         $sd->lastname = "Doe";
         $sd->email = "jhon.doe@bicoop.fr";
         $sd->phone = "0614875412";
+        $sd->function = "Responsable DU";
         $sd->client()->associate($client);
         $sd->save();
         $sd->users()->attach($admin);

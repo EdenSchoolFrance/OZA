@@ -461,7 +461,7 @@
                                 <label for="nameRisk">Mesure</label>
                             </div>
                             <div class="right">
-                                <input type="email" class="form-control" id="nameRisk" placeholder="Décrire la mesure mise en place">
+                                <input type="text" class="form-control" id="nameRisk" placeholder="Décrire la mesure mise en place">
                             </div>
                         </div>
                     </div>

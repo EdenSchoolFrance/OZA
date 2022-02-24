@@ -52,7 +52,7 @@
                     </div>
                     @if (Auth::user()->hasPermission(['ADMIN', 'EXPERT', 'MANAGER']))
                         <div class="row">
-                            <a href="{{ route('pdf.view', [$single_document->id]) }}" class="btn btn-success">Générer un DU à date</a>
+                            <a data-modal=".modal--pdf" class="btn btn-success">Générer un DU à date</a>
                         </div>
                     @endif
                 </div>
@@ -83,32 +83,44 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="td_resp">Prénom NOM</td>
-                            <td class="td_work">Réalisation initiale du DU</td>
-                            <td class="td_date">10/10/2021</td>
-                            <td class="td_actions">
-                                <a href="#" class="text-color-green">Télécharger le PDF</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="td_resp">Prénom NOM</td>
-                            <td class="td_work">Modification du risque accident</td>
-                            <td class="td_date">15/10/2021</td>
-                            <td class="td_actions">
-                                <a href="#" class="text-color-green">Télécharger le PDF</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="td_resp">Prénom NOM</td>
-                            <td class="td_work">Modification du risque xxx</td>
-                            <td class="td_date">21/10/2021</td>
-                            <td class="td_actions">
-                                <a href="#" class="text-color-green">Télécharger le PDF</a>
-                            </td>
-                        </tr>
+                        @foreach($single_document->histories as $historie)
+                            <tr>
+                                <td class="td_resp">{{ $single_document->firstname }} {{ $single_document->lastname }}</td>
+                                <td class="td_work">{{ $historie->work }}</td>
+                                <td class="td_date">{{ date("d/m/Y",strtotime($historie->date)) }}</td>
+                                <td class="td_actions">
+                                    <a href="#" class="text-color-green">Télécharger le PDF</a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
+            </div>
+        </div>
+        <div class="modal modal--pdf">
+            <div class="modal-dialog">
+                <form class="modal-content" action="{{ route('history.store', [$single_document->id]) }}" method="POST">
+                    @csrf
+                    <div class="modal-header">
+                        <p class="title">Génération d'un DU à date</p>
+                        <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="line">
+                                <div class="left">
+                                    <label for="work">Travail réalisé</label>
+                                </div>
+                                <div class="right">
+                                    <input type="text" class="form-control" id="work" placeholder="Indiquer le travail réalisé" name="work_history">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-success">Générer un DU à date</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
