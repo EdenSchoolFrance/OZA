@@ -323,6 +323,9 @@ html {
                 }
                 &--action-plan{
                     font-size: 13px;
+                    .restraint{
+                        min-width: 300px;
+                    }
                 }
                 &--action{
                     font-size: 13px;
