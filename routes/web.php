@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\UserController as UserAdminController;
 use App\Http\Controllers\Client\UserController as UserClientController;
 use App\Http\Controllers\Admin\ClientController as ClientAdminController;
 use App\Http\Controllers\Admin\SingleDocumentController as SingleDocumentAdminController;
+use App\Http\Controllers\Admin\WorkUnitController as WorkUnitAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -97,6 +98,16 @@ Route::middleware(['auth'])->group(function() {
                 Route::post('/single_document/unarchive', [SingleDocumentAdminController::class, 'unarchive'])->name('admin.single_document.unarchive');
                 Route::post('/client/{client}/single_document/{single_document}/delete', [SingleDocumentAdminController::class, 'delete'])->name('admin.single_document.delete');
 
+
+                Route::get('/help/workunit', [WorkUnitAdminController::class, 'index'])->name('admin.help.workunit');
+                Route::get('/help/workunit/create', [WorkUnitAdminController::class, 'create'])->name('admin.help.workunit.create');
+                Route::get('/help/workunit/edit', [WorkUnitAdminController::class, 'edit'])->name('admin.help.workunit.edit');
+
+                Route::post('/help/workunit/store', [WorkUnitAdminController::class, 'store'])->name('admin.help.workunit.store');
+                Route::post('/help/workunit/update', [WorkUnitAdminController::class, 'update'])->name('admin.help.workunit.update');
+
+
+                Route::get('/help/danger', [WorkUnitAdminController::class, 'index'])->name('admin.help.danger');
 
                 Route::get('/{doc_name}/edit', [DocController::class, 'edit'])->name('documentation.edit');
 
