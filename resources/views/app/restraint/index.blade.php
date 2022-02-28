@@ -11,7 +11,7 @@
                             <th class="th_danger">Danger</th>
                             <th class="th_risk">Risque</th>
                             <th class="th_evaluation">Évaluations</th>
-                            <th class="th_restraint">Mesure proposée</th>
+                            <th class="th_restraint">Mesure(s) proposée(s)</th>
                             @if (!Auth::user()->hasPermission('READER'))
                                 <th class="th_actions"></th>
                             @endif
@@ -85,13 +85,16 @@
                     @csrf
                     <input type="hidden" name="id_restraint" value="">
                     <div class="modal-header">
-                        <p class="title">Ajouter une nouvelle mesure déjà mise en place</p>
+                        <p class="title">Mettre à jour la mesure</p>
                         <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
                     </div>
                     <div class="modal-body">
                         <div class="row">
-                            <div class="line title-restraint">
-                                {{--Line for title, set in restraint.js--}}
+                            <div class="line">
+                                <div class="left title-restraint">
+                                    {{--Line for title, set in restraint.js--}}
+                                </div>
+                                <div class="right"></div>
                             </div>
                         </div>
                         <div class="row">
@@ -111,7 +114,7 @@
                         <div class="row">
                             <div class="line">
                                 <div class="left">
-                                    <h3>Evaluation de la mesure décrite</h3>
+                                    <h3>Nouvelle évaluation de la mesure décrite</h3>
                                 </div>
                                 <div class="right">
                                 </div>
@@ -240,7 +243,7 @@
                                 <div class="left">
                                 </div>
                                 <div class="right">
-                                    <button type="submit" class="btn btn-success">Ajouter</button>
+                                    <button type="submit" class="btn btn-success">Mettre à jour</button>
                                 </div>
                             </div>
                         </div>

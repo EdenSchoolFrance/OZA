@@ -257,6 +257,10 @@ html {
                         background-color: $danger;
                         color: $white;
                     }
+                    &.grey{
+                        background-color: $white_dark;
+                        color: $dark;
+                    }
                 }
             }
             &.table{
@@ -323,12 +327,21 @@ html {
                 }
                 &--action-plan{
                     font-size: 13px;
+                    .restraint{
+                        min-width: 300px;
+                    }
                 }
                 &--action{
                     font-size: 13px;
+                    .max-width{
+                        min-width: 250px;
+                    }
                 }
                 &--risk-pro{
                     font-size: 12px;
+                }
+                &--risk-post{
+                    font-size: 13px;
                 }
             }
         }

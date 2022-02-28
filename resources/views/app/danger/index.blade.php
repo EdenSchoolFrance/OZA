@@ -37,198 +37,76 @@
                     <button type="button" data-value="false" class="btn btn-radio btn-check-work-unit {{ $danger->exist === 0 ? 'btn-radio--checked' : '' }}">Non</button>
                 </form>
             </div>
-
-            <div class="card card--risk  {{ $danger->ut_all ? 'card--risk-stretchable card--risk-opened' : '' }}">
-                <div class="card-header">
-                    <h2 class="title">UT <span>TOUS</span></h2>
-                    <form class="form-risk-checked" action="{{ route('danger.validated', [$single_document->id, $danger->id, 'all']) }}" method="post">
-                        @csrf
-                        <input type="hidden" name="checked" value=""/>
-                        <p>Ce danger concerne quelqu’un au sein de l’entreprise ?</p>
-                        <button type="button" data-value="true" class="btn btn-radio btn-check-work-unit {{ $danger->ut_all === 1 && $danger->exist === 1 ? 'btn-radio--checked' : '' }}" {{ $danger->exist === 0 || $danger->exist === null ? 'disabled' : ''}}>Oui</button>
-                        <button type="button" data-value="false" class="btn btn-radio btn-check-work-unit {{ $danger->ut_all === 0 && $danger->exist === 1 ? 'btn-radio--checked' : '' }}" {{ $danger->exist === 0 || $danger->exist === null ? 'disabled' : ''}}>Non</button>
-                    </form>
-                </div>
-                <div class="card-body" style="{{ $danger->ut_all ? 'display: block' : '' }}">
-                    @if(count($risks_all) > 0)
-                        <table class="table table--risks">
-                            <thead>
-                                <tr>
-                                    <th class="th_risk">Risque identifié</th>
-                                    <th class="th_rb">RB</th>
-                                    <th class="th_rr">RR</th>
-                                    <th class="th_existing_measure">Mesure existante</th>
-                                    <th class="th_proposed_measure">Mesure proposée</th>
-                                    <th class="th_criticality">Criticité</th>
-                                    <th class="th_actions"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($risks_all as $risk)
+            @if($danger->exist === 1)
+                <div class="card card--risk  {{ $danger->ut_all ? 'card--risk-stretchable card--risk-opened' : '' }}">
+                    <div class="card-header">
+                        <h2 class="title">UT <span>TOUS</span></h2>
+                        <form class="form-risk-checked" action="{{ route('danger.validated', [$single_document->id, $danger->id, 'all']) }}" method="post">
+                            @csrf
+                            <input type="hidden" name="checked" value=""/>
+                            <p>Ce danger concerne quelqu’un au sein de cette unité de travail</p>
+                            <button type="button" data-value="true" class="btn btn-radio btn-check-work-unit {{ $danger->ut_all === 1 && $danger->exist === 1 ? 'btn-radio--checked' : '' }}" {{ $danger->exist === 0 || $danger->exist === null ? 'disabled' : ''}}>Oui</button>
+                            <button type="button" data-value="false" class="btn btn-radio btn-check-work-unit {{ $danger->ut_all === 0 && $danger->exist === 1 ? 'btn-radio--checked' : '' }}" {{ $danger->exist === 0 || $danger->exist === null ? 'disabled' : ''}}>Non</button>
+                        </form>
+                    </div>
+                    <div class="card-body" style="{{ $danger->ut_all ? 'display: block' : '' }}">
+                        @if(count($risks_all) > 0)
+                            <table class="table table--risks">
+                                <thead>
                                     <tr>
-                                        <td class="td_risk">
-                                            <p>{{ $risk->name }}</p>
-                                        </td>
-                                        <td class="td_rb">
-                                            <button class="btn {{ $risk->color($risk->total()) }} btn-small">{{ $risk->total() }}</button>
-                                            <div class="list list--text">
-                                                <div class="list-row">
-                                                    <p class="list-point list-point--text">F</p>
-                                                    <p class="list-text">{{ $risk->translate($risk->frequency,'frequency') }}</p>
-                                                </div>
-                                                <div class="list-row">
-                                                    <p class="list-point list-point--text">P</p>
-                                                    <p class="list-text">{{ $risk->translate($risk->probability,'probability') }}</p>
-                                                </div>
-                                                <div class="list-row">
-                                                    <p class="list-point list-point--text">GP</p>
-                                                    <p class="list-text">{{ $risk->translate($risk->gravity,'gravity') }}</p>
-                                                </div>
-                                                <div class="list-row">
-                                                    <p class="list-point list-point--text">ID</p>
-                                                    <p class="list-text">{{ $risk->translate($risk->impact,'impact') }}</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="td_rr">
-                                            <button class="btn {{ $risk->color($risk->totalRR($risk->sd_restraints)) }} btn-small">{{ $risk->totalRR($risk->sd_restraints) }}</button>
-                                        </td>
-                                        <td class="td_existing_measure">
-                                            <div class="list">
-                                                @foreach($risk->sd_restraints as $restraint)
-                                                    @if($restraint->exist === 1)
-                                                        <div class="list-row">
-                                                            <div class="list-point list-point--success"></div>
-                                                            <p class="list-text">{{ $restraint->name }}</p>
-                                                        </div>
-                                                    @endif
-                                                @endforeach
-                                            </div>
-                                        </td>
-                                        <td class="td_proposed_measure">
-                                            <div class="list">
-                                                @foreach($risk->sd_restraints as $restraint)
-                                                    @if($restraint->exist === 0)
-                                                        <div class="list-row">
-                                                            <div class="list-point list-point--yellow"></div>
-                                                            <p class="list-text">{{ $restraint->name }}</p>
-                                                        </div>
-                                                    @endif
-                                                @endforeach
-                                            </div>
-                                        </td>
-                                        <td class="td_criticality">
-                                            <button type="button" class="btn btn-success btn-small">Acceptable</button>
-                                        </td>
-                                        <td class="td_actions">
-                                            <div>
-                                                <a href="{{ route('risk.edit', [$single_document->id, $danger->id, $risk->id]) }}"><i class="far fa-edit"></i></a>
-                                                <a data-modal=".modal--duplicate" data-risk="{{ $risk->id }}" ><i class="far fa-clone"></i></a>
-                                                <a data-modal=".modal--delete" data-risk="{{ $risk->id }}"><i class="fas fa-trash"></i></a>
-                                            </div>
-                                        </td>
+                                        <th class="th_risk">Risque identifié</th>
+                                        <th class="th_rb">RB</th>
+                                        <th class="th_rr">RR</th>
+                                        <th class="th_existing_measure">Mesure existante</th>
+                                        <th class="th_proposed_measure">Mesure proposée</th>
+                                        <th class="th_criticality">Criticité</th>
+                                        <th class="th_actions"></th>
                                     </tr>
-                                @endforeach
-
-                            </tbody>
-                            <tfoot>
-                                <tr class="no-data">
-                                    <td colspan="7"><a href="{{route('risk.create', [$single_document->id, $danger->id, 'all'])}}" class="btn btn-inv btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN RISQUE</a></td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    @else
-                        <table class="table table--accident">
-                            <tbody>
-                            <tr class="no-data">
-                                <td colspan="7">Aucun risque identifié</td>
-                            </tr>
-                            </tbody>
-                            <tfoot>
-                            <tr class="no-data">
-                                <td colspan="7"><a href="{{ route('risk.create', [$single_document->id, $danger->id, 'all']) }}" class="btn btn-inv btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN RISQUE</a></td>
-                            </tr>
-                            </tfoot>
-                        </table>
-                    @endif
-                </div>
-            </div>
-
-            @foreach($single_document->work_unit as $sd_work_unit)
-                @if($sd_work_unit->validated === 1)
-                    <div class="card card--risk {{ $sd_work_unit->sd_danger($danger->id) ? ($sd_work_unit->sd_danger($danger->id)->pivot->exist ? 'card--risk-stretchable card--risk-opened' : '') : '' }}" >
-                        <div class="card-header">
-                            <h2 class="title">UT <span>{{ $sd_work_unit->name }}</span></h2>
-                            <form class="form-risk-checked" action="{{ route('danger.validated', [$single_document->id, $danger->id, $sd_work_unit->id]) }}" method="post">
-                                @csrf
-
-                                <input type="hidden" name="checked" value=""/>
-                                <p>Ce danger concerne quelqu’un au sein de l’entreprise ?</p>
-
-                                <button type="button" data-value="true" class="btn btn-radio btn-check-work-unit {{ $sd_work_unit->sd_danger($danger->id) ? ($sd_work_unit->sd_danger($danger->id)->pivot->exist === 1 && $danger->exist === 1 ? 'btn-radio--checked' : '') : '' }}" {{ $danger->exist === 0 || $danger->exist === null ? 'disabled' : ''}}>Oui</button>
-                                <button type="button" data-value="false" class="btn btn-radio btn-check-work-unit {{ $sd_work_unit->sd_danger($danger->id) ? ($sd_work_unit->sd_danger($danger->id)->pivot->exist === 0 && $danger->exist === 1 ? 'btn-radio--checked' : '') : '' }}" {{ $danger->exist === 0 || $danger->exist === null ? 'disabled' : ''}}>Non</button>
-                            </form>
-                        </div>
-                        @if($sd_work_unit->sd_danger($danger->id) && $sd_work_unit->sd_danger($danger->id)->pivot->exist)
-                            <div class="card-body" style="{{ $sd_work_unit->sd_danger($danger->id) ? ($sd_work_unit->sd_danger($danger->id)->pivot->exist ? 'display : block;' : '') : '' }}">
-                                @if(count($sd_work_unit->sd_danger_risks($danger->id)) > 0)
-                                    <table class="table table--risks">
-                                        <thead>
+                                </thead>
+                                <tbody>
+                                    @foreach($risks_all as $risk)
                                         <tr>
-                                            <th class="th_risk">Risque identifié</th>
-                                            <th class="th_rb">RB</th>
-                                            <th class="th_rr">RR</th>
-                                            <th class="th_existing_measure">Mesure existante</th>
-                                            <th class="th_proposed_measure">Mesure proposée</th>
-                                            <th class="th_criticality">Criticité</th>
-                                            <th class="th_actions"></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-
-                                        @foreach($sd_work_unit->sd_risks as $risk)
-                                            <tr>
-                                                <td class="td_risk">
-                                                    <p>{{ $risk->name }}</p>
-                                                </td>
-                                                <td class="td_rb">
-                                                    <button class="btn {{ $risk->color($risk->total()) }} btn-small">{{ $risk->total() }}</button>
-                                                    <div class="list list--text">
-                                                        <div class="list-row">
-                                                            <p class="list-point list-point--text">F</p>
-                                                            <p class="list-text">{{ $risk->translate($risk->frequency,'frequency') }}</p>
-                                                        </div>
-                                                        <div class="list-row">
-                                                            <p class="list-point list-point--text">P</p>
-                                                            <p class="list-text">{{ $risk->translate($risk->probability,'probability') }}</p>
-                                                        </div>
-                                                        <div class="list-row">
-                                                            <p class="list-point list-point--text">GP</p>
-                                                            <p class="list-text">{{ $risk->translate($risk->gravity,'gravity') }}</p>
-                                                        </div>
-                                                        <div class="list-row">
-                                                            <p class="list-point list-point--text">ID</p>
-                                                            <p class="list-text">{{ $risk->translate($risk->impact,'impact') }}</p>
-                                                        </div>
+                                            <td class="td_risk">
+                                                <p>{{ $risk->name }}</p>
+                                            </td>
+                                            <td class="td_rb">
+                                                <button class="btn {{ $risk->color($risk->total()) }} btn-small">{{ $risk->total() }}</button>
+                                                <div class="list list--text">
+                                                    <div class="list-row">
+                                                        <p class="list-point list-point--text">F</p>
+                                                        <p class="list-text">{{ $risk->translate($risk->frequency,'frequency') }}</p>
                                                     </div>
-                                                </td>
-                                                <td class="td_rr">
-                                                    <button class="btn {{ $risk->color($risk->totalRR($risk->sd_restraints)) }} btn-small">{{ $risk->totalRR($risk->sd_restraints) }}</button>
-                                                </td>
-                                                <td class="td_existing_measure">
-                                                    <div class="list">
-                                                        @foreach($risk->sd_restraints as $restraint)
-                                                            @if($restraint->exist === 1)
-                                                                <div class="list-row">
-                                                                    <div class="list-point list-point--success"></div>
-                                                                    <p class="list-text">{{ $restraint->name }}</p>
-                                                                </div>
-                                                            @endif
-                                                        @endforeach
+                                                    <div class="list-row">
+                                                        <p class="list-point list-point--text">P</p>
+                                                        <p class="list-text">{{ $risk->translate($risk->probability,'probability') }}</p>
                                                     </div>
-                                                </td>
-                                                <td class="td_proposed_measure">
-                                                    <div class="list">
+                                                    <div class="list-row">
+                                                        <p class="list-point list-point--text">GP</p>
+                                                        <p class="list-text">{{ $risk->translate($risk->gravity,'gravity') }}</p>
+                                                    </div>
+                                                    <div class="list-row">
+                                                        <p class="list-point list-point--text">ID</p>
+                                                        <p class="list-text">{{ $risk->translate($risk->impact,'impact') }}</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="td_rr">
+                                                <button class="btn {{ $risk->color($risk->totalRR($risk->sd_restraints)) }} btn-small">{{ $risk->totalRR($risk->sd_restraints) }}</button>
+                                            </td>
+                                            <td class="td_existing_measure">
+                                                <div class="list">
+                                                    @foreach($risk->sd_restraints as $restraint)
+                                                        @if($restraint->exist === 1)
+                                                            <div class="list-row">
+                                                                <div class="list-point list-point--success"></div>
+                                                                <p class="list-text">{{ $restraint->name }}</p>
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+                                                </div>
+                                            </td>
+                                            <td class="td_proposed_measure">
+                                                <div class="list">
                                                     @foreach($risk->sd_restraints as $restraint)
                                                         @if($restraint->exist === 0)
                                                             <div class="list-row">
@@ -237,54 +115,177 @@
                                                             </div>
                                                         @endif
                                                     @endforeach
-                                                    </div>
-                                                </td>
-                                                <td class="td_criticality">
-                                                    <button type="button" class="btn {{ $risk->color(($risk->totalRR($risk->sd_restraints)+$risk->total())) }} btn-small">{{ $risk->colorTotal(($risk->totalRR($risk->sd_restraints)+$risk->total())) }}</button>
-                                                </td>
-                                                <td class="td_actions">
-                                                    <div>
-                                                        <a href="{{ route('risk.edit', [$single_document->id, $danger->id, $risk->id]) }}"><i class="far fa-edit"></i></a>
-                                                        <a data-modal=".modal--duplicate" data-risk="{{ $risk->id }}" ><i class="far fa-clone"></i></a>
-                                                        <a data-modal=".modal--delete" data-risk="{{ $risk->id }}"><i class="fas fa-trash"></i></a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
-                                        <tfoot>
-                                        <tr class="no-data">
-                                            <td colspan="7"><a href="{{ route('risk.create', [$single_document->id, $danger->id, $sd_work_unit->id]) }}" class="btn btn-inv btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN RISQUE</a></td>
+                                                </div>
+                                            </td>
+                                            <td class="td_criticality">
+                                                <button type="button" class="btn {{ $risk->color(($risk->totalRR($risk->sd_restraints))) }} btn-small">{{ $risk->colorTotal(($risk->totalRR($risk->sd_restraints))) }}</button>
+                                            </td>
+                                            <td class="td_actions">
+                                                <div>
+                                                    <a href="{{ route('risk.edit', [$single_document->id, $danger->id, $risk->id]) }}"><i class="far fa-edit"></i></a>
+                                                    <a data-modal=".modal--duplicate" data-risk="{{ $risk->id }}" ><i class="far fa-clone"></i></a>
+                                                    <a data-modal=".modal--delete" data-risk="{{ $risk->id }}"><i class="fas fa-trash"></i></a>
+                                                </div>
+                                            </td>
                                         </tr>
-                                        </tfoot>
-                                    </table>
-                                @else
-                                    <table class="table table--accident">
-                                        <tbody>
-                                        <tr class="no-data">
-                                            <td colspan="7">Aucun risque identifié</td>
-                                        </tr>
-                                        </tbody>
-                                        <tfoot>
-                                        <tr class="no-data">
-                                            <td colspan="7"><a href="{{ route('risk.create', [$single_document->id, $danger->id, $sd_work_unit->id]) }}" class="btn btn-inv btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN RISQUE</a></td>
-                                        </tr>
-                                        </tfoot>
-                                    </table>
-                                @endif
-                            </div>
+                                    @endforeach
+
+                                </tbody>
+                                <tfoot>
+                                    <tr class="no-data">
+                                        <td colspan="7"><a href="{{route('risk.create', [$single_document->id, $danger->id, 'all'])}}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN RISQUE</a></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        @else
+                            <table class="table table--accident">
+                                <tbody>
+                                <tr class="no-data">
+                                    <td colspan="7">Aucun risque identifié</td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr class="no-data">
+                                    <td colspan="7"><a href="{{ route('risk.create', [$single_document->id, $danger->id, 'all']) }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN RISQUE</a></td>
+                                </tr>
+                                </tfoot>
+                            </table>
                         @endif
                     </div>
-                @else
-                    <div class="card card--risk">
-                        <div class="card-header">
-                            <h2 class="title">UT <span>{{ $sd_work_unit->name }}</span></h2>
-                            <p class="message-alert">Attention unité de travail non validée</p>
-                        </div>
-                    </div>
-                @endif
+                </div>
 
-            @endforeach
+                @foreach($single_document->work_unit as $sd_work_unit)
+                    @if($sd_work_unit->validated === 1)
+                        <div class="card card--risk {{ $sd_work_unit->sd_danger($danger->id) ? ($sd_work_unit->sd_danger($danger->id)->pivot->exist ? 'card--risk-stretchable card--risk-opened' : '') : '' }}" >
+                            <div class="card-header">
+                                <h2 class="title">UT <span>{{ $sd_work_unit->name }}</span></h2>
+                                <form class="form-risk-checked" action="{{ route('danger.validated', [$single_document->id, $danger->id, $sd_work_unit->id]) }}" method="post">
+                                    @csrf
+
+                                    <input type="hidden" name="checked" value=""/>
+                                    <p>Ce danger concerne quelqu’un au sein de cette unité de travail</p>
+
+                                    <button type="button" data-value="true" class="btn btn-radio btn-check-work-unit {{ $sd_work_unit->sd_danger($danger->id) ? ($sd_work_unit->sd_danger($danger->id)->pivot->exist === 1 && $danger->exist === 1 ? 'btn-radio--checked' : '') : '' }}" {{ $danger->exist === 0 || $danger->exist === null ? 'disabled' : ''}}>Oui</button>
+                                    <button type="button" data-value="false" class="btn btn-radio btn-check-work-unit {{ $sd_work_unit->sd_danger($danger->id) ? ($sd_work_unit->sd_danger($danger->id)->pivot->exist === 0 && $danger->exist === 1 ? 'btn-radio--checked' : '') : '' }}" {{ $danger->exist === 0 || $danger->exist === null ? 'disabled' : ''}}>Non</button>
+                                </form>
+                            </div>
+                            @if($sd_work_unit->sd_danger($danger->id) && $sd_work_unit->sd_danger($danger->id)->pivot->exist)
+                                <div class="card-body" style="{{ $sd_work_unit->sd_danger($danger->id) ? ($sd_work_unit->sd_danger($danger->id)->pivot->exist ? 'display : block;' : '') : '' }}">
+                                    @if(count($sd_work_unit->sd_danger_risks($danger->id)) > 0)
+                                        <table class="table table--risks">
+                                            <thead>
+                                            <tr>
+                                                <th class="th_risk">Risque identifié</th>
+                                                <th class="th_rb">RB</th>
+                                                <th class="th_rr">RR</th>
+                                                <th class="th_existing_measure">Mesure existante</th>
+                                                <th class="th_proposed_measure">Mesure proposée</th>
+                                                <th class="th_criticality">Criticité</th>
+                                                <th class="th_actions"></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            @foreach($sd_work_unit->sd_risks as $risk)
+                                                <tr>
+                                                    <td class="td_risk">
+                                                        <p>{{ $risk->name }}</p>
+                                                    </td>
+                                                    <td class="td_rb">
+                                                        <button class="btn {{ $risk->color($risk->total()) }} btn-small">{{ $risk->total() }}</button>
+                                                        <div class="list list--text">
+                                                            <div class="list-row">
+                                                                <p class="list-point list-point--text">F</p>
+                                                                <p class="list-text">{{ $risk->translate($risk->frequency,'frequency') }}</p>
+                                                            </div>
+                                                            <div class="list-row">
+                                                                <p class="list-point list-point--text">P</p>
+                                                                <p class="list-text">{{ $risk->translate($risk->probability,'probability') }}</p>
+                                                            </div>
+                                                            <div class="list-row">
+                                                                <p class="list-point list-point--text">GP</p>
+                                                                <p class="list-text">{{ $risk->translate($risk->gravity,'gravity') }}</p>
+                                                            </div>
+                                                            <div class="list-row">
+                                                                <p class="list-point list-point--text">ID</p>
+                                                                <p class="list-text">{{ $risk->translate($risk->impact,'impact') }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="td_rr">
+                                                        <button class="btn {{ $risk->color($risk->totalRR($risk->sd_restraints)) }} btn-small">{{ $risk->totalRR($risk->sd_restraints) }}</button>
+                                                    </td>
+                                                    <td class="td_existing_measure">
+                                                        <div class="list">
+                                                            @foreach($risk->sd_restraints as $restraint)
+                                                                @if($restraint->exist === 1)
+                                                                    <div class="list-row">
+                                                                        <div class="list-point list-point--success"></div>
+                                                                        <p class="list-text">{{ $restraint->name }}</p>
+                                                                    </div>
+                                                                @endif
+                                                            @endforeach
+                                                        </div>
+                                                    </td>
+                                                    <td class="td_proposed_measure">
+                                                        <div class="list">
+                                                        @foreach($risk->sd_restraints as $restraint)
+                                                            @if($restraint->exist === 0)
+                                                                <div class="list-row">
+                                                                    <div class="list-point list-point--yellow"></div>
+                                                                    <p class="list-text">{{ $restraint->name }}</p>
+                                                                </div>
+                                                            @endif
+                                                        @endforeach
+                                                        </div>
+                                                    </td>
+                                                    <td class="td_criticality">
+                                                        <button type="button" class="btn {{ $risk->color(($risk->totalRR($risk->sd_restraints))) }} btn-small">{{ $risk->colorTotal(($risk->totalRR($risk->sd_restraints))) }}</button>
+                                                    </td>
+                                                    <td class="td_actions">
+                                                        <div>
+                                                            <a href="{{ route('risk.edit', [$single_document->id, $danger->id, $risk->id]) }}"><i class="far fa-edit"></i></a>
+                                                            <a data-modal=".modal--duplicate" data-risk="{{ $risk->id }}" ><i class="far fa-clone"></i></a>
+                                                            <a data-modal=".modal--delete" data-risk="{{ $risk->id }}"><i class="fas fa-trash"></i></a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                            <tfoot>
+                                            <tr class="no-data">
+                                                <td colspan="7"><a href="{{ route('risk.create', [$single_document->id, $danger->id, $sd_work_unit->id]) }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN RISQUE</a></td>
+                                            </tr>
+                                            </tfoot>
+                                        </table>
+                                    @else
+                                        <table class="table table--accident">
+                                            <tbody>
+                                            <tr class="no-data">
+                                                <td colspan="7">Aucun risque identifié</td>
+                                            </tr>
+                                            </tbody>
+                                            <tfoot>
+                                            <tr class="no-data">
+                                                <td colspan="7"><a href="{{ route('risk.create', [$single_document->id, $danger->id, $sd_work_unit->id]) }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN RISQUE</a></td>
+                                            </tr>
+                                            </tfoot>
+                                        </table>
+                                    @endif
+                                </div>
+                            @endif
+                        </div>
+                    @else
+                        <div class="card card--risk">
+                            <div class="card-header">
+                                <h2 class="title">UT <span>{{ $sd_work_unit->name }}</span></h2>
+                                <p class="message-alert">Attention unité de travail non validée</p>
+                            </div>
+                        </div>
+                    @endif
+
+                @endforeach
+            @endif
 
             <div class="card card--submit card--submit-danger">
                 <form class="card-body" action="{{ route('danger.store', [$single_document->id, $danger->id]) }}" method="post">

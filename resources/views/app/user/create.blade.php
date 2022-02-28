@@ -20,7 +20,7 @@
                             </div>
                             <div class="right">
                                 <select class="form-control" name="user" id="user">
-                                    <option value="">Sélectioner un utilisateur</option>
+                                    <option value="">Sélectionner un utilisateur</option>
                                     @foreach ($users as $user)
                                         <option value="{{ $user->id }}" {{ old('user') == $user->id ? 'selected' : '' }}>{{ $user->firstname }} {{ $user->lastname }} - {{ $user->role->name }}</option>
                                     @endforeach
@@ -44,13 +44,6 @@
                 @csrf
                 <input type="hidden" name="type" value="create">
                 <div class="row">
-                    <div class="line">
-                        <div class="left">
-                        </div>
-                        <div class="right">
-                            <h3 class="text-color-yellow">Ajouter un contributeur</h3>
-                        </div>
-                    </div>
                     <div class="line">
                         <div class="left">
                             <label for="firstname">Prénom</label>
@@ -78,7 +71,7 @@
                             <label for="post">Poste</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="post" id="post" class="form-control @error('post') invalid @enderror" placeholder="Indiquer le post" value="{{ old('post') }}">
+                            <input type="text" name="post" id="post" class="form-control @error('post') invalid @enderror" placeholder="Indiquer le poste" value="{{ old('post') }}">
                             @error('post')
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
@@ -108,11 +101,11 @@
                     </div>
                     <div class="line">
                         <div class="left">
-                            <label for="role">Role</label>
+                            <label for="role">Rôle</label>
                         </div>
                         <div class="right">
                             <select class="form-control" name="role" id="role">
-                                <option value="">Sélectioner un role</option>
+                                <option value="">Sélectionner un rôle</option>
                                 @foreach ($roles as $role)
                                     <option value="{{ $role->id }}" {{ old('role') == $role->id ? 'selected' : '' }}>{{ $role->name }}</option>
                                 @endforeach

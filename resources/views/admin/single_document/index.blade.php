@@ -7,7 +7,7 @@
                 <form class="row row--filter" method="GET">
                     <input type="text" class="form-control" name="filter[client]" id="input_filter_client" value="{{ isset($filter) ? $filter['client'] : '' }}" placeholder="Recherche par nom de client">
                     <select id="input_filter_status" class="form-control" name="filter[status]">
-                        <option value="">Status</option>
+                        <option value="">Statut</option>
                         <option value="in_progress" {{ isset($filter) && ($filter['status'] == 'in_progress') ? 'selected' : '' }}>En cours</option>
                         <option value="archived" {{ isset($filter) && ($filter['status'] == 'archived') ? 'selected' : '' }}>Archivé</option>
                     </select>
@@ -18,7 +18,7 @@
                         <tr>
                             <th class="th_name th-sort">Intitulé du DU</th>
                             <th class="th_client th-sort">Client</th>
-                            <th class="th_access th-sort">Status</th>
+                            <th class="th_access th-sort">Statut</th>
                             <th class="th_actions"></th>
                         </tr>
                     </thead>

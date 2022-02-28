@@ -149,6 +149,8 @@ return [
         'gender'                => 'genre',
         'hour'                  => 'heure',
         'last_name'             => 'nom',
+        'firstname'             => 'prénom',
+        'lastname'              => 'nom',
         'minute'                => 'minute',
         'mobile'                => 'portable',
         'month'                 => 'mois',
@@ -169,10 +171,19 @@ return [
         'city_zipcode'          => 'code postal',
         'frequency'             => 'fréquence',
         'probability'           => 'probabilité',
-        'gravity'               => 'gravité potentiel',
+        'gravity'               => 'gravité potentielle',
         'impact'                => 'impact différencié',
         'name_risk'             => 'nom du risque',
         'restraint'             => 'mesure',
-        'restraint_proposed'    => 'mesure proposée'
+        'restraint_proposed'    => 'mesure proposée',
+        'post'                  => 'poste',
+        'role'                  => 'rôle',
+        'name_enterprise'       => 'nom de l\'entreprise',
+        'client_number'         => 'n° client',
+        'adress'                => 'adresse',
+        'sector'                => 'secteur d\'activité',
+        'activity_description'  => 'activité(s) détaillée(s)',
+        'premise_description'   => 'description des locaux',
+        'number_employee'       => 'nombre de salarié(s)'
     ]
 ];

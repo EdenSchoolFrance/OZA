@@ -127,7 +127,7 @@
             <div class="row row--radio">
                 <div class="line">
                     <div class="left">
-                        <label>Gravité potentiel</label>
+                        <label>Gravité potentielle</label>
                     </div>
                     <div class="right">
                         <div class="radio-bar-content">

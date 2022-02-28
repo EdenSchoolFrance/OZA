@@ -34,7 +34,7 @@ class RestraintController extends Controller
         $single_document = $this->checkSingleDocument($id);
 
         $page = [
-            'title' => 'Mesures archivée',
+            'title' => 'Mesures archivées',
             'infos' => null,
             'sidebar' => 'action_plan',
             'sub_sidebar' => 'restraint_archived'
@@ -48,6 +48,7 @@ class RestraintController extends Controller
 
         return view('app.restraint.archived', compact('page', 'single_document', 'sd_risks'));
     }
+
 
     public function store(Request $request,$id){
 

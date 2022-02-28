@@ -120,6 +120,7 @@ on('.btn-add-activity', 'click', (el, e) => {
         let li = document.createElement('li');
         li.innerHTML = content;
         el.closest('li').before(li);
+        li.querySelector('textarea').focus();
     }
 });
 

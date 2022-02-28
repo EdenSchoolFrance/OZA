@@ -10,8 +10,8 @@
                             <th class="th_work_unit">Unité de travail</th>
                             <th class="th_danger">Danger</th>
                             <th class="th_risk">Risque</th>
-                            <th class="th_restraint">Mesure proposée</th>
-                            <th class="th_date">Réalisée le</th>
+                            <th class="th_restraint">Mesure(s) proposée(s)</th>
+                            <th class="th_date">Date de réalisation</th>
                         </tr>
                     </thead>
                     <tbody>

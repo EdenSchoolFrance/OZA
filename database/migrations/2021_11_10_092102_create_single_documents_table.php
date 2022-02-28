@@ -28,6 +28,7 @@ class CreateSingleDocumentsTable extends Migration
             $table->string('lastname')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
+            $table->string("function")->nullable();
             $table->boolean('archived')->default(0);
 
             $table->foreignUuid('client_id');

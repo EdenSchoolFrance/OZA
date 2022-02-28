@@ -33,7 +33,7 @@
             <img src="{{ public_path('storage/logo/'.$single_document->client->id.'.'.$single_document->client->image_type) }}" alt="">
 
             <div class="info-single_document">
-                <p>Document Unique élaboré le : <span class="bold">16 Décembre 2021</span></p>
+                <p>Document Unique élaboré le : <span class="bold">{{ date("d F Y") }}</span></p>
                 <p>Version : <span class="bold">2</span></p>
             </div>
         </div>
@@ -86,10 +86,10 @@
             <h1 class="head-title">SOMMAIRE</h1>
             <ul class="list-item">
                 <li>
-                    <p><span class="line">Actualisation du Document Unique <a href="#" class="link">4</a></span></p>
+                    <p><span class="line">ACTUALISATION DU DOCUMENT UNIQUE<a href="#" class="link">4</a></span></p>
                 </li>
                 <li>
-                    <p><span class="line">Présentation détaillée de la structure et des unités de travail <a href="#" class="link">4</a></span></p>
+                    <p><span class="line">PRÉSENTATION DÉTAILLÉE DE LA STRUCTURE ET DES UNITÉS DE TAVAIL<a href="#" class="link">4</a></span></p>
                 </li>
                 <li>
                     <p><span class="line">TABLEAU DE BORD DE L’EVALUATION DES RISQUES <a href="#" class="link">4</a></span></p>
@@ -205,13 +205,15 @@
                         <td class="theader">Visa</td>
                     </tr>
                     {{--Data line--}}
-                    <tr>
-                        <td>Prénom NOM du responsable DU</td>
-                        <td>Fonction</td>
-                        <td></td>
-                        <td>Réalisation initiale du DU et de son annexe "Facteurs de risques…"</td>
-                        <td>16/12/2021</td>
-                    </tr>
+                    @foreach($single_document->histories as $historie)
+                        <tr>
+                            <td>{{ $single_document->firstname }} {{ $single_document->lastname }}</td>
+                            <td>{{ $single_document->function }}</td>
+                            <td></td>
+                            <td>{{ $historie->work }}</td>
+                            <td>{{ date("d/m/Y", strtotime($historie->date)) }}</td>
+                        </tr>
+                    @endforeach
                     {{--No data line--}}
                     <tr>
                         <td><div></div></td>
@@ -237,7 +239,7 @@
             <table class="table table--info-gen">
                 <thead>
                     <tr>
-                        <th colspan="2" class="yellow">INFORMATION GÉNÉRALES</th>
+                        <th colspan="2" class="yellow">INFORMATIONS GÉNÉRALES</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -245,32 +247,32 @@
                         <td colspan="2">
                             Ce Document Unique, y compris ses annexes, est protégé par les droits d'auteur. Il a été réalisé avec l'assistance d'un IPRP de la
                             société OZA, sous l'entière responsabilité et selon les indications de : <br>
-                            Mr {{ $single_document->firstname }} {{ $single_document->lastname }}, Fonction (responsable du DU)
+                            Mr {{ $single_document->firstname }} {{ $single_document->lastname }}, {{ $single_document->function }}
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            Pour : <br>
+                            <span class="bold">Pour : </span><br>
                             {{ $single_document->client->name }}
                         </td>
                         <td>
-                            Téléphone : <br>
+                            <span class="bold">Téléphone : </span><br>
                             {{ $single_document->phone }}
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            Adresse postale : <br>
+                            <span class="bold">Adresse postale : </span><br>
                             {{ $single_document->adress }}
                         </td>
                         <td>
-                            Email : <br>
+                            <span class="bold">Email : </span><br>
                             {{ $single_document->email }}
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
-                            Nombre de salariés inscrits sur le registre du personnel au moment de la rédaction du Document Unique : <br>
+                            <span class="bold">Nombre de salariés inscrits sur le registre du personnel au moment de la rédaction du Document Unique : </span><br>
                             {{ $single_document->work_unit->pluck('number_employee')->sum() }} salaries <br>
 
                         </td>
@@ -333,18 +335,18 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td colspan="2">{{ $sd_work_unit->name }}</td>
+                        <td colspan="2"><span class="bold">{{ $sd_work_unit->name }}</span></td>
                     </tr>
                         <tr>
                             <td>
                                 <p>
-                                    <span class="bold">Principales activités : </span><br>
+                                    <span class="bold">Principale(s) activité(s) : </span><br>
                                     @foreach($sd_work_unit->activities as $activitie)
                                     - {{ $activitie->text }} <br>
                                     @endforeach
                                 </p>
                                 <p>
-                                    <span class="bold">Machines : </span><br>
+                                    <span class="bold">Machine(s) : </span><br>
                                     @foreach($item_mat->sub_items as $sub_item)
                                         @if(count($sd_work_unit->items->where('sub_item_id', $sub_item->id)) !== 0)
                                             {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }},
@@ -354,7 +356,7 @@
                             </td>
                             <td>
                                 <p>
-                                    <span class="bold">Véhicules : </span><br>
+                                    <span class="bold">Véhicule(s) : </span><br>
                                     @foreach($item_veh->sub_items as $sub_item)
                                         @if(count($sd_work_unit->items->where('sub_item_id', $sub_item->id)) !== 0)
                                             {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }},
@@ -362,7 +364,7 @@
                                     @endforeach
                                 </p>
                                 <p>
-                                    <span class="bold">Engins et appareils de manutention mécanique : </span><br>
+                                    <span class="bold">Engin(s) et appareil(s) de manutention mécanique : </span><br>
                                     @foreach($item_eng->sub_items as $sub_item)
                                         @if(count($sd_work_unit->items->where('sub_item_id', $sub_item->id)) !== 0)
                                             {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }},
@@ -388,21 +390,21 @@
                 <tr>
                     <td>
                         <div>
-                            <p>Risque brut moyen</p>
-                            <p class="text-color-green number">15.0</p>
+                            <p class="bold">Risque brut moyen</p>
+                            <p class="{{ $single_document->color($single_document->moyenneRB()) }} number">{{ $single_document->moyenneRB() }}</p>
                             <p>Maxi = 50</p>
                         </div>
                     </td>
                     <td>
                         <div>
-                            <p>Réduction du risque</p>
-                            <p class="text-color-green number">24.7 %</p>
+                            <p class="bold">Réduction du risque</p>
+                            <p class="text-color-green number">{{ $single_document->discountRisk() }} %</p>
                         </div>
                     </td>
                     <td>
                         <div>
-                            <p>Risque résiduel  moyen</p>
-                            <p class="text-color-green number">11.3</p>
+                            <p class="bold">Risque résiduel  moyen</p>
+                            <p class="{{ $single_document->color($single_document->moyenneRR()) }} number">{{ $single_document->moyenneRR() }}</p>
                             <p>Maxi = 50</p>
                         </div>
                     </td>
@@ -432,7 +434,7 @@
     <section class="page">
         <div class="header"></div>
         <div class="body body--notif">
-            <h1 class="head-title">1. PLAN D'ACTION DE RÉDUCTION DES RISQUES</h1>
+            <h1 class="head-title">1. NOTICE EXPLICATIVE DU PLAN D'ACTION DE RÉDUCTION DES RISQUES</h1>
             <p class="bold">Le Plan d’action reprend et présente tous les risques identifiés et évalués dans le chapitre 4 « Evaluation des risques » classés ici selon leur criticité (priorité) dans la colonne « Criticité ».</p>
             <p class="bold">Le Plan d’action reprend et présente également toutes les situations de « non-conformité réglementaire » dans la colonne « Mesures de prévention et de protection proposées », sous le libellé « Obligation réglementaire ».</p>
             <p>
@@ -463,7 +465,7 @@
     <section class="page">
         <div class="header"></div>
         <div class="body">
-            <p>Ce Document Unique, y compris ses annexes, est protégé par les droits d'auteur. Il a été réalisé avec l'assistance d'un IPRP de la société OZA, sous l'entière responsabilité et selon les indications fournies par : <span class="bold">=Mr {{ $single_document->firstname }} {{ $single_document->lastname }}, Fonction</span> </p>
+            <p>Ce Document Unique, y compris ses annexes, est protégé par les droits d'auteur. Il a été réalisé avec l'assistance d'un IPRP de la société OZA, sous l'entière responsabilité et selon les indications fournies par : <span class="bold">=Mr {{ $single_document->firstname }} {{ $single_document->lastname }}, {{ $single_document->function }}</span> </p>
             <table class="table table--action-plan">
                 <tr>
                     <th colspan="9" class="green">1. PLAN D'ACTION</th>
@@ -484,7 +486,7 @@
                     <td class="theader">
                         Criticité = situation actuelle
                     </td>
-                    <td class="theader">
+                    <td class="theader restraint">
                         Mesures de prévention et de protection proposées
                     </td>
                     <td class="theader">
@@ -544,7 +546,241 @@
                 <span class="bold">2. De quoi parle-t-on ?</span><br>
                 <span class="bold">2.1. Définitions</span><br>
                 Le dictionnaire LAROUSSE définit l’<span class="bold">ACCIDENT</span> comme : « un événement fortuit qui a des effets plus ou moins dommageables pour les personnes ou pour les choses ».<br>
-                De fait l’accident est la concrétisation d’un <span class="bold">RISQUE.</span>
+                De fait l’accident est la concrétisation d’un <span class="bold">RISQUE.</span><br>
+            </p>
+        </div>
+        <div class="footer">
+            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="page-num">Page <span></span></p>
+        </div>
+    </section>
+
+    <section class="page">
+        <div class="header"></div>
+        <div class="body body--notif">
+            <h1></h1>
+            <p>
+                <span class="bold">- Sans danger, pas de risque,</span><br>
+                <span class="bold">- Sans exposition au danger, pas de risque,</span><br>
+                <span class="bold">- Sans risque pas d’accident.</span>
+            </p>
+            <p>
+                <span class="bold">EXAMPLE</span><br>
+                <span class="bold">L’accident : </span>Un salarié se coupe à l’index avec une tronçonneuse électroportative en tronçonnant un fer à béton.<br>
+                Dans cet exemple, <br>
+                <span class="bold">- Le danger</span> est constitué par la rotation du disque de la tronçonneuse. <br>
+                <span class="bold">- Le risque</span> est constitué par la probabilité que le disque en rotation entre en contact avec une partie non protégée d’un être humain, en l’occurrence le salarié.<br>
+                On parlera ici de risque de coupure. <br>
+                Ce risque de coupure peut être plus ou moins important. Il variera en fonction de ses deux paramètres constitutifs :<br>
+                <span class="bold">- Le Danger et,</span> <br>
+                <span class="bold">- Le Danger</span> <br>
+                <span class="bold">Le danger</span> ne variera qu’en fonction de peu de paramètres, notamment la vitesse de rotation et l’état du disque.<br>
+                <span class="bold">L’exposition</span> variera en fonction de paramètres plus nombreux, notamment la protection du disque, la protection des doigts de la main, la
+                connaissance du danger par l’utilisateur, la bonne utilisation de la tronçonneuse, la vitesse d’exécution du geste, la vigilance de l’utilisateur, etc. ... <br>
+            </p>
+            <p>
+                <span class="bold">L’EVALUATION</span> est définie dans le dictionnaire LAROUSSE comme « l’action de déterminer la valeur de quelque chose ».<br>
+                L’évaluation des risques consistera donc à déterminer la valeur des risques. Pour cela il faudra identifier et caractériser les dangers, et identifier et
+                caractériser les expositions aux dangers au cours de toutes les activités professionnelles. <br>
+                <span class="bold">L’évaluation des risques consiste à :</span><br>
+                <span class="bold">- Identifier et caractériser les dangers, et</span><br>
+                <span class="bold">- Identifier et caractériser les expositions aux dangers au cours de toutes les activités professionnelles.</span><br>
+                La retranscription de l’évaluation des risques dans le Document Unique doit permettre : <br>
+                - De hiérarchiser les risques, et <br>
+                - L’élaboration d’un plan d’action de réduction des risques. <br>
+            </p>
+            <p>
+                <span class="bold">2.2. La place de l’évaluation des risques dans la démarche de prévention</span> <br>
+                L'article L. 4121-2 du code du travail énonce les 9 principes qui doivent guider la démarche de prévention de tout employeur :<br>
+                1° Eviter les risques ; <br>
+                2° <span class="bold">Evaluer les risques</span> qui ne peuvent pas être évités ; <br>
+                3° Combattre les risques à la source ; <br>
+            </p>
+
+        </div>
+        <div class="footer">
+            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="page-num">Page <span></span></p>
+        </div>
+    </section>
+
+    <section class="page">
+        <div class="header"></div>
+        <div class="body body--notif">
+            <h1></h1>
+            <p>
+                4° Adapter le travail à l'homme, en particulier en ce qui concerne la conception des postes de travail ainsi que le choix des équipements de travail et
+                des méthodes de travail et de production, en vue notamment de limiter le travail monotone et le travail cadencé et de réduire les effets de ceux-ci sur
+                la santé ;<br>
+                5° Tenir compte de l'état d'évolution de la technique ; <br>
+                6° Remplacer ce qui est dangereux par ce qui n'est pas dangereux ou par ce qui est moins dangereux ;<br>
+                7° Planifier la prévention en y intégrant, dans un ensemble cohérent, la technique, l'organisation du travail, les conditions de travail, les relations
+                sociales et l'influence des facteurs ambiants, notamment les risques liés au harcèlement moral et au harcèlement sexuel, tels qu'ils sont définis aux
+                articles L. 1152-1 et L. 1153-1 ; ainsi que ceux liés aux agissements sexistes définis à l'article L. 1142-2-1<br>
+                8° Prendre des mesures de protection collective en leur donnant la priorité sur les mesures de protection individuelle ;<br>
+                9° Donner les instructions appropriées aux travailleurs. <br>
+            </p>
+            <p>
+                <span class="bold">
+                    L’évaluation des risques est donc bien placée en tête des principes de prévention par le législateur. C’est elle qui apporte la cohésion
+                    nécessaire à la 4ème partie (santé et sécurité au travail) du Code du travail, par sa retranscription dans le « DOCUMENT UNIQUE ».
+                </span> <br>
+                Le DU centralise en effet toutes les activités professionnelles, leurs dangers, leurs risques et leurs réglementations spécifiques, notamment (non
+                exhaustif) : <br>
+                - les facteurs de risque professionnels, <br>
+                - les risques d’interférences encadrés par les réglementation « Plan de Prévention » et « PPSPS », <br>
+                - les risques liés aux opérations de chargement et de déchargement encadrés par le « Protocole de sécurité transport »,<br>
+                - les risques liés aux installations, matériels et outils encadrés par la réglementation des « vérifications périodiques »,<br>
+                Le DU intègre également toutes les mesures de prévention en place dans l’entreprise. <br>
+                Le DU intègre finalement le Plan d’action de réduction des risques ou « programme de prévention ». <br>
+            </p>
+            <p>
+                <span class="bold">2.3. L’annexe d'évaluation de l'exposition aux FACTEURS DE RISQUES PROFESSIONNELS du Document Unique</span><br>
+                L'employeur doit consigner en annexe du document unique (R. 4121-1-1) : <br>
+                - L'évaluation des expositions individuelles aux facteurs de risques professionnels définis réglementairement. Il peut pour cela utiliser le cas échéant
+                un accord collectif étendu ou un référentiel professionnel de branche homologué. <br>
+                - La proportion de salariés exposés au-delà des seuils fixés pour les facteurs de risques professionnels. Cette proportion est actualisée en tant que
+                de besoin lors de la mise à jour du Document Unique. <br>
+            </p>
+        </div>
+        <div class="footer">
+            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="page-num">Page <span></span></p>
+        </div>
+    </section>
+
+    <section class="page">
+        <div class="header"></div>
+        <div class="body body--notif">
+            <h1></h1>
+            <p>
+                <span class="bold">2.3.1. Que sont les FACTEURS DE RISQUES PROFESSIONNELS</span> <br>
+                Le Code du travail (articles L4161-1 et D4161-1-1) et le Décret n° 2017-1769 du 27/12/2017 définissent les facteurs de risques professionnels comme
+                les facteurs liés à : <br>
+                - Manutentions manuelles de charges, <br>
+                - Postures pénibles définies comme positions forcées des articulations, <br>
+                - Vibrations mécaniques, <br>
+                - Agents chimiques dangereux, <br>
+                - Activités exercées en milieu hyperbare, <br>
+                - Températures extrêmes, <br>
+                - Bruit, <br>
+                - Travail de nuit, <br>
+                - Travail en équipes successives alternantes, <br>
+                - Travail répétitif caractérisé par la réalisation de travaux impliquant l’exécution de mouvements répétés, sollicitant tout ou partie
+                du membre supérieur, à une fréquence élevée et sous cadence contrainte. <br>
+                Depuis le 01/10/2017, seuls les 6 derniers facteurs de risques ci-dessus sont associés à des seuils définis réglementairement (art. D4161-2).<br>
+                L'exposition aux 10 facteurs de risques professionnels est donc évaluée dans votre Document Unique, mais seule l'exposition aux 6 facteurs de
+                risques associés à un seuil est évaluée précisément par rapport aux seuils réglementaires dans l'annexe d'évaluation de l'exposition aux FACTEURS
+                DE RISQUES PROFESSIONNELS. <br>
+            </p>
+            <p>
+                <span class="bold">2.3.2. De la Prévention à la Compensation, le Compte Professionnel de Prévention (C2P)</span><br>
+                Quand les mesures de prévention s’avèrent insuffisantes, certains risques peuvent occasionner ; lorsque l’exposition se situe au-delà de certains
+                seuils, eux aussi définis réglementairement ; des dommages durables, identifiables et irréversibles sur sa santé des salariés.<br>
+                Le législateur a donc instauré au bénéfice des salariés concernés un mécanisme de compensation : le Compte Professionnel de Prévention en
+                vigueur depuis le 01/10/2017, qui est géré par la Caisse Nationale d’Assurance Maladie. <br>
+                C’est elle qui informe les salariés de l’ouverture de leur compte et des points qu’ils ont acquis. <br>
+            </p>
+            <p>
+                <span class="bold">2.3.2.1. Acquisition de points par les salariés exposés</span> <br>
+                Les points accumulés sur le compte pourront être utilisés par les salariés pour financer : <br>
+                - Une formation permettant de s’orienter vers un emploi non exposé ou moins exposé à des facteurs de risque professionnels,<br>
+                - Un complément de rémunération lors d’un passage à temps partiel, <br>
+                - Un départ anticipé à la retraite. <br>
+            </p>
+
+        </div>
+        <div class="footer">
+            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="page-num">Page <span></span></p>
+        </div>
+    </section>
+
+    <section class="page">
+        <div class="header"></div>
+        <div class="body body--notif">
+            <h1></h1>
+            <p>
+                <span class="bold">2.3.2.2. Déclaration annuelle des expositions aux facteurs de risques professionnels</span><br>
+                - Pour les travailleurs titulaires d'un contrat de travail qui demeure en cours à la fin de l'année civile, l'employeur déclare au terme de chaque année
+                civile et au plus tard au titre de la paie du mois de décembre, le ou les facteurs de risques professionnels auxquels ils ont été exposés au-delà des
+                seuils fixés réglementairement au cours de l'année civile considérée. <br>
+                - Pour les travailleurs titulaires d'un contrat de travail d'une durée supérieure ou égale à un mois qui s'achève au cours de l'année civile, l'employeur
+                déclare au plus tard lors de la paie effectuée au titre de la fin de ce contrat de travail le ou les facteurs de risques professionnels auxquels ils ont été
+                exposés au cours de la période considérée. <br>
+                Dans les deux cas, l’employeur effectue sa déclaration auprès des caisses de Sécurité Sociale dans le cadre de la DSN.<br>
+                L'employeur peut rectifier sa déclaration des facteurs de risques professionnels : <br>
+                - Jusqu'au 5 ou au 15 avril de l'année qui suit celle au titre de laquelle elle a été effectuée, selon l'échéance du paiement des cotisations qui lui est
+                applicable ; <br>
+                - Dans les cas où la rectification est faite en faveur du salarié, pendant une période de trois ans.<br>
+            </p>
+            <p>
+                <span class="bold"> 3. Comment évaluer les risques et comment rédiger le Document Unique et son annexe des risques professionnels dans une logique de prévention ?</span><br>
+                <span class="bold">3.1. Qui fait quoi</span><br>
+                S’il n’impose aucune forme pour rédiger le Document Unique, le législateur impose à l’employeur d’utiliser une (des) personne(s) compétente(s) afin
+                d’effectuer l’évaluation des risques et sa retranscription dans le Document Unique. <br>
+                En effet, depuis le 1er juillet 2012 le Code du travail fait obligation à tout employeur de « désigner un ou plusieurs salariés compétents pour s'occuper
+                des activités de protection et de prévention des risques professionnels de l'entreprise ». <br>
+                Ce ou ces salarié(s) dispose(nt) donc des compétences nécessaires à la définition d’une méthode et d’un outil d’évaluation des risques adaptés à
+                l’entreprise. <br>
+                Cependant, « si les compétences dans l'entreprise ne permettent pas d'organiser ces activités, l'employeur peut faire appel, aux intervenants en
+                prévention des risques professionnels (IPRP) appartenant au service de santé au travail auquel il adhère ou enregistrés auprès de la DIRECCTE.
+                L’employeur peut en outre faire appel à d’autres ressources extérieures (CARSAT, INRS, OPPBTP, ANACT, à des consultants...) ».<br>
+            </p>
+            <p>
+                <span class="bold">3.2. Quelles méthodes et quels outils ?</span>
+                Le législateur n’impose aucune méthode ni aucune forme pour l’évaluation des risques et la rédaction du Document Unique. Le second alinéa de
+                l’article R4121-1 du code du travail précise néanmoins : « Cette évaluation comporte un inventaire des risques identifiés dans chaque unité de travail
+                de l'entreprise ou de l'établissement, y compris ceux liés aux ambiances thermiques ». <br>
+                Les composants incontournables du Document Unique sont : <br>
+                - Un inventaire des risques identifiés dans chaque unité de travail de l'entreprise ou de l'établissement, notamment :<br>
+                - - L'évaluation des risques liés aux ambiances thermiques. <br>
+                - - L'évaluation des risques psychosociaux. <br>
+                - - L'évaluation des risques d'exposition aux agents chimiques à réaliser selon les prescriptions de l'article R.4412-6 du Code du travail. <br>
+                - - L’évaluation des risques d’exposition aux champs électromagnétiques selon les critères précisés (art R. 4453-8). <br>
+            </p>
+        </div>
+        <div class="footer">
+            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="page-num">Page <span></span></p>
+        </div>
+    </section>
+
+    <section class="page">
+        <div class="header"></div>
+        <div class="body body--notif">
+            <h1></h1>
+            <p>
+                - Une hiérarchisation des risques identifiés et évalués dans l'inventaire. <br>
+                - Un plan d'action de réduction des risques identifiés, évalués et hiérarchisés. <br>
+                - L'annexe d'évaluation de l'exposition aux risques professionnels. <br>
+                - Le Document Relatif à la Prévention Contre l'Explosion. <br>
+            </p>
+            <p>
+                <span class="bold">3.2.1. Comment rédiger son Document Unique ?</span> <br>
+                Le mode opératoire d'évaluation des risques est présenté dans la "Notice explicative de l'évaluation des risques" ci-contre.<br>
+            </p>
+            <p>
+                <span class="bold">3.2.2. Comment rédiger son annexe d'évaluation de l'exposition aux facteurs de risques professionnels</span><br>
+                Sur ce sujet le législateur a posé un cadre précis puisque pour 6 des 10 facteurs de risques, il existe un seuil d’exposition qui déclenche le mécanisme
+                de réparation. <br>
+            </p>
+            <p>
+                <span class="bold">3.2.3. Réalisation du diagnostic « d'exposition aux facteurs de risques professionnels »</span><br>
+                On évaluera pour chaque poste de travail, l'exposition à chacun des 6 facteurs de risque de l'article D.4161-2 du Code du travail ; au regard des
+                conditions habituelles de travail caractérisant le poste ; appréciées après application des mesures de protection collective et individuelle existantes.<br>
+                Si pour tous les postes de l'entreprise, dans le cas le plus défavorable, l'exposition ne dépasse pas le seuil d'un des 6 facteurs de risque, on
+                considèrera qu'aucun salarié n'est exposé au delà d'un seuil de pénibilité. <br>
+                Si un au moins des seuils est dépassé à un poste de travail, on évaluera l’exposition de tous les salariés titulaires d'un contrat de travail d'une durée
+                d'au moins un mois, quelle que soit la nature du contrat (CDI, CDD, intérim, apprentissage, etc.) qui ont travaillé à ce poste au cours de l'année, au
+                prorata de leur temps de travail annuel à ce poste. <br>
+                L'exposition de chaque salarié sera apprécié au regard des conditions habituelles de travail caractérisant le poste ou l'ensemble des postes occupé(s)
+                en moyenne sur l'année entière ; que le contrat de travail porte sur l'année entière ou non. Dans ce dernier cas, l'exposition sera extrapolée en
+                moyenne sur l'année complète. <br>
+                L'exposition d’un salarié à temps partiel sera exactement équivalente à celle d’un salarié à temps plein (en pratique, un salarié à temps partiel
+                n’atteindra probablement pas les seuils annuels). <br>
+                Les périodes d'absence seront prises en compte dès lors qu'elles remettent manifestement en cause l'exposition au-delà des seuils caractérisant le ou
+                les postes occupés. <br>
             </p>
         </div>
         <div class="footer">
@@ -558,14 +794,131 @@
         <div class="body body--notif">
             <h1 class="head-title">3. NOTICE EXPLICATIVE DE L'EVALUATION DES RISQUES</h1>
             <p>
-                <span class="bold">Postes de travail à « RISQUE PARTICULIER »</span><br>
-                Tous les postes de travail comportant au moins une situation de travail dont le risque brut est >= à 24 font partie de la « Liste des postes de travail à risque particulier ».<br>
-                Tous les salariés embauchés pour travailler à l’un de ces postes, en contrat de travail précaire (autre que CDI), doivent bénéficier d’une formation renforcée à la sécurité, ainsi que d’un accueil et d’une formation adaptés dans l’entreprise.<br>
-                Liste établie par l’employeur, après avis du médecin du travail, du CHSCT ou, à défaut, des représentants du personnel, s’il en existe.<br>
-                Liste tenue à la disposition des agents de contrôle des agents de l’inspection du travail (amende de 10 000 € euros en cas de non présentation art).
+                <span class="bold">EVALUATION DES RISQUES PROFESSIONNELS :</span> De gauche à droite du tableau d'évaluation des risques
             </p>
             <p>
-                <span class="bold">Le risque résiduel correspond donc à : ((F + P) x G) x pondération de (T + O + H)</span><br>
+                <span class="bold">Unité de travail</span> <br>
+                L'article R.4121-1 du Code du travail "DOCUMENT UNIQUE D'EVALUATION DES RISQUES" précise : <br>
+                "Cette évaluation comporte un inventaire des risques identifiés dans chaque unité de travail de l'entreprise ou de l'établissement".<br>
+                Le législateur n'a pas défini "l'unité de travail". Nous l'entendons ici comme un poste de travail, un métier ou une activité.<br>
+                <span class="bold">Les unités de travail sont détaillées dans la partie "Présentation de la structure" à partir de la page 5 de ce Document Unique.</span>
+            </p>
+            <p>
+                <span class="bold">DANGER et dommages potentiels à la personne</span> <br>
+                Le danger est la propriété intrinsèque d'un agent (physique, chimique, biologique) susceptible d'avoir un effet nuisible sur l'Homme. Plus le potentiel de
+                nuisance est élevé, plus les conséquences sur l'Homme sont importantes. On parlera des conséquences sur la santé de l'Homme (santé physique et
+                santé mentale). La liste des dangers considérés dans ce Document Unique est présente à la fin de ce chapitre.<br>
+                Nous listons ici tous les dangers potentiellement présents sur les lieux de travail et leurs conséquences potentielles.<br>
+            </p>
+            <p>
+                <span class="bold">RISQUE, phase de travail modes et caractéristiques de l'exposition (outil, matériel, produit, situation, opération, fréquence, durée)</span><br>
+                Nous décrirons ici l'activité professionnelle réelle, en fonctionnement normal et en marche dégradée, en détaillant chaque phase de travail, et pour
+                chacune d'elles, les modes et les caractéristiques de l'exposition.
+            </p>
+            <p>
+                <span class="bold">Fréquence d'exposition</span><br>
+                La fréquence d'exposition est évaluée selon une échelle à 5 niveaux : <br>
+                - <span class="bold">"Moins de 1 fois par an"</span> correspond à une exposition extrêmement rare de moins de une fois par an, soit "1" dans la formule de calcul.<br>
+                - <span class="bold">"An"</span> correspond à une exposition rare de une à plusieurs fois par an, soit "2" dans la formule de calcul.<br>
+                - <span class="bold">"Mois"</span> correspond à une exposition peu fréquente de une à plusieurs fois par mois, soit "3" dans la formule de calcul.<br>
+                - <span class="bold">"Semaine"</span> correspond à une exposition fréquente de une à plusieurs fois par semaine, soit "4" dans la formule de calcul.<br>
+                - <span class="bold">"Jour"</span> correspond à une exposition très fréquente, de une à plusieurs fois par jour, soit "5" dans la formule de calcul.<br>
+            </p>
+        </div>
+        <div class="footer">
+            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="page-num">Page <span></span></p>
+        </div>
+    </section>
+
+    <section class="page">
+        <div class="header"></div>
+        <div class="body body--notif">
+            <h1></h1>
+            <p>
+                <span class="bold">Probabilité</span> <br>
+                La probabilité de survenue d'un accident ou d'une atteinte à la santé doit être également évaluée, car la fréquence d'exposition à un danger n'est pas
+                le seul paramètre qui influence la survenue d'un accident ou d'une atteinte à la santé.
+            </p>
+            <p>
+                <span class="bold">Par exemple,</span> une personne emprunte plusieurs fois par jour un escalier en se tenant à la rampe. La fréquence d'exposition est maximale, mais cela
+                ne signifie pas que cette personne aura un accident chaque jour dans cet escalier. La probabilité qu'elle chute dans cet escalier est "faible" ou "très
+                faible". <br>
+                La probabilité d'occurrence est évaluée selon une échelle à 5 niveaux : <br>
+                - <span class="bold">"très faible"</span> = 0,5 # <span class="bold">"faible"</span> = 2 # <span class="bold">"non faible"</span> = 3 # <span class="bold">"élevée"</span> = 4 # <span class="bold">"très élevée"</span> = 5.<br>
+                Les indices de fréquence et de probabilité permettent de définir une <span class="bold">"classe d'exposition"</span> comme suit : fréquence + probabilité = classe d'exposition
+                La "classe d'exposition" varie de 1,5 à 10. <br>
+            </p>
+            <p>
+                <span class="bold">Gravité potentielle</span> <br>
+                La gravité potentielle des conséquences de l'exposition à un danger est évaluée selon une échelle à 5 niveaux :<br>
+                - <span class="bold">"Impact faible"</span> correspond à une exposition sans conséquence sur la santé physique et mentale de la personne exposée.<br>
+                - <span class="bold">"ASA"</span> correspond à un <span class="bold">A</span>ccident ou à une maladie professionnelle <span class="bold">S</span>ans <span class="bold">A</span>rrêt de travail. <br>
+                - <span class="bold">"AAA"</span> correspond à un <span class="bold">A</span>ccident ou à une maladie professionnelle <span class="bold">A</span>vec <span class="bold">A</span>rrêt de travail, sans IPP (Incapacité Permanente Partielle*).<br>
+                - <span class="bold">"IPP"</span> correspond à un accident ou à une maladie professionnelle avec arrêt de travail et avec IPP (<span class="bold">I</span>ncapacité <span class="bold">P</span>ermanente <span class="bold">P</span>artielle*).<br>
+                - <span class="bold">"Décès"</span> correspond à au moins une maladie professionnelle avec Incapacité Permanente Totale ou au moins un décès.<br>
+                * L'IPP est constatée lorsqu'il persiste des séquelles de l'accident du travail, alors que le salarié est déclaré apte.<br>
+                Dans la formule de calcul, ces 5 niveaux sont côtés de la façon suivante : <br>
+                "Impact faible" = 1 # "ASA" = 2 # "AAA" = 3 # "IPP" = 4 # "Décès" = 5 <br>
+            </p>
+            <p>
+                <span class="bold">Impact différencié F / H</span> <br>
+                Les lettres "F" pour Femme, ou "H" pour Homme sont utilisées pour identifier le cas échéant le sexe pour lequel la gravité est potentiellement la plus
+                importante ; lorsqu'elle n'est pas égale pour les deux sexes (non concerné = "non"). <br>
+                L'évaluation de l'impact différencié de l'exposition aux risques en fonction du sexe est en effet une exigence réglementaire. <br>
+            </p>
+        </div>
+        <div class="footer">
+            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="page-num">Page <span></span></p>
+        </div>
+    </section>
+
+    <section class="page">
+        <div class="header"></div>
+        <div class="body body--notif">
+            <h1></h1>
+            <p>
+                <span class="bold">Risque brut</span> <br>
+                Le risque brut correspond au niveau de risque évalué sans prendre en considération les mesures de prévention et de protection existantes.<br>
+                Le risque brut correspond au produit de la classe d'exposition par la gravité (classe d'exposition x gravité).<br>
+                Le risque brut varie de 1,5 à 50. <br>
+            </p>
+            <p>
+                <span class="bold">Postes de travail à "RISQUE PARTICULIER"</span><br>
+                Tous les postes de travail comportant au moins une situation de travail dont le risque brut est >= à 24 font partie de la "Liste des postes de travail à
+                risque particulier".<br>
+                Tous les salariés embauchés pour travailler à l'un de ces postes, en contrat de travail précaire (autre que CDI), doivent bénéficier d'une formation
+                renforcée à la sécurité, ainsi que d'un accueil et d'une formation adaptés dans l'entreprise. <br>
+                Liste établie par l'employeur, après avis du médecin du travail, du CHSCT ou, à défaut, des représentants du personnel, s'il en existe.<br>
+                Liste tenue à la disposition des agents de contrôle des agents de l'inspection du travail (amende de 10 000 €uros en cas de non présentation art.<br>
+            </p>
+            <p>
+                <span class="bold">Mesures de prévention et de protection existantes</span> <br>
+                Les mesures de prévention et de protection existantes se déclinent en 3 catégories énoncées dans les 9 principes de prévention de l'article L.4121-2
+                du Code du Travail (Loi n° 91-1414 du 31 décembre 1991 art. 1 Journal Officiel du 7 janvier 1992 en vigueur le 31 décembre 1992) :<br>
+                Mesure <span class="bold">Technique, Organisationnelle, Humaine (Information et formation, protection collective et individuelle).</span><br>
+                Dans chaque catégorie, l'efficacité des différentes mesures de prévention existantes est présentée de la façon suivante :<br>
+                - <span class="bold">"très bon"</span> = mesure existante très efficace : Technique = 6 ; Organisationnelle et Humaine = 3.<br>
+                - <span class="bold">"bon"</span> = mesure existante de bonne efficacité : Technique = 4 ; Organisationnelle et Humaine = 2.<br>
+                - <span class="bold">"moy"</span> = mesure existante d'efficacité moyenne : Technique = 2 ; Organisationnelle et Humaine = 1.<br>
+                - <span class="bold">"0"</span> = mesure non existante.<br>
+                Une pondération est appliquée à la somme des mesures de prévention selon les équivalences suivantes :<br>
+                T+H+O = 12, pondération = 0,1 ; 11 0,15 ; 10 = 0,2 ; 9 = 0,25 ; 8 = 0,3 ; 7 = 0,35 ; 6 = 0,4 ; 5 = 0,5 ; 4 = 0,6 ; 3 = 0,7 ; 2 = 0,8 ; 1 = 0,9.<br>
+                <span class="bold">Le risque résiduel correspond donc à : ((F + P) x G) x pondération de (T + O + H)</span>
+            </p>
+        </div>
+        <div class="footer">
+            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="page-num">Page <span></span></p>
+        </div>
+    </section>
+
+    <section class="page">
+        <div class="header"></div>
+        <div class="body body--notif">
+            <h1></h1>
+            <p>
                 <span class="bold">Criticité = situation actuelle</span><br>
                 Le Document Unique doit réglementairement permettre d’identifier les risques les plus critiques afin de planifier leur suppression ou leur réduction.<br>
                 La « criticité » traduit donc les risques résiduels en « état de la situation actuelle » de la façon suivante :<br>
@@ -829,7 +1182,7 @@
                     <td class="theader">
                         RB
                     </td>
-                    <td class="theader">
+                    <td class="theader max-width">
                         Mesures de prévention et de protection proposées
                     </td>
                     <td class="theader">
@@ -847,7 +1200,7 @@
                     <td class="theader">
                         Criticité = situation actuelle
                     </td>
-                    <td class="theader">
+                    <td class="theader max-width">
                         Mesures de prévention et de protection proposées
                     </td>
                 </tr>
@@ -876,6 +1229,65 @@
                                 {{ "* ".$sd_restraint->name }} <br>
                             @endforeach
                         </td>
+                    </tr>
+                @endforeach
+            </table>
+        </div>
+        <div class="footer">
+            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="page-num">Page <span></span></p>
+        </div>
+    </section>
+
+    <section class="page">
+        <div class="header"></div>
+        <div class="body body--notif">
+            <h1 class="head-title">5. liste des postes de travail "a risque particulier" (code du travail art. I.4154-2)</h1>
+            <p>
+                Ce Document Unique, y compris ses annexes, est protégé par les droits d'auteur. Il a été réalisé avec l'assistance d'un IPRP de la société OZA, sous l'entière responsabilité et selon les indications fournies par : Mr {{ $single_document->firstname }} {{ $single_document->lastname }}, {{ $single_document->function }}
+            </p>
+            <p class="text-color-red">
+                <span class="bold">Rappel :</span>  Tous les salariés embauchés pour travailler à l’un de ces postes, en contrat de travail précaire (autre que CDI), doivent bénéficier d’une formation renforcée à la sécurité, ainsi que d’un accueil et d’une formation adaptés dans l’entreprise.
+                Obtenir l’avis du médecin du travail, du CSE ou, à défaut, des représentants du personnel, s’il en existe.<br>
+                Liste tenue à la disposition des agents de contrôle de l’inspection du travail (amende de 10 000 €uros en cas de non présentation : art. L.4741-1).
+            </p>
+            <table class="table table--risk-post">
+                <tr>
+                    <td class="theader grey">
+                        Unité de Travail = poste de travail
+                    </td>
+                    <td class="theader green">
+                        Danger et dommages potentiels à la personne
+                    </td>
+                    <td class="theader green">
+                        Phase de travail
+                        modes et caractéristiques de l'exposition
+                        (outil, matériel, produit, situation, opération, fréquence, durée)
+                    </td>
+                    <td class="theader green">
+                        Fréquence
+                    </td>
+                    <td class="theader green">
+                        Probabilité
+                    </td>
+                    <td class="theader green">
+                        Gravité
+                        potentielle
+                    </td>
+                    <td class="theader grey">
+                        Risque brut
+                    </td>
+
+                </tr>
+                @foreach($sd_risks_posts as $sd_risk)
+                    <tr>
+                        <td class="grey">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "Tous" }}</td>
+                        <td>{{ $sd_risk->sd_danger->danger->name }}</td>
+                        <td>{{ $sd_risk->name }}</td>
+                        <td>{{ $sd_risk->translate($sd_risk->frequency,'frequency') }}</td>
+                        <td>{{ $sd_risk->translate($sd_risk->probability,'probability') }}</td>
+                        <td>{{ $sd_risk->translate($sd_risk->gravity,'gravity') }}</td>
+                        <td class="grey">{{ $sd_risk->total() }}</td>
                     </tr>
                 @endforeach
             </table>
