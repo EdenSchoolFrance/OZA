@@ -794,14 +794,131 @@
         <div class="body body--notif">
             <h1 class="head-title">3. NOTICE EXPLICATIVE DE L'EVALUATION DES RISQUES</h1>
             <p>
-                <span class="bold">Postes de travail à « RISQUE PARTICULIER »</span><br>
-                Tous les postes de travail comportant au moins une situation de travail dont le risque brut est >= à 24 font partie de la « Liste des postes de travail à risque particulier ».<br>
-                Tous les salariés embauchés pour travailler à l’un de ces postes, en contrat de travail précaire (autre que CDI), doivent bénéficier d’une formation renforcée à la sécurité, ainsi que d’un accueil et d’une formation adaptés dans l’entreprise.<br>
-                Liste établie par l’employeur, après avis du médecin du travail, du CHSCT ou, à défaut, des représentants du personnel, s’il en existe.<br>
-                Liste tenue à la disposition des agents de contrôle des agents de l’inspection du travail (amende de 10 000 € euros en cas de non présentation art).
+                <span class="bold">EVALUATION DES RISQUES PROFESSIONNELS :</span> De gauche à droite du tableau d'évaluation des risques
             </p>
             <p>
-                <span class="bold">Le risque résiduel correspond donc à : ((F + P) x G) x pondération de (T + O + H)</span><br>
+                <span class="bold">Unité de travail</span> <br>
+                L'article R.4121-1 du Code du travail "DOCUMENT UNIQUE D'EVALUATION DES RISQUES" précise : <br>
+                "Cette évaluation comporte un inventaire des risques identifiés dans chaque unité de travail de l'entreprise ou de l'établissement".<br>
+                Le législateur n'a pas défini "l'unité de travail". Nous l'entendons ici comme un poste de travail, un métier ou une activité.<br>
+                <span class="bold">Les unités de travail sont détaillées dans la partie "Présentation de la structure" à partir de la page 5 de ce Document Unique.</span>
+            </p>
+            <p>
+                <span class="bold">DANGER et dommages potentiels à la personne</span> <br>
+                Le danger est la propriété intrinsèque d'un agent (physique, chimique, biologique) susceptible d'avoir un effet nuisible sur l'Homme. Plus le potentiel de
+                nuisance est élevé, plus les conséquences sur l'Homme sont importantes. On parlera des conséquences sur la santé de l'Homme (santé physique et
+                santé mentale). La liste des dangers considérés dans ce Document Unique est présente à la fin de ce chapitre.<br>
+                Nous listons ici tous les dangers potentiellement présents sur les lieux de travail et leurs conséquences potentielles.<br>
+            </p>
+            <p>
+                <span class="bold">RISQUE, phase de travail modes et caractéristiques de l'exposition (outil, matériel, produit, situation, opération, fréquence, durée)</span><br>
+                Nous décrirons ici l'activité professionnelle réelle, en fonctionnement normal et en marche dégradée, en détaillant chaque phase de travail, et pour
+                chacune d'elles, les modes et les caractéristiques de l'exposition.
+            </p>
+            <p>
+                <span class="bold">Fréquence d'exposition</span><br>
+                La fréquence d'exposition est évaluée selon une échelle à 5 niveaux : <br>
+                - <span class="bold">"Moins de 1 fois par an"</span> correspond à une exposition extrêmement rare de moins de une fois par an, soit "1" dans la formule de calcul.<br>
+                - <span class="bold">"An"</span> correspond à une exposition rare de une à plusieurs fois par an, soit "2" dans la formule de calcul.<br>
+                - <span class="bold">"Mois"</span> correspond à une exposition peu fréquente de une à plusieurs fois par mois, soit "3" dans la formule de calcul.<br>
+                - <span class="bold">"Semaine"</span> correspond à une exposition fréquente de une à plusieurs fois par semaine, soit "4" dans la formule de calcul.<br>
+                - <span class="bold">"Jour"</span> correspond à une exposition très fréquente, de une à plusieurs fois par jour, soit "5" dans la formule de calcul.<br>
+            </p>
+        </div>
+        <div class="footer">
+            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="page-num">Page <span></span></p>
+        </div>
+    </section>
+
+    <section class="page">
+        <div class="header"></div>
+        <div class="body body--notif">
+            <h1></h1>
+            <p>
+                <span class="bold">Probabilité</span> <br>
+                La probabilité de survenue d'un accident ou d'une atteinte à la santé doit être également évaluée, car la fréquence d'exposition à un danger n'est pas
+                le seul paramètre qui influence la survenue d'un accident ou d'une atteinte à la santé.
+            </p>
+            <p>
+                <span class="bold">Par exemple,</span> une personne emprunte plusieurs fois par jour un escalier en se tenant à la rampe. La fréquence d'exposition est maximale, mais cela
+                ne signifie pas que cette personne aura un accident chaque jour dans cet escalier. La probabilité qu'elle chute dans cet escalier est "faible" ou "très
+                faible". <br>
+                La probabilité d'occurrence est évaluée selon une échelle à 5 niveaux : <br>
+                - <span class="bold">"très faible"</span> = 0,5 # <span class="bold">"faible"</span> = 2 # <span class="bold">"non faible"</span> = 3 # <span class="bold">"élevée"</span> = 4 # <span class="bold">"très élevée"</span> = 5.<br>
+                Les indices de fréquence et de probabilité permettent de définir une <span class="bold">"classe d'exposition"</span> comme suit : fréquence + probabilité = classe d'exposition
+                La "classe d'exposition" varie de 1,5 à 10. <br>
+            </p>
+            <p>
+                <span class="bold">Gravité potentielle</span> <br>
+                La gravité potentielle des conséquences de l'exposition à un danger est évaluée selon une échelle à 5 niveaux :<br>
+                - <span class="bold">"Impact faible"</span> correspond à une exposition sans conséquence sur la santé physique et mentale de la personne exposée.<br>
+                - <span class="bold">"ASA"</span> correspond à un <span class="bold">A</span>ccident ou à une maladie professionnelle <span class="bold">S</span>ans <span class="bold">A</span>rrêt de travail. <br>
+                - <span class="bold">"AAA"</span> correspond à un <span class="bold">A</span>ccident ou à une maladie professionnelle <span class="bold">A</span>vec <span class="bold">A</span>rrêt de travail, sans IPP (Incapacité Permanente Partielle*).<br>
+                - <span class="bold">"IPP"</span> correspond à un accident ou à une maladie professionnelle avec arrêt de travail et avec IPP (<span class="bold">I</span>ncapacité <span class="bold">P</span>ermanente <span class="bold">P</span>artielle*).<br>
+                - <span class="bold">"Décès"</span> correspond à au moins une maladie professionnelle avec Incapacité Permanente Totale ou au moins un décès.<br>
+                * L'IPP est constatée lorsqu'il persiste des séquelles de l'accident du travail, alors que le salarié est déclaré apte.<br>
+                Dans la formule de calcul, ces 5 niveaux sont côtés de la façon suivante : <br>
+                "Impact faible" = 1 # "ASA" = 2 # "AAA" = 3 # "IPP" = 4 # "Décès" = 5 <br>
+            </p>
+            <p>
+                <span class="bold">Impact différencié F / H</span> <br>
+                Les lettres "F" pour Femme, ou "H" pour Homme sont utilisées pour identifier le cas échéant le sexe pour lequel la gravité est potentiellement la plus
+                importante ; lorsqu'elle n'est pas égale pour les deux sexes (non concerné = "non"). <br>
+                L'évaluation de l'impact différencié de l'exposition aux risques en fonction du sexe est en effet une exigence réglementaire. <br>
+            </p>
+        </div>
+        <div class="footer">
+            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="page-num">Page <span></span></p>
+        </div>
+    </section>
+
+    <section class="page">
+        <div class="header"></div>
+        <div class="body body--notif">
+            <h1></h1>
+            <p>
+                <span class="bold">Risque brut</span> <br>
+                Le risque brut correspond au niveau de risque évalué sans prendre en considération les mesures de prévention et de protection existantes.<br>
+                Le risque brut correspond au produit de la classe d'exposition par la gravité (classe d'exposition x gravité).<br>
+                Le risque brut varie de 1,5 à 50. <br>
+            </p>
+            <p>
+                <span class="bold">Postes de travail à "RISQUE PARTICULIER"</span><br>
+                Tous les postes de travail comportant au moins une situation de travail dont le risque brut est >= à 24 font partie de la "Liste des postes de travail à
+                risque particulier".<br>
+                Tous les salariés embauchés pour travailler à l'un de ces postes, en contrat de travail précaire (autre que CDI), doivent bénéficier d'une formation
+                renforcée à la sécurité, ainsi que d'un accueil et d'une formation adaptés dans l'entreprise. <br>
+                Liste établie par l'employeur, après avis du médecin du travail, du CHSCT ou, à défaut, des représentants du personnel, s'il en existe.<br>
+                Liste tenue à la disposition des agents de contrôle des agents de l'inspection du travail (amende de 10 000 €uros en cas de non présentation art.<br>
+            </p>
+            <p>
+                <span class="bold">Mesures de prévention et de protection existantes</span> <br>
+                Les mesures de prévention et de protection existantes se déclinent en 3 catégories énoncées dans les 9 principes de prévention de l'article L.4121-2
+                du Code du Travail (Loi n° 91-1414 du 31 décembre 1991 art. 1 Journal Officiel du 7 janvier 1992 en vigueur le 31 décembre 1992) :<br>
+                Mesure <span class="bold">Technique, Organisationnelle, Humaine (Information et formation, protection collective et individuelle).</span><br>
+                Dans chaque catégorie, l'efficacité des différentes mesures de prévention existantes est présentée de la façon suivante :<br>
+                - <span class="bold">"très bon"</span> = mesure existante très efficace : Technique = 6 ; Organisationnelle et Humaine = 3.<br>
+                - <span class="bold">"bon"</span> = mesure existante de bonne efficacité : Technique = 4 ; Organisationnelle et Humaine = 2.<br>
+                - <span class="bold">"moy"</span> = mesure existante d'efficacité moyenne : Technique = 2 ; Organisationnelle et Humaine = 1.<br>
+                - <span class="bold">"0"</span> = mesure non existante.<br>
+                Une pondération est appliquée à la somme des mesures de prévention selon les équivalences suivantes :<br>
+                T+H+O = 12, pondération = 0,1 ; 11 0,15 ; 10 = 0,2 ; 9 = 0,25 ; 8 = 0,3 ; 7 = 0,35 ; 6 = 0,4 ; 5 = 0,5 ; 4 = 0,6 ; 3 = 0,7 ; 2 = 0,8 ; 1 = 0,9.<br>
+                <span class="bold">Le risque résiduel correspond donc à : ((F + P) x G) x pondération de (T + O + H)</span>
+            </p>
+        </div>
+        <div class="footer">
+            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="page-num">Page <span></span></p>
+        </div>
+    </section>
+
+    <section class="page">
+        <div class="header"></div>
+        <div class="body body--notif">
+            <h1></h1>
+            <p>
                 <span class="bold">Criticité = situation actuelle</span><br>
                 Le Document Unique doit réglementairement permettre d’identifier les risques les plus critiques afin de planifier leur suppression ou leur réduction.<br>
                 La « criticité » traduit donc les risques résiduels en « état de la situation actuelle » de la façon suivante :<br>
@@ -1065,7 +1182,7 @@
                     <td class="theader">
                         RB
                     </td>
-                    <td class="theader">
+                    <td class="theader max-width">
                         Mesures de prévention et de protection proposées
                     </td>
                     <td class="theader">
@@ -1083,7 +1200,7 @@
                     <td class="theader">
                         Criticité = situation actuelle
                     </td>
-                    <td class="theader">
+                    <td class="theader max-width">
                         Mesures de prévention et de protection proposées
                     </td>
                 </tr>
@@ -1112,6 +1229,65 @@
                                 {{ "* ".$sd_restraint->name }} <br>
                             @endforeach
                         </td>
+                    </tr>
+                @endforeach
+            </table>
+        </div>
+        <div class="footer">
+            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="page-num">Page <span></span></p>
+        </div>
+    </section>
+
+    <section class="page">
+        <div class="header"></div>
+        <div class="body body--notif">
+            <h1 class="head-title">5. liste des postes de travail "a risque particulier" (code du travail art. I.4154-2)</h1>
+            <p>
+                Ce Document Unique, y compris ses annexes, est protégé par les droits d'auteur. Il a été réalisé avec l'assistance d'un IPRP de la société OZA, sous l'entière responsabilité et selon les indications fournies par : Mr {{ $single_document->firstname }} {{ $single_document->lastname }}, {{ $single_document->function }}
+            </p>
+            <p class="text-color-red">
+                <span class="bold">Rappel :</span>  Tous les salariés embauchés pour travailler à l’un de ces postes, en contrat de travail précaire (autre que CDI), doivent bénéficier d’une formation renforcée à la sécurité, ainsi que d’un accueil et d’une formation adaptés dans l’entreprise.
+                Obtenir l’avis du médecin du travail, du CSE ou, à défaut, des représentants du personnel, s’il en existe.<br>
+                Liste tenue à la disposition des agents de contrôle de l’inspection du travail (amende de 10 000 €uros en cas de non présentation : art. L.4741-1).
+            </p>
+            <table class="table table--risk-post">
+                <tr>
+                    <td class="theader grey">
+                        Unité de Travail = poste de travail
+                    </td>
+                    <td class="theader green">
+                        Danger et dommages potentiels à la personne
+                    </td>
+                    <td class="theader green">
+                        Phase de travail
+                        modes et caractéristiques de l'exposition
+                        (outil, matériel, produit, situation, opération, fréquence, durée)
+                    </td>
+                    <td class="theader green">
+                        Fréquence
+                    </td>
+                    <td class="theader green">
+                        Probabilité
+                    </td>
+                    <td class="theader green">
+                        Gravité
+                        potentielle
+                    </td>
+                    <td class="theader grey">
+                        Risque brut
+                    </td>
+
+                </tr>
+                @foreach($sd_risks_posts as $sd_risk)
+                    <tr>
+                        <td class="grey">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "Tous" }}</td>
+                        <td>{{ $sd_risk->sd_danger->danger->name }}</td>
+                        <td>{{ $sd_risk->name }}</td>
+                        <td>{{ $sd_risk->translate($sd_risk->frequency,'frequency') }}</td>
+                        <td>{{ $sd_risk->translate($sd_risk->probability,'probability') }}</td>
+                        <td>{{ $sd_risk->translate($sd_risk->gravity,'gravity') }}</td>
+                        <td class="grey">{{ $sd_risk->total() }}</td>
                     </tr>
                 @endforeach
             </table>
