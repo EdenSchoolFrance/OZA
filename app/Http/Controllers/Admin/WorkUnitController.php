@@ -146,13 +146,18 @@ class WorkUnitController extends Controller
 
         $request->validate([
             'name_enterprise' => 'required',
+            'sector_activitie' => 'required',
             'activities' => 'required|array'
         ]);
 
+        $sector = SectorActivitie::find($request->sector_activitie);
+
+        if (!$sector) return back()->with('status','Un problème est survenue')->with('status-type','danger');
 
         $work = new WorkUnit();
         $work->id = uniqid();
         $work->name = $request->name_enterprise;
+        $work->sector_activitie()->associate($sector);
         $work->save();
 
         foreach ($request->activities as $activitie){
