@@ -101,10 +101,10 @@ Route::middleware(['auth'])->group(function() {
 
                 Route::get('/help/workunit', [WorkUnitAdminController::class, 'index'])->name('admin.help.workunit');
                 Route::get('/help/workunit/create', [WorkUnitAdminController::class, 'create'])->name('admin.help.workunit.create');
-                Route::get('/help/workunit/edit', [WorkUnitAdminController::class, 'edit'])->name('admin.help.workunit.edit');
+                Route::get('/help/workunit/{work_unit}/edit', [WorkUnitAdminController::class, 'edit'])->name('admin.help.workunit.edit');
 
                 Route::post('/help/workunit/store', [WorkUnitAdminController::class, 'store'])->name('admin.help.workunit.store');
-                Route::post('/help/workunit/update', [WorkUnitAdminController::class, 'update'])->name('admin.help.workunit.update');
+                Route::post('/help/workunit/{work_unit}/update', [WorkUnitAdminController::class, 'update'])->name('admin.help.workunit.update');
 
 
                 Route::get('/help/danger', [WorkUnitAdminController::class, 'index'])->name('admin.help.danger');

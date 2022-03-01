@@ -5,18 +5,18 @@
         <div class="card card--work_units">
             <div class="card-header">
                 <button class="btn-resize-all btn btn-text"><i class="far fa-minus-square"></i> Afficher/cacher tous les détails</button>
-                <a href="{{ route('work.create', [$single_document->id]) }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UNE UNITE DE TRAVAIL</a>
+                {{--<a href="{{ route('work.create', [$single_document->id]) }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UNE UNITE DE TRAVAIL</a>--}}
             </div>
             <div class="card-body">
                 <table class="table table--work_units table--resizable">
                     <thead>
                         <tr>
                             <th class="th_status"></th>
-                            <th class="th_number_employee"><i class="fas fa-user"></i></th>
                             <th class="th_work_unit">Unité de travail</th>
                             <th class="th_activity">Activité</th>
+                            <th class="th_sector">Secteur d'activité</th>
                             @foreach($items as $item)
-                            <th class="th_{{ $item->id }}">{{ $item->name }}</th>
+                                <th class="th_{{ $item->id }}">{{ $item->name }}</th>
                             @endforeach
                             <th class="th_actions"></th>
                         </tr>
@@ -33,9 +33,7 @@
                             <tr>
                                 <td class="td_status">
                                     <button class="btn-resize-row btn btn-text"><i class="far fa-minus-square"></i></button>
-                                    <i class="fas fa-check {{ $work->validated === 1 ? 'fa-check-checked' : '' }}"></i>
                                 </td>
-                                <td class="td_number_employee">{{ $work->number_employee }}</td>
                                 <td class="td_work_unit">
                                     <div class="table-resizable">
                                         <p>{{ $work->name }}</p>
@@ -43,9 +41,14 @@
                                 </td>
                                 <td class="td_activity">
                                     <div class="table-resizable">
-                                        @foreach($work->activities as $activitie)
+                                        @foreach($work->activitie as $activitie)
                                             <p>► {{ $activitie->text }}</p>
                                         @endforeach
+                                    </div>
+                                </td>
+                                <td class="td_sector">
+                                    <div class="table-resizable">
+                                        {{ $work->sector_activitie->name }}
                                     </div>
                                 </td>
                                 @foreach($items as $item)
@@ -65,8 +68,8 @@
                                     </td>
                                 @endforeach
                                 <td class="td_actions">
-                                    @if (Auth::user()->hasPermission(['ADMIN', 'EXPERT', 'MANAGER', 'EDITOR']))
-                                        <a href="{{ route('work.edit', [$single_document->id, $work->id]) }}">
+                                    @if (Auth::user()->hasPermission(['ADMIN']))
+                                        <a href="{{ route('admin.help.workunit.edit', [$work->id]) }}">
                                             <i class="far fa-edit"></i>
                                         </a>
                                         <button data-modal=".modal--delete" data-id="{{ $work->id }}"><i class="fas fa-trash"></i></button>
@@ -75,7 +78,7 @@
                             </tr>
                         @endforeach
                     </tbody>
-                    <tfoot>
+                    {{--<tfoot>
                         <tr>
                             <td></td>
                             <td colspan="6" class="content">
@@ -92,11 +95,11 @@
                             </td>
                             <td></td>
                         </tr>
-                    </tfoot>
+                    </tfoot>--}}
                 </table>
             </div>
         </div>
-
+        {{--
         @if (Auth::user()->hasPermission(['ADMIN', 'EXPERT', 'MANAGER', 'EDITOR']))
             <div class="modal modal--delete">
                 <div class="modal-dialog">
@@ -117,7 +120,7 @@
                     </form>
                 </div>
             </div>
-        @endif
+        @endif--}}
     </div>
 @endsection
 
