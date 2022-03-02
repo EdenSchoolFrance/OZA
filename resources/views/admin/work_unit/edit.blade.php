@@ -91,7 +91,7 @@
                                                             <li class="list-item">
                                                                 <button type="button" class="btn btn-text btn-small btn-delete" data-value="{{ $child->name }}"><i class="far fa-times-circle"></i></button>
                                                                 <p>{{ $child->name }}</p>
-                                                                <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[]" value="{{ $child->name."|".$child->id }}" data-id="{{ $child->id }}">
+                                                                <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[]" value="{{ $child->name}}" data-id="{{ $child->id }}">
                                                             </li>
                                                     @endforeach
                                                 @endif

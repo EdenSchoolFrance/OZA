@@ -179,19 +179,13 @@ class WorkUnitController extends Controller
 
                 if (isset($request->$name)){
                     foreach ($request->$name as $child_sub_item){
-                        $child_sub_item = explode('|',$child_sub_item);
-                        if (!$child_sub_item[1]) $child_sub_item[1] = "none";
-                        if (ChildSubItem::find($child_sub_item[1])){
-                            $item = ChildSubItem::find($child_sub_item[1]);
-                            $item->work_unit()->save($work);
-                        }else{
-                            $sd_item = new ChildSubItem();
-                            $sd_item->id = uniqid();
-                            $sd_item->name = $child_sub_item[0];
-                            $sd_item->sub_item()->associate($sub_item);
-                            $sd_item->work_unit()->save($work);
-                            $sd_item->save();
-                        }
+                        $sd_item = new ChildSubItem();
+                        $sd_item->id = uniqid();
+                        $sd_item->name = $child_sub_item[0];
+                        $sd_item->sub_item()->associate($sub_item);
+                        $sd_item->work_unit()->save($work);
+                        $sd_item->save();
+
                     }
                 }
             }
