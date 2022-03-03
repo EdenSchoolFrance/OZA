@@ -105,9 +105,11 @@ Route::middleware(['auth'])->group(function() {
 
                 Route::post('/help/workunit/store', [WorkUnitAdminController::class, 'store'])->name('admin.help.workunit.store');
                 Route::post('/help/workunit/{work_unit}/update', [WorkUnitAdminController::class, 'update'])->name('admin.help.workunit.update');
+                Route::post('/help/workunit/delete', [WorkUnitAdminController::class, 'delete'])->name('admin.help.workunit.delete');
 
 
                 Route::get('/help/danger', [WorkUnitAdminController::class, 'index'])->name('admin.help.danger');
+
 
                 Route::get('/{doc_name}/edit', [DocController::class, 'edit'])->name('documentation.edit');
 

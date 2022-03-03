@@ -5,7 +5,7 @@
         <div class="card card--work_units">
             <div class="card-header">
                 <button class="btn-resize-all btn btn-text"><i class="far fa-minus-square"></i> Afficher/cacher tous les détails</button>
-                {{--<a href="{{ route('work.create', [$single_document->id]) }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UNE UNITE DE TRAVAIL</a>--}}
+                <a href="{{ route('admin.help.workunit.create') }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UNE UNITE DE TRAVAIL</a>
             </div>
             <div class="card-body">
                 <table class="table table--work_units table--resizable">
@@ -78,32 +78,13 @@
                             </tr>
                         @endforeach
                     </tbody>
-                    {{--<tfoot>
-                        <tr>
-                            <td></td>
-                            <td colspan="6" class="content">
-                                <div>
-                                    <div>
-                                        <p class="title">TOTAL</p>
-                                        <div>
-                                            <button type="button" class="btn btn-small btn-dark-purple">{{ array_sum($works->pluck('number_employee')->toArray()) }}</button>
-                                            <p>salarié(s) inscrit(s) sur le registre du personnel</p>
-                                        </div>
-                                    </div>
-                                    <a href="{{route('work.create', [$single_document->id])}}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UNE UNITE DE TRAVAIL</a>
-                                </div>
-                            </td>
-                            <td></td>
-                        </tr>
-                    </tfoot>--}}
                 </table>
             </div>
         </div>
-        {{--
-        @if (Auth::user()->hasPermission(['ADMIN', 'EXPERT', 'MANAGER', 'EDITOR']))
+        @if (Auth::user()->hasPermission(['ADMIN']))
             <div class="modal modal--delete">
                 <div class="modal-dialog">
-                    <form class="modal-content" action="{{ route('work.delete', [$single_document->id]) }}" method="POST">
+                    <form class="modal-content" action="{{ route('admin.help.workunit.delete') }}" method="POST">
                         @csrf
                         <input type="hidden" name="id" value="">
                         <div class="modal-header">
@@ -111,7 +92,7 @@
                             <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
                         </div>
                         <div class="modal-body">
-                            <p>Êtes-vous sûr.e du vouloir supprimer cette unité de travail ?</p>
+                            <p>Êtes-vous sûr.e du vouloir supprimer cette unité de travail (complétion) ?</p>
                             <div>
                                 <button type="submit" class="btn btn-yellow">Supprimer</button>
                                 <button type="button" class="btn btn-inv btn-yellow btn-small" data-dismiss="modal"> Annuler</button>
@@ -120,7 +101,7 @@
                     </form>
                 </div>
             </div>
-        @endif--}}
+        @endif
     </div>
 @endsection
 

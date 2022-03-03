@@ -78,12 +78,12 @@ class SingleDocument extends Model
                 $count++;
             }
         }
-        if ($count === 0) return "NaN";
+        if ($count === 0) return "-";
         else return $total / $count;
     }
 
     public function color($number){
-        if ($number === "NaN") return "text-color-green";
+        if ($number === "-") return "text-color-green";
         switch (true) {
             case ($number <= 15) :
                 return 'text-color-green';
@@ -155,7 +155,7 @@ class SingleDocument extends Model
                 }
             }
         }
-        if ($count === 0) return "NaN";
+        if ($count === 0) return "-";
         else return ($RB - $RR) / $RB;
     }
 
@@ -253,7 +253,7 @@ class SingleDocument extends Model
                 }
             }
         }
-        if ($count === 0) return "NaN";
+        if ($count === 0) return "-";
         else return $end / $count;
     }
 

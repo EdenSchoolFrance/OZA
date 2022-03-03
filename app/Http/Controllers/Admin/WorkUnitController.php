@@ -38,31 +38,22 @@ class WorkUnitController extends Controller
         return view('admin.work_unit.index', compact('page','works','items'));
     }
 
-    public function create($id,$id_work = null)
+    public function create()
     {
-        $single_document = $this->checkSingleDocument($id);
 
         $page = [
-            'title' => 'Créer une unité de travail ',
-            'url_back' => route('work.index', [$id]),
-            'text_back' => 'Retour vers les unités de travail',
-            'sidebar' => 'structure',
-            'sub_sidebar' => 'work_units'
+            'title' => 'Créer une unité de travail (complétion) ',
+            'url_back' => route('admin.help.workunit'),
+            'text_back' => 'Retour vers les unités de travail (complétion)',
+            'sidebar' => 'help',
+            'sub_sidebar' => 'work_unit'
         ];
 
         $items = Item::all();
 
-        $sectors = SectorActivitie::all();
+        $sectors_activities = SectorActivitie::all();
 
-        $works = WorkUnit::all()->take(10);
-
-        if ($id_work !== null && Auth::user()->oza){
-            $workUnit = WorkUnit::find($id_work);
-
-            return view('app.work_unit.create', compact('page', 'single_document', 'items','sectors','works','workUnit'));
-        }else{
-            return view('app.work_unit.create', compact('page', 'single_document', 'items','sectors','works'));
-        }
+        return view('admin.work_unit.create', compact('page','items','sectors_activities'));
     }
 
     public function edit($id_work)
@@ -85,30 +76,29 @@ class WorkUnitController extends Controller
         return view('admin.work_unit.edit', compact('page','work','items','sectors_activities'));
     }
 
-    public function store(Request $request, $id){
-
-        $single_document = $this->checkSingleDocument($id);
+    public function store(Request $request){
 
         $request->validate([
             'name_enterprise' => 'required',
-            'number_employee' => 'required|numeric|min:1',
-            'type' => 'required',
+            'sector_activitie' => 'required',
             'activities' => 'required|array'
         ]);
 
-        $work = new SdWorkUnit();
+        $sector = SectorActivitie::find($request->sector_activitie);
+
+        if (!$sector) return back()->with('status','Un problème est survenue')->with('status-type','danger');
+
+        $work = new WorkUnit();
         $work->id = uniqid();
         $work->name = $request->name_enterprise;
-        $work->number_employee = $request->number_employee;
-        if ($request->type === 'true') $work->validated = 1; else $work->validated = 0;
-        $work->single_document()->associate($single_document);
+        $work->sector_activitie()->associate($sector);
         $work->save();
 
         foreach ($request->activities as $activitie) {
-            $acti = new SdActivitie();
+            $acti = new Activitie();
             $acti->id = uniqid();
             $acti->text = $activitie;
-            $work->activities()->save($acti);
+            $work->activitie()->save($acti);
             $acti->save();
 
         }
@@ -126,19 +116,19 @@ class WorkUnitController extends Controller
                 if (isset($request->$name)){
                     foreach ($request->$name as $child_sub_item){
 
-                        $sd_item = new SdItem();
+                        $sd_item = new ChildSubItem();
                         $sd_item->id = uniqid();
                         $sd_item->name = $child_sub_item;
                         $sd_item->sub_item()->associate($sub_item);
-                        $sd_item->sd_work_unit()->associate($work);
                         $sd_item->save();
+                        $sd_item->work_unit()->save($work);
 
                     }
                 }
             }
 
         }
-        return redirect()->route('work.index', [$single_document->id]);
+        return redirect()->route('admin.help.workunit');
     }
 
 
@@ -176,16 +166,14 @@ class WorkUnitController extends Controller
             foreach ($item->sub_items as $sub_item){
                 $name = $item->id.'-'.$sub_item->id;
 
-
                 if (isset($request->$name)){
                     foreach ($request->$name as $child_sub_item){
                         $sd_item = new ChildSubItem();
                         $sd_item->id = uniqid();
-                        $sd_item->name = $child_sub_item[0];
+                        $sd_item->name = $child_sub_item;
                         $sd_item->sub_item()->associate($sub_item);
-                        $sd_item->work_unit()->save($work);
                         $sd_item->save();
-
+                        $sd_item->work_unit()->save($work);
                     }
                 }
             }
@@ -202,46 +190,11 @@ class WorkUnitController extends Controller
             'id' => 'required'
         ]);
 
-        $work_unit = SdWorkUnit::find($request->id);
+        $work_unit = WorkUnit::find($request->id);
 
-        if ($work_unit) {
-            $work_unit->delete();
-        }
+        if (!$work_unit) return back()->with('status','Un problème est survenue')->with('status-type','danger');
+        $work_unit->delete();
 
         return back()->with('status', 'L\'unité de travail a bien été supprimé !');
     }
-
-    public function filter(Request $request, $id){
-
-        $single_document = $this->checkSingleDocument($id);
-
-        if ($request->ajax()){
-
-            if (empty($request->filterUt)){
-                if ($request->filterSa === 'none'){
-                    $data = WorkUnit::all();
-                }else{
-                    $data = WorkUnit::whereHas('sector_activitie', function ($q) use ($request) {
-                        $q->where('id', $request->filterSa);
-                    })->get();
-                }
-
-            }else if ($request->filterSa === 'none' && $request->filterUt){
-                $data = WorkUnit::where('name', 'like', '%' . $request->filterUt . '%')->get();
-            }else{
-
-                $data = WorkUnit::whereHas('sector_activitie', function ($q) use ($request) {
-                    $q->where('id', $request->filterSa);
-                })->where('name', 'like', '%' . $request->filterUt . '%')->get();
-
-            }
-
-            return response()->json($data);
-
-        }
-
-        abort(404);
-
-    }
-
 }

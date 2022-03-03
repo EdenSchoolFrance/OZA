@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="content">
-        <form class="card card--add_work_unit" action="{{ route('work.store', [$single_document->id]) }}" method="post" id="formWorkUnit">
+        <form class="card card--add_work_unit" action="{{ route('admin.help.workunit.store') }}" method="post" id="formWorkUnit">
             @csrf
             <div class="card-body">
                 <div class="row">
@@ -17,32 +17,9 @@
                             @enderror
                         </div>
                     </div>
-                    @if (Auth::user()->hasAccess('oza'))
-                        <div class="line">
-                            <div class="left"></div>
-                            <div class="right">
-                                <button type="button" class="btn btn-text" data-modal=".modal--work_unit--oza"><i class="fas fa-search"></i> Rechercher une unité existante</button>
-                            </div>
-                        </div>
-                    @endif
                 </div>
 
                 <div class="row">
-                    <div class="line">
-                        <div class="left">
-                            <label for="number_employee">Nombre de salarié(s) concerné(s)</label>
-                        </div>
-                        <div class="right">
-                            <div class="btn-group-number">
-                                <button type="button" class="btn btn-text btn-num" data-value="less"><i class="fas fa-minus"></i></button>
-                                <input type="number" class="form-control" id="numberSal" placeholder="" value="{{ old('number_employee') ? old('number_employee') : '0' }}" name="number_employee">
-                                <button type="button" class="btn btn-text btn-num" data-value="more"><i class="fas fa-plus"></i></button>
-                            </div>
-                            @error('number_employee')
-                                <p class="message-error">{{ $message }}</p>
-                            @enderror
-                        </div>
-                    </div>
                     <div class="line line--activity">
                         <div class="left left-cancel">
                             <label for="number_employee">Activité(s) associée(s)</label>
@@ -56,13 +33,7 @@
                                             <textarea class="form-control auto-resize" placeholder="" name="activities[]">{{ $activitie }}</textarea>
                                         </li>
                                     @endforeach
-                                @elseif(isset($workUnit))
-                                    @foreach($workUnit->activitie as $activitie)
-                                        <li>
-                                            <button type="button" class="btn btn-text btn-small btn-delete"><i class="far fa-times-circle"></i></button>
-                                            <textarea class="form-control auto-resize" placeholder="" name="activities[]">{{ $activitie->text }}</textarea>
-                                        </li>
-                                    @endforeach
+
                                 @endif
                                 <li>
                                     <button type="button" class="btn btn-text btn-yellow btn-add-activity"><i class="fas fa-plus"></i> Ajouter une activité</button>
@@ -73,6 +44,18 @@
                                     @enderror
                                 </li>
                             </ul>
+                        </div>
+                    </div>
+                    <div class="line">
+                        <div class="left left-cancel">
+                            <label for="sector_activitie">Secteur d'activités</label>
+                        </div>
+                        <div class="right">
+                            <select name="sector_activitie" id="sector_activitie" class="form-control">
+                                @foreach($sectors_activities as $sector_activitie)
+                                    <option value="{{ $sector_activitie->id }}">{{ $sector_activitie->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     @foreach($items as $item)
@@ -96,16 +79,6 @@
                                                                 <p>{{ $child }}</p>
                                                                 <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[]" value="{{ $child }}" data-id="{{ $child.now() }}">
                                                             </li>
-                                                        @endforeach
-                                                    @elseif(isset($workUnit))
-                                                        @foreach($workUnit->items as $child)
-                                                            @if($child->sub_item->id === $subItem->id)
-                                                                <li class="list-item">
-                                                                    <button type="button" class="btn btn-text btn-small btn-delete" data-value="{{ $child->name }}"><i class="far fa-times-circle"></i></button>
-                                                                    <p>{{ $child->name }}</p>
-                                                                    <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[]" value="{{ $child->name }}" data-id="{{ $child->id }}">
-                                                                </li>
-                                                            @endif
                                                         @endforeach
                                                     @endif
                                                 </ul>
@@ -185,59 +158,14 @@
             </div>
         </div>
     </div>
-
-    @if (Auth::user()->oza === 1)
-        <div class="modal modal--work_unit--oza modal--oza">
-            <div class="modal-dialog modal-dialog-large">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <p class="title">Liste des unités de travail existantes</p>
-                        <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row row--ut">
-                            <div class="group-form">
-                                <label for="filter-ut">Recherche par intitulé</label>
-                                <input type="text" name="filter[ut]" id="filter-ut" class="form-control" placeholder="Taper les premières lettres de l’unité">
-                            </div>
-                            <div class="group-form">
-                                <label for="filter-sa">Filtrer les unités de travail</label>
-                                <select name="filter[sa]" id="filter-sa" class="form-control">
-                                    <option value="none" selected>Sélectionner un secteur d’activité</option>
-                                    @foreach($sectors as $sector)
-                                        <option value="{{ $sector->id }}">{{ $sector->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <ul class="list-ut-template">
-                                @foreach($works as $work)
-                                    @if(isset($workUnit))
-                                        @if($work->id === $workUnit->id)
-                                            <li><a href="#" class="checked">{{ $work->name }}</a></li>
-                                        @else
-                                            <li><a href="{{ route('work.create', [$single_document->id, $work->id]) }}">{{ $work->name }}</a></li>
-                                        @endif
-                                    @else
-                                        <li><a href="{{ route('work.create', [$single_document->id, $work->id]) }}">{{ $work->name }}</a></li>
-                                    @endif
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endif
 @endsection
 
 @section('script')
     <script src="/js/app/work_unit.js"></script>
     @if (Auth::user()->oza === 1)
         <script>
-            let url = '{{ route('work.filter', [$single_document->id]) }}';
-            let single_document_id = '{{ $single_document->id }}';
+            let url = 'none';
+            let single_document_id = 'none';
             let workUnit = '{{ isset($workUnit) ? $workUnit->id : null }}'
         </script>
     @endif

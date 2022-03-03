@@ -54,7 +54,7 @@
                 </div>
                 <div class="line">
                     <div class="left left-cancel">
-                        <label for="sector_activitie">Activités associées</label>
+                        <label for="sector_activitie">Secteur d'activités</label>
                     </div>
                     <div class="right">
                         <select name="sector_activitie" id="sector_activitie" class="form-control">
