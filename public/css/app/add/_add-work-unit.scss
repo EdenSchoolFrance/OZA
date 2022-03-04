@@ -78,7 +78,8 @@
                         }
                     }
                 }
-                &--activity {
+                &--activity,
+                &--reflection {
                     textarea {
                         border-color: transparent;
                         padding: 10px;

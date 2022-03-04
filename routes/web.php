@@ -22,7 +22,7 @@ use App\Http\Controllers\Client\UserController as UserClientController;
 use App\Http\Controllers\Admin\ClientController as ClientAdminController;
 use App\Http\Controllers\Admin\SingleDocumentController as SingleDocumentAdminController;
 use App\Http\Controllers\Admin\WorkUnitController as WorkUnitAdminController;
-
+use App\Http\Controllers\Admin\DangerController as DangerAdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -108,7 +108,13 @@ Route::middleware(['auth'])->group(function() {
                 Route::post('/help/workunit/delete', [WorkUnitAdminController::class, 'delete'])->name('admin.help.workunit.delete');
 
 
-                Route::get('/help/danger', [WorkUnitAdminController::class, 'index'])->name('admin.help.danger');
+                Route::get('/help/danger', [DangerAdminController::class, 'index'])->name('admin.help.danger');
+                Route::get('/help/danger/create', [DangerAdminController::class, 'create'])->name('admin.help.danger.create');
+                Route::get('/help/danger/{danger}/edit', [DangerAdminController::class, 'edit'])->name('admin.help.danger.edit');
+
+                Route::post('/help/danger/store', [DangerAdminController::class, 'store'])->name('admin.help.danger.store');
+                Route::post('/help/danger/{danger}/update', [DangerAdminController::class, 'update'])->name('admin.help.danger.update');
+                Route::post('/help/danger/delete', [DangerAdminController::class, 'delete'])->name('admin.help.danger.delete');
 
 
                 Route::get('/{doc_name}/edit', [DocController::class, 'edit'])->name('documentation.edit');

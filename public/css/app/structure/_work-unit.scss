@@ -48,6 +48,9 @@ table.table--work_units {
                 border: none;
                 padding-left: 20px;
             }
+            &_info{
+                max-width: 400px;
+            }
         }
     }
 
@@ -103,6 +106,9 @@ table.table--work_units {
                         i {
                             margin-bottom: 20px;
                         }
+                    }
+                    &_info{
+                        max-width: 300px;
                     }
                 }
 
