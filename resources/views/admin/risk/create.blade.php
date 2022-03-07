@@ -4,7 +4,7 @@
 
 
 <div class="content">
-    <form action="{{ route('admin.help.risk.update', [$risk->id]) }}" class="card card--add-risk" method="post">
+    <form action="{{ route('admin.help.risk.store') }}" class="card card--add-risk" method="post">
         @csrf
         <div class="card-body">
             <div class="row">
@@ -15,11 +15,7 @@
                     <div class="right">
                         <select name="danger_risk" id="dangerRisk" class="form-control">
                             @foreach($dangers as $danger)
-                                @if($danger->id === $risk->danger->id)
-                                    <option value="{{ $danger->id }}" selected>{{ $danger->name }}</option>
-                                @else
-                                    <option value="{{ $danger->id }}">{{ $danger->name }}</option>
-                                @endif
+                                <option value="{{ $danger->id }}">{{ $danger->name }}</option>
                             @endforeach
 
                         </select>
@@ -40,7 +36,7 @@
                         <label for="nameRisk">Intitulé du risque</label>
                     </div>
                     <div class="right">
-                        <input type="text" class="form-control" name="name_risk" id="workName" placeholder="Vente - Boulangerie pâtisserie" value="@if(old('name_risk')){{ old('name_risk') }}@else{{ isset($risk) ? $risk->name : '' }}@endif">
+                        <input type="text" class="form-control" name="name_risk" id="workName" placeholder="Vente - Boulangerie pâtisserie" value="{{ old('name_risk') ?  : "" }}">
                     </div>
                 </div>
                 @error('name_risk')
@@ -60,11 +56,7 @@
                     <div class="right">
                         <select name="domain_risk" id="domainRisk" class="form-control">
                             @foreach($domains as $domain)
-                                @if($domain->id === $risk->domain_activitie->id)
-                                    <option value="{{ $domain->id }}" selected>{{ $domain->name }}</option>
-                                @else
-                                    <option value="{{ $domain->id }}">{{ $domain->name }}</option>
-                                @endif
+                                <option value="{{ $domain->id }}">{{ $domain->name }}</option>
                             @endforeach
 
                         </select>
@@ -99,23 +91,23 @@
                         <div class="radio-bar-content">
                             <div class="radio-bar radio-bar-frequency">
                                 <label class="con">
-                                    <input type="radio" name="frequency" value="day" @if(old('frequency')){{ old('frequency') === 'day' ? 'checked' : '' }}@else{{ isset($risk) && $risk->frequency === 'day' ? 'checked' : '' }}@endif >
+                                    <input type="radio" name="frequency" value="day" @if(old('frequency')){{ old('frequency') === 'day' ? 'checked' : '' }}@endif >
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio" name="frequency" value="week" @if(old('frequency')){{ old('frequency') === 'week' ? 'checked' : '' }}@else{{ isset($risk) && $risk->frequency === 'week' ? 'checked' : '' }}@endif>
+                                    <input type="radio" name="frequency" value="week" @if(old('frequency')){{ old('frequency') === 'week' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio"  name="frequency" value="month" @if(old('frequency')){{ old('frequency') === 'mouth' ? 'checked' : '' }}@else{{ isset($risk) && $risk->frequency === 'mouth' ? 'checked' : '' }}@endif>
+                                    <input type="radio"  name="frequency" value="month" @if(old('frequency')){{ old('frequency') === 'mouth' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio"  name="frequency" value="year" @if(old('frequency')){{ old('frequency') === 'year' ? 'checked' : '' }}@else{{ isset($risk) && $risk->frequency === 'year' ? 'checked' : '' }}@endif>
+                                    <input type="radio"  name="frequency" value="year" @if(old('frequency')){{ old('frequency') === 'year' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio" name="frequency" value="year+" @if(old('frequency')){{ old('frequency') === 'year+' ? 'checked' : '' }}@else{{ isset($risk) && $risk->frequency === 'year+' ? 'checked' : '' }}@endif>
+                                    <input type="radio" name="frequency" value="year+" @if(old('frequency')){{ old('frequency') === 'year+' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
@@ -143,23 +135,23 @@
                         <div class="radio-bar-content">
                             <div class="radio-bar radio-bar-probability">
                                 <label class="con">
-                                    <input type="radio" name="probability" value="very high" @if(old('probability')){{ old('probability') === 'very high' ? 'checked' : '' }}@else{{ isset($risk) && $risk->probability === 'very high' ? 'checked' : '' }}@endif >
+                                    <input type="radio" name="probability" value="very high" @if(old('probability')){{ old('probability') === 'very high' ? 'checked' : '' }}@endif >
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio" name="probability" value="high" @if(old('probability')){{ old('probability') === 'high' ? 'checked' : '' }}@else{{ isset($risk) && $risk->probability === 'high' ? 'checked' : '' }}@endif>
+                                    <input type="radio" name="probability" value="high" @if(old('probability')){{ old('probability') === 'high' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio" name="probability" value="medium" @if(old('probability')){{ old('probability') === 'medium' ? 'checked' : '' }}@else{{ isset($risk) && $risk->probability === 'medium' ? 'checked' : '' }}@endif>
+                                    <input type="radio" name="probability" value="medium" @if(old('probability')){{ old('probability') === 'medium' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio" name="probability" value="weak" @if(old('probability')){{ old('probability') === 'weak' ? 'checked' : '' }}@else{{ isset($risk) && $risk->probability === 'weak' ? 'checked' : '' }}@endif>
+                                    <input type="radio" name="probability" value="weak" @if(old('probability')){{ old('probability') === 'weak' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio" name="probability" value="very weak" @if(old('probability')){{ old('probability') === 'very weak' ? 'checked' : '' }}@else{{ isset($risk) && $risk->probability === 'very weak' ? 'checked' : '' }}@endif>
+                                    <input type="radio" name="probability" value="very weak" @if(old('probability')){{ old('probability') === 'very weak' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
@@ -187,23 +179,23 @@
                         <div class="radio-bar-content">
                             <div class="radio-bar radio-bar-gravity">
                                 <label class="con">
-                                    <input type="radio" name="gravity" value="death" @if(old('gravity')){{ old('gravity') === 'death' ? 'checked' : '' }}@else{{ isset($risk) && $risk->gravity === 'death' ? 'checked' : '' }}@endif >
+                                    <input type="radio" name="gravity" value="death" @if(old('gravity')){{ old('gravity') === 'death' ? 'checked' : '' }}@endif >
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio" name="gravity" value="ipp" @if(old('gravity')){{ old('gravity') === 'ipp' ? 'checked' : '' }}@else{{ isset($risk) && $risk->gravity === 'ipp' ? 'checked' : '' }}@endif>
+                                    <input type="radio" name="gravity" value="ipp" @if(old('gravity')){{ old('gravity') === 'ipp' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio" name="gravity" value="aaa" @if(old('gravity')){{ old('gravity') === 'aaa' ? 'checked' : '' }}@else{{ isset($risk) && $risk->gravity === 'aaa' ? 'checked' : '' }}@endif>
+                                    <input type="radio" name="gravity" value="aaa" @if(old('gravity')){{ old('gravity') === 'aaa' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio" name="gravity" value="asa" @if(old('gravity')){{ old('gravity') === 'asa' ? 'checked' : '' }}@else{{ isset($risk) && $risk->gravity === 'asa' ? 'checked' : '' }}@endif>
+                                    <input type="radio" name="gravity" value="asa" @if(old('gravity')){{ old('gravity') === 'asa' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio" name="gravity" value="weak impact" @if(old('gravity')){{ old('gravity') === 'weak impact' ? 'checked' : '' }}@else{{ isset($risk) && $risk->gravity === 'weak impact' ? 'checked' : '' }}@endif>
+                                    <input type="radio" name="gravity" value="weak impact" @if(old('gravity')){{ old('gravity') === 'weak impact' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
@@ -232,15 +224,15 @@
                         <div class="radio-bar-content">
                             <div class="radio-bar radio-bar--inv">
                                 <label class="con"> Non
-                                    <input type="radio" name="impact" value="null" @if(old('impact')){{ old('impact') === 'null' ? 'checked' : '' }}@else{{ isset($risk) && $risk->impact === 'null' ? 'checked' : '' }}@endif >
+                                    <input type="radio" name="impact" value="null" @if(old('impact')){{ old('impact') === 'null' ? 'checked' : '' }}@endif >
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con"> Homme
-                                    <input type="radio" name="impact" value="male" @if(old('impact')){{ old('impact') === 'male' ? 'checked' : '' }}@else{{ isset($risk) && $risk->impact === 'male' ? 'checked' : '' }}@endif>
+                                    <input type="radio" name="impact" value="male" @if(old('impact')){{ old('impact') === 'male' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con"> Femme
-                                    <input type="radio" name="impact" value="female" @if(old('impact')){{ old('impact') === 'female' ? 'checked' : '' }}@else{{ isset($risk) && $risk->impact === 'female' ? 'checked' : '' }}@endif>
+                                    <input type="radio" name="impact" value="female" @if(old('impact')){{ old('impact') === 'female' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
@@ -269,12 +261,6 @@
                     <div class="left"></div>
                     <div class="right right--cancel">
                         <ul class="restraint">
-                            @foreach($risk->restraint as $restraint)
-                                <li>
-                                    <button type="button" class="btn btn-text btn-small btn-delete-restraint"><i class="far fa-times-circle"></i></button>
-                                    <textarea class="form-control auto-resize" placeholder="" name="restraint[]">{{ $restraint->name }}</textarea>
-                                </li>
-                            @endforeach
                             <li>
                                 <button class="btn btn-yellow btn-text btn-add-restraint-exist" type="button">+ Ajouter une mesure</button>
                             </li>

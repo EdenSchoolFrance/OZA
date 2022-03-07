@@ -3,6 +3,10 @@
 @section('content')
     <div class="content">
         <div class="card card--work_units">
+            <div class="card-header">
+                <a href=""></a>
+                <a href="{{ route('admin.help.risk.create') }}" class="btn btn-yellow"><i class="fas fa-plus"></i>AJOUTER UN RISQUE</a>
+            </div>
             <div class="card-body">
                 <table class="table table--work_units">
                     <thead>
@@ -87,7 +91,7 @@
                             <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
                         </div>
                         <div class="modal-body">
-                            <p>Êtes-vous sûr.e du vouloir supprimer cette unité de travail (complétion) ?</p>
+                            <p>Êtes-vous sûr.e du vouloir supprimer ce risque (complétion) ?</p>
                             <div>
                                 <button type="submit" class="btn btn-yellow">Supprimer</button>
                                 <button type="button" class="btn btn-inv btn-yellow btn-small" data-dismiss="modal"> Annuler</button>
