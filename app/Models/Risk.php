@@ -95,4 +95,61 @@ class Risk extends Model
             break;
         }
     }
+
+    public function translate($name,$setting){
+        switch ($setting){
+            case 'frequency' :
+                switch ($name){
+                    case 'day' :
+                        return 'Jour';
+                    case 'week' :
+                        return 'Semaine';
+                    case 'month' :
+                        return 'Mois';
+                    case 'year' :
+                        return 'Année';
+                    case 'year+' :
+                        return '> Année';
+                }
+                break;
+            case 'probability' :
+                switch ($name){
+                    case 'very high' :
+                        return 'Très élevée';
+                    case 'high' :
+                        return 'Élevée';
+                    case 'medium' :
+                        return 'Non faible';
+                    case 'weak' :
+                        return 'Faible';
+                    case 'very weak' :
+                        return 'Très faible';
+                }
+                break;
+            case 'gravity' :
+                switch ($name){
+                    case 'death' :
+                        return 'Décès';
+                    case 'ipp' :
+                        return "IPP";
+                    case 'aaa' :
+                        return 'AAA';
+                    case 'asa' :
+                        return 'ASA';
+                    case 'weak impact' :
+                        return 'Impact faible';
+                }
+                break;
+            case 'impact' :
+                switch ($name) {
+                    case 'null' :
+                        return 'Non';
+                    case 'male' :
+                        return "Homme";
+                    case 'female' :
+                        return 'Femme';
+                }
+                break;
+        }
+    }
 }

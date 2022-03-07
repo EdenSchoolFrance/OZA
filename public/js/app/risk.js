@@ -85,6 +85,20 @@ on('.btn-add-restraint', 'click', (el, e) => {
 
 });
 
+on('.btn-add-restraint-exist', 'click', (el, e) => {
+    let all = el.closest('ul').querySelectorAll('li')
+    if (all[all.length - 2] !== undefined && all[all.length - 2] !== el.closest('li') && all[all.length - 2].querySelector('textarea').value === ''){
+        all[all.length - 2].querySelector('textarea').focus();
+    }else{
+        let content ='<button type="button" class="btn btn-text btn-small btn-delete-restraint"><i class="far fa-times-circle"></i></button>\n' +
+            '<textarea class="form-control auto-resize" placeholder="" name="restraint[]"></textarea>'
+        let li = document.createElement('li');
+        li.innerHTML = content;
+        el.closest('li').before(li);
+    }
+
+});
+
 
 function translate(word){
     if (word === 'very good') return 'Très bien'

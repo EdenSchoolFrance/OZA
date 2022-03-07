@@ -119,13 +119,13 @@ Route::middleware(['auth'])->group(function() {
                 Route::post('/help/danger/delete', [DangerAdminController::class, 'delete'])->name('admin.help.danger.delete');
 
 
-                Route::get('/help/risk', [DangerAdminController::class, 'index'])->name('admin.help.risk');
-                Route::get('/help/risk/create', [DangerAdminController::class, 'create'])->name('admin.help.risk.create');
-                Route::get('/help/risk/{risk}/edit', [DangerAdminController::class, 'edit'])->name('admin.help.risk.edit');
+                Route::get('/help/risk', [RiskAdminController::class, 'index'])->name('admin.help.risk');
+                Route::get('/help/risk/create', [RiskAdminController::class, 'create'])->name('admin.help.risk.create');
+                Route::get('/help/risk/{risk}/edit', [RiskAdminController::class, 'edit'])->name('admin.help.risk.edit');
 
-                Route::post('/help/risk/store', [DangerAdminController::class, 'store'])->name('admin.help.risk.store');
-                Route::post('/help/risk/{risk}/update', [DangerAdminController::class, 'update'])->name('admin.help.risk.update');
-                Route::post('/help/risk/delete', [DangerAdminController::class, 'delete'])->name('admin.help.risk.delete');
+                Route::post('/help/risk/store', [RiskAdminController::class, 'store'])->name('admin.help.risk.store');
+                Route::post('/help/risk/{risk}/update', [RiskAdminController::class, 'update'])->name('admin.help.risk.update');
+                Route::post('/help/risk/delete', [RiskAdminController::class, 'delete'])->name('admin.help.risk.delete');
 
 
                 Route::get('/{doc_name}/edit', [DocController::class, 'edit'])->name('documentation.edit');

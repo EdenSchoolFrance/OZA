@@ -42,6 +42,9 @@
                     <li class="sidebar-nav-item {{ $page['sidebar'] == "help" && $page['sub_sidebar'] == "danger" ? 'active' : '' }}">
                         <a href="{{ route('admin.help.danger') }}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Danger</a>
                     </li>
+                    <li class="sidebar-nav-item {{ $page['sidebar'] == "help" && $page['sub_sidebar'] == "risk" ? 'active' : '' }}">
+                        <a href="{{ route('admin.help.risk') }}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Risque</a>
+                    </li>
                 </ul>
             </li>
             @endif
