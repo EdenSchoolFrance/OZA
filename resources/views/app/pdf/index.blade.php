@@ -45,8 +45,7 @@
     </section>
 
     <section class="page page-second">
-        <div class="header">
-        </div>
+        <div class="header"></div>
         <div class="body">
             <div class="header">
                 <h1 class="title">Document Unique</h1>
@@ -1277,7 +1276,6 @@
                     <td class="theader grey">
                         Risque brut
                     </td>
-
                 </tr>
                 @foreach($sd_risks_posts as $sd_risk)
                     <tr>

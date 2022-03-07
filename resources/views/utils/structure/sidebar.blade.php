@@ -32,9 +32,22 @@
                     </li>
                 </ul>
             </li>
-            <li class="sidebar-nav-item">
-                <a href="#" class="sidebar-nav-link"><i class="fas fa-database"></i><span>Aide à la complétion</span></a>
+            @if (Auth::user()->hasPermission('ADMIN'))
+            <li class="sidebar-nav-item {{ $page['sidebar'] == "help" ? 'active' : '' }}">
+                <a class="sidebar-nav-link"><i class="fas fa-database"></i><span>Aide à la complétion</span></a>
+                <ul class="sub-group-menu" style="{{ $page['sidebar'] == "help" ? 'display: block' : '' }}">
+                    <li class="sidebar-nav-item {{ $page['sidebar'] == "help" && $page['sub_sidebar'] == "work_unit" ? 'active' : '' }}">
+                        <a href="{{ route('admin.help.workunit') }}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Unité de travail</a>
+                    </li>
+                    <li class="sidebar-nav-item {{ $page['sidebar'] == "help" && $page['sub_sidebar'] == "danger" ? 'active' : '' }}">
+                        <a href="{{ route('admin.help.danger') }}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Danger</a>
+                    </li>
+                    <li class="sidebar-nav-item {{ $page['sidebar'] == "help" && $page['sub_sidebar'] == "risk" ? 'active' : '' }}">
+                        <a href="{{ route('admin.help.risk') }}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Risque</a>
+                    </li>
+                </ul>
             </li>
+            @endif
             <li class="sidebar-nav-item">
                 <a href="#" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Liste des risques</span></a>
             </li>

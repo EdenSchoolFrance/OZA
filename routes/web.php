@@ -21,6 +21,9 @@ use App\Http\Controllers\Admin\UserController as UserAdminController;
 use App\Http\Controllers\Client\UserController as UserClientController;
 use App\Http\Controllers\Admin\ClientController as ClientAdminController;
 use App\Http\Controllers\Admin\SingleDocumentController as SingleDocumentAdminController;
+use App\Http\Controllers\Admin\WorkUnitController as WorkUnitAdminController;
+use App\Http\Controllers\Admin\DangerController as DangerAdminController;
+use App\Http\Controllers\Admin\RiskController as RiskAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -96,6 +99,33 @@ Route::middleware(['auth'])->group(function() {
                 Route::post('/single_document/archive', [SingleDocumentAdminController::class, 'archive'])->name('admin.single_document.archive');
                 Route::post('/single_document/unarchive', [SingleDocumentAdminController::class, 'unarchive'])->name('admin.single_document.unarchive');
                 Route::post('/client/{client}/single_document/{single_document}/delete', [SingleDocumentAdminController::class, 'delete'])->name('admin.single_document.delete');
+
+
+                Route::get('/help/workunit', [WorkUnitAdminController::class, 'index'])->name('admin.help.workunit');
+                Route::get('/help/workunit/create', [WorkUnitAdminController::class, 'create'])->name('admin.help.workunit.create');
+                Route::get('/help/workunit/{work_unit}/edit', [WorkUnitAdminController::class, 'edit'])->name('admin.help.workunit.edit');
+
+                Route::post('/help/workunit/store', [WorkUnitAdminController::class, 'store'])->name('admin.help.workunit.store');
+                Route::post('/help/workunit/{work_unit}/update', [WorkUnitAdminController::class, 'update'])->name('admin.help.workunit.update');
+                Route::post('/help/workunit/delete', [WorkUnitAdminController::class, 'delete'])->name('admin.help.workunit.delete');
+
+
+                Route::get('/help/danger', [DangerAdminController::class, 'index'])->name('admin.help.danger');
+                Route::get('/help/danger/create', [DangerAdminController::class, 'create'])->name('admin.help.danger.create');
+                Route::get('/help/danger/{danger}/edit', [DangerAdminController::class, 'edit'])->name('admin.help.danger.edit');
+
+                Route::post('/help/danger/store', [DangerAdminController::class, 'store'])->name('admin.help.danger.store');
+                Route::post('/help/danger/{danger}/update', [DangerAdminController::class, 'update'])->name('admin.help.danger.update');
+                Route::post('/help/danger/delete', [DangerAdminController::class, 'delete'])->name('admin.help.danger.delete');
+
+
+                Route::get('/help/risk', [RiskAdminController::class, 'index'])->name('admin.help.risk');
+                Route::get('/help/risk/create', [RiskAdminController::class, 'create'])->name('admin.help.risk.create');
+                Route::get('/help/risk/{risk}/edit', [RiskAdminController::class, 'edit'])->name('admin.help.risk.edit');
+
+                Route::post('/help/risk/store', [RiskAdminController::class, 'store'])->name('admin.help.risk.store');
+                Route::post('/help/risk/{risk}/update', [RiskAdminController::class, 'update'])->name('admin.help.risk.update');
+                Route::post('/help/risk/delete', [RiskAdminController::class, 'delete'])->name('admin.help.risk.delete');
 
 
                 Route::get('/{doc_name}/edit', [DocController::class, 'edit'])->name('documentation.edit');
