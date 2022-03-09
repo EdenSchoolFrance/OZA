@@ -17,7 +17,7 @@ class CreateChildSubItemsTable extends Migration
             $table->uuid('id')->primary();
             $table->string('name');
             $table->foreignUuid('sub_item_id');
-            $table->foreign('sub_item_id')->references('id')->on('sub_items');
+            $table->foreign('sub_item_id')->references('id')->on('sub_items')->onDelete('cascade');
         });
     }
 
