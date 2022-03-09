@@ -344,7 +344,7 @@ function restraintCalcul(){
         totalEnd = totalEnd+result;
         count++;
     }
-    return (RB * totalEnd) / count;
+    return Math.ceil((RB * totalEnd) / count);
 }
 
 function setColor(el,total){

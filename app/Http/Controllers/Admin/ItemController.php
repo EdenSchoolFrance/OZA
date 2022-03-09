@@ -129,13 +129,25 @@ class ItemController extends Controller
     public function update(Request $request){
 
         $child_sub_items = ChildSubItem::all();
-
         foreach ($child_sub_items as $child_sub_item){
             if (isset( $request->child[$child_sub_item->id] )){
                 $child_sub_item->name = $request->child[$child_sub_item->id];
                 $child_sub_item->save();
             }else{
                 $child_sub_item->delete();
+            }
+        }
+
+        if (isset($request->new_child)){
+            foreach ($request->new_child as $key => $child){
+                $find_item = SubItem::find($key);
+                if ($find_item){
+                    $new_child = new ChildSubItem();
+                    $new_child->id = uniqid();
+                    $new_child->name = $child;
+                    $new_child->sub_item()->associate($find_item);
+                    $new_child->save();
+                }
             }
         }
 

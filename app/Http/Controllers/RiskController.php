@@ -18,7 +18,7 @@ class RiskController extends Controller
         $single_document = $this->checkSingleDocument($id);
 
         $page = [
-            'title' => 'Toutes les mesures',
+            'title' => 'Toutes les risques',
             'infos' => null,
             'sidebar' => 'risk_pro',
             'sub_sidebar' => 'risk_all'

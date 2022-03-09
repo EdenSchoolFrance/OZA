@@ -131,7 +131,7 @@ on('.btn-add-item', 'click', (el, e) => {
         all[all.length - 1].querySelector('textarea').focus();
     }else {
         let content = '<button type="button" class="btn btn-text btn-small btn-delete"><i class="far fa-times-circle"></i></button>\n' +
-            '<textarea class="form-control auto-resize" name="activities'+el.dataset.id+'[]" placeholder=""></textarea>'
+            '<textarea class="form-control auto-resize" name="new_child['+el.dataset.id+']" placeholder=""></textarea>'
         let li = document.createElement('li');
         li.innerHTML = content;
         el.closest('ul').querySelector('.list-content').querySelectorAll('li')[all.length - 1].after(li);

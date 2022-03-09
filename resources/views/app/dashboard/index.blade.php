@@ -102,17 +102,17 @@
                 <form class="modal-content" action="{{ route('history.store', [$single_document->id]) }}" method="POST">
                     @csrf
                     <div class="modal-header">
-                        <p class="title">Génération d'un DU à date</p>
+                        <p class="title">Actualisation du PDF</p>
                         <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
                     </div>
                     <div class="modal-body">
                         <div class="row">
                             <div class="line">
                                 <div class="left">
-                                    <label for="work">Travail réalisé</label>
+                                    <label for="work">Travail réalisé sur le DU</label>
                                 </div>
                                 <div class="right">
-                                    <input type="text" class="form-control" id="work" placeholder="Indiquer le travail réalisé" name="work_history">
+                                    <textarea class="form-control" id="work" placeholder="Mise à jour annuelle, mise à jour des actions, mise à jour des évaluations, ajout ou retrait de risques ou de préventions, ..." name="work_history"></textarea>
                                 </div>
                             </div>
                         </div>

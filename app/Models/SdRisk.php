@@ -260,7 +260,7 @@ class SdRisk extends Model
             }
         }
 
-        return ($RB * $totalEnd) / $count;
+        return ceil(($RB * $totalEnd) / $count);
     }
 
     public function color($number){
@@ -307,7 +307,7 @@ class SdRisk extends Model
             $total = $total+$sd_restraint->convert($sd_restraint->technical, 'technical');
             $count++;
         }
-        return $total / $count;
+        return ceil($total / $count);
     }
 
     public function moyenneOrga(){
@@ -317,7 +317,7 @@ class SdRisk extends Model
             $total = $total+$sd_restraint->convert($sd_restraint->organizational, 'organizational');
             $count++;
         }
-        return $total / $count;
+        return ceil($total / $count);
     }
 
     public function moyenneHum(){
@@ -327,7 +327,7 @@ class SdRisk extends Model
             $total = $total+$sd_restraint->convert($sd_restraint->human, 'human');
             $count++;
         }
-        return $total / $count;
+        return ceil($total / $count);
     }
 
 }
