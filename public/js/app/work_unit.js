@@ -125,6 +125,21 @@ on('.btn-add-activity', 'click', (el, e) => {
 });
 
 
+on('.btn-add-item', 'click', (el, e) => {
+    let all = el.closest('ul').querySelector('.list-content').querySelectorAll('li')
+    if (all[all.length - 1] !== undefined && all[all.length - 1] !== el.closest('li') && all[all.length - 1].querySelector('textarea').value === ''){
+        all[all.length - 1].querySelector('textarea').focus();
+    }else {
+        let content = '<button type="button" class="btn btn-text btn-small btn-delete"><i class="far fa-times-circle"></i></button>\n' +
+            '<textarea class="form-control auto-resize" name="activities'+el.dataset.id+'[]" placeholder=""></textarea>'
+        let li = document.createElement('li');
+        li.innerHTML = content;
+        el.closest('ul').querySelector('.list-content').querySelectorAll('li')[all.length - 1].after(li);
+        li.querySelector('textarea').focus();
+    }
+});
+
+
 on('.btn-num', 'click', (el, e) => {
     let input = el.closest('div').getElementsByTagName('input')[0];
 

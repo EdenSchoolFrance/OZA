@@ -22,6 +22,7 @@ use App\Http\Controllers\Client\UserController as UserClientController;
 use App\Http\Controllers\Admin\ClientController as ClientAdminController;
 use App\Http\Controllers\Admin\SingleDocumentController as SingleDocumentAdminController;
 use App\Http\Controllers\Admin\WorkUnitController as WorkUnitAdminController;
+use App\Http\Controllers\Admin\ItemController as ItemAdminController;
 use App\Http\Controllers\Admin\DangerController as DangerAdminController;
 use App\Http\Controllers\Admin\RiskController as RiskAdminController;
 
@@ -108,6 +109,15 @@ Route::middleware(['auth'])->group(function() {
                 Route::post('/help/workunit/store', [WorkUnitAdminController::class, 'store'])->name('admin.help.workunit.store');
                 Route::post('/help/workunit/{work_unit}/update', [WorkUnitAdminController::class, 'update'])->name('admin.help.workunit.update');
                 Route::post('/help/workunit/delete', [WorkUnitAdminController::class, 'delete'])->name('admin.help.workunit.delete');
+
+
+                Route::get('/help/item', [ItemAdminController::class, 'index'])->name('admin.help.item');
+                Route::get('/help/item/create', [ItemAdminController::class, 'create'])->name('admin.help.item.create');
+                Route::get('/help/item/edit', [ItemAdminController::class, 'edit'])->name('admin.help.item.edit');
+
+                Route::post('/help/item/store', [ItemAdminController::class, 'store'])->name('admin.help.item.store');
+                Route::post('/help/item/update', [ItemAdminController::class, 'update'])->name('admin.help.item.update');
+                Route::post('/help/item/delete', [ItemAdminController::class, 'delete'])->name('admin.help.item.delete');
 
 
                 Route::get('/help/danger', [DangerAdminController::class, 'index'])->name('admin.help.danger');

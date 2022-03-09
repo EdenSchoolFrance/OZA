@@ -92,6 +92,19 @@
                         }
                     }
                 }
+                &--items{
+                    textarea {
+                        border-color: transparent;
+                        padding: 10px;
+                        height: 45px;
+                        &:focus,
+                        &.active {
+                            padding: 10px 15px;
+                            background-color: #F7F7F7;
+                            border-color: $border_head;
+                        }
+                    }
+                }
             }
         }
     }
