@@ -181,10 +181,6 @@
                                     <input type="radio" name="impact" value="null" @if(old('impact')){{ old('impact') === 'null' ? 'checked' : '' }}@else{{ isset($risk) && $risk->impact === 'null' ? 'checked' : '' }}@endif >
                                     <span class="checkmark"></span>
                                 </label>
-                                <label class="con"> Homme
-                                    <input type="radio" name="impact" value="male" @if(old('impact')){{ old('impact') === 'male' ? 'checked' : '' }}@else{{ isset($risk) && $risk->impact === 'male' ? 'checked' : '' }}@endif>
-                                    <span class="checkmark"></span>
-                                </label>
                                 <label class="con"> Femme
                                     <input type="radio" name="impact" value="female" @if(old('impact')){{ old('impact') === 'female' ? 'checked' : '' }}@else{{ isset($risk) && $risk->impact === 'female' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
