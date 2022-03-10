@@ -207,7 +207,7 @@
                     <div class="left">
                     </div>
                     <div class="right">
-                        <span class="bold">Valeur du risque brut évaluée :&nbsp;</span> <button type="button" class="btn btn-success btn-small btn-calcul-risk">{{ isset($risk) ? $risk->total() : '0' }}</button>
+                        <span class="bold">Valeur du risque brut évalué :&nbsp;</span> <button type="button" class="btn btn-success btn-small btn-calcul-risk">{{ isset($risk) ? $risk->total() : '0' }}</button>
                     </div>
                 </div>
             </div>
@@ -238,7 +238,7 @@
                                 <button data-modal="{{ Auth::user()->hasAccess('oza') && isset($risk) ? '.modal--risk-restraint-oza' : '.modal--risk' }}" data-id="" type="button" class="btn btn-yellow btn-text {{ Auth::user()->hasAccess('oza') && isset($risk) ? 'btn-open-risk-restraint-oza' : 'btn-open-risk' }}">+ Ajouter une mesure existante</button>
                             </li>
                             <li>
-                                <span class="bold">Valeur du risque résiduel évaluée :&nbsp;</span> <button type="button" class="btn btn-danger btn-small" data-id="status-number">24</button>
+                                <span class="bold">Valeur du risque résiduel évaluée :&nbsp;</span> <button type="button" class="btn btn-success btn-small" data-id="status-number">0</button>
                             </li>
                             @error('restraint')
                                 <li>
@@ -278,7 +278,7 @@
                         <span class="bold">Criticité de la situation actuelle</span>
                     </div>
                     <div class="right">
-                        <button type="button" class="btn btn-danger" data-id="status">STOP</button>
+                        <button type="button" class="btn btn-success" data-id="status">Acceptable</button>
                     </div>
                 </div>
             </div>
@@ -341,7 +341,7 @@
                                                     </label>
                                                 </div>
                                                 <div class="radio-title">
-                                                    <label>Nulle</label>
+                                                    <label>Inexistante</label>
                                                     <label>Moyen</label>
                                                     <label>Bon</label>
                                                     <label>Très bon</label>
@@ -377,7 +377,7 @@
                                                     </label>
                                                 </div>
                                                 <div class="radio-title">
-                                                    <label>Nulle</label>
+                                                    <label>Inexistante</label>
                                                     <label>Moyen</label>
                                                     <label>Bon</label>
                                                     <label>Très bon</label>
@@ -413,7 +413,7 @@
                                                     </label>
                                                 </div>
                                                 <div class="radio-title">
-                                                    <label>Nulle</label>
+                                                    <label>Inexistante</label>
                                                     <label>Moyen</label>
                                                     <label>Bon</label>
                                                     <label>Très bon</label>
@@ -446,7 +446,7 @@
         <div class="modal-dialog modal-dialog-large">
             <div class="modal-content">
                 <div class="modal-header">
-                    <p class="title">Ajouter une mesure déjà mise en place</p>
+                    <p class="title">Mesure de prévention existante</p>
                     <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
                 </div>
                 <div class="modal-body">
@@ -498,7 +498,7 @@
                                         </label>
                                     </div>
                                     <div class="radio-title">
-                                        <label>Nulle</label>
+                                        <label>Inexistante</label>
                                         <label>Moyen</label>
                                         <label>Bon</label>
                                         <label>Très bon</label>
@@ -534,7 +534,7 @@
                                         </label>
                                     </div>
                                     <div class="radio-title">
-                                        <label>Nulle</label>
+                                        <label>Inexistante</label>
                                         <label>Moyen</label>
                                         <label>Bon</label>
                                         <label>Très bon</label>
@@ -570,7 +570,7 @@
                                         </label>
                                     </div>
                                     <div class="radio-title">
-                                        <label>Nulle</label>
+                                        <label>Inexistante</label>
                                         <label>Moyen</label>
                                         <label>Bon</label>
                                         <label>Très bon</label>

@@ -199,7 +199,7 @@
                     <div class="left">
                     </div>
                     <div class="right">
-                        <span class="bold">Valeur du risque brut évaluée :&nbsp;</span> <button type="button" class="btn {{ $risk->color($risk->total()) }} btn-small btn-calcul-risk">{{ $risk->total() }}</button>
+                        <span class="bold">Valeur du risque brut évalué :&nbsp;</span> <button type="button" class="btn {{ $risk->color($risk->total()) }} btn-small btn-calcul-risk">{{ $risk->total() }}</button>
                     </div>
                 </div>
             </div>
@@ -340,7 +340,7 @@
                                         </label>
                                     </div>
                                     <div class="radio-title">
-                                        <label>Nulle</label>
+                                        <label>Inexistante</label>
                                         <label>Moyen</label>
                                         <label>Bon</label>
                                         <label>Très bon</label>
@@ -376,7 +376,7 @@
                                         </label>
                                     </div>
                                     <div class="radio-title">
-                                        <label>Nulle</label>
+                                        <label>Inexistante</label>
                                         <label>Moyen</label>
                                         <label>Bon</label>
                                         <label>Très bon</label>
@@ -412,7 +412,7 @@
                                         </label>
                                     </div>
                                     <div class="radio-title">
-                                        <label>Nulle</label>
+                                        <label>Inexistante</label>
                                         <label>Moyen</label>
                                         <label>Bon</label>
                                         <label>Très bon</label>

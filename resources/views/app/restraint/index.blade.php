@@ -147,7 +147,7 @@
                                             </label>
                                         </div>
                                         <div class="radio-title">
-                                            <label>Nulle</label>
+                                            <label>Inexistante</label>
                                             <label>Moyen</label>
                                             <label>Bon</label>
                                             <label>Très bon</label>
@@ -186,7 +186,7 @@
                                             </label>
                                         </div>
                                         <div class="radio-title">
-                                            <label>Nulle</label>
+                                            <label>Inexistante</label>
                                             <label>Moyen</label>
                                             <label>Bon</label>
                                             <label>Très bon</label>
@@ -225,7 +225,7 @@
                                             </label>
                                         </div>
                                         <div class="radio-title">
-                                            <label>Nulle</label>
+                                            <label>Inexistante</label>
                                             <label>Moyen</label>
                                             <label>Bon</label>
                                             <label>Très bon</label>

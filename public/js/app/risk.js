@@ -104,7 +104,7 @@ function translate(word){
     if (word === 'very good') return 'Très bien'
     else if (word === 'good') return 'Bien'
     else if (word === 'medium') return 'Moyen'
-    else if (word === 'null') return 'Nulle'
+    else if (word === 'null') return 'Inexistante'
 }
 
 function color(word){
