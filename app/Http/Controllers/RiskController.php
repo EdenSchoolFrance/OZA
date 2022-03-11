@@ -18,7 +18,7 @@ class RiskController extends Controller
         $single_document = $this->checkSingleDocument($id);
 
         $page = [
-            'title' => 'Toutes les mesures',
+            'title' => 'Tous les risques',
             'infos' => null,
             'sidebar' => 'risk_pro',
             'sub_sidebar' => 'risk_all'
@@ -134,9 +134,7 @@ class RiskController extends Controller
             'frequency' => 'required',
             'probability' => 'required',
             'gravity' => 'required',
-            'impact' => 'required',
-            'restraint' => 'required|array',
-            'restraint_proposed' => 'required|array',
+            'impact' => 'required'
         ]);
 
         $sd_risk = new SdRisk();
@@ -150,29 +148,34 @@ class RiskController extends Controller
         if ($sd_work_unit) $sd_risk->sd_work_unit()->associate($sd_work_unit);
         $sd_risk->save();
 
-        foreach ($request->restraint as $restraint){
-            $restraint = explode('|', $restraint);
-            if( empty($restraint[0]) || empty($restraint[1]) || empty($restraint[2]) || empty($restraint[3]) ) return back()->with('status','Des mesures sont incomplete')->with('status-type','danger');
-            $sd_restraint = new SdRestraint();
-            $sd_restraint->id = uniqid();
-            $sd_restraint->name = $restraint[3];
-            $sd_restraint->technical = $restraint[0];
-            $sd_restraint->organizational = $restraint[1];
-            $sd_restraint->human = $restraint[2];
-            $sd_restraint->exist = true;
-            $sd_restraint->sd_risk()->associate($sd_risk);
-            $sd_restraint->save();
+        if (isset($request->restraint)){
+            foreach ($request->restraint as $restraint){
+                $restraint = explode('|', $restraint);
+                if( empty($restraint[0]) || empty($restraint[1]) || empty($restraint[2]) || empty($restraint[3]) ) return back()->with('status','Des mesures sont incomplete')->with('status-type','danger');
+                $sd_restraint = new SdRestraint();
+                $sd_restraint->id = uniqid();
+                $sd_restraint->name = $restraint[3];
+                $sd_restraint->technical = $restraint[0];
+                $sd_restraint->organizational = $restraint[1];
+                $sd_restraint->human = $restraint[2];
+                $sd_restraint->exist = true;
+                $sd_restraint->sd_risk()->associate($sd_risk);
+                $sd_restraint->save();
+            }
         }
 
-        foreach ($request->restraint_proposed as $restraint){
+        if (isset($request->restraint_proposed)){
+            foreach ($request->restraint_proposed as $restraint){
 
-            $sd_restraint = new SdRestraint();
-            $sd_restraint->id = uniqid();
-            $sd_restraint->name = $restraint;
-            $sd_restraint->exist = false;
-            $sd_restraint->sd_risk()->associate($sd_risk);
-            $sd_restraint->save();
+                $sd_restraint = new SdRestraint();
+                $sd_restraint->id = uniqid();
+                $sd_restraint->name = $restraint;
+                $sd_restraint->exist = false;
+                $sd_restraint->sd_risk()->associate($sd_risk);
+                $sd_restraint->save();
+            }
         }
+
 
         return redirect()->route('danger.index', [$single_document->id, $sd_danger->id])->with('status', 'Le risque a bien été créé !');
     }
@@ -191,9 +194,7 @@ class RiskController extends Controller
             'frequency' => 'required',
             'probability' => 'required',
             'gravity' => 'required',
-            'impact' => 'required',
-            'restraint' => 'required|array',
-            'restraint_proposed' => 'required|array',
+            'impact' => 'required'
         ]);
 
         $old_sd_risk = SdRisk::find($id_risk);
@@ -210,28 +211,33 @@ class RiskController extends Controller
         if ($sd_work_unit) $sd_risk->sd_work_unit()->associate($sd_work_unit);
         $sd_risk->save();
 
-        foreach ($request->restraint as $restraint){
-            $restraint = explode('|', $restraint);
-            $sd_restraint = new SdRestraint();
-            $sd_restraint->id = uniqid();
-            $sd_restraint->name = $restraint[3];
-            $sd_restraint->technical = $restraint[0];
-            $sd_restraint->organizational = $restraint[1];
-            $sd_restraint->human = $restraint[2];
-            $sd_restraint->exist = true;
-            $sd_restraint->sd_risk()->associate($sd_risk);
-            $sd_restraint->save();
+        if (isset($request->restraint)){
+            foreach ($request->restraint as $restraint){
+                $restraint = explode('|', $restraint);
+                $sd_restraint = new SdRestraint();
+                $sd_restraint->id = uniqid();
+                $sd_restraint->name = $restraint[3];
+                $sd_restraint->technical = $restraint[0];
+                $sd_restraint->organizational = $restraint[1];
+                $sd_restraint->human = $restraint[2];
+                $sd_restraint->exist = true;
+                $sd_restraint->sd_risk()->associate($sd_risk);
+                $sd_restraint->save();
+            }
         }
 
-        foreach ($request->restraint_proposed as $restraint){
+        if (isset($request->restraint_proposed)){
+            foreach ($request->restraint_proposed as $restraint){
 
-            $sd_restraint = new SdRestraint();
-            $sd_restraint->id = uniqid();
-            $sd_restraint->name = $restraint;
-            $sd_restraint->exist = false;
-            $sd_restraint->sd_risk()->associate($sd_risk);
-            $sd_restraint->save();
+                $sd_restraint = new SdRestraint();
+                $sd_restraint->id = uniqid();
+                $sd_restraint->name = $restraint;
+                $sd_restraint->exist = false;
+                $sd_restraint->sd_risk()->associate($sd_risk);
+                $sd_restraint->save();
+            }
         }
+
 
         return redirect()->route('danger.index', [$single_document->id, $sd_danger->id])->with('status', 'Le risque a bien été modifié !');
     }

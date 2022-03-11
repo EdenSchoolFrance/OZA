@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Pack;
+use App\Models\SdWorkUnit;
 use App\Models\User;
 use App\Models\Client;
 use App\Models\Danger;
@@ -42,7 +43,9 @@ class SingleDocumentController extends Controller
 
         $single_documents = $single_documents->paginate(50);
 
-        return view('admin.single_document.index', compact('page', 'single_documents', 'filter'));
+        $clients = Client::all();
+
+        return view('admin.single_document.index', compact('page', 'single_documents', 'filter', 'clients'));
     }
 
     public function store(Request $request, Client $client)
@@ -166,5 +169,101 @@ class SingleDocumentController extends Controller
         $single_document->delete();
 
         return redirect()->route('admin.client.edit', [$client->id, 'tab' => 'du'])->with('status', 'Le document unique a bien été supprimé !');
+    }
+
+    public function duplicate(Request $request){
+
+        $request->validate([
+            'id' => 'required',
+            'client_select' => 'required'
+        ]);
+
+        $client = Client::find($request->client_select);
+
+        $single_document = SingleDocument::find($request->id);
+
+        if (!$client || !$single_document) return back()->with('status','Un problème est survenue')->with('status-type','danger');
+
+        $new_single_document = $single_document->replicate();
+        $new_single_document->id = uniqid();
+        $new_single_document->client()->associate($client);
+        $new_single_document->save();
+
+        $old_work_unit = [];
+        $old_risk = [];
+
+        foreach ($single_document->work_unit as $sd_work_unit){
+            $new_sd_work_unit = $sd_work_unit->replicate();
+            $new_sd_work_unit->id = uniqid();
+            $new_sd_work_unit->single_document()->associate($new_single_document);
+            $new_sd_work_unit->save();
+
+            if ($sd_work_unit->sd_dangers){
+                $old_work_unit[$sd_work_unit->id]['new_work_unit'] = $new_sd_work_unit->id;
+                foreach ($sd_work_unit->sd_dangers as $sd_work_unit_sd_danger){
+                    $old_work_unit[$sd_work_unit->id][$sd_work_unit_sd_danger->id] = $sd_work_unit_sd_danger->exist;
+                }
+            }
+
+
+            foreach ($sd_work_unit->activities as $sd_activitie){
+                $new_sd_activitie = $sd_activitie->replicate();
+                $new_sd_activitie->id = uniqid();
+                $new_sd_activitie->work_unit()->associate($new_sd_work_unit);
+                $new_sd_activitie->save();
+            }
+
+            foreach ($sd_work_unit->items as $sd_item){
+
+                $new_sd_item = $sd_item->replicate();
+                $new_sd_item->id = uniqid();
+                $new_sd_item->sub_item()->associate($sd_item->sub_item);
+                $new_sd_item->sd_work_unit()->associate($new_sd_work_unit);
+                $new_sd_item->save();
+            }
+
+            foreach ($sd_work_unit->sd_risks as $sd_risk){
+                $old_risk[$sd_risk->id]['new_work_unit'] = $new_sd_work_unit->id;
+                $old_risk[$sd_risk->id]['old_work_unit'] = $sd_work_unit->id;
+            }
+        }
+
+        foreach ($single_document->dangers as $sd_danger){
+
+            $new_sd_danger = $sd_danger->replicate();
+            $new_sd_danger->id = uniqid();
+            $new_sd_danger->single_document()->associate($new_single_document);
+            $new_sd_danger->danger()->associate($sd_danger->danger);
+            $new_sd_danger->save();
+
+            if ($sd_danger->sd_works_units){
+                foreach ($sd_danger->sd_works_units as $sd_danger_sd_work_unit){
+                    if ($old_work_unit[$sd_danger_sd_work_unit->id]){
+                        $new_sd_danger->sd_works_units()->attach($old_work_unit[$sd_danger_sd_work_unit->id]['new_work_unit'], ['exist' => $old_work_unit[$sd_danger_sd_work_unit->id][$sd_danger->id] ]);
+                    }
+                }
+            }
+
+            foreach ($sd_danger->sd_risk as $sd_risk){
+
+                $new_sd_risk = $sd_risk->replicate();
+                $new_sd_risk->id = uniqid();
+                $new_sd_risk->sd_danger()->associate($new_sd_danger);
+                if ($old_risk[$sd_risk->id]){
+                    $new_sd_risk->sd_work_unit()->associate($old_risk[$sd_risk->id]['new_work_unit']);
+                }
+                $new_sd_risk->save();
+
+                foreach ($sd_risk->sd_restraints as $sd_restraint){
+                    $new_sd_restraint = $sd_restraint->replicate();
+                    $new_sd_restraint->id = uniqid();
+                    $new_sd_restraint->sd_risk()->associate($new_sd_risk);
+                    $new_sd_restraint->save();
+                }
+            }
+
+        }
+
+        return back()->with('status','Document unique dupliquer avec succès');
     }
 }

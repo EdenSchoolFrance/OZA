@@ -80,7 +80,7 @@
                 <a href="#" class="sidebar-nav-link"><i class="fas fa-exclamation-triangle"></i><span>Risques professionnels</span></a>
                 <ul class="sub-group-menu" style="{{ $page['sidebar'] == "risk_pro" ? 'display: block' : '' }}">
                     <li class="sidebar-nav-item {{ $page['sidebar'] == "risk_pro" && $page['sub_sidebar'] == "risk_all" ? 'active' : '' }}">
-                        <a href="{{route('risk.all',[$single_document->id])}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Toutes les mesures</a>
+                        <a href="{{route('risk.all',[$single_document->id])}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Tous les risques</a>
                     </li>
                     @foreach ($single_document->dangers as $danger)
                         <li class="sidebar-nav-item {{ $page['sidebar'] == "risk_pro" && $page['sub_sidebar'] == "danger_" . $danger->id ? 'active' : '' }}">

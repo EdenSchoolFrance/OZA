@@ -36,6 +36,7 @@
                                             <button data-modal=".modal--archive" data-id="{{ $sd->id }}"><i class="fas fa-archive"></i></button>
                                         @endif
                                     @endif
+                                    <a data-modal=".modal--duplicate" data-client="{{ $sd->client->id }}" data-id="{{ $sd->id }}" ><i class="far fa-clone"></i></a>
                                     <a href="{{ route('admin.single_document.edit', [$sd->client->id, $sd->id]) }}"><i class="far fa-edit"></i></a>
                                     <a href="{{ route('dashboard', [$sd->id]) }}"><i class="far fa-eye"></i></a>
                                 </td>
@@ -94,8 +95,35 @@
                 </div>
             </div>
         @endif
+
+        <div class="modal modal--duplicate">
+            <div class="modal-dialog">
+                <form class="modal-content" action="{{ route('admin.single_document.duplicate') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="id" value="">
+                    <div class="modal-header">
+                        <p class="title">Dupliquer le document unique</p>
+                        <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Sélectionner un client</p>
+                        <select name="client_select" class="form-control">
+                            <option value="all">Tous</option>
+                            @foreach($clients as $client)
+                                <option value="{{ $client->id }}">{{ $client->name }}</option>
+                            @endforeach
+                        </select>
+                        <div>
+                            <button type="submit" class="btn btn-yellow">Dupliquer</button>
+                            <button type="button" class="btn btn-danger btn-text" data-dismiss="modal">Annuler</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 @endsection
 
 @section('script')
+    <script src="/js/app/single_document.js"></script>
 @endsection

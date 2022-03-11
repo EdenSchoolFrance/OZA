@@ -181,10 +181,6 @@
                                     <input type="radio" name="impact" value="null" @if(old('impact')){{ old('impact') === 'null' ? 'checked' : '' }}@else{{ isset($risk) && $risk->impact === 'null' ? 'checked' : '' }}@endif >
                                     <span class="checkmark"></span>
                                 </label>
-                                <label class="con"> Homme
-                                    <input type="radio" name="impact" value="male" @if(old('impact')){{ old('impact') === 'male' ? 'checked' : '' }}@else{{ isset($risk) && $risk->impact === 'male' ? 'checked' : '' }}@endif>
-                                    <span class="checkmark"></span>
-                                </label>
                                 <label class="con"> Femme
                                     <input type="radio" name="impact" value="female" @if(old('impact')){{ old('impact') === 'female' ? 'checked' : '' }}@else{{ isset($risk) && $risk->impact === 'female' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
@@ -203,7 +199,7 @@
                     <div class="left">
                     </div>
                     <div class="right">
-                        <span class="bold">Valeur du risque brut évaluée :&nbsp;</span> <button type="button" class="btn {{ $risk->color($risk->total()) }} btn-small btn-calcul-risk">{{ $risk->total() }}</button>
+                        <span class="bold">Valeur du risque brut évalué :&nbsp;</span> <button type="button" class="btn {{ $risk->color($risk->total()) }} btn-small btn-calcul-risk">{{ $risk->total() }}</button>
                     </div>
                 </div>
             </div>
@@ -344,7 +340,7 @@
                                         </label>
                                     </div>
                                     <div class="radio-title">
-                                        <label>Nulle</label>
+                                        <label>Inexistante</label>
                                         <label>Moyen</label>
                                         <label>Bon</label>
                                         <label>Très bon</label>
@@ -380,7 +376,7 @@
                                         </label>
                                     </div>
                                     <div class="radio-title">
-                                        <label>Nulle</label>
+                                        <label>Inexistante</label>
                                         <label>Moyen</label>
                                         <label>Bon</label>
                                         <label>Très bon</label>
@@ -416,7 +412,7 @@
                                         </label>
                                     </div>
                                     <div class="radio-title">
-                                        <label>Nulle</label>
+                                        <label>Inexistante</label>
                                         <label>Moyen</label>
                                         <label>Bon</label>
                                         <label>Très bon</label>

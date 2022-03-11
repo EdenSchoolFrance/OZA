@@ -104,7 +104,7 @@ function translate(word){
     if (word === 'very good') return 'Très bien'
     else if (word === 'good') return 'Bien'
     else if (word === 'medium') return 'Moyen'
-    else if (word === 'null') return 'Nulle'
+    else if (word === 'null') return 'Inexistante'
 }
 
 function color(word){
@@ -344,7 +344,7 @@ function restraintCalcul(){
         totalEnd = totalEnd+result;
         count++;
     }
-    return (RB * totalEnd) / count;
+    return Math.ceil((RB * totalEnd) / count);
 }
 
 function setColor(el,total){
