@@ -1203,32 +1203,60 @@
                         Mesures de prévention et de protection proposées
                     </td>
                 </tr>
-                @foreach($sd_risks as $sd_risk)
-                    <tr>
-                        <td>{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "Tous" }}</td>
-                        <td>{{ $sd_risk->sd_danger->danger->name }}</td>
-                        <td>{{ $sd_risk->name }}</td>
-                        <td>{{ $sd_risk->translate($sd_risk->frequency,'frequency') }}</td>
-                        <td>{{ $sd_risk->translate($sd_risk->probability,'probability') }}</td>
-                        <td>{{ $sd_risk->translate($sd_risk->gravity,'gravity') }}</td>
-                        <td>{{ $sd_risk->translate($sd_risk->impact,'impact') }}</td>
-                        <td class="{{ $sd_risk->colorPDF($sd_risk->total()) }}">{{ $sd_risk->colorTotal($sd_risk->total()) }}</td>
-                        <td>
-                            @foreach($sd_risk->sd_restraints_exist as $sd_restraint)
-                                {{ "* ".$sd_restraint->name }} <br>
+                @foreach($single_document->dangers as $sd_danger)
+                    @foreach($single_document->work_unit as $sd_work_unit)
+                        @if(count($sd_work_unit->sd_danger_risks($sd_danger->id)) > 0)
+                            @foreach($sd_work_unit->sd_danger_risks($sd_danger->id) as $sd_risk)
+                                <tr>
+                                    <td>{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "Tous" }}</td>
+                                    <td>{{ $sd_risk->sd_danger->danger->name }}</td>
+                                    <td>{{ $sd_risk->name }}</td>
+                                    <td>{{ $sd_risk->translate($sd_risk->frequency,'frequency') }}</td>
+                                    <td>{{ $sd_risk->translate($sd_risk->probability,'probability') }}</td>
+                                    <td>{{ $sd_risk->translate($sd_risk->gravity,'gravity') }}</td>
+                                    <td>{{ $sd_risk->translate($sd_risk->impact,'impact') }}</td>
+                                    <td class="{{ $sd_risk->colorPDF($sd_risk->total()) }}">{{ $sd_risk->colorTotal($sd_risk->total()) }}</td>
+                                    <td>
+                                        @foreach($sd_risk->sd_restraints_exist as $sd_restraint)
+                                            {{ "* ".$sd_restraint->name }} <br>
+                                        @endforeach
+                                    </td>
+                                    <td>{{ round($sd_risk->moyenneTech(), 1) }}</td>
+                                    <td>{{ round($sd_risk->moyenneOrga(), 1) }}</td>
+                                    <td>{{ round($sd_risk->moyenneHum(), 1) }}</td>
+                                    <td> {{ $sd_risk->totalRR($sd_risk->sd_restraints) }}</td>
+                                    <td class="{{ $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints)) }}">{{ $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints)) }}</td>
+                                    <td>
+                                        @foreach($sd_risk->sd_restraints_porposed as $sd_restraint)
+                                            {{ "* ".$sd_restraint->name }} <br>
+                                        @endforeach
+                                    </td>
+                                </tr>
                             @endforeach
-                        </td>
-                        <td>{{ round($sd_risk->moyenneTech(), 1) }}</td>
-                        <td>{{ round($sd_risk->moyenneOrga(), 1) }}</td>
-                        <td>{{ round($sd_risk->moyenneHum(), 1) }}</td>
-                        <td> {{ $sd_risk->totalRR($sd_risk->sd_restraints) }}</td>
-                        <td class="{{ $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints)) }}">{{ $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints)) }}</td>
-                        <td>
-                            @foreach($sd_risk->sd_restraints_porposed as $sd_restraint)
-                                {{ "* ".$sd_restraint->name }} <br>
-                            @endforeach
-                        </td>
-                    </tr>
+                        @else
+                            <tr>
+                                <td>{{ $sd_work_unit->name }}</td>
+                                <td>{{ $sd_danger->danger->name }}</td>
+                                <td>Non concerné actuellement</td>
+                                <td>Non concerné</td>
+                                <td>Non concerné</td>
+                                <td>Non concerné</td>
+                                <td>NON</td>
+                                <td class="green">Non concerné</td>
+                                <td>
+
+                                </td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td class="green">Non concerné</td>
+                                <td>
+
+                                </td>
+                            </tr>
+                        @endif
+                    @endforeach
                 @endforeach
             </table>
         </div>
