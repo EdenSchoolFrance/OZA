@@ -36,7 +36,7 @@
                                             <button data-modal=".modal--archive" data-id="{{ $sd->id }}"><i class="fas fa-archive"></i></button>
                                         @endif
                                     @endif
-                                    <a data-modal=".modal--duplicate" data-id="{{ $sd->id }}" ><i class="far fa-clone"></i></a>
+                                    <a data-modal=".modal--duplicate" data-client="{{ $sd->client->id }}" data-id="{{ $sd->id }}" ><i class="far fa-clone"></i></a>
                                     <a href="{{ route('admin.single_document.edit', [$sd->client->id, $sd->id]) }}"><i class="far fa-edit"></i></a>
                                     <a href="{{ route('dashboard', [$sd->id]) }}"><i class="far fa-eye"></i></a>
                                 </td>
@@ -98,19 +98,19 @@
 
         <div class="modal modal--duplicate">
             <div class="modal-dialog">
-                <form class="modal-content" action="{{ route('single_document.duplicate') }}" method="POST">
+                <form class="modal-content" action="{{ route('admin.single_document.duplicate') }}" method="POST">
                     @csrf
                     <input type="hidden" name="id" value="">
                     <div class="modal-header">
-                        <p class="title">Dupliquer le risque</p>
+                        <p class="title">Dupliquer le document unique</p>
                         <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
                     </div>
                     <div class="modal-body">
-                        <p>Sélectionner une unité de travail</p>
-                        <select name="work_unit" class="form-control">
+                        <p>Sélectionner un client</p>
+                        <select name="client_select" class="form-control">
                             <option value="all">Tous</option>
-                            @foreach($sd_works_units as $sd_work_unit)
-                                <option value="{{ $sd_work_unit->id }}">{{ $sd_work_unit->name }}</option>
+                            @foreach($clients as $client)
+                                <option value="{{ $client->id }}">{{ $client->name }}</option>
                             @endforeach
                         </select>
                         <div>

@@ -15,7 +15,7 @@ class RiskController extends Controller
     public function index()
     {
         $page = [
-            'title' => 'Tout les risks (complétion)',
+            'title' => 'Tous les risques (complétion)',
             'infos' => null,
             'sidebar' => 'help',
             'sub_sidebar' => 'risk'

@@ -100,6 +100,7 @@ Route::middleware(['auth'])->group(function() {
                 Route::post('/single_document/archive', [SingleDocumentAdminController::class, 'archive'])->name('admin.single_document.archive');
                 Route::post('/single_document/unarchive', [SingleDocumentAdminController::class, 'unarchive'])->name('admin.single_document.unarchive');
                 Route::post('/client/{client}/single_document/{single_document}/delete', [SingleDocumentAdminController::class, 'delete'])->name('admin.single_document.delete');
+                Route::post('/client/single_document/duplicate', [SingleDocumentAdminController::class, 'duplicate'])->name('admin.single_document.duplicate');
 
 
                 Route::get('/help/workunit', [WorkUnitAdminController::class, 'index'])->name('admin.help.workunit');
