@@ -307,6 +307,7 @@ class SdRisk extends Model
             $total = $total+$sd_restraint->convert($sd_restraint->technical, 'technical');
             $count++;
         }
+        if ($count === 0) return '-';
         return ceil($total / $count);
     }
 
@@ -317,6 +318,7 @@ class SdRisk extends Model
             $total = $total+$sd_restraint->convert($sd_restraint->organizational, 'organizational');
             $count++;
         }
+        if ($count === 0) return '-';
         return ceil($total / $count);
     }
 
@@ -327,6 +329,7 @@ class SdRisk extends Model
             $total = $total+$sd_restraint->convert($sd_restraint->human, 'human');
             $count++;
         }
+        if ($count === 0) return '-';
         return ceil($total / $count);
     }
 
