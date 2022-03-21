@@ -259,7 +259,7 @@ class SdRisk extends Model
                 $count++;
             }
         }
-
+        if ($count === 0) return "-";
         return ceil(($RB * $totalEnd) / $count);
     }
 

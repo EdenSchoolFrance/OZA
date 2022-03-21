@@ -186,7 +186,7 @@
                                             </thead>
                                             <tbody>
 
-                                            @foreach($sd_work_unit->sd_risks as $risk)
+                                            @foreach($sd_work_unit->sd_danger_risks($danger->id) as $risk)
                                                 <tr>
                                                     <td class="td_risk">
                                                         <p>{{ $risk->name }}</p>
