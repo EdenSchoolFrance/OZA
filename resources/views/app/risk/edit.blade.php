@@ -230,7 +230,7 @@
                                 <button data-modal=".modal--risk" data-id="" type="button" class="btn btn-yellow btn-text btn-open-risk">+ Ajouter une mesure existante</button>
                             </li>
                             <li>
-                                <span class="bold">Valeur du risque résiduel évaluée :&nbsp;</span> <button type="button" class="btn btn-danger btn-small" data-id="status-number">24</button>
+                                <span class="bold">Valeur du risque résiduel évaluée :&nbsp;</span> <button type="button" class="btn {{ $risk->color(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total()) }} btn-small" data-id="status-number">{{ isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total() }}</button>
                             </li>
                             @error('restraint')
                                 <li>
@@ -270,7 +270,7 @@
                         <span class="bold">Criticité de la situation actuelle</span>
                     </div>
                     <div class="right">
-                        <button type="button" class="btn btn-danger" data-id="status">STOP</button>
+                        <button type="button" class="btn {{ $risk->color(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total()) }}" data-id="status">{{ $risk->colorTotal(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total()) }}</button>
                     </div>
                 </div>
             </div>
@@ -288,7 +288,7 @@
         <div class="modal-dialog modal-dialog-large">
             <div class="modal-content">
                 <div class="modal-header">
-                    <p class="title">Ajouter une nouvelle mesure déjà mise en place</p>
+                    <p class="title">Mesure de prévention existante</p>
                     <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
                 </div>
                 <div class="modal-body">

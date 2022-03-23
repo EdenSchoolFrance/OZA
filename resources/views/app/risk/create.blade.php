@@ -297,7 +297,7 @@
         <div class="modal-dialog modal-dialog-large">
             <div class="modal-content">
                 <div class="modal-header">
-                    <p class="title">Ajouter une nouvelle mesure déjà mise en place</p>
+                    <p class="title">Mesure de prévention existante</p>
                 </div>
                 <div class="modal-body">
                     @foreach($risk->restraint as $restraint)

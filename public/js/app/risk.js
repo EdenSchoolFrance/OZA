@@ -52,7 +52,7 @@ on('.btn-edit-modal-risk', 'click', (el, e) => {
 });
 
 on('.btn-open-risk', 'click', (el, e) => {
-    $('.modal-add-risk .title',document, 0).innerText = "Ajouter une mesure déjà mise en place"
+    $('.modal-add-risk .title',document, 0).innerText = "Mesure de prévention existante"
     let tech = $('.radio-bar-tech input')[0].checked = true
     let orga = $('.radio-bar-orga input')[0].checked = true
     let human = $('.radio-bar-human input')[0].checked = true
@@ -259,6 +259,7 @@ function restraintCalcul(){
     let totalEnd = 0;
     let count = 0;
     let all = $('input[name="restraint[]"]');
+    if (all.length <= 0) return RB;
     for (let i = 0; i < all.length ; i++) {
         let allValue = all[i].value.split('|');
         let tech;

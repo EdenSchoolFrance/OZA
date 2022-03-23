@@ -93,10 +93,10 @@ class UserController extends Controller
                 'lastname' => 'required_without:user',
                 'firstname' => 'required',
                 'email' => 'required|unique:users',
-                'phone' => ['required', 'regex:/^(?:(?:(?:\+|00)33\D?(?:\D?\(0\)\D?)?)|0){1}[1-9]{1}(?:\D?\d{2}){4}$/'],
+                'phone' => 'required',
                 'post' => 'required',
                 'role' => 'required|exists:roles,id',
-                'password' => 'required|min:8|confirmed',
+                'password' => 'required|string|min:8|confirmed|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/',
             ]);
 
             $roles_array = ['EXPERT'];
@@ -131,7 +131,7 @@ class UserController extends Controller
             $user->role()->associate($role);
             $user->client()->associate($single_document->client->id);
             $user->save();
-            
+
             if ($role->permission == "ADMIN") {
                 $user->single_documents()->attach($single_document->client->single_documents);
             }else{
@@ -197,7 +197,7 @@ class UserController extends Controller
         $request->validate([
             'lastname' => 'required',
             'firstname' => 'required',
-            'phone' => ['required', 'regex:/^(?:(?:(?:\+|00)33\D?(?:\D?\(0\)\D?)?)|0){1}[1-9]{1}(?:\D?\d{2}){4}$/'],
+            'phone' => 'required',
             'post' => 'required',
             'email' => 'required|unique:users,email,' . $user->id,
             'role' => 'required|exists:roles,id',
@@ -230,7 +230,7 @@ class UserController extends Controller
         $user->phone = $request->phone;
         $user->post = $request->post;
         $user->email = $request->email;
-        
+
         if ($request->password) {
             $user->password = $request->password;
             $user->first_connection = 1;

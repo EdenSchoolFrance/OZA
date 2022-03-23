@@ -42,10 +42,10 @@ class UserController extends Controller
             'lastname' => 'required',
             'firstname' => 'required',
             'email' => 'required|unique:users',
-            'phone' => ['required', 'regex:/^(?:(?:(?:\+|00)33\D?(?:\D?\(0\)\D?)?)|0){1}[1-9]{1}(?:\D?\d{2}){4}$/'],
+            'phone' => ['required'],
             'post' => 'required',
             'role' => 'required|exists:roles,id',
-            'password' => 'required|min:8|regex:/^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/|confirmed',
+            'password' => 'required|string|min:8|confirmed|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/',
         ]);
 
         $user = new User();
@@ -89,7 +89,7 @@ class UserController extends Controller
         $request->validate([
             'lastname' => 'required',
             'firstname' => 'required',
-            'phone' => ['required', 'regex:/^(?:(?:(?:\+|00)33\D?(?:\D?\(0\)\D?)?)|0){1}[1-9]{1}(?:\D?\d{2}){4}$/'],
+            'phone' => ['required'],
             'post' => 'required',
             'email' => 'required|unique:users,email,' . $user->id,
             'role' => 'required|exists:roles,id',

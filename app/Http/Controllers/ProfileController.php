@@ -28,7 +28,7 @@ class ProfileController extends Controller
         $request->validate([
             'lastname' => 'required',
             'firstname' => 'required',
-            'phone' => ['required', 'regex:/^(?:(?:(?:\+|00)33\D?(?:\D?\(0\)\D?)?)|0){1}[1-9]{1}(?:\D?\d{2}){4}$/'],
+            'phone' => 'required',
             'post' => 'required',
             'email' => 'required|unique:users,email,' . Auth::user()->id
         ]);

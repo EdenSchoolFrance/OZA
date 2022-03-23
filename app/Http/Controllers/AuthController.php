@@ -69,7 +69,7 @@ class AuthController extends Controller
     public function firstAuth_store(Request $request)
     {
         $request->validate([
-            'password' => 'required|confirmed'
+            'password' => 'required|string|min:8|confirmed|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/'
         ]);
 
         Auth::user()->password = $request->password;
