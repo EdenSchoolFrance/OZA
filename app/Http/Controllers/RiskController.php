@@ -37,15 +37,6 @@ class RiskController extends Controller
     {
         $single_document = $this->checkSingleDocument($id);
 
-        $page = [
-            'title' => 'Créer un risque',
-            'url_back' => route('danger.index', [$id,$id_danger]),
-            'text_back' => 'Retour à l’évaluation des risques',
-            'dangers' => 'Accident, presqu’accident et maladie du travail non ou mal analysés et prévenus pouvant générer la répétition de ces faits.',
-            'sidebar' => 'risk_pro',
-            'sub_sidebar' => 'accident'
-        ];
-
         $danger = SdDanger::where('id',$id_danger)->whereHas('single_document', function ($q) use ($single_document){
             $q->where('id', $single_document->id);
         })->first();
@@ -63,6 +54,16 @@ class RiskController extends Controller
             if (!$sd_work_unit) abort(404);
         }
 
+        $page = [
+            'title' => 'Créer un risque',
+            'url_back' => route('danger.index', [$id,$id_danger]),
+            'text_back' => 'Retour à l’évaluation des risques',
+            'dangers' => $danger->danger->info,
+            'ut_info' => $sd_work_unit->name ?? 'Toutes',
+            'sidebar' => 'risk_pro',
+            'sub_sidebar' => 'accident'
+        ];
+
         if ($id_risk !== null){
             $risk = Risk::find($id_risk);
             return view('app.risk.create', compact('page', 'single_document','danger','domaine_activities','id_sd_work_unit','risk'));
@@ -74,15 +75,6 @@ class RiskController extends Controller
     public function edit($id, $id_danger, $id_risk)
     {
         $single_document = $this->checkSingleDocument($id);
-
-        $page = [
-            'title' => 'Editer un risque',
-            'url_back' => route('danger.index', [$id,$id_danger]),
-            'text_back' => 'Retour à l’évaluation des risques',
-            'dangers' => 'Accident, presqu’accident et maladie du travail non ou mal analysés et prévenus pouvant générer la répétition de ces faits.',
-            'sidebar' => 'risk_pro',
-            'sub_sidebar' => 'accident'
-        ];
 
         $danger = SdDanger::where('id',$id_danger)->whereHas('single_document', function ($q) use ($single_document){
             $q->where('id', $single_document->id);
@@ -97,6 +89,16 @@ class RiskController extends Controller
         })->first();
 
         if (!$risk) abort(404);
+
+        $page = [
+            'title' => 'Editer un risque',
+            'url_back' => route('danger.index', [$id,$id_danger]),
+            'text_back' => 'Retour à l’évaluation des risques',
+            'dangers' => $danger->danger->info,
+            'ut_info' => $risk->sd_work_unit->name ?? 'Toutes',
+            'sidebar' => 'risk_pro',
+            'sub_sidebar' => 'accident'
+        ];
 
         return view('app.risk.edit', compact('page', 'single_document','danger','domaine_activities', 'risk'));
     }

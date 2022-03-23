@@ -13,7 +13,7 @@
                                 <div class="left">
                                     <i class="far fa-question-circle"></i>
                                     <div>
-                                        <p>Pistes de réflexion :</p>
+                                        <p>Questions :</p>
                                         <ul>
                                             @foreach ($danger->danger->reflections as $reflection)
                                                 <li>{{ $reflection->name }}</li>
@@ -22,7 +22,7 @@
                                     </div>
                                 </div>
                                 <div class="right">
-                                    <textarea name="comment" class="form-control" placeholder="Commentaire">{{ $danger->comment }}</textarea>
+                                    <textarea name="comment" class="form-control" placeholder="Réponses">{{ $danger->comment }}</textarea>
                                     <button class="btn" type="submit">Enregistrer le commentaire</button>
                                 </div>
                             </div>

@@ -391,10 +391,6 @@ function totalEnd(el,number){
 function createRestraint(tech,orga,human,title,id){
     let restraint = $('.restraint', document, 0)
     let content =
-        '<div class="line">\n' +
-        ' <div class="left">\n' +
-        ' </div>\n' +
-        ' <div class="right">\n' +
         '  <ul>\n' +
         '   <li>\n' +
         '    <p>\n' +
@@ -414,9 +410,7 @@ function createRestraint(tech,orga,human,title,id){
         '   <li>\n' +
         '    Humain :&nbsp;<span class="text-color-'+color(human)+' bold">'+translate(human)+'</span>\n' +
         '   </li>\n' +
-        '  </ul>\n' +
-        ' </div>\n' +
-        '</div>\n'
+        '  </ul>\n'
     let row = document.createElement('div')
     row.setAttribute('class','row');
     row.innerHTML = content;

@@ -19,4 +19,10 @@
             <p>{{ $page['dangers'] }}</p>
         </div>
     @endif
+    @if (isset($page['ut_info']))
+        <div class="dangers">
+            <p>Unité de travail :</p>
+            <p>{{ $page['ut_info'] }}</p>
+        </div>
+    @endif
 </div>

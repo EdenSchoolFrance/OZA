@@ -13,7 +13,7 @@
                         <tr>
                             <th class="th_danger">Danger</th>
                             <th class="th_info">Info</th>
-                            <th class="th_reflection">Réflexion</th>
+                            <th class="th_reflection">Questions</th>
                             <th class="th_actions"></th>
                         </tr>
                     </thead>

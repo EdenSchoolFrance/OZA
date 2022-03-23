@@ -30,7 +30,7 @@
                     </div>
                     <div class="line line--reflection">
                         <div class="left left-cancel">
-                            <label for="reflection">Réflexion(s)</label>
+                            <label for="reflection">Question(s)</label>
                         </div>
                         <div class="right">
                             <ul class="ul-textarea">
@@ -44,7 +44,7 @@
 
                                 @endif
                                 <li>
-                                    <button type="button" class="btn btn-text btn-yellow btn-add-reflection"><i class="fas fa-plus"></i> Ajouter une reflexion</button>
+                                    <button type="button" class="btn btn-text btn-yellow btn-add-reflection"><i class="fas fa-plus"></i> Ajouter une question</button>
                                 </li>
                                 <li>
                                     @error('reflection')

@@ -135,7 +135,7 @@ on('[data-tooltip]', 'mouseout', (el, e) => {
             setTimeout(() => {
                 tooltip.style.display = "none";
 
-                if (el.dataset.toggle && el.dataset.toggle == "tooltip") {
+                if (el.dataset.toggle && el.dataset.toggle === "tooltip") {
                     delete el.dataset.tooltip;
                     tooltip.remove();
                 }

@@ -224,8 +224,15 @@
                 </div>
             </div>
 
-            <div class="restraint">
+            <div class="row">
+                <div class="line">
+                    <div class="left">
+                        <label>Mesure existante</label>
+                    </div>
+                    <div class="right restraint">
 
+                    </div>
+                </div>
             </div>
 
             <div class="row">

@@ -50,6 +50,9 @@
                         }
                     }
                 }
+                .restraint{
+                    flex-direction: column;
+                }
                 &--activity {
                     textarea {
                         border-color: transparent;
