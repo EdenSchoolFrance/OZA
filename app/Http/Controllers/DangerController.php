@@ -132,9 +132,13 @@ class DangerController extends Controller
 
         if ($danger->exist === 1){
             $all = 0;
+            $ut_all = 1;
 
             if ($danger->ut_all === null) return back()->with('status', 'Vous devez valider tout les unités de travail !')->with('status_type','danger');
-            else if ($danger->ut_all === 0) $all++;
+            else if ($danger->ut_all === 0){
+                $all++;
+                $ut_all = 0;
+            }
 
             $sd_works_units = SdWorkUnit::where('validated',1)->whereHas('single_document', function ($q) use ($single_document){
                 $q->where('id', $single_document->id);
@@ -145,10 +149,11 @@ class DangerController extends Controller
             foreach ($sd_works_units as $sd_work_unit){
                 if ($sd_work_unit->sd_danger($danger->id) === null) return back()->with('status', 'Vous devez valider tout les unités de travail !')->with('status_type','danger');
                 else if ($sd_work_unit->sd_danger($danger->id)->pivot->exist === 0) $all++;
-                else if ($sd_work_unit->sd_danger($danger->id)->pivot->exist === 1 && $sd_work_unit->sd_risks === null) return back()->with('status', 'Vous devez valider tout les unités de travail !')->with('status_type','danger');
+                else if ($sd_work_unit->sd_danger($danger->id)->pivot->exist === 1 && !isset($sd_work_unit->sd_risks[0])) return back()->with('status', 'Les unités validées doivent contenir au moins un risque !')->with('status_type','danger');
             }
 
-            if ($all === (count($sd_works_units) + 1) ) return back()->with('status', 'Vous devez valider au moins une unité de travail !')->with('status_type','danger');
+            if ($all === (count($sd_works_units) + 1 ) || ($all === 0 && $ut_all === 0)) return back()->with('status', 'Vous devez valider au moins une unité de travail !')->with('status_type','danger');
+
 
         }
 
