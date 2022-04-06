@@ -69,8 +69,8 @@
                                 <label>Jour</label>
                                 <label>Semaine</label>
                                 <label>Mois</label>
-                                <label>Années</label>
-                                <label>>Années</label>
+                                <label>An</label>
+                                <label>>An</label>
                             </div>
                             @error('frequency')
                                 <p class="message-error">{{ $message }}</p>
@@ -164,7 +164,7 @@
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
                         </div>
-                        <i class="far fa-question-circle" data-toggle="tooltip" data-placement="top" title="Tooltip."></i>
+                        <i class="far fa-question-circle" data-tooltip="Showing on right" data-position="right"></i>
                     </div>
                 </div>
             </div>
