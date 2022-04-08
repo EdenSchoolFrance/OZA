@@ -184,6 +184,9 @@ return [
         'sector'                => 'secteur d\'activité',
         'activity_description'  => 'activité(s) détaillée(s)',
         'premise_description'   => 'description des locaux',
-        'number_employee'       => 'nombre de salarié(s)'
+        'number_employee'       => 'nombre de salarié(s)',
+        'info_danger'           => 'information danger',
+        'reflection'            => 'réflection',
+        'danger_risk'           => 'risque'
     ]
 ];
