@@ -237,7 +237,7 @@
                                 <button data-modal=".modal--risk" data-id="" type="button" class="btn btn-yellow btn-text btn-open-risk">+ Ajouter une mesure existante</button>
                             </li>
                             <li>
-                                <span class="bold">Valeur du risque résiduel évaluée :&nbsp;</span> <button type="button" class="btn {{ $risk->color(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total()) }} btn-small" data-id="status-number">{{ isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total() }}</button>
+                                <span class="bold">Valeur du risque résiduel évalué :&nbsp;</span> <button type="button" class="btn {{ $risk->color(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total()) }} btn-small" data-id="status-number">{{ isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total() }}</button>
                             </li>
                             @error('restraint')
                                 <li>

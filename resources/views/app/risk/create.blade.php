@@ -246,7 +246,7 @@
                                 <button data-modal="{{ Auth::user()->hasAccess('oza') && isset($risk) ? '.modal--risk-restraint-oza' : '.modal--risk' }}" data-id="" type="button" class="btn btn-yellow btn-text {{ Auth::user()->hasAccess('oza') && isset($risk) ? 'btn-open-risk-restraint-oza' : 'btn-open-risk' }}">+ Ajouter une mesure existante</button>
                             </li>
                             <li>
-                                <span class="bold">Valeur du risque résiduel évaluée :&nbsp;</span> <button type="button" class="btn btn-success btn-small" data-id="status-number">0</button>
+                                <span class="bold">Valeur du risque résiduel évalué :&nbsp;</span> <button type="button" class="btn btn-success btn-small" data-id="status-number">0</button>
                             </li>
                             @error('restraint')
                                 <li>

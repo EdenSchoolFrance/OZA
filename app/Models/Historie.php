@@ -26,4 +26,9 @@ class Historie extends Model
     {
         return $this->belongsTo(SingleDocument::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

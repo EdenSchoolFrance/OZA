@@ -18,6 +18,9 @@ class CreateHistoriesTable extends Migration
             $table->string('work');
             $table->date('date');
 
+            $table->foreignUuid('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+
             $table->foreignUuid('single_document_id');
             $table->foreign('single_document_id')->references('id')->on('single_documents');
         });

@@ -79,7 +79,7 @@ class SingleDocument extends Model
             }
         }
         if ($count === 0) return "-";
-        else return round($total / $count, 2);
+        else return round($total / $count, 1);
     }
 
     public function color($number){
@@ -156,7 +156,7 @@ class SingleDocument extends Model
             }
         }
         if ($count === 0) return "-";
-        else return round(($RB - $RR) / $RB, 2);
+        else return round(($RB - $RR) / $RB, 1);
     }
 
     public function moyenneRR()
@@ -254,7 +254,7 @@ class SingleDocument extends Model
             }
         }
         if ($count === 0) return "-";
-        else return round($end / $count, 2);
+        else return round($end / $count, 1);
     }
 
 

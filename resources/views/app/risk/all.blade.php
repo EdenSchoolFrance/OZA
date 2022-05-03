@@ -13,8 +13,8 @@
                             <th class="th_rb th-sort">RB</th>
                             <th class="th_existing_measure th-sort">Mesure existante</th>
                             <th class="th_rr th-sort">RR</th>
-                            <th class="th_proposed_measure th-sort">Mesure proposée</th>
                             <th class="th_criticality th-sort">Criticité</th>
+                            <th class="th_proposed_measure th-sort">Mesure proposée</th>
                             @if (!Auth::user()->hasPermission('READER'))
                                 <th class="th_actions"></th>
                             @endif
@@ -62,6 +62,9 @@
                                 <td class="td_rr">
                                     <button class="btn {{ $sd_risk->color($sd_risk->totalRR($sd_risk->sd_restraints)) }} btn-small">{{ $sd_risk->totalRR($sd_risk->sd_restraints) }}</button>
                                 </td>
+                                <td class="td_criticality">
+                                    <button type="button" class="btn {{ $sd_risk->color(($sd_risk->totalRR($sd_risk->sd_restraints))) }} btn-small">{{ $sd_risk->colorTotal(($sd_risk->totalRR($sd_risk->sd_restraints))) }}</button>
+                                </td>
                                 <td class="td_proposed_measure">
                                     <div class="list">
                                         @foreach($sd_risk->sd_restraints_porposed as $restraint)
@@ -71,9 +74,6 @@
                                             </div>
                                         @endforeach
                                     </div>
-                                </td>
-                                <td class="td_criticality">
-                                    <button type="button" class="btn {{ $sd_risk->color(($sd_risk->totalRR($sd_risk->sd_restraints))) }} btn-small">{{ $sd_risk->colorTotal(($sd_risk->totalRR($sd_risk->sd_restraints))) }}</button>
                                 </td>
                                 @if (!Auth::user()->hasPermission('READER'))
                                     <td class="td_actions">

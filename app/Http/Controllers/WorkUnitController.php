@@ -90,6 +90,14 @@ class WorkUnitController extends Controller
 
         $single_document = $this->checkSingleDocument($id);
 
+        $works = SdWorkUnit::whereHas('single_document', function ($q) use ($id) {
+            $q->where('id', $id);
+        })->get();
+
+        if (count($works) >= 50){
+            return back()->with('status', 'Vous avez attiend la limite d\'unité de travail (50)')->with('status_type','danger');
+        }
+
         $request->validate([
             'name_enterprise' => 'required',
             'number_employee' => 'required|numeric|min:1',

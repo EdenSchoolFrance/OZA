@@ -85,11 +85,11 @@
                     <tbody>
                         @foreach($single_document->histories as $historie)
                             <tr>
-                                <td class="td_resp">{{ $single_document->firstname }} {{ $single_document->lastname }}</td>
+                                <td class="td_resp">{{ $historie->user->firstname }} {{ $historie->user->lastname }}</td>
                                 <td class="td_work">{{ $historie->work }}</td>
                                 <td class="td_date">{{ date("d/m/Y",strtotime($historie->date)) }}</td>
                                 <td class="td_actions">
-                                    <a href="#" class="text-color-green">Télécharger le PDF</a>
+                                    <a href="{{ asset('/storage/'.$single_document->client->id.'/du/'.$historie->id.'.pdf') }}" download="{{ 'OzaDocumentUnique_'.$single_document->client->name.'_'.date("d/m/Y",strtotime($historie->date)).'.pdf' }}" class="text-color-green">Télécharger le PDF</a>
                                 </td>
                             </tr>
                         @endforeach

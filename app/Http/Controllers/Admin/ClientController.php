@@ -104,7 +104,11 @@ class ClientController extends Controller
         $user->client()->associate($client->id);
         $user->save();
 
-        Storage::putFileAs('/public/logo', $file, $client->id . '.' . $file->extension());
+        Storage::makeDirectory('/public/'.$client->id);
+        Storage::makeDirectory('/public/'.$client->id.'/logo');
+        Storage::makeDirectory('/public/'.$client->id.'/du');
+
+        Storage::putFileAs('/public/'.$client->id.'/logo', $file, $client->id . '.' . $file->extension());
 
         return redirect()->route('admin.client.edit', [$client->id, 'tab' => 'du'])->with('status', 'Le client a bien été créé !');
     }
@@ -147,7 +151,8 @@ class ClientController extends Controller
         $file = $request->file('logo');
 
         if ($file) {
-            Storage::putFileAs('/public/logo', $file, $client->id . '.' . $file->extension());
+            Storage::delete(Storage::allFiles('/public/'.$client->id.'/logo'));
+            Storage::putFileAs('/public/'.$client->id.'/logo', $file, $client->id . '.' . $file->extension());
         }
 
         $client->name = $request->name_enterprise;
@@ -197,6 +202,8 @@ class ClientController extends Controller
 
     public function delete(Client $client)
     {
+        Storage::deleteDirectory('/public/'.$client->id);
+
         $client->delete();
 
         return redirect()->route('admin.clients')->with('status', 'Le client a bien été supprimé !');
