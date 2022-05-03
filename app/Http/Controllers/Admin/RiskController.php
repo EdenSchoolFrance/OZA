@@ -53,7 +53,7 @@ class RiskController extends Controller
             'url_back' => route('admin.help.risk'),
             'text_back' => 'Retour à l’évaluation des risques',
             'sidebar' => 'help',
-            'sub_sidebar' => 'accident'
+            'sub_sidebar' => 'risk'
         ];
 
 

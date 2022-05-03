@@ -16,7 +16,7 @@
                                     <div>
                                         <ul class="list-main">
                                             <li>
-                                                <p>{{ $subItem->name }}</p>
+                                                <p>{{ $subItem->name }} <a href="{{ route('admin.help.subitem.edit', [$subItem->id]) }}"><i class="far fa-edit text-color-yellow"></i></a></p>
                                             </li>
                                             <li>
                                                 <ul class="list-content">

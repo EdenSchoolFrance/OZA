@@ -134,7 +134,11 @@ on('.btn-add-item', 'click', (el, e) => {
             '<textarea class="form-control auto-resize" name="new_child['+el.dataset.id+']" placeholder=""></textarea>'
         let li = document.createElement('li');
         li.innerHTML = content;
-        el.closest('ul').querySelector('.list-content').querySelectorAll('li')[all.length - 1].after(li);
+        if (all.length === 0){
+            el.closest('ul').querySelector('.list-content').appendChild(li)
+        }else{
+            el.closest('ul').querySelector('.list-content').querySelectorAll('li')[all.length - 1].after(li);
+        }
         li.querySelector('textarea').focus();
     }
 });

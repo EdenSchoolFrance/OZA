@@ -22,6 +22,7 @@ use App\Http\Controllers\Client\UserController as UserClientController;
 use App\Http\Controllers\Admin\ClientController as ClientAdminController;
 use App\Http\Controllers\Admin\SingleDocumentController as SingleDocumentAdminController;
 use App\Http\Controllers\Admin\WorkUnitController as WorkUnitAdminController;
+use App\Http\Controllers\Admin\SubItemController as SubItemAdminController;
 use App\Http\Controllers\Admin\ItemController as ItemAdminController;
 use App\Http\Controllers\Admin\DangerController as DangerAdminController;
 use App\Http\Controllers\Admin\RiskController as RiskAdminController;
@@ -110,6 +111,11 @@ Route::middleware(['auth'])->group(function() {
                 Route::post('/help/workunit/store', [WorkUnitAdminController::class, 'store'])->name('admin.help.workunit.store');
                 Route::post('/help/workunit/{work_unit}/update', [WorkUnitAdminController::class, 'update'])->name('admin.help.workunit.update');
                 Route::post('/help/workunit/delete', [WorkUnitAdminController::class, 'delete'])->name('admin.help.workunit.delete');
+
+
+                Route::get('/help/subitem/edit/{subitem}', [SubItemAdminController::class, 'edit'])->name('admin.help.subitem.edit');
+
+                Route::post('/help/subitem/update/{subitem}', [SubItemAdminController::class, 'update'])->name('admin.help.subitem.update');
 
 
                 Route::get('/help/item', [ItemAdminController::class, 'index'])->name('admin.help.item');
