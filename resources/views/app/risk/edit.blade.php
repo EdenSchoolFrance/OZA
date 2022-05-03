@@ -282,7 +282,7 @@
                 </div>
             </div>
             <div class="row row--submit">
-                <button class="btn btn-success">Mettre à jour le danger</button>
+                <button class="btn btn-success">Mettre à jour le risque</button>
             </div>
         </div>
     </form>
@@ -458,7 +458,7 @@
         <script>
             @foreach($risk->sd_restraints as $restraint)
                 @if($restraint->exist === 1)
-                    createRestraint('{{ $restraint->technical }}','{{ $restraint->organizational }}','{{ $restraint->human }}','{{ $restraint->name }}','{{ $restraint->id }}')
+                    createRestraint('{{ $restraint->technical }}','{{ $restraint->organizational }}','{{ $restraint->human }}',"{!! $restraint->name !!}",'{{ $restraint->id }}')
                 @endif
             @endforeach
         </script>
