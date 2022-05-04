@@ -40,6 +40,6 @@ class SubItemController extends Controller
         $subitem->name = $request->name_subitem;
         $subitem->save();
 
-        return redirect()->route('admin.help.item')->with('status', 'La catégorie a bien été modifié !');
+        return redirect()->route('admin.help.item')->with('status', 'La catégorie a bien été modifiée !');
     }
 }

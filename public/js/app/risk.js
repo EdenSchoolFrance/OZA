@@ -397,7 +397,7 @@ function createRestraint(tech,orga,human,title,id){
         '     <i class="far fa-times-circle btn-delete"></i>\n' +
         '     <p class="title-restraint"></p> \n' +
         '     <button data-modal=".modal--risk" data-id="'+id+'" class="btn btn-yellow btn-text btn-edit-modal-risk" type="button"><i class="far fa-edit text-color-yellow"></i></button>\n' +
-        '     <input type="hidden" value="'+tech+'|'+orga+'|'+human+'|'+title+'|'+id+'" name="restraint[]">' +
+        '     <input type="hidden" value="'+tech+'|'+orga+'|'+human+'|'+escapeHtml(title)+'|'+id+'" name="restraint[]">' +
         '    </p>\n' +
         '   </li>\n' +
         '   \n' +
