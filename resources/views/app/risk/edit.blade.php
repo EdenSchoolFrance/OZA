@@ -76,7 +76,7 @@
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
                         </div>
-                        <i class="far fa-question-circle" data-toggle="tooltip" data-placement="top" title="Tooltip"></i>
+                        <i class="far fa-question-circle" data-tooltip=".tooltip--fre" data-placement="right"></i>
                     </div>
                 </div>
             </div>
@@ -120,7 +120,7 @@
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
                         </div>
-                        <i class="far fa-question-circle" data-toggle="tooltip" data-placement="top" title="Tooltip."></i>
+                        <i class="far fa-question-circle" data-tooltip=".tooltip--pro" data-placement="right"></i>
                     </div>
                 </div>
             </div>
@@ -164,7 +164,7 @@
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
                         </div>
-                        <i class="far fa-question-circle" data-tooltip="Showing on right" data-position="right"></i>
+                        <i class="far fa-question-circle" data-tooltip=".tooltip--gp" data-placement="right"></i>
                     </div>
                 </div>
             </div>
@@ -190,6 +190,7 @@
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
                         </div>
+                        <i class="far fa-question-circle" data-tooltip=".tooltip--id" data-placement="right"></i>
                     </div>
                 </div>
             </div>
@@ -353,7 +354,7 @@
                                         <label>Très bon</label>
                                     </div>
                                 </div>
-                                <i class="far fa-question-circle" data-toggle="tooltip" data-placement="top" title="Tooltip."></i>
+                                <i class="far fa-question-circle" data-tooltip=".tooltip--restraint" data-placement="right"></i>
                             </div>
                         </div>
                     </div>
@@ -389,7 +390,7 @@
                                         <label>Très bon</label>
                                     </div>
                                 </div>
-                                <i class="far fa-question-circle" data-toggle="tooltip" data-placement="top" title="Tooltip."></i>
+                                <i class="far fa-question-circle" data-tooltip=".tooltip--restraint" data-placement="right"></i>
                             </div>
                         </div>
                     </div>
@@ -425,7 +426,7 @@
                                         <label>Très bon</label>
                                     </div>
                                 </div>
-                                <i class="far fa-question-circle" data-toggle="tooltip" data-placement="top" title="Tooltip."></i>
+                                <i class="far fa-question-circle" data-tooltip=".tooltip--restraint" data-placement="right"></i>
                             </div>
                         </div>
                     </div>
@@ -439,8 +440,53 @@
                         </div>
                     </div>
                 </div>
+                <div class="tooltip tooltip--restraint">
+                    <p>Très bonne = mesure existante très efficace</p>
+                    <p>Bonne = mesure existante de bonne efficacité</p>
+                    <p>Moyenne = mesure existante d'efficacité moyenne</p>
+                    <p>Nulle = mesure non existante</p>
+                </div>
             </div>
         </div>
+    </div>
+
+    <div class="tooltip tooltip--fre">
+        <p>La fréquence d'exposition est évaluée selon une échelle à 5 niveaux :</p>
+        <p>> An : exposition extrêmement rare de moins de une fois par an</p>
+        <p>An : exposition rare de une à plusieurs fois par an</p>
+        <p>Mois : exposition peu fréquente de une à plusieurs fois par mois</p>
+        <p>Semaine : exposition fréquente de une à plusieurs fois par semaine</p>
+        <p>Jour : exposition très fréquente, de une à plusieurs fois par jour</p>
+    </div>
+
+    <div class="tooltip tooltip--pro">
+        <p>
+            La probabilité de survenue d'un accident ou d'une atteinte à la santé doit être également évaluée,
+            car la fréquence d'exposition à un danger n'est pas le seul paramètre qui influence la survenue
+            d'un accident ou d'une atteinte à la santé.<br>
+            Par exemple, une personne emprunte plusieurs fois par jour un escalier en se tenant à la rampe.
+            La fréquence d'exposition est maximale, mais cela ne signifie pas que cette personne aura un accident chaque jour dans cet escalier.
+            La probabilité qu'elle chute dans cet escalier est "faible" ou "très faible".
+        </p>
+    </div>
+
+    <div class="tooltip tooltip--gp">
+        <p>La gravité potentielle des conséquences de l'exposition à un danger est évaluée selon une échelle à 5 niveaux :</p>
+        <p>Impact faible : exposition sans conséquence sur la santé physique et mentale de la personne exposée</p>
+        <p>ASA : Accident ou maladie professionnelle Sans Arrêt de travail</p>
+        <p>AAA : Accident ou maladie professionnelle Avec Arrêt de travail, sans IPP (Incapacité Permanente Partielle*)</p>
+        <p>IPP : accident ou maladie professionnelle avec arrêt de travail et avec IPP (Incapacité Permanente Partielle*)</p>
+        <p>Décès : au moins une maladie professionnelle avec Incapacité Permanente Totale ou au moins un décès</p>
+        <p>L'IPP est constatée lorsqu'il persiste des séquelles de l'accident du travail, alors que le salarié est déclaré apte.</p>
+    </div>
+
+    <div class="tooltip tooltip--id">
+        <p>
+            Non : égale pour les deux sexes
+            L'impact différencié permet d'identifier le cas échéant le sexe pour lequel la gravité est potentiellement la plus importante.
+            L'évaluation de l'impact différencié de l'exposition aux risques en fonction du sexe est en effet une exigence réglementaire.
+        </p>
+        <p>F : Femme</p>
     </div>
 </div>
 

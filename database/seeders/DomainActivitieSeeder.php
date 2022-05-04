@@ -16,6 +16,11 @@ class DomainActivitieSeeder extends Seeder
     {
         $activitie = new DomainActivitie();
         $activitie->id = uniqid();
+        $activitie->name = "Tous";
+        $activitie->save();
+
+        $activitie = new DomainActivitie();
+        $activitie->id = uniqid();
         $activitie->name = "Boulanger";
         $activitie->save();
 
