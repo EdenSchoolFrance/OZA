@@ -94,8 +94,8 @@ class WorkUnitController extends Controller
             $q->where('id', $id);
         })->get();
 
-        if (count($works) >= 50){
-            return back()->with('status', 'Vous avez attiend la limite d\'unité de travail (50)')->with('status_type','danger');
+        if (count($works) !== 0 && count($works) >= $single_document->work_unit_limit){
+            return back()->with('status', 'Vous avez attiend la limite d\'unité de travail ('.$single_document->work_unit_limit.')')->with('status_type','danger');
         }
 
         $request->validate([

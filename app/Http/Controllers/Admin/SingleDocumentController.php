@@ -52,6 +52,7 @@ class SingleDocumentController extends Controller
     {
         $request->validate([
             'name_single_document' => 'required',
+            'number_ut' => 'required|integer|min:0',
             'dangers' => 'required|array',
             'dangers.*' => 'exists:dangers,id'
         ]);
@@ -63,6 +64,7 @@ class SingleDocumentController extends Controller
         $single_document = new SingleDocument();
         $single_document->id = uniqid();
         $single_document->name = $request->name_single_document;
+        $single_document->work_unit_limit = $request->number_ut;
         $single_document->client()->associate($client);
         $single_document->save();
         foreach ($users as $user) {
@@ -100,11 +102,13 @@ class SingleDocumentController extends Controller
     {
         $request->validate([
             'name_single_document' => 'required',
+            'number_ut' => 'required|integer|min:0',
             'dangers' => 'required|array',
             'dangers.*' => 'exists:dangers,id'
         ]);
 
         $single_document->name = $request->name_single_document;
+        $single_document->work_unit_limit = $request->number_ut;
         $single_document->save();
 
         $dangers = SdDanger::whereHas('single_document', function ($q) use ($single_document) {
@@ -229,6 +233,9 @@ class SingleDocumentController extends Controller
             }
         }
 
+        var_dump($old_risk);
+
+
         foreach ($single_document->dangers as $sd_danger){
 
             $new_sd_danger = $sd_danger->replicate();
@@ -250,7 +257,8 @@ class SingleDocumentController extends Controller
                 $new_sd_risk = $sd_risk->replicate();
                 $new_sd_risk->id = uniqid();
                 $new_sd_risk->sd_danger()->associate($new_sd_danger);
-                if ($old_risk[$sd_risk->id]){
+
+                if (isset($old_risk[$sd_risk->id])){
                     $new_sd_risk->sd_work_unit()->associate($old_risk[$sd_risk->id]['new_work_unit']);
                 }
                 $new_sd_risk->save();
@@ -265,6 +273,6 @@ class SingleDocumentController extends Controller
 
         }
 
-        return back()->with('status','Document unique dupliquer avec succès');
+        return back()->with('status','Document unique dupliqué avec succès');
     }
 }

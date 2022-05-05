@@ -32,6 +32,17 @@
                     </div>
                     <div class="line">
                         <div class="left">
+                            <label for="number_ut">Nombre d'UT maximum (0 = ilimité)</label>
+                        </div>
+                        <div class="right">
+                            <input type="number" name="number_ut" id="number_ut" class="form-control @error('number_ut') invalid @enderror" value="{{ old('number_ut') ? old('number_ut') : $sd->work_unit_limit }}" placeholder="Nombre d'UT maximum (0 = ilimité)">
+                            @error('number_ut')
+                            <p class="message-error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="line">
+                        <div class="left">
                             <p>Liste des dangers associés</p>
                         </div>
                         <div class="right right--btn">

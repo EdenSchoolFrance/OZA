@@ -30,6 +30,7 @@ class CreateSingleDocumentsTable extends Migration
             $table->string('phone')->nullable();
             $table->string("function")->nullable();
             $table->boolean('archived')->default(0);
+            $table->integer('work_unit_limit');
 
             $table->foreignUuid('client_id');
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');

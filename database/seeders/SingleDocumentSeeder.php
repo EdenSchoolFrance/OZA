@@ -38,6 +38,7 @@ class SingleDocumentSeeder extends Seeder
         $sd->email = "jhon.doe@bicoop.fr";
         $sd->phone = "0614875412";
         $sd->function = "Responsable DU";
+        $sd->work_unit_limit = 30;
         $sd->client()->associate($client);
         $sd->save();
         $sd->users()->attach($admin);

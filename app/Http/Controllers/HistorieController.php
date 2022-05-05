@@ -25,6 +25,6 @@ class HistorieController extends Controller
         $history->save();
 
 
-        return redirect()->route('pdf.view', [$single_document->id]);
+        return redirect()->route('pdf.view', [$single_document->id])->with('status',$history->id);
     }
 }
