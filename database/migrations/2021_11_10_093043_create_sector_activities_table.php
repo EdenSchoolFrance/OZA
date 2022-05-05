@@ -15,7 +15,7 @@ class CreateSectorActivitiesTable extends Migration
     {
         Schema::create('sector_activities', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name')->nullable();
+            $table->text('name')->nullable();
         });
     }
 

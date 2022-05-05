@@ -15,7 +15,7 @@ class CreateChildSubItemsTable extends Migration
     {
         Schema::create('child_sub_items', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name');
+            $table->text('name');
             $table->foreignUuid('sub_item_id');
             $table->foreign('sub_item_id')->references('id')->on('sub_items')->onDelete('cascade');
         });

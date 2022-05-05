@@ -15,7 +15,7 @@ class CreateSdRisksTable extends Migration
     {
         Schema::create('sd_risks', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name');
+            $table->text('name');
             $table->string('frequency');
             $table->string('probability');
             $table->string('gravity');

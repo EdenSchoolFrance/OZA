@@ -15,7 +15,7 @@ class CreateSubItemsTable extends Migration
     {
         Schema::create('sub_items', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name');
+            $table->text('name');
             $table->foreignUuid('item_id')->nullable();
             $table->foreign('item_id')->references('id')->on('items');
         });

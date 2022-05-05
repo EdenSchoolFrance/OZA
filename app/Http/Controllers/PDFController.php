@@ -41,7 +41,7 @@ class PDFController extends Controller
         $pdf = PDF::loadView('app.pdf.index', compact('chartUrl','single_document','item_mat','item_veh','item_eng','sd_risks','sd_risks_posts'))->setPaper('a4', 'landscape');
 
         Storage::put('/public/'.$single_document->client->id.'/du/'.$histories[0]->id.'.pdf', $pdf->download()->getOriginalContent());
-        return $pdf->download('OzaDocumentUnique_'.$single_document->client->name.'_'.date("d/m/Y",strtotime($histories[0]->date)).'.pdf');
+        return back()->with('status', 'Document unique générer avec succès, vous pouvez maintenant le télécharger !');
     }
 
     public static function create(){

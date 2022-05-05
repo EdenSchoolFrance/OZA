@@ -28,3 +28,8 @@ new Chart(document.getElementById("myChart"), {
         }
     }
 });
+
+
+on('.btn-modal-pdf-submit', 'click', (el, e) => {
+    $('.info-pdf-modal', document, 0).innerText = "Votre document unique est en cours de génération merci de patienter, cela peut prendre jusqu'à 30 secondes."
+});

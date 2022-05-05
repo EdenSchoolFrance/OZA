@@ -119,12 +119,8 @@ Route::middleware(['auth'])->group(function() {
 
 
                 Route::get('/help/item', [ItemAdminController::class, 'index'])->name('admin.help.item');
-                Route::get('/help/item/create', [ItemAdminController::class, 'create'])->name('admin.help.item.create');
-                Route::get('/help/item/edit', [ItemAdminController::class, 'edit'])->name('admin.help.item.edit');
 
                 Route::post('/help/item/store', [ItemAdminController::class, 'store'])->name('admin.help.item.store');
-                Route::post('/help/item/update', [ItemAdminController::class, 'update'])->name('admin.help.item.update');
-                Route::post('/help/item/delete', [ItemAdminController::class, 'delete'])->name('admin.help.item.delete');
 
 
                 Route::get('/help/danger', [DangerAdminController::class, 'index'])->name('admin.help.danger');

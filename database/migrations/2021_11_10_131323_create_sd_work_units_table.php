@@ -15,7 +15,7 @@ class CreateSdWorkUnitsTable extends Migration
     {
         Schema::create('sd_work_units', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name');
+            $table->text('name');
             $table->integer('number_employee');
             $table->boolean('validated')->default(0);
 

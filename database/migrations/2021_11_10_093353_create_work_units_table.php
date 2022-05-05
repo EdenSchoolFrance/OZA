@@ -15,7 +15,7 @@ class CreateWorkUnitsTable extends Migration
     {
         Schema::create('work_units', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name')->nullable();
+            $table->text('name')->nullable();
             $table->foreignUuid('sector_activity_id');
 
             $table->foreign('sector_activity_id')->references('id')->on('sector_activities')->onDelete('cascade');

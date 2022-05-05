@@ -113,11 +113,12 @@
                                 </div>
                                 <div class="right">
                                     <textarea class="form-control" id="work" placeholder="Mise à jour annuelle, mise à jour des actions, mise à jour des évaluations, ajout ou retrait de risques ou de préventions, ..." name="work_history"></textarea>
+                                    <span class="info-pdf-modal"></span>
                                 </div>
                             </div>
                         </div>
                         <div>
-                            <button type="submit" class="btn btn-success">Générer un DU à date</button>
+                            <button type="submit" class="btn btn-success btn-modal-pdf-submit">Générer un DU à date</button>
                         </div>
                     </div>
                 </form>

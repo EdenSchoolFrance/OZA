@@ -15,7 +15,7 @@ class CreateHistoriesTable extends Migration
     {
         Schema::create('histories', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('work');
+            $table->text('work');
             $table->date('date');
 
             $table->foreignUuid('user_id');
