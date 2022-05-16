@@ -187,6 +187,7 @@ return [
         'number_employee'       => 'nombre de salarié(s)',
         'info_danger'           => 'information danger',
         'reflection'            => 'réflection',
-        'danger_risk'           => 'risque'
+        'danger_risk'           => 'risque',
+        'name_single_document'  => 'nom du document unique'
     ]
 ];

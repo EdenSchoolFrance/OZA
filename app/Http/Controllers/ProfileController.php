@@ -16,8 +16,8 @@ class ProfileController extends Controller
 
         $page = [
             'title' => 'Mon profil',
-            'sidebar' => null,
-            'sub_sidebar' => null
+            'sidebar' => "profil",
+            'sub_sidebar' => "profil"
         ];
 
         return view('auth.profile', compact('page', 'single_document'));

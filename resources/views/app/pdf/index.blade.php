@@ -30,7 +30,7 @@
                 <p class="info">Transcription des résultats de l'évaluation des risques pour la santé et la sécurité du personnel</p>
             </div>
 
-            <img src="{{ public_path('storage/logo/'.$single_document->client->id.'.'.$single_document->client->image_type) }}" alt="">
+            <img src="{{ public_path('storage/'.$single_document->client->id.'/logo/'.$single_document->client->id.'.'.$single_document->client->image_type) }}" alt="">
 
             <div class="info-single_document">
                 <p>Document Unique élaboré le : <span class="bold">{{ date("d F Y") }}</span></p>
