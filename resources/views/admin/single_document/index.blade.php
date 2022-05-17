@@ -31,14 +31,14 @@
                                 <td class="td_actions">
                                     @if (Auth::user()->hasPermission('ADMIN'))
                                         @if ($sd->archived)
-                                            <button data-modal=".modal--unarchive" data-id="{{ $sd->id }}"><i class="fas fa-box-open"></i></button>
+                                            <button data-modal=".modal--unarchive" data-id="{{ $sd->id }}"><i class="fas fa-box-open" data-tooltip=".tooltip--unarchive" data-placement="top"></i></button>
                                         @else
-                                            <button data-modal=".modal--archive" data-id="{{ $sd->id }}"><i class="fas fa-archive"></i></button>
+                                            <button data-modal=".modal--archive" data-id="{{ $sd->id }}"><i class="fas fa-archive" data-tooltip=".tooltip--archive" data-placement="top"></i></button>
                                         @endif
                                     @endif
-                                    <a data-modal=".modal--duplicate" data-client="{{ $sd->client->id }}" data-id="{{ $sd->id }}" ><i class="far fa-clone"></i></a>
-                                    <a href="{{ route('admin.single_document.edit', [$sd->client->id, $sd->id]) }}"><i class="far fa-edit"></i></a>
-                                    <a href="{{ route('dashboard', [$sd->id]) }}"><i class="far fa-eye"></i></a>
+                                    <a data-modal=".modal--duplicate" data-client="{{ $sd->client->id }}" data-id="{{ $sd->id }}" ><i class="far fa-clone" data-tooltip=".tooltip--dupli" data-placement="top"></i></a>
+                                    <a href="{{ route('admin.single_document.edit', [$sd->client->id, $sd->id]) }}"><i class="far fa-edit" data-tooltip=".tooltip--edit" data-placement="top"></i></a>
+                                    <a href="{{ route('dashboard', [$sd->id]) }}"><i class="far fa-eye" data-tooltip=".tooltip--show" data-placement="top"></i></a>
                                 </td>
                             </tr>
                         @endforeach
@@ -121,6 +121,27 @@
                 </form>
             </div>
         </div>
+
+        <div class="tooltip tooltip--archive">
+            <p>Archiver le DU </p>
+        </div>
+
+        <div class="tooltip tooltip--unarchive">
+            <p>Désarchiver le DU </p>
+        </div>
+
+        <div class="tooltip tooltip--dupli">
+            <p>Dupliquer le DU</p>
+        </div>
+
+        <div class="tooltip tooltip--edit">
+            <p>Paramètres du DU</p>
+        </div>
+
+        <div class="tooltip tooltip--show">
+            <p>Visualiser le DU</p>
+        </div>
+
     </div>
 @endsection
 

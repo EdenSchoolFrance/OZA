@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="line line--activity">
                     <div class="left left-cancel">
-                        <label for="number_employee">Activités associées</label>
+                        <label for="number_employee">Principales activités</label>
                     </div>
                     <div class="right">
                         <ul class="ul-textarea">

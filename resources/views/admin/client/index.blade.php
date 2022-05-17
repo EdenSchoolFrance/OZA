@@ -39,12 +39,12 @@
                                 <td class="td_actions">
                                     @if (Auth::user()->hasPermission('ADMIN'))
                                         @if ($client->archived)
-                                            <button data-modal=".modal--unarchive" data-id="{{ $client->id }}"><i class="fas fa-box-open"></i></button>
+                                            <button data-modal=".modal--unarchive" data-id="{{ $client->id }}"><i class="fas fa-box-open" data-tooltip=".tooltip--unarchive" data-placement="top" ></i></button>
                                         @else
-                                            <button data-modal=".modal--archive" data-id="{{ $client->id }}"><i class="fas fa-archive"></i></button>
+                                            <button data-modal=".modal--archive" data-id="{{ $client->id }}"><i class="fas fa-archive" data-tooltip=".tooltip--archive" data-placement="top"></i></button>
                                         @endif
                                     @endif
-                                    <a href="{{ route('admin.client.edit', [$client->id]) }}"><i class="far fa-edit"></i></a>
+                                    <a href="{{ route('admin.client.edit', [$client->id]) }}"><i class="far fa-edit" data-tooltip=".tooltip--edit" data-placement="top"></i></a>
                                 </td>
                             </tr>
                         @endforeach
@@ -63,8 +63,8 @@
                     <a href="{{ route('admin.client.create') }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN CLIENT</a>
                 </div>
             @endif
-        </div>
 
+        </div>
         @if (Auth::user()->hasPermission('ADMIN'))
             <div class="modal modal--archive">
                 <div class="modal-dialog">
@@ -106,6 +106,19 @@
                 </div>
             </div>
         @endif
+
+        <div class="tooltip tooltip--archive">
+            <p>Archiver le client </p>
+        </div>
+
+        <div class="tooltip tooltip--unarchive">
+            <p>Désarchiver le client </p>
+        </div>
+
+        <div class="tooltip tooltip--edit">
+            <p>Modifier le client</p>
+        </div>
+
     </div>
 @endsection
 

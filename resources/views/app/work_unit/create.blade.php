@@ -30,7 +30,7 @@
                 <div class="row">
                     <div class="line">
                         <div class="left">
-                            <label for="number_employee">Nombre de salarié(s) concerné(s)</label>
+                            <label for="number_employee">Nombre de salariés de l’unité de travail</label>
                         </div>
                         <div class="right">
                             <div class="btn-group-number">
@@ -45,7 +45,7 @@
                     </div>
                     <div class="line line--activity">
                         <div class="left left-cancel">
-                            <label for="number_employee">Activité(s) associée(s)</label>
+                            <label for="number_employee">Principales activités</label>
                         </div>
                         <div class="right">
                             <ul class="ul-textarea">
