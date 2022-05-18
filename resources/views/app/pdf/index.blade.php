@@ -33,19 +33,21 @@
             <img src="{{ public_path('storage/'.$single_document->client->id.'/logo/'.$single_document->client->id.'.'.$single_document->client->image_type) }}" alt="">
 
             <div class="info-single_document">
-                <p>Document Unique élaboré le : <span class="bold">{{ date("d F Y") }}</span></p>
-                <p>Version : <span class="bold">2</span></p>
+                <p> @if(count($single_document->histories) === 1) Document Unique élaboré le @else Mise à jour du DUERP le @endif: <span class="bold">{{ date("d F Y") }}</span></p>
+                <p>Version : <span class="bold">{{ count($single_document->histories) }}</span></p>
             </div>
         </div>
 
         <div class="footer">
-            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="center"> Copyright © OZA DUERP Online</p>
             <p class="page-num">Page <span></span></p>
         </div>
     </section>
 
     <section class="page page-second">
-        <div class="header"></div>
+        <div class="header">
+            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+        </div>
         <div class="body">
             <div class="header">
                 <h1 class="title">Document Unique</h1>
@@ -72,20 +74,20 @@
             </ul>
         </div>
         <div class="footer">
-            <p class="center">Copyright © OZA S.A.S. - Objectif Zéro Accident</p>
+            <p class="center"> Copyright © OZA DUERP Online</p>
             <p class="page-num">Page <span></span></p>
         </div>
     </section>
 
     <section class="page">
         <div class="header">
-            <p class="center">Numéro du client - Adresse postale</p>
+            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body">
             <h1 class="head-title">SOMMAIRE</h1>
             <ul class="list-item">
                 <li>
-                    <p><span class="line">ACTUALISATION DU DOCUMENT UNIQUE<a href="#" class="link">4</a></span></p>
+                    <p><span class="line">ACTUALISATION DU DOCUMENT UNIQUE<a href="#actu" class="link">4</a></span></p>
                 </li>
                 <li>
                     <p><span class="line">PRÉSENTATION DÉTAILLÉE DE LA STRUCTURE ET DES UNITÉS DE TAVAIL<a href="#" class="link">4</a></span></p>
@@ -176,16 +178,16 @@
             </ul>
         </div>
         <div class="footer">
-            <p class="center">Copyright © OZA S.A.S. - Objectif Zéro Accident</p>
+            <p class="center"> Copyright © OZA DUERP Online</p>
             <p class="page-num">Page <span></span></p>
         </div>
     </section>
     <section class="page">
         <div class="header">
-            <p class="center">Numéro du client - Adresse postale</p>
+            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body">
-            <h1 class="head-title">ACTUALISATION DU DOCUMENT UNIQUE</h1>
+            <h1 class="head-title" id="actu">ACTUALISATION DU DOCUMENT UNIQUE</h1>
             <table class="table">
                 <thead>
                     <tr>
@@ -213,26 +215,20 @@
                             <td>{{ date("d/m/Y", strtotime($historie->date)) }}</td>
                         </tr>
                     @endforeach
-                    {{--No data line--}}
-                    <tr>
-                        <td><div></div></td>
-                        <td><div></div></td>
-                        <td><div></div></td>
-                        <td><div></div></td>
-                        <td><div></div></td>
-                    </tr>
                 </tbody>
             </table>
 
         </div>
         <div class="footer">
-            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="center"> Copyright © OZA DUERP Online</p>
             <p class="page-num">Page <span></span></p>
         </div>
     </section>
 
     <section class="page">
-        <div class="header"></div>
+        <div class="header">
+            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+        </div>
         <div class="body">
             <h1 class="head-title">PRÉSENTATION DE LA STRUCTURE</h1>
             <table class="table table--info-gen">
@@ -281,13 +277,15 @@
             <p class="text-color-red"><span class="bold">À noter :</span> le genre masculin, utilisé dans la rédaction de ce document, l’a été uniquement dans le but d’alléger sa rédaction et sa lecture.</p>
         </div>
         <div class="footer">
-            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="center"> Copyright © OZA DUERP Online</p>
             <p class="page-num">Page <span></span></p>
         </div>
     </section>
 
     <section class="page">
-        <div class="header"></div>
+        <div class="header">
+            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+        </div>
         <div class="body">
             <table class="table table--activity">
                 <thead>
@@ -312,13 +310,15 @@
             </table>
         </div>
         <div class="footer">
-            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="center"> Copyright © OZA DUERP Online</p>
             <p class="page-num">Page <span></span></p>
         </div>
     </section>
     @foreach($single_document->work_unit as $key => $sd_work_unit)
         <section class="page">
-            <div class="header"></div>
+            <div class="header">
+                <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            </div>
             <div class="body">
                 @if($key === 0)
                     <p class="text-color-red">
@@ -376,13 +376,15 @@
                 </table>
             </div>
             <div class="footer">
-                <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+                <p class="center"> Copyright © OZA DUERP Online</p>
                 <p class="page-num">Page <span></span></p>
             </div>
         </section>
     @endforeach
     <section class="page">
-        <div class="header"></div>
+        <div class="header">
+            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+        </div>
         <div class="body">
             <h1 class="head-title">TABLEAU DE BORD DE L'ÉVALUATION DES RISQUES</h1>
             <table class="table table--no-border table--dashboard">
@@ -390,6 +392,9 @@
                     <td>
                         <div>
                             <p class="bold">Risque brut moyen</p>
+                            <p>
+                                Permet de situer le niveau de risque total de la structure, évalué sans prendre en compte les mesures de prévention ; sur une échelle de zéro (risque nul) à 50 (risque maximal).
+                            </p>
                             <p class="{{ $single_document->color($single_document->moyenneRB()) }} number">{{ $single_document->moyenneRB() }}</p>
                             <p>Maxi = 50</p>
                         </div>
@@ -397,27 +402,22 @@
                     <td>
                         <div>
                             <p class="bold">Réduction du risque</p>
+                            <p>
+                                Met en évidence les efforts de prévention de la structure
+                            </p>
                             <p class="text-color-green number">{{ $single_document->discountRisk() }} %</p>
                         </div>
                     </td>
                     <td>
                         <div>
                             <p class="bold">Risque résiduel  moyen</p>
+                            <p>
+                                Permet de situer le niveau de risque actuel de la structure, en prenant en compte les mesures de prévention existantes ;
+                                sur une échelle de zéro (risque nul) à 50 (risque maximal).
+                            </p>
                             <p class="{{ $single_document->color($single_document->moyenneRR()) }} number">{{ $single_document->moyenneRR() }}</p>
                             <p>Maxi = 50</p>
                         </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Permet de situer le niveau de risque total de la structure, évalué sans prendre en compte les mesures de prévention ; sur une échelle de zéro (risque nul) à 50 (risque maximal).
-                    </td>
-                    <td>
-                        Met en évidence les efforts de prévention de la structure
-                    </td>
-                    <td>
-                        Permet de situer le niveau de risque actuel de la structure, en prenant en compte les mesures de prévention existantes ;
-                        sur une échelle de zéro (risque nul) à 50 (risque maximal).
                     </td>
                 </tr>
             </table>
@@ -425,13 +425,15 @@
             <img src="{{ $chartUrl }}" alt="" class="chart-risk">
         </div>
         <div class="footer">
-            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="center"> Copyright © OZA DUERP Online</p>
             <p class="page-num">Page <span></span></p>
         </div>
     </section>
 
     <section class="page">
-        <div class="header"></div>
+        <div class="header">
+            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+        </div>
         <div class="body body--notif">
             <h1 class="head-title">1. NOTICE EXPLICATIVE DU PLAN D'ACTION DE RÉDUCTION DES RISQUES</h1>
             <p class="bold">Le Plan d’action reprend et présente tous les risques identifiés et évalués dans le chapitre 4 « Evaluation des risques » classés ici selon leur criticité (priorité) dans la colonne « Criticité ».</p>
@@ -455,14 +457,16 @@
             </p>
         </div>
         <div class="footer">
-            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="center"> Copyright © OZA DUERP Online</p>
             <p class="page-num">Page <span></span></p>
         </div>
     </section>
 
 
     <section class="page">
-        <div class="header"></div>
+        <div class="header">
+            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+        </div>
         <div class="body">
             <p>Ce Document Unique, y compris ses annexes, est protégé par les droits d'auteur. Il a été réalisé avec l'assistance d'un IPRP de la société OZA, sous l'entière responsabilité et selon les indications fournies par : <span class="bold">=Mr {{ $single_document->firstname }} {{ $single_document->lastname }}, {{ $single_document->function }}</span> </p>
             <table class="table table--action-plan">
@@ -520,13 +524,15 @@
             </table>
         </div>
         <div class="footer">
-            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="center"> Copyright © OZA DUERP Online</p>
             <p class="page-num">Page <span></span></p>
         </div>
     </section>
 
     <section class="page">
-        <div class="header"></div>
+        <div class="header">
+            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+        </div>
         <div class="body body--notif">
             <h1 class="head-title">2. RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</h1>
             <p class="bold">L’EVALUATION DES RISQUES, LE DOCUMENT UNIQUE ET SON ANNEXE « FACTEURS DE RISQUES PROFESSIONNELS »</p>
@@ -549,13 +555,15 @@
             </p>
         </div>
         <div class="footer">
-            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="center"> Copyright © OZA DUERP Online</p>
             <p class="page-num">Page <span></span></p>
         </div>
     </section>
 
     <section class="page">
-        <div class="header"></div>
+        <div class="header">
+            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+        </div>
         <div class="body body--notif">
             <h1></h1>
             <p>
@@ -598,13 +606,15 @@
 
         </div>
         <div class="footer">
-            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="center"> Copyright © OZA DUERP Online</p>
             <p class="page-num">Page <span></span></p>
         </div>
     </section>
 
     <section class="page">
-        <div class="header"></div>
+        <div class="header">
+            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+        </div>
         <div class="body body--notif">
             <h1></h1>
             <p>
@@ -643,13 +653,15 @@
             </p>
         </div>
         <div class="footer">
-            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="center"> Copyright © OZA DUERP Online</p>
             <p class="page-num">Page <span></span></p>
         </div>
     </section>
 
     <section class="page">
-        <div class="header"></div>
+        <div class="header">
+            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+        </div>
         <div class="body body--notif">
             <h1></h1>
             <p>
@@ -690,13 +702,15 @@
 
         </div>
         <div class="footer">
-            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="center"> Copyright © OZA DUERP Online</p>
             <p class="page-num">Page <span></span></p>
         </div>
     </section>
 
     <section class="page">
-        <div class="header"></div>
+        <div class="header">
+            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+        </div>
         <div class="body body--notif">
             <h1></h1>
             <p>
@@ -740,13 +754,15 @@
             </p>
         </div>
         <div class="footer">
-            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="center"> Copyright © OZA DUERP Online</p>
             <p class="page-num">Page <span></span></p>
         </div>
     </section>
 
     <section class="page">
-        <div class="header"></div>
+        <div class="header">
+            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+        </div>
         <div class="body body--notif">
             <h1></h1>
             <p>
@@ -783,13 +799,15 @@
             </p>
         </div>
         <div class="footer">
-            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="center"> Copyright © OZA DUERP Online</p>
             <p class="page-num">Page <span></span></p>
         </div>
     </section>
 
     <section class="page">
-        <div class="header"></div>
+        <div class="header">
+            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+        </div>
         <div class="body body--notif">
             <h1 class="head-title">3. NOTICE EXPLICATIVE DE L'EVALUATION DES RISQUES</h1>
             <p>
@@ -825,13 +843,15 @@
             </p>
         </div>
         <div class="footer">
-            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="center"> Copyright © OZA DUERP Online</p>
             <p class="page-num">Page <span></span></p>
         </div>
     </section>
 
     <section class="page">
-        <div class="header"></div>
+        <div class="header">
+            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+        </div>
         <div class="body body--notif">
             <h1></h1>
             <p>
@@ -868,13 +888,15 @@
             </p>
         </div>
         <div class="footer">
-            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="center"> Copyright © OZA DUERP Online</p>
             <p class="page-num">Page <span></span></p>
         </div>
     </section>
 
     <section class="page">
-        <div class="header"></div>
+        <div class="header">
+            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+        </div>
         <div class="body body--notif">
             <h1></h1>
             <p>
@@ -908,13 +930,15 @@
             </p>
         </div>
         <div class="footer">
-            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="center"> Copyright © OZA DUERP Online</p>
             <p class="page-num">Page <span></span></p>
         </div>
     </section>
 
     <section class="page">
-        <div class="header"></div>
+        <div class="header">
+            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+        </div>
         <div class="body body--notif">
             <h1></h1>
             <p>
@@ -932,13 +956,15 @@
             </p>
         </div>
         <div class="footer">
-            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="center"> Copyright © OZA DUERP Online</p>
             <p class="page-num">Page <span></span></p>
         </div>
     </section>
 
     <section class="page">
-        <div class="header"></div>
+        <div class="header">
+            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+        </div>
         <div class="body body--rules">
             <h1 class="head-title">3. NOTICE EXPLICATIVE DE L'EVALUATION DES RISQUES</h1>
             <p class="bold">
@@ -974,13 +1000,15 @@
             </p>
         </div>
         <div class="footer">
-            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="center"> Copyright © OZA DUERP Online</p>
             <p class="page-num">Page <span></span></p>
         </div>
     </section>
 
     <section class="page">
-        <div class="header"></div>
+        <div class="header">
+            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+        </div>
         <div class="body body--rules">
             <p class="bold">
                 6. Ambiances thermiques liées aux températures extérieures (hors températures liées aux postes de travail) pouvant générer fatigue, sueurs, nausées, maux de tête, vertiges, crampes, déshydratation, coup de chaleur, engourdissement, gelures, hypothermie.
@@ -1020,12 +1048,14 @@
             </p>
         </div>
         <div class="footer">
-            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="center"> Copyright © OZA DUERP Online</p>
             <p class="page-num">Page <span></span></p>
         </div>
     </section>
     <section class="page">
-        <div class="header"></div>
+        <div class="header">
+            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+        </div>
         <div class="body body--rules">
             <p class="bold">
                 18. Eclairage inadapté pouvant générer éblouissement, fatigue et inconfort visuel, chute, traumatisme, atteinte visuelle, erreur d’appréciation.
@@ -1068,12 +1098,14 @@
             </p>
         </div>
         <div class="footer">
-            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="center"> Copyright © OZA DUERP Online</p>
             <p class="page-num">Page <span></span></p>
         </div>
     </section>
     <section class="page">
-        <div class="header"></div>
+        <div class="header">
+            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+        </div>
         <div class="body body--rules">
             <p class="bold">
                 31. Milieu hyperbare pouvant générer des accidents et / ou des pathologies de décompression FACTEUR DE RISQUE PROFESSIONNEL.
@@ -1110,13 +1142,15 @@
             <p>
         </div>
         <div class="footer">
-            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="center"> Copyright © OZA DUERP Online</p>
             <p class="page-num">Page <span></span></p>
         </div>
     </section>
 
     <section class="page">
-        <div class="header"></div>
+        <div class="header">
+            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+        </div>
         <div class="body body--rules">
             <p class="bold">
                 42 Risques routiers en mission à l’extérieur des locaux de la structure pouvant générer stress, TMS, dorso-lombalgies, et atteintes traumatiques plus ou moins sévères.
@@ -1144,13 +1178,15 @@
             </p>
         </div>
         <div class="footer">
-            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="center"> Copyright © OZA DUERP Online</p>
             <p class="page-num">Page <span></span></p>
         </div>
     </section>
 
     <section class="page">
-        <div class="header"></div>
+        <div class="header">
+            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+        </div>
         <div class="body">
             <table class="table table--action">
                 <tr>
@@ -1261,13 +1297,15 @@
             </table>
         </div>
         <div class="footer">
-            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="center text-color-green">Copyright © OZA DUERP Online</p>
             <p class="page-num">Page <span></span></p>
         </div>
     </section>
 
     <section class="page">
-        <div class="header"></div>
+        <div class="header">
+            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+        </div>
         <div class="body body--notif">
             <h1 class="head-title">5. liste des postes de travail "a risque particulier" (code du travail art. I.4154-2)</h1>
             <p>
@@ -1319,7 +1357,7 @@
             </table>
         </div>
         <div class="footer">
-            <p class="center text-color-green">Copyright © OZA S.A.S. - Objectif Zéro Accident - 15 place des Arènes - 40400 MEILHAN - Tél. : 05 58 76 39 36 - contact@oza-france.fr - www.objectif-zero-accident.fr</p>
+            <p class="center"> Copyright © OZA DUERP Online</p>
             <p class="page-num">Page <span></span></p>
         </div>
     </section>

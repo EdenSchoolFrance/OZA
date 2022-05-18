@@ -65,6 +65,27 @@
             margin-bottom: 20px;
         }
     }
+    .card-footer{
+        .infos {
+            color: $dark;
+            display: flex;
+            justify-content: start;
+            i {
+                margin-right: 15px;
+                font-size: 28px;
+            }
+
+            p {
+                font-family: 'Hind-Regular';
+            }
+        }
+    }
+    .delete-btn{
+        margin-left: 10px;
+    }
+    .card-header{
+        justify-content: center;
+    }
 }
 
 @media (max-width: 1100px) {

@@ -67,7 +67,7 @@ on('.modal--work_unit .btn-modal-add', 'click', (el, e) => {
         label.appendChild(span);
         check.appendChild(label);
     }
-
+    el.closest('.modal-input').getElementsByTagName('input')[0].value = "";
 });
 
 on('.modal--work_unit .btn-modal-check', 'click', (el, e) => {

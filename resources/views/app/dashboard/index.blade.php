@@ -68,6 +68,7 @@
                 </div>
             </form>
         </div>
+        @if(count($single_document->histories) > 0)
         <div class="card card--full">
             <div class="card-header">
                 <h2 class="title">Historique du document unique</h2>
@@ -89,14 +90,24 @@
                                 <td class="td_work">{{ $historie->work }}</td>
                                 <td class="td_date">{{ date("d/m/Y",strtotime($historie->date)) }}</td>
                                 <td class="td_actions">
-                                    <a href="{{ asset('/storage/'.$single_document->client->id.'/du/'.$historie->id.'.pdf') }}" download="{{ 'OzaDocumentUnique_'.$single_document->client->name.'_'.date("d/m/Y",strtotime($historie->date)).'.pdf' }}" class="text-color-green">Télécharger le PDF</a>
+                                    <a href="{{ asset('/storage/'.$single_document->client->id.'/du/'.$historie->id.'.pdf') }}" download="{{ 'OzaDocumentUnique_'.$single_document->client->name.'_'.$single_document->name.'_'.date("d/m/Y",strtotime($historie->date)).'_V'.count($single_document->histories).'.pdf' }}" class="text-color-green">Télécharger le PDF </a>
+                                    @if (Auth::user()->hasPermission(['ADMIN', 'EXPERT']))
+                                        <button data-modal=".modal--delete" data-id="{{ $historie->id }}" class="delete-btn"><i class="fas fa-trash"></i></button>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
+            <div class="card-footer">
+                <div class="infos">
+                    <i class="fas fa-info-circle"></i>
+                    <p>L’employeur se doit de conserver les versions successives du document unique d’évaluation des risques professionnels au sein de l’entreprise, sous la forme d’un document papier ou dématérialisé, pendant une durée de 40 ans à compter de leur élaboration</p>
+                </div>
+            </div>
         </div>
+        @endif
         <div class="modal modal--pdf">
             <div class="modal-dialog">
                 <form class="modal-content" action="{{ route('history.store', [$single_document->id]) }}" method="POST">
@@ -124,6 +135,27 @@
                 </form>
             </div>
         </div>
+        @if (Auth::user()->hasPermission(['ADMIN', 'EXPERT']))
+            <div class="modal modal--delete">
+                <div class="modal-dialog">
+                    <form class="modal-content" action="{{ route('history.delete', [$single_document->id]) }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="id" value="">
+                        <div class="modal-header">
+                            <p class="title">Confirmer la suppression</p>
+                            <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Vous êtes sur le point de supprimer définitivement une version historique de ce document unique. Êtes-vous sûr.e de vouloir continuer ?</p>
+                            <div>
+                                <button type="submit" class="btn btn-yellow">Supprimer le document</button>
+                                <button type="button" class="btn btn-inv btn-yellow btn-small" data-dismiss="modal"> Annuler</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        @endif
     </div>
 @endsection
 

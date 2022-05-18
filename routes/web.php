@@ -175,6 +175,10 @@ Route::middleware(['auth'])->group(function() {
         Route::get('/{single_document}/presentation', [PresentationController::class, 'index'])->name('presentation');
         Route::post('/{single_document}/presentation/{type}', [PresentationController::class, 'update'])->name('presentation.update');
 
+        Route::middleware(['permission:ADMIN,EXPERT'])->group(function () {
+            Route::post('/{single_document}/history/delete', [HistorieController::class, 'delete'])->name('history.delete');
+        });
+
         Route::middleware(['permission:ADMIN,EXPERT,MANAGER'])->group(function () {
             Route::get('/{single_document}/users', [UserClientController::class, 'index'])->name('user.client.index');
             Route::get('/{single_document}/user/create', [UserClientController::class, 'create'])->name('user.client.create');
