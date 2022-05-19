@@ -194,3 +194,12 @@ function escapeHtml(text) {
 
     return text.replace(/[&<>"']/g, function(m) { return map[m]; });
 }
+
+
+/*==============================
+        Copy to clipboard
+==============================*/
+
+on('[data-clipboard]', 'click', (el, e) => {
+    navigator.clipboard.writeText(el.dataset.copy);
+});

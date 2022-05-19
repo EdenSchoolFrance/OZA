@@ -148,7 +148,10 @@ Route::middleware(['auth'])->group(function() {
                 Route::get('/{doc_name}/edit', [DocController::class, 'edit'])->name('documentation.edit');
 
                 Route::post('/{doc_name}/update', [DocController::class, 'update'])->name('documentation.update');
-                Route::post('/doc/upload', [DocController::class, 'upload'])->name('documentation.upload');
+                Route::post('/{doc_name}/file/upload', [DocController::class, 'upload'])->name('documentation.upload');
+                Route::post('/{doc_name}/file/delete', [DocController::class, 'delete'])->name('documentation.delete');
+
+                Route::get('/doc/{doc_name}/file/download/{file_name}', [DocController::class, 'download'])->name('documentation.download');
             });
 
             /*================ ADMIN | EXPERT ================*/

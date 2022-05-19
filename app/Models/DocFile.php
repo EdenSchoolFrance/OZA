@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Historie extends Model
+class DocFile extends Model
 {
     use HasFactory;
 
     public $timestamps = false;
     public $incrementing = false;
     protected $keyType = 'string';
+    public $table = "docs_files";
 
     /**
      * The attributes that are mass assignable.
@@ -19,13 +20,13 @@ class Historie extends Model
      * @var string[]
      */
     protected $fillable = [
-        'work',
+        'name',
         'date'
     ];
 
-    public function single_document()
+    public function doc()
     {
-        return $this->belongsTo(SingleDocument::class);
+        return $this->belongsTo(Doc::class);
     }
 
     public function user()
