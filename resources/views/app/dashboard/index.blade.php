@@ -90,7 +90,7 @@
                                 <td class="td_work">{{ $historie->work }}</td>
                                 <td class="td_date">{{ date("d/m/Y",strtotime($historie->date)) }}</td>
                                 <td class="td_actions">
-                                    <a href="{{ asset('/storage/'.$single_document->client->id.'/du/'.$historie->id.'.pdf') }}" download="{{ 'OzaDocumentUnique_'.$single_document->client->name.'_'.$single_document->name.'_'.date("d/m/Y",strtotime($historie->date)).'_V'.count($single_document->histories).'.pdf' }}" class="text-color-green">Télécharger le PDF </a>
+                                    <a href="{{ route('history.download', [$single_document->id, $historie->id]) }}" class="text-color-green">Télécharger le PDF </a>
                                     @if (Auth::user()->hasPermission(['ADMIN', 'EXPERT']))
                                         <button data-modal=".modal--delete" data-id="{{ $historie->id }}" class="delete-btn"><i class="fas fa-trash"></i></button>
                                     @endif

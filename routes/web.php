@@ -242,6 +242,7 @@ Route::middleware(['auth'])->group(function() {
         Route::get('/{single_document}/pdf/download', [PDFController::class, 'create'])->name('pdf.download');
 
         Route::post('/{single_document}/history/store', [HistorieController::class, 'store'])->name('history.store');
+        Route::get('/{single_document}/history/download/{id}', [HistorieController::class, 'download'])->name('history.download');
 
         Route::get('/{single_document}/{doc_name?}', [DocController::class, 'index'])->name('documentation');
 

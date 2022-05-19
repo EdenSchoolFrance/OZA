@@ -83,7 +83,7 @@ class DocController extends Controller
 
         $file = $request->file('file');
 
-        Storage::putFileAs('/public/doc/'.$doc_name.'/files/', $file, $file->getClientOriginalName());
+        Storage::putFileAs('/private/doc/'.$doc_name.'/files/', $file, $file->getClientOriginalName());
 
         $doc_file = new DocFile();
         $doc_file->id = uniqid();
@@ -114,8 +114,8 @@ class DocController extends Controller
             abort(404);
         }
 
-        if(Storage::exists('/public/doc/'.$doc->name.'/files/'.$file->name)) {
-            Storage::delete('/public/doc/'.$doc->name.'/files/'.$file->name);
+        if(Storage::exists('/private/doc/'.$doc->name.'/files/'.$file->name)) {
+            Storage::delete('/private/doc/'.$doc->name.'/files/'.$file->name);
         }
 
         $file->delete();
@@ -129,16 +129,16 @@ class DocController extends Controller
         $doc = Doc::where('name', $doc_name)->first();
 
         if (!$doc) {
-            return back()->with('status','Un problème est survenue')->with('status-type','danger');
+            return back()->with('status','Un problème est survenue')->with('status_type','danger');
         }
 
         $file = DocFile::where('name',$file_name)->first();
 
         if (!$file) {
-            return back()->with('status','Un problème est survenue')->with('status-type','danger');
+            return back()->with('status','Un problème est survenue')->with('status_type','danger');
         }
 
-        return Storage::download('/public/doc/'.$doc->name.'/files/'.$file->name);
+        return Storage::download('/private/doc/'.$doc->name.'/files/'.$file->name);
 
     }
 }

@@ -186,7 +186,7 @@ class SingleDocumentController extends Controller
 
         $single_document = SingleDocument::find($request->id);
 
-        if (!$client || !$single_document) return back()->with('status','Un problème est survenue')->with('status-type','danger');
+        if (!$client || !$single_document) return back()->with('status','Un problème est survenue')->with('status_type','danger');
 
         $new_single_document = $single_document->replicate();
         $new_single_document->id = uniqid();
