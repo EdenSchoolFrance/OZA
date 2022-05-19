@@ -174,7 +174,6 @@ function showTooltip(el, e) {
                 break;
         }
 
-        console.log(el.getBoundingClientRect())
         tooltip.style.top = top;
         tooltip.style.left = left;
 
