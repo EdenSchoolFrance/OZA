@@ -23,7 +23,7 @@
                 </ul>
             </li>
             <li class="sidebar-nav-item {{ $page['sidebar'] == "risk_pro" ? 'active' : '' }}">
-                <a href="#" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Risques professionnels</span></a>
+                <a href="#" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Evaluation des risques</span></a>
                 <ul class="sub-group-menu" style="{{ $page['sidebar'] == "risk_pro" ? 'display: block' : '' }}">
                     {{-- @if($sousSidebar === "comp") {{ 'active' }}@endif --}}
                     <li class="sidebar-nav-item">

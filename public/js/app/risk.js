@@ -22,14 +22,20 @@ on('.modal--risk .btn-modal-risk-add', 'click', (el, e) => {
     let id = Date.now();
     if (el.dataset.id){
         id = el.dataset.id
-        $('button[data-id="'+el.dataset.id+'"]', document, 0).closest('div.row').remove();
         el.removeAttribute('data-id');
+        let tech = $('.radio-bar-tech input:checked',document,0).value || 'null'
+        let orga = $('.radio-bar-orga input:checked',document,0).value || 'null'
+        let human = $('.radio-bar-human input:checked',document,0).value || 'null'
+        let title = $('#nameRisk', document, 0).value || "Mesure"
+        editRestraint(tech,orga,human,title,id)
+    }else{
+        let tech = $('.radio-bar-tech input:checked',document,0).value || 'null'
+        let orga = $('.radio-bar-orga input:checked',document,0).value || 'null'
+        let human = $('.radio-bar-human input:checked',document,0).value || 'null'
+        let title = $('#nameRisk', document, 0).value || "Mesure"
+        createRestraint(tech,orga,human,title,id)
     }
-    let tech = $('.radio-bar-tech input:checked',document,0).value || 'null'
-    let orga = $('.radio-bar-orga input:checked',document,0).value || 'null'
-    let human = $('.radio-bar-human input:checked',document,0).value || 'null'
-    let title = $('#nameRisk', document, 0).value || "Mesure"
-    createRestraint(tech,orga,human,title,id)
+
 });
 
 on('.btn-edit-modal-risk', 'click', (el, e) => {
@@ -49,6 +55,12 @@ on('.btn-edit-modal-risk', 'click', (el, e) => {
     for (let i = 0; i < human.length ; i++) {
         human[i].checked = human[i].value === data[2];
     }
+    $('textarea.auto-resize').forEach(el => {
+        if (el.scrollHeight > 0){
+            el.style.height = "auto";
+            el.style.height = el.scrollHeight + "px";
+        }
+    })
 });
 
 on('.btn-open-risk', 'click', (el, e) => {
@@ -416,6 +428,35 @@ function createRestraint(tech,orga,human,title,id){
     row.innerHTML = content;
     restraint.appendChild(row)
     row.querySelector('.title-restraint').innerText = title;
+    calculRestraintColorDisplay();
+}
+
+function editRestraint(tech,orga,human,title,id){
+    let rest = $('button[data-id="'+id+'"]', document, 0).closest('div.row')
+    rest.querySelector('ul').remove();
+    let content =
+        '  <ul>\n' +
+        '   <li>\n' +
+        '    <p>\n' +
+        '     <i class="far fa-times-circle btn-delete"></i>\n' +
+        '     <p class="title-restraint"></p> \n' +
+        '     <button data-modal=".modal--risk" data-id="'+id+'" class="btn btn-yellow btn-text btn-edit-modal-risk" type="button"><i class="far fa-edit text-color-yellow"></i></button>\n' +
+        '     <input type="hidden" value="'+tech+'|'+orga+'|'+human+'|'+escapeHtml(title)+'|'+id+'" name="restraint[]">' +
+        '    </p>\n' +
+        '   </li>\n' +
+        '   \n' +
+        '   <li>\n' +
+        '    Technique :&nbsp;<span class="text-color-'+color(tech)+' bold">'+translate(tech)+'</span>\n' +
+        '   </li>\n' +
+        '   <li>\n' +
+        '    Organisationnelle :&nbsp;<span class="text-color-'+color(orga)+' bold">'+translate(orga)+'</span>\n' +
+        '   </li>\n' +
+        '   <li>\n' +
+        '    Humain :&nbsp;<span class="text-color-'+color(human)+' bold">'+translate(human)+'</span>\n' +
+        '   </li>\n' +
+        '  </ul>\n'
+    rest.innerHTML = content;
+    rest.querySelector('.title-restraint').innerText = title;
     calculRestraintColorDisplay();
 }
 

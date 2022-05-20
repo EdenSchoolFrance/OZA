@@ -179,6 +179,7 @@ class SingleDocumentController extends Controller
 
         $request->validate([
             'id' => 'required',
+            'single_document_name' => 'required',
             'client_select' => 'required'
         ]);
 
@@ -186,11 +187,11 @@ class SingleDocumentController extends Controller
 
         $single_document = SingleDocument::find($request->id);
 
-        if (!$client || !$single_document) return back()->with('status','Un problème est survenue')->with('status-type','danger');
+        if (!$client || !$single_document) return back()->with('status','Un problème est survenue')->with('status_type','danger');
 
         $new_single_document = $single_document->replicate();
         $new_single_document->id = uniqid();
-        $new_single_document->name = $single_document->name."-copie";
+        $new_single_document->name = $request->single_document_name;
         $new_single_document->client()->associate($client);
         $new_single_document->save();
 

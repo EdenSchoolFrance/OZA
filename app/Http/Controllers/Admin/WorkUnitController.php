@@ -86,7 +86,7 @@ class WorkUnitController extends Controller
 
         $sector = SectorActivitie::find($request->sector_activitie);
 
-        if (!$sector) return back()->with('status','Un problème est survenue')->with('status-type','danger');
+        if (!$sector) return back()->with('status','Un problème est survenue')->with('status_type','danger');
 
         $work = new WorkUnit();
         $work->id = uniqid();
@@ -141,7 +141,7 @@ class WorkUnitController extends Controller
 
         $sector = SectorActivitie::find($request->sector_activitie);
 
-        if (!$sector) return back()->with('status','Un problème est survenue')->with('status-type','danger');
+        if (!$sector) return back()->with('status','Un problème est survenue')->with('status_type','danger');
 
         $work = new WorkUnit();
         $work->id = uniqid();
@@ -191,7 +191,7 @@ class WorkUnitController extends Controller
 
         $work_unit = WorkUnit::find($request->id);
 
-        if (!$work_unit) return back()->with('status','Un problème est survenue')->with('status-type','danger');
+        if (!$work_unit) return back()->with('status','Un problème est survenue')->with('status_type','danger');
         $work_unit->delete();
 
         return back()->with('status', 'L\'unité de travail a bien été supprimé !');

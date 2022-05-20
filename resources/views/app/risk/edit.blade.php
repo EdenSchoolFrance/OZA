@@ -76,7 +76,7 @@
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
                         </div>
-                        <i class="far fa-question-circle" data-tooltip=".tooltip--fre" data-placement="right"></i>
+                        <i class="far fa-question-circle" data-tooltip=".tooltip--fre" data-placement="left"></i>
                     </div>
                 </div>
             </div>
@@ -120,7 +120,7 @@
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
                         </div>
-                        <i class="far fa-question-circle" data-tooltip=".tooltip--pro" data-placement="right"></i>
+                        <i class="far fa-question-circle" data-tooltip=".tooltip--pro" data-placement="left"></i>
                     </div>
                 </div>
             </div>
@@ -164,7 +164,7 @@
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
                         </div>
-                        <i class="far fa-question-circle" data-tooltip=".tooltip--gp" data-placement="right"></i>
+                        <i class="far fa-question-circle" data-tooltip=".tooltip--gp" data-placement="left"></i>
                     </div>
                 </div>
             </div>
@@ -190,7 +190,7 @@
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
                         </div>
-                        <i class="far fa-question-circle" data-tooltip=".tooltip--id" data-placement="right"></i>
+                        <i class="far fa-question-circle" data-tooltip=".tooltip--id" data-placement="left"></i>
                     </div>
                 </div>
             </div>
@@ -307,7 +307,7 @@
                                 <label for="nameRisk">Intitulé du risque</label>
                             </div>
                             <div class="right">
-                                <input type="email" class="form-control" id="nameRisk" placeholder="Vente - Boulangerie pâtisserie">
+                                <textarea id="nameRisk" class="form-control auto-resize" placeholder="Décrire la mesure mise en place"></textarea>
                             </div>
                         </div>
                     </div>
@@ -354,7 +354,7 @@
                                         <label>Très bon</label>
                                     </div>
                                 </div>
-                                <i class="far fa-question-circle" data-tooltip=".tooltip--restraint" data-placement="right"></i>
+                                <i class="far fa-question-circle" data-tooltip=".tooltip--restraint" data-placement="left"></i>
                             </div>
                         </div>
                     </div>
@@ -390,7 +390,7 @@
                                         <label>Très bon</label>
                                     </div>
                                 </div>
-                                <i class="far fa-question-circle" data-tooltip=".tooltip--restraint" data-placement="right"></i>
+                                <i class="far fa-question-circle" data-tooltip=".tooltip--restraint" data-placement="left"></i>
                             </div>
                         </div>
                     </div>
@@ -426,7 +426,7 @@
                                         <label>Très bon</label>
                                     </div>
                                 </div>
-                                <i class="far fa-question-circle" data-tooltip=".tooltip--restraint" data-placement="right"></i>
+                                <i class="far fa-question-circle" data-tooltip=".tooltip--restraint" data-placement="left"></i>
                             </div>
                         </div>
                     </div>
