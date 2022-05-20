@@ -5,7 +5,7 @@
         <div class="row">
             <form class="card card--dashboard">
                 <div class="card-header">
-                    <h2 class="title">Risque brut moyen</h2>
+                    <h2 class="title">Risque brut moyen</h2><i class="far fa-question-circle" data-tooltip=".tooltip--RBM" data-placement="bottom"></i>
                 </div>
                 <div class="card-body">
                     <div class="row row--center">
@@ -18,7 +18,7 @@
             </form>
             <form class="card card--dashboard">
                 <div class="card-header">
-                    <h2 class="title">Réduction du risque</h2>
+                    <h2 class="title">Réduction du risque</h2><i class="far fa-question-circle" data-tooltip=".tooltip--RR" data-placement="bottom"></i>
                 </div>
                 <div class="card-body">
                     <div class="row row--center">
@@ -28,7 +28,7 @@
             </form>
             <form action="#" class="card card--dashboard">
                 <div class="card-header">
-                    <h2 class="title">Risque résiduel moyen</h2>
+                    <h2 class="title">Risque résiduel moyen</h2><i class="far fa-question-circle" data-tooltip=".tooltip--RRM" data-placement="bottom"></i>
                 </div>
                 <div class="card-body">
                     <div class="row row--center">
@@ -156,6 +156,28 @@
                 </div>
             </div>
         @endif
+
+        <div class="tooltip tooltip--RBM">
+            <p>
+                RISQUE BRUT MOYEN :
+                Permet de situer le niveau de risque total de la structure, évalué sans prendre en compte les mesures de prévention ; sur une échelle de zéro (risque nul) à 50 (risque maximal).
+            </p>
+        </div>
+
+        <div class="tooltip tooltip--RR">
+            <p>
+                RÉDUCTION DU RISQUE
+                Réduction du risque BRUT grâce aux mesures de prévention existantes : met en évidence les efforts de prévention de la structure
+            </p>
+        </div>
+
+        <div class="tooltip tooltip--RRM">
+            <p>
+                RISQUE RESIDUEL MOYEN :
+                Permet de situer le niveau de risque actuel de la structure, en prenant en compte les mesures de prévention existantes ; sur une échelle de zéro (risque nul) à 50 (risque maximal).
+            </p>
+        </div>
+
     </div>
 @endsection
 
