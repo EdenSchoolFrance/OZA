@@ -65,10 +65,10 @@ on('[data-modal]', 'click', (el, e) => {
 });
 
 on('.modal:not([data-backdrop="static"])', 'click', (el, e) => {
-    $('body', document, 0).classList.remove('modal-openned');
+
     if (!$('.modal-content', el, 0).contains(e.target)) {
         el.classList.remove('show');
-
+        $('body', document, 0).classList.remove('modal-openned');
         setTimeout(() => {
             el.style.display = "none"
         }, 150);

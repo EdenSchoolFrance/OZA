@@ -179,6 +179,7 @@ class SingleDocumentController extends Controller
 
         $request->validate([
             'id' => 'required',
+            'single_document_name' => 'required',
             'client_select' => 'required'
         ]);
 
@@ -190,7 +191,7 @@ class SingleDocumentController extends Controller
 
         $new_single_document = $single_document->replicate();
         $new_single_document->id = uniqid();
-        $new_single_document->name = $single_document->name."-copie";
+        $new_single_document->name = $request->single_document_name;
         $new_single_document->client()->associate($client);
         $new_single_document->save();
 

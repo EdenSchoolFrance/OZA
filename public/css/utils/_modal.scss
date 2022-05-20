@@ -103,4 +103,11 @@ body.modal-openned{
             }
         }
     }
+    &--duplicate{
+        .modal-body{
+            input{
+                margin: 10px 0;
+            }
+        }
+    }
 }

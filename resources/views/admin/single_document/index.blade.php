@@ -107,6 +107,7 @@
                     </div>
                     <div class="modal-body">
                         <p>Sélectionner un client</p>
+                        <input type="text" class="form-control" name="single_document_name" placeholder="Nom du document unique">
                         <select name="client_select" class="form-control">
                             <option value="all">Tous</option>
                             @foreach($clients as $client)

@@ -4,4 +4,5 @@ on('a[data-modal=".modal--duplicate"]', 'click', (el, e) => {
     for (let i = 0; i < opt.length ; i++) {
         if (opt[i].value === el.dataset.client) opt[i].setAttribute('selected','true')
     }
+    $('.modal--duplicate input[name="single_document_name"]', document, 0).value = el.closest('tr').querySelector('td.td_name').textContent + '-copie';
 });
