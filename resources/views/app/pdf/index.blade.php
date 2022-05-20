@@ -281,8 +281,8 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <span class="bold">Nombre de salariés inscrits sur le registre du personnel au moment de la rédaction du Document Unique : </span><br>
-                            {{ $single_document->work_unit->pluck('number_employee')->sum() }} salaries <br>
+                            <span class="bold">Nombre de salarié(s) inscrit(s) sur le registre du personnel au moment de la rédaction du Document Unique : </span><br>
+                            {{ $single_document->work_unit->pluck('number_employee')->sum() }} salarié(s) <br>
 
                         </td>
                     </tr>
