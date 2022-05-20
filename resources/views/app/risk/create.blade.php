@@ -471,7 +471,7 @@
                                 <label for="nameRisk">Mesure</label>
                             </div>
                             <div class="right">
-                                <input type="text" class="form-control" id="nameRisk" placeholder="Décrire la mesure mise en place">
+                                <textarea id="nameRisk" class="form-control auto-resize" placeholder="Décrire la mesure mise en place"></textarea>
                             </div>
                         </div>
                     </div>

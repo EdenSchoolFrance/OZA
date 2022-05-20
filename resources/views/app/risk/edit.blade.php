@@ -307,7 +307,7 @@
                                 <label for="nameRisk">Intitulé du risque</label>
                             </div>
                             <div class="right">
-                                <input type="email" class="form-control" id="nameRisk" placeholder="Vente - Boulangerie pâtisserie">
+                                <textarea id="nameRisk" class="form-control auto-resize" placeholder="Décrire la mesure mise en place"></textarea>
                             </div>
                         </div>
                     </div>

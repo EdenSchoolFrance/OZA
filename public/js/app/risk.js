@@ -55,6 +55,12 @@ on('.btn-edit-modal-risk', 'click', (el, e) => {
     for (let i = 0; i < human.length ; i++) {
         human[i].checked = human[i].value === data[2];
     }
+    $('textarea.auto-resize').forEach(el => {
+        if (el.scrollHeight > 0){
+            el.style.height = "auto";
+            el.style.height = el.scrollHeight + "px";
+        }
+    })
 });
 
 on('.btn-open-risk', 'click', (el, e) => {

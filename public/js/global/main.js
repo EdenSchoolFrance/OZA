@@ -42,14 +42,17 @@ on('input[type="file"]', 'change', (el, e) => {
 
 
 $('textarea.auto-resize').forEach(el => {
-    el.style.height = "auto";
-    el.style.height = el.scrollHeight + "px";
+    if (el.scrollHeight > 0){
+        el.style.height = "auto";
+        el.style.height = el.scrollHeight + "px";
+    }
 })
 
 /*==============================
               Modal
 ==============================*/
 on('[data-modal]', 'click', (el, e) => {
+    $('body', document, 0).classList.add('modal-openned');
     let modal = $(el.dataset.modal, document, 0);
 
     if (modal) {
@@ -62,6 +65,7 @@ on('[data-modal]', 'click', (el, e) => {
 });
 
 on('.modal:not([data-backdrop="static"])', 'click', (el, e) => {
+    $('body', document, 0).classList.remove('modal-openned');
     if (!$('.modal-content', el, 0).contains(e.target)) {
         el.classList.remove('show');
 
@@ -81,6 +85,7 @@ on('[data-modal=".modal--archive"], [data-modal=".modal--unarchive"], [data-moda
 
 
 on('[data-dismiss="modal"]', 'click', (el, e) => {
+    $('body', document, 0).classList.remove('modal-openned');
     let modal = el.closest('.modal');
 
     if (modal) {

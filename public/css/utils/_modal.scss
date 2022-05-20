@@ -1,4 +1,8 @@
+body.modal-openned{
+    overflow: hidden;
+}
 .modal {
+    overflow: auto;
     position: fixed;
     width: 100%;
     min-height: 100vh;
