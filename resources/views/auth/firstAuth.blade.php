@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-    <div class="content">
+    <div class="content firstAuth">
         <form action="{{ route('first_auth.store') }}" method="post" class="card">
             @csrf
             <div class="card-header">
@@ -15,6 +15,7 @@
                         </div>
                         <div class="right">
                             <input type="password" name="password" class="form-control" id="password">
+                            <i class="far fa-question-circle" data-tooltip=".tooltip--password" data-placement="top"></i>
                             @error('password')
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
@@ -47,6 +48,10 @@
                 </div>
             </div>
         </form>
+        <div class="tooltip tooltip--password">
+            <p>Votre mot de passe doit contenir au moins 8 caractères, dont : </p>
+            <p>1 majuscule, 1 minuscule, 1 chiffre et 1 caractère spécial</p>
+        </div>
     </div>
 @endsection
 
