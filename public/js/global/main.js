@@ -41,6 +41,11 @@ on('input[type="file"]', 'change', (el, e) => {
 });
 
 
+$('textarea.auto-resize').forEach(el => {
+    el.style.height = "auto";
+    el.style.height = el.scrollHeight + "px";
+})
+
 /*==============================
               Modal
 ==============================*/
