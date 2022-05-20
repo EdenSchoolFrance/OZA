@@ -31,14 +31,14 @@
                                 <td class="td_actions">
                                     @if (Auth::user()->hasPermission('ADMIN'))
                                         @if ($sd->archived)
-                                            <button data-modal=".modal--unarchive" data-id="{{ $sd->id }}"><i class="fas fa-box-open" data-tooltip=".tooltip--unarchive" data-placement="top"></i></button>
+                                            <button data-modal=".modal--unarchive" data-id="{{ $sd->id }}"><i class="fas fa-box-open" data-tooltip=".tooltip--unarchive" data-placement="top" data-tooltable="true"></i></button>
                                         @else
-                                            <button data-modal=".modal--archive" data-id="{{ $sd->id }}"><i class="fas fa-archive" data-tooltip=".tooltip--archive" data-placement="top"></i></button>
+                                            <button data-modal=".modal--archive" data-id="{{ $sd->id }}"><i class="fas fa-archive" data-tooltip=".tooltip--archive" data-placement="top" data-tooltable="true"></i></button>
                                         @endif
                                     @endif
-                                    <a data-modal=".modal--duplicate" data-client="{{ $sd->client->id }}" data-id="{{ $sd->id }}" ><i class="far fa-clone" data-tooltip=".tooltip--dupli" data-placement="top"></i></a>
-                                    <a href="{{ route('admin.single_document.edit', [$sd->client->id, $sd->id]) }}"><i class="far fa-edit" data-tooltip=".tooltip--edit" data-placement="top"></i></a>
-                                    <a href="{{ route('dashboard', [$sd->id]) }}"><i class="far fa-eye" data-tooltip=".tooltip--show" data-placement="top"></i></a>
+                                    <a data-modal=".modal--duplicate" data-client="{{ $sd->client->id }}" data-id="{{ $sd->id }}" ><i class="far fa-clone" data-tooltip=".tooltip--dupli" data-placement="top" data-tooltable="true"></i></a>
+                                    <a href="{{ route('admin.single_document.edit', [$sd->client->id, $sd->id]) }}"><i class="far fa-edit" data-tooltip=".tooltip--edit" data-placement="top" data-tooltable="true"></i></a>
+                                    <a href="{{ route('dashboard', [$sd->id]) }}"><i class="far fa-eye" data-tooltip=".tooltip--show" data-placement="top" data-tooltable="true"></i></a>
                                 </td>
                             </tr>
                         @endforeach

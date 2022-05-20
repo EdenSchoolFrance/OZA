@@ -160,25 +160,50 @@ function showTooltip(el, e) {
         tooltip.style.display = "block";
         let rect = el.getBoundingClientRect();
 
-        switch (placement) {
-            case "top":
-                top = (rect.top - tooltip.offsetHeight - 15) + 'px';
-                left = (rect.left + ((rect.width / 2) - (tooltip.offsetWidth / 2))) + 'px';
-                break;
-            case "bottom":
-                top = (rect.top + rect.height + 15) + 'px';
-                left = (rect.left + ((rect.width / 2) - (tooltip.offsetWidth / 2))) + 'px';
-                break;
-            case "left":
-                top = (rect.top + (rect.height / 2) - (tooltip.offsetHeight / 2)) + 'px';
-                left = (rect.left - tooltip.offsetWidth - 15) + 'px';
-                break;
-            case "right":
-                top = (rect.top + (rect.height / 2) - (tooltip.offsetHeight / 2)) + 'px';
-                left = (rect.left + rect.width + 15) + 'px';
-                break;
+        if (el.dataset.tooltable === "true"){
+
+            switch (placement) {
+                case "top":
+                    top = (rect.top - tooltip.offsetHeight - 15) + 'px';
+                    left = (rect.left + ((rect.width / 2) - (tooltip.offsetWidth / 2))) + 'px';
+                    break;
+                case "bottom":
+                    top = (rect.top + rect.height + 15) + 'px';
+                    left = (rect.left + ((rect.width / 2) - (tooltip.offsetWidth / 2))) + 'px';
+                    break;
+                case "left":
+                    top = (rect.top + (rect.height / 2) - (tooltip.offsetHeight / 2)) + 'px';
+                    left = (rect.left - tooltip.offsetWidth - 15) + 'px';
+                    break;
+                case "right":
+                    top = (rect.top + (rect.height / 2) - (tooltip.offsetHeight / 2)) + 'px';
+                    left = (rect.left + rect.width + 15) + 'px';
+                    break;
+            }
+        }else{
+
+            console.log(placement)
+            switch (placement) {
+                case "top":
+                    top = (el.offsetTop - tooltip.offsetHeight - 15) + 'px';
+                    left = (el.offsetLeft + ((el.offsetWidth / 2) - (tooltip.offsetWidth / 2))) + 'px';
+                    break;
+                case "bottom":
+                    top = (el.offsetTop + el.offsetHeight + 15) + 'px';
+                    left = (el.offsetLeft + ((el.offsetWidth / 2) - (tooltip.offsetWidth / 2))) + 'px';
+                    break;
+                case "left":
+                    top = (el.offsetTop + (el.offsetHeight / 2) - (tooltip.offsetHeight / 2)) + 'px';
+                    left = (el.offsetLeft - tooltip.offsetWidth - 15) + 'px';
+                    break;
+                case "right":
+                    top = (el.offsetTop + (el.offsetHeight / 2) - (tooltip.offsetHeight / 2)) + 'px';
+                    left = (el.offsetLeft + el.offsetWidth + 15) + 'px';
+                    break;
+            }
         }
 
+        console.log(left)
         tooltip.style.top = top;
         tooltip.style.left = left;
 
