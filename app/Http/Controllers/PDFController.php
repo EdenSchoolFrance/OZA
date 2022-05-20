@@ -38,6 +38,7 @@ class PDFController extends Controller
         $pdf = PDF::loadView('app.pdf.index', compact('chartUrl','single_document','item_mat','item_veh','item_eng','sd_risks','sd_risks_posts'))->setPaper('a4', 'landscape');
 
         Storage::put('/private/'.$single_document->client->id.'/du/'.$histories->id.'.pdf', $pdf->download()->getOriginalContent());
+
         return back()->with('status', 'Document unique générer avec succès, vous pouvez maintenant le télécharger !');
     }
 
