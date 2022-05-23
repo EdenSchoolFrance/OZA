@@ -40,6 +40,10 @@ class HistorieController extends Controller
 
         $historie = Historie::find($request->id);
 
+        if (!$historie) {
+            return back()->with('status','Un problème est survenue')->with('status_type','danger');
+        }
+
         if(Storage::exists('/private/'.$single_document->client->id.'/du/'.$historie->id.'.pdf')) {
             Storage::delete('/private/'.$single_document->client->id.'/du/'.$historie->id.'.pdf');
         }

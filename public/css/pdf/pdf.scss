@@ -361,5 +361,12 @@ html {
             margin-left: 270px;
             width: 500px;
         }
+        .rotate90{
+            span{
+                writing-mode: vertical-rl;
+                transform: rotate(90deg);
+                white-space: nowrap;
+            }
+        }
     }
 }
