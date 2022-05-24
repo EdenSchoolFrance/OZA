@@ -1202,6 +1202,7 @@
             <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body">
+            <p class="center legend"> F => Fréquence | P => Probabilité | GP => Gravité potentiel | ID => Impact différencié | RB => Risque brut | T => Technique | O => Oragnisationnelle | H => Humain | RR => Risque résiduel</p>
             <table class="table table--action">
                 <tr>
                     <th colspan="15" class="green">5. EVALUATION DES RISQUES PROFESSIONNELS</th>
