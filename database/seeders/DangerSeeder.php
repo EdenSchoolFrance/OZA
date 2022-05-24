@@ -363,6 +363,7 @@ class DangerSeeder extends Seeder
         $danger->info = "Risques routiers en mission à l'extérieur des locaux de la structure pouvant générer stress, TMS, dorso-lombalgies, et atteintes traumatiques plus ou moins sévères";
         $danger->save();
         $danger->packs()->attach($pack_compliance);
+        $danger->packs()->attach($pack_tranquility);
         $danger->packs()->attach($pack_serenity);
 
         $danger = new Danger();
