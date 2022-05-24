@@ -91,7 +91,7 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="line title-restraint">
-                                
+
                             </div>
                         </div>
                         <div class="row">
