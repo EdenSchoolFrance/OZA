@@ -57,7 +57,7 @@ class WorkUnitController extends Controller
 
         $works = WorkUnit::all()->take(10);
 
-        if ($id_work !== null && Auth::user()->oza){
+        if ($id_work !== null && Auth::user()->hasAccess('oza')){
             $workUnit = WorkUnit::find($id_work);
 
             return view('app.work_unit.create', compact('page', 'single_document', 'items','sectors','works','workUnit'));
