@@ -1,31 +1,32 @@
 <?php
 
-use App\Http\Controllers\HistorieController;
-use App\Http\Controllers\PDFController;
-use App\Http\Controllers\RestraintController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DocController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RiskController;
 use App\Http\Controllers\DangerController;
 use App\Http\Controllers\ProfileController;
-
+use App\Http\Controllers\HistorieController;
 use App\Http\Controllers\WorkUnitController;
+
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RestraintController;
+use App\Http\Controllers\ExpositionController;
+
 use App\Http\Controllers\PresentationController;
-
 use App\Http\Controllers\ResetPasswordController;
-use App\Http\Controllers\ForgotPasswordController;
 
+use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\Admin\ItemController as ItemAdminController;
+use App\Http\Controllers\Admin\RiskController as RiskAdminController;
 use App\Http\Controllers\Admin\UserController as UserAdminController;
 use App\Http\Controllers\Client\UserController as UserClientController;
 use App\Http\Controllers\Admin\ClientController as ClientAdminController;
-use App\Http\Controllers\Admin\SingleDocumentController as SingleDocumentAdminController;
-use App\Http\Controllers\Admin\WorkUnitController as WorkUnitAdminController;
-use App\Http\Controllers\Admin\SubItemController as SubItemAdminController;
-use App\Http\Controllers\Admin\ItemController as ItemAdminController;
 use App\Http\Controllers\Admin\DangerController as DangerAdminController;
-use App\Http\Controllers\Admin\RiskController as RiskAdminController;
+use App\Http\Controllers\Admin\SubItemController as SubItemAdminController;
+use App\Http\Controllers\Admin\WorkUnitController as WorkUnitAdminController;
+use App\Http\Controllers\Admin\SingleDocumentController as SingleDocumentAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -204,7 +205,10 @@ Route::middleware(['auth'])->group(function() {
 
         Route::middleware(['permission:ADMIN,EXPERT,MANAGER,EDITOR'])->group(function () {
             Route::post('/{single_document}/danger/{danger}/store', [DangerController::class, 'store'])->name('danger.store');
-            Route::post('/{single_document}/danger/{danger}/validated/{work_unit}', [DangerController::class, 'validated'])->name('danger.validated');
+            Route::post('/{single_document}/danger/{danger}/work/{work_unit}/exist', [DangerController::class, 'work_unit_exist'])->name('danger.work_unit.exist');
+            Route::post('/{single_document}/danger/{danger}/work/{work_unit}/exposition/{exposition}/exist', [DangerController::class, 'exposition_exist'])->name('danger.exposition.exist');
+
+            Route::post('/{single_document}/danger/{danger}/work/{work_unit}/exposition/{exposition}/', [ExpositionController::class, 'store'])->name('exposition.store');
 
             Route::get('/{single_document}/danger/{danger}/create/{sd_work_unit}/{risk?}', [RiskController::class, 'create'])->name('risk.create');
             Route::get('/{single_document}/danger/{danger}/edit/{risk}', [RiskController::class, 'edit'])->name('risk.edit');

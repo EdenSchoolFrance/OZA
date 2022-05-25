@@ -17,6 +17,7 @@ class CreateSdDangerSdWorkUnitTable extends Migration
             $table->foreignUuid('sd_danger_id');
             $table->foreignUuid('sd_work_unit_id');
             $table->boolean('exist')->nullable();
+            $table->boolean('exposition')->nullable();
 
             $table->primary(['sd_danger_id', 'sd_work_unit_id']);
 

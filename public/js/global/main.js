@@ -1,7 +1,7 @@
 const $ = (value, context = document, mutiple = true) => {
     if (mutiple) {
         return [].slice.call(context.querySelectorAll(value));
-    } else {
+    } else {
         return context.querySelector(value);
     }
 };
@@ -14,6 +14,20 @@ const on = (selector, event, handler, element = document) => {
     });
 };
 
+const scrollTo = (selector, nav = true, behavior = "auto", element = window) => {
+    let top;
+
+    if (nav) {
+        top = $(selector, document, 0).getBoundingClientRect().top - ($("nav.nav", document, 0).getBoundingClientRect().height + 15);
+    } else {
+        top = $(selector, document, 0).getBoundingClientRect().top;
+    }
+
+    element.scrollTo({
+        top: top,
+        behavior: behavior
+    });
+}
 
 on('.btn-group-dropdown .btn.toggle-dropdown:not(.disabled)', 'click', (el, e) => {
     let btnGroup = el.closest('.btn-group-dropdown');

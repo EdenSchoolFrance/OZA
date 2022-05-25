@@ -59,5 +59,9 @@ class DatabaseSeeder extends Seeder
         $this->call(RiskSeeder::class);
 
         $this->call(RestraintSeeder::class);
+
+        $this->call(ExpositionSeeder::class);
+        $this->call(ExpositionGroupSeeder::class);
+        $this->call(ExpositionQuestionSeeder::class);
     }
 }
