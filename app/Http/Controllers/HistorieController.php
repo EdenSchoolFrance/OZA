@@ -64,7 +64,7 @@ class HistorieController extends Controller
         if (!$historical) {
             return back()->with('status','Un problème est survenue')->with('status_type','danger');
         }
-
+        date_default_timezone_set('Europe/Paris');
         $name = 'OzaDocumentUnique_'.$single_document->client->name.'_'.$single_document->name.'_'.date("d-m-Y",strtotime($historical->date)).'_V'.count($single_document->histories).'.pdf';
 
         if(Storage::exists('/private/'.$single_document->client->id.'/du/'.$historical->id.'.pdf')) {

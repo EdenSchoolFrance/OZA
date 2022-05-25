@@ -15,6 +15,7 @@
                         </div>
                         <div class="right">
                             <input type="password" name="password" class="form-control" id="password">
+                            <i class="far fa-eye-slash eye-password"></i>
                             <i class="far fa-question-circle" data-tooltip=".tooltip--password" data-placement="top"></i>
                             @error('password')
                                 <p class="message-error">{{ $message }}</p>
@@ -30,6 +31,7 @@
                         </div>
                         <div class="right">
                             <input type="password" name="password_confirmation" class="form-control" id="password_confirmation">
+                            <i class="far fa-eye-slash eye-password"></i>
                             @error('password_confirmation')
                                 <p class="message-error">{{ $message }}</p>
                             @enderror

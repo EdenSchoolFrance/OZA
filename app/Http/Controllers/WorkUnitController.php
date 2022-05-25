@@ -95,7 +95,7 @@ class WorkUnitController extends Controller
         })->get();
         if ($single_document->work_unit_limit !== 0){
             if (count($works) !== 0 && count($works) >= $single_document->work_unit_limit){
-                return back()->with('status', 'Vous avez attiend la limite d\'unité de travail ('.$single_document->work_unit_limit.')')->with('status_type','danger');
+                return back()->with('status', 'Vous avez atteint le nombre d\'unités de travail maximum : '.$single_document->work_unit_limit)->with('status_type','danger');
             }
         }
 

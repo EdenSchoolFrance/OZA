@@ -495,33 +495,33 @@
 @section('script')
     <script src="/js/app/risk.js"></script>
     @if(old('restraint'))
-        <script>
-            @foreach(old('restraint') as $restraint)
-                createRestraint('{{ explode('|',$restraint)[0] }}','{{ explode('|',$restraint)[1] }}','{{ explode('|',$restraint)[2] }}','{{ explode('|',$restraint)[3] }}','{{ explode('|',$restraint)[4] }}'  )
-            @endforeach
-        </script>
+        @foreach(old('restraint') as $restraint)
+            <script>
+                createRestraint('{{ explode('|',$restraint)[0] }}','{{ explode('|',$restraint)[1] }}','{{ explode('|',$restraint)[2] }}','{{ explode('|',$restraint)[3] }}','{{ explode('|',$restraint)[4] }}');
+            </script>
+        @endforeach
     @elseif(isset($risk))
-        <script>
-            @foreach($risk->sd_restraints as $restraint)
-                @if($restraint->exist === 1)
-                    createRestraint('{{ $restraint->technical }}','{{ $restraint->organizational }}','{{ $restraint->human }}',"{!! $restraint->name !!}",'{{ $restraint->id }}')
-                @endif
-            @endforeach
-        </script>
+        @foreach($risk->sd_restraints as $restraint)
+            @if($restraint->exist === 1)
+                <script>
+                    createRestraint('{{ $restraint->technical }}','{{ $restraint->organizational }}','{{ $restraint->human }}',`{{ $restraint->name }}`,'{{ $restraint->id }}');
+                </script>
+            @endif
+        @endforeach
     @endif
     @if(old('restraint_proposed'))
-        <script>
-            @foreach(old('restraint_proposed') as $restraint)
+        @foreach(old('restraint_proposed') as $restraint)
+            <script>
                 createRestraintProposed('{{ $restraint }}')
-            @endforeach
-        </script>
+            </script>
+        @endforeach
     @elseif(isset($risk))
-        <script>
-            @foreach($risk->sd_restraints as $restraint)
-                @if($restraint->exist === 0)
+        @foreach($risk->sd_restraints as $restraint)
+            @if($restraint->exist === 0)
+                <script>
                     createRestraintProposed('{{ $restraint->name }}')
-                @endif
-            @endforeach
-        </script>
+                </script>
+            @endif
+        @endforeach
     @endif
 @endsection

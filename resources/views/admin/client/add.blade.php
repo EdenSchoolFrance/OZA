@@ -168,6 +168,7 @@
                         </div>
                         <div class="right">
                             <input type="password" name="password" id="password" class="form-control" placeholder="" >
+                            <i class="far fa-eye-slash eye-password"></i>
                         </div>
                     </div>
                     <div class="line">
@@ -176,6 +177,7 @@
                         </div>
                         <div class="right">
                             <input type="password" name="conf_password" id="conf_password" class="form-control" placeholder="" >
+                            <i class="far fa-eye-slash eye-password"></i>
                         </div>
                     </div>
                 </div>

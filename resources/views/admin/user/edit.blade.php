@@ -97,6 +97,7 @@
                         <div class="right">
                             <div class="align">
                                 <input type="password" name="password" id="password" class="form-control @error('password') invalid @enderror" placeholder="Mot de passe">
+                                <i class="far fa-eye-slash eye-password"></i>
                                 <i class="far fa-question-circle" data-tooltip=".tooltip--password" data-placement="top"></i>
                             </div>
                             @error('password')
@@ -110,6 +111,7 @@
                         </div>
                         <div class="right">
                             <input type="password" name="password_confirmation" class="form-control @error('password_confirmation') invalid @enderror" id="password_confirmation" placeholder="Confirmer le mot de passe">
+                            <i class="far fa-eye-slash eye-password"></i>
                             @error('password_confirmation')
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
