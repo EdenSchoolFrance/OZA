@@ -224,7 +224,8 @@ function escapeHtml(text) {
         '<': '&lt;',
         '>': '&gt;',
         '"': '&quot;',
-        "'": '&#039;'
+        "'": '&#039;',
+        " ": '\n',
     };
 
     return text.replace(/[&<>"']/g, function(m) { return map[m]; });
@@ -237,4 +238,24 @@ function escapeHtml(text) {
 
 on('[data-clipboard]', 'click', (el, e) => {
     navigator.clipboard.writeText(el.dataset.copy);
+});
+
+
+
+/*==============================
+        Eye for password
+==============================*/
+
+on('.eye-password', 'click', (el, e) => {
+    let type = el.closest('div').querySelector('input');
+    let classlist = el.classList;
+    if (type.type === "text"){
+        type.type = "password";
+        classlist.add('fa-eye-slash');
+        classlist.remove('fa-eye');
+    }else {
+        type.type = "text";
+        classlist.remove('fa-eye-slash');
+        classlist.add('fa-eye');
+    }
 });

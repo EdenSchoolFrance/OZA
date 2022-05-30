@@ -24,7 +24,6 @@ class DangerSeeder extends Seeder
         $danger->name = "Absence personne \"compétente\"";
         $danger->info = "Absence d'une personne \"compétente\" pour s'occuper des activités de protection et de prévention des risques professionnels de la structure.";
         $danger->save();
-        $danger->packs()->attach($pack_compliance);
         $danger->packs()->attach($pack_tranquility);
         $danger->packs()->attach($pack_serenity);
 
@@ -33,7 +32,6 @@ class DangerSeeder extends Seeder
         $danger->name = "Accident";
         $danger->info = "Accident, presqu'accident et maladie du travail non ou mal analysés et prévenus pouvant générer la répétition de ces faits.";
         $danger->save();
-        $danger->packs()->attach($pack_compliance);
         $danger->packs()->attach($pack_tranquility);
         $danger->packs()->attach($pack_serenity);
 
@@ -60,7 +58,6 @@ class DangerSeeder extends Seeder
         $danger->name = "Agression et violence";
         $danger->info = "Agression et violence interne et externes, à caractère sexuel ou non, pouvant mettre en péril la santé et la sécurité des salariés, notamment : vols, rackets, agression physique, agression verbale.";
         $danger->save();
-        $danger->packs()->attach($pack_compliance);
         $danger->packs()->attach($pack_tranquility);
         $danger->packs()->attach($pack_serenity);
 
@@ -78,7 +75,6 @@ class DangerSeeder extends Seeder
         $danger->name = "Amiante maladie";
         $danger->info = "Amiante pouvant entrainer de graves maladies respiratoires : plaques pleurales, asbestose, cancer de la plèvre ou du poumon.";
         $danger->save();
-        $danger->packs()->attach($pack_compliance);
         $danger->packs()->attach($pack_tranquility);
         $danger->packs()->attach($pack_serenity);
 
@@ -87,7 +83,6 @@ class DangerSeeder extends Seeder
         $danger->name = "Aptitude travail";
         $danger->info = "Aptitude au travail, non respectée elle peut générer ou provoquer la rechute d'atteintes à la santé un accident du travail.";
         $danger->save();
-        $danger->packs()->attach($pack_compliance);
         $danger->packs()->attach($pack_tranquility);
         $danger->packs()->attach($pack_serenity);
 
@@ -114,7 +109,6 @@ class DangerSeeder extends Seeder
         $danger->name = "Chute liquide";
         $danger->info = "Chute à l'eau ou dans un autre liquide pouvant générer une atteinte à la santé ou la noyade";
         $danger->save();
-        $danger->packs()->attach($pack_compliance);
         $danger->packs()->attach($pack_tranquility);
         $danger->packs()->attach($pack_serenity);
 
@@ -150,7 +144,6 @@ class DangerSeeder extends Seeder
         $danger->name = "Produits, matériels ...";
         $danger->info = "Dangers des produits, matériels, installations et activités de l'atelier pouvant générer des blessures et des atteintes à la santé.";
         $danger->save();
-        $danger->packs()->attach($pack_compliance);
         $danger->packs()->attach($pack_tranquility);
         $danger->packs()->attach($pack_serenity);
 
@@ -177,7 +170,6 @@ class DangerSeeder extends Seeder
         $danger->name = "Ecrans";
         $danger->info = "Ecrans de visualisation pouvant générer fatigue visuelle, troubles musculosquelettiques et stress";
         $danger->save();
-        $danger->packs()->attach($pack_compliance);
         $danger->packs()->attach($pack_tranquility);
         $danger->packs()->attach($pack_serenity);
 
@@ -195,7 +187,6 @@ class DangerSeeder extends Seeder
         $danger->name = "Espaces confinés";
         $danger->info = "Espaces confinés et manque d'aération pouvant générer intoxication ou asphyxie";
         $danger->save();
-        $danger->packs()->attach($pack_compliance);
         $danger->packs()->attach($pack_tranquility);
         $danger->packs()->attach($pack_serenity);
 
@@ -204,7 +195,6 @@ class DangerSeeder extends Seeder
         $danger->name = "Incapacité porter secours";
         $danger->info = "Incapacité à porter secours dans des délais raisonnables, pouvant aggraver la situation initiale.";
         $danger->save();
-        $danger->packs()->attach($pack_compliance);
         $danger->packs()->attach($pack_tranquility);
         $danger->packs()->attach($pack_serenity);
 
@@ -213,7 +203,6 @@ class DangerSeeder extends Seeder
         $danger->name = "Incapacité stopper situation";
         $danger->info = "Incapacité à stopper et prévenir une situation de danger grave et imminent pour la santé ou la sécurité.";
         $danger->save();
-        $danger->packs()->attach($pack_compliance);
         $danger->packs()->attach($pack_tranquility);
         $danger->packs()->attach($pack_serenity);
 
@@ -231,7 +220,6 @@ class DangerSeeder extends Seeder
         $danger->name = "Intempéries";
         $danger->info = "Intempéries telles que la pluie, le vent, la neige, le brouillard, … , hors températures extérieures ; pouvant générer des atteintes à la santé, des glissades et des chutes, des risques d'effondrement ou d'ensevelissement";
         $danger->save();
-        $danger->packs()->attach($pack_compliance);
         $danger->packs()->attach($pack_tranquility);
         $danger->packs()->attach($pack_serenity);
 
@@ -267,7 +255,6 @@ class DangerSeeder extends Seeder
         $danger->name = "Méconnaissance de l'évolution";
         $danger->info = "Méconnaissance de l'évolution de la règlementions en santé et sécurité au travail pouvant générer des atteintes à la santé et des accidents du travail";
         $danger->save();
-        $danger->packs()->attach($pack_compliance);
         $danger->packs()->attach($pack_tranquility);
         $danger->packs()->attach($pack_serenity);
 
@@ -276,7 +263,6 @@ class DangerSeeder extends Seeder
         $danger->name = "Méconnaissance des risques";
         $danger->info = "Méconnaissance des risques et des consignes de sécurité pouvant générer des atteintes à la santé et des accidents du travail";
         $danger->save();
-        $danger->packs()->attach($pack_compliance);
         $danger->packs()->attach($pack_tranquility);
         $danger->packs()->attach($pack_serenity);
 
@@ -333,6 +319,7 @@ class DangerSeeder extends Seeder
         $danger->name = "Rayonnements ionisants";
         $danger->info = "Rayonnements ionisants pouvant générer des brûlures, des lésions cellulaires, des effets cancérogènes, mutagènes et reprotoxiques";
         $danger->save();
+        $danger->packs()->attach($pack_compliance);
         $danger->packs()->attach($pack_tranquility);
         $danger->packs()->attach($pack_serenity);
 
@@ -341,6 +328,7 @@ class DangerSeeder extends Seeder
         $danger->name = "Rayonnements optiques";
         $danger->info = "Rayonnements optiques pouvant générer des atteintes de la peau (brulure, vieillissement, cancer) et de l'œil (lésions de cornée, conjonctive, rétine et opacification du cristallin";
         $danger->save();
+        $danger->packs()->attach($pack_compliance);
         $danger->packs()->attach($pack_tranquility);
         $danger->packs()->attach($pack_serenity);
 
@@ -357,6 +345,7 @@ class DangerSeeder extends Seeder
         $danger->name = "Risques psychosociaux";
         $danger->info = "Risques psychosociaux dont harcèlement moral et sexuel, agression, harcèlement et violence interne et externes (morale, verbale, physique, à caractère sexuel) pouvant mettre en péril la santé et la sécurité des salariés, affecter la dignité et le devenir professionnel et / ou générer des maladies cardio-vasculaires, troubles anxiodépressifs, stress, épuisement professionnel ou burnout, suicide.";
         $danger->save();
+        $danger->packs()->attach($pack_compliance);
         $danger->packs()->attach($pack_tranquility);
         $danger->packs()->attach($pack_serenity);
 
@@ -373,6 +362,8 @@ class DangerSeeder extends Seeder
         $danger->name = "Risques routiers mission";
         $danger->info = "Risques routiers en mission à l'extérieur des locaux de la structure pouvant générer stress, TMS, dorso-lombalgies, et atteintes traumatiques plus ou moins sévères";
         $danger->save();
+        $danger->packs()->attach($pack_compliance);
+        $danger->packs()->attach($pack_tranquility);
         $danger->packs()->attach($pack_serenity);
 
         $danger = new Danger();
@@ -380,6 +371,8 @@ class DangerSeeder extends Seeder
         $danger->name = "Télétravail";
         $danger->info = "Télétravail réalisé au domicile pouvant engendrer des risques physiques (musculosquelettiques, visuels, électriques, ...), des risques liés à une mauvaise ergonomie du poste de travail ou à une installation défectueuse ; et des risques psychosociaux.";
         $danger->save();
+        $danger->packs()->attach($pack_compliance);
+        $danger->packs()->attach($pack_tranquility);
         $danger->packs()->attach($pack_serenity);
 
         $danger = new Danger();
@@ -387,6 +380,7 @@ class DangerSeeder extends Seeder
         $danger->name = "Températures extrêmes";
         $danger->info = "Températures extrêmes liées aux postes de travail (hors températures extérieures) pouvant générer fatigue, sueurs, nausées, maux de tête, vertiges, crampes, déshydratation, coup de chaleur, engourdissement, gelures, hypothermie";
         $danger->save();
+        $danger->packs()->attach($pack_tranquility);
         $danger->packs()->attach($pack_serenity);
 
         $danger = new Danger();
@@ -394,6 +388,7 @@ class DangerSeeder extends Seeder
         $danger->name = "Travail de nuit";
         $danger->info = "Travail de nuit entre 21h et 6 heures, ou en équipes successives alternantes pouvant générer des troubles du sommeil, des troubles cardiovasculaires, des cancers";
         $danger->save();
+        $danger->packs()->attach($pack_tranquility);
         $danger->packs()->attach($pack_serenity);
 
         $danger = new Danger();
@@ -401,6 +396,7 @@ class DangerSeeder extends Seeder
         $danger->name = "Travail isolé";
         $danger->info = "Travail isolé pouvant générer des contraintes supplémentaires et augmenter les difficultés à secourir";
         $danger->save();
+        $danger->packs()->attach($pack_tranquility);
         $danger->packs()->attach($pack_serenity);
 
         $danger = new Danger();
@@ -408,6 +404,7 @@ class DangerSeeder extends Seeder
         $danger->name = "Travail répétitif";
         $danger->info = "Travail répétitif pouvant générer stress, TMS, dorso-lombalgies";
         $danger->save();
+        $danger->packs()->attach($pack_tranquility);
         $danger->packs()->attach($pack_serenity);
 
         $danger = new Danger();
@@ -415,6 +412,7 @@ class DangerSeeder extends Seeder
         $danger->name = "Vibrations corps";
         $danger->info = "Vibrations transmises au corps entier pouvant générer des dorso-lombalgies, hernies discales.";
         $danger->save();
+        $danger->packs()->attach($pack_tranquility);
         $danger->packs()->attach($pack_serenity);
 
         $danger = new Danger();
@@ -422,6 +420,7 @@ class DangerSeeder extends Seeder
         $danger->name = "Vibrations mains";
         $danger->info = "Vibrations transmises aux mains et aux bras pouvant générer des pathologies des articulations du poignet ou du coude, un syndrome de Raynaud ou des troubles neurologiques.";
         $danger->save();
+        $danger->packs()->attach($pack_tranquility);
         $danger->packs()->attach($pack_serenity);
     }
 }

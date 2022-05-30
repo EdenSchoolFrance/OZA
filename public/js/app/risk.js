@@ -506,7 +506,7 @@ function filterRisk(){
                     let content = '<a href="#" class="checked">'+json[i].name+'</a>'
                     li.innerHTML = content;
                 }else{
-                    let content = '<a href="/'+single_document_id+'/work/create/'+workUnit+'/'+json[i].id+'">'+json[i].name+'</a>'
+                    let content = '<a href="/'+single_document_id+'/danger/'+danger+'/create/'+workUnit+'/'+json[i].id+'">'+json[i].name+'</a>'
                     li.innerHTML = content;
                 }
                 list.appendChild(li);

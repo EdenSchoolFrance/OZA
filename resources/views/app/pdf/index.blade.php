@@ -1202,9 +1202,10 @@
             <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body">
+            <p class="center legend"> F => Fréquence | P => Probabilité | GP => Gravité potentiel | ID => Impact différencié | RB => Risque brut | T => Technique | O => Oragnisationnelle | H => Humain | RR => Risque résiduel</p>
             <table class="table table--action">
                 <tr>
-                    <th colspan="15" class="green">1. PLAN D'ACTION</th>
+                    <th colspan="15" class="green">5. EVALUATION DES RISQUES PROFESSIONNELS</th>
                 </tr>
                 <tr>
                     <td class="theader">
@@ -1232,7 +1233,11 @@
                         RB
                     </td>
                     <td class="theader max-width">
-                        Mesures de prévention et de protection proposées
+                        Mesures de prévention et de protection existantes :<br>
+                        Technique<br>
+                        Organisationnelle<br>
+                        Protection<br>
+                        Humaine (information)
                     </td>
                     <td class="theader">
                         T
@@ -1288,11 +1293,11 @@
                                 <td>{{ $sd_work_unit->name }}</td>
                                 <td>{{ $sd_danger->danger->name }}</td>
                                 <td>Non concerné actuellement</td>
-                                <td class="min-width">Non concerné</td>
-                                <td class="min-width">Non concerné</td>
-                                <td class="min-width">Non concerné</td>
+                                <td class="min-width">NC</td>
+                                <td class="min-width">NC</td>
+                                <td class="min-width">NC</td>
                                 <td class="min-width">NON</td>
-                                <td class="green min-width">Non concerné</td>
+                                <td class="green min-width">0</td>
                                 <td>
 
                                 </td>
@@ -1300,7 +1305,7 @@
                                 <td>0</td>
                                 <td>0</td>
                                 <td>0</td>
-                                <td class="green">Non concerné</td>
+                                <td class="green">0</td>
                                 <td>
 
                                 </td>

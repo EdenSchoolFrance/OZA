@@ -725,7 +725,7 @@
 
             let url = '{{ route('risk.filter', [$single_document->id, $danger->id]) }}';
             let single_document_id = '{{ $single_document->id }}';
-            let risk = '{{ isset($risk) ? $risk->id : null }}';
+            let danger = '{{ $danger->id }}';
             let workUnit = '{{ $id_sd_work_unit }}';
 
             document.getElementById('filter-sa').addEventListener('change', filterRisk);

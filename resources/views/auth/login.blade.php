@@ -33,6 +33,7 @@
                         </div>
                         <div class="right">
                             <input type="password" name="password" class="form-control" id="password">
+                            <i class="far fa-eye-slash eye-password"></i>
                             @error('password')
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
