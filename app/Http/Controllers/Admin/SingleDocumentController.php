@@ -233,8 +233,6 @@ class SingleDocumentController extends Controller
             }
         }
 
-        var_dump($old_risk);
-
 
         foreach ($single_document->dangers as $sd_danger){
 
