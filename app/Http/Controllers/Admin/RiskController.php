@@ -82,7 +82,7 @@ class RiskController extends Controller
         $danger = Danger::find($request->danger_risk);
         $domain = DomainActivitie::find($request->domain_risk);
 
-        if (!$domain || !$danger) return back()->with('status','Un problème est survenue')->with('status-type','danger');
+        if (!$domain || !$danger) return back()->with('status','Un problème est survenue')->with('status_type','danger');
 
         $risk = new Risk();
         $risk->id = uniqid();
@@ -125,7 +125,7 @@ class RiskController extends Controller
         $domain = DomainActivitie::find($request->domain_risk);
         $danger = Danger::find($request->danger_risk);
 
-        if (!$domain || !$danger) return back()->with('status','Un problème est survenue')->with('status-type','danger');
+        if (!$domain || !$danger) return back()->with('status','Un problème est survenue')->with('status_type','danger');
 
         $risk = Risk::find($id_risk);
         $risk->name = $request->name_risk;

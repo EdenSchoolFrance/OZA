@@ -55,10 +55,18 @@ on('input[type="file"]', 'change', (el, e) => {
 });
 
 
+$('textarea.auto-resize').forEach(el => {
+    if (el.scrollHeight > 0){
+        el.style.height = "auto";
+        el.style.height = el.scrollHeight + "px";
+    }
+})
+
 /*==============================
               Modal
 ==============================*/
 on('[data-modal]', 'click', (el, e) => {
+    $('body', document, 0).classList.add('modal-openned');
     let modal = $(el.dataset.modal, document, 0);
 
     if (modal) {
@@ -71,9 +79,10 @@ on('[data-modal]', 'click', (el, e) => {
 });
 
 on('.modal:not([data-backdrop="static"])', 'click', (el, e) => {
+
     if (!$('.modal-content', el, 0).contains(e.target)) {
         el.classList.remove('show');
-
+        $('body', document, 0).classList.remove('modal-openned');
         setTimeout(() => {
             el.style.display = "none"
         }, 150);
@@ -90,6 +99,7 @@ on('[data-modal=".modal--archive"], [data-modal=".modal--unarchive"], [data-moda
 
 
 on('[data-dismiss="modal"]', 'click', (el, e) => {
+    $('body', document, 0).classList.remove('modal-openned');
     let modal = el.closest('.modal');
 
     if (modal) {
@@ -169,26 +179,50 @@ function showTooltip(el, e) {
         tooltip.style.display = "block";
         let rect = el.getBoundingClientRect();
 
-        switch (placement) {
-            case "top":
-                top = (rect.top - tooltip.offsetHeight - 15) + 'px';
-                left = (rect.left + ((rect.width / 2) - (tooltip.offsetWidth / 2))) + 'px';
-                break;
-            case "bottom":
-                top = (rect.top + rect.height + 15) + 'px';
-                left = (rect.left + ((rect.width / 2) - (tooltip.offsetWidth / 2))) + 'px';
-                break;
-            case "left":
-                top = (rect.top + (rect.height / 2) - (tooltip.offsetHeight / 2)) + 'px';
-                left = (rect.left - tooltip.offsetWidth - 15) + 'px';
-                break;
-            case "right":
-                top = (rect.top + (rect.height / 2) - (tooltip.offsetHeight / 2)) + 'px';
-                left = (rect.left + rect.width + 15) + 'px';
-                break;
+        if (el.dataset.tooltable === "true"){
+
+            switch (placement) {
+                case "top":
+                    top = (rect.top - tooltip.offsetHeight - 15) + 'px';
+                    left = (rect.left + ((rect.width / 2) - (tooltip.offsetWidth / 2))) + 'px';
+                    break;
+                case "bottom":
+                    top = (rect.top + rect.height + 15) + 'px';
+                    left = (rect.left + ((rect.width / 2) - (tooltip.offsetWidth / 2))) + 'px';
+                    break;
+                case "left":
+                    top = (rect.top + (rect.height / 2) - (tooltip.offsetHeight / 2)) + 'px';
+                    left = (rect.left - tooltip.offsetWidth - 15) + 'px';
+                    break;
+                case "right":
+                    top = (rect.top + (rect.height / 2) - (tooltip.offsetHeight / 2)) + 'px';
+                    left = (rect.left + rect.width + 15) + 'px';
+                    break;
+            }
+        }else{
+
+            console.log(placement)
+            switch (placement) {
+                case "top":
+                    top = (el.offsetTop - tooltip.offsetHeight - 15) + 'px';
+                    left = (el.offsetLeft + ((el.offsetWidth / 2) - (tooltip.offsetWidth / 2))) + 'px';
+                    break;
+                case "bottom":
+                    top = (el.offsetTop + el.offsetHeight + 15) + 'px';
+                    left = (el.offsetLeft + ((el.offsetWidth / 2) - (tooltip.offsetWidth / 2))) + 'px';
+                    break;
+                case "left":
+                    top = (el.offsetTop + (el.offsetHeight / 2) - (tooltip.offsetHeight / 2)) + 'px';
+                    left = (el.offsetLeft - tooltip.offsetWidth - 15) + 'px';
+                    break;
+                case "right":
+                    top = (el.offsetTop + (el.offsetHeight / 2) - (tooltip.offsetHeight / 2)) + 'px';
+                    left = (el.offsetLeft + el.offsetWidth + 15) + 'px';
+                    break;
+            }
         }
 
-        console.log(el.getBoundingClientRect())
+        console.log(left)
         tooltip.style.top = top;
         tooltip.style.left = left;
 
@@ -204,8 +238,38 @@ function escapeHtml(text) {
         '<': '&lt;',
         '>': '&gt;',
         '"': '&quot;',
-        "'": '&#039;'
+        "'": '&#039;',
+        " ": '\n',
     };
 
     return text.replace(/[&<>"']/g, function(m) { return map[m]; });
 }
+
+
+/*==============================
+        Copy to clipboard
+==============================*/
+
+on('[data-clipboard]', 'click', (el, e) => {
+    navigator.clipboard.writeText(el.dataset.copy);
+});
+
+
+
+/*==============================
+        Eye for password
+==============================*/
+
+on('.eye-password', 'click', (el, e) => {
+    let type = el.closest('div').querySelector('input');
+    let classlist = el.classList;
+    if (type.type === "text"){
+        type.type = "password";
+        classlist.add('fa-eye-slash');
+        classlist.remove('fa-eye');
+    }else {
+        type.type = "text";
+        classlist.remove('fa-eye-slash');
+        classlist.add('fa-eye');
+    }
+});

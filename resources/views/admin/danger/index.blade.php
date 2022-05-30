@@ -5,7 +5,6 @@
         <div class="card card--work_units">
             <div class="card-header">
                 <a href=""></a>
-                <a href="{{ route('admin.help.danger.create') }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN DANGER</a>
             </div>
             <div class="card-body">
                 <table class="table table--work_units">

@@ -90,11 +90,8 @@
                     </div>
                     <div class="modal-body">
                         <div class="row">
-                            <div class="line">
-                                <div class="left title-restraint">
-                                    {{--Line for title, set in restraint.js--}}
-                                </div>
-                                <div class="right"></div>
+                            <div class="line title-restraint">
+
                             </div>
                         </div>
                         <div class="row">

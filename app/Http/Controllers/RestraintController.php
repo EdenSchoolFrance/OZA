@@ -64,7 +64,7 @@ class RestraintController extends Controller
 
         $restraint = SdRestraint::where('id',$request->id_restraint)->first();
 
-        if($restraint->sd_risk->sd_danger->single_document->id !== $single_document->id) return back()->with('status','Une erreur est survenue')->with('status-type','danger');
+        if($restraint->sd_risk->sd_danger->single_document->id !== $single_document->id) return back()->with('status','Une erreur est survenue')->with('status_type','danger');
 
         $restraint->date = $request->date_restraint;
         $restraint->technical = $request->tech;

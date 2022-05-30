@@ -30,15 +30,16 @@ class PDFController extends Controller
         })->get()->filter(function ($sd_risk, $key) {
             return $sd_risk->total() > 23;
         })->all();
-
+        setlocale(LC_TIME, "fr_FR");
         $histories = Historie::find(session('status'));
 
         $config = '{type:"pie",data:{labels:["Acceptable","A améliorer","Agir vite","STOP"],datasets:[{data:['.$single_document->graphique()[0].','.$single_document->graphique()[1].','.$single_document->graphique()[2].','.$single_document->graphique()[3].']}]},options:{layout:{padding:0,},plugins:{legend:{display:true,position:"right",labels:{boxHeight:45,boxWidth:45,},title:{display:false,}}}}}';
         $chartUrl = 'https://quickchart.io/chart?&w=500&h=300&c='.urlencode($config);
         $pdf = PDF::loadView('app.pdf.index', compact('chartUrl','single_document','item_mat','item_veh','item_eng','sd_risks','sd_risks_posts'))->setPaper('a4', 'landscape');
 
-        Storage::put('/public/'.$single_document->client->id.'/du/'.$histories->id.'.pdf', $pdf->download()->getOriginalContent());
-        return back()->with('status', 'Document unique générer avec succès, vous pouvez maintenant le télécharger !');
+        Storage::put('/private/'.$single_document->client->id.'/du/'.$histories->id.'.pdf', $pdf->download()->getOriginalContent());
+
+        return back()->with('status', 'Document unique généré avec succès, vous pouvez maintenant le télécharger !');
     }
 
     public static function create(){

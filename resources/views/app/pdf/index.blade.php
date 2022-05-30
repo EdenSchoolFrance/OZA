@@ -51,19 +51,33 @@
         <div class="body">
             <div class="header">
                 <h1 class="title">Document Unique</h1>
-                <p class="info">Code de Travail article L.4121-3</p>
-                <p class="info">Transcription des résultats de l'évaluation des risques pour la santé et la sécurité du personnel</p>
+                <p class="info">Article L4121-3-1 du Code du travail</p>
+                <p class="info">Le document unique d'évaluation des risques professionnels est transmis par l'employeur à chaque mise à jour au service de prévention et de santé au travail auquel il adhère.</p>
             </div>
             <ul>
-                <li class="bold"><p>Ce Document Unique doit réglementairement être tenu à la disposition de (Article R4121-4 du Code du Travail) :</p></li>
-                <li><p>1° Des travailleurs ;</p></li>
-                <li><p>2° Des membres du Comité Social et Economique ou des instances qui en tiennent lieu ;</p></li>
-                <li><p>3° Des délégués du personnel ;</p></li>
-                <li><p>4° Du médecin du travail ;</p></li>
-                <li><p>5° Des agents de l’inspection du travail ;</p></li>
-                <li><p>6° Des agents des services de prévention des organismes de sécurité sociale ;</p></li>
-                <li><p>7° Des agents des organismes professionnels de santé, de sécurité et des conditions de travail ;</p></li>
-                <li><p>8° Des inspecteurs de la radioprotection.</p></li>
+                <li class="bold"><p>Article R4121-4 du Code du Travail <br>Ce document unique d'évaluation des risques professionnels et ses versions antérieures sont tenus, pendant une durée de 40 ans à compter de leur élaboration, à la disposition de :</p></li>
+                <li>
+                    <p>
+                        1° Des travailleurs et des anciens travailleurs pour les versions en vigueur durant leur période d'activité dans l'entreprise.
+                        La communication des versions du document unique antérieures à celle en vigueur à la date de la demande peut être limitée aux seuls éléments afférents à l'activité du demandeur.
+                        Les travailleurs et anciens travailleurs peuvent communiquer les éléments mis à leur disposition aux professionnels de santé en charge de leur suivi médical ;
+                    </p>
+                </li>
+                <li><p>2° Des membres de la délégation du personnel du comité social et économique ;</p></li>
+                <li><p>3° Des agents du système d'inspection du travail ;</p></li>
+                <li><p>4° Des agents des services de prévention des organismes de sécurité sociale ;</p></li>
+                <li><p>5° Des agents des organismes professionnels de santé, de sécurité et des conditions de travail des branches d'activités présentant des risques particuliers ;</p></li>
+                <li><p>6° Des inspecteurs de la radioprotection et de la santé publique, en ce qui concerne les résultats des évaluations liées à l'exposition des travailleurs aux rayonnements ionisants, pour les installations et activités dont ils ont respectivement la charge.</p></li>
+                <li>
+                    <p>
+                        Jusqu'à l'entrée en vigueur de l'obligation de dépôt du document unique d'évaluation des risques professionnels sur un portail numérique, l'employeur conserve les versions successives du document unique au sein de l'entreprise sous la forme d'un document papier ou dématérialisé.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Un avis indiquant les modalités d'accès des travailleurs au document unique est affiché à une place convenable et aisément accessible dans les lieux de travail. Dans les entreprises ou établissements dotés d'un règlement intérieur, cet avis est affiché au même emplacement que celui réservé au règlement intérieur.
+                    </p>
+                </li>
                 <li>
                     <p class="text-color-red">
                         <span class="bold">A noter :</span> <br>
@@ -267,8 +281,8 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <span class="bold">Nombre de salariés inscrits sur le registre du personnel au moment de la rédaction du Document Unique : </span><br>
-                            {{ $single_document->work_unit->pluck('number_employee')->sum() }} salaries <br>
+                            <span class="bold">Nombre de salarié(s) inscrit(s) sur le registre du personnel au moment de la rédaction du Document Unique : </span><br>
+                            {{ $single_document->work_unit->pluck('number_employee')->sum() }} salarié(s) <br>
 
                         </td>
                     </tr>
@@ -1188,9 +1202,10 @@
             <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body">
+            <p class="center legend"> F => Fréquence | P => Probabilité | GP => Gravité potentiel | ID => Impact différencié | RB => Risque brut | T => Technique | O => Oragnisationnelle | H => Humain | RR => Risque résiduel</p>
             <table class="table table--action">
                 <tr>
-                    <th colspan="15" class="green">1. PLAN D'ACTION</th>
+                    <th colspan="15" class="green">5. EVALUATION DES RISQUES PROFESSIONNELS</th>
                 </tr>
                 <tr>
                     <td class="theader">
@@ -1218,7 +1233,11 @@
                         RB
                     </td>
                     <td class="theader max-width">
-                        Mesures de prévention et de protection proposées
+                        Mesures de prévention et de protection existantes :<br>
+                        Technique<br>
+                        Organisationnelle<br>
+                        Protection<br>
+                        Humaine (information)
                     </td>
                     <td class="theader">
                         T
@@ -1274,11 +1293,11 @@
                                 <td>{{ $sd_work_unit->name }}</td>
                                 <td>{{ $sd_danger->danger->name }}</td>
                                 <td>Non concerné actuellement</td>
-                                <td class="min-width">Non concerné</td>
-                                <td class="min-width">Non concerné</td>
-                                <td class="min-width">Non concerné</td>
+                                <td class="min-width">NC</td>
+                                <td class="min-width">NC</td>
+                                <td class="min-width">NC</td>
                                 <td class="min-width">NON</td>
-                                <td class="green min-width">Non concerné</td>
+                                <td class="green min-width">0</td>
                                 <td>
 
                                 </td>
@@ -1286,7 +1305,7 @@
                                 <td>0</td>
                                 <td>0</td>
                                 <td>0</td>
-                                <td class="green">Non concerné</td>
+                                <td class="green">0</td>
                                 <td>
 
                                 </td>

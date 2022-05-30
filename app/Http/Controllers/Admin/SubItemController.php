@@ -35,7 +35,7 @@ class SubItemController extends Controller
 
         $subitem = SubItem::find($id_subitem);
 
-        if (!$subitem) return back()->with('status','Un problème est survenue')->with('status-type','danger');
+        if (!$subitem) return back()->with('status','Un problème est survenue')->with('status_type','danger');
 
         $subitem->name = $request->name_subitem;
         $subitem->save();

@@ -89,7 +89,7 @@ class DangerController extends Controller
 
         $danger = Danger::find($id_danger);
 
-        if (!$danger) return back()->with('status','Un problème est survenue')->with('status-type','danger');
+        if (!$danger) return back()->with('status','Un problème est survenue')->with('status_type','danger');
 
         $danger->reflections()->delete();
 
@@ -118,7 +118,7 @@ class DangerController extends Controller
 
         $danger = Danger::find($request->id);
 
-        if (!$danger) return back()->with('status','Un problème est survenue')->with('status-type','danger');
+        if (!$danger) return back()->with('status','Un problème est survenue')->with('status_type','danger');
         $danger->delete();
 
         return back()->with('status', 'L\'unité de travail a bien été supprimé !');

@@ -129,10 +129,10 @@ Route::middleware(['auth'])->group(function() {
 
 
                 Route::get('/help/danger', [DangerAdminController::class, 'index'])->name('admin.help.danger');
-                Route::get('/help/danger/create', [DangerAdminController::class, 'create'])->name('admin.help.danger.create');
+                //Route::get('/help/danger/create', [DangerAdminController::class, 'create'])->name('admin.help.danger.create');
                 Route::get('/help/danger/{danger}/edit', [DangerAdminController::class, 'edit'])->name('admin.help.danger.edit');
 
-                Route::post('/help/danger/store', [DangerAdminController::class, 'store'])->name('admin.help.danger.store');
+                //Route::post('/help/danger/store', [DangerAdminController::class, 'store'])->name('admin.help.danger.store');
                 Route::post('/help/danger/{danger}/update', [DangerAdminController::class, 'update'])->name('admin.help.danger.update');
                 Route::post('/help/danger/delete', [DangerAdminController::class, 'delete'])->name('admin.help.danger.delete');
 
@@ -149,7 +149,10 @@ Route::middleware(['auth'])->group(function() {
                 Route::get('/{doc_name}/edit', [DocController::class, 'edit'])->name('documentation.edit');
 
                 Route::post('/{doc_name}/update', [DocController::class, 'update'])->name('documentation.update');
-                Route::post('/doc/upload', [DocController::class, 'upload'])->name('documentation.upload');
+                Route::post('/{doc_name}/file/upload', [DocController::class, 'upload'])->name('documentation.upload');
+                Route::post('/{doc_name}/file/delete', [DocController::class, 'delete'])->name('documentation.delete');
+
+                Route::get('/doc/{doc_name}/file/download/{file_name}', [DocController::class, 'download'])->name('documentation.download');
             });
 
             /*================ ADMIN | EXPERT ================*/
@@ -243,6 +246,7 @@ Route::middleware(['auth'])->group(function() {
         Route::get('/{single_document}/pdf/download', [PDFController::class, 'create'])->name('pdf.download');
 
         Route::post('/{single_document}/history/store', [HistorieController::class, 'store'])->name('history.store');
+        Route::get('/{single_document}/history/download/{id}', [HistorieController::class, 'download'])->name('history.download');
 
         Route::get('/{single_document}/{doc_name?}', [DocController::class, 'index'])->name('documentation');
 

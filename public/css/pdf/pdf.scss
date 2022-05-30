@@ -111,6 +111,10 @@ html {
             .center {
                 text-align: center;
             }
+            .legend{
+                font-size: 13px;
+                font-style: italic;
+            }
         }
 
         &>.footer {
@@ -201,6 +205,13 @@ html {
                     }
 
                     .info {
+                    }
+                }
+                li{
+                    margin-top: 0;
+                    margin-bottom: 0;
+                    p{
+                        font-size: 12px;
                     }
                 }
             }
@@ -353,6 +364,13 @@ html {
             margin-top: 30px;
             margin-left: 270px;
             width: 500px;
+        }
+        .rotate90{
+            span{
+                writing-mode: vertical-rl;
+                transform: rotate(90deg);
+                white-space: nowrap;
+            }
         }
     }
 }

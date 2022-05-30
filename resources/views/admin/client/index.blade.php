@@ -39,12 +39,12 @@
                                 <td class="td_actions">
                                     @if (Auth::user()->hasPermission('ADMIN'))
                                         @if ($client->archived)
-                                            <button data-modal=".modal--unarchive" data-id="{{ $client->id }}"><i class="fas fa-box-open" data-tooltip=".tooltip--unarchive" data-placement="top" ></i></button>
+                                            <button data-modal=".modal--unarchive" data-id="{{ $client->id }}"><i class="fas fa-box-open" data-tooltip=".tooltip--unarchive" data-placement="top" data-tooltable="true"></i></button>
                                         @else
-                                            <button data-modal=".modal--archive" data-id="{{ $client->id }}"><i class="fas fa-archive" data-tooltip=".tooltip--archive" data-placement="top"></i></button>
+                                            <button data-modal=".modal--archive" data-id="{{ $client->id }}"><i class="fas fa-archive" data-tooltip=".tooltip--archive" data-placement="top" data-tooltable="true"></i></button>
                                         @endif
                                     @endif
-                                    <a href="{{ route('admin.client.edit', [$client->id]) }}"><i class="far fa-edit" data-tooltip=".tooltip--edit" data-placement="top"></i></a>
+                                    <a href="{{ route('admin.client.edit', [$client->id]) }}"><i class="far fa-edit" data-tooltip=".tooltip--edit" data-placement="top" data-tooltable="true"></i></a>
                                 </td>
                             </tr>
                         @endforeach
