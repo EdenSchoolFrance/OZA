@@ -359,7 +359,7 @@
                                                                                     <select name="exposition_intervention_type[{{ $exposition_group->id }}_{{ $exposition_question->id }}]" class="form-control">
                                                                                         <option value="">Préciser le type d’intervention ou de travaux</option>
                                                                                         @foreach (unserialize($exposition_question->options) as $key => $option)
-                                                                                            <option value="{{ $key }}" {{ $sd_exposition_question ? ($sd_exposition_question->intervention_type == $option ? "selected" : "") : "" }}>{{ $option }}</option>
+                                                                                            <option value="{{ $key }}" {{ old('exposition_intervention_type.' . $exposition_group->id . '_' . $exposition_question->id) ? (old('exposition_intervention_type.' . $exposition_group->id . '_' . $exposition_question->id) == $key ? "selected" : "") : ($sd_exposition_question ? ($sd_exposition_question->intervention_type == $option ? "selected" : "") : "") }}>{{ $option }}</option>
                                                                                         @endforeach
                                                                                     </select>
                                                                                 @endif
