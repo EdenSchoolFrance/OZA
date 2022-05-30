@@ -1,8 +1,7 @@
 @extends('app')
 
 @section('content')
-
-    @if( isset($single_document->work_unit[0]))
+    @if(count($single_document->work_unit) > 0)
         <div class="content">
             <div class="card card--reflection">
                 @if(Auth::user()->hasAccess('oza'))
@@ -22,14 +21,14 @@
                                     </div>
                                 </div>
                                 <div class="right">
-                                    <textarea name="comment" class="form-control" placeholder="Réponses">{{ $danger->comment }}</textarea>
+                                    <textarea name="comment" class="form-control" placeholder="Commentaire">{{ $danger->comment }}</textarea>
                                     <button class="btn" type="submit">Enregistrer le commentaire</button>
                                 </div>
                             </div>
                         </div>
                     </form>
                 @endif
-                <form class="card-footer card-footer--exist" action="{{ route('danger.validated', [$single_document->id, $danger->id, 'global']) }}" method="POST">
+                <form class="card-footer card-footer--exist" action="{{ route('danger.work_unit.exist', [$single_document->id, $danger->id, 'global']) }}" method="POST">
                     @csrf
                     <input type="hidden" name="checked" value=""/>
                     <p>Ce danger concerne quelqu’un au sein de l’entreprise ?</p>
@@ -37,11 +36,27 @@
                     <button type="button" data-value="false" class="btn btn-radio btn-check-work-unit {{ $danger->exist === 0 ? 'btn-radio--checked' : '' }}">Non</button>
                 </form>
             </div>
+
             @if($danger->exist === 1)
-                <div class="card card--risk  {{ $danger->ut_all ? 'card--risk-stretchable card--risk-opened' : '' }}">
+                @if ($danger->danger->exposition)
+                    <div class="card card--exposition-info">
+                        <div class="card-body">
+                            <div class="left">
+                                <i class="fas fa-exclamation-circle"></i>
+                            </div>
+                            <div class="right">
+                                <p class="title title-red">Exposition aux facteurs de risques professionnels</p>
+                                <p class="title title-green">Rappel du seuil règlementaire :</p>
+                                <p class="info">{{ $danger->danger->exposition->info }}</p>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
+                <div class="card card--risk card--risk-all {{ $danger->ut_all ? 'card--risk-stretchable card--risk-opened' : '' }}">
                     <div class="card-header">
                         <h2 class="title">UT <span>TOUS</span></h2>
-                        <form class="form-risk-checked" action="{{ route('danger.validated', [$single_document->id, $danger->id, 'all']) }}" method="post">
+                        <form class="form-risk-checked" action="{{ route('danger.work_unit.exist', [$single_document->id, $danger->id, 'all']) }}" method="post">
                             @csrf
                             <input type="hidden" name="checked" value=""/>
                             <p>Ce danger concerne quelqu'un au sein de toutes les unités de travail ?</p>
@@ -156,10 +171,10 @@
 
                 @foreach($single_document->work_unit as $sd_work_unit)
                     @if($sd_work_unit->validated === 1)
-                        <div class="card card--risk {{ $sd_work_unit->sd_danger($danger->id) ? ($sd_work_unit->sd_danger($danger->id)->pivot->exist ? 'card--risk-stretchable card--risk-opened' : '') : '' }}" >
+                        <div class="card card--risk card--risk-{{ $sd_work_unit->id }} {{ $sd_work_unit->sd_danger($danger->id) ? ($sd_work_unit->sd_danger($danger->id)->pivot->exist ? 'card--risk-stretchable card--risk-opened' : '') : '' }}" >
                             <div class="card-header">
                                 <h2 class="title">UT <span>{{ $sd_work_unit->name }}</span></h2>
-                                <form class="form-risk-checked" action="{{ route('danger.validated', [$single_document->id, $danger->id, $sd_work_unit->id]) }}" method="post">
+                                <form class="form-risk-checked" action="{{ route('danger.work_unit.exist', [$single_document->id, $danger->id, $sd_work_unit->id]) }}" method="post">
                                     @csrf
 
                                     <input type="hidden" name="checked" value=""/>
@@ -272,6 +287,149 @@
                                             </tfoot>
                                         </table>
                                     @endif
+
+                                    @if ($danger->danger->exposition)
+                                        <div class="card card--exposition card--exposition-{{ $sd_work_unit->id }}">
+                                            <div class="card-header">
+                                                <div class="row">
+                                                    <p class="title">Evaluation de l'exposition aux facteurs de risques professionnels</p>
+                                                    <p class="subtitle">appréciée après application des mesures de protection collective et individuelle</p>
+                                                </div>
+                                                <form class="row" action="{{ route('danger.exposition.exist', [$single_document->id, $danger->id, $sd_work_unit->id, $danger->danger->exposition->id]) }}" method="post">
+                                                    @csrf
+                                                    <input type="hidden" name="checked" value=""/>
+                                                    <p>Après mesure de protection collective et individuelle, l’UT est-elle exposée au delà du seuil règlementaire ?</p>
+                                                    
+                                                    <button type="button" data-value="true" class="btn btn-radio btn-check-work-unit {{ $sd_work_unit->sd_danger($danger->id)->pivot->exposition === 1 ? "btn-radio--checked" : "" }}" {{ $sd_work_unit->sd_danger($danger->id)->pivot->exposition === 1 ? "disabled" : ""  }}>Oui</button>
+                                                    <button type="button" data-value="false" class="btn btn-radio btn-check-work-unit {{ $sd_work_unit->sd_danger($danger->id)->pivot->exposition === 0 ? "btn-radio--checked" : "" }}" {{ $sd_work_unit->sd_danger($danger->id)->pivot->exposition === 0 ? "disabled" : ""  }}>Non</button>
+                                                </form>
+                                            </div>
+
+                                            @if ($sd_work_unit->sd_danger($danger->id)->pivot->exposition)
+                                                <form action="{{ route('exposition.store', [$single_document->id, $danger->id, $sd_work_unit->id, $danger->danger->exposition->id]) }}" method="POST">
+                                                    @csrf
+                                                    <div class="card-body">
+                                                        <div class="info info--warning">
+                                                            <p class="info">A lire avant l’évaluation :</p>
+                                                            <p class="info">La durée annuelle d’exposition considérée est de 220 jours. Si la durée est différente, veuillez calculer l’exposition au prorata.</p>
+                                                        </div>
+                                                        @foreach ($danger->danger->exposition->exposition_groups as $key => $exposition_group)
+                                                            @if ($key > 0)
+                                                                <hr class="separation">
+                                                            @endif
+                                                            <table class="table table--exposition" data-calculation="{{ json_encode(unserialize($exposition_group->calculation)) }}">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th></th>
+                                                                        <th>
+                                                                            {{ $exposition_group->intervention_type_label }}
+                                                                        </th>
+                                                                        <th>
+                                                                            Nombre de personnes concernées 
+                                                                        </th>
+                                                                        @if ($exposition_group->type == "default")
+                                                                            <th>
+                                                                                {{ $exposition_group->value_label }}
+                                                                            </th>
+                                                                        @else
+                                                                            <th>
+                                                                                Durée en mm/j
+                                                                            </th>
+                                                                            <th>
+                                                                                Durée en h/an
+                                                                            </th>
+                                                                        @endif
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach ($exposition_group->exposition_questions as $key => $exposition_question)
+                                                                        @php
+                                                                            $sd_exposition_question = $exposition_question->sd_work_unit_exposition_question($sd_work_unit->id);
+                                                                        @endphp
+                                                                        <tr class="{{ $key > 0 ? "no-border" : "" }}">
+                                                                            @if ($exposition_group->type == "duration" && count($exposition_group->exposition_questions) > 1)
+                                                                                <td class="custom">{{ $exposition_question->intensity }}</td>
+                                                                            @else
+                                                                                <td></td>
+                                                                            @endif
+                                                                            <td>
+                                                                                @if (!$exposition_question->options)
+                                                                                    <input type="text" class="form-control" name="exposition_intervention_type[{{ $exposition_group->id }}_{{ $exposition_question->id }}]" value="{{ old('exposition_intervention_type.' . $exposition_group->id . '_' . $exposition_question->id) ? old('exposition_intervention_type.' . $exposition_group->id . '_' . $exposition_question->id) : ($sd_exposition_question ? $sd_exposition_question->intervention_type : "") }}" placeholder="Préciser le type d’intervention ou de travaux">
+                                                                                @else
+                                                                                    <select name="exposition_intervention_type[{{ $exposition_group->id }}_{{ $exposition_question->id }}]" class="form-control">
+                                                                                        <option value="">Préciser le type d’intervention ou de travaux</option>
+                                                                                        @foreach (unserialize($exposition_question->options) as $key => $option)
+                                                                                            <option value="{{ $key }}" {{ old('exposition_intervention_type.' . $exposition_group->id . '_' . $exposition_question->id) ? (old('exposition_intervention_type.' . $exposition_group->id . '_' . $exposition_question->id) == $key ? "selected" : "") : ($sd_exposition_question ? ($sd_exposition_question->intervention_type == $option ? "selected" : "") : "") }}>{{ $option }}</option>
+                                                                                        @endforeach
+                                                                                    </select>
+                                                                                @endif
+                                                                                @if ($exposition_group->type != "duration" || count($exposition_group->exposition_questions) == 1)
+                                                                                    <p class="info info--success">{{ $exposition_question->intensity }}</p>
+                                                                                @endif
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="number" class="form-control" name="exposition_number_employee[{{ $exposition_group->id }}_{{ $exposition_question->id }}]" value="{{ old('exposition_number_employee.' . $exposition_group->id . '_' . $exposition_question->id) ? old('exposition_number_employee.' . $exposition_group->id . '_' . $exposition_question->id) : ($sd_exposition_question ? $sd_exposition_question->number_employee : "") }}" min="0">
+                                                                            </td>
+                                                                            @if ($exposition_group->type == "duration")
+                                                                                <td>
+                                                                                    <input type="number" class="form-control input_exposition_minutes exposition_convert" name="exposition_minutes[{{ $exposition_group->id }}_{{ $exposition_question->id }}]" value="{{ old('exposition_minutes.' . $exposition_group->id . '_' . $exposition_question->id) ? old('exposition_minutes.' . $exposition_group->id . '_' . $exposition_question->id) : ($sd_exposition_question ? $sd_exposition_question->minutes : "") }}" min="0">
+                                                                                </td>
+                                                                            @endif
+                                                                            <td>
+                                                                                <input type="number" class="form-control exposition_calculation {{ $exposition_group->type == "duration" ? "input_exposition_hours" : "" }} {{ $exposition_group->type == "duration" && count($exposition_group->exposition_questions) > 1 ? "exposition_total" : "" }}" name="exposition_value[{{ $exposition_group->id }}_{{ $exposition_question->id }}]" value="{{ old('exposition_value.' . $exposition_group->id . '_' . $exposition_question->id) ? old('exposition_value.' . $exposition_group->id . '_' . $exposition_question->id) : ($sd_exposition_question ? $sd_exposition_question->value : "") }}" min="0">
+                                                                                @if ($exposition_group->type != "duration" || count($exposition_group->exposition_questions) == 1)
+                                                                                    <p class="info">{{ $exposition_group->duration }}</p>
+                                                                                @endif
+                                                                            </td>
+                                                                        </tr>
+                                                                    @endforeach
+                                                                    @if ($exposition_group->type == "duration" && count($exposition_group->exposition_questions) > 1)
+                                                                        <tr class="result no-border">
+                                                                            <td colspan="5">
+                                                                                <p>TOTAL h/an : <span class="total">0</span> h/an</p>
+                                                                                <p class="info">{{ $exposition_group->duration }}</p>
+                                                                            </td>
+                                                                        </tr>
+                                                                    @endif
+                                                                    <tr class="result nothing">
+                                                                        <td colspan="{{ $exposition_group->type == "duration" ? "5" : "4" }}">
+                                                                            <div class="criticity">
+                                                                                <p>Criticité de la situation actuelle : <span></span></p>
+                                                                                <button type="button" class="btn btn-small btn-criticity"></button>
+                                                                            </div>
+                                                                            <div class="info info--danger">
+                                                                                <i class="fas fa-exclamation-circle"></i>
+                                                                                <p class="info">{{ $danger->danger->exposition->info }}</p>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        @endforeach
+                                                        @error('exposition_intervention_type.*')
+                                                            <p class="message-error">{{ $message }}</p>
+                                                        @enderror
+                                                        @error('exposition_number_employee.*')
+                                                            <p class="message-error">{{ $message }}</p>
+                                                        @enderror
+                                                        @error('exposition_minutes.*')
+                                                            <p class="message-error">{{ $message }}</p>
+                                                        @enderror
+                                                        @error('exposition_value.*')
+                                                            <p class="message-error">{{ $message }}</p>
+                                                        @enderror
+                                                        @error('exposition')
+                                                            <p class="message-error">{{ $message }}</p>
+                                                        @enderror
+                                                    </div>
+
+                                                    <div class="card-footer">
+                                                        <button type="submit" class="btn btn-success">Enregistrer l’exposition</button>
+                                                    </div>
+                                                </form>
+                                            @endif
+                                        </div>
+                                    @endif
                                 </div>
                             @endif
                         </div>
@@ -361,4 +519,11 @@
 
 @section('script')
     <script src="/js/app/risk.js"></script>
+    @if ($danger->danger->exposition)
+        <script>
+            $('.card--exposition input.exposition_calculation').forEach(el => {
+                expositionCalculation(el);
+            });
+        </script>
+    @endif
 @endsection

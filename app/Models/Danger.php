@@ -37,4 +37,9 @@ class Danger extends Model
     {
         return $this->hasMany(Reflection::class, 'danger_id');
     }
+
+    public function exposition()
+    {
+        return $this->hasOne(Exposition::class, 'danger_id');
+    }
 }

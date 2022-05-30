@@ -50,6 +50,11 @@
         <script src="/js/utils/other/sidebar.js"></script>
         <script src="/js/utils/other/table.js"></script>
         <script src="/js/utils/other/tabs.js"></script>
+        @if (session('scrollTo'))
+            <script>
+                scrollTo("{{ session('scrollTo') }}");
+            </script>
+        @endif
         @yield('script')
     </body>
 </html>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Exposition;
 use App\Models\SdDanger;
 use App\Models\SdRisk;
 use App\Models\SdWorkUnit;
@@ -35,7 +36,7 @@ class DangerController extends Controller
         return view('app.danger.index', compact('page', 'single_document','danger','risks_all','sd_works_units'));
     }
 
-    public function validated(Request $request, $id, $id_sd_danger, $id_sd_work_unit){
+    public function work_unit_exist(Request $request, $id, $id_sd_danger, $id_sd_work_unit){
         $single_document = $this->checkSingleDocument($id);
 
         $sd_danger = SdDanger::where('id',$id_sd_danger)->whereHas('single_document', function ($q) use ($single_document){
@@ -88,20 +89,46 @@ class DangerController extends Controller
             })->first();
             if (!$sd_work_unit) abort(404);
 
-            $danger = SdDanger::whereHas('sd_works_units', function ($q) use ($sd_danger,$sd_work_unit) {
-                $q->where('sd_danger_id',$sd_danger->id);
-                $q->where('sd_work_unit_id', $sd_work_unit->id);
-            })->first();
-
-            if (isset($danger)){
-                $danger->sd_works_units()->detach($sd_work_unit);
-                $sd_danger->sd_works_units()->attach($sd_work_unit, ['exist' => $request->checked === 'true' ? 1 : 0]);
+            if ($sd_danger->sd_works_units()->where('sd_work_unit_id', $sd_work_unit->id)->first()){
+                $sd_danger->sd_works_units()->updateExistingPivot($id_sd_work_unit, [
+                    'exist' => $request->checked === 'true' ? 1 : 0
+                ]);
             } else {
                 $sd_danger->sd_works_units()->attach($sd_work_unit, ['exist' => $request->checked === 'true' ? 1 : 0]);
             }
         }
 
-        return back()->with('status', 'Le risque a bien changé de statut !');
+        return back()->with('scrollTo', '.card--risk-' . $id_sd_work_unit);
+    }
+
+    public function exposition_exist(Request $request, $id, $id_sd_danger, $id_sd_work_unit, $id_exposition)
+    {
+        $single_document = $this->checkSingleDocument($id);
+
+        $sd_danger = SdDanger::where('id',$id_sd_danger)->whereHas('single_document', function ($q) use ($single_document){
+            $q->where('id', $single_document->id);
+        })->first();
+        if (!$sd_danger) abort(404);
+
+        $request->validate([
+            'checked' => 'required'
+        ]);
+
+        $sd_work_unit = SdWorkUnit::where('id',$id_sd_work_unit)->whereHas('single_document', function ($q) use ($single_document){
+            $q->where('id', $single_document->id);
+        })->first();
+        if (!$sd_work_unit) abort(404);
+
+        $exposition = Exposition::where('id', $id_exposition)->whereHas('danger', function ($q) use ($sd_danger) {
+            $q->where('id', $sd_danger->danger->id);
+        })->first();
+        if (!$exposition) abort(404);
+
+        $sd_danger->sd_works_units()->updateExistingPivot($id_sd_work_unit, [
+            'exposition' => $request->checked === 'true' ? 1 : 0
+        ]);
+
+        return back()->with('scrollTo', '.card--exposition-' . $sd_work_unit->id);
     }
 
     public function comment(Request $request, $id, $id_sd_danger) {
@@ -162,5 +189,4 @@ class DangerController extends Controller
 
         return back()->with('status', 'Le danger a bien été enregisté !');
     }
-
 }

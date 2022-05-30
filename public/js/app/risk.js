@@ -4,7 +4,7 @@ on('.card .btn-radio', 'click', (el, e) => {
     $('input[name="checked"]', form, 0).value = el.dataset.value;
 });
 
-on('.card.card--risk.card--risk-stretchable .title', 'click', (el, e) => {
+on('.card.card--risk.card--risk-stretchable>.card-header .title', 'click', (el, e) => {
     let card = el.closest('.card');
 
     if (card.classList.contains('card--risk-opened')) {
@@ -516,5 +516,87 @@ function filterRisk(){
 }
 
 
+/*==============================
+           Exposition
+==============================*/
 
 
+on('.card--exposition input.exposition_convert', 'input', expositionConvert);
+on('.card--exposition input.exposition_total', 'input', expositionTotal);
+on('.card--exposition input.exposition_calculation', 'input', expositionCalculation);
+
+function expositionConvert(el, e) {
+    let minutes = el.value;
+    let hours = $('input.input_exposition_hours', el.closest('tr'), 0);
+
+    hours.value = Math.round(minutes / 60 * 220);
+
+    if (hours.classList.contains("exposition_total")) {
+        expositionTotal(hours, e, true);
+    }
+}
+
+function expositionTotal(el, e, convert = false) {
+    let total = 0;
+    $('input.input_exposition_hours', el.closest('table')).forEach(el => total += +el.value);
+
+    $('tr.result .total', el.closest('table'), 0).innerHTML = total;
+
+    if (el.classList.contains("exposition_calculation") && convert) {
+        expositionCalculation(el);
+    }
+}
+
+function expositionCalculation(el) {
+    let total = 0, criticity;
+
+    let table = el.closest('table');
+    let calculation = JSON.parse(table.dataset.calculation);
+    let buttonCriticity = $('.btn-criticity', table, 0);
+
+    $('.exposition_calculation', table).forEach(el => total += +el.value);
+
+    if (total != 0) {
+        for (const key in calculation) {
+            if (eval(total + calculation[key])) {
+                criticity = key;
+            }
+
+            if (total == 0) {
+                criticity = null;
+            }
+        }
+    }
+
+    switch (criticity) {
+        case "green":
+            buttonCriticity.classList.add("btn-success");
+            buttonCriticity.classList.remove("btn-warning", "btn-danger");
+            buttonCriticity.innerHTML = "Acceptable";
+
+            buttonCriticity.closest('tr').classList.remove('danger', 'nothing');
+            break;
+        case "orange":
+            buttonCriticity.classList.add("btn-warning");
+            buttonCriticity.classList.remove("btn-success", "btn-danger");
+            buttonCriticity.innerHTML = "A améliorer";
+
+            buttonCriticity.closest('tr').classList.remove('danger', 'nothing');
+            break;
+        case "red":
+            buttonCriticity.classList.add("btn-danger");
+            buttonCriticity.classList.remove("btn-success", "btn-warning");
+            buttonCriticity.innerHTML = "Agir vite";
+
+            buttonCriticity.closest('tr').classList.add('danger')
+            buttonCriticity.closest('tr').classList.remove('nothing');
+            break;
+        default:
+            buttonCriticity.classList.remove("btn-danger", "btn-success", "btn-warning");
+            buttonCriticity.innerHTML = "";
+
+            buttonCriticity.closest('tr').classList.add('nothing');
+            buttonCriticity.closest('tr').classList.remove('danger');
+            break;
+    }
+}
