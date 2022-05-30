@@ -164,7 +164,9 @@
         </div>
 
         <div class="tooltip tooltip--contact-expert">
-            <p>Tootltip</p>
+            <p>{{ Auth::user()->client->expert->lastname }} {{ Auth::user()->client->expert->firstname }}</p>
+            <p>E-mail : {{ Auth::user()->client->expert->email }}</p>
+            <p>Téléphone : {{ Auth::user()->client->expert->phone }}</p>
         </div>
     @endif
 </nav>
