@@ -520,7 +520,6 @@ function filterRisk(){
            Exposition
 ==============================*/
 
-
 on('.card--exposition input.exposition_convert', 'input', expositionConvert);
 on('.card--exposition input.exposition_total', 'input', expositionTotal);
 on('.card--exposition input.exposition_calculation', 'input', expositionCalculation);
@@ -533,6 +532,10 @@ function expositionConvert(el, e) {
 
     if (hours.classList.contains("exposition_total")) {
         expositionTotal(hours, e, true);
+    } else {
+        if (hours.classList.contains("exposition_calculation")) {
+            expositionCalculation(hours);
+        }
     }
 }
 
@@ -586,7 +589,7 @@ function expositionCalculation(el) {
         case "red":
             buttonCriticity.classList.add("btn-danger");
             buttonCriticity.classList.remove("btn-success", "btn-warning");
-            buttonCriticity.innerHTML = "Agir vite";
+            buttonCriticity.innerHTML = "Exposé";
 
             buttonCriticity.closest('tr').classList.add('danger')
             buttonCriticity.closest('tr').classList.remove('nothing');

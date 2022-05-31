@@ -47,7 +47,7 @@
                             <div class="right">
                                 <p class="title title-red">Exposition aux facteurs de risques professionnels</p>
                                 <p class="title title-green">Rappel du seuil règlementaire :</p>
-                                <p class="info">{{ $danger->danger->exposition->info }}</p>
+                                <p class="info">{!! $danger->danger->exposition->info !!}</p>
                             </div>
                         </div>
                     </div>

@@ -95,70 +95,71 @@ class SingleDocument extends Model
         }
     }
 
-    public function discountRisk(){
-        // $RB = 0;
-        // $RR = 0;
-        // $count = 0;
-        // foreach ($this->dangers as $sd_danger) {
-        //     foreach ($sd_danger->sd_risk as $sd_risk) {
-        //         $RB = $RB+$sd_risk->total();
-        //         foreach ($sd_risk->sd_restraints_exist as $sd_restraint) {
-        //             $tech = 0;
-        //             $orga = 0;
-        //             $human = 0;
+    public function discountRisk() {
+        /*
+            $RB = 0;
+            $RR = 0;
+            $count = 0;
+            foreach ($this->dangers as $sd_danger) {
+                foreach ($sd_danger->sd_risk as $sd_risk) {
+                    $RB = $RB+$sd_risk->total();
+                    foreach ($sd_risk->sd_restraints_exist as $sd_restraint) {
+                        $tech = 0;
+                        $orga = 0;
+                        $human = 0;
 
-        //             switch ($sd_restraint->technical) {
-        //                 case 'very good' :
-        //                     $tech = 4;
-        //                     break;
-        //                 case 'good' :
-        //                     $tech = 3;
-        //                     break;
-        //                 case 'medium' :
-        //                     $tech = 2;
-        //                     break;
-        //                 case 'null' :
-        //                     $tech = 0;
-        //                     break;
-        //             }
+                        switch ($sd_restraint->technical) {
+                            case 'very good' :
+                                $tech = 4;
+                                break;
+                            case 'good' :
+                                $tech = 3;
+                                break;
+                            case 'medium' :
+                                $tech = 2;
+                                break;
+                            case 'null' :
+                                $tech = 0;
+                                break;
+                        }
 
-        //             switch ($sd_restraint->organizational) {
-        //                 case 'very good' :
-        //                     $orga = 3;
-        //                     break;
-        //                 case 'good' :
-        //                     $orga = 2;
-        //                     break;
-        //                 case 'medium' :
-        //                     $orga = 1;
-        //                     break;
-        //                 case 'null' :
-        //                     $orga = 0;
-        //                     break;
-        //             }
-        //             switch ($sd_restraint->human) {
-        //                 case 'very good' :
-        //                     $human = 3;
-        //                     break;
-        //                 case 'good' :
-        //                     $human = 2;
-        //                     break;
-        //                 case 'medium' :
-        //                     $human = 1;
-        //                     break;
-        //                 case 'null' :
-        //                     $human = 0;
-        //                     break;
-        //             }
-        //             $count++;
-        //             $RR = $RR + ($tech + $orga + $human);
-        //         }
-        //     }
-        // }
+                        switch ($sd_restraint->organizational) {
+                            case 'very good' :
+                                $orga = 3;
+                                break;
+                            case 'good' :
+                                $orga = 2;
+                                break;
+                            case 'medium' :
+                                $orga = 1;
+                                break;
+                            case 'null' :
+                                $orga = 0;
+                                break;
+                        }
+                        switch ($sd_restraint->human) {
+                            case 'very good' :
+                                $human = 3;
+                                break;
+                            case 'good' :
+                                $human = 2;
+                                break;
+                            case 'medium' :
+                                $human = 1;
+                                break;
+                            case 'null' :
+                                $human = 0;
+                                break;
+                        }
+                        $count++;
+                        $RR = $RR + ($tech + $orga + $human);
+                    }
+                }
+            }
 
-        // if ($count === 0) return "-";
-        // else return round(($RB - $RR) / $RB, 1);
-
+            if ($count === 0) return "-";
+            else return round(($RB - $RR) / $RB, 1);
+        */
 
         $RB = $this->moyenneRB();
         $RR = $this->moyenneRR();
