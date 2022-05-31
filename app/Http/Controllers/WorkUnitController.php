@@ -101,7 +101,7 @@ class WorkUnitController extends Controller
 
 
         $request->validate([
-            'name_enterprise' => 'required',
+            'work_unit_entitled' => 'required',
             'number_employee' => 'required|numeric|min:1',
             'type' => 'required',
             'activities' => 'required|array'
@@ -109,7 +109,7 @@ class WorkUnitController extends Controller
 
         $work = new SdWorkUnit();
         $work->id = uniqid();
-        $work->name = $request->name_enterprise;
+        $work->name = $request->work_unit_entitled;
         $work->number_employee = $request->number_employee;
         if ($request->type === 'true') $work->validated = 1; else $work->validated = 0;
         $work->single_document()->associate($single_document);
@@ -158,7 +158,7 @@ class WorkUnitController extends Controller
         $single_document = $this->checkSingleDocument($id);
 
         $request->validate([
-            'name_enterprise' => 'required',
+            'work_unit_entitled' => 'required',
             'number_employee' => 'required|min:1',
             'type' => 'required',
             'activities' => 'required|array'
@@ -167,7 +167,7 @@ class WorkUnitController extends Controller
 
         $work = new SdWorkUnit();
         $work->id = uniqid();
-        $work->name = $request->name_enterprise;
+        $work->name = $request->work_unit_entitled;
         $work->number_employee = $request->number_employee;
         if ($request->type === 'true') $work->validated = 1; else $work->validated = 0;
         $work->single_document()->associate($single_document);

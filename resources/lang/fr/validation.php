@@ -193,6 +193,8 @@ return [
         'reflection'            => 'réflection',
         'danger_risk'           => 'risque',
         'name_single_document'  => 'nom du document unique',
-        'number_ut'             => 'nombre d\'ut'
+        'number_ut'             => 'nombre d\'ut',
+        'work_unit_entitled'    => 'intitulé de l\'unité de travail',
+        'activities'            => 'activités'
     ]
 ];

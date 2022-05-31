@@ -1,4 +1,11 @@
 on('.btn-delete', 'click', (el, e) => {
+    if (el.closest('ul.list-content').querySelectorAll('li.list-item').length == 1) {
+        let nothing = document.createElement('li');
+        nothing.innerHTML = '<p class="nothing">Néant</p>';
+
+        el.closest('ul.list-content').appendChild(nothing);
+    }
+
     el.closest('li').remove();
 });
 
@@ -105,7 +112,6 @@ on('.modal--work_unit .btn-modal-valid', 'click', (el, e) => {
         li.className = 'list-item'
         ul.appendChild(li);
     }
-    $('.modal',document,0).style.display = 'none';
     $('.modal div[data-id="' + el.dataset.list + '"]', document, 0).style.display = "none";
 });
 

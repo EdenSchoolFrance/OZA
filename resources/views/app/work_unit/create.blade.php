@@ -8,11 +8,11 @@
                 <div class="row">
                     <div class="line">
                         <div class="left">
-                            <label for="name_enterprise">Intitulé de l’unité de travail</label>
+                            <label for="work_unit_entitled">Intitulé de l’unité de travail</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="name_enterprise" class="form-control" placeholder="Indiquer le nom de votre unité de travail" value="@if(isset($workUnit)){{ old('name_enterprise') ? old('name_enterprise') : $workUnit->name }}@else{{ old('name_enterprise') ? old('name_enterprise') : "" }}@endif">
-                            @error('name_enterprise')
+                            <input type="text" name="work_unit_entitled" class="form-control" placeholder="Indiquer le nom de votre unité de travail" value="@if(isset($workUnit)){{ old('work_unit_entitled') ? old('work_unit_entitled') : $workUnit->name }}@else{{ old('work_unit_entitled') ? old('work_unit_entitled') : "" }}@endif">
+                            @error('work_unit_entitled')
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
                         </div>
@@ -107,6 +107,10 @@
                                                                 </li>
                                                             @endif
                                                         @endforeach
+                                                    @else
+                                                        <li>
+                                                            <p class="nothing">Néant</p>
+                                                        </li>
                                                     @endif
                                                 </ul>
                                             </li>
@@ -180,7 +184,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-text btn-yellow btn-modal-valid">Valider la liste</button>
+                    <button class="btn btn-text btn-yellow btn-modal-valid" data-dismiss="modal">Valider la liste</button>
                 </div>
             </div>
         </div>
