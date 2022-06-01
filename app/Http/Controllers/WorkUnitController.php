@@ -76,7 +76,7 @@ class WorkUnitController extends Controller
         $page = [
             'title' => 'Modifier l\'unité de travail : '.$work->name,
             'url_back' => route('work.index', [$id]),
-            'text_back' => 'Retour vers les unités de travail',
+            'text_back' => 'Retour aux unités de travail',
             'sidebar' => 'structure',
             'sub_sidebar' => 'work_units'
         ];
@@ -99,7 +99,6 @@ class WorkUnitController extends Controller
             }
         }
 
-
         $request->validate([
             'work_unit_entitled' => 'required',
             'number_employee' => 'required|numeric|min:1',
@@ -116,27 +115,23 @@ class WorkUnitController extends Controller
         $work->save();
 
         foreach ($request->activities as $activitie) {
-            $acti = new SdActivitie();
-            $acti->id = uniqid();
-            $acti->text = $activitie;
-            $work->activities()->save($acti);
-            $acti->save();
-
+            if ($activitie != "") {
+                $acti = new SdActivitie();
+                $acti->id = uniqid();
+                $acti->text = $activitie;
+                $work->activities()->save($acti);
+                $acti->save();
+            }
         }
 
         //Get all example item
         $items = Item::all();
         foreach ($items as $item){
-
-
-
             foreach ($item->sub_items as $sub_item){
                 $name = $item->id.'-'.$sub_item->id;
 
-
                 if (isset($request->$name)){
                     foreach ($request->$name as $child_sub_item){
-
                         $sd_item = new SdItem();
                         $sd_item->id = uniqid();
                         $sd_item->name = $child_sub_item;
@@ -159,7 +154,7 @@ class WorkUnitController extends Controller
 
         $request->validate([
             'work_unit_entitled' => 'required',
-            'number_employee' => 'required|min:1',
+            'number_employee' => 'required|numeric|min:1',
             'type' => 'required',
             'activities' => 'required|array'
         ]);
@@ -174,11 +169,13 @@ class WorkUnitController extends Controller
         $work->save();
 
         foreach ($request->activities as $activitie){
-            $acti = new SdActivitie();
-            $acti->id = uniqid();
-            $acti->text = $activitie;
-            $work->activities()->save($acti);
-            $acti->save();
+            if ($activitie != "") {
+                $acti = new SdActivitie();
+                $acti->id = uniqid();
+                $acti->text = $activitie;
+                $work->activities()->save($acti);
+                $acti->save();
+            }
         }
         $work1 = SdWorkUnit::find($id_work);
 
@@ -222,7 +219,7 @@ class WorkUnitController extends Controller
             $work_unit->delete();
         }
 
-        return back()->with('status', 'L\'unité de travail a bien été supprimé !');
+        return back()->with('status', 'L\'unité de travail a bien été supprimée !');
     }
 
     public function filter(Request $request, $id){

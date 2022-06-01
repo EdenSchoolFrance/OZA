@@ -172,8 +172,7 @@
 
         <div class="tooltip tooltip--RR">
             <p>
-                RÉDUCTION DU RISQUE
-                Réduction du risque BRUT grâce aux mesures de prévention existantes : met en évidence les efforts de prévention de la structure
+                RÉDUCTION DU RISQUE BRUT grâce aux mesures de prévention existantes : met en évidence les efforts de prévention de la structure
             </p>
         </div>
 

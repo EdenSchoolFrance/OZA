@@ -13,7 +13,7 @@
                     <div class="right">
                         <input type="text" name="work_unit_entitled" class="form-control" placeholder="Indiquer le nom de votre entreprise" value="{{ old('work_unit_entitled') ? old('work_unit_entitled') : $work->name }}">
                         @error('work_unit_entitled')
-                        <p class="message-error">{{ $message }}</p>
+                            <p class="message-error">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
@@ -30,14 +30,14 @@
                             <input type="number" class="form-control" id="numberSal" placeholder="" value="{{ old('number_employee') ? old('number_employee') : $work->number_employee }}" name="number_employee">
                             <button type="button" class="btn btn-text btn-num" data-value="more"><i class="fas fa-plus"></i></button>
                         </div>
-                        @error('employee_number')
-                        <p class="message-error">{{ $message }}</p>
+                        @error('number_employee')
+                            <p class="message-error">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
                 <div class="line line--activity">
                     <div class="left left-cancel">
-                        <label for="number_employee">Principales activités</label>
+                        <label>Principales activités</label>
                     </div>
                     <div class="right">
                         <ul class="ul-textarea">

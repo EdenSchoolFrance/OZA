@@ -1,5 +1,5 @@
 on('.btn-delete', 'click', (el, e) => {
-    if (el.closest('ul.list-content').querySelectorAll('li.list-item').length == 1) {
+    if (el.closest('ul.list-content') && el.closest('ul.list-content').querySelectorAll('li.list-item').length == 1) {
         let nothing = document.createElement('li');
         nothing.innerHTML = '<p class="nothing">Néant</p>';
 
@@ -60,19 +60,21 @@ on('.modal--work_unit .btn-modal-add', 'click', (el, e) => {
     let name = el.closest('.modal-input').getElementsByTagName('input')[0].value.split(',')
     let check = $('.modal div[data-id="' + el.dataset.list + '"]', document, 0)
     for (let i = 0; i < name.length ; i++) {
-        let label = document.createElement('label');
-        let input = document.createElement('input');
-        let span = document.createElement('span');
-        label.setAttribute('class', 'contain');
-        input.setAttribute('type', 'checkbox');
-        input.setAttribute('value', name[i] + Date.now());
-        input.setAttribute('data-name',name[i])
-        input.checked = true
-        span.setAttribute('class', 'checkmark');
-        span.innerText = name[i]
-        label.appendChild(input);
-        label.appendChild(span);
-        check.appendChild(label);
+        if (name[i] && name[i] != " ") {
+            let label = document.createElement('label');
+            let input = document.createElement('input');
+            let span = document.createElement('span');
+            label.setAttribute('class', 'contain');
+            input.setAttribute('type', 'checkbox');
+            input.setAttribute('value', name[i] + Date.now());
+            input.setAttribute('data-name',name[i])
+            input.checked = true
+            span.setAttribute('class', 'checkmark');
+            span.innerText = name[i]
+            label.appendChild(input);
+            label.appendChild(span);
+            check.appendChild(label);
+        }
     }
     el.closest('.modal-input').getElementsByTagName('input')[0].value = "";
 });
