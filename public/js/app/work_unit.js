@@ -171,8 +171,15 @@ on('.btn-send', 'click', (el, e) => {
     $('#formWorkUnit', document, 0).submit();
 });
 
-document.getElementById('filter-sa').addEventListener('change', filter);
-document.getElementById('filter-ut').addEventListener('keyup', filter);
+let filter_sa = document.getElementById('filter-sa');
+let filter_ut = document.getElementById('filter-ut');
+
+if (filter_sa) {
+    filter_sa.addEventListener('change', filter);
+}
+if (filter_ut) {
+    filter_ut.addEventListener('keyup', filter);
+}
 
 function filter(){
     let filterSelect = $('#filter-sa')[0].value

@@ -89,28 +89,34 @@
                                             </li>
                                             <li>
                                                 <ul class="list-content" data-list="{{ $item->id.'-'.$subItem->id }}">
-                                                    @if(old(($item->id.'-'.$subItem->id)))
-                                                        @foreach(old(($item->id.'-'.$subItem->id)) as $child)
-                                                            <li class="list-item">
-                                                                <button type="button" class="btn btn-text btn-small btn-delete" data-value="{{ $child }}"><i class="far fa-times-circle"></i></button>
-                                                                <p>{{ $child }}</p>
-                                                                <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[]" value="{{ $child }}" data-id="{{ $child.now() }}">
-                                                            </li>
-                                                        @endforeach
-                                                    @elseif(isset($workUnit))
-                                                        @foreach($workUnit->items as $child)
-                                                            @if($child->sub_item->id === $subItem->id)
+                                                    @if(old($item->id.'-'.$subItem->id))
+                                                        @if (count(old($item->id.'-'.$subItem->id)) > 0)
+                                                            @foreach(old($item->id.'-'.$subItem->id) as $sd_item)
                                                                 <li class="list-item">
-                                                                    <button type="button" class="btn btn-text btn-small btn-delete" data-value="{{ $child->name }}"><i class="far fa-times-circle"></i></button>
-                                                                    <p>{{ $child->name }}</p>
-                                                                    <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[]" value="{{ $child->name }}" data-id="{{ $child->id }}">
+                                                                    <button type="button" class="btn btn-text btn-small btn-delete" data-value="{{ $sd_item }}"><i class="far fa-times-circle"></i></button>
+                                                                    <p>{{ $sd_item }}</p>
+                                                                    <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[]" value="{{ $sd_item }}" data-id="{{ $sd_item.now() }}">
                                                                 </li>
-                                                            @endif
-                                                        @endforeach
-                                                    @else
-                                                        <li>
-                                                            <p class="nothing">Néant</p>
-                                                        </li>
+                                                            @endforeach
+                                                        @else
+                                                            <li>
+                                                                <p class="nothing">Néant</p>
+                                                            </li>
+                                                        @endif
+                                                    @elseif(isset($workUnit))
+                                                        @if (count($workUnit->sub_item_items($subItem->id)) > 0)
+                                                            @foreach($workUnit->sub_item_items($subItem->id) as $childSubItem)
+                                                                <li class="list-item">
+                                                                    <button type="button" class="btn btn-text btn-small btn-delete" data-value="{{ $childSubItem->name }}"><i class="far fa-times-circle"></i></button>
+                                                                    <p>{{ $childSubItem->name }}</p>
+                                                                    <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[]" value="{{ $childSubItem->name }}" data-id="{{ $childSubItem->id }}">
+                                                                </li>
+                                                            @endforeach
+                                                        @else
+                                                            <li>
+                                                                <p class="nothing">Néant</p>
+                                                            </li>
+                                                        @endif
                                                     @endif
                                                 </ul>
                                             </li>
@@ -140,7 +146,7 @@
         </form>
     </div>
 
-    <div class="modal modal--work_unit">
+    <div class="modal modal--work_unit" data-backdrop="static">
         <div class="modal-dialog modal-dialog-large">
             <div class="modal-content">
                 <div class="modal-header">

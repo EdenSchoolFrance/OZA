@@ -11,9 +11,9 @@
                         <label for="name_enterprise">Intitulé de l’unité de travail</label>
                     </div>
                     <div class="right">
-                        <input type="text" name="name_enterprise" class="form-control" placeholder="Indiquer le nom de votre entreprise" value="{{ old('name_enterprise') ? old('name_enterprise') :$work->name }}">
+                        <input type="text" name="name_enterprise" class="form-control" placeholder="Indiquer le nom de votre entreprise" value="{{ old('name_enterprise') ? old('name_enterprise') : $work->name }}">
                         @error('name_enterprise')
-                        <p class="message-error">{{ $message }}</p>
+                            <p class="message-error">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                             </li>
                             <li>
                                 @error('activities')
-                                <p class="message-error">{{ $message }}</p>
+                                    <p class="message-error">{{ $message }}</p>
                                 @enderror
                             </li>
                         </ul>
@@ -78,22 +78,34 @@
                                         </li>
                                         <li>
                                             <ul class="list-content" data-list="{{ $item->id.'-'.$subItem->id }}">
-                                                @if(old(($item->id.'-'.$subItem->id)))
-                                                    @foreach(old(($item->id.'-'.$subItem->id)) as $child)
-                                                        <li class="list-item">
-                                                            <button type="button" class="btn btn-text btn-small btn-delete" data-value="{{ explode("|", $child)[0] }}"><i class="far fa-times-circle"></i></button>
-                                                            <p>{{ explode("|", $child)[0] }}</p>
-                                                            <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[]" value="{{ explode("|", $child)[1] ? explode("|", $child)[0]."|".explode("|", $child)[1] : explode("|", $child)[0] }}" data-id="{{ explode("|", $child)[1] ?  : $child.now() }}">
-                                                        </li>
-                                                    @endforeach
-                                                @else
-                                                    @foreach($work->items->where('sub_item_id', $subItem->id) as $child)
+                                                @if(old($item->id.'-'.$subItem->id))
+                                                    @if (count(old($item->id.'-'.$subItem->id)) > 0)
+                                                        @foreach(old($item->id.'-'.$subItem->id) as $sd_item)
                                                             <li class="list-item">
-                                                                <button type="button" class="btn btn-text btn-small btn-delete" data-value="{{ $child->name }}"><i class="far fa-times-circle"></i></button>
-                                                                <p>{{ $child->name }}</p>
-                                                                <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[]" value="{{ $child->name}}" data-id="{{ $child->id }}">
+                                                                <button type="button" class="btn btn-text btn-small btn-delete" data-value="{{ $sd_item }}"><i class="far fa-times-circle"></i></button>
+                                                                <p>{{ $sd_item }}</p>
+                                                                <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[]" value="{{ $sd_item }}" data-id="{{ $sd_item.now() }}">
                                                             </li>
-                                                    @endforeach
+                                                        @endforeach
+                                                    @else
+                                                        <li>
+                                                            <p class="nothing">Néant</p>
+                                                        </li>
+                                                    @endif
+                                                @else
+                                                    @if (count($subItem->sd_work_unit_sd_items($work->id)) > 0)
+                                                        @foreach ($subItem->sd_work_unit_sd_items($work->id) as $sd_item)
+                                                            <li class="list-item">
+                                                                <button type="button" class="btn btn-text btn-small btn-delete" data-value="{{ $sd_item->name }}"><i class="far fa-times-circle"></i></button>
+                                                                <p>{{ $sd_item->name }}</p>
+                                                                <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[]" value="{{ $sd_item->name }}" data-id="{{ $sd_item->id }}">
+                                                            </li>
+                                                        @endforeach
+                                                    @else
+                                                        <li>
+                                                            <p class="nothing">Néant</p>
+                                                        </li>
+                                                    @endif
                                                 @endif
                                             </ul>
                                         </li>
@@ -176,7 +188,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-text btn-yellow btn-modal-valid">Valider la liste</button>
+                <button class="btn btn-text btn-yellow btn-modal-valid" data-dismiss="modal">Valider la liste</button>
             </div>
         </div>
     </div>

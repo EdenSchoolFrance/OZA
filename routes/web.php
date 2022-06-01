@@ -134,7 +134,7 @@ Route::middleware(['auth'])->group(function() {
 
                 //Route::post('/help/danger/store', [DangerAdminController::class, 'store'])->name('admin.help.danger.store');
                 Route::post('/help/danger/{danger}/update', [DangerAdminController::class, 'update'])->name('admin.help.danger.update');
-                Route::post('/help/danger/delete', [DangerAdminController::class, 'delete'])->name('admin.help.danger.delete');
+                // Route::post('/help/danger/delete', [DangerAdminController::class, 'delete'])->name('admin.help.danger.delete');
 
 
                 Route::get('/help/risk', [RiskAdminController::class, 'index'])->name('admin.help.risk');

@@ -200,8 +200,6 @@ function showTooltip(el, e) {
                     break;
             }
         }else{
-
-            console.log(placement)
             switch (placement) {
                 case "top":
                     top = (el.offsetTop - tooltip.offsetHeight - 15) + 'px';
@@ -222,7 +220,6 @@ function showTooltip(el, e) {
             }
         }
 
-        console.log(left)
         tooltip.style.top = top;
         tooltip.style.left = left;
 

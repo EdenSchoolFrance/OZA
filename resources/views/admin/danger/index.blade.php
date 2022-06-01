@@ -48,7 +48,6 @@
                                         <a href="{{ route('admin.help.danger.edit', [$danger->id]) }}">
                                             <i class="far fa-edit"></i>
                                         </a>
-                                        <button data-modal=".modal--delete" data-id="{{ $danger->id }}"><i class="fas fa-trash"></i></button>
                                     @endif
                                 </td>
                             </tr>
@@ -57,27 +56,6 @@
                 </table>
             </div>
         </div>
-        @if (Auth::user()->hasPermission(['ADMIN']))
-            <div class="modal modal--delete">
-                <div class="modal-dialog">
-                    <form class="modal-content" action="{{ route('admin.help.danger.delete') }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="id" value="">
-                        <div class="modal-header">
-                            <p class="title">Confirmer la suppression</p>
-                            <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Êtes-vous sûr.e du vouloir supprimer cette unité de travail (complétion) ?</p>
-                            <div>
-                                <button type="submit" class="btn btn-yellow">Supprimer</button>
-                                <button type="button" class="btn btn-inv btn-yellow btn-small" data-dismiss="modal"> Annuler</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        @endif
     </div>
 @endsection
 
