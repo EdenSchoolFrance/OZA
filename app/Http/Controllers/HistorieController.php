@@ -6,6 +6,7 @@ use App\Models\Historie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class HistorieController extends Controller
 {
@@ -13,9 +14,16 @@ class HistorieController extends Controller
 
         $single_document = $this->checkSingleDocument($id);
 
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'work_history' => 'required'
         ]);
+
+        if ($validator->fails()) {
+            return back()
+                        ->withErrors($validator)
+                        ->with('error', 'history')
+                        ->withInput();
+        }
 
         $history = new Historie();
         $history->id = uniqid();

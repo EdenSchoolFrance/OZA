@@ -195,6 +195,7 @@ return [
         'name_single_document'  => 'nom du document unique',
         'number_ut'             => 'nombre d\'ut',
         'work_unit_entitled'    => 'intitulé de l\'unité de travail',
-        'activities'            => 'activités'
+        'activities'            => 'activités',
+        'work_history'          => 'travail réalisé sur le DU'
     ]
 ];

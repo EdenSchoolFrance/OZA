@@ -16,7 +16,6 @@ class CreateDangerPackTable extends Migration
         Schema::create('danger_pack', function (Blueprint $table) {
             $table->foreignUuid('danger_id');
             $table->foreignUuid('pack_id');
-            $table->boolean('exist')->nullable();
 
             $table->primary(['danger_id', 'pack_id']);
 

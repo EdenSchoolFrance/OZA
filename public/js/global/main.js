@@ -65,7 +65,9 @@ $('textarea.auto-resize').forEach(el => {
 /*==============================
               Modal
 ==============================*/
-on('[data-modal]', 'click', (el, e) => {
+on('[data-modal]', 'click', showModal);
+
+function showModal(el) {
     $('body', document, 0).classList.add('modal-openned');
     let modal = $(el.dataset.modal, document, 0);
 
@@ -76,7 +78,7 @@ on('[data-modal]', 'click', (el, e) => {
             modal.classList.add('show')
         }, 1);
     }
-});
+}
 
 on('.modal:not([data-backdrop="static"])', 'click', (el, e) => {
 

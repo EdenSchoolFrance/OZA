@@ -52,7 +52,7 @@
                     </div>
                     @if (Auth::user()->hasPermission(['ADMIN', 'EXPERT', 'MANAGER']))
                         <div class="row">
-                            <a data-modal=".modal--pdf" class="btn btn-success">Générer un DU à date</a>
+                            <a data-modal=".modal--pdf" id="historyBtn" class="btn btn-success">Générer un DU à date</a>
                         </div>
                     @endif
                 </div>
@@ -68,46 +68,48 @@
                 </div>
             </form>
         </div>
+
         @if(count($single_document->histories) > 0)
-        <div class="card card--full">
-            <div class="card-header">
-                <h2 class="title">Historique du document unique</h2>
-            </div>
-            <div class="card-body">
-                <table class="table table--history-single-document table-sortable">
-                    <thead>
-                    <tr>
-                        <th class="th_resp th-sort" data-para="0">Responsable</th>
-                        <th class="th_work th-sort" data-para="1">Travail réalisé</th>
-                        <th class="th_date th-sort" data-para="2">Date d’émission</th>
-                        <th class="th_actions"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($single_document->histories as $historie)
-                            <tr>
-                                <td class="td_resp">{{ $historie->user->firstname }} {{ $historie->user->lastname }}</td>
-                                <td class="td_work">{{ $historie->work }}</td>
-                                <td class="td_date">{{ date("d/m/Y",strtotime($historie->date)) }}</td>
-                                <td class="td_actions">
-                                    <a href="{{ route('history.download', [$single_document->id, $historie->id]) }}" class="text-color-green">Télécharger le PDF </a>
-                                    @if (Auth::user()->hasPermission(['ADMIN', 'EXPERT']))
-                                        <button data-modal=".modal--delete" data-id="{{ $historie->id }}" class="delete-btn"><i class="fas fa-trash"></i></button>
-                                    @endif
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-            <div class="card-footer">
-                <div class="infos">
-                    <i class="fas fa-info-circle"></i>
-                    <p>L’employeur se doit de conserver les versions successives du document unique d’évaluation des risques professionnels au sein de l’entreprise, sous la forme d’un document papier ou dématérialisé, pendant une durée de 40 ans à compter de leur élaboration</p>
+            <div class="card card--full">
+                <div class="card-header">
+                    <h2 class="title">Historique du document unique</h2>
+                </div>
+                <div class="card-body">
+                    <table class="table table--history-single-document table-sortable">
+                        <thead>
+                        <tr>
+                            <th class="th_resp th-sort" data-para="0">Responsable</th>
+                            <th class="th_work th-sort" data-para="1">Travail réalisé</th>
+                            <th class="th_date th-sort" data-para="2">Date d’émission</th>
+                            <th class="th_actions"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($single_document->histories as $historie)
+                                <tr>
+                                    <td class="td_resp">{{ $historie->user->firstname }} {{ $historie->user->lastname }}</td>
+                                    <td class="td_work">{{ $historie->work }}</td>
+                                    <td class="td_date">{{ date("d/m/Y",strtotime($historie->date)) }}</td>
+                                    <td class="td_actions">
+                                        <a href="{{ route('history.download', [$single_document->id, $historie->id]) }}" class="text-color-green">Télécharger le PDF </a>
+                                        @if (Auth::user()->hasPermission(['ADMIN', 'EXPERT']))
+                                            <button data-modal=".modal--delete" data-id="{{ $historie->id }}" class="delete-btn"><i class="fas fa-trash"></i></button>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <div class="infos">
+                        <i class="fas fa-info-circle"></i>
+                        <p>L’employeur se doit de conserver les versions successives du document unique d’évaluation des risques professionnels au sein de l’entreprise, sous la forme d’un document papier ou dématérialisé, pendant une durée de 40 ans à compter de leur élaboration</p>
+                    </div>
                 </div>
             </div>
-        </div>
         @endif
+
         <div class="modal modal--pdf">
             <div class="modal-dialog">
                 <form class="modal-content" action="{{ route('history.store', [$single_document->id]) }}" method="POST">
@@ -125,6 +127,9 @@
                                 <div class="right">
                                     <textarea class="form-control" id="work" placeholder="Mise à jour annuelle, mise à jour des actions, mise à jour des évaluations, ajout ou retrait de risques ou de préventions, ..." name="work_history"></textarea>
                                     <span class="info-pdf-modal"></span>
+                                    @error('work_history')
+                                        <p class="message-error">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -135,6 +140,7 @@
                 </form>
             </div>
         </div>
+
         @if (Auth::user()->hasPermission(['ADMIN', 'EXPERT']))
             <div class="modal modal--delete">
                 <div class="modal-dialog">
@@ -188,4 +194,9 @@
         let tab = [75,25,0,0]
     </script>
     <script src="/js/app/dashboard.js"></script>
+    @if (session('error') == 'history')
+        <script>
+            showModal(document.getElementById('historyBtn'));
+        </script>
+    @endif
 @endsection

@@ -47,7 +47,7 @@
                         </div>
                         <div class="right right--btn">
                             @foreach ($packs as $pack)
-                                <button type="button" class="btn btn-yellow btn-text select-pack" data-pack="{{ $pack->id }}">{{ $pack->name }}</button>
+                                <button type="button" class="btn btn-yellow btn-text select-pack" data-pack="{{ $pack->id }}">{{ $pack->translate() }}</button>
                             @endforeach
                             <button type="button" class="btn btn-yellow btn-text uncheck-pack">Tout décocher</button>
                         </div>
