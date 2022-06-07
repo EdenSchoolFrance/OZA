@@ -118,7 +118,7 @@
                                                 </div>
                                             </td>
                                             <td class="td_rr">
-                                                <button class="btn {{ $risk->color( isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total()) }} btn-small">{{ isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints) : $risk->total() }}</button>
+                                                <button class="btn {{ $risk->color( isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total()) }} btn-small">{{ isset($risk->sd_restraints_exist[0]) ? ($risk->totalRR($risk->sd_restraints) === 0 ? $risk->total() : $risk->totalRR($risk->sd_restraints)) : $risk->total() }}</button>
                                             </td>
                                             <td class="td_proposed_measure">
                                                 <div class="list">
@@ -299,7 +299,7 @@
                                                     @csrf
                                                     <input type="hidden" name="checked" value=""/>
                                                     <p>Après mesure de protection collective et individuelle, l’UT est-elle exposée au delà du seuil règlementaire ?</p>
-                                                    
+
                                                     <button type="button" data-value="true" class="btn btn-radio btn-check-work-unit {{ $sd_work_unit->sd_danger($danger->id)->pivot->exposition === 1 ? "btn-radio--checked" : "" }}" {{ $sd_work_unit->sd_danger($danger->id)->pivot->exposition === 1 ? "disabled" : ""  }}>Oui</button>
                                                     <button type="button" data-value="false" class="btn btn-radio btn-check-work-unit {{ $sd_work_unit->sd_danger($danger->id)->pivot->exposition === 0 ? "btn-radio--checked" : "" }}" {{ $sd_work_unit->sd_danger($danger->id)->pivot->exposition === 0 ? "disabled" : ""  }}>Non</button>
                                                 </form>
@@ -325,7 +325,7 @@
                                                                             {{ $exposition_group->intervention_type_label }}
                                                                         </th>
                                                                         <th>
-                                                                            Nombre de personnes concernées 
+                                                                            Nombre de personnes concernées
                                                                         </th>
                                                                         @if ($exposition_group->type == "default")
                                                                             <th>

@@ -40,7 +40,7 @@
 
         <div class="footer">
             <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p class="page-num"></p>
         </div>
     </section>
 
@@ -78,18 +78,11 @@
                         Un avis indiquant les modalités d'accès des travailleurs au document unique est affiché à une place convenable et aisément accessible dans les lieux de travail. Dans les entreprises ou établissements dotés d'un règlement intérieur, cet avis est affiché au même emplacement que celui réservé au règlement intérieur.
                     </p>
                 </li>
-                <li>
-                    <p class="text-color-red">
-                        <span class="bold">A noter :</span> <br>
-                        Un avis indiquant les modalités d'accès des travailleurs au document unique est affiché à une place convenable et aisément accessible dans les lieux de travail.
-                        Dans les entreprises ou établissements dotés d'un règlement intérieur, cet avis est affiché au même emplacement que celui réservé au règlement intérieur
-                    </p>
-                </li>
             </ul>
         </div>
         <div class="footer">
             <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p class="page-num"></p>
         </div>
     </section>
 
@@ -101,82 +94,82 @@
             <h1 class="head-title">SOMMAIRE</h1>
             <ul class="list-item">
                 <li>
-                    <p><span class="line">ACTUALISATION DU DOCUMENT UNIQUE<a href="#actu" class="link">4</a></span></p>
+                    <p><span class="line"><a href="#actu" class="link">ACTUALISATION DU DOCUMENT UNIQUE</a></span></p>
                 </li>
                 <li>
-                    <p><span class="line">PRÉSENTATION DÉTAILLÉE DE LA STRUCTURE ET DES UNITÉS DE TAVAIL<a href="#" class="link">4</a></span></p>
+                    <p><span class="line"><a href="#structure" class="link">PRÉSENTATION DÉTAILLÉE DE LA STRUCTURE ET DES UNITÉS DE TAVAIL</a></span></p>
                 </li>
                 <li>
-                    <p><span class="line">TABLEAU DE BORD DE L’EVALUATION DES RISQUES <a href="#" class="link">4</a></span></p>
+                    <p><span class="line"><a href="#tabBord" class="link">TABLEAU DE BORD DE L’EVALUATION DES RISQUES</a></span></p>
                 </li>
                 <li>
                     <span class="number">1</span>
-                    <p><span class="line"><span class="text-color-green">PLAN D'ACTION</span> de réduction des risques, classement par <span class="bold">Criticité décroissante</span> <a href="#" class="link">4</a></span></p>
+                    <p><span class="line"><a href="#proAnnuel" class="link">PROGRAMME ANNUEL DE PREVENTION ET D'AMELIORATION DES CONDITIONS DE TRAVAIL</a></span></p>
                 </li>
                 <li>
                     <span class="number">2</span>
-                    <p><span class="line">RAPPEL REGLEMENTAIRE DOCUMENT UNIQUE<a href="#" class="link">4</a></span></p>
+                    <p><span class="line"><a href="#rules" class="link">RAPPEL REGLEMENTAIRE DOCUMENT UNIQUE</a></span></p>
                 </li>
                 <li>
                     <span class="number">3</span>
-                    <p><span class="line">NOTICE DE L’EVALUATION DES RISQUES<a href="#" class="link">4</a></span></p>
+                    <p><span class="line"><a href="#evalRisk" class="link">NOTICE DE L’EVALUATION DES RISQUES</a></span></p>
                 </li>
                 <li>
                     <span class="number">4</span>
-                    <p><span class="line">EVALUATION DES RISQUES PROFESSIONNELS PAR <span class="bold">UNITÉ DE TRAVAIL</span>, classement alphabétique<a href="#" class="link">4</a></span></p>
+                    <p><span class="line"><a href="#evalRiskPro" class="link">EVALUATION DES RISQUES PROFESSIONNELS PAR <span class="bold">UNITÉ DE TRAVAIL</span>, classement alphabétique</a></span></p>
                 </li>
                 <li>
                     <span class="number">5</span>
-                    <p><span class="line">LISTE DES POSTES DE TRAVAIL A RISQUE PARTICULIER<a href="#" class="link">4</a></span></p>
+                    <p><span class="line"><a href="#listPost" class="link">LISTE DES POSTES DE TRAVAIL A RISQUE PARTICULIER</a></span></p>
                 </li>
                 <li>
                     <span class="number">6</span>
-                    <p><span class="line">EVALUATION DETAILLEE DU RISQUE PSYCHOSOCIAL ET <span>PLAN D’ACTION</span><a href="#" class="link">4</a></span></p>
+                    <p><span class="line"><a href="#evalRiskPsycho" class="link">EVALUATION DETAILLEE DU RISQUE PSYCHOSOCIAL ET <span>PLAN D’ACTION</span></a></span></p>
                 </li>
                 <li>
                     <span class="number">7</span>
-                    <p><span class="line">EVALUATION DETAILLEE DU RISQUE CHIMIQUE ET <span>PLAN D’ACTION</span><a href="#" class="link">4</a></span></p>
+                    <p><span class="line"><a href="#evalRiskChimi" class="link">EVALUATION DETAILLEE DU RISQUE CHIMIQUE ET <span>PLAN D’ACTION</span></a></span></p>
                 </li>
                 <li>
                     <span class="number">8</span>
-                    <p><span class="line">EVALUATION DETAILLEE DES CHAMPS ELECTROMAGNETIQUES ET <span>PLAN D’ACTION</span><a href="#" class="link">4</a></span></p>
+                    <p><span class="line"><a href="#evalElectro" class="link">EVALUATION DETAILLEE DES CHAMPS ELECTROMAGNETIQUES ET <span>PLAN D’ACTION</span></a></span></p>
                 </li>
                 <li>
                     <span class="number">9</span>
-                    <p><span class="line">DOCUMENT RELATIF A LA PREVENTION CONTRE L’EXPLOSION ET <span>PLAN D’ACTION</span><a href="#" class="link">4</a></span></p>
+                    <p><span class="line"><a href="#explo" class="link">DOCUMENT RELATIF A LA PREVENTION CONTRE L’EXPLOSION ET <span>PLAN D’ACTION</span></a></span></p>
                 </li>
                 <li>
                     <span class="number">10</span>
-                    <p><span class="line">EXPOSITION AUX FACTEURS DE RISQUES PROFESSIONNELS ET <span>PLAN D’ACTION</span><a href="#" class="link">4</a></span></p>
+                    <p><span class="line"><a href="#expoRiskPro" class="link">EXPOSITION AUX FACTEURS DE RISQUES PROFESSIONNELS ET <span>PLAN D’ACTION</span></a></span></p>
                 </li>
                 <li>
                     <span class="number">11</span>
-                    <p><span class="line">HISTORIQUE DES ACTIONS REALISÉES<a href="#" class="link">4</a></span></p>
+                    <p><span class="line"><a href="#historie" class="link">HISTORIQUE DES ACTIONS REALISÉES</a></span></p>
                 </li>
                 <li>
                     <span class="number">12</span>
-                    <p><span class="line">ANNEXES<a href="#" class="link">4</a></span></p>
+                    <p><span class="line"><a href="#annexes" class="link">ANNEXES</a></span></p>
                 </li>
                 <li class="no-border">
-                    <p><span class="line">Glossaire<a href="#" class="link">4</a></span></p>
+                    <p><span class="line">Glossaire</span></p>
                 </li>
                 <li class="no-border">
-                    <p><span class="line">Attestations ("Déplacements" - "Formation sécurité" - "Exposition aux facteurs de risques professionnels")<a href="#" class="link">4</a></span></p>
+                    <p><span class="line">Attestations ("Déplacements" - "Formation sécurité" - "Exposition aux facteurs de risques professionnels")</span></p>
                 </li>
                 <li class="no-border">
-                    <p><span class="line">Fiche d’évaluation simplifiée des risques d’interférence et de coactivité<a href="#" class="link">4</a></span></p>
+                    <p><span class="line">Fiche d’évaluation simplifiée des risques d’interférence et de coactivité</span></p>
                 </li>
                 <li class="no-border">
-                    <p><span class="line">Arrêté du 19-03-1993 (travaux dangereux mis en œuvre par une entreprise extérieure)<a href="#" class="link">4</a></span></p>
+                    <p><span class="line">Arrêté du 19-03-1993 (travaux dangereux mis en œuvre par une entreprise extérieure)</span></p>
                 </li>
                 <li class="no-border">
-                    <p><span class="line">Arrêté du 25-02-2003 (travaux à risques particuliers sur chantier de BTP)<a href="#" class="link">4</a></span></p>
+                    <p><span class="line">Arrêté du 25-02-2003 (travaux à risques particuliers sur chantier de BTP)</span></p>
                 </li>
                 <li class="no-border">
-                    <p><span class="line">Fiche pratique « Hygiène des mains »<a href="#" class="link">4</a></span></p>
+                    <p><span class="line">Fiche pratique « Hygiène des mains »</span></p>
                 </li>
                 <li class="no-border">
-                    <p><span class="line">Fiche pratique « Prévention COVID-19 »<a href="#" class="link">4</a></span></p>
+                    <p><span class="line">Fiche pratique « Prévention COVID-19 »</span></p>
                 </li>
                 <li class="no-border">
                     <p class="text-color-red">
@@ -193,7 +186,7 @@
         </div>
         <div class="footer">
             <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p class="page-num"></p>
         </div>
     </section>
     <section class="page">
@@ -235,7 +228,7 @@
         </div>
         <div class="footer">
             <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p class="page-num">ACTUALISATION DU DOCUMENT UNIQUE</p>
         </div>
     </section>
 
@@ -244,7 +237,7 @@
             <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body">
-            <h1 class="head-title">PRÉSENTATION DE LA STRUCTURE</h1>
+            <h1 class="head-title" id="structure">PRÉSENTATION DE LA STRUCTURE</h1>
             <table class="table table--info-gen">
                 <thead>
                     <tr>
@@ -292,7 +285,7 @@
         </div>
         <div class="footer">
             <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p class="page-num">PRÉSENTATION DÉTAILLÉE DE LA STRUCTURE ET DES UNITÉS DE TAVAIL</p>
         </div>
     </section>
 
@@ -325,7 +318,7 @@
         </div>
         <div class="footer">
             <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p class="page-num">PRÉSENTATION DÉTAILLÉE DE LA STRUCTURE ET DES UNITÉS DE TAVAIL</p>
         </div>
     </section>
     @foreach($single_document->work_unit as $key => $sd_work_unit)
@@ -391,7 +384,7 @@
             </div>
             <div class="footer">
                 <p class="center"> Copyright © OZA DUERP Online</p>
-                <p class="page-num">Page <span></span></p>
+                <p class="page-num">PRÉSENTATION DÉTAILLÉE DE LA STRUCTURE ET DES UNITÉS DE TAVAIL</p>
             </div>
         </section>
     @endforeach
@@ -400,7 +393,7 @@
             <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body">
-            <h1 class="head-title">TABLEAU DE BORD DE L'ÉVALUATION DES RISQUES</h1>
+            <h1 class="head-title" id="tabBord">TABLEAU DE BORD DE L'ÉVALUATION DES RISQUES</h1>
             <table class="table table--no-border table--dashboard">
                 <tr>
                     <td>
@@ -440,7 +433,7 @@
         </div>
         <div class="footer">
             <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p class="page-num">TABLEAU DE BORD DE L’EVALUATION DES RISQUES </p>
         </div>
     </section>
 
@@ -449,7 +442,7 @@
             <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body body--notif">
-            <h1 class="head-title">1. NOTICE EXPLICATIVE DU PLAN D'ACTION DE RÉDUCTION DES RISQUES</h1>
+            <h1 class="head-title" id="proAnnuel">1. PROGRAMME ANNUEL DE PREVENTION ET D'AMELIORATION DES CONDITIONS DE TRAVAIL</h1>
             <p class="bold">Le Plan d’action reprend et présente tous les risques identifiés et évalués dans le chapitre 4 « Evaluation des risques » classés ici selon leur criticité (priorité) dans la colonne « Criticité ».</p>
             <p class="bold">Le Plan d’action reprend et présente également toutes les situations de « non-conformité réglementaire » dans la colonne « Mesures de prévention et de protection proposées », sous le libellé « Obligation réglementaire ».</p>
             <p>
@@ -472,7 +465,7 @@
         </div>
         <div class="footer">
             <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p class="page-num">PROGRAMME ANNUEL DE PREVENTION ET D'AMELIORATION DES CONDITIONS DE TRAVAIL</p>
         </div>
     </section>
 
@@ -539,7 +532,7 @@
         </div>
         <div class="footer">
             <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p class="page-num">PROGRAMME ANNUEL DE PREVENTION ET D'AMELIORATION DES CONDITIONS DE TRAVAIL</p>
         </div>
     </section>
 
@@ -548,7 +541,7 @@
             <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body body--notif">
-            <h1 class="head-title">2. RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</h1>
+            <h1 class="head-title" id="rules">2. RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</h1>
             <p class="bold">L’EVALUATION DES RISQUES, LE DOCUMENT UNIQUE ET SON ANNEXE « FACTEURS DE RISQUES PROFESSIONNELS »</p>
             <p class="bold">Le Plan d’action reprend et présente également toutes les situations de « non-conformité réglementaire » dans la colonne « Mesures de prévention et de protection proposées », sous le libellé « Obligation réglementaire ».</p>
             <p>
@@ -570,7 +563,7 @@
         </div>
         <div class="footer">
             <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p class="page-num">RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</p>
         </div>
     </section>
 
@@ -621,7 +614,7 @@
         </div>
         <div class="footer">
             <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p class="page-num">RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</p>
         </div>
     </section>
 
@@ -668,7 +661,7 @@
         </div>
         <div class="footer">
             <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p class="page-num">RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</p>
         </div>
     </section>
 
@@ -717,7 +710,7 @@
         </div>
         <div class="footer">
             <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p class="page-num">RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</p>
         </div>
     </section>
 
@@ -769,7 +762,7 @@
         </div>
         <div class="footer">
             <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p class="page-num">RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</p>
         </div>
     </section>
 
@@ -814,7 +807,7 @@
         </div>
         <div class="footer">
             <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p class="page-num">RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</p>
         </div>
     </section>
 
@@ -823,7 +816,7 @@
             <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body body--notif">
-            <h1 class="head-title">3. NOTICE EXPLICATIVE DE L'EVALUATION DES RISQUES</h1>
+            <h1 class="head-title" id="evalRisk">3. NOTICE EXPLICATIVE DE L'EVALUATION DES RISQUES</h1>
             <p>
                 <span class="bold">EVALUATION DES RISQUES PROFESSIONNELS :</span> De gauche à droite du tableau d'évaluation des risques
             </p>
@@ -858,7 +851,7 @@
         </div>
         <div class="footer">
             <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p class="page-num">NOTICE EXPLICATIVE DE L'EVALUATION DES RISQUES</p>
         </div>
     </section>
 
@@ -903,7 +896,7 @@
         </div>
         <div class="footer">
             <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p class="page-num">NOTICE EXPLICATIVE DE L'EVALUATION DES RISQUES</p>
         </div>
     </section>
 
@@ -945,7 +938,7 @@
         </div>
         <div class="footer">
             <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p class="page-num">NOTICE EXPLICATIVE DE L'EVALUATION DES RISQUES</p>
         </div>
     </section>
 
@@ -971,7 +964,7 @@
         </div>
         <div class="footer">
             <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p class="page-num">NOTICE EXPLICATIVE DE L'EVALUATION DES RISQUES</p>
         </div>
     </section>
 
@@ -980,7 +973,7 @@
             <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body body--rules">
-            <h1 class="head-title">3. NOTICE EXPLICATIVE DE L'EVALUATION DES RISQUES</h1>
+            <h1 class="head-title" id="evalRiskPro">4. EVALUATION DES RISQUES PROFESSIONNELS PAR UNITÉ DE TRAVAIL</h1>
             <p class="bold">
                 Liste des dangers considérés. <br>
                 <span class="text-color-red">En gras, dangers présents uniquement dans la version « Conformité » du Document Unique OZA.</span>
@@ -1015,7 +1008,7 @@
         </div>
         <div class="footer">
             <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p class="page-num">EVALUATION DES RISQUES PROFESSIONNELS PAR UNITÉ DE TRAVAIL</p>
         </div>
     </section>
 
@@ -1063,7 +1056,7 @@
         </div>
         <div class="footer">
             <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p class="page-num">EVALUATION DES RISQUES PROFESSIONNELS PAR UNITÉ DE TRAVAIL</p>
         </div>
     </section>
     <section class="page">
@@ -1113,7 +1106,7 @@
         </div>
         <div class="footer">
             <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p class="page-num">EVALUATION DES RISQUES PROFESSIONNELS PAR UNITÉ DE TRAVAIL</p>
         </div>
     </section>
     <section class="page">
@@ -1157,7 +1150,7 @@
         </div>
         <div class="footer">
             <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p class="page-num">EVALUATION DES RISQUES PROFESSIONNELS PAR UNITÉ DE TRAVAIL</p>
         </div>
     </section>
 
@@ -1193,7 +1186,7 @@
         </div>
         <div class="footer">
             <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p class="page-num">EVALUATION DES RISQUES PROFESSIONNELS PAR UNITÉ DE TRAVAIL</p>
         </div>
     </section>
 
@@ -1205,7 +1198,7 @@
             <p class="center legend"> F => Fréquence | P => Probabilité | GP => Gravité potentiel | ID => Impact différencié | RB => Risque brut | T => Technique | O => Oragnisationnelle | H => Humain | RR => Risque résiduel</p>
             <table class="table table--action">
                 <tr>
-                    <th colspan="15" class="green">5. EVALUATION DES RISQUES PROFESSIONNELS</th>
+                    <th colspan="15" class="green" id="listPost">5. EVALUATION DES RISQUES PROFESSIONNELS</th>
                 </tr>
                 <tr>
                     <td class="theader">
@@ -1317,7 +1310,7 @@
         </div>
         <div class="footer">
             <p class="center text-color-green">Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p class="page-num">EVALUATION DES RISQUES PROFESSIONNELS</p>
         </div>
     </section>
 
@@ -1377,7 +1370,7 @@
         </div>
         <div class="footer">
             <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p class="page-num">EVALUATION DES RISQUES PROFESSIONNELS</p>
         </div>
     </section>
 

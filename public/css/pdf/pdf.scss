@@ -9,8 +9,9 @@
 
 * {
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: Arial, sans-serif !important;
     color: $dark_purple;
+    font-size: 13px;
 }
 
 html {
@@ -79,7 +80,7 @@ html {
                         width: 95%;
                         border-bottom: 1px solid $dark;
                         margin-left: 30px;
-                        font-size: 14px;
+                        font-size: 13px;
                         .line{
                             width: 100%;
                             .bold{
@@ -87,10 +88,6 @@ html {
                             }
                             span{
                                 border: none;
-                            }
-                            a{
-                                position: absolute;
-                                right: 40px;
                             }
                         }
                     }

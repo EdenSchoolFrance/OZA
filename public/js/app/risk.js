@@ -39,7 +39,7 @@ on('.modal--risk .btn-modal-risk-add', 'click', (el, e) => {
 });
 
 on('.btn-edit-modal-risk', 'click', (el, e) => {
-    $('.modal-add-risk .title',document, 0).innerText = "Modifier la mesure déjà mise en place"
+    $('.modal-add-risk .title',document, 0).innerText = "Evaluer la mesure déjà mise en place"
     $('.btn-modal-risk-add', document, 0).setAttribute('data-id',el.dataset.id)
     let tech = $('.radio-bar-tech input')
     let orga = $('.radio-bar-orga input')
@@ -357,7 +357,12 @@ function restraintCalcul(){
         totalEnd = totalEnd+result;
         count++;
     }
-    return Math.ceil((RB * totalEnd) / count);
+    if (Math.ceil((RB * totalEnd) / count) === 0){
+        return RB;
+    }else{
+        return Math.ceil((RB * totalEnd) / count);
+    }
+
 }
 
 function setColor(el,total){

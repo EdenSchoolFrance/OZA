@@ -14,7 +14,7 @@
                             <th class="th_status"></th>
                             <th class="th_number_employee"><i class="fas fa-user"></i></th>
                             <th class="th_work_unit">Unité de travail</th>
-                            <th class="th_activity">Activité</th>
+                            <th class="th_activity">Activités</th>
                             @foreach($items as $item)
                             <th class="th_{{ $item->id }}">{{ $item->name }}</th>
                             @endforeach

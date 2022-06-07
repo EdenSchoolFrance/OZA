@@ -479,7 +479,7 @@
                     <div class="row">
                         <div class="line">
                             <div class="left">
-                                <h3>Evaluation du risque identifié</h3>
+                                <h3>Evaluation de l'efficacité de la mesure en place</h3>
                             </div>
                             <div class="right">
                             </div>
@@ -518,7 +518,7 @@
                                         <label>Très bon</label>
                                     </div>
                                 </div>
-                                <i class="far fa-question-circle" data-tooltip=".tooltip--restraint" data-placement="left"></i>
+                                <i class="far fa-question-circle" data-tooltip=".tooltip--restraint-tech" data-placement="left"></i>
                             </div>
                         </div>
                     </div>
@@ -554,7 +554,7 @@
                                         <label>Très bon</label>
                                     </div>
                                 </div>
-                                <i class="far fa-question-circle" data-tooltip=".tooltip--restraint" data-placement="left"></i>
+                                <i class="far fa-question-circle" data-tooltip=".tooltip--restraint-orga" data-placement="left"></i>
                             </div>
                         </div>
                     </div>
@@ -590,7 +590,7 @@
                                         <label>Très bon</label>
                                     </div>
                                 </div>
-                                <i class="far fa-question-circle" data-tooltip=".tooltip--restraint" data-placement="left"></i>
+                                <i class="far fa-question-circle" data-tooltip=".tooltip--restraint-human" data-placement="left"></i>
                             </div>
                         </div>
                     </div>
@@ -604,11 +604,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="tooltip tooltip--restraint">
-                    <p>Très bonne = mesure existante très efficace</p>
-                    <p>Bonne = mesure existante de bonne efficacité</p>
-                    <p>Moyenne = mesure existante d'efficacité moyenne</p>
-                    <p>Nulle = mesure non existante</p>
+                <div class="tooltip tooltip--restraint-tech">
+                    <p>Technique : "mesure de prévention technique comme par exemple : système de sécurité automatique, machine ou matériel conforme, ..."</p>
+                </div>
+                <div class="tooltip tooltip--restraint-orga">
+                    <p>Organisationnelle : "mesure de prévention organisationnelle comme par exemple : respect de la règlementation en vigueur, consigne formalisée, ..."</p>
+                </div>
+                <div class="tooltip tooltip--restraint-human">
+                    <p>Humaine : "mesure de prévention humaine comme par exemple : information sensibilisation ou formation du personnel, protection collective et ou individuelle, ..."</p>
                 </div>
             </div>
         </div>
