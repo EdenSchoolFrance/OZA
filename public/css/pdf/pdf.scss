@@ -1,11 +1,5 @@
 // Variables
 @import "../global/variables";
-// Fonts
-@import "../global/fonts";
-// Global Style
-@import "../global/global";
-
-@import "../utils/text";
 
 * {
     box-sizing: border-box;
@@ -14,8 +8,83 @@
     font-size: 13px;
 }
 
+.bold {
+    font-weight: bold;
+    font-family: Arial, sans-serif !important;
+}
+
 html {
     height: 100%;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: $white_grey;
+    overflow-y: auto;
+}
+
+h1 {
+    font-size: 30px;
+}
+
+h2 {
+    font-size: 26px;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+h4 {
+    font-size: 16px;
+}
+
+h5 {}
+
+h6 {}
+
+p {
+    margin: 0;
+}
+
+li {
+    list-style: none;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+span{
+    font-family: Arial, sans-serif !important;
+}
+
+.text-color {
+    &-yellow {
+        color: $yellow !important;
+    }
+
+    &-green {
+        color: $green !important;
+    }
+
+    &-orange{
+        color: $orange !important;
+    }
+
+    &-red {
+        color: $danger !important;
+    }
+
+    &-blue {
+        color: $info !important;
+    }
 }
 
 .pdf {

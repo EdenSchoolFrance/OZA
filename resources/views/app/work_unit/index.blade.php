@@ -16,7 +16,7 @@
                             <th class="th_work_unit">Unité de travail</th>
                             <th class="th_activity">Activités</th>
                             @foreach($items as $item)
-                            <th class="th_{{ $item->id }}">{{ $item->name }}</th>
+                                <th class="th_{{ $item->id }}">{{ $item->name }}</th>
                             @endforeach
                             <th class="th_actions"></th>
                         </tr>

@@ -27,12 +27,14 @@ on('.modal--risk .btn-modal-risk-add', 'click', (el, e) => {
         let orga = $('.radio-bar-orga input:checked',document,0).value || 'null'
         let human = $('.radio-bar-human input:checked',document,0).value || 'null'
         let title = $('#nameRisk', document, 0).value || "Mesure"
+        if (tech === "null" && orga === "null" && human === "null") return errorRestraintCreate();
         editRestraint(tech,orga,human,title,id)
     }else{
         let tech = $('.radio-bar-tech input:checked',document,0).value || 'null'
         let orga = $('.radio-bar-orga input:checked',document,0).value || 'null'
         let human = $('.radio-bar-human input:checked',document,0).value || 'null'
         let title = $('#nameRisk', document, 0).value || "Mesure"
+        if (tech === "null" && orga === "null" && human === "null") return errorRestraintCreate();
         createRestraint(tech,orga,human,title,id)
     }
 
@@ -471,6 +473,16 @@ function createRestraintProposed(title){
     let li = document.createElement('li');
     li.innerHTML = content;
     $('.btn-add-restraint',document, 0).closest('li').before(li);
+}
+
+
+function errorRestraintCreate(){
+    $('.error-restraint', document, 0).classList.remove('none');
+    $('.error-restraint', document, 0).querySelector('p').innerText = `Vous ne pouvez pas créer de mesure avec les 3 valeurs sur "Inexistante".`;
+
+    setTimeout(function(){
+        $('.error-restraint', document, 0).classList.add('none');
+    },5000)
 }
 
 

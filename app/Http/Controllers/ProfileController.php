@@ -40,6 +40,6 @@ class ProfileController extends Controller
         Auth::user()->email = $request->email;
         Auth::user()->save();
 
-        return back()->with('status', 'Votre profile a été mis à jour !');
+        return back()->with('status', 'Votre profil a été mis à jour !');
     }
 }
