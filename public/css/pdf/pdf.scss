@@ -207,6 +207,9 @@ span{
                     content: counter(page);
                 }
             }
+            p:first-child{
+                margin-left: 10px;
+            }
         }
 
         &-first {

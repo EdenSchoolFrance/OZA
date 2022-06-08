@@ -472,10 +472,10 @@
         <p>La gravité potentielle des conséquences de l'exposition à un danger est évaluée selon une échelle à 5 niveaux :</p>
         <p>Impact faible : exposition sans conséquence sur la santé physique et mentale de la personne exposée</p>
         <p>ASA : Accident ou maladie professionnelle Sans Arrêt de travail</p>
-        <p>AAA : Accident ou maladie professionnelle Avec Arrêt de travail, sans IPP (*Incapacité Permanente Partielle)</p>
-        <p>IPP : accident ou maladie professionnelle avec arrêt de travail et avec IPP (*Incapacité Permanente Partielle)</p>
+        <p>AAA : Accident ou maladie professionnelle Avec Arrêt de travail, sans IPP (Incapacité Permanente Partielle*)</p>
+        <p>IPP : accident ou maladie professionnelle avec arrêt de travail et avec IPP (Incapacité Permanente Partielle*)</p>
         <p>Décès : au moins une maladie professionnelle avec Incapacité Permanente Totale ou au moins un décès</p>
-        <p>L'IPP est constatée lorsqu'il persiste des séquelles de l'accident du travail, alors que le salarié est déclaré apte.</p>
+        <p>*L'IPP est constatée lorsqu'il persiste des séquelles de l'accident du travail, alors que le salarié est déclaré apte.</p>
     </div>
 
     <div class="tooltip tooltip--id">
