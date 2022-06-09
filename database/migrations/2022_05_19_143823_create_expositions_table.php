@@ -20,7 +20,7 @@ class CreateExpositionsTable extends Migration
             $table->text('alert');
 
             $table->foreignUuid('danger_id');
-            $table->foreign('danger_id')->references('id')->on('dangers');
+            $table->foreign('danger_id')->references('id')->on('dangers')->onDelete('cascade');
         });
     }
 

@@ -165,7 +165,7 @@ class ClientController extends Controller
         $client->expert()->associate($request->expert);
         $client->save();
 
-        return redirect()->route('admin.client.edit', [$client->id])->with('status', 'Le client a bien été mis à jours !');
+        return redirect()->route('admin.client.edit', [$client->id])->with('status', 'Le client a bien été mis à jour !');
     }
 
     public function archive(Request $request)

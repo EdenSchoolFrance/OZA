@@ -24,7 +24,7 @@ class WorkUnitController extends Controller
             'infos' => 'L’article R.4121-1 du Code du travail « DOCUMENT UNIQUE D’EVALUATION DES RISQUES » précise :
             « Cette évaluation comporte un inventaire des risques identifiés dans chaque unité de travail de l’entreprise ou de l’établissement ».
             Le législateur n’a pas défini « l’unité de travail ». Nous l’entendons ici comme un poste de travail, un métier ou une activité.
-            Les unités de travail sont détaillées dans la partie « Présentation de la structure » à partir de la page 5 de ce Document Unique.
+            Les unités de travail sont détaillées dans la partie « Présentation de la structure » de ce Document Unique.
             ',
             'sidebar' => 'structure',
             'sub_sidebar' => 'work_units'

@@ -48,7 +48,7 @@ class ItemController extends Controller
 
         if (isset($request->new_child)){
             foreach ($request->new_child as $key => $child){
-                $find_item = SubItem::find($key);
+                $find_item = SubItem::find(explode('_', $key)[0]);
                 if ($find_item){
                     if (!empty($child)){
                         $new_child = new ChildSubItem();

@@ -245,9 +245,7 @@
                 <tbody>
                     <tr>
                         <td colspan="2">
-                            Ce Document Unique, y compris ses annexes, est protégé par les droits d'auteur. Il a été réalisé avec l'assistance d'un IPRP de la
-                            société OZA, sous l'entière responsabilité et selon les indications de : <br>
-                            Mr {{ $single_document->firstname }} {{ $single_document->lastname }}, {{ $single_document->function }}
+                            Les coordonnées de la personne qui a créé ce DUERP, et de celle(s) qui a(ont) effectué les modifications sont disponibles dans l'application OZA DUERP Online sous : Mr {{ $single_document->firstname }} {{ $single_document->lastname }}, {{ $single_document->function }}
                         </td>
                     </tr>
                     <tr>
@@ -274,7 +272,6 @@
                         <td colspan="2">
                             <span class="bold">Nombre de salarié(s) inscrit(s) sur le registre du personnel au moment de la rédaction du Document Unique : </span><br>
                             {{ $single_document->work_unit->pluck('number_employee')->sum() }} salarié(s) <br>
-
                         </td>
                     </tr>
                 </tbody>

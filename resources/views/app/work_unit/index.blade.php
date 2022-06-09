@@ -22,13 +22,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @if(count($works) === 0)
-                        <tr class="no-data no-data--centered">
-                            <td colspan="{{ count($items) + 5 }}" >
-                                Aucune unité de travail
-                            </td>
-                        </tr>
-                    @endif
+                        @if(count($works) === 0)
+                            <tr class="no-data no-data--centered">
+                                <td colspan="{{ count($items) + 5 }}" >
+                                    Aucune unité de travail
+                                </td>
+                            </tr>
+                        @endif
                         @foreach($works as $work)
                             <tr>
                                 <td class="td_status">
@@ -51,16 +51,20 @@
                                 @foreach($items as $item)
                                     <td class="td_{{ $item->id }}">
                                         <div class="table-resizable">
-                                            @foreach($item->sub_items as $sub_item)
-                                                @if(count($work->items->where('sub_item_id', $sub_item->id)) !== 0)
-                                                    <div class="list_group">
-                                                        <p class="title">{{ $sub_item->name }}</p>
-                                                        <p class="content">
-                                                            {{ $work->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }}
-                                                        </p>
-                                                    </div>
-                                                @endif
-                                            @endforeach
+                                            @if (count($work->items) !== 0)
+                                                @foreach($item->sub_items as $sub_item)
+                                                    @if(count($work->items->where('sub_item_id', $sub_item->id)) !== 0)
+                                                        <div class="list_group">
+                                                            <p class="title">{{ $sub_item->name }}</p>
+                                                            <p class="content">
+                                                                {{ $work->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }}
+                                                            </p>
+                                                        </div>
+                                                    @endif
+                                                @endforeach
+                                            @else
+                                                <p>Néant</p>
+                                            @endif
                                         </div>
                                     </td>
                                 @endforeach
