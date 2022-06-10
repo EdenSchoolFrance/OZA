@@ -32,7 +32,7 @@
                         </div>
                         <div class="right">
                             <label for="logo" class="form-control form-control--file @error('logo') invalid @enderror">
-                                <span>{{  }}</span>
+                                <span>Choisir une image</span>
                                 <span>
                                     Parcourir
                                     <input type="file" name="logo" id="logo" class="inputLogo" placeholder="Choisir une image">

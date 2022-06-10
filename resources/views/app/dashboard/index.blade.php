@@ -182,7 +182,7 @@
                 Permet de situer le niveau de risque actuel de la structure, en prenant en compte les mesures de prévention existantes ; sur une échelle de zéro (risque nul) à 50 (risque maximal).
             </p>
         </div>
-
+        
     </div>
 @endsection
 

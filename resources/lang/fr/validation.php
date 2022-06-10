@@ -196,6 +196,19 @@ return [
         'number_ut'             => 'nombre d\'ut',
         'work_unit_entitled'    => 'intitulé de l\'unité de travail',
         'activities'            => 'activités',
-        'work_history'          => 'travail réalisé sur le DU'
+        'work_history'          => 'travail réalisé sur le DU',
+        'client_oza'            => 'client OZA',
+        'additional_adress'     => 'adresse additionnel',
+        'oza_expert'            => 'expert OZA',
+        'name_single_document'  => 'nom du document unique',
+        'single_document_name'  => 'nom du document unique',
+        'info_danger'           => 'information du danger',
+        'reflection'            => 'réflexion',
+        'domain_risk'           => 'domaine d\'activité',
+        'client_select'         => 'selection du client',
+        'name_subitem'          => 'nom de la catégorie',
+        'comment'               => 'commentaire',
+        'work_history'          => 'historique',
+        'work_unit_entitled'    => ''
     ]
 ];

@@ -172,92 +172,90 @@ class SdRisk extends Model
         $totalEnd = 0;
         $count = 0;
         foreach ($restraints as $restraint){
-            if($restraint->exist === 1){
-                $tech = 0;
-                $orga = 0;
-                $human = 0;
+            $tech = 0;
+            $orga = 0;
+            $human = 0;
 
-                switch ($restraint->technical) {
-                    case 'very good' :
-                        $tech = 4;
-                        break;
-                    case 'good' :
-                        $tech = 3;
-                        break;
-                    case 'medium' :
-                        $tech = 2;
-                        break;
-                    case 'null' :
-                        $tech = 0;
-                        break;
-                }
-
-                switch ($restraint->organizational) {
-                    case 'very good' :
-                        $orga = 3;
-                        break;
-                    case 'good' :
-                        $orga = 2;
-                        break;
-                    case 'medium' :
-                        $orga = 1;
-                        break;
-                    case 'null' :
-                        $orga = 0;
-                        break;
-                }
-
-                switch ($restraint->human) {
-                    case 'very good' :
-                        $human = 3;
-                        break;
-                    case 'good' :
-                        $human = 2;
-                        break;
-                    case 'medium' :
-                        $human = 1;
-                        break;
-                    case 'null' :
-                        $human = 0;
-                        break;
-                }
-                $total = $tech + $orga + $human;
-                $result = 0;
-                switch ($total) {
-                    case 10 :
-                        $result= 0.2;
-                        break;
-                    case 9 :
-                        $result= 0.25;
-                        break;
-                    case 8 :
-                        $result= 0.3;
-                        break;
-                    case 7 :
-                        $result= 0.35;
-                        break;
-                    case 6 :
-                        $result= 0.4;
-                        break;
-                    case 5 :
-                        $result= 0.5;
-                        break;
-                    case 4 :
-                        $result= 0.6;
-                        break;
-                    case 3 :
-                        $result= 0.7;
-                        break;
-                    case 2 :
-                        $result= 0.8;
-                        break;
-                    case 1 :
-                        $result= 0.9;
-                        break;
-                }
-                $totalEnd = $totalEnd+$result;
-                $count++;
+            switch ($restraint->technical) {
+                case 'very good' :
+                    $tech = 4;
+                    break;
+                case 'good' :
+                    $tech = 3;
+                    break;
+                case 'medium' :
+                    $tech = 2;
+                    break;
+                case 'null' :
+                    $tech = 0;
+                    break;
             }
+
+            switch ($restraint->organizational) {
+                case 'very good' :
+                    $orga = 3;
+                    break;
+                case 'good' :
+                    $orga = 2;
+                    break;
+                case 'medium' :
+                    $orga = 1;
+                    break;
+                case 'null' :
+                    $orga = 0;
+                    break;
+            }
+
+            switch ($restraint->human) {
+                case 'very good' :
+                    $human = 3;
+                    break;
+                case 'good' :
+                    $human = 2;
+                    break;
+                case 'medium' :
+                    $human = 1;
+                    break;
+                case 'null' :
+                    $human = 0;
+                    break;
+            }
+            $total = $tech + $orga + $human;
+            $result = 0;
+            switch ($total) {
+                case 10 :
+                    $result= 0.2;
+                    break;
+                case 9 :
+                    $result= 0.25;
+                    break;
+                case 8 :
+                    $result= 0.3;
+                    break;
+                case 7 :
+                    $result= 0.35;
+                    break;
+                case 6 :
+                    $result= 0.4;
+                    break;
+                case 5 :
+                    $result= 0.5;
+                    break;
+                case 4 :
+                    $result= 0.6;
+                    break;
+                case 3 :
+                    $result= 0.7;
+                    break;
+                case 2 :
+                    $result= 0.8;
+                    break;
+                case 1 :
+                    $result= 0.9;
+                    break;
+            }
+            $totalEnd = $totalEnd+$result;
+            $count++;
         }
         if ($count === 0) return ceil(($RB * $totalEnd));
         return ceil(($RB * $totalEnd) / $count);
