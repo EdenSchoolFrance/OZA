@@ -373,10 +373,12 @@ function setColor(el,total){
     switch (true) {
         case (total <= 15) :
             el.classList.add('btn-success');
-            break
+            break;
         case (total < 20) :
-        case (total < 30) :
             el.classList.add('btn-warning');
+            break;
+        case (total < 30) :
+            el.classList.add('btn-war');
             break;
         case (total >= 30) :
             el.classList.add('btn-danger');

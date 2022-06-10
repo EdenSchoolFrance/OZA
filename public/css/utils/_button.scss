@@ -45,6 +45,19 @@
         }
     }
 
+    &-warn {
+        background-color: $pink;
+        color: $white;
+
+        &.btn-inv {
+            border-color: $pink;
+        }
+
+        &.btn-text {
+            color: $pink;
+        }
+    }
+
     &-success {
         background-color: $success;
         color: $white;

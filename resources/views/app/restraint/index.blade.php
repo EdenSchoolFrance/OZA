@@ -68,8 +68,16 @@
                     </div>
                     <div class="modal-body">
                         <div class="row">
-                            <div class="line title-restraint">
-
+                            <div class="line">
+                                <div class="left">
+                                    <label for="nameRisk">Rappel de la mesure</label>
+                                </div>
+                                <div class="right">
+                                    <textarea id="nameRisk" class="form-control auto-resize title-restraint" name="name_restraint" placeholder="Décrire la mesure mise à jour"></textarea>
+                                    @error('name_restraint')
+                                        <p class="message-error">{{ $message }}</p>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
                         <div class="row">
@@ -131,7 +139,7 @@
                                             <p class="message-error">{{ $message }}</p>
                                         @enderror
                                     </div>
-                                    <i class="far fa-question-circle" data-toggle="toolHelp" data-placement="top" title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></i>
+                                    <i class="far fa-question-circle" data-tooltip=".tooltip--restraint-tech" data-placement="left"></i>
                                 </div>
                             </div>
                         </div>
@@ -170,7 +178,7 @@
                                         <p class="message-error">{{ $message }}</p>
                                         @enderror
                                     </div>
-                                    <i class="far fa-question-circle" data-toggle="toolHelp" data-placement="top" title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></i>
+                                    <i class="far fa-question-circle" data-tooltip=".tooltip--restraint-orga" data-placement="left"></i>
                                 </div>
                             </div>
                         </div>
@@ -209,7 +217,7 @@
                                         <p class="message-error">{{ $message }}</p>
                                         @enderror
                                     </div>
-                                    <i class="far fa-question-circle" data-toggle="toolHelp" data-placement="top" title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></i>
+                                    <i class="far fa-question-circle" data-tooltip=".tooltip--restraint-human" data-placement="left"></i>
                                 </div>
                             </div>
                         </div>
@@ -222,6 +230,15 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="tooltip tooltip--restraint-tech">
+                        <p>Mesure de prévention technique comme par exemple : système de sécurité automatique, machine ou matériel conforme, ...</p>
+                    </div>
+                    <div class="tooltip tooltip--restraint-orga">
+                        <p>Mesure de prévention organisationnelle comme par exemple : respect de la règlementation en vigueur, consigne formalisée, ...</p>
+                    </div>
+                    <div class="tooltip tooltip--restraint-human">
+                        <p>Mesure de prévention humaine comme par exemple : information sensibilisation ou formation du personnel, protection collective et ou individuelle, ...</p>
                     </div>
                 </form>
             </div>

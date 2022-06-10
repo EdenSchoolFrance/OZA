@@ -54,6 +54,7 @@ class RestraintController extends Controller
 
         $request->validate([
             'id_restraint' => 'required',
+            'name_restraint' => 'required',
             'date_restraint' => 'required',
             'tech' => 'required',
             'orga' => 'required',
@@ -66,6 +67,7 @@ class RestraintController extends Controller
 
         if($restraint->sd_risk->sd_danger->single_document->id !== $single_document->id) return back()->with('status','Une erreur est survenue')->with('status_type','danger');
 
+        $restraint->name = $request->name_restraint;
         $restraint->date = $request->date_restraint;
         $restraint->technical = $request->tech;
         $restraint->organizational = $request->orga;

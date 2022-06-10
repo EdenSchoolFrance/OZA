@@ -245,7 +245,7 @@
                 <tbody>
                     <tr>
                         <td colspan="2">
-                            Les coordonnées de la personne qui a créé ce DUERP, et de celle(s) qui a(ont) effectué les modifications sont disponibles dans l'application OZA DUERP Online sous : Mr {{ $single_document->firstname }} {{ $single_document->lastname }}, {{ $single_document->function }}
+                            Les coordonnées de la personne qui a créé ce DUERP, et de celle(s) qui a(ont) effectué les modifications sont disponibles dans l'application OZA DUERP Online sous : Mr {{ $single_document->firstname }} {{ $single_document->lastname }}.
                         </td>
                     </tr>
                     <tr>
@@ -810,7 +810,7 @@
                 L'article R.4121-1 du Code du travail "DOCUMENT UNIQUE D'EVALUATION DES RISQUES" précise : <br>
                 "Cette évaluation comporte un inventaire des risques identifiés dans chaque unité de travail de l'entreprise ou de l'établissement".<br>
                 Le législateur n'a pas défini "l'unité de travail". Nous l'entendons ici comme un poste de travail, un métier ou une activité.<br>
-                <span class="bold">Les unités de travail sont détaillées dans la partie "Présentation de la structure" à partir de la page 5 de ce Document Unique.</span>
+                <span class="bold">Les unités de travail sont détaillées dans la partie "Présentation de la structure" de ce Document Unique.</span>
             </p>
             <p>
                 <span class="bold">DANGER et dommages potentiels à la personne</span> <br>
@@ -1163,13 +1163,13 @@
                     </tr>
                     <tr>
                         <td class="theader">
-                            Unité de Travail = poste de travail
+                            Unité de Travail
                         </td>
                         <td class="theader">
                             DANGER et dommages potentiels à la personne
                         </td>
                         <td class="theader">
-                            RISQUE Phase de travail modes et caractéristiques de l'exposition (outil, matériel, produit, situation, opération, fréquence, durée)
+                            RISQUE Phase de travail modes et caractéristiques de l'exposition
                         </td>
                         <td class="theader min-width">
                             F
@@ -1187,11 +1187,7 @@
                             RB
                         </td>
                         <td class="theader max-width">
-                            Mesures de prévention et de protection existantes :<br>
-                            Technique<br>
-                            Organisationnelle<br>
-                            Protection<br>
-                            Humaine (information)
+                            Mesures de prévention et de protection existantes : Technique, Organisationnelle, Protection, Humaine (information)
                         </td>
                         <td class="theader">
                             T

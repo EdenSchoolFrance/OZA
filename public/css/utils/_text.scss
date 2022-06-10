@@ -3,6 +3,9 @@
 }
 
 .text-color {
+    &-pink{
+        color: $pink !important;
+    }
     &-yellow {
         color: $yellow !important;
     }

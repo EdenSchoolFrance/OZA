@@ -259,7 +259,7 @@ class SdRisk extends Model
                 $count++;
             }
         }
-        if ($count === 0) return "-";
+        if ($count === 0) return ceil(($RB * $totalEnd));
         return ceil(($RB * $totalEnd) / $count);
     }
 
@@ -268,8 +268,9 @@ class SdRisk extends Model
             case ($number <= 15) :
                 return 'btn-success';
             case ($number < 20) :
-            case ($number < 30) :
                 return 'btn-warning';
+            case ($number < 30) :
+                return 'btn-warn';
             case ($number >= 30) :
                 return 'btn-danger';
         }
@@ -280,8 +281,9 @@ class SdRisk extends Model
             case ($number <= 15) :
                 return 'green';
             case ($number < 20) :
-            case ($number < 30) :
                 return 'yellow';
+            case ($number < 30) :
+                return 'pink';
             case ($number >= 30) :
                 return 'red';
         }

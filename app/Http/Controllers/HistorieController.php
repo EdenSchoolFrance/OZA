@@ -49,7 +49,7 @@ class HistorieController extends Controller
         $historie = Historie::find($request->id);
 
         if (!$historie) {
-            return back()->with('status','Un problème est survenue')->with('status_type','danger');
+            return back()->with('status','Un problème est survenu')->with('status_type','danger');
         }
 
         if(Storage::exists('/private/'.$single_document->client->id.'/du/'.$historie->id.'.pdf')) {
@@ -78,7 +78,7 @@ class HistorieController extends Controller
         if(Storage::exists('/private/'.$single_document->client->id.'/du/'.$historical->id.'.pdf')) {
             return Storage::download('/private/'.$single_document->client->id.'/du/'.$historical->id.'.pdf',$name);
         }else{
-            return back()->with('status','Un problème est survenue')->with('status_type','danger');
+            return back()->with('status','Un problème est survenu')->with('status_type','danger');
         }
     }
 }
