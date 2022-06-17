@@ -89,7 +89,7 @@ class PDFController extends Controller
 
         // die;
 
-        return $pdf = PDF::loadView('app.pdf.index', compact('chartUrl', 'single_document', 'item_mat', 'item_veh', 'item_eng', 'sd_risks', 'sd_risks_posts'))->setPaper('a4', 'landscape')->stream();
+        $pdf = PDF::loadView('app.pdf.index', compact('chartUrl', 'single_document', 'item_mat', 'item_veh', 'item_eng', 'sd_risks', 'sd_risks_posts'))->setPaper('a4', 'landscape');
 
         Storage::put('/private/' . $single_document->client->id . '/du/' . $histories->id . '.pdf', $pdf->download()->getOriginalContent());
 
