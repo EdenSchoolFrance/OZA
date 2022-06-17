@@ -130,7 +130,6 @@ on('[data-dismiss="alert"]', 'click', (el, e) => {
               Tooltip
 ==============================*/
 on('[data-toggle="tooltip"]:not([data-tooltip])', 'mouseover', (el, e) => {
-    console.log('pass tooltip')
     let tooltip = document.createElement('div');
     let tooltip_uuid = 'tooltip-' + Math.random().toString().slice(2, 15) + Math.random().toString().slice(2, 15);
 
@@ -153,7 +152,7 @@ on('[data-tooltip]', 'mouseover', (el, e) => {
 });
 
 on('[data-tooltip]', 'mouseout', (el, e) => {
-    if (!el.contains(e.toElement)) {
+    if (!el.contains(e.relatedTarget)) {
         let tooltip = $(el.dataset.tooltip, document, 0);
 
         if (tooltip) {
