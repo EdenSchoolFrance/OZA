@@ -77,9 +77,18 @@ class PDFController extends Controller
 
         File::put($chartUrl, $chart);
 
+        // $test = SdRisk::whereHas('sd_danger', function ($q) use ($single_document) {
+        //     $q->where('single_document_id', $single_document->id)->whereHas('sd_works_units', function ($q) use ($single_document) {
+        //         $q->wherePivot('exist', 1);
+        //     });
+        // })->has('sd_restraints_porposed', '>', 0)->get();
 
-        // $config = '{type:"pie",data:{labels:["Acceptable","A améliorer","Agir vite","STOP"],datasets:[{data:[' . $single_document->graphique()[0] . ',' . $single_document->graphique()[1] . ',' . $single_document->graphique()[2] . ',' . $single_document->graphique()[3] . ']}]},options:{layout:{padding:0,},plugins:{legend:{display:true,position:"right",labels:{boxHeight:45,boxWidth:45,},title:{display:false,}}}}}';
-        // $chartUrl = 'https://quickchart.io/chart?&w=500&h=300&c=' . urlencode(json_encode($chart_config));
+        // foreach ($test as $sd_risk) {
+        //     dump(count($sd_risk->sd_restraints_porposed()->get()) . ' t');
+        // }
+
+        // die;
+
         return $pdf = PDF::loadView('app.pdf.index', compact('chartUrl', 'single_document', 'item_mat', 'item_veh', 'item_eng', 'sd_risks', 'sd_risks_posts'))->setPaper('a4', 'landscape')->stream();
 
         Storage::put('/private/' . $single_document->client->id . '/du/' . $histories->id . '.pdf', $pdf->download()->getOriginalContent());

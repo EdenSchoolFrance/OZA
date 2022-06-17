@@ -10,7 +10,7 @@
                             <th class="th_work_unit th-sort">Unité de travail</th>
                             <th class="th_danger th-sort">Danger</th>
                             <th class="th_risk th-sort">Risque</th>
-                            <th class="th_evaluation th-sort-asc">Criticité</th>
+                            <th class="th_evaluation th-sort th-sort-asc">Criticité</th>
                             <th class="th_restraint th-sort">Mesure(s) proposée(s)</th>
                         </tr>
                     </thead>

@@ -112,7 +112,7 @@ span{
 
         &>.body {
             height: 92%;
-            margin: 30px 50px;
+            margin: 30px 25px;
             position: relative;
             //background-color: lightgreen;
             &--notif{
@@ -178,7 +178,7 @@ span{
                 text-align: center;
             }
             .legend{
-                font-size: 13px;
+                font-size: 12px;
                 font-style: italic;
             }
         }
@@ -313,7 +313,7 @@ span{
                     }
                 }
                 .theader{
-                    padding: 10px 0;
+                    padding: 0px;
                     text-align: center;
                     background-color: $grey;
                     .description{
@@ -321,7 +321,10 @@ span{
                     }
                 }
                 td{
-                    text-align: center;
+                    text-align: left;
+                    .center {
+                        text-align: center;
+                    }
                     div{
                         min-height: 40px;
                     }
@@ -344,6 +347,31 @@ span{
                 }
             }
             &.table{
+                &--document_versions {
+                    tbody tr td {
+                        height: 50px;
+                    }
+
+                    .name {
+                        width: 15%;
+                    }
+
+                    .function {
+                        width: 10%;
+                    }
+
+                    .visa {
+                        width: 15%;
+                    }
+
+                    .work {
+                        width: 40%;
+                    }
+
+                    .date {
+                        width: 20%;
+                    }
+                }
                 &--info-gen{
                     margin-bottom: 30px;
                     tr{
@@ -406,26 +434,72 @@ span{
                     }
                 }
                 &--action-plan{
-                    font-size: 13px;
-                    .restraint{
-                        min-width: 300px;
+                    tr, td {
+                        font-size: 10px;
+                    }
+                    .workunit {
+                        width: 5%;
+                    }
+                    .danger {
+                        width: 10%;
+                    }
+                    .risk {
+                        width: 15%;
+                    }
+                    .risk_residuel {
+                        width: 3%;
+                    }
+                    .criticity {
+                        width: 7%;
+                    }
+                    .restraint {
+                        width: 25%;
+                    }
+                    .comment {
+                        width: 25%;
+                    }
+                    .date {
+                        width: 10%;
                     }
                 }
                 &--action{
-                    font-size: 13px;
-                    .max-width{
-                        min-width: 250px;
-                    }
-                    .min-width{
+                    table-layout: fixed;
+
+                    tr, td {
+                        font-size: 10px;
                         overflow-wrap: break-word;
-                        max-width: 30px;
+                    }
+                    .min-width {
+                        &-left {
+                            width: 3%;
+                        }
+                        &-right {
+                            width: 2%;
+                        }
+                    }
+                    .workunit {
+                        width: 8%;
+                    }
+                    .danger {
+                        width: 10%;
+                    }
+                    .risk {
+                        width: 15%;
+                    }
+                    .restraint, .restraint_proposed {
+                        width: 20%;
+                    }
+                    .criticity {
+                        width: 4%;
                     }
                 }
                 &--risk-pro{
                     font-size: 12px;
                 }
                 &--risk-post{
-                    font-size: 13px;
+                    tr td {
+                        font-size: 10px;
+                    }
                 }
             }
         }

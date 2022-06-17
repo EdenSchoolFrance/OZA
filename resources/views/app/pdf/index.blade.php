@@ -192,7 +192,7 @@
         </div>
         <div class="body">
             <h1 class="head-title" id="actu">ACTUALISATION DU DOCUMENT UNIQUE</h1>
-            <table class="table">
+            <table class="table table--document_versions">
                 <thead>
                     <tr>
                         <th colspan="5" class="green">VERSIONS DU DOCUMENT UNIQUE</th>
@@ -209,20 +209,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    
-                    {{--Data line--}}
                     @foreach($single_document->histories as $historie)
                         <tr>
-                            <td>{{ $single_document->firstname }} {{ $single_document->lastname }}</td>
-                            <td>{{ $single_document->function }}</td>
-                            <td></td>
-                            <td>{{ $historie->work }}</td>
-                            <td>{{ date("d/m/Y", strtotime($historie->date)) }}</td>
+                            <td class="name center">{{ $single_document->firstname }} {{ $single_document->lastname }}</td>
+                            <td class="function center">{{ $single_document->function }}</td>
+                            <td class="visa center"></td>
+                            <td class="work">{{ $historie->work }}</td>
+                            <td class="date center">{{ date("d/m/Y", strtotime($historie->date)) }}</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-
         </div>
         <div class="footer">
             <p> Copyright © OZA DUERP Online</p>
@@ -245,7 +242,7 @@
                 <tbody>
                     <tr>
                         <td colspan="2">
-                            Les coordonnées de la personne qui a créé ce DUERP, et de celle(s) qui a(ont) effectué les modifications sont disponibles dans l'application OZA DUERP Online sous : Mr {{ $single_document->firstname }} {{ $single_document->lastname }}.
+                            Ce Document Unique et ses différentes versions a été rédigé sous la responsabilité de l’employeur
                         </td>
                     </tr>
                     <tr>
@@ -470,21 +467,21 @@
             <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body">
-            <p>Ce Document Unique, y compris ses annexes, est protégé par les droits d'auteur. Il a été réalisé avec l'assistance d'un IPRP de la société OZA, sous l'entière responsabilité et selon les indications fournies par : <span class="bold">=Mr {{ $single_document->firstname }} {{ $single_document->lastname }}, {{ $single_document->function }}</span> </p>
+            <p>Ce Document Unique, y compris ses annexes, est protégé par les droits d'auteur. Il a été réalisé avec l'assistance d'un IPRP de la société OZA, sous l'entière responsabilité et selon les indications fournies par : <span class="bold">Mr {{ $single_document->firstname }} {{ $single_document->lastname }}, {{ $single_document->function }}</span> </p>
             <table class="table table--action-plan">
                 <thead>
                     <tr>
-                        <th colspan="9" class="green">2. PROGRAMME ANNUEL DE PREVENTION ET D'AMELIORATION DES CONDITIONS DE TRAVAIL</th>
+                        <th colspan="8" class="green">2. PROGRAMME ANNUEL DE PREVENTION ET D'AMELIORATION DES CONDITIONS DE TRAVAIL</th>
                     </tr>
                     <tr>
                         <td class="theader">
-                            Unité de Travail = poste de travail
+                            Unité de Travail
                         </td>
                         <td class="theader">
-                            DANGER et dommages potentiels à la personne
+                            DANGER <br> et dommages potentiels à la personne
                         </td>
                         <td class="theader">
-                            RISQUE Phase de travail modes et caractéristiques de l'exposition (outil, matériel, produit, situation, opération, fréquence, durée)
+                            RISQUE <br> Phase de travail modes et caractéristiques de l'exposition
                         </td>
                         <td class="theader">
                             Risque résiduel
@@ -492,38 +489,32 @@
                         <td class="theader">
                             Criticité = situation actuelle
                         </td>
-                        <td class="theader restraint">
+                        <td class="theader">
                             Mesures de prévention et de protection proposées
                         </td>
                         <td class="theader">
-                            Décision sur les actions proposées : <br>
-                            - sera réalisé le (date) <br>
-                            - ne sera pas réalisé
+                            Date de réalisation prévue <br> Conditions d’exécution <br> Estimation du coût <br> Ressources nécessaires
                         </td>
                         <td class="theader">
                             Date de réalisation
-                        </td>
-                        <td class="theader">
-                            Commentaire, complément, autres actions
                         </td>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($sd_risks as $sd_risk)
                         <tr>
-                            <td>{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "Tous" }}</td>
-                            <td>{{ $sd_risk->sd_danger->danger->name }}</td>
-                            <td>{{ $sd_risk->name }}</td>
-                            <td>{{ $sd_risk->totalRR($sd_risk->sd_restraints) }}</td>
-                            <td class="{{ $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints)) }}">{{ $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints)) }}</td>
-                            <td>
+                            <td class="workunit">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "Tous" }}</td>
+                            <td class="danger">{{ $sd_risk->sd_danger->danger->name }}</td>
+                            <td class="risk">{{ $sd_risk->name }}</td>
+                            <td class="risk_residuel center">{{ $sd_risk->totalRR($sd_risk->sd_restraints) }}</td>
+                            <td class="criticity center {{ $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints)) }}">{{ $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints)) }}</td>
+                            <td class="restraint">
                                 @foreach($sd_risk->sd_restraints as $sd_restraint)
                                     {{ $sd_restraint->name }}<br>
                                 @endforeach
                             </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td class="comment"></td>
+                            <td class="date"></td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -1155,7 +1146,7 @@
             <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body">
-            <p class="center legend"> F => Fréquence | P => Probabilité | GP => Gravité potentiel | ID => Impact différencié | RB => Risque brut | T => Technique | O => Oragnisationnelle | H => Humain | RR => Risque résiduel</p>
+            <p class="center legend"> F = Fréquence | P = Probabilité | GP = Gravité potentiel | ID = Impact différencié | RB = Risque brut | T = Technique | O = Oragnisationnelle | H = Humain | RR = Risque résiduel</p>
             <table class="table table--action">
                 <thead>
                     <tr>
@@ -1215,25 +1206,25 @@
                             @if(count($sd_work_unit->sd_danger_risks($sd_danger->id)) > 0)
                                 @foreach($sd_work_unit->sd_danger_risks($sd_danger->id) as $sd_risk)
                                     <tr>
-                                        <td>{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "Tous" }}</td>
-                                        <td>{{ $sd_risk->sd_danger->danger->name }}</td>
-                                        <td>{{ $sd_risk->name }}</td>
-                                        <td class="min-width">{{ $sd_risk->translate($sd_risk->frequency,'frequency') }}</td>
-                                        <td class="min-width">{{ $sd_risk->translate($sd_risk->probability,'probability') }}</td>
-                                        <td class="min-width">{{ $sd_risk->translate($sd_risk->gravity,'gravity') }}</td>
-                                        <td class="min-width">{{ $sd_risk->translate($sd_risk->impact,'impact') }}</td>
-                                        <td class="min-width {{ $sd_risk->colorPDF($sd_risk->total()) }}">{{ $sd_risk->colorTotal($sd_risk->total()) }}</td>
-                                        <td>
+                                        <td class="workunit">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "Tous" }}</td>
+                                        <td class="danger">{{ $sd_risk->sd_danger->danger->name }}</td>
+                                        <td class="risk">{{ $sd_risk->name }}</td>
+                                        <td class="center min-width min-width-left">{{ $sd_risk->translate($sd_risk->frequency,'frequency') }}</td>
+                                        <td class="center min-width min-width-left">{{ $sd_risk->translate($sd_risk->probability,'probability') }}</td>
+                                        <td class="center min-width min-width-left">{{ $sd_risk->translate($sd_risk->gravity,'gravity') }}</td>
+                                        <td class="center min-width min-width-left">{{ $sd_risk->translate($sd_risk->impact,'impact') }}</td>
+                                        <td class="center min-width min-width-left {{ $sd_risk->colorPDF($sd_risk->total()) }}">{{ $sd_risk->colorTotal($sd_risk->total()) }}</td>
+                                        <td class="restraint">
                                             @foreach($sd_risk->sd_restraints_exist as $sd_restraint)
                                                 {{ "* ".$sd_restraint->name }} <br>
                                             @endforeach
                                         </td>
-                                        <td>{{ round($sd_risk->moyenneTech(), 1) }}</td>
-                                        <td>{{ round($sd_risk->moyenneOrga(), 1) }}</td>
-                                        <td>{{ round($sd_risk->moyenneHum(), 1) }}</td>
-                                        <td> {{ $sd_risk->totalRR($sd_risk->sd_restraints) }}</td>
-                                        <td class="{{ $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints)) }}">{{ $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints)) }}</td>
-                                        <td>
+                                        <td class="center min-width min-width-right">{{ round($sd_risk->moyenneTech(), 1) }}</td>
+                                        <td class="center min-width min-width-right">{{ round($sd_risk->moyenneOrga(), 1) }}</td>
+                                        <td class="center min-width min-width-right">{{ round($sd_risk->moyenneHum(), 1) }}</td>
+                                        <td class="center min-width min-width-right"> {{ $sd_risk->totalRR($sd_risk->sd_restraints) }}</td>
+                                        <td class="center criticity {{ $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints)) }}">{{ $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints)) }}</td>
+                                        <td class="restraint_proposed">
                                             @foreach($sd_risk->sd_restraints_porposed as $sd_restraint)
                                                 {{ "* ".$sd_restraint->name }} <br>
                                             @endforeach
@@ -1242,23 +1233,23 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <td>{{ $sd_work_unit->name }}</td>
-                                    <td>{{ $sd_danger->danger->name }}</td>
-                                    <td>Non concerné actuellement</td>
-                                    <td class="min-width">NC</td>
-                                    <td class="min-width">NC</td>
-                                    <td class="min-width">NC</td>
-                                    <td class="min-width">NON</td>
-                                    <td class="green min-width">0</td>
-                                    <td>
+                                    <td class="workunit">{{ $sd_work_unit->name }}</td>
+                                    <td class="danger">{{ $sd_danger->danger->name }}</td>
+                                    <td class="risk">Non concerné actuellement</td>
+                                    <td class="center min-width min-width-left">NC</td>
+                                    <td class="center min-width min-width-left">NC</td>
+                                    <td class="center min-width min-width-left">NC</td>
+                                    <td class="center min-width min-width-left">NON</td>
+                                    <td class="center green min-width min-width-left">0</td>
+                                    <td class="restraint">
 
                                     </td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td class="green">0</td>
-                                    <td>
+                                    <td class="center min-width min-width-right">0</td>
+                                    <td class="center min-width min-width-right">0</td>
+                                    <td class="center min-width min-width-right">0</td>
+                                    <td class="center min-width min-width-right">0</td>
+                                    <td class="center green criticity">0</td>
+                                    <td class="restraint_proposed">
 
                                     </td>
                                 </tr>
@@ -1323,10 +1314,10 @@
                             <td class="grey">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "Tous" }}</td>
                             <td>{{ $sd_risk->sd_danger->danger->name }}</td>
                             <td>{{ $sd_risk->name }}</td>
-                            <td>{{ $sd_risk->translate($sd_risk->frequency,'frequency') }}</td>
-                            <td>{{ $sd_risk->translate($sd_risk->probability,'probability') }}</td>
-                            <td>{{ $sd_risk->translate($sd_risk->gravity,'gravity') }}</td>
-                            <td class="grey">{{ $sd_risk->total() }}</td>
+                            <td class="center">{{ $sd_risk->translate($sd_risk->frequency,'frequency') }}</td>
+                            <td class="center">{{ $sd_risk->translate($sd_risk->probability,'probability') }}</td>
+                            <td class="center">{{ $sd_risk->translate($sd_risk->gravity,'gravity') }}</td>
+                            <td class="grey center">{{ $sd_risk->total() }}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -1337,7 +1328,5 @@
             <p class="page-num">LISTE DES POSTES DE TRAVAIL</p>
         </div>
     </section>
-
-
 </body>
 </html>
