@@ -8,12 +8,19 @@ table.table {
 
                 &.th-sort {
                     cursor: pointer;
+
+                    &::after {
+                        font-family: "Font Awesome 5 Free";
+                        content: "\f0dc";
+                        font-size: 14px;
+                        margin-left: 5px;
+                    }
                 }
 
                 &.th-sort-asc {
                     &::after {
                         font-family: "Font Awesome 5 Free";
-                        content: "\f077";
+                        content: "\f0de";
                         font-size: 14px;
                         margin-left: 5px;
                     }
@@ -22,7 +29,7 @@ table.table {
                 &.th-sort-desc {
                     &::after {
                         font-family: "Font Awesome 5 Free";
-                        content: "\f078";
+                        content: "\f0dd";
                         font-size: 14px;
                         margin-left: 5px;
                     }

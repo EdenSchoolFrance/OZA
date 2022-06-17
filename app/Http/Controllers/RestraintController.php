@@ -20,11 +20,13 @@ class RestraintController extends Controller
             'sub_sidebar' => 'restraint_porposed'
         ];
 
-        $sd_risks = SdRisk::whereHas('sd_danger', function ($q) use ($single_document){
+        $sd_risks = SdRisk::whereHas('sd_danger', function ($q) use ($single_document) {
             $q->where('single_document_id', $single_document->id);
         })->whereHas('sd_restraints', function ($q) {
             $q->where('exist', 0);
-        })->get();
+        })->get()->sortByDesc(function ($sd_risk, $key) {
+            return $sd_risk->totalRR($sd_risk->sd_restraints);
+        });
 
         return view('app.restraint.index', compact('page', 'single_document', 'sd_risks'));
     }
