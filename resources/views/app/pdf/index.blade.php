@@ -25,7 +25,7 @@
         <div class="body">
             <div class="header">
                 <p class="subtitle">Document Unique</p>
-                <h1 class="title">{{ $single_document->name }}</h1>
+                <h1 class="title">{{ $single_document->name_enterprise }}</h1>
                 <p class="info">Code de Travail article L.4121-3</p>
                 <p class="info">Transcription des résultats de l'évaluation des risques pour la santé et la sécurité du personnel</p>
             </div>
@@ -46,7 +46,7 @@
 
     <section class="page page-second">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body">
             <div class="header">
@@ -123,7 +123,7 @@
                     <span class="number">6</span>
                     <p><span class="line"><a href="#listPost" class="link">LISTE DES POSTES DE TRAVAIL A RISQUE PARTICULIER</a></span></p>
                 </li>
-                <li>
+                {{-- <li>
                     <span class="number">7</span>
                     <p><span class="line"><a href="#evalRiskPsycho" class="link">EVALUATION DETAILLEE DU RISQUE PSYCHOSOCIAL ET <span>PLAN D’ACTION</span></a></span></p>
                 </li>
@@ -134,17 +134,17 @@
                 <li>
                     <span class="number">9</span>
                     <p><span class="line"><a href="#explo" class="link">DOCUMENT RELATIF A LA PREVENTION CONTRE L’EXPLOSION ET <span>PLAN D’ACTION</span></a></span></p>
-                </li>
+                </li> --}}
                 <li>
-                    <span class="number">10</span>
+                    <span class="number">7</span>
                     <p><span class="line"><a href="#expoRiskPro" class="link">EXPOSITION AUX FACTEURS DE RISQUES PROFESSIONNELS ET <span>PLAN D’ACTION</span></a></span></p>
                 </li>
                 <li>
-                    <span class="number">11</span>
+                    <span class="number">8</span>
                     <p><span class="line"><a href="#historie" class="link">HISTORIQUE DES ACTIONS REALISÉES</a></span></p>
                 </li>
                 <li>
-                    <span class="number">12</span>
+                    <span class="number">9</span>
                     <p><span class="line"><a href="#annexes" class="link">ANNEXES</a></span></p>
                 </li>
                 <li class="no-border">
@@ -163,14 +163,14 @@
                     <p><span class="line">Arrêté du 25-02-2003 (travaux à risques particuliers sur chantier de BTP)</span></p>
                 </li>
                 <li class="no-border">
-                    <p><span class="line">Fiche pratique « Hygiène des mains »</span></p>
+                    <p><span class="line">Fiche pratique « Hygiène des mains »</span></p>
                 </li>
                 <li class="no-border">
-                    <p><span class="line">Fiche pratique « Prévention COVID-19 »</span></p>
+                    <p><span class="line">Fiche pratique « Prévention COVID-19 »</span></p>
                 </li>
                 <li class="no-border">
                     <p class="text-color-red">
-                        Ce Document Unique a été élaboré sur la base du « Pack Conformité » du DOCUMENT UNIQUE OZA.<br>
+                        Ce Document Unique a été élaboré sur la base du « Pack Conformité » du DOCUMENT UNIQUE OZA.<br>
                         L’employeur est conscient qu’il s’agit d’une version allégée du Document Unique de OZA France dans lequel l’évaluation des risque est réalisée sur la base de 18 Dangers, dans lequel n’apparaissent pas pes parties ci-dessous et dans lequel l’évaluation de l’exposition aux Facteurs de Risques Professionnels est un simple diagnostic.<br>
                         - La liste des postes de travail à risque particulier, <br>
                         - L’évaluation détaillée du risque psychosocial, <br>
@@ -438,10 +438,10 @@
         </div>
         <div class="body body--notif">
             <h1 class="head-title" id="proAnnuel">2. PROGRAMME ANNUEL DE PREVENTION ET D'AMELIORATION DES CONDITIONS DE TRAVAIL</h1>
-            <p class="bold">Le Plan d’action reprend et présente tous les risques identifiés et évalués dans le chapitre 4 « Evaluation des risques » classés ici selon leur criticité (priorité) dans la colonne « Criticité ».</p>
-            <p class="bold">Le Plan d’action reprend et présente également toutes les situations de « non-conformité réglementaire » dans la colonne « Mesures de prévention et de protection proposées », sous le libellé « Obligation réglementaire ».</p>
+            <p class="bold">Le Plan d’action reprend et présente tous les risques identifiés et évalués dans le chapitre 4 « Evaluation des risques » classés ici selon leur criticité (priorité) dans la colonne « Criticité ».</p>
+            <p class="bold">Le Plan d’action reprend et présente également toutes les situations de « non-conformité réglementaire » dans la colonne « Mesures de prévention et de protection proposées », sous le libellé « Obligation réglementaire ».</p>
             <p>
-                <span class="bold">Colonne « Mesures de prévention et de protection proposées » :</span><br>
+                <span class="bold">Colonne « Mesures de prévention et de protection proposées » :</span><br>
                 Les mesures de prévention et de protection proposées se déclinent en 3 catégories énoncées dans les 9 principes de prévention de l’article L.4121-2 du Code du Travail (Loi n° 91-1414 du 31 décembre 1991 art. 1 Journal Officiel du 7 janvier 1992 en vigueur le 31 décembre 1992) :<br>
                 - Mesure Technique, <br>
                 - Mesure Organisationnelle, <br>
@@ -449,12 +449,12 @@
             </p>
             <p>
                 <span class="bold">L’employeur décidera quelle(s) mesure(s) proposée(s) il réalisera.</span><br>
-                <span class="bold">Colonne « Décision sur les actions proposées »</span><br>
+                <span class="bold">Colonne « Décision sur les actions proposées »</span><br>
                 - Sera réalisé le (date) : Inscrire ici la date planifiée par l’employeur pour la réalisation des actions de prévention ou de protection qu’il a validé.<br>
-                - Ne sera pas réalisé » : Préciser les actions que l’employeur ne valide pas et qui ne seront pas mises en place.<br>
-                <span class="bold">Colonne « Date de réalisation » :</span><br>
+                - Ne sera pas réalisé » : Préciser les actions que l’employeur ne valide pas et qui ne seront pas mises en place.<br>
+                <span class="bold">Colonne « Date de réalisation » :</span><br>
                 Inscrire la date à laquelle l’action de prévention ou de protection a réellement été mise en place et a été opérationnelle.<br>
-                <span class="bold">Colonne « Commentaire, complément, autres actions » :</span><br>
+                <span class="bold">Colonne « Commentaire, complément, autres actions » :</span><br>
                 L’employeur inscrira éventuellement ici des commentaires sur les décisions prises, des compléments d’explications, et, ou des actions complémentaires.
             </p>
         </div>
@@ -474,7 +474,7 @@
             <table class="table table--action-plan">
                 <thead>
                     <tr>
-                        <th colspan="9" class="green">2. PLAN D'ACTION</th>
+                        <th colspan="9" class="green">2. PROGRAMME ANNUEL DE PREVENTION ET D'AMELIORATION DES CONDITIONS DE TRAVAIL</th>
                     </tr>
                     <tr>
                         <td class="theader">
@@ -541,8 +541,8 @@
         </div>
         <div class="body body--notif">
             <h1 class="head-title" id="rules">3. RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</h1>
-            <p class="bold">L’EVALUATION DES RISQUES, LE DOCUMENT UNIQUE ET SON ANNEXE « FACTEURS DE RISQUES PROFESSIONNELS »</p>
-            <p class="bold">Le Plan d’action reprend et présente également toutes les situations de « non-conformité réglementaire » dans la colonne « Mesures de prévention et de protection proposées », sous le libellé « Obligation réglementaire ».</p>
+            <p class="bold">L’EVALUATION DES RISQUES, LE DOCUMENT UNIQUE ET SON ANNEXE « FACTEURS DE RISQUES PROFESSIONNELS »</p>
+            <p class="bold">Le Plan d’action reprend et présente également toutes les situations de « non-conformité réglementaire » dans la colonne « Mesures de prévention et de protection proposées », sous le libellé « Obligation réglementaire ».</p>
             <p>
                 <span class="bold">1. Pourquoi évaluer les risques professionnels ?</span><br>
                 L’évaluation des risques professionnels est imposée par le Code du Travail à tout employeur, dès lors qu’il emploie au moins un salarié. Code du travail, article R4121-1 :<br>
@@ -923,14 +923,14 @@
             <p>
                 <span class="bold">Criticité = situation actuelle</span><br>
                 Le Document Unique doit réglementairement permettre d’identifier les risques les plus critiques afin de planifier leur suppression ou leur réduction.<br>
-                La « criticité » traduit donc les risques résiduels en « état de la situation actuelle » de la façon suivante :<br>
-                <span class="text-color-green">« Acceptable »</span> associé à la couleur verte, elle correspond à une criticité &lt; 12,5.<br>
+                La « criticité » traduit donc les risques résiduels en « état de la situation actuelle » de la façon suivante :<br>
+                <span class="text-color-green">« Acceptable »</span> associé à la couleur verte, elle correspond à une criticité &lt; 12,5.<br>
                 La diminution de ce risque n’est pas une priorité. <br>
-                <span class="text-color-yellow">« A améliorer »</span> associé à la couleur jaune, elle correspond à une criticité >= 12,5.<br>
+                <span class="text-color-yellow">« A améliorer »</span> associé à la couleur jaune, elle correspond à une criticité >= 12,5.<br>
                 La diminution de ces risque peut être planifiée à moyen / long terme. <br>
-                <span class="text-color-orange">« Agir vite »</span> est associé à la couleur orange, elle correspond à une criticité >= 20.<br>
+                <span class="text-color-orange">« Agir vite »</span> est associé à la couleur orange, elle correspond à une criticité >= 20.<br>
                 La diminution de ces risques est à planifier en priorité. <br>
-                <span class="text-color-red">« STOP »</span> est associé à la couleur rouge, elle correspond à une criticité >=30 <= 50.<br>
+                <span class="text-color-red">« STOP »</span> est associé à la couleur rouge, elle correspond à une criticité >=30 <= 50.<br>
                 Ces activités doivent être stoppées immédiatement afin d’identifier et de mettre en place une activité plus sûre.
             </p>
         </div>
@@ -948,10 +948,10 @@
             <h1 class="head-title" id="evalRiskPro">5. EVALUATION DES RISQUES PROFESSIONNELS PAR UNITÉ DE TRAVAIL</h1>
             <p class="bold">
                 Liste des dangers considérés. <br>
-                <span class="text-color-red">En gras, dangers présents uniquement dans la version « Conformité » du Document Unique OZA.</span>
+                <span class="text-color-red">En gras, dangers présents uniquement dans la version « Conformité » du Document Unique OZA.</span>
             </p>
             <p>
-                1. Absence d’une personne « compétente » pour s’occuper des activités de protection et de prévention des risques professionnels de la structure.
+                1. Absence d’une personne « compétente » pour s’occuper des activités de protection et de prévention des risques professionnels de la structure.
             </p>
             <p>
                 2. Accident, presqu’accident et maladie du travail non ou mal analysés et prévenus pouvant générer la répétition de ces faits.
