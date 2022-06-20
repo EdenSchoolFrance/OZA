@@ -106,7 +106,11 @@ class RiskController extends Controller
             'sub_sidebar' => 'accident'
         ];
 
-        return view('app.risk.edit', compact('page', 'single_document','danger','domaine_activities', 'risk'));
+        $risk_cal = RiskCalculation::all();
+        
+        $risk_cal = $risk_cal->toJson();
+
+        return view('app.risk.edit', compact('page', 'single_document','danger','domaine_activities', 'risk', 'risk_cal'));
     }
 
 

@@ -476,6 +476,10 @@ function editRestraint(tech,orga,human,title,id){
 }
 
 function createRestraintProposed(title){
+    let restraints = $('.restraints-pro')
+    if (restraints.length === 0){
+        $('.nothing_restraint_pro', document, 0).remove();
+    }
     let content ='<button type="button" class="btn btn-text btn-small btn-delete-restraint"><i class="far fa-times-circle"></i></button>\n' +
         '<textarea class="form-control auto-resize" placeholder="" name="restraint_proposed[]">'+title+'</textarea>'
     let li = document.createElement('li');
