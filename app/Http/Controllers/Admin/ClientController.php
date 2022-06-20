@@ -121,7 +121,7 @@ class ClientController extends Controller
         ];
 
         $experts = User::where('oza', 1)->get();
-        $dangers = Danger::all();
+        $dangers = Danger::all()->sortBy('name');
         $packs = Pack::all();
         $single_documents = SingleDocument::where('client_id', $client->id)->paginate(15);
 

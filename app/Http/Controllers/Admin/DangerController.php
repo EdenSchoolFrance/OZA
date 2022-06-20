@@ -21,7 +21,7 @@ class DangerController extends Controller
             'sub_sidebar' => 'danger'
         ];
 
-        $dangers = Danger::all();
+        $dangers = Danger::all()->sortBy('name');
 
         return view('admin.danger.index', compact('page','dangers'));
     }

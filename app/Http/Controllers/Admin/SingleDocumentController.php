@@ -90,7 +90,7 @@ class SingleDocumentController extends Controller
             'sub_sidebar' => '',
         ];
 
-        $dangers = Danger::all();
+        $dangers = Danger::all()->sortBy('name');
         $packs = Pack::all();
 
         $sd = $single_document;

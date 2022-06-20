@@ -237,7 +237,7 @@ class SdRisk extends Model
     
         $cal = $Pon->weighting * $RB;
 
-        return $cal;
+        return round($cal, 1);
     }
 
     public function color($number){
