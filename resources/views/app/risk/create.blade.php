@@ -231,7 +231,11 @@
                         <label>Mesure existante</label>
                     </div>
                     <div class="right restraint">
-
+                        <div class="row nothing_restraint_ex">
+                            <ul>
+                                <li>Aucune mesure existante</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -265,7 +269,12 @@
                     <div class="left">
                         <label>Mesures proposées</label>
                     </div>
-                    <div class="right right--cancel">
+                    <div class="right right--cancel res-pro">
+                        <ul class="nothing_restraint_pro">
+                            <li>
+                                Aucune mesure proposée
+                            </li>
+                        </ul>
                         <ul class="restraint-proposed">
                             <li>
                                 <button class="btn btn-yellow btn-text btn-add-restraint" type="button">+ Ajouter une mesure proposée</button>
@@ -699,6 +708,9 @@
 @endsection
 
 @section('script')
+    <script>
+        let pon = {!! $risk_cal !!};
+    </script>
     <script src="/js/app/risk.js"></script>
     @if(old('restraint'))
         <script>

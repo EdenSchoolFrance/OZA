@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DomainActivitie;
 use App\Models\Risk;
+use App\Models\RiskCalculation;
 use App\Models\SdDanger;
 use App\Models\SdRestraint;
 use App\Models\SdRisk;
@@ -65,12 +66,16 @@ class RiskController extends Controller
             'sub_sidebar' => 'accident'
         ];
 
+        $risk_cal = RiskCalculation::all();
+        
+        $risk_cal = $risk_cal->toJson();
+
         if ($id_risk !== null){
             $risk = Risk::find($id_risk);
-            return view('app.risk.create', compact('page', 'single_document','danger','domaine_activities','id_sd_work_unit','risk'));
+            return view('app.risk.create', compact('page', 'single_document','danger','domaine_activities','id_sd_work_unit','risk','risk_cal'));
         }
 
-        return view('app.risk.create', compact('page', 'single_document','danger','domaine_activities','id_sd_work_unit'));
+        return view('app.risk.create', compact('page', 'single_document','danger','domaine_activities','id_sd_work_unit','risk_cal'));
     }
 
     public function edit($id, $id_danger, $id_risk)

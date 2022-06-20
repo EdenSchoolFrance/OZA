@@ -79,10 +79,30 @@ on('.btn-open-risk', 'click', (el, e) => {
 on('.btn-delete', 'click', (el, e) => {
     el.closest('div.row').remove();
     calculRestraintColorDisplay();
+    let restraints = $('.restraint_ex');
+    if (restraints.length === 0){
+        let content = 
+        `<ul>
+            <li>Aucune mesure existante</li>
+        </ul>`;
+        let row = document.createElement('div')
+        row.setAttribute('class','row');
+        row.setAttribute('class','nothing_restraint_ex');
+        row.innerHTML = content;
+        $('.restraint', document, 0).appendChild(row)
+    }
 });
 
 on('.btn-delete-restraint', 'click', (el, e) => {
     el.closest('li').remove();
+    let restraints = $('.restraints-pro')
+    if (restraints.length === 0){
+        let content = `<li>Aucune mesure proposée</li>`;
+        let ul = document.createElement('ul')
+        ul.setAttribute('class','nothing_restraint_pro');
+        ul.innerHTML = content;
+        $('.restraint-proposed', document, 0).before(ul)
+    }
 });
 
 on('.btn-add-restraint', 'click', (el, e) => {
@@ -90,9 +110,14 @@ on('.btn-add-restraint', 'click', (el, e) => {
     if (all[all.length - 2] !== undefined && all[all.length - 2] !== el.closest('li') && all[all.length - 2].querySelector('textarea').value === ''){
         all[all.length - 2].querySelector('textarea').focus();
     }else{
+        let restraints = $('.restraints-pro')
+        if (restraints.length === 0){
+            $('.nothing_restraint_pro', document, 0).remove();
+        }
         let content ='<button type="button" class="btn btn-text btn-small btn-delete-restraint"><i class="far fa-times-circle"></i></button>\n' +
             '<textarea class="form-control auto-resize" placeholder="" name="restraint_proposed[]"></textarea>'
         let li = document.createElement('li');
+        li.setAttribute('class','restraints-pro')
         li.innerHTML = content;
         el.closest('li').before(li);
     }
@@ -167,6 +192,7 @@ on('.radio-bar .con input', 'click', (el, e) => {
     total.innerText = riskCalcul()
     setColor(total,riskCalcul());
     total.classList.add('btn-small', 'btn-calcul-risk')
+    calculRestraintColorDisplay();
 });
 
 on('.btn-check-work-unit', 'click', (el, e) => {
@@ -264,7 +290,7 @@ function calculRestraintColorDisplay(){
     let status = $('button[data-id="status"]', document, 0)
     setColor(statusNumber,total);
     statusNumber.innerText = total;
-    totalEnd(status,total)
+    totalEnd(status,total);
     setColor(status,total);
 }
 
@@ -322,48 +348,24 @@ function restraintCalcul(){
                 human = 0
                 break
         }
+       
         let total = tech + orga + human;
-        let result = 0;
-        switch (total){
-            case 10 :
-                result = 0.2
-                break
-            case 9 :
-                result = 0.25
-                break
-            case 8 :
-                result = 0.3
-                break
-            case 7 :
-                result = 0.35
-                break
-            case 6 :
-                result = 0.4
-                break
-            case 5 :
-                result = 0.5
-                break
-            case 4 :
-                result = 0.6
-                break
-            case 3 :
-                result = 0.7
-                break
-            case 2 :
-                result = 0.8
-                break
-            case 1 :
-                result = 0.9
-                break
-        }
-        totalEnd = totalEnd+result;
+
+        totalEnd = total+totalEnd;
+
         count++;
     }
-    if (Math.ceil((RB * totalEnd) / count) === 0){
-        return RB;
-    }else{
-        return Math.ceil((RB * totalEnd) / count);
-    }
+
+    if (count === 0) return RB;
+
+    let A = totalEnd + 1/10 * count;
+
+    let cal = pon.find( x => x.sum === A);
+
+    return Math.round(cal.weighting * RB, 1);
+
+    // if (Math.ceil((RB * totalEnd) / count) === 0) return RB;
+    // else return Math.ceil((RB * totalEnd) / count);
 
 }
 
@@ -378,7 +380,7 @@ function setColor(el,total){
             el.classList.add('btn-warning');
             break;
         case (total < 30) :
-            el.classList.add('btn-war');
+            el.classList.add('btn-warn');
             break;
         case (total >= 30) :
             el.classList.add('btn-danger');
@@ -411,8 +413,12 @@ function totalEnd(el,number){
 
 function createRestraint(tech,orga,human,title,id){
     let restraint = $('.restraint', document, 0)
+    let restraints = $('.restraint_ex');
+    if (restraints.length === 0){
+        $('.nothing_restraint_ex', document, 0).remove();
+    }
     let content =
-        '  <ul>\n' +
+        '  <ul class="restraint_ex">\n' +
         '   <li>\n' +
         '    <p>\n' +
         '     <i class="far fa-times-circle btn-delete"></i>\n' +
