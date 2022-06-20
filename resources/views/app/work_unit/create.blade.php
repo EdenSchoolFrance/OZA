@@ -98,7 +98,7 @@
                                                                     <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[]" value="{{ $sd_item }}" data-id="{{ $sd_item.now() }}">
                                                                 </li>
                                                             @endforeach
-                                                        @else
+                                                        @elseif (count(old($item->id.'-'.$subItem->id)) === 0)
                                                             <li>
                                                                 <p class="nothing">Néant</p>
                                                             </li>
@@ -117,6 +117,10 @@
                                                                 <p class="nothing">Néant</p>
                                                             </li>
                                                         @endif
+                                                    @else
+                                                        <li>
+                                                            <p class="nothing">Néant</p>
+                                                        </li>
                                                     @endif
                                                 </ul>
                                             </li>
