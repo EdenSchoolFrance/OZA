@@ -516,9 +516,9 @@
                                     </div>
                                     <div class="radio-title">
                                         <label>Inexistante</label>
-                                        <label>Moyen</label>
-                                        <label>Bon</label>
-                                        <label>Très bon</label>
+                                        <label>Moyenne</label>
+                                        <label>Bonne</label>
+                                        <label>Très bonne</label>
                                     </div>
                                 </div>
                                 <i class="far fa-question-circle" data-tooltip=".tooltip--restraint-tech" data-placement="left"></i>
@@ -552,9 +552,9 @@
                                     </div>
                                     <div class="radio-title">
                                         <label>Inexistante</label>
-                                        <label>Moyen</label>
-                                        <label>Bon</label>
-                                        <label>Très bon</label>
+                                        <label>Moyenne</label>
+                                        <label>Bonne</label>
+                                        <label>Très bonne</label>
                                     </div>
                                 </div>
                                 <i class="far fa-question-circle" data-tooltip=".tooltip--restraint-orga" data-placement="left"></i>
@@ -588,9 +588,9 @@
                                     </div>
                                     <div class="radio-title">
                                         <label>Inexistante</label>
-                                        <label>Moyen</label>
-                                        <label>Bon</label>
-                                        <label>Très bon</label>
+                                        <label>Moyenne</label>
+                                        <label>Bonne</label>
+                                        <label>Très bonne</label>
                                     </div>
                                 </div>
                                 <i class="far fa-question-circle" data-tooltip=".tooltip--restraint-human" data-placement="left"></i>
