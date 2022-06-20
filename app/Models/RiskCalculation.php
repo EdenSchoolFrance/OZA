@@ -12,6 +12,7 @@ class RiskCalculation extends Model
     public $timestamps = false;
     public $incrementing = false;
     protected $keyType = 'string';
+    protected $table = 'risk_calculation';
 
     /**
      * The attributes that are mass assignable.
