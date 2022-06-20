@@ -231,9 +231,13 @@ class SdRisk extends Model
         $A = $totalEnd + 1/10 * $count;
 
         if ($A >= 18.6) $Pon = RiskCalculation::where('sum', 18.6)->first();
+        else if ($A <= 1.0) $Pon = RiskCalculation::where('sum', 1.0)->first();
         else $Pon = RiskCalculation::where('sum', $A)->first();
+        
+    
+        $cal = $Pon->weighting * $RB;
 
-        return ceil($Pon->weighting * $RB);
+        return $cal;
     }
 
     public function color($number){

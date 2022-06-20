@@ -126,8 +126,8 @@ class SingleDocument extends Model
         }
 
         if ($count === 0) return "-";
-        
-        return $total / $count;
+
+        return round($total / $count, 1);
 
         // if ($count === 0) return "-";
         // else return round($end / $count, 1);
