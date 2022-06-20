@@ -88,7 +88,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body">
             <h1 class="head-title">SOMMAIRE</h1>
@@ -188,7 +188,7 @@
     </section>
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body">
             <h1 class="head-title" id="actu">ACTUALISATION DU DOCUMENT UNIQUE</h1>
@@ -229,7 +229,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body">
             <h1 class="head-title" id="structure">PRÉSENTATION DE LA STRUCTURE</h1>
@@ -283,7 +283,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body">
             <table class="table table--activity">
@@ -316,7 +316,7 @@
     @foreach($single_document->work_unit as $key => $sd_work_unit)
         <section class="page">
             <div class="header">
-                <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+                <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
             </div>
             <div class="body">
                 @if($key === 0)
@@ -382,7 +382,7 @@
     @endforeach
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body">
             <h1 class="head-title" id="tabBord">1. TABLEAU DE BORD DE L'ÉVALUATION DES RISQUES</h1>
@@ -431,7 +431,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body body--notif">
             <h1 class="head-title" id="proAnnuel">2. PROGRAMME ANNUEL DE PREVENTION ET D'AMELIORATION DES CONDITIONS DE TRAVAIL</h1>
@@ -464,7 +464,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body">
             <p>Ce Document Unique, y compris ses annexes, est protégé par les droits d'auteur. Il a été réalisé avec l'assistance d'un IPRP de la société OZA, sous l'entière responsabilité et selon les indications fournies par : <span class="bold">Mr {{ $single_document->firstname }} {{ $single_document->lastname }}, {{ $single_document->function }}</span> </p>
@@ -528,7 +528,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body body--notif">
             <h1 class="head-title" id="rules">3. RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</h1>
@@ -569,7 +569,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body body--notif">
             <h1></h1>
@@ -620,7 +620,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body body--notif">
             <h1></h1>
@@ -675,7 +675,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body body--notif">
             <h1></h1>
@@ -732,7 +732,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body body--notif">
             <h1></h1>
@@ -789,7 +789,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body body--notif">
             <h1 class="head-title" id="evalRisk">4. NOTICE EXPLICATIVE DE L'EVALUATION DES RISQUES</h1>
@@ -838,7 +838,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body body--notif">
             <h1></h1>
@@ -893,7 +893,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body body--notif">
             <h1></h1>
@@ -933,7 +933,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body body--rules">
             <h1 class="head-title" id="evalRiskPro">5. EVALUATION DES RISQUES PROFESSIONNELS PAR UNITÉ DE TRAVAIL</h1>
@@ -986,7 +986,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body body--rules">
             <p class="bold">
@@ -1048,7 +1048,7 @@
     </section>
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body body--rules">
             <p class="bold">
@@ -1110,7 +1110,7 @@
     </section>
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body body--rules">
             <p class="bold">
@@ -1143,7 +1143,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body">
             <p class="center legend"> F = Fréquence | P = Probabilité | GP = Gravité potentiel | ID = Impact différencié | RB = Risque brut | T = Technique | O = Oragnisationnelle | H = Humain | RR = Risque résiduel</p>
@@ -1267,7 +1267,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body body--notif">
             <h1 class="head-title" id="listPost">6. liste des postes de travail "a risque particulier" (code du travail art. I.4154-2)</h1>

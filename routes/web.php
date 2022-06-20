@@ -252,3 +252,5 @@ Route::middleware(['auth'])->group(function() {
 
     });
 });
+
+// sort => data-sort="value"
