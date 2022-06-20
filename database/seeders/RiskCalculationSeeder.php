@@ -64,7 +64,6 @@ class RiskCalculationSeeder extends Seeder
         $risk_calculation->weighting = (0.855);
         $risk_calculation->save();
 
-
         $risk_calculation = new RiskCalculation();
         $risk_calculation->sum = (2);
         $risk_calculation->weighting = (0.85);

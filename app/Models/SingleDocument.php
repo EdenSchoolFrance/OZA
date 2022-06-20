@@ -111,73 +111,23 @@ class SingleDocument extends Model
 
     public function moyenneRR()
     {
-        $end = 0;
+        $total = 0;
         $count = 0;
         foreach ($this->dangers as $sd_danger){
             if($sd_danger->exist === 1){
                 foreach ($sd_danger->sd_risk as $sd_risk){
-                    foreach ($sd_risk->sd_restraints_exist as $sd_restraint){
-                        $tech = 0;
-                        $orga = 0;
-                        $human = 0;
+                    
+                    $RR = $sd_risk->totalRR($sd_risk->sd_restraints_exist);
 
-                        switch ($sd_restraint->technical) {
-                            case 'very good' :
-                                $tech = 4;
-                                break;
-                            case 'good' :
-                                $tech = 3;
-                                break;
-                            case 'medium' :
-                                $tech = 2;
-                                break;
-                            case 'null' :
-                                $tech = 0;
-                                break;
-                        }
-
-                        switch ($sd_restraint->organizational) {
-                            case 'very good' :
-                                $orga = 3;
-                                break;
-                            case 'good' :
-                                $orga = 2;
-                                break;
-                            case 'medium' :
-                                $orga = 1;
-                                break;
-                            case 'null' :
-                                $orga = 0;
-                                break;
-                        }
-
-                        switch ($sd_restraint->human) {
-                            case 'very good' :
-                                $human = 3;
-                                break;
-                            case 'good' :
-                                $human = 2;
-                                break;
-                            case 'medium' :
-                                $human = 1;
-                                break;
-                            case 'null' :
-                                $human = 0;
-                                break;
-                        }
-                        $total = $tech + $orga + $human;
-                        
-                        $end = $end+$total;
-                        $count++;
-                    }
+                    $total = $total+$RR;
+                    $count++;
                 }
             }
         }
 
-        $try = round($end + (1/10 * $count), 1);
-        $final = round(0.525 * $try, 1);
-
-        return $final;
+        if ($count === 0) return "-";
+        
+        return $total / $count;
 
         // if ($count === 0) return "-";
         // else return round($end / $count, 1);

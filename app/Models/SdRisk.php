@@ -221,44 +221,19 @@ class SdRisk extends Model
                     break;
             }
             $total = $tech + $orga + $human;
-            $result = 0;
-            switch ($total) {
-                case 10 :
-                    $result= 0.2;
-                    break;
-                case 9 :
-                    $result= 0.25;
-                    break;
-                case 8 :
-                    $result= 0.3;
-                    break;
-                case 7 :
-                    $result= 0.35;
-                    break;
-                case 6 :
-                    $result= 0.4;
-                    break;
-                case 5 :
-                    $result= 0.5;
-                    break;
-                case 4 :
-                    $result= 0.6;
-                    break;
-                case 3 :
-                    $result= 0.7;
-                    break;
-                case 2 :
-                    $result= 0.8;
-                    break;
-                case 1 :
-                    $result= 0.9;
-                    break;
-            }
-            $totalEnd = $totalEnd+$result;
+            
+            $totalEnd = $total+$totalEnd;
+
             $count++;
         }
-        if ($count === 0) return ceil(($RB * $totalEnd));
-        return ceil(($RB * $totalEnd) / $count);
+        if ($count === 0) return 0;
+
+        $A = $totalEnd + 1/10 * $count;
+
+        if ($A >= 18.6) $Pon = RiskCalculation::where('sum', 18.6)->first();
+        else $Pon = RiskCalculation::where('sum', $A)->first();
+
+        return ceil($Pon->weighting * $RB);
     }
 
     public function color($number){
