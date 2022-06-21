@@ -104,9 +104,9 @@
                     </li>
                 </ul>
             </li>
-            <li class="sidebar-nav-item">
+            {{-- <li class="sidebar-nav-item">
                 <a href="#" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Risques psychosociaux</span></a>
-            </li>
+            </li> --}}
         @endisset
 
         <li class="sidebar-nav-item {{ $page['sidebar'] == "regulatory_reminders" ? 'active' : '' }}">
