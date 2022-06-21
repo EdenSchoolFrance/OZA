@@ -510,7 +510,7 @@
         @foreach($risk->sd_restraints as $restraint)
             @if($restraint->exist === 1)
                 <script>
-                    createRestraint('{{ $restraint->technical }}','{{ $restraint->organizational }}','{{ $restraint->human }}',`{!! $restraint->name !!}`,'{{ $restraint->id }}');
+                    createRestraint('{{ $restraint->technical }}','{{ $restraint->organizational }}','{{ $restraint->human }}',`{{ $restraint->name }}`,'{{ $restraint->id }}');
                 </script>
             @endif
         @endforeach
