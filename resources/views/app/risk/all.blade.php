@@ -28,7 +28,7 @@
                                 <td class="td_risk">
                                     <p>{{ $sd_risk->name }}</p>
                                 </td>
-                                <td class="td_rb">
+                                <td class="td_rb" data-sort="{{ floor($sd_risk->total()) }}">
                                     <button class="btn {{ $sd_risk->color($sd_risk->total()) }} btn-small">{{ $sd_risk->total() }}</button>
                                     <div class="list list--text">
                                         <div class="list-row">
@@ -59,11 +59,11 @@
                                         @endforeach
                                     </div>
                                 </td>
-                                <td class="td_rr">
+                                <td class="td_rr" data-sort="{{ $sd_risk->totalRR($sd_risk->sd_restraints) }}">
                                     <button class="btn {{ $sd_risk->color($sd_risk->totalRR($sd_risk->sd_restraints)) }} btn-small">{{ $sd_risk->totalRR($sd_risk->sd_restraints) }}</button>
                                 </td>
-                                <td class="td_criticality">
-                                    <button type="button" class="btn {{ $sd_risk->color(($sd_risk->totalRR($sd_risk->sd_restraints))) }} btn-small">{{ $sd_risk->colorTotal(($sd_risk->totalRR($sd_risk->sd_restraints))) }}</button>
+                                <td class="td_criticality" data-sort="{{ $sd_risk->totalRR($sd_risk->sd_restraints) }}">
+                                    <button type="button" class="btn {{ $sd_risk->color(($sd_risk->totalRR($sd_risk->sd_restraints))) }} btn-small">{{ $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints)) }}</button>
                                 </td>
                                 <td class="td_proposed_measure">
                                     <div class="list">

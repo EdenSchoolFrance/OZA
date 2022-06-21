@@ -20,7 +20,7 @@
                                 <td class="td_work_unit">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "UT Tous" }}</td>
                                 <td class="td_danger">{{ $sd_risk->sd_danger->danger->name }}</td>
                                 <td class="td_risk">{{ $sd_risk->name }}</td>
-                                <td class="td_evaluation">
+                                <td class="td_evaluation" data-sort="{{ $sd_risk->totalRR($sd_risk->sd_restraints) }}">
                                     <div class="list list--text list--space">
                                         <div class="list-row">
                                             <p class="list-point list-point--text">RR</p>
