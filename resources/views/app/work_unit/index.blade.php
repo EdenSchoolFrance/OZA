@@ -91,7 +91,6 @@
                                             <p>salarié(s) inscrit(s) sur le registre du personnel</p>
                                         </div>
                                     </div>
-                                    <a href="{{route('work.create', [$single_document->id])}}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UNE UNITE DE TRAVAIL</a>
                                 </div>
                             </td>
                             <td></td>
@@ -100,7 +99,10 @@
                 </table>
             </div>
         </div>
-
+        <div class="work-btn">
+            <a href="{{route('work.create', [$single_document->id])}}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UNE UNITE DE TRAVAIL</a>
+        </div>
+        
         @if (Auth::user()->hasPermission(['ADMIN', 'EXPERT', 'MANAGER', 'EDITOR']))
             <div class="modal modal--delete">
                 <div class="modal-dialog">

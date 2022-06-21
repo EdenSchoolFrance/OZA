@@ -183,6 +183,11 @@ table.table--work_units {
     }
 }
 
+.work-btn{
+    display: flex;
+    justify-content: flex-end;
+}
+
 .modal--work_unit{
     .modal-content{
 
