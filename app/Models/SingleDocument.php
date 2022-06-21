@@ -90,8 +90,9 @@ class SingleDocument extends Model
             case ($number <= 15) :
                 return 'text-color-green';
             case ($number < 20) :
-            case ($number < 30) :
                 return 'text-color-orange';
+            case ($number < 30) :
+                return 'text-color-pink';   
             case ($number >= 30) :
                 return 'text-color-red';
         }
