@@ -503,14 +503,14 @@
     @if(old('restraint'))
         @foreach(old('restraint') as $restraint)
             <script>
-                createRestraint('{{ explode('|',$restraint)[0] }}','{{ explode('|',$restraint)[1] }}','{{ explode('|',$restraint)[2] }}','{{ explode('|',$restraint)[3] }}','{{ explode('|',$restraint)[4] }}');
+                createRestraint('{{ explode('|',$restraint)[0] }}','{{ explode('|',$restraint)[1] }}','{{ explode('|',$restraint)[2] }}','{!! explode('|',$restraint)[3] !!}','{{ explode('|',$restraint)[4] }}');
             </script>
         @endforeach
     @elseif(isset($risk))
         @foreach($risk->sd_restraints as $restraint)
             @if($restraint->exist === 1)
                 <script>
-                    createRestraint('{{ $restraint->technical }}','{{ $restraint->organizational }}','{{ $restraint->human }}',`{{ $restraint->name }}`,'{{ $restraint->id }}');
+                    createRestraint('{{ $restraint->technical }}','{{ $restraint->organizational }}','{{ $restraint->human }}',`{!! $restraint->name !!}`,'{{ $restraint->id }}');
                 </script>
             @endif
         @endforeach
@@ -525,7 +525,7 @@
         @foreach($risk->sd_restraints as $restraint)
             @if($restraint->exist === 0)
                 <script>
-                    createRestraintProposed('{{ $restraint->name }}')
+                    createRestraintProposed('{!! $restraint->name !!}')
                 </script>
             @endif
         @endforeach
