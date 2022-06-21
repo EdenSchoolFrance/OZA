@@ -44,7 +44,7 @@
                                 <td class="td_activity">
                                     <div class="table-resizable">
                                         @foreach($work->activities as $activitie)
-                                            <p>► {{ $activitie->text }}</p>
+                                            <p>► @stripTags($activitie->text)</p>
                                         @endforeach
                                     </div>
                                 </td>

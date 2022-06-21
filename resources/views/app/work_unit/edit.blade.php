@@ -45,14 +45,14 @@
                                 @foreach(old('activities') as $activitie)
                                     <li>
                                         <button type="button" class="btn btn-text btn-small btn-delete"><i class="far fa-times-circle"></i></button>
-                                        <textarea class="form-control auto-resize" placeholder="" name="activities[]">{{ $activitie }}</textarea>
+                                        <textarea class="form-control auto-resize" placeholder="" name="activities[]">@stripTags($activitie)</textarea>
                                     </li>
                                 @endforeach
                             @else
                                 @foreach($work->activities as $activitie)
                                     <li>
                                         <button type="button" class="btn btn-text btn-small btn-delete"><i class="far fa-times-circle"></i></button>
-                                        <textarea class="form-control auto-resize" placeholder="" name="activities[]">{{ $activitie->text }}</textarea>
+                                        <textarea class="form-control auto-resize" placeholder="" name="activities[]">@stripTags($activitie->text)</textarea>
                                     </li>
                                 @endforeach
                             @endif

@@ -30,10 +30,9 @@
                                     @foreach(old('activities') as $activitie)
                                         <li>
                                             <button type="button" class="btn btn-text btn-small btn-delete"><i class="far fa-times-circle"></i></button>
-                                            <textarea class="form-control auto-resize" placeholder="" name="activities[]">{{ $activitie }}</textarea>
+                                            <textarea class="form-control auto-resize" placeholder="" name="activities[]">@stripTags($activitie)</textarea>
                                         </li>
                                     @endforeach
-
                                 @endif
                                 <li>
                                     <button type="button" class="btn btn-text btn-yellow btn-add-activity"><i class="fas fa-plus"></i> Ajouter une activité</button>

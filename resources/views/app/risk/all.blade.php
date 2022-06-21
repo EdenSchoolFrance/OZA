@@ -23,10 +23,10 @@
                     <tbody>
                         @foreach ($sd_risks as $sd_risk)
                             <tr>
-                                <td class="td_work_unit">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "UT Tous" }}</td>
+                                <td class="td_work_unit" data-sort="{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "UT Tous" }} {{ $sd_risk->sd_danger->danger->name }}">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "UT Tous" }}</td>
                                 <td class="td_danger">{{ $sd_risk->sd_danger->danger->name }}</td>
                                 <td class="td_risk">
-                                    <p>{{ $sd_risk->name }}</p>
+                                    <p>@stripTags($sd_risk->name)</p>
                                 </td>
                                 <td class="td_rb" data-sort="{{ floor($sd_risk->total()) }}">
                                     <button class="btn {{ $sd_risk->color($sd_risk->total()) }} btn-small">{{ $sd_risk->total() }}</button>
@@ -54,7 +54,7 @@
                                         @foreach($sd_risk->sd_restraints_exist as $restraint)
                                             <div class="list-row">
                                                 <div class="list-point list-point--success"></div>
-                                                <p class="list-text">{{ $restraint->name }}</p>
+                                                <p class="list-text">@stripTags($restraint->name)</p>
                                             </div>
                                         @endforeach
                                     </div>
@@ -70,7 +70,7 @@
                                         @foreach($sd_risk->sd_restraints_porposed as $restraint)
                                             <div class="list-row">
                                                 <div class="list-point list-point--yellow"></div>
-                                                <p class="list-text">{{ $restraint->name }}</p>
+                                                <p class="list-text">@stripTags($restraint->name)</p>
                                             </div>
                                         @endforeach
                                     </div>

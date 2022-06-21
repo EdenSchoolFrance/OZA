@@ -82,7 +82,7 @@
                                     @foreach($risks_all as $risk)
                                         <tr>
                                             <td class="td_risk">
-                                                <p>{{ $risk->name }}</p>
+                                                <p>@stripTags($risk->name)</p>
                                             </td>
                                             <td class="td_rb">
                                                 <button class="btn {{ $risk->color($risk->total()) }} btn-small">{{ $risk->total() }}</button>
@@ -111,7 +111,7 @@
                                                         @if($restraint->exist === 1)
                                                             <div class="list-row">
                                                                 <div class="list-point list-point--success"></div>
-                                                                <p class="list-text">{{ $restraint->name }}</p>
+                                                                <p class="list-text">@stripTags($restraint->name)</p>
                                                             </div>
                                                         @endif
                                                     @endforeach
@@ -126,7 +126,7 @@
                                                         @if($restraint->exist === 0)
                                                             <div class="list-row">
                                                                 <div class="list-point list-point--yellow"></div>
-                                                                <p class="list-text">{{ $restraint->name }}</p>
+                                                                <p class="list-text">@stripTags($restraint->name)</p>
                                                             </div>
                                                         @endif
                                                     @endforeach
@@ -204,7 +204,7 @@
                                             @foreach($sd_work_unit->sd_danger_risks($danger->id) as $risk)
                                                 <tr>
                                                     <td class="td_risk">
-                                                        <p>{{ $risk->name }}</p>
+                                                        <p>@stripTags($risk->name)</p>
                                                     </td>
                                                     <td class="td_rb">
                                                         <button class="btn {{ $risk->color($risk->total()) }} btn-small">{{ $risk->total() }}</button>
@@ -233,7 +233,7 @@
                                                                 @if($restraint->exist === 1)
                                                                     <div class="list-row">
                                                                         <div class="list-point list-point--success"></div>
-                                                                        <p class="list-text">{{ $restraint->name }}</p>
+                                                                        <p class="list-text">@stripTags($restraint->name)</p>
                                                                     </div>
                                                                 @endif
                                                             @endforeach
@@ -248,7 +248,7 @@
                                                             @if($restraint->exist === 0)
                                                                 <div class="list-row">
                                                                     <div class="list-point list-point--yellow"></div>
-                                                                    <p class="list-text">{{ $restraint->name }}</p>
+                                                                    <p class="list-text">@stripTags($restraint->name)</p>
                                                                 </div>
                                                             @endif
                                                         @endforeach

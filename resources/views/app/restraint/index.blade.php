@@ -17,7 +17,7 @@
                     <tbody>
                         @foreach ($sd_risks as $sd_risk)
                             <tr>
-                                <td class="td_work_unit">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "UT Tous" }}</td>
+                                <td class="td_work_unit" data-sort="{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "UT Tous" }} {{ $sd_risk->sd_danger->danger->name }}">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "UT Tous" }}</td>
                                 <td class="td_danger">{{ $sd_risk->sd_danger->danger->name }}</td>
                                 <td class="td_risk">{{ $sd_risk->name }}</td>
                                 <td class="td_evaluation" data-sort="{{ $sd_risk->totalRR($sd_risk->sd_restraints) }}">

@@ -77,19 +77,9 @@ class PDFController extends Controller
 
         File::put($chartUrl, $chart);
 
-        // $test = SdRisk::whereHas('sd_danger', function ($q) use ($single_document) {
-        //     $q->where('single_document_id', $single_document->id)->whereHas('sd_works_units', function ($q) use ($single_document) {
-        //         $q->wherePivot('exist', 1);
-        //     });
-        // })->has('sd_restraints_porposed', '>', 0)->get();
-
-        // foreach ($test as $sd_risk) {
-        //     dump(count($sd_risk->sd_restraints_porposed()->get()) . ' t');
-        // }
-
-        // die;
-
         $pdf = PDF::loadView('app.pdf.index', compact('chartUrl', 'single_document', 'item_mat', 'item_veh', 'item_eng', 'sd_risks', 'sd_risks_posts'))->setPaper('a4', 'landscape');
+
+        // return $pdf->stream();
 
         Storage::put('/private/' . $single_document->client->id . '/du/' . $histories->id . '.pdf', $pdf->download()->getOriginalContent());
 
