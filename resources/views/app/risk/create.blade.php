@@ -705,11 +705,11 @@
         let pon = {!! $risk_cal !!};
     </script>
     <script src="/js/app/risk.js"></script>
-    @if(old('restraint'))
+    @if(old('res_title'))
         <script>
             // exemple text : t&#039;es
-            @foreach(old('restraint') as $restraint)
-                createRestraint('{{ explode('|',$restraint)[0] }}','{{ explode('|',$restraint)[1] }}','{{ explode('|',$restraint)[2] }}','{!! strip_tags(explode('|',$restraint)[3]) !!}')
+            @foreach(old('res_title') as $key => $res_title)
+                createRestraint('{{ old("res_tech")[$key] }}','{{ old("res_orga")[$key] }}','{{ old("res_human")[$key] }}',`{!! strip_tags($res_title) !!}`)
             @endforeach
         </script>
     @endif

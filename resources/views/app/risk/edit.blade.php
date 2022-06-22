@@ -500,12 +500,13 @@
         let pon = {!! $risk_cal !!};
     </script>
     <script src="/js/app/risk.js"></script>
-    @if(old('restraint'))
-        @foreach(old('restraint') as $restraint)
-            <script>
-                createRestraint('{{ explode('|',$restraint)[0] }}','{{ explode('|',$restraint)[1] }}','{{ explode('|',$restraint)[2] }}','{!! explode('|',$restraint)[3] !!}','{{ explode('|',$restraint)[4] }}');
-            </script>
-        @endforeach
+    @if(old('res_title'))
+        <script>
+            // exemple text : t&#039;es
+            @foreach(old('res_title') as $key => $res_title)
+                createRestraint('{{ old("res_tech")[$key] }}','{{ old("res_orga")[$key] }}','{{ old("res_human")[$key] }}',`{!! strip_tags($res_title) !!}`)
+            @endforeach
+        </script>
     @elseif(isset($risk))
         @foreach($risk->sd_restraints as $restraint)
             @if($restraint->exist === 1)

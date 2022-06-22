@@ -149,6 +149,12 @@ class RiskController extends Controller
             'impact' => 'required'
         ]);
 
+        // var_dump($request->res_title);
+        // var_dump($request->res_tech);
+        // var_dump($request->res_orga);
+        // var_dump($request->res_human);
+        // die;
+
         $sd_risk = new SdRisk();
         $sd_risk->id = uniqid();
         $sd_risk->name = $request->name_risk;
@@ -160,16 +166,16 @@ class RiskController extends Controller
         if ($sd_work_unit) $sd_risk->sd_work_unit()->associate($sd_work_unit);
         $sd_risk->save();
 
-        if (isset($request->restraint)){
-            foreach ($request->restraint as $restraint){
-                $restraint = explode('|', $restraint);
-                if( empty($restraint[0]) || empty($restraint[1]) || empty($restraint[2]) || empty($restraint[3]) ) return back()->with('status','Des mesures sont incomplete')->with('status_type','danger');
+        if (isset($request->res_title) && isset($request->res_tech) && isset($request->res_orga) && isset($request->res_human)){
+            foreach ($request->res_title as $key => $res_title ){
+                
+                if( empty($res_title) || empty($request->res_tech[$key]) || empty($request->res_orga[$key]) || empty($request->res_human[$key]) ) return back()->with('status','Des mesures sont incomplete')->with('status_type','danger');
                 $sd_restraint = new SdRestraint();
                 $sd_restraint->id = uniqid();
-                $sd_restraint->name = $restraint[3];
-                $sd_restraint->technical = $restraint[0];
-                $sd_restraint->organizational = $restraint[1];
-                $sd_restraint->human = $restraint[2];
+                $sd_restraint->name = $res_title;
+                $sd_restraint->technical = $request->res_tech[$key];
+                $sd_restraint->organizational = $request->res_orga[$key];
+                $sd_restraint->human = $request->res_human[$key];
                 $sd_restraint->exist = true;
                 $sd_restraint->sd_risk()->associate($sd_risk);
                 $sd_restraint->save();
@@ -223,15 +229,15 @@ class RiskController extends Controller
         if ($sd_work_unit) $sd_risk->sd_work_unit()->associate($sd_work_unit);
         $sd_risk->save();
 
-        if (isset($request->restraint)){
-            foreach ($request->restraint as $restraint){
-                $restraint = explode('|', $restraint);
+        if (isset($request->res_title) && isset($request->res_tech) && isset($request->res_orga) && isset($request->res_human)){
+            foreach ($request->res_title as $key => $res_title ){
+
                 $sd_restraint = new SdRestraint();
                 $sd_restraint->id = uniqid();
-                $sd_restraint->name = $restraint[3];
-                $sd_restraint->technical = $restraint[0];
-                $sd_restraint->organizational = $restraint[1];
-                $sd_restraint->human = $restraint[2];
+                $sd_restraint->name = $res_title;
+                $sd_restraint->technical = $request->res_tech[$key];
+                $sd_restraint->organizational = $request->res_orga[$key];
+                $sd_restraint->human = $request->res_human[$key];
                 $sd_restraint->exist = true;
                 $sd_restraint->sd_risk()->associate($sd_risk);
                 $sd_restraint->save();

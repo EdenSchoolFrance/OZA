@@ -46,16 +46,19 @@ on('.btn-edit-modal-risk', 'click', (el, e) => {
     let tech = $('.radio-bar-tech input')
     let orga = $('.radio-bar-orga input')
     let human = $('.radio-bar-human input')
-    let data = el.closest('li').querySelector('input').value.split('|')
-    $('#nameRisk', document, 0).value = data[3]
+    let title = el.closest('li').querySelector('input[name="res_title[]"]').value
+    let techA = el.closest('li').querySelector('input[name="res_tech[]"]').value
+    let orgaA = el.closest('li').querySelector('input[name="res_orga[]"]').value
+    let humanA = el.closest('li').querySelector('input[name="res_human[]"]').value
+    $('#nameRisk', document, 0).value = title
     for (let i = 0; i < tech.length ; i++) {
-        tech[i].checked = tech[i].value === data[0];
+        tech[i].checked = tech[i].value === techA;
     }
-    for (let i = 0; i <orga.length ; i++) {
-        orga[i].checked = orga[i].value === data[1];
+    for (let i = 0; i < orga.length ; i++) {
+        orga[i].checked = orga[i].value === orgaA;
     }
     for (let i = 0; i < human.length ; i++) {
-        human[i].checked = human[i].value === data[2];
+        human[i].checked = human[i].value === humanA;
     }
     $('textarea.auto-resize').forEach(el => {
         if (el.scrollHeight > 0){
@@ -424,7 +427,11 @@ function createRestraint(tech,orga,human,title,id){
         '     <i class="far fa-times-circle btn-delete"></i>\n' +
         '     <p class="title-restraint"></p> \n' +
         '     <button data-modal=".modal--risk" data-id="'+id+'" class="btn btn-yellow btn-text btn-edit-modal-risk" type="button"><i class="far fa-edit text-color-yellow"></i></button>\n' +
-        '     <input type="hidden" value="'+tech+'|'+orga+'|'+human+'|'+escapeHtml(title)+'|'+id+'" name="restraint[]">' +
+        '     <input type="hidden" value="'+(title)+'" name="res_title[]">' +
+        '     <input type="hidden" value="'+tech+'" name="res_tech[]">' +
+        '     <input type="hidden" value="'+orga+'" name="res_orga[]">' +
+        '     <input type="hidden" value="'+human+'" name="res_human[]">' +
+        '     <input type="hidden" value="'+id+'" name="res_id[]">' +
         '    </p>\n' +
         '   </li>\n' +
         '   \n' +
@@ -456,7 +463,11 @@ function editRestraint(tech,orga,human,title,id){
         '     <i class="far fa-times-circle btn-delete"></i>\n' +
         '     <p class="title-restraint"></p> \n' +
         '     <button data-modal=".modal--risk" data-id="'+id+'" class="btn btn-yellow btn-text btn-edit-modal-risk" type="button"><i class="far fa-edit text-color-yellow"></i></button>\n' +
-        '     <input type="hidden" value="'+tech+'|'+orga+'|'+human+'|'+escapeHtml(title)+'|'+id+'" name="restraint[]">' +
+        '     <input type="hidden" value="'+(title)+'" name="res_title[]">' +
+        '     <input type="hidden" value="'+tech+'" name="res_tech[]">' +
+        '     <input type="hidden" value="'+orga+'" name="res_orga[]">' +
+        '     <input type="hidden" value="'+human+'" name="res_human[]">' +
+        '     <input type="hidden" value="'+id+'" name="res_id[]">' +
         '    </p>\n' +
         '   </li>\n' +
         '   \n' +
