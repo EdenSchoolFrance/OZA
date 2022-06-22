@@ -103,58 +103,59 @@ span {
         position: relative;
 
         .head-title {
-            // border-left: 10px solid $yellow;
-            // padding: 5px 0 5px 20px;
+            border-left: 10px solid $yellow;
+            padding: 5px 0 5px 20px;
+            margin: 0 0 20px 0;
         }
 
         ul {
-            // padding-top: 30px;
+            padding-top: 30px;
 
             li {
-                // margin-top: 30px;
+                margin-top: 30px;
 
                 &:last-child {
-                    // margin-top: 40px;
+                    margin-top: 40px;
                 }
             }
         }
 
         .list-item {
-            // padding-top: 10px;
+            padding-top: 10px;
 
             li {
-                // height: 20px;
-                // margin-top: 5px;
+                height: 20px;
+                margin-top: 5px;
 
-                // p {
-                //     width: 95%;
-                //     border-bottom: 1px solid $dark;
-                //     // margin-left: 30px;
-                //     font-size: 13px;
+                p {
+                    width: 95%;
+                    border-bottom: 1px solid $dark;
+                    margin-left: 30px;
+                    font-size: 13px;
 
-                //     .line {
-                //         width: 100%;
+                    .line {
+                        width: 100%;
 
-                //         .bold {
-                //             margin: 0;
-                //         }
+                        .bold {
+                            margin: 0;
+                        }
 
-                //         span {
-                //             border: none;
-                //         }
-                //     }
-                // }
+                        span {
+                            border: none;
+                        }
+                    }
+                }
 
                 .number {
-                    // position: absolute;
-                    // left: 10px;
-                    // font-weight: 700;
-                    // font-size: 13px;
+                    position: absolute;
+                    left: 10px;
+                    font-weight: 700;
+                    font-size: 13px;
                 }
             }
 
             .no-border {
-                // margin-top: 0;
+                margin-top: 0;
 
                 p {
                     border: none;
@@ -162,26 +163,32 @@ span {
             }
         }
 
-        // .center {
-        //     text-align: center;
-        // }
+        .center {
+            text-align: center;
+        }
 
-        // .legend {
-        //     font-size: 12px;
-        //     font-style: italic;
-        // }
+        .legend {
+            font-size: 12px;
+            font-style: italic;
+        }
 
-        // &--notif {
-        //     p {
-        //         padding-top: 40px;
-        //     }
-        // }
+        p {
+            &.info {
+                margin-bottom: 20px;
+            }
+        }
 
-        // &--rules {
-        //     p {
-        //         padding-top: 20px;
-        //     }
-        // }
+        &--notif {
+            p {
+                padding-top: 40px;
+            }
+        }
+
+        &--rules {
+            p {
+                padding-top: 20px;
+            }
+        }
     }
 
     &>.footer {
@@ -406,8 +413,6 @@ table {
         }
 
         &--work_unit {
-            margin-top: 30px;
-
             tr {
                 td {
                     padding: 20px;
@@ -421,7 +426,6 @@ table {
         }
 
         &--no-border {
-
             tr,
             td {
                 border: none;
@@ -461,7 +465,6 @@ table {
         }
 
         &--action-plan {
-
             tr,
             td {
                 font-size: 10px;
@@ -554,9 +557,9 @@ table {
 }
 
 .chart-risk {
-    margin-top: 30px;
-    margin-left: 270px;
-    width: 600px;
+    margin-top: 0px;
+    margin-left: 150px;
+    width: 700px;
 }
 
 .rotate90 {
