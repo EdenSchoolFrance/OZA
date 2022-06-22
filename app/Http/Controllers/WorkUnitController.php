@@ -32,7 +32,7 @@ class WorkUnitController extends Controller
 
         $works = SdWorkUnit::whereHas('single_document', function ($q) use ($id) {
             $q->where('id', $id);
-        })->get();
+        })->orderBy('name')->get();
 
         $items = Item::all();
 
@@ -160,12 +160,13 @@ class WorkUnitController extends Controller
         ]);
 
 
-        $work = new SdWorkUnit();
-        $work->id = uniqid();
+        $work = SdWorkUnit::find($id_work);
         $work->name = $request->work_unit_entitled;
         $work->number_employee = $request->number_employee;
         if ($request->type === 'true') $work->validated = 1; else $work->validated = 0;
         $work->single_document()->associate($single_document);
+        $work->activities()->delete();
+        $work->items()->delete();
         $work->save();
 
         foreach ($request->activities as $activitie){
@@ -177,7 +178,6 @@ class WorkUnitController extends Controller
                 $acti->save();
             }
         }
-        $work1 = SdWorkUnit::find($id_work);
 
         $items = Item::all();
         foreach ($items as $item){
@@ -202,7 +202,6 @@ class WorkUnitController extends Controller
 
         }
 
-        $work1->delete();
 
         return redirect()->route('work.index', [$single_document->id]);
     }
