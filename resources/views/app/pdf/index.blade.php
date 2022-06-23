@@ -7,6 +7,7 @@
     <title>PDF Test</title>
     <link rel="stylesheet" href="{{ public_path('css/pdf/pdf.min.css') }}">
 </head>
+<?php setlocale(LC_TIME, 'French');?>
 <body class="pdf">
     <section class="page page--first">
         <div class="header">
@@ -24,7 +25,7 @@
             <img src="{{ public_path('storage/' . $single_document->client->id . '/logo.' . $single_document->client->image_type) }}" alt="">
 
             <div class="info-single_document">
-                <p> @if(count($single_document->histories) === 1) Document Unique élaboré le @else Mise à jour du DUERP le @endif: <span class="bold">{{ date("d F Y") }}</span></p>
+                <p> @if(count($single_document->histories) === 1) Document Unique élaboré le @else Mise à jour du DUERP le @endif: <span class="bold">{{ $date }}</span></p>
                 <p>Version : <span class="bold">{{ count($single_document->histories) }}</span></p>
             </div>
         </div>
@@ -512,20 +513,22 @@
                 </thead>
                 <tbody>
                     @foreach($sd_risks as $sd_risk)
-                        <tr>
-                            <td class="workunit">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "Tous" }}</td>
-                            <td class="danger">{{ $sd_risk->sd_danger->danger->name }}</td>
-                            <td class="risk">@stripTags($sd_risk->name)</td>
-                            <td class="risk_residuel center">{{ $sd_risk->totalRR($sd_risk->sd_restraints) }}</td>
-                            <td class="criticity center {{ $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints)) }}">{{ $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints)) }}</td>
-                            <td class="restraint">
-                                @foreach($sd_risk->sd_restraints as $sd_restraint)
-                                    @stripTags($sd_restraint->name)<br>
-                                @endforeach
-                            </td>
-                            <td class="comment"></td>
-                            <td class="date"></td>
-                        </tr>
+                        @if (count($sd_risk->sd_restraints_porposed) >= 1)
+                            <tr>
+                                <td class="workunit">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "Tous" }}</td>
+                                <td class="danger">{{ $sd_risk->sd_danger->danger->name }}</td>
+                                <td class="risk">@stripTags($sd_risk->name)</td>
+                                <td class="risk_residuel center">{{ $sd_risk->totalRR($sd_risk->sd_restraints) }}</td>
+                                <td class="criticity center {{ $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints)) }}">{{ $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints)) }}</td>
+                                <td class="restraint">
+                                    @foreach($sd_risk->sd_restraints_porposed as $sd_restraint)
+                                        @stripTags($sd_restraint->name)<br>
+                                    @endforeach
+                                </td>
+                                <td class="comment"></td>
+                                <td class="date"></td>
+                            </tr>
+                        @endif
                     @endforeach
                 </tbody>
             </table>
@@ -1272,7 +1275,7 @@
         </div>
     </section>
 
-    <section class="page">
+     <section class="page">
         <div class="header">
             <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
@@ -1337,6 +1340,185 @@
             <p class="page-num">LISTE DES POSTES DE TRAVAIL</p>
         </div>
     </section>
+
+
+    {{-- <section class="page">
+        <div class="header">
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+        </div>
+
+        <div class="body body--notif">
+            <h1 class="head-title" id="listPost">10. EVALUATION DE L'EXPOSITION AUX "FACTEURS DE RISQUES PROFESSIONNELS"</h1>
+            <p>
+                Cette annexe du Document Unique consigne réglementairement (Article R.4121-1-1) :
+            </p>
+            <p>
+                1° Les données de l’évaluation de l’exposition aux facteurs de risques professionnels de nature à faciliter la déclaration annuelle des salariés exposés au delà des seuils réglementaires ;
+            </p>
+            <p>
+                2° La proportion de salariés exposés aux facteurs de risques professionnels, au-delà des seuils réglementaires.
+            </p>
+            <table class="table table--risk-post">
+                <thead>
+                    <tr>
+                        <td class="theader yellow" colspan="3">
+                            Déclaration des expositions de l’année écoulée du 1er janvier au 31 décembre.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="theader">
+                            Effectif salarié total
+                        </td>
+                        <td class="theader">
+                            Effectif exposé au-delà des seuils réglementaires
+                        </td>
+                        <td class="theader">
+                            Proportion de salariés exposés aux facteurs de risques professionnels au-delà des seuils prévus
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="center">
+                            {{ $numberEmUt }}
+                        </td>
+                        <td class="{{ $numberEmExpo === 0 ? "green" : "red" }} center">
+                            {{ $numberEmExpo }}
+                        </td>
+                        <td class="{{ $numberEmExpo/$numberEmUt === 0 ? "green" : "red" }} center">
+                            {{ $numberEmExpo/$numberEmUt."%"}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="table table--risk-post">
+                <thead>
+                    <tr>
+                        <td class="theader yellow">
+                            Facteurs de risque professionnels
+                        </td>
+                        <td class="theader yellow">
+                            Unité exposée au-delà des seuils
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($expos as $expo)
+                        <tr>
+                            <td>
+                                {{ $expo->danger->name }}
+                            </td>
+                            <td class="center">
+                                {{ count($expo->pivot($single_document->id)) === 0 ? "Non" : "Oui"  }}
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            <p> Copyright © OZA DUERP Online</p>
+            <p class="page-num">LISTE DES POSTES DE TRAVAIL</p>
+        </div>
+    </section>
+
+
+    <section class="page">
+        <div class="header">
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+        </div>
+
+        <div class="body body--notif">
+            <h1 class="head-title" id="listPost">10. EVALUATION DE L'EXPOSITION AUX "FACTEURS DE RISQUES PROFESSIONNELS"</h1>
+            <p class="text-color-red">
+                A noter : La durée annuelle d’exposition considérée est de 220 jours.
+                Seules les unités de travail concernées par une exposition sont présentées. Ce qui implique que les unités non présentes dans le tableau ne sont pas concernées. 
+            </p>
+            <table class="table table--risk-post">
+                <thead>
+                    <tr>
+                        <td class="theader yellow" colspan="8">
+                            ANNEXE D’EVALUATION DE L’EXPOSITION AUX FACTEURS DE RISQUES PROFESSIONNELS
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="theader">
+                            Danger
+                        </td>
+                        <td class="theader">
+                            Unité de Travail
+                        </td>
+                        <td class="theader">
+                            Action ou situation
+                        </td>
+                        <td class="theader">
+                            Exposition appréciée après application des mesures de protection collective et individuelle
+                        </td>
+                        <td class="theader">
+                            Nombre de personnes concernées
+                        </td>
+                        <td class="theader">
+                            Détail de l’exposiatin 
+                        </td>
+                        <td class="theader">
+                            Total
+                        </td>
+                        <td class="theader">
+                            Situation
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($expos as $expo)
+                        @foreach ($expo->exposition_groups as $exposition_group)
+                            
+                            <tr>
+                                <td class="">
+                                    {{ $expo->danger->name }}
+                                </td>
+                                @if (count($expo->pivot($single_document->id)) === 0)
+                                    
+                                    <td>
+                                        TOUS
+                                    </td>
+                                    <td>
+                                        {{ $exposition_group->intervention_type_label }}
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Non concernée</td>
+
+                                @else
+
+                                    <td>
+                                        
+                                    </td>
+                                    <td>
+                                        {{ $exposition_group->intervention_type_label }}
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Non concernée</td>
+
+                                @endif
+                            </tr>
+                        @endforeach
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            <p> Copyright © OZA DUERP Online</p>
+            <p class="page-num">LISTE DES POSTES DE TRAVAIL</p>
+        </div>
+    </section> --}}
 
 </body>
 </html>

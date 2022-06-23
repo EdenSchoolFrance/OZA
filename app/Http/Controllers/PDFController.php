@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Exposition;
 use PDF;
 use App\Models\Item;
 use App\Models\SdRisk;
 use App\Models\SubItem;
 use App\Models\Historie;
+use App\Models\SdExpositionQuestion;
+use App\Models\SdWorkUnit;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -25,15 +29,41 @@ class PDFController extends Controller
 
         $sd_risks = SdRisk::whereHas('sd_danger', function ($q) use ($single_document) {
             $q->where('single_document_id', $single_document->id);
-        })->get();
+        })->get()->sort(function ($a, $b) {
+            return $b->totalRR($b->sd_restraints); - $a->totalRR($a->sd_restraints);
+        });
 
         $sd_risks_posts = SdRisk::whereHas('sd_danger', function ($q) use ($single_document) {
             $q->where('single_document_id', $single_document->id);
         })->get()->filter(function ($sd_risk, $key) {
             return $sd_risk->total() > 23;
         })->all();
-        setlocale(LC_TIME, "fr_FR");
+
+        $works = SdWorkUnit::whereHas('single_document', function ($q) use ($single_document) {
+            $q->where('id', $single_document->id);
+        })->get();
+
+        $numberEmUt = 0;
+        $numberEmExpo = 0;
+        foreach ($works as $work){
+            $numberEmUt = $numberEmUt + $work->number_employee;
+            
+            $expos_questions = SdExpositionQuestion::whereHas('sd_work_unit', function ($q) use ($work) {
+                $q->where('sd_work_unit_id', $work->id);
+            })->get();
+
+            foreach ($expos_questions as $expo_question){
+                $numberEmExpo = $numberEmExpo + $expo_question->number_employee;
+            }
+        }
+
+        $expos = Exposition::all();
+
+    
+        setlocale(LC_TIME, 'fr', 'fr_FR', 'fr_FR.ISO8859-1');
         $histories = Historie::find(session('status'));
+
+        $date = Carbon::now('Europe/Paris')->translatedFormat('d F Y');
 
         $chartConfig = [
             'type' => 'outlabeledPie',
@@ -77,11 +107,12 @@ class PDFController extends Controller
 
         File::put($chartUrl, $chart);
 
-        $pdf = PDF::loadView('app.pdf.index', compact('chartUrl', 'single_document', 'item_mat', 'item_veh', 'item_eng', 'sd_risks', 'sd_risks_posts'))->setPaper('a4', 'landscape');
+        $pdf = PDF::loadView('app.pdf.index', compact('chartUrl', 'single_document', 'item_mat', 'item_veh', 'item_eng', 'sd_risks', 'sd_risks_posts', 'numberEmUt', 'numberEmExpo', 'expos', 'date'))->setPaper('a4', 'landscape');
 
-        Storage::put('/private/' . $single_document->client->id . '/du/' . $histories->id . '.pdf', $pdf->download()->getOriginalContent());
+        return $pdf->stream();
+        //Storage::put('/private/' . $single_document->client->id . '/du/' . $histories->id . '.pdf', $pdf->download()->getOriginalContent());
 
-        return back()->with('status', 'Document unique généré avec succès, vous pouvez maintenant le télécharger !');
+        //return back()->with('status', 'Document unique généré avec succès, vous pouvez maintenant le télécharger !');
     }
 
     public static function create()

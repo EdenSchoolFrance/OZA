@@ -59,6 +59,10 @@ span {
 }
 
 .text-color {
+    &-pink {
+        color: $pink !important;
+    }
+
     &-yellow {
         color: $yellow !important;
     }
@@ -316,6 +320,11 @@ table {
                 color: $white;
             }
 
+            &.pink {
+                background-color: $pink;
+                color: $white;
+            }
+
             &.red {
                 background-color: $danger;
                 color: $white;
@@ -350,6 +359,11 @@ table {
 
             &.yellow {
                 background-color: $warning;
+                color: $white;
+            }
+
+            &.pink {
+                background-color: $pink;
                 color: $white;
             }
 

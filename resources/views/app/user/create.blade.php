@@ -3,47 +3,18 @@
 @section('content')
     <div class="content">
         <div class="card card--create-users">
-            @if (count($users) > 0)
-                <form class="card-body" action="{{ route('user.client.store', [$single_document->id]) }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="type" value="add">
-                    <div class="row">
-                        <div class="line">
-                            <div class="left">
-                            </div>
-                            <div class="right">
-                                <h3 class="text-color-yellow">Liste d'utilisateurs existants</h3>
-                            </div>
-                        </div>
-                        <div class="line">
-                            <div class="left">
-                            </div>
-                            <div class="right">
-                                <select class="form-control" name="user" id="user">
-                                    <option value="">Sélectionner un utilisateur</option>
-                                    @foreach ($users as $user)
-                                        <option value="{{ $user->id }}" {{ old('user') == $user->id ? 'selected' : '' }}>{{ $user->firstname }} {{ $user->lastname }} - {{ $user->role->name }}</option>
-                                    @endforeach
-                                </select>
-                                @error('role')
-                                    <p class="message-error">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="line">
-                            <div class="left">
-                            </div>
-                            <div class="right">
-                                <button type="submit" class="btn btn-success">Ajouter</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            @endif
+            
             <form class="card-body" action="{{ route('user.client.store', [$single_document->id]) }}" method="POST">
                 @csrf
                 <input type="hidden" name="type" value="create">
                 <div class="row">
+                    <div class="line">
+                        <div class="left">
+                        </div>
+                        <div class="right">
+                            <h3 class="text-color-yellow">Ajouter un nouvel utilisateur</h3>
+                        </div>
+                    </div>
                     <div class="line">
                         <div class="left">
                             <label for="firstname">Prénom</label>
@@ -153,6 +124,44 @@
                     </div>
                 </div>
             </form>
+            <hr style="width: 95%">
+            @if (count($users) > 0)
+                <form class="card-body" action="{{ route('user.client.store', [$single_document->id]) }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="type" value="add">
+                    <div class="row">
+                        <div class="line">
+                            <div class="left">
+                            </div>
+                            <div class="right">
+                                <h3 class="text-color-yellow">Ajouter un utilisateur existant</h3>
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="left">
+                            </div>
+                            <div class="right">
+                                <select class="form-control" name="user" id="user">
+                                    <option value="">Sélectionner un utilisateur</option>
+                                    @foreach ($users as $user)
+                                        <option value="{{ $user->id }}" {{ old('user') == $user->id ? 'selected' : '' }}>{{ $user->firstname }} {{ $user->lastname }} - {{ $user->role->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('role')
+                                    <p class="message-error">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="left">
+                            </div>
+                            <div class="right">
+                                <button type="submit" class="btn btn-success">Ajouter</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            @endif
         </div>
     </div>
 @endsection
