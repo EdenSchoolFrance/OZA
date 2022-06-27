@@ -1,0 +1,264 @@
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Hind-Medium';
+    border-radius: 15px;
+    padding: 5px 25px;
+    color: $dark_purple;
+
+    i {
+        font-size: 14px;
+        margin-right: 5px;
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+    }
+
+    &-yellow {
+        background-color: $yellow;
+        color: $white;
+
+        &.btn-inv {
+            border-color: $yellow;
+        }
+
+        &.btn-text {
+            color: $yellow;
+        }
+    }
+
+    &-warning {
+        background-color: $orange;
+        color: $white;
+
+        &.btn-inv {
+            border-color: $orange;
+        }
+
+        &.btn-text {
+            color: $orange;
+        }
+    }
+
+    &-warn {
+        background-color: $pink;
+        color: $white;
+
+        &.btn-inv {
+            border-color: $pink;
+        }
+
+        &.btn-text {
+            color: $pink;
+        }
+    }
+
+    &-success {
+        background-color: $success;
+        color: $white;
+
+        &.btn-inv {
+            border-color: $success;
+        }
+
+        &.btn-text {
+            color: $success;
+        }
+    }
+
+    &-danger {
+        background-color: $danger;
+        color: $white;
+
+        &.btn-inv {
+            border-color: $danger;
+        }
+
+        &.btn-text {
+            color: $danger;
+        }
+    }
+
+    &-dark-purple {
+        background-color: $dark_purple;
+        color: $white;
+
+        &.btn-inv {
+            border-color: $dark_purple;
+        }
+
+        &.btn-text {
+            color: $dark_purple;
+        }
+    }
+
+    &-tabs {
+        background-color: white;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        transition: .3s;
+        font-size: 18px;
+        padding: 10px 20px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+
+        &:hover,
+        &.active {
+            color: $yellow;
+        }
+
+        &:disabled {
+            opacity: .6;
+
+            &:hover {
+                color: $dark_purple;
+            }
+        }
+    }
+
+    &-small {
+        padding: 2px 15px;
+    }
+
+    &-inv {
+        background-color: transparent;
+        border: 1px solid $dark_purple;
+        color: $dark_purple;
+    }
+
+    &-text {
+        background-color: transparent;
+        color: $dark_purple;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    &-radio {
+        background-color: #C3C3C3;
+        padding: 3px 15px;
+        text-transform: uppercase;
+        color: $white;
+        font-family: 'Hind-SemiBold';
+
+        &--checked {
+            background-color: $dark_purple;
+        }
+    }
+
+    &-edit-card {
+        font-family: 'Hind-Regular';
+        font-size: 16px;
+        color: $dark_purple;
+        padding: 0;
+
+        i {
+            font-size: 20px;
+            margin: 0;
+            margin-left: 10px;
+        }
+    }
+
+    &-back {
+        display: block;
+        color: $dark;
+        text-decoration: none;
+        margin-bottom: 20px;
+        font-family: 'Hind-Medium';
+        font-size: 18px;
+
+        i {
+            margin-right: 15px;
+        }
+    }
+}
+
+.btn-group-dropdown {
+    position: relative;
+
+    .btn.toggle-dropdown {
+        font-family: 'Hind-Regular';
+        text-transform: uppercase;
+        color: $dark_purple;
+        font-size: 16px;
+        padding-right: 35px;
+
+        &::after {
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            content: '\f078';
+            color: $yellow;
+            font-size: 19px;
+            position: absolute;
+            right: 5px;
+        }
+
+        &.disabled {
+            padding-right: 25px;
+            cursor: default;
+
+            &::after {
+                display: none;
+            }
+        }
+    }
+
+    .dropdown-menu {
+        display: none;
+        background-color: $white;
+        position: absolute;
+        top: calc(100% + 5px);
+        left: 0;
+        padding: 10px 0;
+        border: 1px solid rgba(0, 0, 0, .15);
+        border-radius: 4px;
+        min-width: 150px;
+
+        &-right {
+            left: auto;
+            right: 0;
+        }
+
+        .dropdown-item {
+            display: block;
+            width: 100%;
+            padding: 5px 25px;
+            font-size: 14px;
+            color: $dark;
+            text-align: end;
+
+            &:hover {
+                background-color: rgba(0, 0, 0, .05);
+            }
+        }
+    }
+
+    &.open {
+        .dropdown-menu {
+            display: block;
+        }
+    }
+}
+
+.btn-group-number {
+    .btn {
+        font-size: 25px;
+        margin: 0 10px;
+    }
+
+    input[type=number] {
+        width: 100px;
+        text-align: center;
+        -moz-appearance: textfield;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    }
+}

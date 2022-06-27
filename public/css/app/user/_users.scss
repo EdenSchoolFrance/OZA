@@ -1,0 +1,55 @@
+.card--users {
+    border: none;
+
+    .card-header,
+    .card-footer {
+        padding: 20px 0;
+        box-shadow: none;
+        background-color: $white_grey;
+    }
+
+    .card-body {
+        border: 1px solid $grey;
+        .row{
+            .line{
+                .right {
+
+                    input,
+                    textarea,
+                    select {
+                        max-width: 480px;
+
+                        &.form-control-small {
+                            max-width: calc(480px / 2);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+table.table--users {
+    tbody {
+        tr {
+            td {
+                &.td {
+                    &_actions {
+                        i,button,a {
+                            margin: 0 5px;
+                            width: 25px;
+                            float: right;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.tooltip--password{
+    p{
+        text-align: center;
+    }
+}

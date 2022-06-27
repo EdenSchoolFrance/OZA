@@ -1,0 +1,36 @@
+.home {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .row-title {
+        width: 100%;
+        text-align: center;
+        margin: 100px 0;
+    }
+
+    .card--home {
+        width: 30%;
+        margin: 15px 1%;
+
+        &:last-child{
+            margin: 15px 1% !important;
+        }
+
+        .card-body {
+            .row {
+                &--submit {
+                    button:first-child {
+                        margin-right: 25px;
+                    }
+                }
+
+                &--center {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+}

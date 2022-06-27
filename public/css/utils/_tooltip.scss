@@ -1,0 +1,65 @@
+.tooltip {
+    background-color: $white;
+    border-radius: 2px;
+    padding: 5px 10px;
+    position: absolute;
+    z-index: 9999;
+    color: $dark_purple;
+    display: none;
+    opacity: 0;
+    transition: opacity .15s ease;
+    box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, .1);
+    max-width: 350px;
+
+    &.show {
+        opacity: 1;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        display : inline-block;
+        height : 0;
+        width : 0;
+    }
+
+    &[data-placement='top'] {
+        &::before {
+            bottom: -10px;
+            left: calc(50% - 10px);
+            border-right: 10px solid transparent;
+            border-top: 10px solid $white;
+            border-left: 10px solid transparent;
+        }
+    }
+
+    &[data-placement='bottom'] {
+        &::before {
+            top: -10px;
+            left: calc(50% - 10px);
+            border-right : 10px solid transparent;
+            border-bottom : 10px solid $white;
+            border-left : 10px solid transparent;
+        }
+    }
+
+    &[data-placement='left'] {
+        &::before {
+            top: calc(50% - 10px);
+            right: -10px;
+            border-top : 10px solid transparent;
+            border-left : 10px solid $white;
+            border-bottom : 10px solid transparent;
+        }
+    }
+
+    &[data-placement='right'] {
+        &::before {
+            top: calc(50% - 10px);
+            left: -10px;
+            border-top : 10px solid transparent;
+            border-right : 10px solid $white;
+            border-bottom : 10px solid transparent;
+        }
+    }
+}

@@ -1,0 +1,140 @@
+.card--add_work_unit {
+    label{
+        color: $black !important;
+    }
+    p{
+        color: $dark;
+    }
+    .card-body {
+        .row {
+            .line {
+                .left{
+                    align-items: center;
+                    &-cancel{
+                        align-items: inherit;
+                    }
+                    label{
+                        margin-top: 0;
+                    }
+                }
+                .right{
+
+                    input,
+                    textarea,
+                    select {
+                        max-width: 480px;
+
+                        &.form-control-small {
+                            max-width: calc(480px / 2);
+                        }
+                    }
+
+                    ul{
+                        li{
+                            display: flex;
+                            justify-content: flex-start;
+                            i{
+                                font-size: 16px;
+                            }
+                        }
+                        li:first-child{
+                            margin-bottom: 15px;
+                        }
+                        .list-item-btn{
+                            i{
+                                color: $yellow;
+                            }
+                        }
+                    }
+                    .list-content{
+                        li:first-child{
+                            margin-bottom: 0;
+                        }
+
+                        p.nothing {
+                            margin-left: 32px;
+                        }
+                    }
+                    .ul-textarea{
+                        li:first-child{
+                            margin: 0;
+                        }
+                        i{
+                            font-size: 18px;
+                            padding-bottom: 22px;
+                            margin-right: 10px;
+                        }
+                    }
+                    .btn-group-number{
+                        i{
+                            font-size: 16px;
+                        }
+                    }
+                    &--wrap{
+                        display: flex;
+                        justify-content: flex-start;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        div{
+                            width: 30%;
+                            margin-right: 3%;
+                            margin-bottom: 20px;
+                        }
+                    }
+                }
+                &--activity,
+                &--reflection {
+                    textarea {
+                        border-color: transparent;
+                        padding: 10px;
+
+                        &:focus,
+                        &.active {
+                            padding: 10px 15px;
+                            background-color: #F7F7F7;
+                            border-color: $border_head;
+                        }
+                    }
+                }
+                &--items{
+                    textarea {
+                        border-color: transparent;
+                        padding: 10px;
+                        height: 45px;
+                        &:focus,
+                        &.active {
+                            padding: 10px 15px;
+                            background-color: #F7F7F7;
+                            border-color: $border_head;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.modal--oza{
+    .row--ut{
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: inherit !important;
+        .group-form{
+            margin-right: 10%;
+            width: 40%;
+            margin-bottom: 20px;
+        }
+    }
+    .list-ut-template{
+        .checked{
+            color: $info;
+            cursor: not-allowed;
+        }
+        a{
+            color: $dark;
+        }
+        a:hover{
+            color: $info;
+        }
+    }
+}

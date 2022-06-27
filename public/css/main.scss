@@ -1,0 +1,48 @@
+// It's a main file just don't code anythings here, just create file and import here.
+
+// Variables
+@import "global/variables";
+// Fonts
+@import "global/fonts";
+
+// Global Style
+@import "global/global";
+
+// Utils
+@import "utils/button";
+@import "utils/form";
+@import "utils/card";
+@import "utils/modal";
+@import "utils/tooltip";
+@import "utils/alert";
+@import "utils/table";
+@import "utils/radio";
+@import "utils/list";
+@import "utils/text";
+@import "utils/checkbox";
+@import "utils/tinymce";
+
+// Template Style
+@import "global/template";
+
+@import "app/dashboard/dashboard";
+
+@import "app/structure/presentation";
+@import "app/structure/home";
+@import "app/structure/work-unit";
+
+@import "app/add/add-work-unit";
+@import "app/add/add-risk";
+@import "app/add/add-client";
+
+@import "app/auth/first-auth";
+
+@import "app/user/users";
+@import "app/user/create";
+
+@import "app/risk/risks";
+
+@import "app/restraint/index";
+
+@import "app/documentation";
+

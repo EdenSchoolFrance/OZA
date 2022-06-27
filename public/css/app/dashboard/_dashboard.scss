@@ -1,0 +1,126 @@
+.dashboard {
+
+    .row-title {
+        width: 100%;
+        text-align: center;
+        margin: 100px 0;
+    }
+    .card{
+        margin-bottom: 0;
+    }
+    .row{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 30px;
+        grid-auto-rows: minmax(100px, auto);
+    }
+    .card--full{
+        margin-top: 30px;
+        grid-column: 3;
+        grid-row: 3;
+    }
+    .card--dashboard {
+        &:nth-child(4){
+            grid-row: 2;
+        }
+        grid-row: 1;
+        &-double{
+            grid-column: 2 / 4;
+            grid-row: 2;
+            .card-body {
+                .chart-container {
+                    position: relative;
+                    height: 350px;
+                    width: 400px;
+                    margin: auto;
+                    canvas{
+                        margin-top: -50px;
+                    }
+                }
+            }
+        }
+        .card-body {
+            .row {
+                display: block;
+                label{
+                    font-size: 40px;
+                }
+                &--submit {
+                    button:first-child {
+                        margin-right: 25px;
+                    }
+                }
+
+                &--center {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+    .modal--pdf{
+        .row{
+            display: inherit;
+            margin-bottom: 20px;
+        }
+    }
+    .card-footer{
+        .infos {
+            color: $dark;
+            display: flex;
+            justify-content: start;
+            i {
+                margin-right: 15px;
+                font-size: 28px;
+            }
+
+            p {
+                font-family: 'Hind-Regular';
+            }
+        }
+    }
+    .delete-btn{
+        margin-left: 10px;
+    }
+    .card-header{
+        justify-content: center;
+        i{
+            margin-left: 10px;
+        }
+    }
+}
+
+@media (max-width: 1100px) {
+    .dashboard {
+        .row{
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .card--dashboard {
+            &:nth-child(3){
+                grid-row: 2;
+            }
+            &:nth-child(4){
+                grid-row: 2;
+            }
+            &-double {
+                grid-column: 1/-1;
+                grid-row: 3;
+                .card-body {
+                    .chart-container {
+                        canvas {
+                            margin-top: 0px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+table.table--history-single-document{
+    .td_actions{
+        display: flex;
+        justify-content: flex-end;
+    }
+}
