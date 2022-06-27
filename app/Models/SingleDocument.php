@@ -68,6 +68,11 @@ class SingleDocument extends Model
         return $this->hasMany(Historie::class);
     }
 
+    public function psychosocial_groups()
+    {
+        return $this->hasMany(SdPsychosocialGroup::class);
+    }
+
     public function moyenneRB()
     {
         $total = 0;
