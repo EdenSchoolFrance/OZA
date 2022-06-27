@@ -21,10 +21,10 @@ class CreateSdExpositionQuestionsTable extends Migration
             $table->integer('value');
 
             $table->foreignUuid('sd_work_unit_id');
-            $table->foreign('sd_work_unit_id')->references('id')->on('sd_work_units');
+            $table->foreign('sd_work_unit_id')->references('id')->on('sd_work_units')->onDelete('cascade');
 
             $table->foreignUuid('exposition_question_id');
-            $table->foreign('exposition_question_id')->references('id')->on('exposition_questions');
+            $table->foreign('exposition_question_id')->references('id')->on('exposition_questions')->onDelete('cascade');
         });
     }
 

@@ -47,7 +47,7 @@
                             <div class="right">
                                 <p class="title title-red">Exposition aux facteurs de risques professionnels</p>
                                 <p class="title title-green">Rappel du seuil règlementaire :</p>
-                                <p class="info">{{ $danger->danger->exposition->info }}</p>
+                                <p class="info">{!! $danger->danger->exposition->info !!}</p>
                             </div>
                         </div>
                     </div>
@@ -82,7 +82,7 @@
                                     @foreach($risks_all as $risk)
                                         <tr>
                                             <td class="td_risk">
-                                                <p>{{ $risk->name }}</p>
+                                                <p>@stripTags($risk->name)</p>
                                             </td>
                                             <td class="td_rb">
                                                 <button class="btn {{ $risk->color($risk->total()) }} btn-small">{{ $risk->total() }}</button>
@@ -111,14 +111,14 @@
                                                         @if($restraint->exist === 1)
                                                             <div class="list-row">
                                                                 <div class="list-point list-point--success"></div>
-                                                                <p class="list-text">{{ $restraint->name }}</p>
+                                                                <p class="list-text">@stripTags($restraint->name)</p>
                                                             </div>
                                                         @endif
                                                     @endforeach
                                                 </div>
                                             </td>
                                             <td class="td_rr">
-                                                <button class="btn {{ $risk->color( isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total()) }} btn-small">{{ isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints) : $risk->total() }}</button>
+                                                <button class="btn {{ $risk->color( isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total()) }} btn-small">{{ isset($risk->sd_restraints_exist[0]) ? ($risk->totalRR($risk->sd_restraints) === 0 ? $risk->total() : $risk->totalRR($risk->sd_restraints)) : $risk->total() }}</button>
                                             </td>
                                             <td class="td_proposed_measure">
                                                 <div class="list">
@@ -126,7 +126,7 @@
                                                         @if($restraint->exist === 0)
                                                             <div class="list-row">
                                                                 <div class="list-point list-point--yellow"></div>
-                                                                <p class="list-text">{{ $restraint->name }}</p>
+                                                                <p class="list-text">@stripTags($restraint->name)</p>
                                                             </div>
                                                         @endif
                                                     @endforeach
@@ -204,7 +204,7 @@
                                             @foreach($sd_work_unit->sd_danger_risks($danger->id) as $risk)
                                                 <tr>
                                                     <td class="td_risk">
-                                                        <p>{{ $risk->name }}</p>
+                                                        <p>@stripTags($risk->name)</p>
                                                     </td>
                                                     <td class="td_rb">
                                                         <button class="btn {{ $risk->color($risk->total()) }} btn-small">{{ $risk->total() }}</button>
@@ -233,7 +233,7 @@
                                                                 @if($restraint->exist === 1)
                                                                     <div class="list-row">
                                                                         <div class="list-point list-point--success"></div>
-                                                                        <p class="list-text">{{ $restraint->name }}</p>
+                                                                        <p class="list-text">@stripTags($restraint->name)</p>
                                                                     </div>
                                                                 @endif
                                                             @endforeach
@@ -248,7 +248,7 @@
                                                             @if($restraint->exist === 0)
                                                                 <div class="list-row">
                                                                     <div class="list-point list-point--yellow"></div>
-                                                                    <p class="list-text">{{ $restraint->name }}</p>
+                                                                    <p class="list-text">@stripTags($restraint->name)</p>
                                                                 </div>
                                                             @endif
                                                         @endforeach
@@ -299,7 +299,7 @@
                                                     @csrf
                                                     <input type="hidden" name="checked" value=""/>
                                                     <p>Après mesure de protection collective et individuelle, l’UT est-elle exposée au delà du seuil règlementaire ?</p>
-                                                    
+
                                                     <button type="button" data-value="true" class="btn btn-radio btn-check-work-unit {{ $sd_work_unit->sd_danger($danger->id)->pivot->exposition === 1 ? "btn-radio--checked" : "" }}" {{ $sd_work_unit->sd_danger($danger->id)->pivot->exposition === 1 ? "disabled" : ""  }}>Oui</button>
                                                     <button type="button" data-value="false" class="btn btn-radio btn-check-work-unit {{ $sd_work_unit->sd_danger($danger->id)->pivot->exposition === 0 ? "btn-radio--checked" : "" }}" {{ $sd_work_unit->sd_danger($danger->id)->pivot->exposition === 0 ? "disabled" : ""  }}>Non</button>
                                                 </form>
@@ -325,7 +325,7 @@
                                                                             {{ $exposition_group->intervention_type_label }}
                                                                         </th>
                                                                         <th>
-                                                                            Nombre de personnes concernées 
+                                                                            Nombre de personnes concernées
                                                                         </th>
                                                                         @if ($exposition_group->type == "default")
                                                                             <th>

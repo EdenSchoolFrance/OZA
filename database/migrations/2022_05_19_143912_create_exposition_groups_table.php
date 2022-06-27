@@ -23,7 +23,7 @@ class CreateExpositionGroupsTable extends Migration
             $table->string('type');
 
             $table->foreignUuid('exposition_id');
-            $table->foreign('exposition_id')->references('id')->on('expositions');
+            $table->foreign('exposition_id')->references('id')->on('expositions')->onDelete('cascade');
         });
     }
 

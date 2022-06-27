@@ -19,7 +19,7 @@ class CreateExpositionQuestionsTable extends Migration
             $table->text('options')->nullable();
 
             $table->foreignUuid('exposition_group_id');
-            $table->foreign('exposition_group_id')->references('id')->on('exposition_groups');
+            $table->foreign('exposition_group_id')->references('id')->on('exposition_groups')->onDelete('cascade');
         });
     }
 

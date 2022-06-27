@@ -14,7 +14,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="line">
-                        <p>Saisissez et validez l'adresse e-mail de votre compte.</p>
+                        <p>Saisissez et validez l'adresse e-mail de votre compte. <br> Vous recevrez ensuite par e-mail un lien vers une page vous permettant de créer facilement votre nouveau mot de passe.</p>
                     </div>
                     <div class="line">
                         <div class="left">

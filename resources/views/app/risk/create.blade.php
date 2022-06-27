@@ -61,7 +61,7 @@
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
-                                    <input type="radio"  name="frequency" value="month" @if(old('frequency')){{ old('frequency') === 'mouth' ? 'checked' : '' }}@else{{ isset($risk) && $risk->frequency === 'mouth' ? 'checked' : '' }}@endif>
+                                    <input type="radio"  name="frequency" value="month" @if(old('frequency')){{ old('frequency') === 'month' ? 'checked' : '' }}@else{{ isset($risk) && $risk->frequency === 'month' ? 'checked' : '' }}@endif>
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="con">
@@ -231,7 +231,11 @@
                         <label>Mesure existante</label>
                     </div>
                     <div class="right restraint">
-
+                        <div class="row nothing_restraint_ex">
+                            <ul>
+                                <li>Aucune mesure existante</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -265,7 +269,12 @@
                     <div class="left">
                         <label>Mesures proposées</label>
                     </div>
-                    <div class="right right--cancel">
+                    <div class="right right--cancel res-pro">
+                        <ul class="nothing_restraint_pro">
+                            <li>
+                                Aucune mesure proposée
+                            </li>
+                        </ul>
                         <ul class="restraint-proposed">
                             <li>
                                 <button class="btn btn-yellow btn-text btn-add-restraint" type="button">+ Ajouter une mesure proposée</button>
@@ -297,163 +306,163 @@
     </form>
 
 
-
-
-
-@if (Auth::user()->hasAccess('oza') && isset($risk))
-    <div class="modal modal--risk-restraint-oza modal-add-risk" data-backdrop="static">
-        <div class="modal-dialog modal-dialog-large">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <p class="title">Mesure de prévention existante</p>
-                </div>
-                <div class="modal-body">
-                    @foreach($risk->restraint as $restraint)
-                        <div class="content-modal-oza">
-                            <div class="row">
-                                <div class="line">
-                                    <div class="left">
-                                        <label class="con"> {{ $restraint->name }}
-                                            <input type="checkbox" class="btn-restraint-modal-oza" name="restraint_modal[]" value="{{ $restraint->id }}">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </div>
-                                    <div class="right"></div>
-                                </div>
-                            </div>
-                            <div class="restraint-modal-content">
-                                <div class="row row--radio">
+    @if (Auth::user()->hasAccess('oza') && isset($risk))
+        <div class="modal modal--risk-restraint-oza modal-add-risk" data-backdrop="static">
+            <div class="modal-dialog modal-dialog-large">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <p class="title">Mesure de prévention existante</p>
+                    </div>
+                    <div class="modal-body">
+                        @foreach($risk->restraint as $restraint)
+                            <div class="content-modal-oza">
+                                <div class="row">
                                     <div class="line">
                                         <div class="left">
-                                            <label>Technique</label>
+                                            <label class="con"> @stripTags($restraint->name)
+                                                <input type="checkbox" class="btn-restraint-modal-oza" name="restraint_modal[]" value="{{ $restraint->id }}">
+                                                <span class="checkmark"></span>
+                                            </label>
                                         </div>
-                                        <div class="right">
-                                            <div class="radio-bar-content">
-                                                <div class="radio-bar radio-bar-tech">
+                                        <div class="right"></div>
+                                    </div>
+                                </div>
+                                <div class="restraint-modal-content">
+                                    <div class="row row--radio">
+                                        <div class="line">
+                                            <div class="left">
+                                                <label>Technique</label>
+                                            </div>
+                                            <div class="right">
+                                                <div class="radio-bar-content">
+                                                    <div class="radio-bar radio-bar-tech">
 
-                                                    <label class="con">
-                                                        <input type="radio" name="tech-modal-oza-{{ $restraint->id }}" value="null">
-                                                        <span class="checkmark"></span>
-                                                    </label>
-                                                    <label class="con">
-                                                        <input type="radio" name="tech-modal-oza-{{ $restraint->id }}" value="medium">
-                                                        <span class="checkmark"></span>
-                                                    </label>
-                                                    <label class="con">
-                                                        <input type="radio" name="tech-modal-oza-{{ $restraint->id }}" value="good">
-                                                        <span class="checkmark"></span>
-                                                    </label>
-                                                    <label class="con">
-                                                        <input type="radio" name="tech-modal-oza-{{ $restraint->id }}" value="very good" checked>
-                                                        <span class="checkmark"></span>
-                                                    </label>
+                                                        <label class="con">
+                                                            <input type="radio" name="tech-modal-oza-{{ $restraint->id }}" value="null">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        <label class="con">
+                                                            <input type="radio" name="tech-modal-oza-{{ $restraint->id }}" value="medium">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        <label class="con">
+                                                            <input type="radio" name="tech-modal-oza-{{ $restraint->id }}" value="good">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        <label class="con">
+                                                            <input type="radio" name="tech-modal-oza-{{ $restraint->id }}" value="very good" checked>
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio-title">
+                                                        <label>Inexistante</label>
+                                                        <label>Moyen</label>
+                                                        <label>Bon</label>
+                                                        <label>Très bon</label>
+                                                    </div>
                                                 </div>
-                                                <div class="radio-title">
-                                                    <label>Inexistante</label>
-                                                    <label>Moyen</label>
-                                                    <label>Bon</label>
-                                                    <label>Très bon</label>
-                                                </div>
+                                                <i class="far fa-question-circle" data-tooltip=".tooltip--restraint-tech" data-placement="left"></i>
                                             </div>
-                                            <i class="far fa-question-circle" data-tooltip=".tooltip--restraint" data-placement="left"></i>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row row--radio">
-                                    <div class="line">
-                                        <div class="left">
-                                            <label>Organisationnelle</label>
-                                        </div>
-                                        <div class="right">
-                                            <div class="radio-bar-content">
-                                                <div class="radio-bar radio-bar-orga">
-                                                    <label class="con">
-                                                        <input type="radio" name="orga-modal-oza-{{ $restraint->id }}" value="null">
-                                                        <span class="checkmark"></span>
-                                                    </label>
-                                                    <label class="con">
-                                                        <input type="radio" name="orga-modal-oza-{{ $restraint->id }}" value="medium">
-                                                        <span class="checkmark"></span>
-                                                    </label>
-                                                    <label class="con">
-                                                        <input type="radio" name="orga-modal-oza-{{ $restraint->id }}" value="good">
-                                                        <span class="checkmark"></span>
-                                                    </label>
-                                                    <label class="con">
-                                                        <input type="radio" name="orga-modal-oza-{{ $restraint->id }}" value="very good" checked>
-                                                        <span class="checkmark"></span>
-                                                    </label>
-                                                </div>
-                                                <div class="radio-title">
-                                                    <label>Inexistante</label>
-                                                    <label>Moyen</label>
-                                                    <label>Bon</label>
-                                                    <label>Très bon</label>
-                                                </div>
+                                    <div class="row row--radio">
+                                        <div class="line">
+                                            <div class="left">
+                                                <label>Organisationnelle</label>
                                             </div>
-                                            <i class="far fa-question-circle" data-tooltip=".tooltip--restraint" data-placement="left"></i>
+                                            <div class="right">
+                                                <div class="radio-bar-content">
+                                                    <div class="radio-bar radio-bar-orga">
+                                                        <label class="con">
+                                                            <input type="radio" name="orga-modal-oza-{{ $restraint->id }}" value="null">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        <label class="con">
+                                                            <input type="radio" name="orga-modal-oza-{{ $restraint->id }}" value="medium">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        <label class="con">
+                                                            <input type="radio" name="orga-modal-oza-{{ $restraint->id }}" value="good">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        <label class="con">
+                                                            <input type="radio" name="orga-modal-oza-{{ $restraint->id }}" value="very good" checked>
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio-title">
+                                                        <label>Inexistante</label>
+                                                        <label>Moyen</label>
+                                                        <label>Bon</label>
+                                                        <label>Très bon</label>
+                                                    </div>
+                                                </div>
+                                                <i class="far fa-question-circle" data-tooltip=".tooltip--restraint-orga" data-placement="left"></i>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row row--radio">
-                                    <div class="line">
-                                        <div class="left">
-                                            <label>Humaine</label>
-                                        </div>
-                                        <div class="right">
-                                            <div class="radio-bar-content">
-                                                <div class="radio-bar radio-bar-human">
-                                                    <label class="con">
-                                                        <input type="radio" name="human-modal-oza-{{ $restraint->id }}" value="null">
-                                                        <span class="checkmark"></span>
-                                                    </label>
-                                                    <label class="con">
-                                                        <input type="radio" name="human-modal-oza-{{ $restraint->id }}" value="medium">
-                                                        <span class="checkmark"></span>
-                                                    </label>
-                                                    <label class="con">
-                                                        <input type="radio" name="human-modal-oza-{{ $restraint->id }}" value="good">
-                                                        <span class="checkmark"></span>
-                                                    </label>
-                                                    <label class="con">
-                                                        <input type="radio" name="human-modal-oza-{{ $restraint->id }}" value="very good" checked>
-                                                        <span class="checkmark"></span>
-                                                    </label>
-                                                </div>
-                                                <div class="radio-title">
-                                                    <label>Inexistante</label>
-                                                    <label>Moyen</label>
-                                                    <label>Bon</label>
-                                                    <label>Très bon</label>
-                                                </div>
+                                    <div class="row row--radio">
+                                        <div class="line">
+                                            <div class="left">
+                                                <label>Humaine</label>
                                             </div>
-                                            <i class="far fa-question-circle" data-tooltip=".tooltip--restraint" data-placement="left"></i>
+                                            <div class="right">
+                                                <div class="radio-bar-content">
+                                                    <div class="radio-bar radio-bar-human">
+                                                        <label class="con">
+                                                            <input type="radio" name="human-modal-oza-{{ $restraint->id }}" value="null">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        <label class="con">
+                                                            <input type="radio" name="human-modal-oza-{{ $restraint->id }}" value="medium">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        <label class="con">
+                                                            <input type="radio" name="human-modal-oza-{{ $restraint->id }}" value="good">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        <label class="con">
+                                                            <input type="radio" name="human-modal-oza-{{ $restraint->id }}" value="very good" checked>
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio-title">
+                                                        <label>Inexistante</label>
+                                                        <label>Moyen</label>
+                                                        <label>Bon</label>
+                                                        <label>Très bon</label>
+                                                    </div>
+                                                </div>
+                                                <i class="far fa-question-circle" data-tooltip=".tooltip--restraint-human" data-placement="left"></i>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
 
-                    <div class="row">
-                        <div class="line">
-                            <div class="left">
-                            </div>
-                            <div class="right">
-                                <button type="button" class="btn btn-success btn-modal-risk-oza-add btn-close" data-dismiss="modal">Ajouter</button>
+                        <div class="row">
+                            <div class="line">
+                                <div class="left">
+                                </div>
+                                <div class="right">
+                                    <button type="button" class="btn btn-success btn-modal-risk-oza-add btn-close" data-dismiss="modal">Ajouter</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="tooltip tooltip--restraint">
-                    <p>Très bonne = mesure existante très efficace</p>
-                    <p>Bonne = mesure existante de bonne efficacité</p>
-                    <p>Moyenne = mesure existante d'efficacité moyenne</p>
-                    <p>Nulle = mesure non existante</p>
+                    <div class="tooltip tooltip--restraint-tech">
+                        <p>Mesure de prévention technique comme par exemple : système de sécurité automatique, machine ou matériel conforme, ...</p>
+                    </div>
+                    <div class="tooltip tooltip--restraint-orga">
+                        <p>Mesure de prévention organisationnelle comme par exemple : respect de la règlementation en vigueur, consigne formalisée, ...</p>
+                    </div>
+                    <div class="tooltip tooltip--restraint-human">
+                        <p>Mesure de prévention humaine comme par exemple : information sensibilisation ou formation du personnel, protection collective et ou individuelle, ...</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     @endif
 
     <div class="modal modal--risk modal-add-risk">
@@ -479,7 +488,7 @@
                     <div class="row">
                         <div class="line">
                             <div class="left">
-                                <h3>Evaluation du risque identifié</h3>
+                                <h3>Evaluation de l'efficacité de la mesure en place</h3>
                             </div>
                             <div class="right">
                             </div>
@@ -513,12 +522,12 @@
                                     </div>
                                     <div class="radio-title">
                                         <label>Inexistante</label>
-                                        <label>Moyen</label>
-                                        <label>Bon</label>
-                                        <label>Très bon</label>
+                                        <label>Moyenne</label>
+                                        <label>Bonne</label>
+                                        <label>Très bonne</label>
                                     </div>
                                 </div>
-                                <i class="far fa-question-circle" data-tooltip=".tooltip--restraint" data-placement="left"></i>
+                                <i class="far fa-question-circle" data-tooltip=".tooltip--restraint-tech" data-placement="left"></i>
                             </div>
                         </div>
                     </div>
@@ -549,12 +558,12 @@
                                     </div>
                                     <div class="radio-title">
                                         <label>Inexistante</label>
-                                        <label>Moyen</label>
-                                        <label>Bon</label>
-                                        <label>Très bon</label>
+                                        <label>Moyenne</label>
+                                        <label>Bonne</label>
+                                        <label>Très bonne</label>
                                     </div>
                                 </div>
-                                <i class="far fa-question-circle" data-tooltip=".tooltip--restraint" data-placement="left"></i>
+                                <i class="far fa-question-circle" data-tooltip=".tooltip--restraint-orga" data-placement="left"></i>
                             </div>
                         </div>
                     </div>
@@ -585,12 +594,12 @@
                                     </div>
                                     <div class="radio-title">
                                         <label>Inexistante</label>
-                                        <label>Moyen</label>
-                                        <label>Bon</label>
-                                        <label>Très bon</label>
+                                        <label>Moyenne</label>
+                                        <label>Bonne</label>
+                                        <label>Très bonne</label>
                                     </div>
                                 </div>
-                                <i class="far fa-question-circle" data-tooltip=".tooltip--restraint" data-placement="left"></i>
+                                <i class="far fa-question-circle" data-tooltip=".tooltip--restraint-human" data-placement="left"></i>
                             </div>
                         </div>
                     </div>
@@ -604,11 +613,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="tooltip tooltip--restraint">
-                    <p>Très bonne = mesure existante très efficace</p>
-                    <p>Bonne = mesure existante de bonne efficacité</p>
-                    <p>Moyenne = mesure existante d'efficacité moyenne</p>
-                    <p>Nulle = mesure non existante</p>
+                <div class="tooltip tooltip--restraint-tech">
+                    <p>Mesure de prévention technique comme par exemple : système de sécurité automatique, machine ou matériel conforme, ...</p>
+                </div>
+                <div class="tooltip tooltip--restraint-orga">
+                    <p>Mesure de prévention organisationnelle comme par exemple : respect de la règlementation en vigueur, consigne formalisée, ...</p>
+                </div>
+                <div class="tooltip tooltip--restraint-human">
+                    <p>Mesure de prévention humaine comme par exemple : information sensibilisation ou formation du personnel, protection collective et ou individuelle, ...</p>
                 </div>
             </div>
         </div>
@@ -660,7 +672,6 @@
     @endif
 
     <div class="tooltip tooltip--fre">
-        <p>La fréquence d'exposition est évaluée selon une échelle à 5 niveaux :</p>
         <p>> An : exposition extrêmement rare de moins de une fois par an</p>
         <p>An : exposition rare de une à plusieurs fois par an</p>
         <p>Mois : exposition peu fréquente de une à plusieurs fois par mois</p>
@@ -669,54 +680,43 @@
     </div>
 
     <div class="tooltip tooltip--pro">
-        <p>
-            La probabilité de survenue d'un accident ou d'une atteinte à la santé doit être également évaluée,
-            car la fréquence d'exposition à un danger n'est pas le seul paramètre qui influence la survenue
-            d'un accident ou d'une atteinte à la santé.<br>
-            Par exemple, une personne emprunte plusieurs fois par jour un escalier en se tenant à la rampe.
-            La fréquence d'exposition est maximale, mais cela ne signifie pas que cette personne aura un accident chaque jour dans cet escalier.
-            La probabilité qu'elle chute dans cet escalier est "faible" ou "très faible".
-        </p>
+        <p>La probabilité de survenue d'un accident ou d'une atteinte à la santé.</p>
     </div>
 
     <div class="tooltip tooltip--gp">
         <p>La gravité potentielle des conséquences de l'exposition à un danger est évaluée selon une échelle à 5 niveaux :</p>
         <p>Impact faible : exposition sans conséquence sur la santé physique et mentale de la personne exposée</p>
         <p>ASA : Accident ou maladie professionnelle Sans Arrêt de travail</p>
-        <p>AAA : Accident ou maladie professionnelle Avec Arrêt de travail, sans IPP (Incapacité Permanente Partielle*)</p>
-        <p>IPP : accident ou maladie professionnelle avec arrêt de travail et avec IPP (Incapacité Permanente Partielle*)</p>
+        <p>AAA : Accident ou maladie professionnelle Avec Arrêt de travail, sans IPP (*Incapacité Permanente Partielle)</p>
+        <p>IPP : accident ou maladie professionnelle avec arrêt de travail et avec IPP (*Incapacité Permanente Partielle)</p>
         <p>Décès : au moins une maladie professionnelle avec Incapacité Permanente Totale ou au moins un décès</p>
         <p>L'IPP est constatée lorsqu'il persiste des séquelles de l'accident du travail, alors que le salarié est déclaré apte.</p>
     </div>
 
     <div class="tooltip tooltip--id">
-        <p>
-            Non : égale pour les deux sexes
-            L'impact différencié permet d'identifier le cas échéant le sexe pour lequel la gravité est potentiellement la plus importante.
-            L'évaluation de l'impact différencié de l'exposition aux risques en fonction du sexe est en effet une exigence réglementaire.
-        </p>
-        <p>F : Femme</p>
+        <p>Non : pas d'impact différencié de l'exposition à ce risque en fonction du sexe.</p>
+        <p>F : impact de ce risque plus grave sur le sexe Féminin.</p>
     </div>
-
-
-
 </div>
-
 @endsection
 
 @section('script')
+    <script>
+        let pon = {!! $risk_cal !!};
+    </script>
     <script src="/js/app/risk.js"></script>
-    @if(old('restraint'))
+    @if(old('res_title'))
         <script>
-            @foreach(old('restraint') as $restraint)
-                createRestraint('{{ explode('|',$restraint)[0] }}','{{ explode('|',$restraint)[1] }}','{{ explode('|',$restraint)[2] }}','{{ explode('|',$restraint)[3] }}' )
+            // exemple text : t&#039;es
+            @foreach(old('res_title') as $key => $res_title)
+                createRestraint('{{ old("res_tech")[$key] }}','{{ old("res_orga")[$key] }}','{{ old("res_human")[$key] }}',`{!! strip_tags($res_title) !!}`)
             @endforeach
         </script>
     @endif
     @if(old('restraint_proposed'))
         <script>
             @foreach(old('restraint_proposed') as $restraint)
-                createRestraintProposed('{{ $restraint }}')
+                createRestraintProposed('@stripTags($restraint)')
             @endforeach
         </script>
     @endif

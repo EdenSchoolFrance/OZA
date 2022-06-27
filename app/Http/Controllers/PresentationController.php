@@ -80,6 +80,6 @@ class PresentationController extends Controller
             $single->save();
         }
 
-        return back()->with('status', 'Les données ont bien été modifié !');
+        return back()->with('status', 'Les données ont bien été modifiées !');
     }
 }

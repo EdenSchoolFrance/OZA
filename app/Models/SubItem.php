@@ -32,9 +32,15 @@ class SubItem extends Model
         return $this->belongsTo(Item::class,'item_id');
     }
 
-    public function sd_item()
+    public function sd_items()
     {
         return $this->hasMany(SdItem::class);
     }
 
+    public function sd_work_unit_sd_items($sd_work_unit_id)
+    {
+        return $this->sd_items()->whereHas('sd_work_unit', function ($q) use ($sd_work_unit_id) {
+            $q->where('id', $sd_work_unit_id);
+        })->get();
+    }
 }

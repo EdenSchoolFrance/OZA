@@ -104,11 +104,10 @@ class ClientController extends Controller
         $user->client()->associate($client->id);
         $user->save();
 
-        Storage::makeDirectory('/public/'.$client->id);
-        Storage::makeDirectory('/public/'.$client->id.'/logo');
-        Storage::makeDirectory('/public/'.$client->id.'/du');
+        Storage::makeDirectory('/public/' . $client->id);
+        Storage::makeDirectory('/private/' . $client->id . '/du');
 
-        Storage::putFileAs('/public/'.$client->id.'/logo', $file, $client->id . '.' . $file->extension());
+        Storage::putFileAs('/public/' . $client->id, $file, 'logo.' . $file->extension());
 
         return redirect()->route('admin.client.edit', [$client->id, 'tab' => 'du'])->with('status', 'Le client a bien été créé !');
     }
@@ -122,7 +121,7 @@ class ClientController extends Controller
         ];
 
         $experts = User::where('oza', 1)->get();
-        $dangers = Danger::all();
+        $dangers = Danger::all()->sortBy('name');
         $packs = Pack::all();
         $single_documents = SingleDocument::where('client_id', $client->id)->paginate(15);
 
@@ -151,8 +150,8 @@ class ClientController extends Controller
         $file = $request->file('logo');
 
         if ($file) {
-            Storage::delete(Storage::allFiles('/public/'.$client->id.'/logo'));
-            Storage::putFileAs('/public/'.$client->id.'/logo', $file, $client->id . '.' . $file->extension());
+            Storage::delete('/public/' . $client->id . 'logo.' . $client->image_type);
+            Storage::putFileAs('/public/' . $client->id, $file, 'logo.' . $file->extension());
         }
 
         $client->name = $request->name_enterprise;
@@ -165,7 +164,7 @@ class ClientController extends Controller
         $client->expert()->associate($request->expert);
         $client->save();
 
-        return redirect()->route('admin.client.edit', [$client->id])->with('status', 'Le client a bien été mis à jours !');
+        return redirect()->route('admin.client.edit', [$client->id])->with('status', 'Le client a bien été mis à jour !');
     }
 
     public function archive(Request $request)
@@ -202,7 +201,8 @@ class ClientController extends Controller
 
     public function delete(Client $client)
     {
-        Storage::deleteDirectory('/public/'.$client->id);
+        Storage::deleteDirectory('/public/' . $client->id);
+        Storage::deleteDirectory('/private/' . $client->id);
 
         $client->delete();
 

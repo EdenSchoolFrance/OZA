@@ -56,14 +56,15 @@
                         align-items: flex-start;
 
                         p {
-                            font-family: 'Hind-Regular';
+                            font-family: 'Hind-Medium';
                             color: $dark_purple;
+                            text-align: right;
                         }
 
                         label {
                             margin-top: 10px;
                             color: $dark_purple;
-                            text-align: end;
+                            text-align: right;
                         }
                     }
 

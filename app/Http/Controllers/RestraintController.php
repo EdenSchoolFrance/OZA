@@ -20,11 +20,13 @@ class RestraintController extends Controller
             'sub_sidebar' => 'restraint_porposed'
         ];
 
-        $sd_risks = SdRisk::whereHas('sd_danger', function ($q) use ($single_document){
+        $sd_risks = SdRisk::whereHas('sd_danger', function ($q) use ($single_document) {
             $q->where('single_document_id', $single_document->id);
         })->whereHas('sd_restraints', function ($q) {
             $q->where('exist', 0);
-        })->get();
+        })->get()->sortByDesc(function ($sd_risk, $key) {
+            return $sd_risk->totalRR($sd_risk->sd_restraints);
+        });
 
         return view('app.restraint.index', compact('page', 'single_document', 'sd_risks'));
     }
@@ -54,6 +56,7 @@ class RestraintController extends Controller
 
         $request->validate([
             'id_restraint' => 'required',
+            'name_restraint' => 'required',
             'date_restraint' => 'required',
             'tech' => 'required',
             'orga' => 'required',
@@ -66,6 +69,7 @@ class RestraintController extends Controller
 
         if($restraint->sd_risk->sd_danger->single_document->id !== $single_document->id) return back()->with('status','Une erreur est survenue')->with('status_type','danger');
 
+        $restraint->name = $request->name_restraint;
         $restraint->date = $request->date_restraint;
         $restraint->technical = $request->tech;
         $restraint->organizational = $request->orga;

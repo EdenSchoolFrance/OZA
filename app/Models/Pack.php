@@ -21,4 +21,21 @@ class Pack extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function translate()
+    {
+        switch ($this->name) {
+            case 'compliance':
+                return 'Conformité';
+                break;
+
+            case 'tranquility':
+                return 'Tranquillité';
+                break;
+
+            case 'serenity':
+                return 'Sérénité';
+                break;
+        }
+    }
 }

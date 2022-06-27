@@ -112,7 +112,6 @@
 @endsection
 
 @section('script')
-    {{-- <script src="/js/libs/tinymce/tinymce.min.js"></script> --}}
     <script src="https://cdn.tiny.cloud/1/fy14eawqi58mrvgxrntce2xjm790wtr5q6eeogg095qk5pgs/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="/js/app/documentation.js"></script>
 @endsection

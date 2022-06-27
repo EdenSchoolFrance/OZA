@@ -3,7 +3,7 @@ new Chart(document.getElementById("myChart"), {
     data: {
         labels: ["Acceptable", "A améliorer", "Agir vite", "STOP"],
         datasets: [{
-            label: "",
+            label: "test",
             backgroundColor: ["#43A389", "#F9CA62","#F8912A","#B32A3C"],
             data: tabData,
         }]

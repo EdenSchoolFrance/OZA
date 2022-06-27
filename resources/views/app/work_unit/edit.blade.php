@@ -8,12 +8,12 @@
             <div class="row">
                 <div class="line">
                     <div class="left">
-                        <label for="name_enterprise">Intitulé de l’unité de travail</label>
+                        <label for="work_unit_entitled">Intitulé de l’unité de travail</label>
                     </div>
                     <div class="right">
-                        <input type="text" name="name_enterprise" class="form-control" placeholder="Indiquer le nom de votre entreprise" value="{{ old('name_enterprise') ? old('name_enterprise') :$work->name }}">
-                        @error('name_enterprise')
-                        <p class="message-error">{{ $message }}</p>
+                        <input type="text" name="work_unit_entitled" class="form-control" placeholder="Indiquer le nom de votre entreprise" value="{{ old('work_unit_entitled') ? old('work_unit_entitled') : $work->name }}">
+                        @error('work_unit_entitled')
+                            <p class="message-error">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
@@ -30,14 +30,14 @@
                             <input type="number" class="form-control" id="numberSal" placeholder="" value="{{ old('number_employee') ? old('number_employee') : $work->number_employee }}" name="number_employee">
                             <button type="button" class="btn btn-text btn-num" data-value="more"><i class="fas fa-plus"></i></button>
                         </div>
-                        @error('employee_number')
-                        <p class="message-error">{{ $message }}</p>
+                        @error('number_employee')
+                            <p class="message-error">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
                 <div class="line line--activity">
                     <div class="left left-cancel">
-                        <label for="number_employee">Principales activités</label>
+                        <label>Principales activités</label>
                     </div>
                     <div class="right">
                         <ul class="ul-textarea">
@@ -45,14 +45,14 @@
                                 @foreach(old('activities') as $activitie)
                                     <li>
                                         <button type="button" class="btn btn-text btn-small btn-delete"><i class="far fa-times-circle"></i></button>
-                                        <textarea class="form-control auto-resize" placeholder="" name="activities[]">{{ $activitie }}</textarea>
+                                        <textarea class="form-control auto-resize" placeholder="" name="activities[]">@stripTags($activitie)</textarea>
                                     </li>
                                 @endforeach
                             @else
                                 @foreach($work->activities as $activitie)
                                     <li>
                                         <button type="button" class="btn btn-text btn-small btn-delete"><i class="far fa-times-circle"></i></button>
-                                        <textarea class="form-control auto-resize" placeholder="" name="activities[]">{{ $activitie->text }}</textarea>
+                                        <textarea class="form-control auto-resize" placeholder="" name="activities[]">@stripTags($activitie->text)</textarea>
                                     </li>
                                 @endforeach
                             @endif
@@ -81,24 +81,34 @@
                                         </li>
                                         <li>
                                             <ul class="list-content" data-list="{{ $item->id.'-'.$subItem->id }}">
-                                                @if(old(($item->id.'-'.$subItem->id)))
-                                                    @foreach(old(($item->id.'-'.$subItem->id)) as $child)
-                                                        <li class="list-item">
-                                                            <button type="button" class="btn btn-text btn-small btn-delete" data-value="{{ $child }}"><i class="far fa-times-circle"></i></button>
-                                                            <p>{{ $child }}</p>
-                                                            <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[]" value="{{ $child }}" data-id="{{ $child.now() }}">
-                                                        </li>
-                                                    @endforeach
-                                                @else
-                                                    @foreach($subItem->sd_item as $child)
-                                                        @if($child->sd_work_unit->id === $work->id)
+                                                @if(old($item->id.'-'.$subItem->id))
+                                                    @if (count(old($item->id.'-'.$subItem->id)) > 0)
+                                                        @foreach(old($item->id.'-'.$subItem->id) as $sd_item)
                                                             <li class="list-item">
-                                                                <button type="button" class="btn btn-text btn-small btn-delete" data-value="{{ $child->name }}"><i class="far fa-times-circle"></i></button>
-                                                                <p>{{ $child->name }}</p>
-                                                                <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[]" value="{{ $child->name }}" data-id="{{ $child->id }}">
+                                                                <button type="button" class="btn btn-text btn-small btn-delete" data-value="{{ $sd_item }}"><i class="far fa-times-circle"></i></button>
+                                                                <p>{{ $sd_item }}</p>
+                                                                <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[]" value="{{ $sd_item }}" data-id="{{ $sd_item.now() }}">
                                                             </li>
-                                                        @endif
-                                                    @endforeach
+                                                        @endforeach
+                                                    @else
+                                                        <li>
+                                                            <p class="nothing">Néant</p>
+                                                        </li>
+                                                    @endif
+                                                @else
+                                                    @if (count($subItem->sd_work_unit_sd_items($work->id)) > 0)
+                                                        @foreach ($subItem->sd_work_unit_sd_items($work->id) as $sd_item)
+                                                            <li class="list-item">
+                                                                <button type="button" class="btn btn-text btn-small btn-delete" data-value="{{ $sd_item->name }}"><i class="far fa-times-circle"></i></button>
+                                                                <p>{{ $sd_item->name }}</p>
+                                                                <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[]" value="{{ $sd_item->name }}" data-id="{{ $sd_item->id }}">
+                                                            </li>
+                                                        @endforeach
+                                                    @else
+                                                        <li>
+                                                            <p class="nothing">Néant</p>
+                                                        </li>
+                                                    @endif
                                                 @endif
                                             </ul>
                                         </li>
@@ -181,7 +191,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-text btn-yellow btn-modal-valid">Valider la liste</button>
+                <button class="btn btn-text btn-yellow btn-modal-valid" data-dismiss="modal">Valider la liste</button>
             </div>
         </div>
     </div>

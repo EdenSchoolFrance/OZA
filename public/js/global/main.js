@@ -65,7 +65,9 @@ $('textarea.auto-resize').forEach(el => {
 /*==============================
               Modal
 ==============================*/
-on('[data-modal]', 'click', (el, e) => {
+on('[data-modal]', 'click', showModal);
+
+function showModal(el) {
     $('body', document, 0).classList.add('modal-openned');
     let modal = $(el.dataset.modal, document, 0);
 
@@ -76,7 +78,7 @@ on('[data-modal]', 'click', (el, e) => {
             modal.classList.add('show')
         }, 1);
     }
-});
+}
 
 on('.modal:not([data-backdrop="static"])', 'click', (el, e) => {
 
@@ -128,7 +130,6 @@ on('[data-dismiss="alert"]', 'click', (el, e) => {
               Tooltip
 ==============================*/
 on('[data-toggle="tooltip"]:not([data-tooltip])', 'mouseover', (el, e) => {
-    console.log('pass tooltip')
     let tooltip = document.createElement('div');
     let tooltip_uuid = 'tooltip-' + Math.random().toString().slice(2, 15) + Math.random().toString().slice(2, 15);
 
@@ -151,7 +152,7 @@ on('[data-tooltip]', 'mouseover', (el, e) => {
 });
 
 on('[data-tooltip]', 'mouseout', (el, e) => {
-    if (!el.contains(e.toElement)) {
+    if (!el.contains(e.relatedTarget)) {
         let tooltip = $(el.dataset.tooltip, document, 0);
 
         if (tooltip) {
@@ -200,8 +201,6 @@ function showTooltip(el, e) {
                     break;
             }
         }else{
-
-            console.log(placement)
             switch (placement) {
                 case "top":
                     top = (el.offsetTop - tooltip.offsetHeight - 15) + 'px';
@@ -222,7 +221,6 @@ function showTooltip(el, e) {
             }
         }
 
-        console.log(left)
         tooltip.style.top = top;
         tooltip.style.left = left;
 

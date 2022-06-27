@@ -126,6 +126,9 @@ table.table--work_units {
                     }
                 }
             }
+            .td_activity{
+                width: 40%;
+            }
 
             &:last-of-type {
                 td {
@@ -178,6 +181,11 @@ table.table--work_units {
             }
         }
     }
+}
+
+.work-btn{
+    display: flex;
+    justify-content: flex-end;
 }
 
 .modal--work_unit{

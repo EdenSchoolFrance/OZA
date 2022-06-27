@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    font-family: 'Hind-Regular';
+    font-family: 'Hind-Medium';
 }
 
 html {
@@ -229,17 +229,6 @@ ul{
         .dropdown-menu {
             display: block;
         }
-    }
-}
-
-.btn-group-number{
-    .btn{
-        font-size: 25px;
-        margin: 0 10px;
-    }
-    input[type=number]{
-        width: 100px;
-        text-align: center;
     }
 }
 

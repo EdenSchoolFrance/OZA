@@ -14,21 +14,21 @@
                             <th class="th_status"></th>
                             <th class="th_number_employee"><i class="fas fa-user"></i></th>
                             <th class="th_work_unit">Unité de travail</th>
-                            <th class="th_activity">Activité</th>
+                            <th class="th_activity">Activités</th>
                             @foreach($items as $item)
-                            <th class="th_{{ $item->id }}">{{ $item->name }}</th>
+                                <th class="th_{{ $item->id }}">{{ $item->name }}</th>
                             @endforeach
                             <th class="th_actions"></th>
                         </tr>
                     </thead>
                     <tbody>
-                    @if(count($works) === 0)
-                        <tr class="no-data no-data--centered">
-                            <td colspan="{{ count($items) + 5 }}" >
-                                Aucune unité de travail
-                            </td>
-                        </tr>
-                    @endif
+                        @if(count($works) === 0)
+                            <tr class="no-data no-data--centered">
+                                <td colspan="{{ count($items) + 5 }}" >
+                                    Aucune unité de travail
+                                </td>
+                            </tr>
+                        @endif
                         @foreach($works as $work)
                             <tr>
                                 <td class="td_status">
@@ -44,23 +44,27 @@
                                 <td class="td_activity">
                                     <div class="table-resizable">
                                         @foreach($work->activities as $activitie)
-                                            <p>► {{ $activitie->text }}</p>
+                                            <p>► @stripTags($activitie->text)</p>
                                         @endforeach
                                     </div>
                                 </td>
                                 @foreach($items as $item)
                                     <td class="td_{{ $item->id }}">
                                         <div class="table-resizable">
-                                            @foreach($item->sub_items as $sub_item)
-                                                @if(count($work->items->where('sub_item_id', $sub_item->id)) !== 0)
-                                                    <div class="list_group">
-                                                        <p class="title">{{ $sub_item->name }}</p>
-                                                        <p class="content">
-                                                            {{ $work->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }}
-                                                        </p>
-                                                    </div>
-                                                @endif
-                                            @endforeach
+                                            @if (count($work->items) !== 0)
+                                                @foreach($item->sub_items as $sub_item)
+                                                    @if(count($work->items->where('sub_item_id', $sub_item->id)) !== 0)
+                                                        <div class="list_group">
+                                                            <p class="title">{{ $sub_item->name }}</p>
+                                                            <p class="content">
+                                                                {{ $work->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }}
+                                                            </p>
+                                                        </div>
+                                                    @endif
+                                                @endforeach
+                                            @else
+                                                <p>Néant</p>
+                                            @endif
                                         </div>
                                     </td>
                                 @endforeach
@@ -87,7 +91,6 @@
                                             <p>salarié(s) inscrit(s) sur le registre du personnel</p>
                                         </div>
                                     </div>
-                                    <a href="{{route('work.create', [$single_document->id])}}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UNE UNITE DE TRAVAIL</a>
                                 </div>
                             </td>
                             <td></td>
@@ -96,7 +99,10 @@
                 </table>
             </div>
         </div>
-
+        <div class="work-btn">
+            <a href="{{route('work.create', [$single_document->id])}}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UNE UNITE DE TRAVAIL</a>
+        </div>
+        
         @if (Auth::user()->hasPermission(['ADMIN', 'EXPERT', 'MANAGER', 'EDITOR']))
             <div class="modal modal--delete">
                 <div class="modal-dialog">

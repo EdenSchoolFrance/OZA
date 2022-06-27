@@ -4,69 +4,47 @@
     <div class="content">
         <div class="card card--work_units">
             <div class="card-body">
-                <table class="table table--restraint">
+                <table class="table table--restraint table-sortable">
                     <thead>
                         <tr>
-                            <th class="th_work_unit">Unité de travail</th>
-                            <th class="th_danger">Danger</th>
-                            <th class="th_risk">Risque</th>
-                            <th class="th_evaluation">Évaluations</th>
-                            <th class="th_restraint">Mesure(s) proposée(s)</th>
-                            @if (!Auth::user()->hasPermission('READER'))
-                                <th class="th_actions"></th>
-                            @endif
+                            <th class="th_work_unit th-sort">Unité de travail</th>
+                            <th class="th_danger th-sort">Danger</th>
+                            <th class="th_risk th-sort">Risque</th>
+                            <th class="th_evaluation th-sort th-sort-asc">Criticité</th>
+                            <th class="th_restraint th-sort">Mesure(s) proposée(s)</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($sd_risks as $sd_risk)
-                            @foreach ($sd_risk->sd_restraints_porposed as $sd_restraint)
-                                @if ($sd_restraint->id === $sd_risk->sd_restraints_porposed[0]->id)
-                                    <tr>
-                                        <td class="td_work_unit">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "UT Tous" }}</td>
-                                        <td class="td_danger">{{ $sd_risk->sd_danger->danger->name }}</td>
-                                        <td class="td_risk">{{ $sd_risk->name }}</td>
-                                        <td class="td_evaluation">
-                                            <div class="list list--text list--space">
-                                                <div class="list-row">
-                                                    <p class="list-point list-point--text">RR</p>
-                                                    <button class="btn {{ $sd_risk->color($sd_risk->totalRR($sd_risk->sd_restraints)) }} btn-small">{{ $sd_risk->totalRR($sd_risk->sd_restraints) }}</button>
-                                                </div>
-                                                <div class="list-row">
-                                                    <p class="list-point list-point--text">C</p>
-                                                    <button type="button" class="btn {{ $sd_risk->color(($sd_risk->totalRR($sd_risk->sd_restraints) + $sd_risk->total())) }} btn-small">{{ $sd_risk->colorTotal(($sd_risk->totalRR($sd_risk->sd_restraints)+$sd_risk->total())) }}</button>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="td_restraint">
+                            <tr>
+                                <td class="td_work_unit" data-sort="{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "UT Tous" }} {{ $sd_risk->sd_danger->danger->name }}">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "UT Tous" }}</td>
+                                <td class="td_danger">{{ $sd_risk->sd_danger->danger->name }}</td>
+                                <td class="td_risk">{{ $sd_risk->name }}</td>
+                                <td class="td_evaluation" data-sort="{{ $sd_risk->totalRR($sd_risk->sd_restraints) }}">
+                                    <div class="list list--text list--space">
+                                        <div class="list-row">
+                                            <p class="list-point list-point--text">RR</p>
+                                            <button class="btn {{ $sd_risk->color($sd_risk->totalRR($sd_risk->sd_restraints)) }} btn-small">{{ $sd_risk->totalRR($sd_risk->sd_restraints) }}</button>
+                                        </div>
+                                        <div class="list-row">
+                                            <p class="list-point list-point--text">C</p>
+                                            <button type="button" class="btn {{ $sd_risk->color(($sd_risk->totalRR($sd_risk->sd_restraints) + $sd_risk->total())) }} btn-small">{{ $sd_risk->colorTotal(($sd_risk->totalRR($sd_risk->sd_restraints)+$sd_risk->total())) }}</button>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="td_restraint">
+                                    @foreach ($sd_risk->sd_restraints_porposed as $sd_restraint)
+                                        <div>
                                             {{ $sd_restraint->name }}
-                                        </td>
-                                        @if (!Auth::user()->hasPermission('READER'))
-                                            <td class="td_actions">
+                                            @if (!Auth::user()->hasPermission('READER'))
                                                 <a data-modal=".modal--restraint" data-id="{{ $sd_restraint->id }}" data-name="{{ $sd_restraint->name }}">
                                                     <i class="far fa-edit"></i>
                                                 </a>
-                                            </td>
-                                        @endif
-                                    </tr>
-                                @else
-                                    <tr>
-                                        <td class="td_none"></td>
-                                        <td class="td_none"></td>
-                                        <td class="td_none"></td>
-                                        <td class="td_none"></td>
-                                        <td class="td_restraint">
-                                            {{ $sd_restraint->name }}
-                                        </td>
-                                        @if (!Auth::user()->hasPermission('READER'))
-                                            <td class="td_actions">
-                                                <a data-modal=".modal--restraint" data-id="{{ $sd_restraint->id }}" data-name="{{ $sd_restraint->name }}">
-                                                    <i class="far fa-edit"></i>
-                                                </a>
-                                            </td>
-                                        @endif
-                                    </tr>
-                                @endif
-                            @endforeach
+                                            @endif
+                                        </div>
+                                    @endforeach
+                                </td>
+                            </tr>
                         @endforeach
 
                         @if (count($sd_risks) == 0)
@@ -90,8 +68,16 @@
                     </div>
                     <div class="modal-body">
                         <div class="row">
-                            <div class="line title-restraint">
-
+                            <div class="line">
+                                <div class="left">
+                                    <label for="nameRisk">Rappel de la mesure</label>
+                                </div>
+                                <div class="right">
+                                    <textarea id="nameRisk" class="form-control auto-resize title-restraint" name="name_restraint" placeholder="Décrire la mesure mise à jour"></textarea>
+                                    @error('name_restraint')
+                                        <p class="message-error">{{ $message }}</p>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
                         <div class="row">
@@ -153,7 +139,7 @@
                                             <p class="message-error">{{ $message }}</p>
                                         @enderror
                                     </div>
-                                    <i class="far fa-question-circle" data-toggle="toolHelp" data-placement="top" title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></i>
+                                    <i class="far fa-question-circle" data-tooltip=".tooltip--restraint-tech" data-placement="left"></i>
                                 </div>
                             </div>
                         </div>
@@ -192,7 +178,7 @@
                                         <p class="message-error">{{ $message }}</p>
                                         @enderror
                                     </div>
-                                    <i class="far fa-question-circle" data-toggle="toolHelp" data-placement="top" title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></i>
+                                    <i class="far fa-question-circle" data-tooltip=".tooltip--restraint-orga" data-placement="left"></i>
                                 </div>
                             </div>
                         </div>
@@ -231,7 +217,7 @@
                                         <p class="message-error">{{ $message }}</p>
                                         @enderror
                                     </div>
-                                    <i class="far fa-question-circle" data-toggle="toolHelp" data-placement="top" title="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></i>
+                                    <i class="far fa-question-circle" data-tooltip=".tooltip--restraint-human" data-placement="left"></i>
                                 </div>
                             </div>
                         </div>
@@ -244,6 +230,15 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="tooltip tooltip--restraint-tech">
+                        <p>Mesure de prévention technique comme par exemple : système de sécurité automatique, machine ou matériel conforme, ...</p>
+                    </div>
+                    <div class="tooltip tooltip--restraint-orga">
+                        <p>Mesure de prévention organisationnelle comme par exemple : respect de la règlementation en vigueur, consigne formalisée, ...</p>
+                    </div>
+                    <div class="tooltip tooltip--restraint-human">
+                        <p>Mesure de prévention humaine comme par exemple : information sensibilisation ou formation du personnel, protection collective et ou individuelle, ...</p>
                     </div>
                 </form>
             </div>

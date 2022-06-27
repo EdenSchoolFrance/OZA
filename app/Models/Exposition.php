@@ -38,4 +38,35 @@ class Exposition extends Model
     // {
     //     return $this->hasMany(SdExpositionQuestion::class)->where('danger');
     // }
+
+    public function pivot($id)
+    {
+        $sd_danger = SdDanger::whereHas('single_document', function ($q) use ($id) {
+            $q->where('id', $id);
+        })->where('danger_id', $this->danger_id )->first();
+
+        $result = [];
+
+        foreach ($sd_danger->sd_works_units as $sd_work_unit){
+            array_push($result, $sd_work_unit->sd_danger($sd_danger->id)->pivot->exposition);
+        }
+
+        return $result;
+    }
+
+    public function works($id)
+    {
+        $sd_danger = SdDanger::whereHas('single_document', function ($q) use ($id) {
+            $q->where('id', $id);
+        })->where('danger_id', $this->danger_id )->first();
+
+
+        $result = [];
+
+        foreach ($sd_danger->sd_works_units as $sd_work_unit){
+            array_push($result, $sd_work_unit->sd_danger($sd_danger->id)->pivot->exposition);
+        }
+
+        
+    }
 }

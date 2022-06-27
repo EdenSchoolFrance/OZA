@@ -5,16 +5,24 @@ function sortTableByColumn(table, column, asc) {
 
     // Sort each row
     const sortedRows = rows.sort((a, b) => {
-        const aColText = $(`td:nth-child(${ column + 1 })`, a, false).textContent.trim();
-        const bColText = $(`td:nth-child(${ column + 1 })`, b, false).textContent.trim();
+        const aCol = $(`td:nth-child(${ column + 1 })`, a, false);
+        const bCol = $(`td:nth-child(${ column + 1 })`, b, false);
 
-        return aColText > bColText ? (1 * dirModifier) : (-1 * dirModifier);
+        let aColText = aCol.dataset.sort || aCol.innerText;
+        let bColText = bCol.dataset.sort || bCol.innerText;
+
+        if (!isNaN(aColText)) {
+            aColText = parseFloat(aColText);
+        }
+        if (!isNaN(bColText)) {
+            bColText = parseFloat(bColText);
+        }
+
+        return aColText > bColText ? 1 * dirModifier : -1 * dirModifier;
     });
 
     // Remove all existing TRs from the table
-    while (tBody.firstChild) {
-        tBody.removeChild(tBody.firstChild);
-    }
+    tBody.innerHTML = "";
 
     // Re-add the newly sorted rows
     tBody.append(...sortedRows);

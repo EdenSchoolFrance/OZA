@@ -30,10 +30,9 @@
                                     @foreach(old('activities') as $activitie)
                                         <li>
                                             <button type="button" class="btn btn-text btn-small btn-delete"><i class="far fa-times-circle"></i></button>
-                                            <textarea class="form-control auto-resize" placeholder="" name="activities[]">{{ $activitie }}</textarea>
+                                            <textarea class="form-control auto-resize" placeholder="" name="activities[]">@stripTags($activitie)</textarea>
                                         </li>
                                     @endforeach
-
                                 @endif
                                 <li>
                                     <button type="button" class="btn btn-text btn-yellow btn-add-activity"><i class="fas fa-plus"></i> Ajouter une activité</button>
@@ -72,14 +71,18 @@
                                             </li>
                                             <li>
                                                 <ul class="list-content" data-list="{{ $item->id.'-'.$subItem->id }}">
-                                                    @if(old(($item->id.'-'.$subItem->id)))
-                                                        @foreach(old(($item->id.'-'.$subItem->id)) as $child)
+                                                    @if(old($item->id.'-'.$subItem->id) && count(old($item->id.'-'.$subItem->id)) > 0)
+                                                        @foreach(old($item->id.'-'.$subItem->id) as $child)
                                                             <li class="list-item">
                                                                 <button type="button" class="btn btn-text btn-small btn-delete" data-value="{{ $child }}"><i class="far fa-times-circle"></i></button>
                                                                 <p>{{ $child }}</p>
                                                                 <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[]" value="{{ $child }}" data-id="{{ $child.now() }}">
                                                             </li>
                                                         @endforeach
+                                                    @else
+                                                        <li>
+                                                            <p class="nothing">Néant</p>
+                                                        </li>
                                                     @endif
                                                 </ul>
                                             </li>
@@ -153,7 +156,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-text btn-yellow btn-modal-valid">Valider la liste</button>
+                    <button class="btn btn-text btn-yellow btn-modal-valid" data-dismiss="modal">Valider la liste</button>
                 </div>
             </div>
         </div>

@@ -1,376 +1,585 @@
 // Variables
 @import "../global/variables";
-// Fonts
-@import "../global/fonts";
-// Global Style
-@import "../global/global";
 
-@import "../utils/text";
+$pageY: 30px;
+
+@page {
+    margin: $pageY 0;
+    padding: 0;
+    background-color: $white;
+}
 
 * {
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: Arial, sans-serif !important;
     color: $dark_purple;
+    font-size: 13px;
 }
 
-html {
+h1 {
+    font-size: 30px;
+}
+
+h2 {
+    font-size: 26px;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+h4 {
+    font-size: 16px;
+}
+
+p {
+    margin: 0;
+}
+
+li {
+    list-style: none;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+span {
+    font-family: Arial, sans-serif !important;
+}
+
+.bold {
+    font-weight: bold;
+    font-family: Arial, sans-serif !important;
+}
+
+.text-color {
+    &-pink {
+        color: $pink !important;
+    }
+
+    &-yellow {
+        color: $yellow !important;
+    }
+
+    &-green {
+        color: $green !important;
+    }
+
+    &-orange {
+        color: $orange !important;
+    }
+
+    &-red {
+        color: $danger !important;
+    }
+
+    &-blue {
+        color: $info !important;
+    }
+}
+
+.page {
     height: 100%;
-}
+    page-break-after: always;
 
-.pdf {
-    background-color: $white;
+    &>.header {
+        width: 100%;
+        height: 30px;
+        position: absolute;
+        top: -$pageY;
 
-    .page {
-        height: 793.5px;
+        .center {
+            margin-top: 8px;
+            text-align: center;
+            font-size: 10px;
+        }
+    }
+
+    &>.body {
+        height: 100%;
+        margin: 0 25px;
         position: relative;
-        page-break-after: always;
 
-        &>.header {
-            z-index: 999;
+        .head-title {
+            border-left: 10px solid $yellow;
+            padding: 5px 0 5px 20px;
+            margin: 0 0 20px 0;
+        }
+
+        ul {
+            padding-top: 30px;
+
+            li {
+                margin-top: 30px;
+
+                &:last-child {
+                    margin-top: 40px;
+                }
+            }
+        }
+
+        .list-item {
+            padding-top: 10px;
+
+            li {
+                height: 20px;
+                margin-top: 5px;
+
+                p {
+                    width: 95%;
+                    border-bottom: 1px solid $dark;
+                    margin-left: 30px;
+                    font-size: 13px;
+
+                    .line {
+                        width: 100%;
+
+                        .bold {
+                            margin: 0;
+                        }
+
+                        span {
+                            border: none;
+                        }
+                    }
+                }
+
+                .number {
+                    position: absolute;
+                    left: 10px;
+                    font-weight: 700;
+                    font-size: 13px;
+                }
+            }
+
+            .no-border {
+                margin-top: 0;
+
+                p {
+                    border: none;
+                }
+            }
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .legend {
+            font-size: 12px;
+            font-style: italic;
+        }
+
+        p {
+            &.info {
+                margin-bottom: 20px;
+            }
+        }
+
+        &--notif {
+            p {
+                padding-top: 40px;
+            }
+        }
+
+        &--rules {
+            p {
+                padding-top: 20px;
+            }
+        }
+    }
+
+    &>.footer {
+        width: 100%;
+        height: 30px;
+        position: absolute;
+        bottom: -$pageY;
+
+        .center {
+            margin-top: 9px;
+            text-align: center;
+            font-size: 10px;
+        }
+
+        .page-num {
             position: absolute;
-            top: 0;
-            left: 0;
-            height: 30px;
-            width: 100%;
+            bottom: 10px;
+            right: 15px;
+            font-size: 12px;
 
-            .center {
-                margin-top: 8px;
-                text-align: center;
-                font-size: 10px;
+            span:before {
+                content: counter(page);
+            }
+        }
+
+        p:first-child {
+            margin-left: 10px;
+        }
+    }
+
+    &--first {
+        &>.header {
+            height: 60px;
+            padding: 10px 15px;
+            border-bottom: 1px solid $dark_purple;
+
+            img {
+                height: 100%;
             }
         }
 
         &>.body {
-            height: 92%;
-            margin: 30px 50px;
-            position: relative;
-            //background-color: lightgreen;
-            &--notif{
-                p{
-                    margin-top: 40px;
-                }
-            }
-            &--rules{
-                p{
-                    margin-top: 20px;
-                }
-            }
-            ul{
-                margin-top: 30px;
-                li{
-                    margin-top: 30px;
-                    &:last-child{
-                        margin-top: 40px;
-                    }
-                }
-            }
-            .head-title{
-                border-left: 10px solid $yellow;
+            text-align: center;
 
-                padding: 5px 0 5px 20px;
-            }
-            .list-item{
-                margin-top: 10px;
-                li{
-                    width: 100%;
-                    height: 20px;
-                    margin-top: 5px;
-                    p{
-                        width: 95%;
-                        border-bottom: 1px solid $dark;
-                        margin-left: 30px;
-                        font-size: 14px;
-                        .line{
-                            width: 100%;
-                            .bold{
-                                margin: 0;
-                            }
-                            span{
-                                border: none;
-                            }
-                            a{
-                                position: absolute;
-                                right: 40px;
-                            }
-                        }
-                    }
-                    .number{
-                        position: absolute;
-                        left: 10px;
-                        font-weight: 700;
-                        font-size: 13px;
-                    }
+            .header {
+                padding-top: 70px;
+
+                .subtitle {
+                    font-weight: bold;
                 }
-                .no-border{
-                    margin-top: 0;
-                    p{
-                        border: none;
-                    }
+
+                .title {
+                    color: $green;
                 }
             }
-            .center {
+
+            img {
+                margin-top: 50px;
+                max-width: 400px;
+                max-height: 300px;
+            }
+
+            .info-single_document {
                 text-align: center;
+                position: absolute;
+                bottom: 30px;
+                right: 0;
             }
-            .legend{
-                font-size: 13px;
-                font-style: italic;
+        }
+    }
+
+    &--second {
+        &>.body {
+            .header {
+                width: 100%;
+                text-align: center;
+
+                .subtitle {
+                    font-weight: bold;
+                }
+
+                .title {
+                    color: $green;
+                }
+            }
+
+            li {
+                margin-top: 0;
+                margin-bottom: 0;
+
+                p {
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+
+    &:last-child {
+        page-break-after: inherit;
+    }
+}
+
+table,
+tr,
+td {
+    border: 1px solid $dark;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+
+    tr {
+        th {
+            padding: 10px 0;
+            color: $white;
+
+            &.green {
+                background-color: $success;
+                color: $white;
+            }
+
+            &.yellow {
+                background-color: $warning;
+                color: $white;
+            }
+
+            &.pink {
+                background-color: $pink;
+                color: $white;
+            }
+
+            &.red {
+                background-color: $danger;
+                color: $white;
             }
         }
 
-        &>.footer {
-            z-index: 999;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 30px;
+        .theader {
+            padding: 0px;
+            text-align: center;
+            background-color: $grey;
+
+            .description {
+                font-size: 13px;
+            }
+        }
+
+        td {
+            text-align: left;
 
             .center {
-                margin-top: 9px;
                 text-align: center;
+            }
+
+            div {
+                min-height: 40px;
+            }
+
+            &.green {
+                background-color: $success;
+                color: $white;
+            }
+
+            &.yellow {
+                background-color: $warning;
+                color: $white;
+            }
+
+            &.pink {
+                background-color: $pink;
+                color: $white;
+            }
+
+            &.red {
+                background-color: $danger;
+                color: $white;
+            }
+
+            &.grey {
+                background-color: $white_dark;
+                color: $dark;
+            }
+        }
+    }
+
+    &.table {
+        &--document_versions {
+            tbody tr td {
+                height: 50px;
+            }
+
+            .name {
+                width: 15%;
+            }
+
+            .function {
+                width: 10%;
+            }
+
+            .visa {
+                width: 15%;
+            }
+
+            .work {
+                width: 40%;
+            }
+
+            .date {
+                width: 20%;
+            }
+        }
+
+        &--info-gen {
+            margin-bottom: 30px;
+
+            tr {
+                td {
+                    padding: 20px;
+                    text-align: left;
+                }
+            }
+        }
+
+        &--activity {
+            tr {
+                td {
+                    padding: 30px 20px 80px 20px;
+                    text-align: left;
+                }
+            }
+        }
+
+        &--work_unit {
+            tr {
+                td {
+                    padding: 20px;
+                    text-align: left;
+
+                    p {
+                        margin: 10px 0;
+                    }
+                }
+            }
+        }
+
+        &--no-border {
+            tr,
+            td {
+                border: none;
+            }
+
+            border: none;
+            border-collapse: unset;
+        }
+
+        &--dashboard {
+            margin-bottom: 30px;
+
+            tr {
+                td {
+                    vertical-align: top;
+                    padding: 5px;
+                    text-align: center;
+                    font-size: 13px;
+
+                    div {
+                        margin-left: 20px;
+                        height: 180px;
+                        width: 300px;
+                        border: 1px solid rgba(0, 0, 0, 0.16);
+                        box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.16);
+
+                        p {
+                            margin-top: 10px;
+                        }
+
+                        .number {
+                            font-size: 20px;
+                        }
+                    }
+                }
+            }
+        }
+
+        &--action-plan {
+            tr,
+            td {
                 font-size: 10px;
             }
 
-            .page-num {
-                position: absolute;
-                bottom: 10px;
-                right: 15px;
-                font-size: 12px;
+            .workunit {
+                width: 5%;
+            }
 
-                span:before {
-                    content: counter(page);
-                }
+            .danger {
+                width: 10%;
+            }
+
+            .risk {
+                width: 15%;
+            }
+
+            .risk_residuel {
+                width: 3%;
+            }
+
+            .criticity {
+                width: 7%;
+            }
+
+            .restraint {
+                width: 25%;
+            }
+
+            .comment {
+                width: 25%;
+            }
+
+            .date {
+                width: 10%;
             }
         }
 
-        &-first {
-            &>.header {
-                height: 60px;
-                padding: 10px 15px;
-                border-bottom: 1px solid $dark_purple;
+        &--action {
+            table-layout: fixed;
 
-                img {
-                    height: 100%;
+            tr,
+            td {
+                font-size: 10px;
+                overflow-wrap: break-word;
+            }
+
+            .min-width {
+                &-left {
+                    width: 3%;
+                }
+
+                &-right {
+                    width: 2%;
                 }
             }
 
-            &>.body {
-                height: 84%;
-                margin: 95px 50px 30px 50px;
-                text-align: center;
+            .workunit {
+                width: 8%;
+            }
 
-                .header {
-                    margin-top: 30px;
+            .danger {
+                width: 10%;
+            }
 
-                    .subtitle {
-                        font-weight: bold;
-                    }
+            .risk {
+                width: 15%;
+            }
 
-                    .title {
-                        color: $green;
-                    }
+            .restraint,
+            .restraint_proposed {
+                width: 20%;
+            }
 
-                    .info {
-                    }
-                }
-
-                img {
-                    margin-top: 50px;
-                    max-width: 400px;
-                    max-height: 300px;
-                    width: auto;
-                }
-
-                .info-single_document {
-                    text-align: center;
-                    position: absolute;
-                    bottom: 30px;
-                    right: 0;
-                }
+            .criticity {
+                width: 4%;
             }
         }
 
-        &-second {
-            &>.body {
-                .header {
-                    width: 100%;
-                    text-align: center;
+        &--risk-pro {
+            font-size: 12px;
+        }
 
-                    .subtitle {
-                        font-weight: bold;
-                    }
-
-                    .title {
-                        color: $green;
-                    }
-
-                    .info {
-                    }
-                }
-                li{
-                    margin-top: 0;
-                    margin-bottom: 0;
-                    p{
-                        font-size: 12px;
-                    }
-                }
+        &--risk-post {
+            tr td {
+                font-size: 10px;
             }
         }
+    }
+}
 
-        &:last-child {
-            page-break-after: inherit;
-        }
-        table, tr,td {
-            border: 1px solid $dark;
-        }
-        table{
-            width: 100%;
-            border-collapse: collapse;
-            tr{
-                th{
-                    padding: 10px 0;
-                    color: $white;
-                    &.green{
-                        background-color: $success;
-                        color: $white;
-                    }
-                    &.yellow{
-                        background-color: $warning;
-                        color: $white;
-                    }
-                    &.red{
-                        background-color: $danger;
-                        color: $white;
-                    }
-                }
-                .theader{
-                    padding: 10px 0;
-                    text-align: center;
-                    background-color: $grey;
-                    .description{
-                        font-size: 13px;
-                    }
-                }
-                td{
-                    text-align: center;
-                    div{
-                        min-height: 40px;
-                    }
-                    &.green{
-                        background-color: $success;
-                        color: $white;
-                    }
-                    &.yellow{
-                        background-color: $warning;
-                        color: $white;
-                    }
-                    &.red{
-                        background-color: $danger;
-                        color: $white;
-                    }
-                    &.grey{
-                        background-color: $white_dark;
-                        color: $dark;
-                    }
-                }
-            }
-            &.table{
-                &--info-gen{
-                    margin-bottom: 30px;
-                    tr{
-                        td{
-                            padding: 20px;
-                            text-align: left;
-                        }
-                    }
-                }
-                &--activity{
+.chart-risk {
+    margin-top: 0px;
+    margin-left: 150px;
+    width: 700px;
+}
 
-                    tr{
-                        td{
-                            padding: 30px 20px 80px 20px;
-                            text-align: left;
-                        }
-                    }
-                }
-                &--work_unit{
-                    margin-top: 30px;
-                    tr{
-                        td{
-                            padding: 20px;
-                            text-align: left;
-                            p{
-                                margin: 10px 0;
-                            }
-                        }
-                    }
-                }
-                &--no-border{
-                    tr, td{
-                        border: none;
-                    }
-                    border: none;
-                    border-collapse: unset;
-                }
-                &--dashboard{
-                    margin-bottom: 30px;
-                    tr{
-                        td{
-                            vertical-align: top;
-                            padding: 5px;
-                            text-align: center;
-                            font-size: 13px;
-                            div{
-                                margin-left: 20px;
-                                height: 180px;
-                                width: 300px;
-                                border: 1px solid rgba(0,0,0,0.16);
-                                box-shadow: 0 4px 7px 0 rgba(0,0,0,0.16);
-                                p{
-                                    margin-top: 10px;
-                                }
-                                .number{
-                                    font-size: 20px;
-                                }
-                            }
-                        }
-                    }
-                }
-                &--action-plan{
-                    font-size: 13px;
-                    .restraint{
-                        min-width: 300px;
-                    }
-                }
-                &--action{
-                    font-size: 13px;
-                    .max-width{
-                        min-width: 250px;
-                    }
-                    .min-width{
-                        overflow-wrap: break-word;
-                        max-width: 30px;
-                    }
-                }
-                &--risk-pro{
-                    font-size: 12px;
-                }
-                &--risk-post{
-                    font-size: 13px;
-                }
-            }
-        }
-        .chart-risk{
-            margin-top: 30px;
-            margin-left: 270px;
-            width: 500px;
-        }
-        .rotate90{
-            span{
-                writing-mode: vertical-rl;
-                transform: rotate(90deg);
-                white-space: nowrap;
-            }
-        }
+.rotate90 {
+    span {
+        writing-mode: vertical-rl;
+        transform: rotate(90deg);
+        white-space: nowrap;
     }
 }

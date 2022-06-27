@@ -36,4 +36,11 @@ class WorkUnit extends Model
     {
         return $this->belongsTo(SectorActivitie::class, 'sector_activity_id');
     }
+
+    public function sub_item_items($sub_item_id)
+    {
+        return $this->items()->whereHas('sub_item', function ($q) use ($sub_item_id) {
+            $q->where('id', $sub_item_id);
+        })->get();
+    }
 }

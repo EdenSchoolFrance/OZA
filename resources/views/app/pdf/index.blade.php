@@ -4,20 +4,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>PDF OZA</title>
-    <link rel="stylesheet" href="/css/pdf/pdf.min.css">
+    <title>PDF Test</title>
     <link rel="stylesheet" href="{{ public_path('css/pdf/pdf.min.css') }}">
-
-    <style>
-        @page {
-            margin: 0;
-            padding: 0;
-            /*background-color: #FFFFFF;*/
-        }
-    </style>
 </head>
+<?php setlocale(LC_TIME, 'French');?>
 <body class="pdf">
-    <section class="page page-first">
+    <section class="page page--first">
         <div class="header">
             <img src="{{ public_path('img/logo.png') }}">
         </div>
@@ -25,29 +17,30 @@
         <div class="body">
             <div class="header">
                 <p class="subtitle">Document Unique</p>
-                <h1 class="title">{{ $single_document->name }}</h1>
+                <h1 class="title">{{ $single_document->name_enterprise }}</h1>
                 <p class="info">Code de Travail article L.4121-3</p>
                 <p class="info">Transcription des résultats de l'évaluation des risques pour la santé et la sécurité du personnel</p>
             </div>
 
-            <img src="{{ public_path('storage/'.$single_document->client->id.'/logo/'.$single_document->client->id.'.'.$single_document->client->image_type) }}" alt="">
+            <img src="{{ public_path('storage/' . $single_document->client->id . '/logo.' . $single_document->client->image_type) }}" alt="">
 
             <div class="info-single_document">
-                <p> @if(count($single_document->histories) === 1) Document Unique élaboré le @else Mise à jour du DUERP le @endif: <span class="bold">{{ date("d F Y") }}</span></p>
+                <p> @if(count($single_document->histories) === 1) Document Unique élaboré le @else Mise à jour du DUERP le @endif: <span class="bold">{{ $date }}</span></p>
                 <p>Version : <span class="bold">{{ count($single_document->histories) }}</span></p>
             </div>
         </div>
 
         <div class="footer">
             <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p class="page-num"></p>
         </div>
     </section>
 
-    <section class="page page-second">
+    <section class="page page--second">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
+
         <div class="body">
             <div class="header">
                 <h1 class="title">Document Unique</h1>
@@ -78,109 +71,101 @@
                         Un avis indiquant les modalités d'accès des travailleurs au document unique est affiché à une place convenable et aisément accessible dans les lieux de travail. Dans les entreprises ou établissements dotés d'un règlement intérieur, cet avis est affiché au même emplacement que celui réservé au règlement intérieur.
                     </p>
                 </li>
-                <li>
-                    <p class="text-color-red">
-                        <span class="bold">A noter :</span> <br>
-                        Un avis indiquant les modalités d'accès des travailleurs au document unique est affiché à une place convenable et aisément accessible dans les lieux de travail.
-                        Dans les entreprises ou établissements dotés d'un règlement intérieur, cet avis est affiché au même emplacement que celui réservé au règlement intérieur
-                    </p>
-                </li>
             </ul>
         </div>
+
         <div class="footer">
             <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p class="page-num"></p>
         </div>
     </section>
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
+
         <div class="body">
             <h1 class="head-title">SOMMAIRE</h1>
             <ul class="list-item">
                 <li>
-                    <p><span class="line">ACTUALISATION DU DOCUMENT UNIQUE<a href="#actu" class="link">4</a></span></p>
+                    <p><span class="line"><a href="#actu" class="link">ACTUALISATION DU DOCUMENT UNIQUE</a></span></p>
                 </li>
                 <li>
-                    <p><span class="line">PRÉSENTATION DÉTAILLÉE DE LA STRUCTURE ET DES UNITÉS DE TAVAIL<a href="#" class="link">4</a></span></p>
-                </li>
-                <li>
-                    <p><span class="line">TABLEAU DE BORD DE L’EVALUATION DES RISQUES <a href="#" class="link">4</a></span></p>
+                    <p><span class="line"><a href="#structure" class="link">PRÉSENTATION DÉTAILLÉE DE LA STRUCTURE ET DES UNITÉS DE TAVAIL</a></span></p>
                 </li>
                 <li>
                     <span class="number">1</span>
-                    <p><span class="line"><span class="text-color-green">PLAN D'ACTION</span> de réduction des risques, classement par <span class="bold">Criticité décroissante</span> <a href="#" class="link">4</a></span></p>
+                    <p><span class="line"><a href="#tabBord" class="link">TABLEAU DE BORD DE L’EVALUATION DES RISQUES</a></span></p>
                 </li>
                 <li>
                     <span class="number">2</span>
-                    <p><span class="line">RAPPEL REGLEMENTAIRE DOCUMENT UNIQUE<a href="#" class="link">4</a></span></p>
+                    <p><span class="line"><a href="#proAnnuel" class="link">PROGRAMME ANNUEL DE PREVENTION ET D'AMELIORATION DES CONDITIONS DE TRAVAIL</a></span></p>
                 </li>
                 <li>
                     <span class="number">3</span>
-                    <p><span class="line">NOTICE DE L’EVALUATION DES RISQUES<a href="#" class="link">4</a></span></p>
+                    <p><span class="line"><a href="#rules" class="link">RAPPEL REGLEMENTAIRE DOCUMENT UNIQUE</a></span></p>
                 </li>
                 <li>
                     <span class="number">4</span>
-                    <p><span class="line">EVALUATION DES RISQUES PROFESSIONNELS PAR <span class="bold">UNITÉ DE TRAVAIL</span>, classement alphabétique<a href="#" class="link">4</a></span></p>
+                    <p><span class="line"><a href="#evalRisk" class="link">NOTICE DE L’EVALUATION DES RISQUES</a></span></p>
                 </li>
                 <li>
                     <span class="number">5</span>
-                    <p><span class="line">LISTE DES POSTES DE TRAVAIL A RISQUE PARTICULIER<a href="#" class="link">4</a></span></p>
+                    <p><span class="line"><a href="#evalRiskPro" class="link">EVALUATION DES RISQUES PROFESSIONNELS PAR <span class="bold">UNITÉ DE TRAVAIL</span>, classement alphabétique</a></span></p>
                 </li>
                 <li>
                     <span class="number">6</span>
-                    <p><span class="line">EVALUATION DETAILLEE DU RISQUE PSYCHOSOCIAL ET <span>PLAN D’ACTION</span><a href="#" class="link">4</a></span></p>
+                    <p><span class="line"><a href="#listPost" class="link">LISTE DES POSTES DE TRAVAIL A RISQUE PARTICULIER</a></span></p>
                 </li>
                 <li>
                     <span class="number">7</span>
-                    <p><span class="line">EVALUATION DETAILLEE DU RISQUE CHIMIQUE ET <span>PLAN D’ACTION</span><a href="#" class="link">4</a></span></p>
+                    <p><span class="line"><a href="#evalRiskPsycho" class="link">EVALUATION DETAILLEE DU RISQUE PSYCHOSOCIAL ET <span>PLAN D’ACTION</span></a></span></p>
                 </li>
                 <li>
                     <span class="number">8</span>
-                    <p><span class="line">EVALUATION DETAILLEE DES CHAMPS ELECTROMAGNETIQUES ET <span>PLAN D’ACTION</span><a href="#" class="link">4</a></span></p>
+                    <p><span class="line"><a href="#evalRiskChimi" class="link">EVALUATION DETAILLEE DU RISQUE CHIMIQUE ET <span>PLAN D’ACTION</span></a></span></p>
                 </li>
                 <li>
                     <span class="number">9</span>
-                    <p><span class="line">DOCUMENT RELATIF A LA PREVENTION CONTRE L’EXPLOSION ET <span>PLAN D’ACTION</span><a href="#" class="link">4</a></span></p>
+                    <p><span class="line"><a href="#explo" class="link">DOCUMENT RELATIF A LA PREVENTION CONTRE L’EXPLOSION ET <span>PLAN D’ACTION</span></a></span></p>
                 </li>
                 <li>
-                    <span class="number">10</span>
-                    <p><span class="line">EXPOSITION AUX FACTEURS DE RISQUES PROFESSIONNELS ET <span>PLAN D’ACTION</span><a href="#" class="link">4</a></span></p>
+                    <span class="number">7</span>
+                    <p><span class="line"><a href="#expoRiskPro" class="link">EXPOSITION AUX FACTEURS DE RISQUES PROFESSIONNELS ET <span>PLAN D’ACTION</span></a></span></p>
                 </li>
                 <li>
-                    <span class="number">11</span>
-                    <p><span class="line">HISTORIQUE DES ACTIONS REALISÉES<a href="#" class="link">4</a></span></p>
+                    <span class="number">8</span>
+                    <p><span class="line"><a href="#historie" class="link">HISTORIQUE DES ACTIONS REALISÉES</a></span></p>
                 </li>
                 <li>
-                    <span class="number">12</span>
-                    <p><span class="line">ANNEXES<a href="#" class="link">4</a></span></p>
+                    <span class="number">9</span>
+                    <p><span class="line"><a href="#annexes" class="link">ANNEXES</a></span></p>
                 </li>
                 <li class="no-border">
-                    <p><span class="line">Glossaire<a href="#" class="link">4</a></span></p>
+                    <p><span class="line">Glossaire</span></p>
                 </li>
                 <li class="no-border">
-                    <p><span class="line">Attestations ("Déplacements" - "Formation sécurité" - "Exposition aux facteurs de risques professionnels")<a href="#" class="link">4</a></span></p>
+                    <p><span class="line">Attestations ("Déplacements" - "Formation sécurité" - "Exposition aux facteurs de risques professionnels")</span></p>
                 </li>
                 <li class="no-border">
-                    <p><span class="line">Fiche d’évaluation simplifiée des risques d’interférence et de coactivité<a href="#" class="link">4</a></span></p>
+                    <p><span class="line">Fiche d’évaluation simplifiée des risques d’interférence et de coactivité</span></p>
                 </li>
                 <li class="no-border">
-                    <p><span class="line">Arrêté du 19-03-1993 (travaux dangereux mis en œuvre par une entreprise extérieure)<a href="#" class="link">4</a></span></p>
+                    <p><span class="line">Arrêté du 19-03-1993 (travaux dangereux mis en œuvre par une entreprise extérieure)</span></p>
                 </li>
                 <li class="no-border">
-                    <p><span class="line">Arrêté du 25-02-2003 (travaux à risques particuliers sur chantier de BTP)<a href="#" class="link">4</a></span></p>
+                    <p><span class="line">Arrêté du 25-02-2003 (travaux à risques particuliers sur chantier de BTP)</span></p>
                 </li>
                 <li class="no-border">
-                    <p><span class="line">Fiche pratique « Hygiène des mains »<a href="#" class="link">4</a></span></p>
+                    <p><span class="line">Fiche pratique « Hygiène des mains »</span></p>
                 </li>
                 <li class="no-border">
-                    <p><span class="line">Fiche pratique « Prévention COVID-19 »<a href="#" class="link">4</a></span></p>
+                    <p><span class="line">Fiche pratique « Prévention COVID-19 »</span></p>
                 </li>
                 <li class="no-border">
                     <p class="text-color-red">
-                        Ce Document Unique a été élaboré sur la base du « Pack Conformité » du DOCUMENT UNIQUE OZA.<br>
+                        Ce Document Unique a été élaboré sur la base du « Pack Conformité » du DOCUMENT UNIQUE OZA.<br>
                         L’employeur est conscient qu’il s’agit d’une version allégée du Document Unique de OZA France dans lequel l’évaluation des risque est réalisée sur la base de 18 Dangers, dans lequel n’apparaissent pas pes parties ci-dessous et dans lequel l’évaluation de l’exposition aux Facteurs de Risques Professionnels est un simple diagnostic.<br>
                         - La liste des postes de travail à risque particulier, <br>
                         - L’évaluation détaillée du risque psychosocial, <br>
@@ -191,24 +176,25 @@
                 </li>
             </ul>
         </div>
+
         <div class="footer">
             <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p class="page-num"></p>
         </div>
     </section>
+
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
+
         <div class="body">
             <h1 class="head-title" id="actu">ACTUALISATION DU DOCUMENT UNIQUE</h1>
-            <table class="table">
+            <table class="table table--document_versions">
                 <thead>
                     <tr>
                         <th colspan="5" class="green">VERSIONS DU DOCUMENT UNIQUE</th>
                     </tr>
-                </thead>
-                <tbody>
                     <tr>
                         <td colspan="3" class="theader">Intervenants</td>
                         <td rowspan="2" class="theader"> Travail réalisé sur le DU <br><span class="description">(Mise à jour annuelle, mise à jour des actions, mise à jour des évaluations, ajout ou retrait de risques ou de préventions, …)</span></td>
@@ -219,32 +205,34 @@
                         <td class="theader">Fonction</td>
                         <td class="theader">Visa</td>
                     </tr>
-                    {{--Data line--}}
+                </thead>
+                <tbody>
                     @foreach($single_document->histories as $historie)
                         <tr>
-                            <td>{{ $single_document->firstname }} {{ $single_document->lastname }}</td>
-                            <td>{{ $single_document->function }}</td>
-                            <td></td>
-                            <td>{{ $historie->work }}</td>
-                            <td>{{ date("d/m/Y", strtotime($historie->date)) }}</td>
+                            <td class="name center">{{ $single_document->firstname }} {{ $single_document->lastname }}</td>
+                            <td class="function center">{{ $single_document->function }}</td>
+                            <td class="visa center"></td>
+                            <td class="work">{{ $historie->work }}</td>
+                            <td class="date center">{{ date("d/m/Y", strtotime($historie->date)) }}</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-
         </div>
+
         <div class="footer">
-            <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p> Copyright © OZA DUERP Online</p>
+            <p class="page-num">ACTUALISATION DU DOCUMENT UNIQUE</p>
         </div>
     </section>
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
+
         <div class="body">
-            <h1 class="head-title">PRÉSENTATION DE LA STRUCTURE</h1>
+            <h1 class="head-title" id="structure">PRÉSENTATION DE LA STRUCTURE</h1>
             <table class="table table--info-gen">
                 <thead>
                     <tr>
@@ -254,9 +242,7 @@
                 <tbody>
                     <tr>
                         <td colspan="2">
-                            Ce Document Unique, y compris ses annexes, est protégé par les droits d'auteur. Il a été réalisé avec l'assistance d'un IPRP de la
-                            société OZA, sous l'entière responsabilité et selon les indications de : <br>
-                            Mr {{ $single_document->firstname }} {{ $single_document->lastname }}, {{ $single_document->function }}
+                            Ce Document Unique et ses différentes versions a été rédigé sous la responsabilité de l’employeur
                         </td>
                     </tr>
                     <tr>
@@ -283,23 +269,24 @@
                         <td colspan="2">
                             <span class="bold">Nombre de salarié(s) inscrit(s) sur le registre du personnel au moment de la rédaction du Document Unique : </span><br>
                             {{ $single_document->work_unit->pluck('number_employee')->sum() }} salarié(s) <br>
-
                         </td>
                     </tr>
                 </tbody>
             </table>
             <p class="text-color-red"><span class="bold">À noter :</span> le genre masculin, utilisé dans la rédaction de ce document, l’a été uniquement dans le but d’alléger sa rédaction et sa lecture.</p>
         </div>
+
         <div class="footer">
-            <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p> Copyright © OZA DUERP Online</p>
+            <p class="page-num">PRÉSENTATION DÉTAILLÉE DE LA STRUCTURE ET DES UNITÉS DE TAVAIL</p>
         </div>
     </section>
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
+
         <div class="body">
             <table class="table table--activity">
                 <thead>
@@ -323,39 +310,42 @@
                 </tbody>
             </table>
         </div>
+
         <div class="footer">
-            <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p> Copyright © OZA DUERP Online</p>
+            <p class="page-num">PRÉSENTATION DÉTAILLÉE DE LA STRUCTURE ET DES UNITÉS DE TAVAIL</p>
         </div>
     </section>
+
     @foreach($single_document->work_unit as $key => $sd_work_unit)
         <section class="page">
             <div class="header">
-                <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+                <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
             </div>
+
             <div class="body">
                 @if($key === 0)
-                    <p class="text-color-red">
+                    <p class="info text-color-red">
                         <span class="bold">Rappel :</span> Pour chaque unité de travail, l’évaluation des risques porte sur les activités principales.<br>
                         Lorsqu’une personne affectée à une unité de travail met en œuvre de la polyvalence sur d’autres unités de travail, l’exposition globale de la personne considérée doit être appréciée en fonction du temps travaillé dans chaque unité de travail en moyenne sur l’année.
                     </p>
                 @endif
                 <table class="table table--work_unit">
                     <thead>
-                    <tr>
-                        <th class="yellow" colspan="2">UNITÉ DE TRAVAIL</th>
-                    </tr>
+                        <tr>
+                            <th class="yellow" colspan="2">UNITÉ DE TRAVAIL</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td colspan="2"><span class="bold">{{ $sd_work_unit->name }}</span></td>
-                    </tr>
+                        <tr>
+                            <td colspan="2"><span class="bold">{{ $sd_work_unit->name }}</span></td>
+                        </tr>
                         <tr>
                             <td>
                                 <p>
                                     <span class="bold">Principale(s) activité(s) : </span><br>
                                     @foreach($sd_work_unit->activities as $activitie)
-                                    - {{ $activitie->text }} <br>
+                                    - @stripTags($activitie->text) <br>
                                     @endforeach
                                 </p>
                                 <p>
@@ -389,18 +379,21 @@
                     </tbody>
                 </table>
             </div>
+
             <div class="footer">
-                <p class="center"> Copyright © OZA DUERP Online</p>
-                <p class="page-num">Page <span></span></p>
+                <p> Copyright © OZA DUERP Online</p>
+                <p class="page-num">PRÉSENTATION DÉTAILLÉE DE LA STRUCTURE ET DES UNITÉS DE TAVAIL</p>
             </div>
         </section>
     @endforeach
+
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
+
         <div class="body">
-            <h1 class="head-title">TABLEAU DE BORD DE L'ÉVALUATION DES RISQUES</h1>
+            <h1 class="head-title" id="tabBord">1. TABLEAU DE BORD DE L'ÉVALUATION DES RISQUES</h1>
             <table class="table table--no-border table--dashboard">
                 <tr>
                     <td>
@@ -438,22 +431,24 @@
             <p class="center bold">Risque résiduel</p>
             <img src="{{ $chartUrl }}" alt="" class="chart-risk">
         </div>
+
         <div class="footer">
-            <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p> Copyright © OZA DUERP Online</p>
+            <p class="page-num">TABLEAU DE BORD DE L’EVALUATION DES RISQUES </p>
         </div>
     </section>
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
+
         <div class="body body--notif">
-            <h1 class="head-title">1. NOTICE EXPLICATIVE DU PLAN D'ACTION DE RÉDUCTION DES RISQUES</h1>
-            <p class="bold">Le Plan d’action reprend et présente tous les risques identifiés et évalués dans le chapitre 4 « Evaluation des risques » classés ici selon leur criticité (priorité) dans la colonne « Criticité ».</p>
-            <p class="bold">Le Plan d’action reprend et présente également toutes les situations de « non-conformité réglementaire » dans la colonne « Mesures de prévention et de protection proposées », sous le libellé « Obligation réglementaire ».</p>
+            <h1 class="head-title" id="proAnnuel">2. PROGRAMME ANNUEL DE PREVENTION ET D'AMELIORATION DES CONDITIONS DE TRAVAIL</h1>
+            <p class="bold">Le Plan d’action reprend et présente tous les risques identifiés et évalués dans le chapitre 4 « Evaluation des risques » classés ici selon leur criticité (priorité) dans la colonne « Criticité ».</p>
+            <p class="bold">Le Plan d’action reprend et présente également toutes les situations de « non-conformité réglementaire » dans la colonne « Mesures de prévention et de protection proposées », sous le libellé « Obligation réglementaire ».</p>
             <p>
-                <span class="bold">Colonne « Mesures de prévention et de protection proposées » :</span><br>
+                <span class="bold">Colonne « Mesures de prévention et de protection proposées » :</span><br>
                 Les mesures de prévention et de protection proposées se déclinent en 3 catégories énoncées dans les 9 principes de prévention de l’article L.4121-2 du Code du Travail (Loi n° 91-1414 du 31 décembre 1991 art. 1 Journal Officiel du 7 janvier 1992 en vigueur le 31 décembre 1992) :<br>
                 - Mesure Technique, <br>
                 - Mesure Organisationnelle, <br>
@@ -461,96 +456,99 @@
             </p>
             <p>
                 <span class="bold">L’employeur décidera quelle(s) mesure(s) proposée(s) il réalisera.</span><br>
-                <span class="bold">Colonne « Décision sur les actions proposées »</span><br>
+                <span class="bold">Colonne « Décision sur les actions proposées »</span><br>
                 - Sera réalisé le (date) : Inscrire ici la date planifiée par l’employeur pour la réalisation des actions de prévention ou de protection qu’il a validé.<br>
-                - Ne sera pas réalisé » : Préciser les actions que l’employeur ne valide pas et qui ne seront pas mises en place.<br>
-                <span class="bold">Colonne « Date de réalisation » :</span><br>
+                - Ne sera pas réalisé » : Préciser les actions que l’employeur ne valide pas et qui ne seront pas mises en place.<br>
+                <span class="bold">Colonne « Date de réalisation » :</span><br>
                 Inscrire la date à laquelle l’action de prévention ou de protection a réellement été mise en place et a été opérationnelle.<br>
-                <span class="bold">Colonne « Commentaire, complément, autres actions » :</span><br>
+                <span class="bold">Colonne « Commentaire, complément, autres actions » :</span><br>
                 L’employeur inscrira éventuellement ici des commentaires sur les décisions prises, des compléments d’explications, et, ou des actions complémentaires.
             </p>
         </div>
+
         <div class="footer">
-            <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p> Copyright © OZA DUERP Online</p>
+            <p class="page-num">PROGRAMME ANNUEL DE PREVENTION ET D'AMELIORATION DES CONDITIONS DE TRAVAIL</p>
         </div>
     </section>
 
-
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
+
         <div class="body">
-            <p>Ce Document Unique, y compris ses annexes, est protégé par les droits d'auteur. Il a été réalisé avec l'assistance d'un IPRP de la société OZA, sous l'entière responsabilité et selon les indications fournies par : <span class="bold">=Mr {{ $single_document->firstname }} {{ $single_document->lastname }}, {{ $single_document->function }}</span> </p>
+            <p class="info">Ce Document Unique, y compris ses annexes, est protégé par les droits d'auteur. Il a été réalisé avec l'assistance d'un IPRP de la société OZA, sous l'entière responsabilité et selon les indications fournies par : <span class="bold">Mr {{ $single_document->firstname }} {{ $single_document->lastname }}, {{ $single_document->function }}</span> </p>
             <table class="table table--action-plan">
-                <tr>
-                    <th colspan="9" class="green">1. PLAN D'ACTION</th>
-                </tr>
-                <tr>
-                    <td class="theader">
-                        Unité de Travail = poste de travail
-                    </td>
-                    <td class="theader">
-                        DANGER et dommages potentiels à la personne
-                    </td>
-                    <td class="theader">
-                        RISQUE Phase de travail modes et caractéristiques de l'exposition (outil, matériel, produit, situation, opération, fréquence, durée)
-                    </td>
-                    <td class="theader">
-                        Risque résiduel
-                    </td>
-                    <td class="theader">
-                        Criticité = situation actuelle
-                    </td>
-                    <td class="theader restraint">
-                        Mesures de prévention et de protection proposées
-                    </td>
-                    <td class="theader">
-                        Décision sur les actions proposées : <br>
-                        - sera réalisé le (date) <br>
-                        - ne sera pas réalisé
-                    </td>
-                    <td class="theader">
-                        Date de réalisation
-                    </td>
-                    <td class="theader">
-                        Commentaire, complément, autres actions
-                    </td>
-                </tr>
-                @foreach($sd_risks as $sd_risk)
+                <thead>
                     <tr>
-                        <td>{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "Tous" }}</td>
-                        <td>{{ $sd_risk->sd_danger->danger->name }}</td>
-                        <td>{{ $sd_risk->name }}</td>
-                        <td>{{ $sd_risk->totalRR($sd_risk->sd_restraints) }}</td>
-                        <td class="{{ $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints)) }}">{{ $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints)) }}</td>
-                        <td>
-                            @foreach($sd_risk->sd_restraints as $sd_restraint)
-                                {{ $sd_restraint->name }}<br>
-                            @endforeach
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <th colspan="8" class="green">2. PROGRAMME ANNUEL DE PREVENTION ET D'AMELIORATION DES CONDITIONS DE TRAVAIL</th>
                     </tr>
-                @endforeach
+                    <tr>
+                        <td class="theader">
+                            Unité de Travail
+                        </td>
+                        <td class="theader">
+                            DANGER <br> et dommages potentiels à la personne
+                        </td>
+                        <td class="theader">
+                            RISQUE <br> Phase de travail modes et caractéristiques de l'exposition
+                        </td>
+                        <td class="theader">
+                            Risque résiduel
+                        </td>
+                        <td class="theader">
+                            Criticité = situation actuelle
+                        </td>
+                        <td class="theader">
+                            Mesures de prévention et de protection proposées
+                        </td>
+                        <td class="theader">
+                            Date de réalisation prévue <br> Conditions d’exécution <br> Estimation du coût <br> Ressources nécessaires
+                        </td>
+                        <td class="theader">
+                            Date de réalisation
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($sd_risks as $sd_risk)
+                        @if (count($sd_risk->sd_restraints_porposed) >= 1)
+                            <tr>
+                                <td class="workunit">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "Tous" }}</td>
+                                <td class="danger">{{ $sd_risk->sd_danger->danger->name }}</td>
+                                <td class="risk">@stripTags($sd_risk->name)</td>
+                                <td class="risk_residuel center">{{ $sd_risk->totalRR($sd_risk->sd_restraints) }}</td>
+                                <td class="criticity center {{ $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints)) }}">{{ $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints)) }}</td>
+                                <td class="restraint">
+                                    @foreach($sd_risk->sd_restraints_porposed as $sd_restraint)
+                                        @stripTags($sd_restraint->name)<br>
+                                    @endforeach
+                                </td>
+                                <td class="comment"></td>
+                                <td class="date"></td>
+                            </tr>
+                        @endif
+                    @endforeach
+                </tbody>
             </table>
         </div>
+
         <div class="footer">
-            <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p> Copyright © OZA DUERP Online</p>
+            <p class="page-num">PROGRAMME ANNUEL DE PREVENTION ET D'AMELIORATION DES CONDITIONS DE TRAVAIL</p>
         </div>
     </section>
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
+
         <div class="body body--notif">
-            <h1 class="head-title">2. RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</h1>
-            <p class="bold">L’EVALUATION DES RISQUES, LE DOCUMENT UNIQUE ET SON ANNEXE « FACTEURS DE RISQUES PROFESSIONNELS »</p>
-            <p class="bold">Le Plan d’action reprend et présente également toutes les situations de « non-conformité réglementaire » dans la colonne « Mesures de prévention et de protection proposées », sous le libellé « Obligation réglementaire ».</p>
+            <h1 class="head-title" id="rules">3. RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</h1>
+            <p class="bold">L’EVALUATION DES RISQUES, LE DOCUMENT UNIQUE ET SON ANNEXE « FACTEURS DE RISQUES PROFESSIONNELS »</p>
+            <p class="bold">Le Plan d’action reprend et présente également toutes les situations de « non-conformité réglementaire » dans la colonne « Mesures de prévention et de protection proposées », sous le libellé « Obligation réglementaire ».</p>
             <p>
                 <span class="bold">1. Pourquoi évaluer les risques professionnels ?</span><br>
                 L’évaluation des risques professionnels est imposée par le Code du Travail à tout employeur, dès lors qu’il emploie au moins un salarié. Code du travail, article R4121-1 :<br>
@@ -566,21 +564,6 @@
                 <span class="bold">2.1. Définitions</span><br>
                 Le dictionnaire LAROUSSE définit l’<span class="bold">ACCIDENT</span> comme : « un événement fortuit qui a des effets plus ou moins dommageables pour les personnes ou pour les choses ».<br>
                 De fait l’accident est la concrétisation d’un <span class="bold">RISQUE.</span><br>
-            </p>
-        </div>
-        <div class="footer">
-            <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
-        </div>
-    </section>
-
-    <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
-        </div>
-        <div class="body body--notif">
-            <h1></h1>
-            <p>
                 <span class="bold">- Sans danger, pas de risque,</span><br>
                 <span class="bold">- Sans exposition au danger, pas de risque,</span><br>
                 <span class="bold">- Sans risque pas d’accident.</span>
@@ -591,6 +574,22 @@
                 Dans cet exemple, <br>
                 <span class="bold">- Le danger</span> est constitué par la rotation du disque de la tronçonneuse. <br>
                 <span class="bold">- Le risque</span> est constitué par la probabilité que le disque en rotation entre en contact avec une partie non protégée d’un être humain, en l’occurrence le salarié.<br>
+            </p>
+        </div>
+
+        <div class="footer">
+            <p> Copyright © OZA DUERP Online</p>
+            <p class="page-num">RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</p>
+        </div>
+    </section>
+
+    <section class="page">
+        <div class="header">
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+        </div>
+
+        <div class="body body--notif">
+            <p>
                 On parlera ici de risque de coupure. <br>
                 Ce risque de coupure peut être plus ou moins important. Il variera en fonction de ses deux paramètres constitutifs :<br>
                 <span class="bold">- Le Danger et,</span> <br>
@@ -616,22 +615,6 @@
                 1° Eviter les risques ; <br>
                 2° <span class="bold">Evaluer les risques</span> qui ne peuvent pas être évités ; <br>
                 3° Combattre les risques à la source ; <br>
-            </p>
-
-        </div>
-        <div class="footer">
-            <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
-        </div>
-    </section>
-
-    <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
-        </div>
-        <div class="body body--notif">
-            <h1></h1>
-            <p>
                 4° Adapter le travail à l'homme, en particulier en ce qui concerne la conception des postes de travail ainsi que le choix des équipements de travail et
                 des méthodes de travail et de production, en vue notamment de limiter le travail monotone et le travail cadencé et de réduire les effets de ceux-ci sur
                 la santé ;<br>
@@ -643,6 +626,19 @@
                 8° Prendre des mesures de protection collective en leur donnant la priorité sur les mesures de protection individuelle ;<br>
                 9° Donner les instructions appropriées aux travailleurs. <br>
             </p>
+        </div>
+
+        <div class="footer">
+            <p> Copyright © OZA DUERP Online</p>
+            <p class="page-num">RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</p>
+        </div>
+    </section>
+
+    <section class="page">
+        <div class="header">
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+        </div>
+        <div class="body body--notif">
             <p>
                 <span class="bold">
                     L’évaluation des risques est donc bien placée en tête des principes de prévention par le législateur. C’est elle qui apporte la cohésion
@@ -665,19 +661,6 @@
                 - La proportion de salariés exposés au-delà des seuils fixés pour les facteurs de risques professionnels. Cette proportion est actualisée en tant que
                 de besoin lors de la mise à jour du Document Unique. <br>
             </p>
-        </div>
-        <div class="footer">
-            <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
-        </div>
-    </section>
-
-    <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
-        </div>
-        <div class="body body--notif">
-            <h1></h1>
             <p>
                 <span class="bold">2.3.1. Que sont les FACTEURS DE RISQUES PROFESSIONNELS</span> <br>
                 Le Code du travail (articles L4161-1 et D4161-1-1) et le Décret n° 2017-1769 du 27/12/2017 définissent les facteurs de risques professionnels comme
@@ -698,6 +681,18 @@
                 risques associés à un seuil est évaluée précisément par rapport aux seuils réglementaires dans l'annexe d'évaluation de l'exposition aux FACTEURS
                 DE RISQUES PROFESSIONNELS. <br>
             </p>
+        </div>
+        <div class="footer">
+            <p> Copyright © OZA DUERP Online</p>
+            <p class="page-num">RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</p>
+        </div>
+    </section>
+
+    <section class="page">
+        <div class="header">
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+        </div>
+        <div class="body body--notif">
             <p>
                 <span class="bold">2.3.2. De la Prévention à la Compensation, le Compte Professionnel de Prévention (C2P)</span><br>
                 Quand les mesures de prévention s’avèrent insuffisantes, certains risques peuvent occasionner ; lorsque l’exposition se situe au-delà de certains
@@ -713,20 +708,6 @@
                 - Un complément de rémunération lors d’un passage à temps partiel, <br>
                 - Un départ anticipé à la retraite. <br>
             </p>
-
-        </div>
-        <div class="footer">
-            <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
-        </div>
-    </section>
-
-    <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
-        </div>
-        <div class="body body--notif">
-            <h1></h1>
             <p>
                 <span class="bold">2.3.2.2. Déclaration annuelle des expositions aux facteurs de risques professionnels</span><br>
                 - Pour les travailleurs titulaires d'un contrat de travail qui demeure en cours à la fin de l'année civile, l'employeur déclare au terme de chaque année
@@ -754,6 +735,19 @@
                 prévention des risques professionnels (IPRP) appartenant au service de santé au travail auquel il adhère ou enregistrés auprès de la DIRECCTE.
                 L’employeur peut en outre faire appel à d’autres ressources extérieures (CARSAT, INRS, OPPBTP, ANACT, à des consultants...) ».<br>
             </p>
+
+        </div>
+        <div class="footer">
+            <p> Copyright © OZA DUERP Online</p>
+            <p class="page-num">RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</p>
+        </div>
+    </section>
+
+    <section class="page">
+        <div class="header">
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+        </div>
+        <div class="body body--notif">
             <p>
                 <span class="bold">3.2. Quelles méthodes et quels outils ?</span>
                 Le législateur n’impose aucune méthode ni aucune forme pour l’évaluation des risques et la rédaction du Document Unique. Le second alinéa de
@@ -766,19 +760,6 @@
                 - - L'évaluation des risques d'exposition aux agents chimiques à réaliser selon les prescriptions de l'article R.4412-6 du Code du travail. <br>
                 - - L’évaluation des risques d’exposition aux champs électromagnétiques selon les critères précisés (art R. 4453-8). <br>
             </p>
-        </div>
-        <div class="footer">
-            <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
-        </div>
-    </section>
-
-    <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
-        </div>
-        <div class="body body--notif">
-            <h1></h1>
             <p>
                 - Une hiérarchisation des risques identifiés et évalués dans l'inventaire. <br>
                 - Un plan d'action de réduction des risques identifiés, évalués et hiérarchisés. <br>
@@ -813,17 +794,17 @@
             </p>
         </div>
         <div class="footer">
-            <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p> Copyright © OZA DUERP Online</p>
+            <p class="page-num">RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</p>
         </div>
     </section>
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body body--notif">
-            <h1 class="head-title">3. NOTICE EXPLICATIVE DE L'EVALUATION DES RISQUES</h1>
+            <h1 class="head-title" id="evalRisk">4. NOTICE EXPLICATIVE DE L'EVALUATION DES RISQUES</h1>
             <p>
                 <span class="bold">EVALUATION DES RISQUES PROFESSIONNELS :</span> De gauche à droite du tableau d'évaluation des risques
             </p>
@@ -832,7 +813,7 @@
                 L'article R.4121-1 du Code du travail "DOCUMENT UNIQUE D'EVALUATION DES RISQUES" précise : <br>
                 "Cette évaluation comporte un inventaire des risques identifiés dans chaque unité de travail de l'entreprise ou de l'établissement".<br>
                 Le législateur n'a pas défini "l'unité de travail". Nous l'entendons ici comme un poste de travail, un métier ou une activité.<br>
-                <span class="bold">Les unités de travail sont détaillées dans la partie "Présentation de la structure" à partir de la page 5 de ce Document Unique.</span>
+                <span class="bold">Les unités de travail sont détaillées dans la partie "Présentation de la structure" de ce Document Unique.</span>
             </p>
             <p>
                 <span class="bold">DANGER et dommages potentiels à la personne</span> <br>
@@ -855,24 +836,23 @@
                 - <span class="bold">"Semaine"</span> correspond à une exposition fréquente de une à plusieurs fois par semaine, soit "4" dans la formule de calcul.<br>
                 - <span class="bold">"Jour"</span> correspond à une exposition très fréquente, de une à plusieurs fois par jour, soit "5" dans la formule de calcul.<br>
             </p>
-        </div>
-        <div class="footer">
-            <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
-        </div>
-    </section>
-
-    <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
-        </div>
-        <div class="body body--notif">
-            <h1></h1>
             <p>
                 <span class="bold">Probabilité</span> <br>
                 La probabilité de survenue d'un accident ou d'une atteinte à la santé doit être également évaluée, car la fréquence d'exposition à un danger n'est pas
                 le seul paramètre qui influence la survenue d'un accident ou d'une atteinte à la santé.
             </p>
+        </div>
+        <div class="footer">
+            <p> Copyright © OZA DUERP Online</p>
+            <p class="page-num">NOTICE EXPLICATIVE DE L'EVALUATION DES RISQUES</p>
+        </div>
+    </section>
+
+    <section class="page">
+        <div class="header">
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+        </div>
+        <div class="body body--notif">
             <p>
                 <span class="bold">Par exemple,</span> une personne emprunte plusieurs fois par jour un escalier en se tenant à la rampe. La fréquence d'exposition est maximale, mais cela
                 ne signifie pas que cette personne aura un accident chaque jour dans cet escalier. La probabilité qu'elle chute dans cet escalier est "faible" ou "très
@@ -900,19 +880,6 @@
                 importante ; lorsqu'elle n'est pas égale pour les deux sexes (non concerné = "non"). <br>
                 L'évaluation de l'impact différencié de l'exposition aux risques en fonction du sexe est en effet une exigence réglementaire. <br>
             </p>
-        </div>
-        <div class="footer">
-            <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
-        </div>
-    </section>
-
-    <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
-        </div>
-        <div class="body body--notif">
-            <h1></h1>
             <p>
                 <span class="bold">Risque brut</span> <br>
                 Le risque brut correspond au niveau de risque évalué sans prendre en considération les mesures de prévention et de protection existantes.<br>
@@ -928,6 +895,18 @@
                 Liste établie par l'employeur, après avis du médecin du travail, du CHSCT ou, à défaut, des représentants du personnel, s'il en existe.<br>
                 Liste tenue à la disposition des agents de contrôle des agents de l'inspection du travail (amende de 10 000 €uros en cas de non présentation art.<br>
             </p>
+        </div>
+        <div class="footer">
+            <p> Copyright © OZA DUERP Online</p>
+            <p class="page-num">NOTICE EXPLICATIVE DE L'EVALUATION DES RISQUES</p>
+        </div>
+    </section>
+
+    <section class="page">
+        <div class="header">
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+        </div>
+        <div class="body body--notif">
             <p>
                 <span class="bold">Mesures de prévention et de protection existantes</span> <br>
                 Les mesures de prévention et de protection existantes se déclinent en 3 catégories énoncées dans les 9 principes de prévention de l'article L.4121-2
@@ -942,51 +921,38 @@
                 T+H+O = 12, pondération = 0,1 ; 11 0,15 ; 10 = 0,2 ; 9 = 0,25 ; 8 = 0,3 ; 7 = 0,35 ; 6 = 0,4 ; 5 = 0,5 ; 4 = 0,6 ; 3 = 0,7 ; 2 = 0,8 ; 1 = 0,9.<br>
                 <span class="bold">Le risque résiduel correspond donc à : ((F + P) x G) x pondération de (T + O + H)</span>
             </p>
-        </div>
-        <div class="footer">
-            <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
-        </div>
-    </section>
-
-    <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
-        </div>
-        <div class="body body--notif">
-            <h1></h1>
             <p>
                 <span class="bold">Criticité = situation actuelle</span><br>
                 Le Document Unique doit réglementairement permettre d’identifier les risques les plus critiques afin de planifier leur suppression ou leur réduction.<br>
-                La « criticité » traduit donc les risques résiduels en « état de la situation actuelle » de la façon suivante :<br>
-                <span class="text-color-green">« Acceptable »</span> associé à la couleur verte, elle correspond à une criticité &lt; 12,5.<br>
+                La « criticité » traduit donc les risques résiduels en « état de la situation actuelle » de la façon suivante :<br>
+                <span class="text-color-green">« Acceptable »</span> associé à la couleur verte, elle correspond à une criticité &lt; 12,5.<br>
                 La diminution de ce risque n’est pas une priorité. <br>
-                <span class="text-color-yellow">« A améliorer »</span> associé à la couleur jaune, elle correspond à une criticité >= 12,5.<br>
+                <span class="text-color-yellow">« A améliorer »</span> associé à la couleur jaune, elle correspond à une criticité >= 12,5.<br>
                 La diminution de ces risque peut être planifiée à moyen / long terme. <br>
-                <span class="text-color-orange">« Agir vite »</span> est associé à la couleur orange, elle correspond à une criticité >= 20.<br>
+                <span class="text-color-orange">« Agir vite »</span> est associé à la couleur orange, elle correspond à une criticité >= 20.<br>
                 La diminution de ces risques est à planifier en priorité. <br>
-                <span class="text-color-red">« STOP »</span> est associé à la couleur rouge, elle correspond à une criticité >=30 <= 50.<br>
+                <span class="text-color-red">« STOP »</span> est associé à la couleur rouge, elle correspond à une criticité >=30 <= 50.<br>
                 Ces activités doivent être stoppées immédiatement afin d’identifier et de mettre en place une activité plus sûre.
             </p>
         </div>
         <div class="footer">
-            <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p> Copyright © OZA DUERP Online</p>
+            <p class="page-num">NOTICE EXPLICATIVE DE L'EVALUATION DES RISQUES</p>
         </div>
     </section>
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body body--rules">
-            <h1 class="head-title">3. NOTICE EXPLICATIVE DE L'EVALUATION DES RISQUES</h1>
+            <h1 class="head-title" id="evalRiskPro">5. EVALUATION DES RISQUES PROFESSIONNELS PAR UNITÉ DE TRAVAIL</h1>
             <p class="bold">
                 Liste des dangers considérés. <br>
-                <span class="text-color-red">En gras, dangers présents uniquement dans la version « Conformité » du Document Unique OZA.</span>
+                <span class="text-color-red">En gras, dangers présents uniquement dans la version « Conformité » du Document Unique OZA.</span>
             </p>
             <p>
-                1. Absence d’une personne « compétente » pour s’occuper des activités de protection et de prévention des risques professionnels de la structure.
+                1. Absence d’une personne « compétente » pour s’occuper des activités de protection et de prévention des risques professionnels de la structure.
             </p>
             <p>
                 2. Accident, presqu’accident et maladie du travail non ou mal analysés et prévenus pouvant générer la répétition de ces faits.
@@ -1012,18 +978,6 @@
                 L’auteur du harcèlement peut par ailleurs devoir verser des dommages-intérêts à sa victime.<br>
                 Enfin, l’auteur de ces agissements peut être soumis à des sanctions disciplinaires à son travail.
             </p>
-        </div>
-        <div class="footer">
-            <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
-        </div>
-    </section>
-
-    <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
-        </div>
-        <div class="body body--rules">
             <p class="bold">
                 6. Ambiances thermiques liées aux températures extérieures (hors températures liées aux postes de travail) pouvant générer fatigue, sueurs, nausées, maux de tête, vertiges, crampes, déshydratation, coup de chaleur, engourdissement, gelures, hypothermie.
             </p>
@@ -1033,6 +987,18 @@
             <p>
                 8. Aptitude au travail, non respectée elle peut générer ou provoquer la rechute d’atteintes à la santé un accident du travail.
             </p>
+        </div>
+        <div class="footer">
+            <p> Copyright © OZA DUERP Online</p>
+            <p class="page-num">EVALUATION DES RISQUES PROFESSIONNELS PAR UNITÉ DE TRAVAIL</p>
+        </div>
+    </section>
+
+    <section class="page">
+        <div class="header">
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+        </div>
+        <div class="body body--rules">
             <p class="bold">
                 9. Bruit pouvant provoquer atteinte auditive, surdité, stress, fatigue FACTEUR DE RISQUE PROFESSIONNEL.
             </p>
@@ -1060,17 +1026,6 @@
             <p class="bold">
                 17. Déplacements dans l’enceinte de la structure avec un véhicule motorisé ou non pouvant générer des TMS, dorso-lombalgies, plaies, traumatismes, fractures, écrasement.
             </p>
-        </div>
-        <div class="footer">
-            <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
-        </div>
-    </section>
-    <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
-        </div>
-        <div class="body body--rules">
             <p class="bold">
                 18. Eclairage inadapté pouvant générer éblouissement, fatigue et inconfort visuel, chute, traumatisme, atteinte visuelle, erreur d’appréciation.
             </p>
@@ -1095,6 +1050,18 @@
             <p>
                 25. Intempéries telles que la pluie, le vent, la neige, le brouillard, … , hors températures extérieures ; pouvant générer des atteintes à la santé, des glissades et des chutes, des risques d’effondrement ou d’ensevelissement
             </p>
+        </div>
+        <div class="footer">
+            <p> Copyright © OZA DUERP Online</p>
+            <p class="page-num">EVALUATION DES RISQUES PROFESSIONNELS PAR UNITÉ DE TRAVAIL</p>
+        </div>
+    </section>
+
+    <section class="page">
+        <div class="header">
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+        </div>
+        <div class="body body--rules">
             <p class="bold">
                 26. Machines ; outils électroportatifs, thermiques et pneumatiques ; outils à main et équipements de travail ; pouvant générer des plaies, coupures, lacérations, amputations, brulures, traumatismes, fractures, écrasements.
             </p>
@@ -1110,17 +1077,6 @@
             <p>
                 30. Méconnaissance des risques et des consignes de sécurité pouvant générer des atteintes à la santé et des accidents du travail.
             </p>
-        </div>
-        <div class="footer">
-            <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
-        </div>
-    </section>
-    <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
-        </div>
-        <div class="body body--rules">
             <p class="bold">
                 31. Milieu hyperbare pouvant générer des accidents et / ou des pathologies de décompression FACTEUR DE RISQUE PROFESSIONNEL.
             </p>
@@ -1153,22 +1109,22 @@
             </p>
             <p class="bold">
                 41. Risques routiers durant le trajet domicile travail pouvant générer des atteintes traumatiques plus ou moins sévères ou le décès (1ère cause de mortalité au travail).
-            <p>
+            </p>
+            <p class="bold">
+                42 Risques routiers en mission à l’extérieur des locaux de la structure pouvant générer stress, TMS, dorso-lombalgies, et atteintes traumatiques plus ou moins sévères.
+            </p>
         </div>
         <div class="footer">
-            <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p> Copyright © OZA DUERP Online</p>
+            <p class="page-num">EVALUATION DES RISQUES PROFESSIONNELS PAR UNITÉ DE TRAVAIL</p>
         </div>
     </section>
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
         <div class="body body--rules">
-            <p class="bold">
-                42 Risques routiers en mission à l’extérieur des locaux de la structure pouvant générer stress, TMS, dorso-lombalgies, et atteintes traumatiques plus ou moins sévères.
-            </p>
             <p class="bold">
                 43 Télétravail réalisé au domicile pouvant engendrer des risques physiques (musculosquelettiques, visuels, électriques, …), des risques liés à une mauvaise ergonomie du poste de travail ou à une installation défectueuse ; et des risques psychosociaux.
             </p>
@@ -1192,195 +1148,377 @@
             </p>
         </div>
         <div class="footer">
-            <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p> Copyright © OZA DUERP Online</p>
+            <p class="page-num">EVALUATION DES RISQUES PROFESSIONNELS PAR UNITÉ DE TRAVAIL</p>
         </div>
     </section>
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
+
         <div class="body">
-            <p class="center legend"> F => Fréquence | P => Probabilité | GP => Gravité potentiel | ID => Impact différencié | RB => Risque brut | T => Technique | O => Oragnisationnelle | H => Humain | RR => Risque résiduel</p>
+            <p class="center legend info"> F = Fréquence | P = Probabilité | GP = Gravité potentiel | ID = Impact différencié | RB = Risque brut | T = Technique | O = Oragnisationnelle | H = Humain | RR = Risque résiduel</p>
             <table class="table table--action">
-                <tr>
-                    <th colspan="15" class="green">5. EVALUATION DES RISQUES PROFESSIONNELS</th>
-                </tr>
-                <tr>
-                    <td class="theader">
-                        Unité de Travail = poste de travail
-                    </td>
-                    <td class="theader">
-                        DANGER et dommages potentiels à la personne
-                    </td>
-                    <td class="theader">
-                        RISQUE Phase de travail modes et caractéristiques de l'exposition (outil, matériel, produit, situation, opération, fréquence, durée)
-                    </td>
-                    <td class="theader min-width">
-                        F
-                    </td>
-                    <td class="theader min-width">
-                        P
-                    </td>
-                    <td class="theader min-width">
-                        GP
-                    </td>
-                    <td class="theader min-width">
-                        ID
-                    </td>
-                    <td class="theader min-width">
-                        RB
-                    </td>
-                    <td class="theader max-width">
-                        Mesures de prévention et de protection existantes :<br>
-                        Technique<br>
-                        Organisationnelle<br>
-                        Protection<br>
-                        Humaine (information)
-                    </td>
-                    <td class="theader">
-                        T
-                    </td>
-                    <td class="theader">
-                        O
-                    </td>
-                    <td class="theader">
-                        H
-                    </td>
-                    <td class="theader">
-                        RR
-                    </td>
-                    <td class="theader">
-                        Criticité = situation actuelle
-                    </td>
-                    <td class="theader max-width">
-                        Mesures de prévention et de protection proposées
-                    </td>
-                </tr>
-                @foreach($single_document->dangers as $sd_danger)
-                    @foreach($single_document->work_unit as $sd_work_unit)
-                        @if(count($sd_work_unit->sd_danger_risks($sd_danger->id)) > 0)
-                            @foreach($sd_work_unit->sd_danger_risks($sd_danger->id) as $sd_risk)
+                <thead>
+                    <tr>
+                        <th colspan="15" class="green">5. EVALUATION DES RISQUES PROFESSIONNELS</th>
+                    </tr>
+                    <tr>
+                        <td class="theader">
+                            Unité de Travail
+                        </td>
+                        <td class="theader">
+                            DANGER et dommages potentiels à la personne
+                        </td>
+                        <td class="theader">
+                            RISQUE Phase de travail modes et caractéristiques de l'exposition
+                        </td>
+                        <td class="theader min-width">
+                            F
+                        </td>
+                        <td class="theader min-width">
+                            P
+                        </td>
+                        <td class="theader min-width">
+                            GP
+                        </td>
+                        <td class="theader min-width">
+                            ID
+                        </td>
+                        <td class="theader min-width">
+                            RB
+                        </td>
+                        <td class="theader max-width">
+                            Mesures de prévention et de protection existantes : Technique, Organisationnelle, Protection, Humaine (information)
+                        </td>
+                        <td class="theader">
+                            T
+                        </td>
+                        <td class="theader">
+                            O
+                        </td>
+                        <td class="theader">
+                            H
+                        </td>
+                        <td class="theader">
+                            RR
+                        </td>
+                        <td class="theader">
+                            Criticité = situation actuelle
+                        </td>
+                        <td class="theader max-width">
+                            Mesures de prévention et de protection proposées
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($single_document->dangers as $sd_danger)
+                        @foreach($single_document->work_unit as $sd_work_unit)
+                            @if(count($sd_work_unit->sd_danger_risks($sd_danger->id)) > 0)
+                                @foreach($sd_work_unit->sd_danger_risks($sd_danger->id) as $sd_risk)
+                                    <tr>
+                                        <td class="workunit">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "Tous" }}</td>
+                                        <td class="danger">{{ $sd_risk->sd_danger->danger->name }}</td>
+                                        <td class="risk">@stripTags($sd_risk->name)</td>
+                                        <td class="center min-width min-width-left">{{ $sd_risk->translate($sd_risk->frequency,'frequency') }}</td>
+                                        <td class="center min-width min-width-left">{{ $sd_risk->translate($sd_risk->probability,'probability') }}</td>
+                                        <td class="center min-width min-width-left">{{ $sd_risk->translate($sd_risk->gravity,'gravity') }}</td>
+                                        <td class="center min-width min-width-left">{{ $sd_risk->translate($sd_risk->impact,'impact') }}</td>
+                                        <td class="center min-width min-width-left {{ $sd_risk->colorPDF($sd_risk->total()) }}">{{ $sd_risk->colorTotal($sd_risk->total()) }}</td>
+                                        <td class="restraint">
+                                            @foreach($sd_risk->sd_restraints_exist as $sd_restraint)
+                                                * @stripTags($sd_restraint->name) <br>
+                                            @endforeach
+                                        </td>
+                                        <td class="center min-width min-width-right">{{ round($sd_risk->moyenneTech(), 1) }}</td>
+                                        <td class="center min-width min-width-right">{{ round($sd_risk->moyenneOrga(), 1) }}</td>
+                                        <td class="center min-width min-width-right">{{ round($sd_risk->moyenneHum(), 1) }}</td>
+                                        <td class="center min-width min-width-right"> {{ $sd_risk->totalRR($sd_risk->sd_restraints) }}</td>
+                                        <td class="center criticity {{ $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints)) }}">{{ $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints)) }}</td>
+                                        <td class="restraint_proposed">
+                                            @foreach($sd_risk->sd_restraints_porposed as $sd_restraint)
+                                                * @stripTags($sd_restraint->name) <br>
+                                            @endforeach
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
                                 <tr>
-                                    <td>{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "Tous" }}</td>
-                                    <td>{{ $sd_risk->sd_danger->danger->name }}</td>
-                                    <td>{{ $sd_risk->name }}</td>
-                                    <td class="min-width">{{ $sd_risk->translate($sd_risk->frequency,'frequency') }}</td>
-                                    <td class="min-width">{{ $sd_risk->translate($sd_risk->probability,'probability') }}</td>
-                                    <td class="min-width">{{ $sd_risk->translate($sd_risk->gravity,'gravity') }}</td>
-                                    <td class="min-width">{{ $sd_risk->translate($sd_risk->impact,'impact') }}</td>
-                                    <td class="min-width {{ $sd_risk->colorPDF($sd_risk->total()) }}">{{ $sd_risk->colorTotal($sd_risk->total()) }}</td>
-                                    <td>
-                                        @foreach($sd_risk->sd_restraints_exist as $sd_restraint)
-                                            {{ "* ".$sd_restraint->name }} <br>
-                                        @endforeach
-                                    </td>
-                                    <td>{{ round($sd_risk->moyenneTech(), 1) }}</td>
-                                    <td>{{ round($sd_risk->moyenneOrga(), 1) }}</td>
-                                    <td>{{ round($sd_risk->moyenneHum(), 1) }}</td>
-                                    <td> {{ $sd_risk->totalRR($sd_risk->sd_restraints) }}</td>
-                                    <td class="{{ $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints)) }}">{{ $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints)) }}</td>
-                                    <td>
-                                        @foreach($sd_risk->sd_restraints_porposed as $sd_restraint)
-                                            {{ "* ".$sd_restraint->name }} <br>
-                                        @endforeach
-                                    </td>
+                                    <td class="workunit">{{ $sd_work_unit->name }}</td>
+                                    <td class="danger">{{ $sd_danger->danger->name }}</td>
+                                    <td class="risk">Non concerné actuellement</td>
+                                    <td class="center min-width min-width-left">NC</td>
+                                    <td class="center min-width min-width-left">NC</td>
+                                    <td class="center min-width min-width-left">NC</td>
+                                    <td class="center min-width min-width-left">NON</td>
+                                    <td class="center green min-width min-width-left">0</td>
+                                    <td class="restraint"></td>
+                                    <td class="center min-width min-width-right">0</td>
+                                    <td class="center min-width min-width-right">0</td>
+                                    <td class="center min-width min-width-right">0</td>
+                                    <td class="center min-width min-width-right">0</td>
+                                    <td class="center green criticity">0</td>
+                                    <td class="restraint_proposed"></td>
                                 </tr>
-                            @endforeach
-                        @else
-                            <tr>
-                                <td>{{ $sd_work_unit->name }}</td>
-                                <td>{{ $sd_danger->danger->name }}</td>
-                                <td>Non concerné actuellement</td>
-                                <td class="min-width">NC</td>
-                                <td class="min-width">NC</td>
-                                <td class="min-width">NC</td>
-                                <td class="min-width">NON</td>
-                                <td class="green min-width">0</td>
-                                <td>
-
-                                </td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td class="green">0</td>
-                                <td>
-
-                                </td>
-                            </tr>
-                        @endif
+                            @endif
+                        @endforeach
                     @endforeach
-                @endforeach
+                </tbody>
             </table>
         </div>
+
         <div class="footer">
-            <p class="center text-color-green">Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p>Copyright © OZA DUERP Online</p>
+            <p class="page-num">EVALUATION DES RISQUES PROFESSIONNELS</p>
         </div>
     </section>
 
-    <section class="page">
+     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->client->client_number }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
+
         <div class="body body--notif">
-            <h1 class="head-title">5. liste des postes de travail "a risque particulier" (code du travail art. I.4154-2)</h1>
+            <h1 class="head-title" id="listPost">6. liste des postes de travail "a risque particulier" (code du travail art. I.4154-2)</h1>
             <p>
                 Ce Document Unique, y compris ses annexes, est protégé par les droits d'auteur. Il a été réalisé avec l'assistance d'un IPRP de la société OZA, sous l'entière responsabilité et selon les indications fournies par : Mr {{ $single_document->firstname }} {{ $single_document->lastname }}, {{ $single_document->function }}
             </p>
-            <p class="text-color-red">
+            <p class="text-color-red info">
                 <span class="bold">Rappel :</span>  Tous les salariés embauchés pour travailler à l’un de ces postes, en contrat de travail précaire (autre que CDI), doivent bénéficier d’une formation renforcée à la sécurité, ainsi que d’un accueil et d’une formation adaptés dans l’entreprise.
                 Obtenir l’avis du médecin du travail, du CSE ou, à défaut, des représentants du personnel, s’il en existe.<br>
                 Liste tenue à la disposition des agents de contrôle de l’inspection du travail (amende de 10 000 €uros en cas de non présentation : art. L.4741-1).
             </p>
             <table class="table table--risk-post">
-                <tr>
-                    <td class="theader grey">
-                        Unité de Travail = poste de travail
-                    </td>
-                    <td class="theader green">
-                        Danger et dommages potentiels à la personne
-                    </td>
-                    <td class="theader green">
-                        Phase de travail
-                        modes et caractéristiques de l'exposition
-                        (outil, matériel, produit, situation, opération, fréquence, durée)
-                    </td>
-                    <td class="theader green">
-                        Fréquence
-                    </td>
-                    <td class="theader green">
-                        Probabilité
-                    </td>
-                    <td class="theader green">
-                        Gravité
-                        potentielle
-                    </td>
-                    <td class="theader grey">
-                        Risque brut
-                    </td>
-                </tr>
-                @foreach($sd_risks_posts as $sd_risk)
+                <thead>
                     <tr>
-                        <td class="grey">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "Tous" }}</td>
-                        <td>{{ $sd_risk->sd_danger->danger->name }}</td>
-                        <td>{{ $sd_risk->name }}</td>
-                        <td>{{ $sd_risk->translate($sd_risk->frequency,'frequency') }}</td>
-                        <td>{{ $sd_risk->translate($sd_risk->probability,'probability') }}</td>
-                        <td>{{ $sd_risk->translate($sd_risk->gravity,'gravity') }}</td>
-                        <td class="grey">{{ $sd_risk->total() }}</td>
+                        <td class="theader grey">
+                            Unité de Travail = poste de travail
+                        </td>
+                        <td class="theader green">
+                            Danger et dommages potentiels à la personne
+                        </td>
+                        <td class="theader green">
+                            Phase de travail
+                            modes et caractéristiques de l'exposition
+                            (outil, matériel, produit, situation, opération, fréquence, durée)
+                        </td>
+                        <td class="theader green">
+                            Fréquence
+                        </td>
+                        <td class="theader green">
+                            Probabilité
+                        </td>
+                        <td class="theader green">
+                            Gravité
+                            potentielle
+                        </td>
+                        <td class="theader grey">
+                            Risque brut
+                        </td>
                     </tr>
-                @endforeach
+                </thead>
+                <tbody>
+                    @foreach($sd_risks_posts as $sd_risk)
+                        <tr>
+                            <td class="grey">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "Tous" }}</td>
+                            <td>{{ $sd_risk->sd_danger->danger->name }}</td>
+                            <td>@stripTags($sd_risk->name)</td>
+                            <td class="center">{{ $sd_risk->translate($sd_risk->frequency,'frequency') }}</td>
+                            <td class="center">{{ $sd_risk->translate($sd_risk->probability,'probability') }}</td>
+                            <td class="center">{{ $sd_risk->translate($sd_risk->gravity,'gravity') }}</td>
+                            <td class="grey center">{{ $sd_risk->total() }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
             </table>
         </div>
+
         <div class="footer">
-            <p class="center"> Copyright © OZA DUERP Online</p>
-            <p class="page-num">Page <span></span></p>
+            <p> Copyright © OZA DUERP Online</p>
+            <p class="page-num">LISTE DES POSTES DE TRAVAIL</p>
         </div>
     </section>
 
+
+    {{-- <section class="page">
+        <div class="header">
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+        </div>
+
+        <div class="body body--notif">
+            <h1 class="head-title" id="listPost">10. EVALUATION DE L'EXPOSITION AUX "FACTEURS DE RISQUES PROFESSIONNELS"</h1>
+            <p>
+                Cette annexe du Document Unique consigne réglementairement (Article R.4121-1-1) :
+            </p>
+            <p>
+                1° Les données de l’évaluation de l’exposition aux facteurs de risques professionnels de nature à faciliter la déclaration annuelle des salariés exposés au delà des seuils réglementaires ;
+            </p>
+            <p>
+                2° La proportion de salariés exposés aux facteurs de risques professionnels, au-delà des seuils réglementaires.
+            </p>
+            <table class="table table--risk-post">
+                <thead>
+                    <tr>
+                        <td class="theader yellow" colspan="3">
+                            Déclaration des expositions de l’année écoulée du 1er janvier au 31 décembre.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="theader">
+                            Effectif salarié total
+                        </td>
+                        <td class="theader">
+                            Effectif exposé au-delà des seuils réglementaires
+                        </td>
+                        <td class="theader">
+                            Proportion de salariés exposés aux facteurs de risques professionnels au-delà des seuils prévus
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="center">
+                            {{ $numberEmUt }}
+                        </td>
+                        <td class="{{ $numberEmExpo === 0 ? "green" : "red" }} center">
+                            {{ $numberEmExpo }}
+                        </td>
+                        <td class="{{ $numberEmExpo/$numberEmUt === 0 ? "green" : "red" }} center">
+                            {{ $numberEmExpo/$numberEmUt."%"}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="table table--risk-post">
+                <thead>
+                    <tr>
+                        <td class="theader yellow">
+                            Facteurs de risque professionnels
+                        </td>
+                        <td class="theader yellow">
+                            Unité exposée au-delà des seuils
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($expos as $expo)
+                        <tr>
+                            <td>
+                                {{ $expo->danger->name }}
+                            </td>
+                            <td class="center">
+                                {{ count($expo->pivot($single_document->id)) === 0 ? "Non" : "Oui"  }}
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            <p> Copyright © OZA DUERP Online</p>
+            <p class="page-num">LISTE DES POSTES DE TRAVAIL</p>
+        </div>
+    </section>
+
+
+    <section class="page">
+        <div class="header">
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+        </div>
+
+        <div class="body body--notif">
+            <h1 class="head-title" id="listPost">10. EVALUATION DE L'EXPOSITION AUX "FACTEURS DE RISQUES PROFESSIONNELS"</h1>
+            <p class="text-color-red">
+                A noter : La durée annuelle d’exposition considérée est de 220 jours.
+                Seules les unités de travail concernées par une exposition sont présentées. Ce qui implique que les unités non présentes dans le tableau ne sont pas concernées. 
+            </p>
+            <table class="table table--risk-post">
+                <thead>
+                    <tr>
+                        <td class="theader yellow" colspan="8">
+                            ANNEXE D’EVALUATION DE L’EXPOSITION AUX FACTEURS DE RISQUES PROFESSIONNELS
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="theader">
+                            Danger
+                        </td>
+                        <td class="theader">
+                            Unité de Travail
+                        </td>
+                        <td class="theader">
+                            Action ou situation
+                        </td>
+                        <td class="theader">
+                            Exposition appréciée après application des mesures de protection collective et individuelle
+                        </td>
+                        <td class="theader">
+                            Nombre de personnes concernées
+                        </td>
+                        <td class="theader">
+                            Détail de l’exposiatin 
+                        </td>
+                        <td class="theader">
+                            Total
+                        </td>
+                        <td class="theader">
+                            Situation
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($expos as $expo)
+                        @foreach ($expo->exposition_groups as $exposition_group)
+                            
+                            <tr>
+                                <td class="">
+                                    {{ $expo->danger->name }}
+                                </td>
+                                @if (count($expo->pivot($single_document->id)) === 0)
+                                    
+                                    <td>
+                                        TOUS
+                                    </td>
+                                    <td>
+                                        {{ $exposition_group->intervention_type_label }}
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Non concernée</td>
+
+                                @else
+
+                                    <td>
+                                        
+                                    </td>
+                                    <td>
+                                        {{ $exposition_group->intervention_type_label }}
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Non concernée</td>
+
+                                @endif
+                            </tr>
+                        @endforeach
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            <p> Copyright © OZA DUERP Online</p>
+            <p class="page-num">LISTE DES POSTES DE TRAVAIL</p>
+        </div>
+    </section> --}}
 
 </body>
 </html>
