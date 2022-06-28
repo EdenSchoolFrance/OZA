@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>PDF Test</title>
+    <title>PDF OZA</title>
     <link rel="stylesheet" href="{{ public_path('css/pdf/pdf.min.css') }}">
 </head>
 <?php setlocale(LC_TIME, 'French');?>
@@ -131,15 +131,15 @@
                     <p><span class="line"><a href="#explo" class="link">DOCUMENT RELATIF A LA PREVENTION CONTRE L’EXPLOSION ET <span>PLAN D’ACTION</span></a></span></p>
                 </li>
                 <li>
-                    <span class="number">7</span>
+                    <span class="number">10</span>
                     <p><span class="line"><a href="#expoRiskPro" class="link">EXPOSITION AUX FACTEURS DE RISQUES PROFESSIONNELS ET <span>PLAN D’ACTION</span></a></span></p>
                 </li>
                 <li>
-                    <span class="number">8</span>
+                    <span class="number">11</span>
                     <p><span class="line"><a href="#historie" class="link">HISTORIQUE DES ACTIONS REALISÉES</a></span></p>
                 </li>
                 <li>
-                    <span class="number">9</span>
+                    <span class="number">12</span>
                     <p><span class="line"><a href="#annexes" class="link">ANNEXES</a></span></p>
                 </li>
                 <li class="no-border">
@@ -1348,7 +1348,7 @@
         </div>
 
         <div class="body body--notif">
-            <h1 class="head-title" id="listPost">10. EVALUATION DE L'EXPOSITION AUX "FACTEURS DE RISQUES PROFESSIONNELS"</h1>
+            <h1 class="head-title" id="expoRiskPro">10. EVALUATION DE L'EXPOSITION AUX "FACTEURS DE RISQUES PROFESSIONNELS"</h1>
             <p>
                 Cette annexe du Document Unique consigne réglementairement (Article R.4121-1-1) :
             </p>
@@ -1420,7 +1420,7 @@
 
         <div class="footer">
             <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">LISTE DES POSTES DE TRAVAIL</p>
+            <p class="page-num">EVALUATION DE L'EXPOSITION</p>
         </div>
     </section>
 
@@ -1431,7 +1431,7 @@
         </div>
 
         <div class="body body--notif">
-            <h1 class="head-title" id="listPost">10. EVALUATION DE L'EXPOSITION AUX "FACTEURS DE RISQUES PROFESSIONNELS"</h1>
+            <h1 class="head-title" id="expoRiskPro">10. EVALUATION DE L'EXPOSITION AUX "FACTEURS DE RISQUES PROFESSIONNELS"</h1>
             <p class="text-color-red">
                 A noter : La durée annuelle d’exposition considérée est de 220 jours.
                 Seules les unités de travail concernées par une exposition sont présentées. Ce qui implique que les unités non présentes dans le tableau ne sont pas concernées. 
@@ -1559,7 +1559,25 @@
 
         <div class="footer">
             <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">LISTE DES POSTES DE TRAVAIL</p>
+            <p class="page-num">EVALUATION DE L'EXPOSITION</p>
+        </div>
+    </section>
+
+    <section class="page">
+        <div class="header">
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+        </div>
+
+        <div class="body body--notif">
+            <h1 class="head-title" id="annexes">12. ANNEXES</h1>
+            <p class="">
+                L'ensemble des annexes peuvent être consultées et imprimées depuis votre application DU OZA Online.
+            </p>
+        </div>
+
+        <div class="footer">
+            <p> Copyright © OZA DUERP Online</p>
+            <p class="page-num">ANNEXES</p>
         </div>
     </section>
 
