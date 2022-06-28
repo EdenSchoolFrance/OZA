@@ -1501,7 +1501,7 @@
                                                 @php
                                                     $sd_exposition_question = $exposition_question->sd_work_unit_exposition_question($sd_work_unit->id);    
                                                 @endphp
-
+                                                
                                                 <tr>
                                                     @if ($key === 0)
                                                         <td class="center" rowspan="{{count($count) > 0 ? count($count) : 1 }}">
@@ -1514,6 +1514,7 @@
                                                             {{ $exposition_group->intervention_type_label }}
                                                         </td>
                                                     @endif
+                                                    @if (isset($sd_exposition_question))
                                                         <td>{{ $sd_exposition_question->intervention_type }}</td>
                                                         <td class="center">{{ $sd_exposition_question->number_employee }}</td>
                                                         <td>
@@ -1539,10 +1540,18 @@
                                                         @endif
                                                         
                                                     
-                                                    @if ($key === 0)
-                                                        <td rowspan="{{count($count) > 0 ? count($count) : 1 }}" class="center {{$exposition_group->calculation($sd_exposition_question->value)}}"> {{$exposition_group->translate($sd_exposition_question->value)}} </td>
+                                                        @if ($key === 0)
+                                                            <td rowspan="{{count($count) > 0 ? count($count) : 1 }}" class="center {{$exposition_group->calculation($sd_exposition_question->value)}}"> {{$exposition_group->translate($sd_exposition_question->value)}} </td>
+                                                        @endif
+                                                    @else
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td class="center">Non concernée</td>
                                                     @endif
                                                 </tr>
+                                                
                                             @endforeach
                                         @endforeach
                                     @endif
