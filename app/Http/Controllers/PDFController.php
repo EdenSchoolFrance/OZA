@@ -8,6 +8,7 @@ use App\Models\Item;
 use App\Models\SdRisk;
 use App\Models\SubItem;
 use App\Models\Historie;
+use App\Models\SdDanger;
 use App\Models\SdExpositionQuestion;
 use App\Models\SdWorkUnit;
 use Carbon\Carbon;
@@ -43,6 +44,14 @@ class PDFController extends Controller
             $q->where('id', $single_document->id);
         })->get();
 
+        $sd_dangers = SdDanger::whereHas('single_document', function ($q) use ($single_document) {
+            $q->where('id', $single_document->id);
+        })->get();
+
+
+        $dangers = $single_document->dangers()->whereHas('danger.exposition')->get();
+
+        
         $numberEmUt = 0;
         $numberEmExpo = 0;
         foreach ($works as $work){
@@ -107,12 +116,11 @@ class PDFController extends Controller
 
         File::put($chartUrl, $chart);
 
-        $pdf = PDF::loadView('app.pdf.index', compact('chartUrl', 'single_document', 'item_mat', 'item_veh', 'item_eng', 'sd_risks', 'sd_risks_posts', 'numberEmUt', 'numberEmExpo', 'expos', 'date'))->setPaper('a4', 'landscape');
+        $pdf = PDF::loadView('app.pdf.index', compact('chartUrl', 'single_document', 'item_mat', 'item_veh', 'item_eng', 'sd_risks', 'sd_risks_posts', 'numberEmUt', 'numberEmExpo', 'expos', 'date', 'sd_dangers', 'works', 'dangers'))->setPaper('a4', 'landscape');
 
-        return $pdf->stream();
-        //Storage::put('/private/' . $single_document->client->id . '/du/' . $histories->id . '.pdf', $pdf->download()->getOriginalContent());
+        Storage::put('/private/' . $single_document->client->id . '/du/' . $histories->id . '.pdf', $pdf->download()->getOriginalContent());
 
-        //return back()->with('status', 'Document unique généré avec succès, vous pouvez maintenant le télécharger !');
+        return back()->with('status', 'Document unique généré avec succès, vous pouvez maintenant le télécharger !');
     }
 
     public static function create()
