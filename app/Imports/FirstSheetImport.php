@@ -12,6 +12,6 @@ class FirstSheetImport implements ToCollection
     */
     public function collection(Collection $collection)
     {
-        //
+        
     }
 }
