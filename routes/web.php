@@ -13,6 +13,7 @@ use App\Http\Controllers\WorkUnitController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RestraintController;
 use App\Http\Controllers\ExpositionController;
+use App\Http\Controllers\ImportController;
 
 use App\Http\Controllers\PresentationController;
 use App\Http\Controllers\ResetPasswordController;
@@ -104,6 +105,7 @@ Route::middleware(['auth'])->group(function() {
                 Route::post('/client/{client}/single_document/{single_document}/delete', [SingleDocumentAdminController::class, 'delete'])->name('admin.single_document.delete');
                 Route::post('/client/single_document/duplicate', [SingleDocumentAdminController::class, 'duplicate'])->name('admin.single_document.duplicate');
 
+                
 
                 Route::get('/help/workunit', [WorkUnitAdminController::class, 'index'])->name('admin.help.workunit');
                 Route::get('/help/workunit/create', [WorkUnitAdminController::class, 'create'])->name('admin.help.workunit.create');
@@ -167,6 +169,9 @@ Route::middleware(['auth'])->group(function() {
                 Route::get('/client/{client}/single_document/{single_document}/edit', [SingleDocumentAdminController::class, 'edit'])->name('admin.single_document.edit');
 
                 Route::post('/client/{client}/single_document/{single_document}/update', [SingleDocumentAdminController::class, 'update'])->name('admin.single_document.update');
+
+
+                Route::post('/client/{client}/single_document/{single_document}/import', [ImportController::class, 'importExcel'])->name('admin.single_document.import');
             });
         });
 

@@ -87,15 +87,20 @@ class SingleDocumentController extends Controller
         $page = [
             'title' => 'Modification du document unique : ' . $single_document->name,
             'sidebar' => 'clients',
-            'sub_sidebar' => '',
+            'sub_sidebar' => 'single_document',
         ];
 
         $dangers = Danger::all()->sortBy('name');
         $packs = Pack::all();
 
         $sd = $single_document;
+        
+        $import = true;
+        if (count($single_document->work_unit) === 0){
+            $import = false;
+        }
 
-        return view('admin.single_document.edit', compact('page', 'sd', 'dangers', 'packs'));
+        return view('admin.single_document.edit', compact('page', 'sd', 'dangers', 'packs', 'import'));
     }
 
     public function update(Request $request, Client $client, SingleDocument $single_document)
