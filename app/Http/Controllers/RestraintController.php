@@ -57,7 +57,7 @@ class RestraintController extends Controller
         $request->validate([
             'id_restraint' => 'required',
             'name_restraint' => 'required',
-            'date_restraint' => 'required',
+            'date_restraint' => 'required|date',
             'tech' => 'required',
             'orga' => 'required',
             'human' => 'required'
