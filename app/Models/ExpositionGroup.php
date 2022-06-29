@@ -36,4 +36,36 @@ class ExpositionGroup extends Model
     {
         return $this->hasMany(ExpositionQuestion::class);
     }
+
+    public function calculation($value)
+    {
+        $tab = unserialize($this->calculation);
+
+        for ($i=0; $i < count($tab); $i++) { 
+            
+            if (eval('return '.$value . $tab["green"].';')){
+                return "green";
+            }else if (eval('return '.$value . $tab["red"].';')){
+                return "red";
+            }else if (eval('return '.$value . $tab["orange"].';')){
+                return "orange";
+            }
+        }
+    }
+
+    public function translate($value)
+    {
+        $tab = unserialize($this->calculation);
+
+        for ($i=0; $i < count($tab); $i++) { 
+            
+            if (eval('return '.$value . $tab["green"].';')){
+                return "Acceptable";
+            }else if (eval('return '.$value . $tab["red"].';')){
+                return "Exposé";
+            }else if (eval('return '.$value . $tab["orange"].';')){
+                return "A améliorer";
+            }
+        }
+    }
 }

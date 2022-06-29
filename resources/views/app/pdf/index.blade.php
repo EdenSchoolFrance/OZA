@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>PDF Test</title>
+    <title>PDF OZA</title>
     <link rel="stylesheet" href="{{ public_path('css/pdf/pdf.min.css') }}">
 </head>
 <?php setlocale(LC_TIME, 'French');?>
@@ -131,15 +131,15 @@
                     <p><span class="line"><a href="#explo" class="link">DOCUMENT RELATIF A LA PREVENTION CONTRE L’EXPLOSION ET <span>PLAN D’ACTION</span></a></span></p>
                 </li>
                 <li>
-                    <span class="number">7</span>
+                    <span class="number">10</span>
                     <p><span class="line"><a href="#expoRiskPro" class="link">EXPOSITION AUX FACTEURS DE RISQUES PROFESSIONNELS ET <span>PLAN D’ACTION</span></a></span></p>
                 </li>
                 <li>
-                    <span class="number">8</span>
+                    <span class="number">11</span>
                     <p><span class="line"><a href="#historie" class="link">HISTORIQUE DES ACTIONS REALISÉES</a></span></p>
                 </li>
                 <li>
-                    <span class="number">9</span>
+                    <span class="number">12</span>
                     <p><span class="line"><a href="#annexes" class="link">ANNEXES</a></span></p>
                 </li>
                 <li class="no-border">
@@ -1342,13 +1342,13 @@
     </section>
 
 
-    {{-- <section class="page">
+    <section class="page">
         <div class="header">
             <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
         </div>
 
         <div class="body body--notif">
-            <h1 class="head-title" id="listPost">10. EVALUATION DE L'EXPOSITION AUX "FACTEURS DE RISQUES PROFESSIONNELS"</h1>
+            <h1 class="head-title" id="expoRiskPro">10. EVALUATION DE L'EXPOSITION AUX "FACTEURS DE RISQUES PROFESSIONNELS"</h1>
             <p>
                 Cette annexe du Document Unique consigne réglementairement (Article R.4121-1-1) :
             </p>
@@ -1420,7 +1420,7 @@
 
         <div class="footer">
             <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">LISTE DES POSTES DE TRAVAIL</p>
+            <p class="page-num">EVALUATION DE L'EXPOSITION</p>
         </div>
     </section>
 
@@ -1431,7 +1431,7 @@
         </div>
 
         <div class="body body--notif">
-            <h1 class="head-title" id="listPost">10. EVALUATION DE L'EXPOSITION AUX "FACTEURS DE RISQUES PROFESSIONNELS"</h1>
+            <h1 class="head-title" id="expoRiskPro">10. EVALUATION DE L'EXPOSITION AUX "FACTEURS DE RISQUES PROFESSIONNELS"</h1>
             <p class="text-color-red">
                 A noter : La durée annuelle d’exposition considérée est de 220 jours.
                 Seules les unités de travail concernées par une exposition sont présentées. Ce qui implique que les unités non présentes dans le tableau ne sont pas concernées. 
@@ -1471,54 +1471,124 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($expos as $expo)
-                        @foreach ($expo->exposition_groups as $exposition_group)
-                            
+
+
+
+                    @foreach ($single_document->dangers()->whereHas('danger.exposition')->get() as $danger)
+                        @php
+                            $pivot = $danger->danger->exposition->pivot($single_document->id);    
+                        @endphp
+                        @if (count($pivot) === 0)
                             <tr>
-                                <td class="">
-                                    {{ $expo->danger->name }}
-                                </td>
-                                @if (count($expo->pivot($single_document->id)) === 0)
-                                    
-                                    <td>
-                                        TOUS
-                                    </td>
-                                    <td>
-                                        {{ $exposition_group->intervention_type_label }}
-                                    </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>Non concernée</td>
-
-                                @else
-
-                                    <td>
-                                        
-                                    </td>
-                                    <td>
-                                        {{ $exposition_group->intervention_type_label }}
-                                    </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>Non concernée</td>
-
-                                @endif
+                                <td class="center">{{ $danger->danger->name }}</td>
+                                <td class="center">TOUS</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="center">Non concernée</td>
                             </tr>
-                        @endforeach
+                        @else  
+                            @foreach ($single_document->work_unit as $sd_work_unit)
+                                @if ($sd_work_unit->sd_danger($danger->id) && $sd_work_unit->sd_danger($danger->id)->pivot->exist)
+                                    @if ($sd_work_unit->sd_danger($danger->id)->pivot->exposition)
+                                    @php
+                                        $count = $danger->danger->exposition->exposition_groups;
+                                    @endphp
+                                        @foreach ($danger->danger->exposition->exposition_groups as $key => $exposition_group)
+                                            @foreach ($exposition_group->exposition_questions as  $exposition_question)
+                                                @php
+                                                    $sd_exposition_question = $exposition_question->sd_work_unit_exposition_question($sd_work_unit->id);    
+                                                @endphp
+                                                
+                                                <tr>
+                                                    @if ($key === 0)
+                                                        <td class="center" rowspan="{{count($count) > 0 ? count($count) : 1 }}">
+                                                            {{ $danger->danger->name }}
+                                                        </td>
+                                                        <td class="center" rowspan="{{count($count) > 0 ? count($count) : 1 }}">
+                                                            {{ $sd_work_unit->name }}
+                                                        </td>
+                                                        <td rowspan="{{count($count) > 0 ? count($count) : 1 }}">
+                                                            {{ $exposition_group->intervention_type_label }}
+                                                        </td>
+                                                    @endif
+                                                    @if (isset($sd_exposition_question))
+                                                        <td>{{ $sd_exposition_question->intervention_type }}</td>
+                                                        <td class="center">{{ $sd_exposition_question->number_employee }}</td>
+                                                        <td>
+                                                            @if ($exposition_group->type === "default")
+                                                                {{ $exposition_group->value_label." : "}} <span class="text-color-{{$exposition_group->calculation($sd_exposition_question->value)}}">{{ $sd_exposition_question->value }}</span>
+                                                            @else
+                                                                Durée en mm / j <span class="text-color-{{$exposition_group->calculation($sd_exposition_question->minutes)}}">{{$sd_exposition_question->minutes}} </span>
+                                                                Durée en h / an <span class="text-color-{{$exposition_group->calculation($sd_exposition_question->value)}}">{{$sd_exposition_question->value}}</span>
+                                                            @endif
+                                                        </td>
+                                                        @if ($exposition_group->name === "exposition_group_team_work" && $exposition_group->name === "exposition_group_night_work")
+                                                            @php
+                                                                $result = 0;
+                                                                
+                                                            @endphp
+                                                            <td class="center" rowspan="{{ count($count) }}">Total h / an : <span class="text-color-{{$exposition_group->calculation($result)}}">{{ $result }}</span></td>
+                                                        @else
+                                                            @if ($sd_exposition_question->exposition_question->exposition_group->type === "default")
+                                                                <td class="center"></td>
+                                                            @else
+                                                                <td class="center">Total h / an : <span class="text-color-{{$exposition_group->calculation($sd_exposition_question->value)}}">{{$sd_exposition_question->value}}</span></td>
+                                                            @endif
+                                                        @endif
+                                                        
+                                                    
+                                                        @if ($key === 0)
+                                                            <td rowspan="{{count($count) > 0 ? count($count) : 1 }}" class="center {{$exposition_group->calculation($sd_exposition_question->value)}}"> {{$exposition_group->translate($sd_exposition_question->value)}} </td>
+                                                        @endif
+                                                    @else
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td class="center">Non concernée</td>
+                                                    @endif
+                                                </tr>
+                                                
+                                            @endforeach
+                                        @endforeach
+                                    @endif
+                                @endif
+                            @endforeach
+                        @endif
                     @endforeach
                 </tbody>
             </table>
+            <p class="text-color-red">
+                Lorsque la situation est critique (Exposé), veuillez vous assurer que les mesures proposées lors de l’évaluation des risques de l’UT vous permettent d’agir sur ce facteur.
+            </p>
         </div>
 
         <div class="footer">
             <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">LISTE DES POSTES DE TRAVAIL</p>
+            <p class="page-num">EVALUATION DE L'EXPOSITION</p>
         </div>
-    </section> --}}
+    </section>
+
+    <section class="page">
+        <div class="header">
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+        </div>
+
+        <div class="body body--notif">
+            <h1 class="head-title" id="annexes">12. ANNEXES</h1>
+            <p class="">
+                L'ensemble des annexes peuvent être consultées et imprimées depuis votre application DU OZA Online.
+            </p>
+        </div>
+
+        <div class="footer">
+            <p> Copyright © OZA DUERP Online</p>
+            <p class="page-num">ANNEXES</p>
+        </div>
+    </section>
 
 </body>
 </html>
