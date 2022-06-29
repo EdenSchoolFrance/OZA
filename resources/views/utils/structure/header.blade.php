@@ -5,6 +5,12 @@
     @if (isset($page['title']))
         <h1>{{ $page['title'] }}</h1>
     @endif
+    @if (isset($page['psychosocial']))
+        <div class="psychosocial">
+            <p>Groupe d’exposition homogène :</p>
+            <p class="text-color-yellow">{{ $page['psychosocial'] }}</p>
+        </div>
+    @endif
     @if (isset($page['infos']))
         <div class="infos">
             <i class="fas fa-info-circle"></i>

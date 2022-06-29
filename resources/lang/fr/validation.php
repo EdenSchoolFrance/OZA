@@ -215,6 +215,12 @@ return [
         'name_subitem'          => 'nom de la catégorie',
         'comment'               => 'commentaire',
         'work_history'          => 'historique',
-        'work_unit_entitled'    => ''
+        'work_unit_entitled'    => '',
+        'number_quiz'           => "nombre de questionnaires exploités",
+        'stress_level'          => "niveau de stress moyen",
+        'questions.*.never'     => "jamais / non",
+        'questions.*.sometimes' => "parfois / plutôt non",
+        'questions.*.often'     => "souvent / plutôt oui",
+        'questions.*.always'    => "Toujours / oui",
     ]
 ];

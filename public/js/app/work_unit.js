@@ -152,17 +152,6 @@ on('.btn-add-item', 'click', (el, e) => {
 });
 
 
-on('.btn-num', 'click', (el, e) => {
-    let input = el.closest('div').getElementsByTagName('input')[0];
-
-    if (el.dataset.value === 'less'){
-        if (input.value > 0) input.value = parseInt(input.value)-1
-    }else if (el.dataset.value === 'more'){
-        input.value = parseInt(input.value)+1
-    }
-});
-
-
 on('.btn-validate', 'click', (el, e) => {
     $('#inputTypeWorkUnit', document,0).value = "false"
     $('#formWorkUnit', document, 0).submit();

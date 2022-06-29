@@ -19,7 +19,6 @@ class CreateSdPsychosocialResponsesTable extends Migration
             $table->integer('sometimes');
             $table->integer('often');
             $table->integer('always');
-            $table->integer('intensity_level');
 
             $table->foreignUuid('sd_psychosocial_group_id');
             $table->foreign('sd_psychosocial_group_id')->references('id')->on('sd_psychosocial_groups')->onDelete('cascade');

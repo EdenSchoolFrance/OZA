@@ -1,0 +1,80 @@
+.card {
+    &--psychosocial-evaluation {
+        .card-body {
+            &>div {
+                display: flex;
+                align-items: center;
+
+                p {
+                    margin-right: 25px;
+
+                    span {
+                        margin-left: 25px;
+                    }
+                }
+
+                &:first-of-type {
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+
+    &--psychosocial-evaluation-quiz {
+        .card-body {
+            overflow-y: scroll;
+
+            .table {
+                min-width: 825px;
+
+                td, th {
+                    text-align: center;
+                }
+
+                .th_question,
+                .td_question {
+                    text-align: left;
+                    width: 35%;
+                    max-width: 35%;
+                }
+
+                .td_total {
+                    white-space: nowrap;
+
+                    &.success {
+                        color: $success;
+                    }
+
+                    &.danger {
+                        color: $danger;
+                    }
+                }
+
+                .form-control[type="number"] {
+                    padding: 10px 2px;
+                    text-align: center;
+                }
+
+                tfoot {
+                    td {
+                        text-align: right;
+                        color: $danger;
+                    }
+                }
+
+                .td_extreme_all {
+                    text-align: center;
+                }
+            }
+        }
+
+        &-edit {
+            .td_total,
+            .td_intensity_level,
+            .td_priority,
+            .td_extreme {
+                padding-top: 25px;
+            }
+        }
+    }
+}

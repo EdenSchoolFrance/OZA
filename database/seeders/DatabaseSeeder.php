@@ -67,5 +67,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ExpositionQuestionSeeder::class);
 
         $this->call(RiskCalculationSeeder::class);
+
+
+        $this->call(PsychosocialQuestionSeeder::class);
     }
 }

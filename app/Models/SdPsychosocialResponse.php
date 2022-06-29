@@ -28,12 +28,12 @@ class SdPsychosocialResponse extends Model
 
     public function group()
     {
-        return $this->belongsTo(SdPsychosocialGroup::class);
+        return $this->belongsTo(SdPsychosocialGroup::class, 'sd_psychosocial_group_id');
     }
 
     public function question()
     {
-        return $this->belongsTo(PsychosocialQuestion::class);
+        return $this->belongsTo(PsychosocialQuestion::class, 'psychosocial_question_id');
     }
 
     public function restraints()

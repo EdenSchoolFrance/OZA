@@ -35,7 +35,7 @@
                         <div class="right">
                             <div class="btn-group-number">
                                 <button type="button" class="btn btn-text btn-num" data-value="less"><i class="fas fa-minus"></i></button>
-                                <input type="number" class="form-control" id="numberSal" placeholder="" value="{{ old('number_employee') ? old('number_employee') : '0' }}" name="number_employee">
+                                <input type="number" class="form-control" id="numberSal" placeholder="" value="{{ old('number_employee') ? old('number_employee') : '0' }}" name="number_employee" min="0">
                                 <button type="button" class="btn btn-text btn-num" data-value="more"><i class="fas fa-plus"></i></button>
                             </div>
                             @error('number_employee')
