@@ -28,4 +28,14 @@ class PsychosocialQuestion extends Model
     {
         return $this->hasMany(PsychosocialQuestionRestraint::class);
     }
+
+    public function responses()
+    {
+        return $this->hasMany(SdPsychosocialResponse::class);
+    }
+
+    public function response($sd_psychosocial_group_id)
+    {
+        return $this->responses()->where('sd_psychosocial_group_id', $sd_psychosocial_group_id)->first();
+    }
 }

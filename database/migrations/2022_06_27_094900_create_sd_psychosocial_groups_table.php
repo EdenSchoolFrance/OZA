@@ -16,8 +16,8 @@ class CreateSdPsychosocialGroupsTable extends Migration
         Schema::create('sd_psychosocial_groups', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
-            $table->integer('number_quizz')->nullable();
-            $table->float('stress_level', 5, 1)->nullable();
+            $table->integer('number_quiz')->default(0);
+            $table->float('stress_level', 5, 1)->default(0);
             $table->boolean('validated')->default(0);
 
             $table->foreignUuid('single_document_id');
