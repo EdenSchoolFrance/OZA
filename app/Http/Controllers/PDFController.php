@@ -21,7 +21,6 @@ class PDFController extends Controller
 {
     public function viewpdf($id)
     {
-        //return view('app.pdf.index');
         $single_document = $this->checkSingleDocument($id);
 
         $item_mat = Item::where('name', 'Matériels')->first();
@@ -36,7 +35,9 @@ class PDFController extends Controller
 
         $sd_risks_posts = SdRisk::whereHas('sd_danger', function ($q) use ($single_document) {
             $q->where('single_document_id', $single_document->id);
-        })->get()->filter(function ($sd_risk, $key) {
+        })->get()->sort(function ($a, $b){
+            return $b->total() - $a->total();
+        })->filter(function ($sd_risk, $key) {
             return $sd_risk->total() > 23;
         })->all();
 
@@ -80,7 +81,7 @@ class PDFController extends Controller
                 'labels' => ['Acceptable', 'A améliorer', 'Agir vite', 'STOP'],
                 'datasets' => [
                     [
-                        'backgroundColor' => ['#43A389', '#F9CA62', '#F8912A', '#B32A3C'],
+                        'backgroundColor' => ["#43A389", "#F8912A","#FF7D8E","#B32A3C"],
                         'data' => $single_document->graphique(),
                         'borderWidth' => 0
                     ]
@@ -90,14 +91,14 @@ class PDFController extends Controller
                 'plugins' => [
                     'outlabels' => [
                         'text' => "%p \n (%l)",
-                        'color' => ['#43A389', '#F9CA62', '#F8912A', '#B32A3C'],
+                        'color' => ["#43A389", "#F8912A","#FF7D8E","#B32A3C"],
                         'backgroundColor' => 'transparent',
                         'lineColor' => 'transparent',
                         'stretch' => 20,
                         'font' => [
                             'resizable' => true,
-                            'minSize' => 15,
-                            'maxSize' => 18
+                            'minSize' => 13,
+                            'maxSize' => 13
                         ]
                     ]
                 ],
@@ -118,11 +119,11 @@ class PDFController extends Controller
 
         $pdf = PDF::loadView('app.pdf.index', compact('chartUrl', 'single_document', 'item_mat', 'item_veh', 'item_eng', 'sd_risks', 'sd_risks_posts', 'numberEmUt', 'numberEmExpo', 'expos', 'date', 'sd_dangers', 'works', 'dangers'))->setPaper('a4', 'landscape');
 
-        return $pdf->stream();
+        //return $pdf->stream();
 
-        // Storage::put('/private/' . $single_document->client->id . '/du/' . $histories->id . '.pdf', $pdf->download()->getOriginalContent());
+        Storage::put('/private/' . $single_document->client->id . '/du/' . $histories->id . '.pdf', $pdf->download()->getOriginalContent());
 
-        // return back()->with('status', 'Document unique généré avec succès, vous pouvez maintenant le télécharger !');
+        return back()->with('status', 'Document unique généré avec succès, vous pouvez maintenant le télécharger !');
     }
 
     public static function create()

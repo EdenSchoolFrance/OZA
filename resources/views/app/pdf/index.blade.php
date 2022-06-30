@@ -927,9 +927,9 @@
                 La « criticité » traduit donc les risques résiduels en « état de la situation actuelle » de la façon suivante :<br>
                 <span class="text-color-green">« Acceptable »</span> associé à la couleur verte, elle correspond à une criticité &lt; 12,5.<br>
                 La diminution de ce risque n’est pas une priorité. <br>
-                <span class="text-color-yellow">« A améliorer »</span> associé à la couleur jaune, elle correspond à une criticité >= 12,5.<br>
+                <span class="text-color-orange">« A améliorer »</span> associé à la couleur jaune, elle correspond à une criticité >= 12,5.<br>
                 La diminution de ces risque peut être planifiée à moyen / long terme. <br>
-                <span class="text-color-orange">« Agir vite »</span> est associé à la couleur orange, elle correspond à une criticité >= 20.<br>
+                <span class="text-color-pink">« Agir vite »</span> est associé à la couleur orange, elle correspond à une criticité >= 20.<br>
                 La diminution de ces risques est à planifier en priorité. <br>
                 <span class="text-color-red">« STOP »</span> est associé à la couleur rouge, elle correspond à une criticité >=30 <= 50.<br>
                 Ces activités doivent être stoppées immédiatement afin d’identifier et de mettre en place une activité plus sûre.
@@ -1405,14 +1405,36 @@
                 </thead>
                 <tbody>
                     @foreach ($expos as $expo)
-                        <tr>
-                            <td>
-                                {{ $expo->danger->name }}
-                            </td>
-                            <td class="center">
-                                {{ count($expo->pivot($single_document->id)) === 0 ? "Non" : "Oui"  }}
-                            </td>
-                        </tr>
+                        @if ($expo->danger->name === "Travail de nuit")
+                            
+                            <tr>
+                                <td>
+                                    Travail de nuit dans les conditions fixées aux articles L. 3122-2 à L. 3122-5 
+                                </td>
+                                <td class="center">
+                                    {{ count($expo->pivot($single_document->id)) === 0 ? "Non" : "Oui"  }}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Travail en équipes successives alternantes 
+                                </td>
+                                <td class="center">
+                                    {{ count($expo->pivot($single_document->id)) === 0 ? "Non" : "Oui"  }}
+                                </td>
+                            </tr>
+
+                        @else
+                            <tr>
+                                <td>
+                                    {{ $expo->danger->name }}
+                                </td>
+                                <td class="center">
+                                    {{ count($expo->pivot($single_document->id)) === 0 ? "Non" : "Oui"  }}
+                                </td>
+                            </tr>
+                        @endif
                     @endforeach
                 </tbody>
             </table>

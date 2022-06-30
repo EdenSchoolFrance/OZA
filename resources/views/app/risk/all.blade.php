@@ -87,7 +87,7 @@
 
                         @if (count($sd_risks) == 0)
                             <tr class="no-data no-data--centered">
-                                <td colspan="{{ !Auth::user()->hasPermission('READER') ? 9 : 8 }}">Aucun mesure</td>
+                                <td colspan="{{ !Auth::user()->hasPermission('READER') ? 9 : 8 }}">Aucune mesure</td>
                             </tr>
                         @endif
                     </tbody>
