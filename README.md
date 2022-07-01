@@ -13,6 +13,16 @@ php artisan storage:link
 
 
 
-<!-- ### .ENV
+## Renseigner une clé recaptcha (.env)
 RECAPTCHA_SITE_KEY=
-RECAPTCHA_SECRET_KEY= -->
+RECAPTCHA_SECRET_KEY=
+
+## Renseigner un mail de récupération (.env)
+MAIL_MAILER=
+MAIL_HOST=
+MAIL_PORT=
+MAIL_USERNAME=
+MAIL_PASSWORD=
+MAIL_ENCRYPTION=
+MAIL_FROM_ADDRESS=
+MAIL_FROM_NAME=
