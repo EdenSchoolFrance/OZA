@@ -33,7 +33,7 @@ class SdRisk extends Model
 
     public function sd_work_unit()
     {
-        return $this->belongsTo(SdWorkUnit::class);
+        return $this->belongsTo(SdWorkUnit::class)->orderByDesc("name");
     }
 
     public function sd_restraints()
@@ -242,7 +242,7 @@ class SdRisk extends Model
 
     public function color($number){
         switch (true) {
-            case ($number <= 15) :
+            case ($number <= 12.5) :
                 return 'btn-success';
             case ($number < 20) :
                 return 'btn-warning';
@@ -255,7 +255,7 @@ class SdRisk extends Model
 
     public function colorPDF($number){
         switch (true) {
-            case ($number <= 15) :
+            case ($number <= 12.5) :
                 return 'green';
             case ($number < 20) :
                 return 'yellow';
@@ -268,7 +268,7 @@ class SdRisk extends Model
 
     public function colorTotal($number){
         switch (true) {
-            case ($number <= 15) :
+            case ($number <= 12.5) :
                 return 'Acceptable';
             case ($number < 20) :
                 return 'A améliorer';

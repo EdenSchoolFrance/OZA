@@ -376,7 +376,7 @@ function setColor(el,total){
     el.className = ""
     el.classList.add('btn')
     switch (true) {
-        case (total <= 15) :
+        case (total <= 12.5) :
             el.classList.add('btn-success');
             break;
         case (total < 20) :
@@ -393,7 +393,7 @@ function setColor(el,total){
 
 function totalEnd(el,number){
     switch (true){
-        case (number <= 15) :
+        case (number <= 12.5) :
             el.innerText = "Acceptable"
             break
         case (number < 20) :
