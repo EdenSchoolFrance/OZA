@@ -1226,7 +1226,7 @@
                                         <td class="center min-width min-width-left">{{ $sd_risk->translate($sd_risk->probability,'probability') }}</td>
                                         <td class="center min-width min-width-left">{{ $sd_risk->translate($sd_risk->gravity,'gravity') }}</td>
                                         <td class="center min-width min-width-left">{{ $sd_risk->translate($sd_risk->impact,'impact') }}</td>
-                                        <td class="center min-width min-width-left {{ $sd_risk->colorPDF($sd_risk->total()) }}">{{ $sd_risk->colorTotal($sd_risk->total()) }}</td>
+                                        <td class="center min-width min-width-left {{ $sd_risk->total() >= 24 ? "pink" : "" }}">{{ $sd_risk->total() }}</td>
                                         <td class="restraint">
                                             @foreach($sd_risk->sd_restraints_exist as $sd_restraint)
                                                 * @stripTags($sd_restraint->name) <br>
@@ -1253,7 +1253,7 @@
                                     <td class="center min-width min-width-left">NC</td>
                                     <td class="center min-width min-width-left">NC</td>
                                     <td class="center min-width min-width-left">NON</td>
-                                    <td class="center green min-width min-width-left">0</td>
+                                    <td class="center min-width min-width-left">0</td>
                                     <td class="restraint"></td>
                                     <td class="center min-width min-width-right">0</td>
                                     <td class="center min-width min-width-right">0</td>
