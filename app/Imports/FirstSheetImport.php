@@ -9,6 +9,9 @@ use Maatwebsite\Excel\Concerns\ToCollection;
 
 class FirstSheetImport implements ToCollection
 {
+    private $single_document;
+    private $deleteTab;
+
     /**
     * @param Collection $collection
     */
@@ -27,17 +30,17 @@ class FirstSheetImport implements ToCollection
              * $danger = $collection[$i][4];
              * $work_unit = $collection[$i][3];
              * $risk = $collection[$i][5];
-             * $frequence = $collection[$i][6];
+             * $frequency = $collection[$i][6];
              * $probability = $collection[$i][7];
              * $gravity = $collection[$i][8];
              * $impact = $collection[$i][9];
-             */ 
+             */
 
             $this->lockDanger($collection[$i][3]);
 
             $data = [
                 "risk" => $collection[$i][5],
-                "frequence" => $collection[$i][6],
+                "frequency" => $collection[$i][6],
                 "probability" => $collection[$i][7],
                 "gravity" => $collection[$i][8],
                 "impact" => $collection[$i][9],
@@ -45,15 +48,15 @@ class FirstSheetImport implements ToCollection
             ];
             $risk = $this->createRisk($data);
 
-            array_push($this->deleteTab, $risk->id);
+            $this->deleteTab[] = $risk->id;
 
-            
+
         }
     }
 
     protected function createRisk($data)
     {
-     
+
         $fre = [
             "jour" => "day",
             "semaine" => "week",
@@ -92,7 +95,7 @@ class FirstSheetImport implements ToCollection
 
     protected function lockWorkUnit($data)
     {
-        
+
     }
 
     protected function lockDanger($data)
@@ -107,13 +110,13 @@ class FirstSheetImport implements ToCollection
 
     protected function deleteAll($dataError)
     {
-        for ($i=0; $i < count($this->deleteAll); $i++) { 
+        for ($i=0; $i < count($this->deleteAll); $i++) {
             SdRisk::where('id', $this->deleteAll[$i])->delete();
         }
         return back()->with('status', $dataError)->with('status_type','danger');
     }
 
-    
 
-    
+
+
 }
