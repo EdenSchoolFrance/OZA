@@ -2,6 +2,8 @@
 Si vous rencontrez le moindre problème lors du guide d'installation qui va suivre
 nous ne pourrons pas vous aider.
 
+Vous devez être à la racine du projet quand vous exécuteriez les commandes de ce guide.
+
 ## Procédure d'installation laravel (pas à pas)
 
 1. Vous devez installer les dépendances requises à laravel.
@@ -49,3 +51,7 @@ MAIL_FROM_NAME=  <- à changer
 ````
 IMPORTANT, si vous ne savez pas comment faire pour le point 8, nous ne pouvons rien faire,
 vous êtes un hébergeur web, vous posséder forcément un serveur mail, demander à vos supérieurs en cas de problème.
+
+## Version
+PHP : 7.4
+Laravel : 8
