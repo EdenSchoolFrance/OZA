@@ -84,7 +84,7 @@ on('.btn-delete', 'click', (el, e) => {
     calculRestraintColorDisplay();
     let restraints = $('.restraint_ex');
     if (restraints.length === 0){
-        let content = 
+        let content =
         `<ul>
             <li>Aucune mesure existante</li>
         </ul>`;
@@ -98,7 +98,7 @@ on('.btn-delete', 'click', (el, e) => {
 
 on('.btn-delete-restraint', 'click', (el, e) => {
     el.closest('li').remove();
-    let restraints = $('.restraints-pro')
+    let restraints = $('.res-pro')
     if (restraints.length === 0){
         let content = `<li>Aucune mesure proposée</li>`;
         let ul = document.createElement('ul')
@@ -113,14 +113,14 @@ on('.btn-add-restraint', 'click', (el, e) => {
     if (all[all.length - 2] !== undefined && all[all.length - 2] !== el.closest('li') && all[all.length - 2].querySelector('textarea').value === ''){
         all[all.length - 2].querySelector('textarea').focus();
     }else{
-        let restraints = $('.restraints-pro')
+        let restraints = $('.res-pro')
         if (restraints.length === 0){
             $('.nothing_restraint_pro', document, 0).remove();
         }
         let content ='<button type="button" class="btn btn-text btn-small btn-delete-restraint"><i class="far fa-times-circle"></i></button>\n' +
             '<textarea class="form-control auto-resize" placeholder="" name="restraint_proposed[]"></textarea>'
         let li = document.createElement('li');
-        li.setAttribute('class','restraints-pro')
+        li.setAttribute('class','res-pro')
         li.innerHTML = content;
         el.closest('li').before(li);
     }
@@ -297,19 +297,18 @@ function calculRestraintColorDisplay(){
     setColor(status,total);
 }
 
-function restraintCalcul(){
+function restraintCalcul(x){
     let RB = riskCalcul();
     let totalEnd = 0;
     let count = 0;
-    let all = $('input[name="restraint[]"]');
-    if (all.length <= 0) return RB;
+    let all = $('input[name="res_id[]"]');
+    if (all.length < 1) return RB;
     for (let i = 0; i < all.length ; i++) {
-        let allValue = all[i].value.split('|');
+        let divSup = all[i].closest('li');
         let tech;
         let orga;
         let human;
-
-        switch (allValue[0]){
+        switch (divSup.querySelector('input[name="res_tech[]"]').value){
             case "very good" :
                 tech = 4
                 break
@@ -323,7 +322,7 @@ function restraintCalcul(){
                 tech = 0
                 break
         }
-        switch (allValue[1]){
+        switch (divSup.querySelector('input[name="res_orga[]"]').value){
             case "very good" :
                 orga = 3
                 break
@@ -337,7 +336,7 @@ function restraintCalcul(){
                 orga = 0
                 break
         }
-        switch (allValue[2]){
+        switch (divSup.querySelector('input[name="res_human[]"]').value){
             case "very good" :
                 human = 3
                 break
@@ -351,7 +350,7 @@ function restraintCalcul(){
                 human = 0
                 break
         }
-       
+
         let total = tech + orga + human;
 
         totalEnd = total+totalEnd;
@@ -362,13 +361,9 @@ function restraintCalcul(){
     if (count === 0) return RB;
 
     let A = totalEnd + 1/10 * count;
-
     let cal = pon.find( x => x.sum === A);
 
     return Math.round(cal.weighting * RB, 1);
-
-    // if (Math.ceil((RB * totalEnd) / count) === 0) return RB;
-    // else return Math.ceil((RB * totalEnd) / count);
 
 }
 
@@ -487,7 +482,7 @@ function editRestraint(tech,orga,human,title,id){
 }
 
 function createRestraintProposed(title){
-    let restraints = $('.restraints-pro')
+    let restraints = $('.res-pro')
     if (restraints.length === 0){
         $('.nothing_restraint_pro', document, 0).remove();
     }

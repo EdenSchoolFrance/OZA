@@ -38,7 +38,7 @@
 
     <section class="page page--second">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
 
         <div class="body">
@@ -82,7 +82,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
 
         <div class="body">
@@ -185,7 +185,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
 
         <div class="body">
@@ -228,7 +228,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
 
         <div class="body">
@@ -284,7 +284,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
 
         <div class="body">
@@ -320,7 +320,7 @@
     @foreach($single_document->work_unit as $key => $sd_work_unit)
         <section class="page">
             <div class="header">
-                <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+                <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
             </div>
 
             <div class="body">
@@ -389,7 +389,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
 
         <div class="body">
@@ -440,7 +440,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
 
         <div class="body body--notif">
@@ -474,7 +474,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
 
         <div class="body">
@@ -542,7 +542,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
 
         <div class="body body--notif">
@@ -585,7 +585,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
 
         <div class="body body--notif">
@@ -636,7 +636,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
         <div class="body body--notif">
             <p>
@@ -690,7 +690,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
         <div class="body body--notif">
             <p>
@@ -745,7 +745,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
         <div class="body body--notif">
             <p>
@@ -801,7 +801,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
         <div class="body body--notif">
             <h1 class="head-title" id="evalRisk">4. NOTICE EXPLICATIVE DE L'EVALUATION DES RISQUES</h1>
@@ -850,7 +850,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
         <div class="body body--notif">
             <p>
@@ -904,7 +904,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
         <div class="body body--notif">
             <p>
@@ -943,7 +943,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
         <div class="body body--rules">
             <h1 class="head-title" id="evalRiskPro">5. EVALUATION DES RISQUES PROFESSIONNELS PAR UNITÉ DE TRAVAIL</h1>
@@ -996,7 +996,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
         <div class="body body--rules">
             <p class="bold">
@@ -1059,7 +1059,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
         <div class="body body--rules">
             <p class="bold">
@@ -1122,7 +1122,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
         <div class="body body--rules">
             <p class="bold">
@@ -1155,7 +1155,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
 
         <div class="body">
@@ -1277,7 +1277,7 @@
 
      <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
 
         <div class="body body--notif">
@@ -1344,7 +1344,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
 
         <div class="body body--notif">
@@ -1406,10 +1406,10 @@
                 <tbody>
                     @foreach ($expos as $expo)
                         @if ($expo->danger->name === "Travail de nuit")
-                            
+
                             <tr>
                                 <td>
-                                    Travail de nuit dans les conditions fixées aux articles L. 3122-2 à L. 3122-5 
+                                    Travail de nuit dans les conditions fixées aux articles L. 3122-2 à L. 3122-5
                                 </td>
                                 <td class="center">
                                     {{ count($expo->pivot($single_document->id)) === 0 ? "Non" : "Oui"  }}
@@ -1418,7 +1418,7 @@
 
                             <tr>
                                 <td>
-                                    Travail en équipes successives alternantes 
+                                    Travail en équipes successives alternantes
                                 </td>
                                 <td class="center">
                                     {{ count($expo->pivot($single_document->id)) === 0 ? "Non" : "Oui"  }}
@@ -1449,14 +1449,14 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
 
         <div class="body body--notif">
             <h1 class="head-title" id="expoRiskPro">10. EVALUATION DE L'EXPOSITION AUX "FACTEURS DE RISQUES PROFESSIONNELS"</h1>
             <p class="text-color-red">
                 A noter : La durée annuelle d’exposition considérée est de 220 jours.
-                Seules les unités de travail concernées par une exposition sont présentées. Ce qui implique que les unités non présentes dans le tableau ne sont pas concernées. 
+                Seules les unités de travail concernées par une exposition sont présentées. Ce qui implique que les unités non présentes dans le tableau ne sont pas concernées.
             </p>
             <table class="table table--risk-post">
                 <thead>
@@ -1482,7 +1482,7 @@
                             Nombre de personnes concernées
                         </td>
                         <td class="theader">
-                            Détail de l’exposiatin 
+                            Détail de l’exposiatin
                         </td>
                         <td class="theader">
                             Total
@@ -1498,7 +1498,7 @@
 
                     @foreach ($single_document->dangers()->whereHas('danger.exposition')->get() as $danger)
                         @php
-                            $pivot = $danger->danger->exposition->pivot($single_document->id);    
+                            $pivot = $danger->danger->exposition->pivot($single_document->id);
                         @endphp
                         @if (count($pivot) === 0)
                             <tr>
@@ -1511,7 +1511,7 @@
                                 <td></td>
                                 <td class="center">Non concernée</td>
                             </tr>
-                        @else  
+                        @else
                             @foreach ($single_document->work_unit as $sd_work_unit)
                                 @if ($sd_work_unit->sd_danger($danger->id) && $sd_work_unit->sd_danger($danger->id)->pivot->exist)
                                     @if ($sd_work_unit->sd_danger($danger->id)->pivot->exposition)
@@ -1521,9 +1521,9 @@
                                         @foreach ($danger->danger->exposition->exposition_groups as $key => $exposition_group)
                                             @foreach ($exposition_group->exposition_questions as  $exposition_question)
                                                 @php
-                                                    $sd_exposition_question = $exposition_question->sd_work_unit_exposition_question($sd_work_unit->id);    
+                                                    $sd_exposition_question = $exposition_question->sd_work_unit_exposition_question($sd_work_unit->id);
                                                 @endphp
-                                                
+
                                                 <tr>
                                                     @if ($key === 0)
                                                         <td class="center" rowspan="{{count($count) > 0 ? count($count) : 1 }}">
@@ -1550,7 +1550,7 @@
                                                         @if ($exposition_group->name === "exposition_group_team_work" && $exposition_group->name === "exposition_group_night_work")
                                                             @php
                                                                 $result = 0;
-                                                                
+
                                                             @endphp
                                                             <td class="center" rowspan="{{ count($count) }}">Total h / an : <span class="text-color-{{$exposition_group->calculation($result)}}">{{ $result }}</span></td>
                                                         @else
@@ -1560,8 +1560,8 @@
                                                                 <td class="center">Total h / an : <span class="text-color-{{$exposition_group->calculation($sd_exposition_question->value)}}">{{$sd_exposition_question->value}}</span></td>
                                                             @endif
                                                         @endif
-                                                        
-                                                    
+
+
                                                         @if ($key === 0)
                                                             <td rowspan="{{count($count) > 0 ? count($count) : 1 }}" class="center {{$exposition_group->calculation($sd_exposition_question->value)}}"> {{$exposition_group->translate($sd_exposition_question->value)}} </td>
                                                         @endif
@@ -1573,7 +1573,7 @@
                                                         <td class="center">Non concernée</td>
                                                     @endif
                                                 </tr>
-                                                
+
                                             @endforeach
                                         @endforeach
                                     @endif
@@ -1596,7 +1596,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
 
         <div class="body body--notif">
