@@ -163,17 +163,6 @@
                 <li class="no-border">
                     <p><span class="line">Fiche pratique « Prévention COVID-19 »</span></p>
                 </li>
-                <li class="no-border">
-                    <p class="text-color-red">
-                        Ce Document Unique a été élaboré sur la base du « Pack Conformité » du DOCUMENT UNIQUE OZA.<br>
-                        L’employeur est conscient qu’il s’agit d’une version allégée du Document Unique de OZA France dans lequel l’évaluation des risque est réalisée sur la base de 18 Dangers, dans lequel n’apparaissent pas pes parties ci-dessous et dans lequel l’évaluation de l’exposition aux Facteurs de Risques Professionnels est un simple diagnostic.<br>
-                        - La liste des postes de travail à risque particulier, <br>
-                        - L’évaluation détaillée du risque psychosocial, <br>
-                        - L’évaluation détaillée du risque chimique, <br>
-                        - L’évaluation détaillée de l’exposition aux Champs électromagnétiques, <br>
-                        - Le Document Relatif à la Protection Contre les Explosions.
-                    </p>
-                </li>
             </ul>
         </div>
 
@@ -353,6 +342,8 @@
                                     @foreach($item_mat->sub_items as $sub_item)
                                         @if(count($sd_work_unit->items->where('sub_item_id', $sub_item->id)) !== 0)
                                             {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }},
+                                        @else
+                                            Néant
                                         @endif
                                     @endforeach
                                 </p>
@@ -363,6 +354,8 @@
                                     @foreach($item_veh->sub_items as $sub_item)
                                         @if(count($sd_work_unit->items->where('sub_item_id', $sub_item->id)) !== 0)
                                             {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }},
+                                        @else
+                                            Néant
                                         @endif
                                     @endforeach
                                 </p>
@@ -371,6 +364,8 @@
                                     @foreach($item_eng->sub_items as $sub_item)
                                         @if(count($sd_work_unit->items->where('sub_item_id', $sub_item->id)) !== 0)
                                             {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }},
+                                        @else
+                                            Néant
                                         @endif
                                     @endforeach
                                 </p>
@@ -403,27 +398,25 @@
                                 Permet de situer le niveau de risque total de la structure, évalué sans prendre en compte les mesures de prévention ; sur une échelle de zéro (risque nul) à 50 (risque maximal).
                             </p>
                             <p class="{{ $single_document->color($single_document->moyenneRB()) }} number">{{ $single_document->moyenneRB() }}</p>
-                            <p>Maxi = 50</p>
                         </div>
                     </td>
                     <td>
                         <div>
                             <p class="bold">Réduction du risque</p>
                             <p>
-                                Met en évidence les efforts de prévention de la structure
+                                Réduction du risque BRUT grâce aux mesures de prévention existantes : met en évidence les efforts de prévention de la structure.
                             </p>
                             <p class="text-color-green number">{{ $single_document->discountRisk() }} %</p>
                         </div>
                     </td>
                     <td>
                         <div>
-                            <p class="bold">Risque résiduel  moyen</p>
+                            <p class="bold">Risque résiduel moyen</p>
                             <p>
                                 Permet de situer le niveau de risque actuel de la structure, en prenant en compte les mesures de prévention existantes ;
                                 sur une échelle de zéro (risque nul) à 50 (risque maximal).
                             </p>
                             <p class="{{ $single_document->color($single_document->moyenneRR()) }} number">{{ $single_document->moyenneRR() }}</p>
-                            <p>Maxi = 50</p>
                         </div>
                     </td>
                 </tr>
@@ -478,7 +471,6 @@
         </div>
 
         <div class="body">
-            <p class="info">Ce Document Unique, y compris ses annexes, est protégé par les droits d'auteur. Il a été réalisé avec l'assistance d'un IPRP de la société OZA, sous l'entière responsabilité et selon les indications fournies par : <span class="bold">Mr {{ $single_document->firstname }} {{ $single_document->lastname }}, {{ $single_document->function }}</span> </p>
             <table class="table table--action-plan">
                 <thead>
                     <tr>
@@ -548,7 +540,6 @@
         <div class="body body--notif">
             <h1 class="head-title" id="rules">3. RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</h1>
             <p class="bold">L’EVALUATION DES RISQUES, LE DOCUMENT UNIQUE ET SON ANNEXE « FACTEURS DE RISQUES PROFESSIONNELS »</p>
-            <p class="bold">Le Plan d’action reprend et présente également toutes les situations de « non-conformité réglementaire » dans la colonne « Mesures de prévention et de protection proposées », sous le libellé « Obligation réglementaire ».</p>
             <p>
                 <span class="bold">1. Pourquoi évaluer les risques professionnels ?</span><br>
                 L’évaluation des risques professionnels est imposée par le Code du Travail à tout employeur, dès lors qu’il emploie au moins un salarié. Code du travail, article R4121-1 :<br>
@@ -569,7 +560,7 @@
                 <span class="bold">- Sans risque pas d’accident.</span>
             </p>
             <p>
-                <span class="bold">EXAMPLE</span><br>
+                <span class="bold">EXEMPLE</span><br>
                 <span class="bold">L’accident : </span>Un salarié se coupe à l’index avec une tronçonneuse électroportative en tronçonnant un fer à béton.<br>
                 Dans cet exemple, <br>
                 <span class="bold">- Le danger</span> est constitué par la rotation du disque de la tronçonneuse. <br>
@@ -929,7 +920,7 @@
                 La diminution de ce risque n’est pas une priorité. <br>
                 <span class="text-color-orange">« A améliorer »</span> associé à la couleur jaune, elle correspond à une criticité >= 12,5.<br>
                 La diminution de ces risque peut être planifiée à moyen / long terme. <br>
-                <span class="text-color-pink">« Agir vite »</span> est associé à la couleur orange, elle correspond à une criticité >= 20.<br>
+                <span class="text-color-pink">« Agir vite »</span> est associé à la couleur rose, elle correspond à une criticité >= 20.<br>
                 La diminution de ces risques est à planifier en priorité. <br>
                 <span class="text-color-red">« STOP »</span> est associé à la couleur rouge, elle correspond à une criticité >=30 <= 50.<br>
                 Ces activités doivent être stoppées immédiatement afin d’identifier et de mettre en place une activité plus sûre.
@@ -1282,9 +1273,6 @@
 
         <div class="body body--notif">
             <h1 class="head-title" id="listPost">6. liste des postes de travail "a risque particulier" (code du travail art. I.4154-2)</h1>
-            <p>
-                Ce Document Unique, y compris ses annexes, est protégé par les droits d'auteur. Il a été réalisé avec l'assistance d'un IPRP de la société OZA, sous l'entière responsabilité et selon les indications fournies par : Mr {{ $single_document->firstname }} {{ $single_document->lastname }}, {{ $single_document->function }}
-            </p>
             <p class="text-color-red info">
                 <span class="bold">Rappel :</span>  Tous les salariés embauchés pour travailler à l’un de ces postes, en contrat de travail précaire (autre que CDI), doivent bénéficier d’une formation renforcée à la sécurité, ainsi que d’un accueil et d’une formation adaptés dans l’entreprise.
                 Obtenir l’avis du médecin du travail, du CSE ou, à défaut, des représentants du personnel, s’il en existe.<br>
@@ -1406,7 +1394,6 @@
                 <tbody>
                     @foreach ($expos as $expo)
                         @if ($expo->danger->name === "Travail de nuit")
-
                             <tr>
                                 <td>
                                     Travail de nuit dans les conditions fixées aux articles L. 3122-2 à L. 3122-5
@@ -1424,7 +1411,6 @@
                                     {{ count($expo->pivot($single_document->id)) === 0 ? "Non" : "Oui"  }}
                                 </td>
                             </tr>
-
                         @else
                             <tr>
                                 <td>

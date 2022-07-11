@@ -33,7 +33,7 @@ class Exposition extends Model
     {
         return $this->hasMany(ExpositionGroup::class);
     }
-    
+
     // public function sd_exposition_questions()
     // {
     //     return $this->hasMany(SdExpositionQuestion::class)->where('danger');
@@ -49,7 +49,7 @@ class Exposition extends Model
         $result = [];
 
         foreach ($sd_danger->sd_works_units as $sd_work_unit){
-            array_push($result, $sd_work_unit->sd_danger($sd_danger->id)->pivot->exposition);
+            $result[] = $sd_work_unit->sd_danger($sd_danger->id)->pivot->exposition;
         }
 
         return $result;
