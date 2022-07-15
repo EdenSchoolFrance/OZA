@@ -519,14 +519,14 @@
     @if(old('restraint_proposed'))
         @foreach(old('restraint_proposed') as $restraint)
             <script>
-                createRestraintProposed("@stripTags($restraint)")
+                createRestraintProposed(`@stripTags($restraint)`)
             </script>
         @endforeach
     @elseif(isset($risk))
         @foreach($risk->sd_restraints as $restraint)
             @if($restraint->exist === 0)
                 <script>
-                    createRestraintProposed("@stripTags($restraint->name)")
+                    createRestraintProposed(`@stripTags($restraint->name)`)
                 </script>
             @endif
         @endforeach

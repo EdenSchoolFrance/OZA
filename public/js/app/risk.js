@@ -193,7 +193,7 @@ on('.btn-modal-risk-oza-add', 'click', (el, e) => {
 on('.radio-bar .con input', 'click', (el, e) => {
     let total = $('.btn-calcul-risk', document, 0)
     total.innerText = riskCalcul()
-    setColor(total,riskCalcul());
+    setColor(total,riskCalcul(),true);
     total.classList.add('btn-small', 'btn-calcul-risk')
     calculRestraintColorDisplay();
 });
@@ -291,10 +291,10 @@ function calculRestraintColorDisplay(){
     let total = restraintCalcul()
     let statusNumber = $('button[data-id="status-number"]', document, 0)
     let status = $('button[data-id="status"]', document, 0)
-    setColor(statusNumber,total);
+    setColor(statusNumber,total,false);
     statusNumber.innerText = total;
-    totalEnd(status,total);
-    setColor(status,total);
+    totalEnd(status,total,false);
+    setColor(status,total,false);
 }
 
 function restraintCalcul(x){
@@ -367,40 +367,78 @@ function restraintCalcul(x){
 
 }
 
-function setColor(el,total){
-    el.className = ""
-    el.classList.add('btn')
-    switch (true) {
-        case (total <= 12.5) :
-            el.classList.add('btn-success');
-            break;
-        case (total < 20) :
-            el.classList.add('btn-warning');
-            break;
-        case (total < 30) :
-            el.classList.add('btn-warn');
-            break;
-        case (total >= 30) :
-            el.classList.add('btn-danger');
-            break;
+function setColor(el,total,RB){
+    if (RB === true){
+        el.className = ""
+        el.classList.add('btn')
+        switch (true) {
+            case (total <= 12.5) :
+                el.classList.add('btn-success');
+                break;
+            case (total < 24) :
+                el.classList.add('btn-warning');
+                break;
+            case (total < 30) :
+                el.classList.add('btn-warn');
+                break;
+            case (total >= 30) :
+                el.classList.add('btn-danger');
+                break;
+        }
+    }else{
+        el.className = ""
+        el.classList.add('btn')
+        switch (true) {
+            case (total <= 12.5) :
+                el.classList.add('btn-success');
+                break;
+            case (total < 20) :
+                el.classList.add('btn-warning');
+                break;
+            case (total < 30) :
+                el.classList.add('btn-warn');
+                break;
+            case (total >= 30) :
+                el.classList.add('btn-danger');
+                break;
+        }
     }
+
 }
 
-function totalEnd(el,number){
-    switch (true){
-        case (number <= 12.5) :
-            el.innerText = "Acceptable"
-            break
-        case (number < 20) :
-            el.innerText = "A améliorer"
-            break
-        case (number < 30) :
-            el.innerText = "Agir vite"
-            break
-        case (number >= 30) :
-            el.innerText = "STOP"
-            break
+function totalEnd(el,number,RB){
+    if (RB === true){
+        switch (true){
+            case (number <= 12.5) :
+                el.innerText = "Acceptable"
+                break
+            case (number < 24) :
+                el.innerText = "A améliorer"
+                break
+            case (number < 30) :
+                el.innerText = "Agir vite"
+                break
+            case (number >= 30) :
+                el.innerText = "STOP"
+                break
+        }
+    }else{
+        switch (true){
+            case (number <= 12.5) :
+                el.innerText = "Acceptable"
+                break
+            case (number < 20) :
+                el.innerText = "A améliorer"
+                break
+            case (number < 30) :
+                el.innerText = "Agir vite"
+                break
+            case (number >= 30) :
+                el.innerText = "STOP"
+                break
+        }
     }
+
 }
 
 

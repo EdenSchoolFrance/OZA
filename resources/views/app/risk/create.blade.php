@@ -716,7 +716,7 @@
     @if(old('restraint_proposed'))
         <script>
             @foreach(old('restraint_proposed') as $restraint)
-                createRestraintProposed('@stripTags($restraint)')
+                createRestraintProposed(`@stripTags($restraint)`)
             @endforeach
         </script>
     @endif
