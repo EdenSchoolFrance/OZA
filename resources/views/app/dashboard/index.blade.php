@@ -9,7 +9,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row row--center">
-                        <label class="{{ $single_document->color($single_document->moyenneRB()) }}">{{ $single_document->moyenneRB() }}</label>
+                        <label class="{{ $single_document->color($single_document->moyenneRB(),true) }}">{{ $single_document->moyenneRB() }}</label>
                     </div>
                     <div class="row row--center">
                         <p>Maxi = 50</p>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row row--center">
-                        <label class="{{ $single_document->color($single_document->moyenneRR()) }}">{{ $single_document->moyenneRR() }}</label>
+                        <label class="{{ $single_document->color($single_document->moyenneRR(),false) }}">{{ $single_document->moyenneRR() }}</label>
                     </div>
                     <div class="row row--center">
                         <p>Maxi = 50</p>
@@ -182,7 +182,7 @@
                 Permet de situer le niveau de risque actuel de la structure, en prenant en compte les mesures de prévention existantes ; sur une échelle de zéro (risque nul) à 50 (risque maximal).
             </p>
         </div>
-        
+
     </div>
 @endsection
 

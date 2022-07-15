@@ -49,7 +49,7 @@ class Exposition extends Model
         $result = [];
 
         foreach ($sd_danger->sd_works_units as $sd_work_unit){
-            $result[] = $sd_work_unit->sd_danger($sd_danger->id)->pivot->exposition;
+            if ($sd_work_unit->sd_danger($sd_danger->id)->pivot->exposition === 1) $result[] = $sd_work_unit->sd_danger($sd_danger->id)->pivot->exposition;
         }
 
         return $result;

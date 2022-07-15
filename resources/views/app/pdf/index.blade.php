@@ -341,10 +341,11 @@
                                     <span class="bold">Machine(s) : </span><br>
                                     @foreach($item_mat->sub_items as $sub_item)
                                         @if(count($sd_work_unit->items->where('sub_item_id', $sub_item->id)) !== 0)
-                                            {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }},
+                                            {{ $sub_item->name }} : {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }},
                                         @else
-                                            Néant
+                                            {{ $sub_item->name }} : Néant
                                         @endif
+                                        <br>
                                     @endforeach
                                 </p>
                             </td>
@@ -353,20 +354,22 @@
                                     <span class="bold">Véhicule(s) : </span><br>
                                     @foreach($item_veh->sub_items as $sub_item)
                                         @if(count($sd_work_unit->items->where('sub_item_id', $sub_item->id)) !== 0)
-                                            {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }},
+                                            {{ $sub_item->name }} : {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }},
                                         @else
-                                            Néant
+                                            {{ $sub_item->name }} : Néant
                                         @endif
+                                        <br>
                                     @endforeach
                                 </p>
                                 <p>
                                     <span class="bold">Engin(s) et appareil(s) de manutention mécanique : </span><br>
                                     @foreach($item_eng->sub_items as $sub_item)
                                         @if(count($sd_work_unit->items->where('sub_item_id', $sub_item->id)) !== 0)
-                                            {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }},
+                                            {{ $sub_item->name }} : {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }},
                                         @else
-                                            Néant
+                                            {{ $sub_item->name }} : Néant
                                         @endif
+                                        <br>
                                     @endforeach
                                 </p>
                             </td>
@@ -397,7 +400,7 @@
                             <p>
                                 Permet de situer le niveau de risque total de la structure, évalué sans prendre en compte les mesures de prévention ; sur une échelle de zéro (risque nul) à 50 (risque maximal).
                             </p>
-                            <p class="{{ $single_document->color($single_document->moyenneRB()) }} number">{{ $single_document->moyenneRB() }}</p>
+                            <p class="{{ $single_document->color($single_document->moyenneRB(),true) }} number">{{ $single_document->moyenneRB() }}</p>
                         </div>
                     </td>
                     <td>
@@ -416,7 +419,7 @@
                                 Permet de situer le niveau de risque actuel de la structure, en prenant en compte les mesures de prévention existantes ;
                                 sur une échelle de zéro (risque nul) à 50 (risque maximal).
                             </p>
-                            <p class="{{ $single_document->color($single_document->moyenneRR()) }} number">{{ $single_document->moyenneRR() }}</p>
+                            <p class="{{ $single_document->color($single_document->moyenneRR(),false) }} number">{{ $single_document->moyenneRR() }}</p>
                         </div>
                     </td>
                 </tr>
@@ -511,7 +514,7 @@
                                 <td class="danger">{{ $sd_risk->sd_danger->danger->name }}</td>
                                 <td class="risk">@stripTags($sd_risk->name)</td>
                                 <td class="risk_residuel center">{{ $sd_risk->totalRR($sd_risk->sd_restraints_exist) }}</td>
-                                <td class="criticity center {{ $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints_exist)) }}">{{ $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints)) }}</td>
+                                <td class="criticity center {{ $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints_exist),false) }}">{{ $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints),false) }}</td>
                                 <td class="restraint">
                                     @foreach($sd_risk->sd_restraints_porposed as $sd_restraint)
                                         @stripTags($sd_restraint->name)<br>
@@ -1227,7 +1230,7 @@
                                         <td class="center min-width min-width-right">{{ round($sd_risk->moyenneOrga(), 1) }}</td>
                                         <td class="center min-width min-width-right">{{ round($sd_risk->moyenneHum(), 1) }}</td>
                                         <td class="center min-width min-width-right"> {{ $sd_risk->totalRR($sd_risk->sd_restraints_exist) }}</td>
-                                        <td class="center criticity {{ $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints_exist)) }}">{{ $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints)) }}</td>
+                                        <td class="center criticity {{ $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints_exist),false) }}">{{ $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints),false) }}</td>
                                         <td class="restraint_proposed">
                                             @foreach($sd_risk->sd_restraints_porposed as $sd_restraint)
                                                 * @stripTags($sd_restraint->name) <br>

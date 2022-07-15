@@ -85,7 +85,7 @@
                                                 <p>@stripTags($risk->name)</p>
                                             </td>
                                             <td class="td_rb">
-                                                <button class="btn {{ $risk->color($risk->total()) }} btn-small">{{ $risk->total() }}</button>
+                                                <button class="btn {{ $risk->color($risk->total(),true) }} btn-small">{{ $risk->total() }}</button>
                                                 <div class="list list--text">
                                                     <div class="list-row">
                                                         <p class="list-point list-point--text">F</p>
@@ -118,7 +118,7 @@
                                                 </div>
                                             </td>
                                             <td class="td_rr">
-                                                <button class="btn {{ $risk->color( isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total()) }} btn-small">{{ isset($risk->sd_restraints_exist[0]) ? ($risk->totalRR($risk->sd_restraints) === 0 ? $risk->total() : $risk->totalRR($risk->sd_restraints)) : $risk->total() }}</button>
+                                                <button class="btn {{ $risk->color( isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total(),false) }} btn-small">{{ isset($risk->sd_restraints_exist[0]) ? ($risk->totalRR($risk->sd_restraints) === 0 ? $risk->total() : $risk->totalRR($risk->sd_restraints)) : $risk->total() }}</button>
                                             </td>
                                             <td class="td_proposed_measure">
                                                 <div class="list">
@@ -133,7 +133,7 @@
                                                 </div>
                                             </td>
                                             <td class="td_criticality">
-                                                <button type="button" class="btn {{ $risk->color(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total()) }} btn-small">{{ $risk->colorTotal(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints) : $risk->total()) }}</button>
+                                                <button type="button" class="btn {{ $risk->color(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total(),false) }} btn-small">{{ $risk->colorTotal(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints) : $risk->total(),false) }}</button>
                                             </td>
                                             <td class="td_actions">
                                                 <div>
@@ -207,7 +207,7 @@
                                                         <p>@stripTags($risk->name)</p>
                                                     </td>
                                                     <td class="td_rb">
-                                                        <button class="btn {{ $risk->color($risk->total()) }} btn-small">{{ $risk->total() }}</button>
+                                                        <button class="btn {{ $risk->color($risk->total(),true) }} btn-small">{{ $risk->total() }}</button>
                                                         <div class="list list--text">
                                                             <div class="list-row">
                                                                 <p class="list-point list-point--text">F</p>
@@ -240,7 +240,7 @@
                                                         </div>
                                                     </td>
                                                     <td class="td_rr">
-                                                        <button class="btn {{ $risk->color( isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total()) }} btn-small">{{ isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints) : $risk->total() }}</button>
+                                                        <button class="btn {{ $risk->color( isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total(),false) }} btn-small">{{ isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints) : $risk->total() }}</button>
                                                     </td>
                                                     <td class="td_proposed_measure">
                                                         <div class="list">
@@ -255,7 +255,7 @@
                                                         </div>
                                                     </td>
                                                     <td class="td_criticality">
-                                                        <button type="button" class="btn {{ $risk->color(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total()) }} btn-small">{{ $risk->colorTotal(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints) : $risk->total()) }}</button>
+                                                        <button type="button" class="btn {{ $risk->color(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total(),false) }} btn-small">{{ $risk->colorTotal(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints) : $risk->total(), false) }}</button>
                                                     </td>
                                                     <td class="td_actions">
                                                         <div>

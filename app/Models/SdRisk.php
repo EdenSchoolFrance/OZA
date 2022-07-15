@@ -221,7 +221,7 @@ class SdRisk extends Model
                     break;
             }
             $total = $tech + $orga + $human;
-            
+
             $totalEnd = $total+$totalEnd;
 
             $count++;
@@ -233,49 +233,90 @@ class SdRisk extends Model
         if ($A >= 18.6) $Pon = RiskCalculation::where('sum', 18.6)->first();
         else if ($A <= 1.0) $Pon = RiskCalculation::where('sum', 1.0)->first();
         else $Pon = RiskCalculation::where('sum', $A)->first();
-        
-    
+
+
         $cal = $Pon->weighting * $RB;
 
         return round($cal, 1);
     }
 
-    public function color($number){
-        switch (true) {
-            case ($number <= 12.5) :
-                return 'btn-success';
-            case ($number < 20) :
-                return 'btn-warning';
-            case ($number < 30) :
-                return 'btn-warn';
-            case ($number >= 30) :
-                return 'btn-danger';
+    public function color($number, $RB){
+        if ($RB === true){
+            switch (true) {
+                case ($number <= 12.5) :
+                    return 'btn-success';
+                case ($number < 24) :
+                    return 'btn-warning';
+                case ($number < 30) :
+                    return 'btn-warn';
+                case ($number >= 30) :
+                    return 'btn-danger';
+            }
+        }else{
+            switch (true) {
+                case ($number <= 12.5) :
+                    return 'btn-success';
+                case ($number < 20) :
+                    return 'btn-warning';
+                case ($number < 30) :
+                    return 'btn-warn';
+                case ($number >= 30) :
+                    return 'btn-danger';
+            }
         }
+
     }
 
-    public function colorPDF($number){
-        switch (true) {
-            case ($number <= 12.5) :
-                return 'green';
-            case ($number < 20) :
-                return 'yellow';
-            case ($number < 30) :
-                return 'pink';
-            case ($number >= 30) :
-                return 'red';
+    public function colorPDF($number, $RB){
+        if ($RB === true){
+            switch (true) {
+                case ($number <= 12.5) :
+                    return 'green';
+                case ($number < 24) :
+                    return 'yellow';
+                case ($number < 30) :
+                    return 'pink';
+                case ($number >= 30) :
+                    return 'red';
+            }
+        }else{
+            switch (true) {
+                case ($number <= 12.5) :
+                    return 'green';
+                case ($number < 20) :
+                    return 'yellow';
+                case ($number < 30) :
+                    return 'pink';
+                case ($number >= 30) :
+                    return 'red';
+            }
         }
+
     }
 
-    public function colorTotal($number){
-        switch (true) {
-            case ($number <= 12.5) :
-                return 'Acceptable';
-            case ($number < 20) :
-                return 'A améliorer';
-            case ($number < 30):
-                return 'Agir vite';
-            case ($number >= 30) :
-                return 'STOP';
+    public function colorTotal($number, $RB){
+        if ($RB === true){
+            switch (true) {
+                case ($number <= 12.5) :
+                    return 'Acceptable';
+                case ($number < 24) :
+                    return 'A améliorer';
+                case ($number < 30):
+                    return 'Agir vite';
+                case ($number >= 30) :
+                    return 'STOP';
+            }
+        }else {
+            switch (true) {
+                case ($number <= 12.5) :
+                    return 'Acceptable';
+                case ($number < 20) :
+                    return 'A améliorer';
+                case ($number < 30):
+                    return 'Agir vite';
+                case ($number >= 30) :
+                    return 'STOP';
+            }
         }
     }
 
