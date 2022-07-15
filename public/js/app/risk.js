@@ -362,8 +362,8 @@ function restraintCalcul(x){
 
     let A = totalEnd + 1/10 * count;
     let cal = pon.find( x => x.sum === A);
-
-    return Math.round(cal.weighting * RB, 1);
+    let end = cal.weighting * RB
+    return end.toFixed(1);
 
 }
 

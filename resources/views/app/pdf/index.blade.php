@@ -510,8 +510,8 @@
                                 <td class="workunit">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "Tous" }}</td>
                                 <td class="danger">{{ $sd_risk->sd_danger->danger->name }}</td>
                                 <td class="risk">@stripTags($sd_risk->name)</td>
-                                <td class="risk_residuel center">{{ $sd_risk->totalRR($sd_risk->sd_restraints) }}</td>
-                                <td class="criticity center {{ $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints)) }}">{{ $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints)) }}</td>
+                                <td class="risk_residuel center">{{ $sd_risk->totalRR($sd_risk->sd_restraints_exist) }}</td>
+                                <td class="criticity center {{ $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints_exist)) }}">{{ $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints)) }}</td>
                                 <td class="restraint">
                                     @foreach($sd_risk->sd_restraints_porposed as $sd_restraint)
                                         @stripTags($sd_restraint->name)<br>
@@ -1226,8 +1226,8 @@
                                         <td class="center min-width min-width-right">{{ round($sd_risk->moyenneTech(), 1) }}</td>
                                         <td class="center min-width min-width-right">{{ round($sd_risk->moyenneOrga(), 1) }}</td>
                                         <td class="center min-width min-width-right">{{ round($sd_risk->moyenneHum(), 1) }}</td>
-                                        <td class="center min-width min-width-right"> {{ $sd_risk->totalRR($sd_risk->sd_restraints) }}</td>
-                                        <td class="center criticity {{ $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints)) }}">{{ $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints)) }}</td>
+                                        <td class="center min-width min-width-right"> {{ $sd_risk->totalRR($sd_risk->sd_restraints_exist) }}</td>
+                                        <td class="center criticity {{ $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints_exist)) }}">{{ $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints)) }}</td>
                                         <td class="restraint_proposed">
                                             @foreach($sd_risk->sd_restraints_porposed as $sd_restraint)
                                                 * @stripTags($sd_restraint->name) <br>

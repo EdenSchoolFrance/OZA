@@ -30,7 +30,7 @@ class PDFController extends Controller
         $sd_risks = SdRisk::whereHas('sd_danger', function ($q) use ($single_document) {
             $q->where('single_document_id', $single_document->id);
         })->get()->sort(function ($a, $b) {
-            return $b->totalRR($b->sd_restraints); - $a->totalRR($a->sd_restraints);
+            return $b->totalRR($b->sd_restraints_exist); - $a->totalRR($a->sd_restraints_exist);
         });
 
         $sd_risks_posts = SdRisk::whereHas('sd_danger', function ($q) use ($single_document) {
@@ -52,12 +52,12 @@ class PDFController extends Controller
 
         $dangers = $single_document->dangers()->whereHas('danger.exposition')->get();
 
-        
+
         $numberEmUt = 0;
         $numberEmExpo = 0;
         foreach ($works as $work){
             $numberEmUt = $numberEmUt + $work->number_employee;
-            
+
             $expos_questions = SdExpositionQuestion::whereHas('sd_work_unit', function ($q) use ($work) {
                 $q->where('sd_work_unit_id', $work->id);
             })->get();
@@ -69,7 +69,7 @@ class PDFController extends Controller
 
         $expos = Exposition::all();
 
-    
+
         setlocale(LC_TIME, 'fr', 'fr_FR', 'fr_FR.ISO8859-1');
         $histories = Historie::find(session('status'));
 
