@@ -17,8 +17,8 @@ class WorkUnitSeeder extends Seeder
     public function run()
     {
         $activities = Activitie::all();
-        $sector = SectorActivitie::where('name','Sector1')->first();
-        $sector2 = SectorActivitie::where('name','Sector2')->first();
+        $sector = SectorActivitie::where('name','Administration publique')->first();
+        $sector2 = SectorActivitie::where('name','Agriculture & forêts')->first();
 
         $work = new WorkUnit();
         $work->id = uniqid();

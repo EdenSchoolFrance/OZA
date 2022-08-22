@@ -441,24 +441,23 @@
 
         <div class="body body--notif">
             <h1 class="head-title" id="proAnnuel">2. PROGRAMME ANNUEL DE PREVENTION ET D'AMELIORATION DES CONDITIONS DE TRAVAIL</h1>
-            <p class="bold">Le Plan d’action reprend et présente tous les risques identifiés et évalués dans le chapitre 4 « Evaluation des risques » classés ici selon leur criticité (priorité) dans la colonne « Criticité ».</p>
-            <p class="bold">Le Plan d’action reprend et présente également toutes les situations de « non-conformité réglementaire » dans la colonne « Mesures de prévention et de protection proposées », sous le libellé « Obligation réglementaire ».</p>
+            <p class="bold">Le PROGRAMME ANNUEL DE PREVENTION ET D'AMELIORATION DES CONDITIONS DE TRAVAIL reprend et présente tous les risques identifiés et évalués dans le chapitre 5 "Evaluation des risques" classés ici selon leur criticité (priorité) dans la colonne "Criticité".</p>
+            <p class="bold">Le PROGRAMME ANNUEL DE PREVENTION ET D'AMELIORATION DES CONDITIONS DE TRAVAIL reprend et présente également toutes les situations de "non-conformité réglementaire" dans la colonne "Mesures de prévention et de protection à mettre en place", sous le libellé "Obligation réglementaire".</p>
             <p>
-                <span class="bold">Colonne « Mesures de prévention et de protection proposées » :</span><br>
-                Les mesures de prévention et de protection proposées se déclinent en 3 catégories énoncées dans les 9 principes de prévention de l’article L.4121-2 du Code du Travail (Loi n° 91-1414 du 31 décembre 1991 art. 1 Journal Officiel du 7 janvier 1992 en vigueur le 31 décembre 1992) :<br>
+                <span class="bold">Colonne "Mesures de prévention et de protection à mettre en place" :</span><br>
+                Les mesures de prévention et de protection proposées se déclinent en 3 catégories énoncées dans les 9 principes de prévention de l'article L.4121-2 du Code du Travail (Loi n° 91-1414 du 31 décembre 1991 art. 1 Journal Officiel du 7 janvier 1992 en vigueur le 31 décembre 1992) :<br>
                 - Mesure Technique, <br>
                 - Mesure Organisationnelle, <br>
                 - Mesure Humaine (Information et formation, protection collective et individuelle).
             </p>
             <p>
-                <span class="bold">L’employeur décidera quelle(s) mesure(s) proposée(s) il réalisera.</span><br>
-                <span class="bold">Colonne « Décision sur les actions proposées »</span><br>
-                - Sera réalisé le (date) : Inscrire ici la date planifiée par l’employeur pour la réalisation des actions de prévention ou de protection qu’il a validé.<br>
-                - Ne sera pas réalisé » : Préciser les actions que l’employeur ne valide pas et qui ne seront pas mises en place.<br>
+                <span class="">L'employeur décidera quelle(s) mesure(s) proposée(s) il mettra en place.</span><br>
+                <span class="bold">Colonne "Date de réalisation prévue, Conditions d’exécution, Estimation du coût, Ressources nécessaires" :</span><br>
+                Inscrire ici la date planifiée par l'employeur pour la réalisation des actions de prévention ou de protection qu'il a validé,<br>
+                Inscrire ici la date de réalisation prévue, les conditions d’exécution, l'estimation du coût, et les ressources nécessaires pour la mise en œuvre des actions validées qui seront mises en place.<br>
+                Préciser également les actions que l'employeur ne valide pas et qui ne seront pas mises en place. <br>
                 <span class="bold">Colonne « Date de réalisation » :</span><br>
-                Inscrire la date à laquelle l’action de prévention ou de protection a réellement été mise en place et a été opérationnelle.<br>
-                <span class="bold">Colonne « Commentaire, complément, autres actions » :</span><br>
-                L’employeur inscrira éventuellement ici des commentaires sur les décisions prises, des compléments d’explications, et, ou des actions complémentaires.
+                Inscrire la date à laquelle l'action de prévention ou de protection a réellement été mise en place et a été opérationnelle.<br>
             </p>
         </div>
 
