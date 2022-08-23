@@ -1248,9 +1248,9 @@
                                     <td class="center min-width min-width-left">NON</td>
                                     <td class="center min-width min-width-left">0</td>
                                     <td class="restraint"></td>
-                                    <td class="center min-width min-width-right">Null</td>
-                                    <td class="center min-width min-width-right">Null</td>
-                                    <td class="center min-width min-width-right">Null</td>
+                                    <td class="center min-width min-width-right">0</td>
+                                    <td class="center min-width min-width-right">0</td>
+                                    <td class="center min-width min-width-right">0</td>
                                     <td class="center min-width min-width-right">0</td>
                                     <td class="center green criticity">0</td>
                                     <td class="restraint_proposed"></td>

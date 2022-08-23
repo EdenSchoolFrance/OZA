@@ -359,33 +359,31 @@ class SdRisk extends Model
             case ($type === "tech"):
                 switch (true){
                     case ($number == 4) :
-                        return "Très bon";
+                        return "très bon";
                     case ($number == 3):
-                        return "Bon";
+                        return "bon";
                     case ($number == 2):
-                        return "Moyen";
+                        return "moy";
                     case ($number == 0):
-                        return "Null";
-                    default:
-                        return $number;
+                        return "0";
                 }
                 break;
             case ($type === "orga"):
             case ($type === "hum"):
                 switch (true){
                     case ($number == 3) :
-                        return "Très bon";
+                        return "très bon";
                     case ($number == 2):
-                        return "Bon";
+                        return "bon";
                     case ($number == 1):
-                        return "Moyen";
+                        return "moy";
                     case ($number == 0):
-                        return "Null";
+                        return "0";
                 }
                 break;
 
             default:
-                return "default";
+                return "0";
 
         }
     }
