@@ -30,7 +30,13 @@ class PDFController extends Controller
         $sd_risks = SdRisk::whereHas('sd_danger', function ($q) use ($single_document) {
             $q->where('single_document_id', $single_document->id);
         })->get()->sort(function ($a, $b) {
-            return $b->totalRR($b->sd_restraints_exist); - $a->totalRR($a->sd_restraints_exist);
+            return $b->totalRR($b->sd_restraints_exist) - $a->totalRR($a->sd_restraints_exist);
+        });
+
+        $sd_risks_inv = SdRisk::whereHas('sd_danger', function ($q) use ($single_document) {
+            $q->where('single_document_id', $single_document->id);
+        })->get()->sort(function ($a, $b) {
+            return $a->totalRR($a->sd_restraints_exist) - $b->totalRR($b->sd_restraints_exist);
         });
 
         $sd_risks_posts = SdRisk::whereHas('sd_danger', function ($q) use ($single_document) {
@@ -113,11 +119,14 @@ class PDFController extends Controller
             ]
         ];
         $chart = file_get_contents("https://quickchart.io/chart?w=500&h=300&c=" . urlencode(json_encode($chartConfig)));
+        if ( !Storage::exists('private/' . $single_document->client->id ) ) {
+            Storage::makeDirectory('private/' . $single_document->client->id, 0775, true );
+        }
         $chartUrl = storage_path('app/private/' . $single_document->client->id . '/chart.png');
 
         File::put($chartUrl, $chart);
 
-        $pdf = PDF::loadView('app.pdf.index', compact('chartUrl', 'single_document', 'item_mat', 'item_veh', 'item_eng', 'sd_risks', 'sd_risks_posts', 'numberEmUt', 'numberEmExpo', 'expos', 'date', 'sd_dangers', 'works', 'dangers'))->setPaper('a4', 'landscape');
+        $pdf = PDF::loadView('app.pdf.index', compact('chartUrl', 'single_document', 'item_mat', 'item_veh', 'item_eng', 'sd_risks', 'sd_risks_posts', 'numberEmUt', 'numberEmExpo', 'expos', 'date', 'sd_dangers', 'works', 'dangers','sd_risks_inv'))->setPaper('a4', 'landscape');
 
         //return $pdf->stream();
 
