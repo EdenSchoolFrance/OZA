@@ -353,4 +353,41 @@ class SdRisk extends Model
         return ceil($total / $count);
     }
 
+    public function translateRR($number, $type){
+
+        switch (true){
+            case ($type === "tech"):
+                switch (true){
+                    case ($number == 4) :
+                        return "Très bon";
+                    case ($number == 3):
+                        return "Bon";
+                    case ($number == 2):
+                        return "Moyen";
+                    case ($number == 0):
+                        return "Null";
+                    default:
+                        return $number;
+                }
+                break;
+            case ($type === "orga"):
+            case ($type === "hum"):
+                switch (true){
+                    case ($number == 3) :
+                        return "Très bon";
+                    case ($number == 2):
+                        return "Bon";
+                    case ($number == 1):
+                        return "Moyen";
+                    case ($number == 0):
+                        return "Null";
+                }
+                break;
+
+            default:
+                return "default";
+
+        }
+    }
+
 }

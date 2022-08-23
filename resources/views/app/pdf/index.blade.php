@@ -1225,9 +1225,9 @@
                                                 * @stripTags($sd_restraint->name) <br>
                                             @endforeach
                                         </td>
-                                        <td class="center min-width min-width-right">{{ round($sd_risk->moyenneTech(), 1) }}</td>
-                                        <td class="center min-width min-width-right">{{ round($sd_risk->moyenneOrga(), 1) }}</td>
-                                        <td class="center min-width min-width-right">{{ round($sd_risk->moyenneHum(), 1) }}</td>
+                                        <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneTech(), 1), "tech") }}</td>
+                                        <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneOrga(), 1), "orga") }}</td>
+                                        <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneHum(), 1), "hum") }}</td>
                                         <td class="center min-width min-width-right"> {{ $sd_risk->totalRR($sd_risk->sd_restraints_exist) }}</td>
                                         <td class="center criticity {{ $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints_exist),false) }}">{{ $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints),false) }}</td>
                                         <td class="restraint_proposed">
@@ -1248,9 +1248,9 @@
                                     <td class="center min-width min-width-left">NON</td>
                                     <td class="center min-width min-width-left">0</td>
                                     <td class="restraint"></td>
-                                    <td class="center min-width min-width-right">0</td>
-                                    <td class="center min-width min-width-right">0</td>
-                                    <td class="center min-width min-width-right">0</td>
+                                    <td class="center min-width min-width-right">Null</td>
+                                    <td class="center min-width min-width-right">Null</td>
+                                    <td class="center min-width min-width-right">Null</td>
                                     <td class="center min-width min-width-right">0</td>
                                     <td class="center green criticity">0</td>
                                     <td class="restraint_proposed"></td>

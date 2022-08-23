@@ -120,6 +120,9 @@
                                             <td class="td_rr">
                                                 <button class="btn {{ $risk->color( isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total(),false) }} btn-small">{{ isset($risk->sd_restraints_exist[0]) ? ($risk->totalRR($risk->sd_restraints) === 0 ? $risk->total() : $risk->totalRR($risk->sd_restraints)) : $risk->total() }}</button>
                                             </td>
+                                            <td class="td_criticality">
+                                                <button type="button" class="btn {{ $risk->color(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total(),false) }} btn-small">{{ $risk->colorTotal(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints) : $risk->total(),false) }}</button>
+                                            </td>
                                             <td class="td_proposed_measure">
                                                 <div class="list">
                                                     @foreach($risk->sd_restraints as $restraint)
@@ -131,9 +134,6 @@
                                                         @endif
                                                     @endforeach
                                                 </div>
-                                            </td>
-                                            <td class="td_criticality">
-                                                <button type="button" class="btn {{ $risk->color(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total(),false) }} btn-small">{{ $risk->colorTotal(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints) : $risk->total(),false) }}</button>
                                             </td>
                                             <td class="td_actions">
                                                 <div>
@@ -242,6 +242,9 @@
                                                     <td class="td_rr">
                                                         <button class="btn {{ $risk->color( isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total(),false) }} btn-small">{{ isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints) : $risk->total() }}</button>
                                                     </td>
+                                                    <td class="td_criticality">
+                                                        <button type="button" class="btn {{ $risk->color(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total(),false) }} btn-small">{{ $risk->colorTotal(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints) : $risk->total(), false) }}</button>
+                                                    </td>
                                                     <td class="td_proposed_measure">
                                                         <div class="list">
                                                         @foreach($risk->sd_restraints as $restraint)
@@ -253,9 +256,6 @@
                                                             @endif
                                                         @endforeach
                                                         </div>
-                                                    </td>
-                                                    <td class="td_criticality">
-                                                        <button type="button" class="btn {{ $risk->color(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total(),false) }} btn-small">{{ $risk->colorTotal(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints) : $risk->total(), false) }}</button>
                                                     </td>
                                                     <td class="td_actions">
                                                         <div>
