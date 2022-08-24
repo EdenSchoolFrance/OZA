@@ -359,10 +359,16 @@ function restraintCalcul(x){
     }
 
     if (count === 0) return RB;
+    console.log(pon)
 
-    let A = totalEnd + 1/10 * count;
-    let cal = pon.find( x => x.sum === A);
+    let A = totalEnd + totalEnd/10 * count;
+    let cal;
+    if (A >= 18.6) cal = pon.find( x => x.sum === 18.6)
+    else cal = pon.find( x => x.sum === A);
+    console.log(A)
+    console.log(cal)
     let end = cal.weighting * RB
+    console.log(end)
     return end.toFixed(1);
 
 }

@@ -318,13 +318,10 @@
                             <div class="content-modal-oza">
                                 <div class="row">
                                     <div class="line">
-                                        <div class="left">
-                                            <label class="con"> @stripTags($restraint->name)
-                                                <input type="checkbox" class="btn-restraint-modal-oza" name="restraint_modal[]" value="{{ $restraint->id }}">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </div>
-                                        <div class="right"></div>
+                                        <label class="con"> @stripTags($restraint->name)
+                                            <input type="checkbox" class="btn-restraint-modal-oza" name="restraint_modal[]" value="{{ $restraint->id }}">
+                                            <span class="checkmark"></span>
+                                        </label>
                                     </div>
                                 </div>
                                 <div class="restraint-modal-content">
