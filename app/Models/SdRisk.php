@@ -256,7 +256,7 @@ class SdRisk extends Model
             switch (true) {
                 case ($number <= 12.5) :
                     return 'btn-success';
-                case ($number < 20) :
+                case ($number < 24) :
                     return 'btn-warning';
                 case ($number < 30) :
                     return 'btn-warn';
@@ -283,7 +283,7 @@ class SdRisk extends Model
             switch (true) {
                 case ($number <= 12.5) :
                     return 'green';
-                case ($number < 20) :
+                case ($number < 24) :
                     return 'yellow';
                 case ($number < 30) :
                     return 'pink';
@@ -310,7 +310,7 @@ class SdRisk extends Model
             switch (true) {
                 case ($number <= 12.5) :
                     return 'Acceptable';
-                case ($number < 20) :
+                case ($number < 24) :
                     return 'A améliorer';
                 case ($number < 30):
                     return 'Agir vite';
