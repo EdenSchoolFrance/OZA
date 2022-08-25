@@ -36,7 +36,7 @@ class PDFController extends Controller
         $sd_risks_inv = SdRisk::whereHas('sd_danger', function ($q) use ($single_document) {
             $q->where('single_document_id', $single_document->id);
         })->get()->sort(function ($a, $b) {
-            return $a->totalRR($a->sd_restraints_exist) - $b->totalRR($b->sd_restraints_exist);
+            return $b->totalRR($b->sd_restraints_exist) - $a->totalRR($a->sd_restraints_exist);
         });
 
         $sd_risks_posts = SdRisk::whereHas('sd_danger', function ($q) use ($single_document) {
