@@ -67,7 +67,7 @@ class RiskController extends Controller
         ];
 
         $risk_cal = RiskCalculation::all();
-        
+
         $risk_cal = $risk_cal->toJson();
 
         if ($id_risk !== null){
@@ -107,7 +107,7 @@ class RiskController extends Controller
         ];
 
         $risk_cal = RiskCalculation::all();
-        
+
         $risk_cal = $risk_cal->toJson();
 
         return view('app.risk.edit', compact('page', 'single_document','danger','domaine_activities', 'risk', 'risk_cal'));
@@ -126,9 +126,11 @@ class RiskController extends Controller
             'sidebar' => 'risk_post'
         ];
 
-        $sd_risks = SdRisk::whereHas('sd_danger', function ($q) use ($single_document){
+        $sd_risks = SdRisk::whereHas('sd_danger', function ($q) use ($single_document) {
             $q->where('single_document_id', $single_document->id);
-        })->get()->filter(function ($sd_risk, $key) {
+        })->get()->sort(function ($a, $b){
+            return $b->total() - $a->total();
+        })->filter(function ($sd_risk, $key) {
             return $sd_risk->total() > 23;
         })->all();
 
@@ -168,7 +170,7 @@ class RiskController extends Controller
 
         if (isset($request->res_title) && isset($request->res_tech) && isset($request->res_orga) && isset($request->res_human)){
             foreach ($request->res_title as $key => $res_title ){
-                
+
                 if( empty($res_title) || empty($request->res_tech[$key]) || empty($request->res_orga[$key]) || empty($request->res_human[$key]) ) return back()->with('status','Des mesures sont incomplete')->with('status_type','danger');
                 $sd_restraint = new SdRestraint();
                 $sd_restraint->id = uniqid();
