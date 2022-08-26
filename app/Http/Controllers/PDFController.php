@@ -118,7 +118,20 @@ class PDFController extends Controller
                 ]
             ]
         ];
-        $chart = file_get_contents("https://quickchart.io/chart?w=500&h=300&c=" . urlencode(json_encode($chartConfig)));
+
+
+        if (!function_exists('curl_init'))
+        {
+            die('CURL is not installed!');
+        }
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "https://quickchart.io/chart?w=500&h=300&c=" . urlencode(json_encode($chartConfig)));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $chart = curl_exec($ch);
+        curl_close($ch);
+
+        //$chart = file_get_contents("https://quickchart.io/chart?w=500&h=300&c=" . urlencode(json_encode($chartConfig)));
         if ( !Storage::exists('private/' . $single_document->client->id ) ) {
             Storage::makeDirectory('private/' . $single_document->client->id, 0775, true );
         }
