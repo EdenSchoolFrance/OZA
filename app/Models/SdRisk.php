@@ -244,9 +244,8 @@ class SdRisk extends Model
         if ($RB === true){
             switch (true) {
                 case ($number <= 12.5) :
-                    return 'btn-success';
                 case ($number < 24) :
-                    return 'btn-warning';
+                    return '';
                 case ($number < 30) :
                     return 'btn-warn';
                 case ($number >= 30) :
@@ -255,9 +254,8 @@ class SdRisk extends Model
         }else{
             switch (true) {
                 case ($number <= 12.5) :
-                    return 'btn-success';
                 case ($number < 24) :
-                    return 'btn-warning';
+                    return '';
                 case ($number < 30) :
                     return 'btn-warn';
                 case ($number >= 30) :
@@ -271,9 +269,8 @@ class SdRisk extends Model
         if ($RB === true){
             switch (true) {
                 case ($number <= 12.5) :
-                    return 'green';
                 case ($number < 24) :
-                    return 'yellow';
+                    return '';
                 case ($number < 30) :
                     return 'pink';
                 case ($number >= 30) :
@@ -282,9 +279,8 @@ class SdRisk extends Model
         }else{
             switch (true) {
                 case ($number <= 12.5) :
-                    return 'green';
                 case ($number < 24) :
-                    return 'yellow';
+                    return '';
                 case ($number < 30) :
                     return 'pink';
                 case ($number >= 30) :
