@@ -1512,55 +1512,55 @@
                                                     $sd_exposition_question = $exposition_question->sd_work_unit_exposition_question($sd_work_unit->id);
                                                 @endphp
 
-                                                <tr>
-                                                    @if ($key === 0)
-                                                        <td class="center" rowspan="{{count($count) > 0 ? count($count) : 1 }}">
-                                                            {{ $danger->danger->name }}
-                                                        </td>
-                                                        <td class="center" rowspan="{{count($count) > 0 ? count($count) : 1 }}">
-                                                            {{ $sd_work_unit->name }}
-                                                        </td>
-                                                        <td rowspan="{{count($count) > 0 ? count($count) : 1 }}">
-                                                            {{ $exposition_group->intervention_type_label }}
-                                                        </td>
-                                                    @endif
-                                                    @if (isset($sd_exposition_question))
-                                                        <td>{{ $sd_exposition_question->intervention_type }}</td>
-                                                        <td class="center">{{ $sd_exposition_question->number_employee }}</td>
-                                                        <td>
-                                                            @if ($exposition_group->type === "default")
-                                                                {{ $exposition_group->value_label." : "}} <span class="text-color-{{$exposition_group->calculation($sd_exposition_question->value)}}">{{ $sd_exposition_question->value }}</span>
-                                                            @else
-                                                                Durée en mm / j <span class="text-color-{{$exposition_group->calculation($sd_exposition_question->minutes)}}">{{$sd_exposition_question->minutes}} </span>
-                                                                Durée en h / an <span class="text-color-{{$exposition_group->calculation($sd_exposition_question->value)}}">{{$sd_exposition_question->value}}</span>
-                                                            @endif
-                                                        </td>
-                                                        @if ($exposition_group->name === "exposition_group_team_work" && $exposition_group->name === "exposition_group_night_work")
-                                                            @php
-                                                                $result = 0;
-
-                                                            @endphp
-                                                            <td class="center" rowspan="{{ count($count) }}">Total h / an : <span class="text-color-{{$exposition_group->calculation($result)}}">{{ $result }}</span></td>
-                                                        @else
-                                                            @if ($sd_exposition_question->exposition_question->exposition_group->type === "default")
-                                                                <td class="center"></td>
-                                                            @else
-                                                                <td class="center">Total h / an : <span class="text-color-{{$exposition_group->calculation($sd_exposition_question->value)}}">{{$sd_exposition_question->value}}</span></td>
-                                                            @endif
-                                                        @endif
-
+                                                @if (isset($sd_exposition_question))
+                                                    <tr>
 
                                                         @if ($key === 0)
-                                                            <td rowspan="{{count($count) > 0 ? count($count) : 1 }}" class="center {{$exposition_group->calculation($sd_exposition_question->value)}}"> {{$exposition_group->translate($sd_exposition_question->value)}} </td>
+                                                            <td class="center" rowspan="{{count($count) > 0 ? count($count) : 1 }}">
+                                                                {{ $danger->danger->name }}
+                                                            </td>
+                                                            <td class="center" rowspan="{{count($count) > 0 ? count($count) : 1 }}">
+                                                                {{ $sd_work_unit->name }}
+                                                            </td>
+                                                            <td rowspan="{{count($count) > 0 ? count($count) : 1 }}">
+                                                                {{ $exposition_group->intervention_type_label }}
+                                                            </td>
                                                         @endif
-                                                    @else
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td class="center">Non concernée</td>
-                                                    @endif
-                                                </tr>
+                                                        @if (isset($sd_exposition_question))
+                                                            <td>{{ $sd_exposition_question->intervention_type }}</td>
+                                                            <td class="center">{{ $sd_exposition_question->number_employee }}</td>
+                                                            <td>
+                                                                @if ($exposition_group->type === "default")
+                                                                    {{ $exposition_group->value_label." : "}} <span class="text-color-{{$exposition_group->calculation($sd_exposition_question->value)}}">{{ $sd_exposition_question->value }}</span>
+                                                                @else
+                                                                    Durée en mm / j <span class="text-color-{{$exposition_group->calculation($sd_exposition_question->minutes)}}">{{$sd_exposition_question->minutes}} </span>
+                                                                    Durée en h / an <span class="text-color-{{$exposition_group->calculation($sd_exposition_question->value)}}">{{$sd_exposition_question->value}}</span>
+                                                                @endif
+                                                            </td>
+                                                            @if ($exposition_group->name === "exposition_group_team_work" && $exposition_group->name === "exposition_group_night_work")
+                                                                @php
+                                                                    $result = 0;
+                                                                @endphp
+                                                                <td class="center" rowspan="{{ count($count) }}">Total h / an : <span class="text-color-{{$exposition_group->calculation($result)}}">{{ $result }}</span></td>
+                                                            @else
+                                                                @if ($sd_exposition_question->exposition_question->exposition_group->type === "default")
+                                                                    <td class="center"></td>
+                                                                @else
+                                                                    <td class="center">Total h / an : <span class="text-color-{{$exposition_group->calculation($sd_exposition_question->value)}}">{{$sd_exposition_question->value}}</span></td>
+                                                                @endif
+                                                            @endif
+                                                            @if ($key === 0)
+                                                                <td rowspan="{{count($count) > 0 ? count($count) : 1 }}" class="center {{$exposition_group->calculation($sd_exposition_question->value)}}"> {{$exposition_group->translate($sd_exposition_question->value)}} </td>
+                                                            @endif
+                                                        @else
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td class="center">Non concernée</td>
+                                                        @endif
+                                                    </tr>
+                                                @endif
 
                                             @endforeach
                                         @endforeach
