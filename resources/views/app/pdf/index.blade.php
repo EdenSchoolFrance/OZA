@@ -452,11 +452,15 @@
             </p>
             <p>
                 <span class="">L'employeur décidera quelle(s) mesure(s) proposée(s) il mettra en place.</span><br>
+            </p>
+            <p>
                 <span class="bold">Colonne "Date de réalisation prévue, Conditions d’exécution, Estimation du coût, Ressources nécessaires" :</span><br>
                 Inscrire ici la date planifiée par l'employeur pour la réalisation des actions de prévention ou de protection qu'il a validé,<br>
                 Inscrire ici la date de réalisation prévue, les conditions d’exécution, l'estimation du coût, et les ressources nécessaires pour la mise en œuvre des actions validées qui seront mises en place.<br>
                 Préciser également les actions que l'employeur ne valide pas et qui ne seront pas mises en place. <br>
-                <span class="bold">Colonne « Date de réalisation » :</span><br>
+            </p>
+            <p>
+                <span class="bold">Colonne « Date de réalisation » :</span>
                 Inscrire la date à laquelle l'action de prévention ou de protection a réellement été mise en place et a été opérationnelle.<br>
             </p>
         </div>
