@@ -73,8 +73,8 @@
                                         <th class="th_rb">RB</th>
                                         <th class="th_existing_measure">Mesure existante</th>
                                         <th class="th_rr">RR</th>
-                                        <th class="th_proposed_measure">Mesure proposée</th>
                                         <th class="th_criticality">Criticité</th>
+                                        <th class="th_proposed_measure">Mesure proposée</th>
                                         <th class="th_actions"></th>
                                     </tr>
                                 </thead>
@@ -194,8 +194,8 @@
                                                 <th class="th_rb">RB</th>
                                                 <th class="th_existing_measure">Mesure existante</th>
                                                 <th class="th_rr">RR</th>
-                                                <th class="th_proposed_measure">Mesure proposée</th>
                                                 <th class="th_criticality">Criticité</th>
+                                                <th class="th_proposed_measure">Mesure proposée</th>
                                                 <th class="th_actions"></th>
                                             </tr>
                                             </thead>

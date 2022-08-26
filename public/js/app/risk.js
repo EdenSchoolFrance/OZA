@@ -359,13 +359,16 @@ function restraintCalcul(x){
     }
 
     if (count === 0) return RB;
+    console.log(pon)
 
     let A = totalEnd + 1/10 * count;
     let cal;
     if (A >= 18.6) cal = pon.find( x => x.sum === 18.6)
     else cal = pon.find( x => x.sum === A);
-
+    console.log(A)
+    console.log(cal)
     let end = cal.weighting * RB
+    console.log(end)
     return end.toFixed(1);
 
 }
@@ -375,6 +378,9 @@ function setColor(el,total,RB){
         el.className = ""
         el.classList.add('btn')
         switch (true) {
+            case (total <= 12.5) :
+            case (total < 24) :
+                break;
             case (total < 30) :
                 el.classList.add('btn-warn');
                 break;
@@ -386,6 +392,9 @@ function setColor(el,total,RB){
         el.className = ""
         el.classList.add('btn')
         switch (true) {
+            case (total <= 12.5) :
+            case (total < 24) :
+                break;
             case (total < 30) :
                 el.classList.add('btn-warn');
                 break;
