@@ -510,7 +510,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($sd_risks_inv as $sd_risk)
+                    @foreach($sd_risks as $sd_risk)
                         @if (count($sd_risk->sd_restraints_porposed) >= 1)
                             <tr>
                                 <td class="workunit">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "Tous" }}</td>

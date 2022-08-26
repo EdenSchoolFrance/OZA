@@ -27,16 +27,14 @@ class PDFController extends Controller
         $item_veh = Item::where('name', 'Véhicules')->first();
         $item_eng = Item::where('name', 'Engins')->first();
 
+
         $sd_risks = SdRisk::whereHas('sd_danger', function ($q) use ($single_document) {
             $q->where('single_document_id', $single_document->id);
         })->get()->sort(function ($a, $b) {
-            return $b->totalRR($b->sd_restraints_exist) - $a->totalRR($a->sd_restraints_exist);
-        });
-
-        $sd_risks_inv = SdRisk::whereHas('sd_danger', function ($q) use ($single_document) {
-            $q->where('single_document_id', $single_document->id);
-        })->get()->sort(function ($a, $b) {
-            return $b->totalRR($b->sd_restraints_exist) - $a->totalRR($a->sd_restraints_exist);
+            if ($a->totalRR($a->sd_restraints_exist) == $b->totalRR($b->sd_restraints_exist)){
+                return 0;
+            }
+            return ($b->totalRR($b->sd_restraints_exist) < $a->totalRR($a->sd_restraints_exist)) ? -1 : 1;
         });
 
         $sd_risks_posts = SdRisk::whereHas('sd_danger', function ($q) use ($single_document) {
