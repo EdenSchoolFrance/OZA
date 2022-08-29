@@ -137,7 +137,23 @@ class PDFController extends Controller
 
         File::put($chartUrl, $chart);
 
-        $pdf = PDF::loadView('app.pdf.index', compact('chartUrl', 'single_document', 'item_mat', 'item_veh', 'item_eng', 'sd_risks', 'sd_risks_posts', 'numberEmUt', 'numberEmExpo', 'expos', 'date', 'sd_dangers', 'works', 'dangers','sd_risks_inv'))->setPaper('a4', 'landscape');
+        $pdf = PDF::loadView('app.pdf.index',
+            compact(
+            'chartUrl',
+            'single_document',
+            'item_mat',
+            'item_veh', 
+            'item_eng',
+            'sd_risks',
+            'sd_risks_posts',
+            'numberEmUt',
+            'numberEmExpo',
+            'expos',
+            'date',
+            'sd_dangers',
+            'works',
+            'dangers')
+        )->setPaper('a4', 'landscape');
 
         //return $pdf->stream();
 
