@@ -142,7 +142,7 @@ class PDFController extends Controller
             'chartUrl',
             'single_document',
             'item_mat',
-            'item_veh', 
+            'item_veh',
             'item_eng',
             'sd_risks',
             'sd_risks_posts',
