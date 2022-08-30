@@ -1344,13 +1344,9 @@
         <div class="body body--notif">
             <h1 class="head-title" id="expoRiskPro">10. EVALUATION DE L'EXPOSITION AUX "FACTEURS DE RISQUES PROFESSIONNELS"</h1>
             <p>
-                Cette annexe du Document Unique consigne réglementairement (Article R.4121-1-1) :
-            </p>
-            <p>
-                1° Les données de l’évaluation de l’exposition aux facteurs de risques professionnels de nature à faciliter la déclaration annuelle des salariés exposés au delà des seuils réglementaires ;
-            </p>
-            <p>
-                2° La proportion de salariés exposés aux facteurs de risques professionnels, au-delà des seuils réglementaires.
+                Cette annexe du Document Unique consigne réglementairement (Article R.4121-1-1) : <br><br>
+                1° Les données de l’évaluation de l’exposition aux facteurs de risques professionnels de nature à faciliter la déclaration annuelle des salariés exposés au delà des seuils réglementaires ; <br> <br>
+                2° La proportion de salariés exposés aux facteurs de risques professionnels, au-delà des seuils réglementaires. <br>
             </p>
             <table class="table table--risk-post">
                 <thead>
@@ -1379,7 +1375,7 @@
                         <td class="{{ $numberEmExpo === 0 ? "green" : "red" }} center">
                             {{ $numberEmExpo }}
                         </td>
-                        <td class="{{ $numberEmExpo/$numberEmUt === 0 ? "green" : "red" }} center">
+                        <td class="{{$numberEmExpo/$numberEmUt === 0 ? "green" : "red" }} center">
                             {{ $numberEmExpo/$numberEmUt."%"}}
                         </td>
                     </tr>
