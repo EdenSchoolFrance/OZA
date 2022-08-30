@@ -257,6 +257,9 @@
                                     <p class="message-error">{{ $message }}</p>
                                 </li>
                             @enderror
+                            <li class="none error-restraint">
+                                <p class="message-error"></p>
+                            </li>
                         </ul>
                     </div>
                 </div>

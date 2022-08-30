@@ -23,16 +23,18 @@ on('.modal--risk .btn-modal-risk-add', 'click', (el, e) => {
     if (el.dataset.id){
         id = el.dataset.id
         el.removeAttribute('data-id');
-        let tech = $('.radio-bar-tech input:checked',document,0).value || 'null'
-        let orga = $('.radio-bar-orga input:checked',document,0).value || 'null'
-        let human = $('.radio-bar-human input:checked',document,0).value || 'null'
+        let d = el.closest(".modal-body")
+        let tech = d.querySelector('.radio-bar-tech input:checked').value || 'null'
+        let orga = d.querySelector('.radio-bar-orga input:checked').value|| 'null'
+        let human = d.querySelector('.radio-bar-human input:checked').value || 'null'
         let title = $('#nameRisk', document, 0).value || "Mesure"
         if (tech === "null" && orga === "null" && human === "null") return errorRestraintCreate();
         editRestraint(tech,orga,human,title,id)
     }else{
-        let tech = $('.radio-bar-tech input:checked',document,0).value || 'null'
-        let orga = $('.radio-bar-orga input:checked',document,0).value || 'null'
-        let human = $('.radio-bar-human input:checked',document,0).value || 'null'
+        let d = el.closest(".modal-body")
+        let tech = d.querySelector('.radio-bar-tech input:checked').value || 'null'
+        let orga = d.querySelector('.radio-bar-orga input:checked').value|| 'null'
+        let human = d.querySelector('.radio-bar-human input:checked').value || 'null'
         let title = $('#nameRisk', document, 0).value || "Mesure"
         if (tech === "null" && orga === "null" && human === "null") return errorRestraintCreate();
         createRestraint(tech,orga,human,title,id)
@@ -359,16 +361,14 @@ function restraintCalcul(x){
     }
 
     if (count === 0) return RB;
-    console.log(pon)
+
 
     let A = totalEnd + 1/10 * count;
     let cal;
     if (A >= 18.6) cal = pon.find( x => x.sum === 18.6)
     else cal = pon.find( x => x.sum === A);
-    console.log(A)
-    console.log(cal)
+
     let end = cal.weighting * RB
-    console.log(end)
     return end.toFixed(1);
 
 }
