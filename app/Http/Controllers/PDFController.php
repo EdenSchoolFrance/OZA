@@ -26,19 +26,6 @@ class PDFController extends Controller
         $item_mat = Item::where('name', 'Matériels')->first();
         $item_veh = Item::where('name', 'Véhicules')->first();
         $item_eng = Item::where('name', 'Engins')->first();
-//        foreach ($single_document->dangers as $danger){
-//            foreach ($single_document->work_unit as $work){
-//                echo $danger->danger->name. " /// ". $work->name . " %%% ";
-//            }
-//
-//        }
-//        echo "<br>";
-//        foreach ($single_document->work_unit->sortBy('name') as $work){
-//            foreach ($single_document->dangers->sortBy('danger.name') as $danger){
-//                echo $danger->danger->name. " /// ". $work->name . " %%% ";
-//            }
-//        }
-//        die();
 
         $sd_risks = SdRisk::whereHas('sd_danger', function ($q) use ($single_document) {
             $q->where('single_document_id', $single_document->id);
