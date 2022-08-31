@@ -157,7 +157,7 @@ class DangerController extends Controller
             $q->where('id', $single_document->id);
         })->first();
 
-        if ($danger->exist === null) return back()->with('status', 'Vous devez renseigné si ce danger concerne quelqu’un au sein de l’entreprise avant de pouvoir valider !')->with('status_type','danger');
+        if ($danger->exist === null) return back()->with('status', 'Vous devez renseigner si ce danger concerne quelqu’un au sein de l’entreprise avant de pouvoir valider !')->with('status_type','danger');
 
         if ($danger->exist === 1){
             $all = 0;

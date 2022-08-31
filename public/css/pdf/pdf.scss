@@ -368,6 +368,11 @@ table {
                 color: $white;
             }
 
+            &.yellow-v {
+                background-color: $warning;
+                color: $black;
+            }
+
             &.pink {
                 background-color: $pink;
                 color: $white;

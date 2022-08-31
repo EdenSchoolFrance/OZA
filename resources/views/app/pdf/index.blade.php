@@ -1211,10 +1211,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($single_document->dangers as $sd_danger)
-                        @foreach($single_document->work_unit as $sd_work_unit)
+                    @foreach($single_document->work_unit->sortBy('name') as $sd_work_unit)
+                        @foreach($single_document->dangers->sortBy('danger.name') as $sd_danger)
                             @if(count($sd_work_unit->sd_danger_risks($sd_danger->id)) > 0)
                                 @foreach($sd_work_unit->sd_danger_risks($sd_danger->id) as $sd_risk)
+
                                     <tr>
                                         <td class="workunit">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "Tous" }}</td>
                                         <td class="danger">{{ $sd_risk->sd_danger->danger->name }}</td>
@@ -1278,7 +1279,7 @@
         </div>
 
         <div class="body body--notif">
-            <h1 class="head-title" id="listPost">6. liste des postes de travail "a risque particulier" (code du travail art. I.4154-2)</h1>
+            <h1 class="head-title" id="listPost">6. LISTE DES POSTES DE TRAVAIL "A RISQUE PARTICULIER" (CODE DU TRAVAIL ART. I.4154-2)</h1>
             <p class="text-color-red info">
                 <span class="bold">Rappel :</span>  Tous les salariés embauchés pour travailler à l’un de ces postes, en contrat de travail précaire (autre que CDI), doivent bénéficier d’une formation renforcée à la sécurité, ainsi que d’un accueil et d’une formation adaptés dans l’entreprise.
                 Obtenir l’avis du médecin du travail, du CSE ou, à défaut, des représentants du personnel, s’il en existe.<br>
@@ -1351,7 +1352,7 @@
             <table class="table table--risk-post">
                 <thead>
                     <tr>
-                        <td class="theader yellow" colspan="3">
+                        <td class="theader yellow-v" colspan="3">
                             Déclaration des expositions de l’année écoulée du 1er janvier au 31 décembre.
                         </td>
                     </tr>
@@ -1385,10 +1386,10 @@
             <table class="table table--risk-post">
                 <thead>
                     <tr>
-                        <td class="theader yellow">
+                        <td class="theader yellow-v">
                             Facteurs de risque professionnels
                         </td>
-                        <td class="theader yellow">
+                        <td class="theader yellow-v">
                             Unité exposée au-delà des seuils
                         </td>
                     </tr>
@@ -1449,7 +1450,7 @@
             <table class="table table--risk-post">
                 <thead>
                     <tr>
-                        <td class="theader yellow" colspan="8">
+                        <td class="theader yellow-v" colspan="8">
                             ANNEXE D’EVALUATION DE L’EXPOSITION AUX FACTEURS DE RISQUES PROFESSIONNELS
                         </td>
                     </tr>
