@@ -1211,7 +1211,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($single_document->work_unit->sortBy('name') as $sd_work_unit)
+                    @foreach($single_document->work_unit->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE) as $sd_work_unit)
                         @foreach($single_document->dangers->sortBy('danger.name') as $sd_danger)
                             @if(count($sd_work_unit->sd_danger_risks($sd_danger->id)) > 0)
                                 @foreach($sd_work_unit->sd_danger_risks($sd_danger->id) as $sd_risk)
