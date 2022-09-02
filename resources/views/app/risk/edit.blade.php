@@ -200,7 +200,7 @@
                     <div class="left">
                     </div>
                     <div class="right">
-                        <span class="bold">Valeur du risque brut évalué :&nbsp;</span> <button type="button" class="btn {{ $risk->color($risk->total()) }} btn-small btn-calcul-risk">{{ $risk->total() }}</button>
+                        <span class="bold">Valeur du risque brut évalué :&nbsp;</span> <button type="button" class="btn {{ $risk->color($risk->total(),true) }} btn-small btn-calcul-risk">{{ $risk->total() }}</button>
                     </div>
                 </div>
             </div>
@@ -242,7 +242,7 @@
                                 <button data-modal=".modal--risk" data-id="" type="button" class="btn btn-yellow btn-text btn-open-risk">+ Ajouter une mesure existante</button>
                             </li>
                             <li>
-                                <span class="bold">Valeur du risque résiduel évalué :&nbsp;</span> <button type="button" class="btn {{ $risk->color(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total()) }} btn-small" data-id="status-number">{{ isset($risk->sd_restraints_exist[0]) ? ($risk->totalRR($risk->sd_restraints_exist) === 0 ? $risk->total() : $risk->totalRR($risk->sd_restraints_exist) ) : $risk->total() }}</button>
+                                <span class="bold">Valeur du risque résiduel évalué :&nbsp;</span> <button type="button" class="btn {{ $risk->color(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total(),false) }} btn-small" data-id="status-number">{{ isset($risk->sd_restraints_exist[0]) ? ($risk->totalRR($risk->sd_restraints_exist) === 0 ? $risk->total() : $risk->totalRR($risk->sd_restraints_exist) ) : $risk->total() }}</button>
                             </li>
                             @error('restraint')
                                 <li>
@@ -290,7 +290,7 @@
                         <span class="bold">Criticité de la situation actuelle</span>
                     </div>
                     <div class="right">
-                        <button type="button" class="btn {{ $risk->color(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total()) }}" data-id="status">{{ $risk->colorTotal(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total()) }}</button>
+                        <button type="button" class="btn {{ $risk->color(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total(),false) }}" data-id="status">{{ $risk->colorTotal(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total(),false) }}</button>
                     </div>
                 </div>
             </div>
@@ -519,14 +519,14 @@
     @if(old('restraint_proposed'))
         @foreach(old('restraint_proposed') as $restraint)
             <script>
-                createRestraintProposed("@stripTags($restraint)")
+                createRestraintProposed(`@stripTags($restraint)`)
             </script>
         @endforeach
     @elseif(isset($risk))
         @foreach($risk->sd_restraints as $restraint)
             @if($restraint->exist === 0)
                 <script>
-                    createRestraintProposed("@stripTags($restraint->name)")
+                    createRestraintProposed(`@stripTags($restraint->name)`)
                 </script>
             @endif
         @endforeach

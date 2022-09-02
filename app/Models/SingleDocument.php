@@ -55,7 +55,7 @@ class SingleDocument extends Model
 
     public function work_unit()
     {
-        return $this->hasMany(SdWorkUnit::class);
+        return $this->hasMany(SdWorkUnit::class)->orderByDesc("name");
     }
 
     public function client()
@@ -84,18 +84,33 @@ class SingleDocument extends Model
         else return round($total / $count, 1);
     }
 
-    public function color($number){
-        if ($number === "-") return "text-color-green";
-        switch (true) {
-            case ($number <= 15) :
-                return 'text-color-green';
-            case ($number < 20) :
-                return 'text-color-orange';
-            case ($number < 30) :
-                return 'text-color-pink';   
-            case ($number >= 30) :
-                return 'text-color-red';
+    public function color($number,$RB){
+        if ($RB === true){
+            if ($number === "-") return "text-color-green";
+            switch (true) {
+                case ($number <= 12.5) :
+                    return 'text-color-green';
+                case ($number < 24) :
+                    return 'text-color-orange';
+                case ($number < 30) :
+                    return 'text-color-pink';
+                case ($number >= 30) :
+                    return 'text-color-red';
+            }
+        }else{
+            if ($number === "-") return "text-color-green";
+            switch (true) {
+                case ($number <= 12.5) :
+                    return 'text-color-green';
+                case ($number < 20) :
+                    return 'text-color-orange';
+                case ($number < 30) :
+                    return 'text-color-pink';
+                case ($number >= 30) :
+                    return 'text-color-red';
+            }
         }
+
     }
 
     public function discountRisk() {
@@ -117,7 +132,7 @@ class SingleDocument extends Model
         foreach ($this->dangers as $sd_danger){
             if($sd_danger->exist === 1){
                 foreach ($sd_danger->sd_risk as $sd_risk){
-                    
+
                     $RR = $sd_risk->totalRR($sd_risk->sd_restraints_exist);
 
                     $total = $total+$RR;
@@ -144,7 +159,7 @@ class SingleDocument extends Model
                     $count++;
                     $sdRiskTotalRR = $sd_risk->totalRR($sd_risk->sd_restraints_exist);
 
-                    if ($sdRiskTotalRR <= 15) {
+                    if ($sdRiskTotalRR <= 12.5) {
                         $tab[0] += 1;
                     } elseif ($sdRiskTotalRR < 20) {
                         $tab[1] += 1;

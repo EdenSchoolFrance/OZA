@@ -20,15 +20,15 @@
                                 <td class="td_work_unit" data-sort="{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "UT Tous" }} {{ $sd_risk->sd_danger->danger->name }}">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "UT Tous" }}</td>
                                 <td class="td_danger">{{ $sd_risk->sd_danger->danger->name }}</td>
                                 <td class="td_risk">{{ $sd_risk->name }}</td>
-                                <td class="td_evaluation" data-sort="{{ $sd_risk->totalRR($sd_risk->sd_restraints) }}">
+                                <td class="td_evaluation" data-sort="{{ $sd_risk->totalRR($sd_risk->sd_restraints_exist) }}">
                                     <div class="list list--text list--space">
                                         <div class="list-row">
                                             <p class="list-point list-point--text">RR</p>
-                                            <button class="btn {{ $sd_risk->color($sd_risk->totalRR($sd_risk->sd_restraints)) }} btn-small">{{ $sd_risk->totalRR($sd_risk->sd_restraints) }}</button>
+                                            <button class="btn {{ $sd_risk->color($sd_risk->totalRR($sd_risk->sd_restraints_exist),false) }} btn-small">{{ $sd_risk->totalRR($sd_risk->sd_restraints) }}</button>
                                         </div>
                                         <div class="list-row">
                                             <p class="list-point list-point--text">C</p>
-                                            <button type="button" class="btn {{ $sd_risk->color(($sd_risk->totalRR($sd_risk->sd_restraints) + $sd_risk->total())) }} btn-small">{{ $sd_risk->colorTotal(($sd_risk->totalRR($sd_risk->sd_restraints)+$sd_risk->total())) }}</button>
+                                            <button type="button" class="btn {{ $sd_risk->color(($sd_risk->totalRR($sd_risk->sd_restraints_exist)),false) }} btn-small">{{ $sd_risk->colorTotal(($sd_risk->totalRR($sd_risk->sd_restraints)),false) }}</button>
                                         </div>
                                     </div>
                                 </td>

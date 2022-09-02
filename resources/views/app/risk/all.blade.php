@@ -29,7 +29,7 @@
                                     <p>@stripTags($sd_risk->name)</p>
                                 </td>
                                 <td class="td_rb" data-sort="{{ floor($sd_risk->total()) }}">
-                                    <button class="btn {{ $sd_risk->color($sd_risk->total()) }} btn-small">{{ $sd_risk->total() }}</button>
+                                    <button class="btn {{ $sd_risk->color($sd_risk->total(),true) }} btn-small">{{ $sd_risk->total() }}</button>
                                     <div class="list list--text">
                                         <div class="list-row">
                                             <p class="list-point list-point--text">F</p>
@@ -59,11 +59,11 @@
                                         @endforeach
                                     </div>
                                 </td>
-                                <td class="td_rr" data-sort="{{ $sd_risk->totalRR($sd_risk->sd_restraints) }}">
-                                    <button class="btn {{ $sd_risk->color($sd_risk->totalRR($sd_risk->sd_restraints)) }} btn-small">{{ $sd_risk->totalRR($sd_risk->sd_restraints) }}</button>
+                                <td class="td_rr" data-sort="{{ $sd_risk->totalRR($sd_risk->sd_restraints_exist) }}">
+                                    <button class="btn {{ $sd_risk->color($sd_risk->totalRR($sd_risk->sd_restraints_exist),false) }} btn-small">{{ $sd_risk->totalRR($sd_risk->sd_restraints_exist) }}</button>
                                 </td>
-                                <td class="td_criticality" data-sort="{{ $sd_risk->totalRR($sd_risk->sd_restraints) }}">
-                                    <button type="button" class="btn {{ $sd_risk->color(($sd_risk->totalRR($sd_risk->sd_restraints))) }} btn-small">{{ $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints)) }}</button>
+                                <td class="td_criticality" data-sort="{{ $sd_risk->totalRR($sd_risk->sd_restraints_exist) }}">
+                                    <button type="button" class="btn {{ $sd_risk->color(($sd_risk->totalRR($sd_risk->sd_restraints_exist)),false) }} btn-small">{{ $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints_exist),false) }}</button>
                                 </td>
                                 <td class="td_proposed_measure">
                                     <div class="list">
@@ -87,7 +87,7 @@
 
                         @if (count($sd_risks) == 0)
                             <tr class="no-data no-data--centered">
-                                <td colspan="{{ !Auth::user()->hasPermission('READER') ? 9 : 8 }}">Aucun mesure</td>
+                                <td colspan="{{ !Auth::user()->hasPermission('READER') ? 9 : 8 }}">Aucune mesure</td>
                             </tr>
                         @endif
                     </tbody>

@@ -386,6 +386,52 @@ table.table {
                         margin-left: 5px;
                     }
 
+                    .list-container {
+                        max-height: 200px;
+                        overflow-x: auto;
+
+                        &>div {
+                            display: flex;
+                            padding-bottom: 10px;
+
+                            input[type="radio"] {
+                                visibility: hidden;
+                            }
+    
+                            label {
+                                flex: 1;
+                                position: relative;
+
+                                hr {
+                                    width: 30%;
+                                    margin-left: 0;
+                                    margin-right: 0;
+                                }
+
+                                &::before {
+                                    content: "";
+                                    position: absolute;
+                                    margin-right: 10px;
+                                    left: -20px;
+                                    top: 3px;
+                                    width: 12px;
+                                    height: 12px;
+                                    border: 1px solid #ddd;
+                                    border-radius: 100%;
+                                }
+                            }
+    
+                            input[type="radio"]:checked + label::before {
+                                background-color: $yellow;
+                                border-color: $yellow;
+                            }
+
+                            &:last-of-type {
+                                padding-bottom: 0;
+                            }
+                        }
+                    }
+
                     &:nth-child(1) {
                         vertical-align: middle;
 

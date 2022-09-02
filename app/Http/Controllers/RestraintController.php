@@ -25,7 +25,7 @@ class RestraintController extends Controller
         })->whereHas('sd_restraints', function ($q) {
             $q->where('exist', 0);
         })->get()->sortByDesc(function ($sd_risk, $key) {
-            return $sd_risk->totalRR($sd_risk->sd_restraints);
+            return $sd_risk->totalRR($sd_risk->sd_restraints_exist);
         });
 
         return view('app.restraint.index', compact('page', 'single_document', 'sd_risks'));

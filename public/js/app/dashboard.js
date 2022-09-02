@@ -4,7 +4,7 @@ new Chart(document.getElementById("myChart"), {
         labels: ["Acceptable", "A améliorer", "Agir vite", "STOP"],
         datasets: [{
             label: "test",
-            backgroundColor: ["#43A389", "#F9CA62","#F8912A","#B32A3C"],
+            backgroundColor: ["#43A389", "#F8912A","#FF7D8E","#B32A3C"],
             data: tabData,
         }]
     },

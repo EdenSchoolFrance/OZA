@@ -38,7 +38,7 @@
 
     <section class="page page--second">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
 
         <div class="body">
@@ -82,7 +82,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
 
         <div class="body">
@@ -163,17 +163,6 @@
                 <li class="no-border">
                     <p><span class="line">Fiche pratique « Prévention COVID-19 »</span></p>
                 </li>
-                <li class="no-border">
-                    <p class="text-color-red">
-                        Ce Document Unique a été élaboré sur la base du « Pack Conformité » du DOCUMENT UNIQUE OZA.<br>
-                        L’employeur est conscient qu’il s’agit d’une version allégée du Document Unique de OZA France dans lequel l’évaluation des risque est réalisée sur la base de 18 Dangers, dans lequel n’apparaissent pas pes parties ci-dessous et dans lequel l’évaluation de l’exposition aux Facteurs de Risques Professionnels est un simple diagnostic.<br>
-                        - La liste des postes de travail à risque particulier, <br>
-                        - L’évaluation détaillée du risque psychosocial, <br>
-                        - L’évaluation détaillée du risque chimique, <br>
-                        - L’évaluation détaillée de l’exposition aux Champs électromagnétiques, <br>
-                        - Le Document Relatif à la Protection Contre les Explosions.
-                    </p>
-                </li>
             </ul>
         </div>
 
@@ -185,7 +174,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
 
         <div class="body">
@@ -228,7 +217,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
 
         <div class="body">
@@ -284,7 +273,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
 
         <div class="body">
@@ -320,7 +309,7 @@
     @foreach($single_document->work_unit as $key => $sd_work_unit)
         <section class="page">
             <div class="header">
-                <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+                <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
             </div>
 
             <div class="body">
@@ -352,8 +341,11 @@
                                     <span class="bold">Machine(s) : </span><br>
                                     @foreach($item_mat->sub_items as $sub_item)
                                         @if(count($sd_work_unit->items->where('sub_item_id', $sub_item->id)) !== 0)
-                                            {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }},
+                                            {{ $sub_item->name }} : {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }},
+                                        @else
+                                            {{ $sub_item->name }} : Néant
                                         @endif
+                                        <br>
                                     @endforeach
                                 </p>
                             </td>
@@ -362,16 +354,22 @@
                                     <span class="bold">Véhicule(s) : </span><br>
                                     @foreach($item_veh->sub_items as $sub_item)
                                         @if(count($sd_work_unit->items->where('sub_item_id', $sub_item->id)) !== 0)
-                                            {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }},
+                                            {{ $sub_item->name }} : {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }},
+                                        @else
+                                            {{ $sub_item->name }} : Néant
                                         @endif
+                                        <br>
                                     @endforeach
                                 </p>
                                 <p>
                                     <span class="bold">Engin(s) et appareil(s) de manutention mécanique : </span><br>
                                     @foreach($item_eng->sub_items as $sub_item)
                                         @if(count($sd_work_unit->items->where('sub_item_id', $sub_item->id)) !== 0)
-                                            {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }},
+                                            {{ $sub_item->name }} : {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }},
+                                        @else
+                                            {{ $sub_item->name }} : Néant
                                         @endif
+                                        <br>
                                     @endforeach
                                 </p>
                             </td>
@@ -389,7 +387,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
 
         <div class="body">
@@ -402,28 +400,26 @@
                             <p>
                                 Permet de situer le niveau de risque total de la structure, évalué sans prendre en compte les mesures de prévention ; sur une échelle de zéro (risque nul) à 50 (risque maximal).
                             </p>
-                            <p class="{{ $single_document->color($single_document->moyenneRB()) }} number">{{ $single_document->moyenneRB() }}</p>
-                            <p>Maxi = 50</p>
+                            <p class="{{ $single_document->color($single_document->moyenneRB(),true) }} number">{{ $single_document->moyenneRB() }}</p>
                         </div>
                     </td>
                     <td>
                         <div>
                             <p class="bold">Réduction du risque</p>
                             <p>
-                                Met en évidence les efforts de prévention de la structure
+                                Réduction du risque BRUT grâce aux mesures de prévention existantes : met en évidence les efforts de prévention de la structure.
                             </p>
                             <p class="text-color-green number">{{ $single_document->discountRisk() }} %</p>
                         </div>
                     </td>
                     <td>
                         <div>
-                            <p class="bold">Risque résiduel  moyen</p>
+                            <p class="bold">Risque résiduel moyen</p>
                             <p>
                                 Permet de situer le niveau de risque actuel de la structure, en prenant en compte les mesures de prévention existantes ;
                                 sur une échelle de zéro (risque nul) à 50 (risque maximal).
                             </p>
-                            <p class="{{ $single_document->color($single_document->moyenneRR()) }} number">{{ $single_document->moyenneRR() }}</p>
-                            <p>Maxi = 50</p>
+                            <p class="{{ $single_document->color($single_document->moyenneRR(),false) }} number">{{ $single_document->moyenneRR() }}</p>
                         </div>
                     </td>
                 </tr>
@@ -440,29 +436,32 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
 
         <div class="body body--notif">
             <h1 class="head-title" id="proAnnuel">2. PROGRAMME ANNUEL DE PREVENTION ET D'AMELIORATION DES CONDITIONS DE TRAVAIL</h1>
-            <p class="bold">Le Plan d’action reprend et présente tous les risques identifiés et évalués dans le chapitre 4 « Evaluation des risques » classés ici selon leur criticité (priorité) dans la colonne « Criticité ».</p>
-            <p class="bold">Le Plan d’action reprend et présente également toutes les situations de « non-conformité réglementaire » dans la colonne « Mesures de prévention et de protection proposées », sous le libellé « Obligation réglementaire ».</p>
+            <p class="bold">Le PROGRAMME ANNUEL DE PREVENTION ET D'AMELIORATION DES CONDITIONS DE TRAVAIL reprend et présente tous les risques identifiés et évalués dans le chapitre 5 "Evaluation des risques" classés ici selon leur criticité (priorité) dans la colonne "Criticité".</p>
+            <p class="bold">Le PROGRAMME ANNUEL DE PREVENTION ET D'AMELIORATION DES CONDITIONS DE TRAVAIL reprend et présente également toutes les situations de "non-conformité réglementaire" dans la colonne "Mesures de prévention et de protection à mettre en place", sous le libellé "Obligation réglementaire".</p>
             <p>
-                <span class="bold">Colonne « Mesures de prévention et de protection proposées » :</span><br>
-                Les mesures de prévention et de protection proposées se déclinent en 3 catégories énoncées dans les 9 principes de prévention de l’article L.4121-2 du Code du Travail (Loi n° 91-1414 du 31 décembre 1991 art. 1 Journal Officiel du 7 janvier 1992 en vigueur le 31 décembre 1992) :<br>
+                <span class="bold">Colonne "Mesures de prévention et de protection à mettre en place" :</span><br>
+                Les mesures de prévention et de protection proposées se déclinent en 3 catégories énoncées dans les 9 principes de prévention de l'article L.4121-2 du Code du Travail (Loi n° 91-1414 du 31 décembre 1991 art. 1 Journal Officiel du 7 janvier 1992 en vigueur le 31 décembre 1992) :<br>
                 - Mesure Technique, <br>
                 - Mesure Organisationnelle, <br>
                 - Mesure Humaine (Information et formation, protection collective et individuelle).
             </p>
             <p>
-                <span class="bold">L’employeur décidera quelle(s) mesure(s) proposée(s) il réalisera.</span><br>
-                <span class="bold">Colonne « Décision sur les actions proposées »</span><br>
-                - Sera réalisé le (date) : Inscrire ici la date planifiée par l’employeur pour la réalisation des actions de prévention ou de protection qu’il a validé.<br>
-                - Ne sera pas réalisé » : Préciser les actions que l’employeur ne valide pas et qui ne seront pas mises en place.<br>
-                <span class="bold">Colonne « Date de réalisation » :</span><br>
-                Inscrire la date à laquelle l’action de prévention ou de protection a réellement été mise en place et a été opérationnelle.<br>
-                <span class="bold">Colonne « Commentaire, complément, autres actions » :</span><br>
-                L’employeur inscrira éventuellement ici des commentaires sur les décisions prises, des compléments d’explications, et, ou des actions complémentaires.
+                <span class="">L'employeur décidera quelle(s) mesure(s) proposée(s) il mettra en place.</span><br>
+            </p>
+            <p>
+                <span class="bold">Colonne "Date de réalisation prévue, Conditions d’exécution, Estimation du coût, Ressources nécessaires" :</span><br>
+                Inscrire ici la date planifiée par l'employeur pour la réalisation des actions de prévention ou de protection qu'il a validé,<br>
+                Inscrire ici la date de réalisation prévue, les conditions d’exécution, l'estimation du coût, et les ressources nécessaires pour la mise en œuvre des actions validées qui seront mises en place.<br>
+                Préciser également les actions que l'employeur ne valide pas et qui ne seront pas mises en place. <br>
+            </p>
+            <p>
+                <span class="bold">Colonne « Date de réalisation » :</span>
+                Inscrire la date à laquelle l'action de prévention ou de protection a réellement été mise en place et a été opérationnelle.<br>
             </p>
         </div>
 
@@ -474,11 +473,10 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
 
         <div class="body">
-            <p class="info">Ce Document Unique, y compris ses annexes, est protégé par les droits d'auteur. Il a été réalisé avec l'assistance d'un IPRP de la société OZA, sous l'entière responsabilité et selon les indications fournies par : <span class="bold">Mr {{ $single_document->firstname }} {{ $single_document->lastname }}, {{ $single_document->function }}</span> </p>
             <table class="table table--action-plan">
                 <thead>
                     <tr>
@@ -518,8 +516,8 @@
                                 <td class="workunit">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "Tous" }}</td>
                                 <td class="danger">{{ $sd_risk->sd_danger->danger->name }}</td>
                                 <td class="risk">@stripTags($sd_risk->name)</td>
-                                <td class="risk_residuel center">{{ $sd_risk->totalRR($sd_risk->sd_restraints) }}</td>
-                                <td class="criticity center {{ $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints)) }}">{{ $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints)) }}</td>
+                                <td class="risk_residuel center">{{ $sd_risk->totalRR($sd_risk->sd_restraints_exist) }}</td>
+                                <td class="criticity center {{ $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints_exist),false) }}">{{ $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints),false) }}</td>
                                 <td class="restraint">
                                     @foreach($sd_risk->sd_restraints_porposed as $sd_restraint)
                                         @stripTags($sd_restraint->name)<br>
@@ -542,13 +540,12 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
 
         <div class="body body--notif">
             <h1 class="head-title" id="rules">3. RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</h1>
             <p class="bold">L’EVALUATION DES RISQUES, LE DOCUMENT UNIQUE ET SON ANNEXE « FACTEURS DE RISQUES PROFESSIONNELS »</p>
-            <p class="bold">Le Plan d’action reprend et présente également toutes les situations de « non-conformité réglementaire » dans la colonne « Mesures de prévention et de protection proposées », sous le libellé « Obligation réglementaire ».</p>
             <p>
                 <span class="bold">1. Pourquoi évaluer les risques professionnels ?</span><br>
                 L’évaluation des risques professionnels est imposée par le Code du Travail à tout employeur, dès lors qu’il emploie au moins un salarié. Code du travail, article R4121-1 :<br>
@@ -569,7 +566,7 @@
                 <span class="bold">- Sans risque pas d’accident.</span>
             </p>
             <p>
-                <span class="bold">EXAMPLE</span><br>
+                <span class="bold">EXEMPLE</span><br>
                 <span class="bold">L’accident : </span>Un salarié se coupe à l’index avec une tronçonneuse électroportative en tronçonnant un fer à béton.<br>
                 Dans cet exemple, <br>
                 <span class="bold">- Le danger</span> est constitué par la rotation du disque de la tronçonneuse. <br>
@@ -585,7 +582,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
 
         <div class="body body--notif">
@@ -636,7 +633,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
         <div class="body body--notif">
             <p>
@@ -690,7 +687,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
         <div class="body body--notif">
             <p>
@@ -745,7 +742,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
         <div class="body body--notif">
             <p>
@@ -801,7 +798,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
         <div class="body body--notif">
             <h1 class="head-title" id="evalRisk">4. NOTICE EXPLICATIVE DE L'EVALUATION DES RISQUES</h1>
@@ -850,7 +847,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
         <div class="body body--notif">
             <p>
@@ -904,7 +901,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
         <div class="body body--notif">
             <p>
@@ -927,9 +924,9 @@
                 La « criticité » traduit donc les risques résiduels en « état de la situation actuelle » de la façon suivante :<br>
                 <span class="text-color-green">« Acceptable »</span> associé à la couleur verte, elle correspond à une criticité &lt; 12,5.<br>
                 La diminution de ce risque n’est pas une priorité. <br>
-                <span class="text-color-yellow">« A améliorer »</span> associé à la couleur jaune, elle correspond à une criticité >= 12,5.<br>
+                <span class="text-color-orange">« A améliorer »</span> associé à la couleur jaune, elle correspond à une criticité >= 12,5.<br>
                 La diminution de ces risque peut être planifiée à moyen / long terme. <br>
-                <span class="text-color-orange">« Agir vite »</span> est associé à la couleur orange, elle correspond à une criticité >= 20.<br>
+                <span class="text-color-pink">« Agir vite »</span> est associé à la couleur rose, elle correspond à une criticité >= 20.<br>
                 La diminution de ces risques est à planifier en priorité. <br>
                 <span class="text-color-red">« STOP »</span> est associé à la couleur rouge, elle correspond à une criticité >=30 <= 50.<br>
                 Ces activités doivent être stoppées immédiatement afin d’identifier et de mettre en place une activité plus sûre.
@@ -943,7 +940,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
         <div class="body body--rules">
             <h1 class="head-title" id="evalRiskPro">5. EVALUATION DES RISQUES PROFESSIONNELS PAR UNITÉ DE TRAVAIL</h1>
@@ -996,7 +993,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
         <div class="body body--rules">
             <p class="bold">
@@ -1059,7 +1056,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
         <div class="body body--rules">
             <p class="bold">
@@ -1122,7 +1119,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
         <div class="body body--rules">
             <p class="bold">
@@ -1155,7 +1152,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
 
         <div class="body">
@@ -1214,10 +1211,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($single_document->dangers as $sd_danger)
-                        @foreach($single_document->work_unit as $sd_work_unit)
+                    @foreach($single_document->work_unit->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE) as $sd_work_unit)
+                        @foreach($single_document->dangers->sortBy('danger.name') as $sd_danger)
                             @if(count($sd_work_unit->sd_danger_risks($sd_danger->id)) > 0)
                                 @foreach($sd_work_unit->sd_danger_risks($sd_danger->id) as $sd_risk)
+
                                     <tr>
                                         <td class="workunit">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "Tous" }}</td>
                                         <td class="danger">{{ $sd_risk->sd_danger->danger->name }}</td>
@@ -1226,17 +1224,17 @@
                                         <td class="center min-width min-width-left">{{ $sd_risk->translate($sd_risk->probability,'probability') }}</td>
                                         <td class="center min-width min-width-left">{{ $sd_risk->translate($sd_risk->gravity,'gravity') }}</td>
                                         <td class="center min-width min-width-left">{{ $sd_risk->translate($sd_risk->impact,'impact') }}</td>
-                                        <td class="center min-width min-width-left {{ $sd_risk->colorPDF($sd_risk->total()) }}">{{ $sd_risk->colorTotal($sd_risk->total()) }}</td>
+                                        <td class="center min-width min-width-left {{ $sd_risk->total() >= 24 ? "pink" : "" }}">{{ $sd_risk->total() }}</td>
                                         <td class="restraint">
                                             @foreach($sd_risk->sd_restraints_exist as $sd_restraint)
                                                 * @stripTags($sd_restraint->name) <br>
                                             @endforeach
                                         </td>
-                                        <td class="center min-width min-width-right">{{ round($sd_risk->moyenneTech(), 1) }}</td>
-                                        <td class="center min-width min-width-right">{{ round($sd_risk->moyenneOrga(), 1) }}</td>
-                                        <td class="center min-width min-width-right">{{ round($sd_risk->moyenneHum(), 1) }}</td>
-                                        <td class="center min-width min-width-right"> {{ $sd_risk->totalRR($sd_risk->sd_restraints) }}</td>
-                                        <td class="center criticity {{ $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints)) }}">{{ $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints)) }}</td>
+                                        <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneTech(), 1), "tech") }}</td>
+                                        <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneOrga(), 1), "orga") }}</td>
+                                        <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneHum(), 1), "hum") }}</td>
+                                        <td class="center min-width min-width-right"> {{ $sd_risk->totalRR($sd_risk->sd_restraints_exist) }}</td>
+                                        <td class="center criticity {{ $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints_exist),false) }}">{{ $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints),false) }}</td>
                                         <td class="restraint_proposed">
                                             @foreach($sd_risk->sd_restraints_porposed as $sd_restraint)
                                                 * @stripTags($sd_restraint->name) <br>
@@ -1253,7 +1251,7 @@
                                     <td class="center min-width min-width-left">NC</td>
                                     <td class="center min-width min-width-left">NC</td>
                                     <td class="center min-width min-width-left">NON</td>
-                                    <td class="center green min-width min-width-left">0</td>
+                                    <td class="center min-width min-width-left">0</td>
                                     <td class="restraint"></td>
                                     <td class="center min-width min-width-right">0</td>
                                     <td class="center min-width min-width-right">0</td>
@@ -1277,14 +1275,11 @@
 
      <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
 
         <div class="body body--notif">
-            <h1 class="head-title" id="listPost">6. liste des postes de travail "a risque particulier" (code du travail art. I.4154-2)</h1>
-            <p>
-                Ce Document Unique, y compris ses annexes, est protégé par les droits d'auteur. Il a été réalisé avec l'assistance d'un IPRP de la société OZA, sous l'entière responsabilité et selon les indications fournies par : Mr {{ $single_document->firstname }} {{ $single_document->lastname }}, {{ $single_document->function }}
-            </p>
+            <h1 class="head-title" id="listPost">6. LISTE DES POSTES DE TRAVAIL "A RISQUE PARTICULIER" (CODE DU TRAVAIL ART. I.4154-2)</h1>
             <p class="text-color-red info">
                 <span class="bold">Rappel :</span>  Tous les salariés embauchés pour travailler à l’un de ces postes, en contrat de travail précaire (autre que CDI), doivent bénéficier d’une formation renforcée à la sécurité, ainsi que d’un accueil et d’une formation adaptés dans l’entreprise.
                 Obtenir l’avis du médecin du travail, du CSE ou, à défaut, des représentants du personnel, s’il en existe.<br>
@@ -1344,24 +1339,20 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
 
         <div class="body body--notif">
             <h1 class="head-title" id="expoRiskPro">10. EVALUATION DE L'EXPOSITION AUX "FACTEURS DE RISQUES PROFESSIONNELS"</h1>
             <p>
-                Cette annexe du Document Unique consigne réglementairement (Article R.4121-1-1) :
-            </p>
-            <p>
-                1° Les données de l’évaluation de l’exposition aux facteurs de risques professionnels de nature à faciliter la déclaration annuelle des salariés exposés au delà des seuils réglementaires ;
-            </p>
-            <p>
-                2° La proportion de salariés exposés aux facteurs de risques professionnels, au-delà des seuils réglementaires.
+                Cette annexe du Document Unique consigne réglementairement (Article R.4121-1-1) : <br><br>
+                1° Les données de l’évaluation de l’exposition aux facteurs de risques professionnels de nature à faciliter la déclaration annuelle des salariés exposés au delà des seuils réglementaires ; <br> <br>
+                2° La proportion de salariés exposés aux facteurs de risques professionnels, au-delà des seuils réglementaires. <br>
             </p>
             <table class="table table--risk-post">
                 <thead>
                     <tr>
-                        <td class="theader yellow" colspan="3">
+                        <td class="theader yellow-v" colspan="3">
                             Déclaration des expositions de l’année écoulée du 1er janvier au 31 décembre.
                         </td>
                     </tr>
@@ -1385,7 +1376,7 @@
                         <td class="{{ $numberEmExpo === 0 ? "green" : "red" }} center">
                             {{ $numberEmExpo }}
                         </td>
-                        <td class="{{ $numberEmExpo/$numberEmUt === 0 ? "green" : "red" }} center">
+                        <td class="{{$numberEmExpo/$numberEmUt === 0 ? "green" : "red" }} center">
                             {{ $numberEmExpo/$numberEmUt."%"}}
                         </td>
                     </tr>
@@ -1395,24 +1386,44 @@
             <table class="table table--risk-post">
                 <thead>
                     <tr>
-                        <td class="theader yellow">
+                        <td class="theader yellow-v">
                             Facteurs de risque professionnels
                         </td>
-                        <td class="theader yellow">
+                        <td class="theader yellow-v">
                             Unité exposée au-delà des seuils
                         </td>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($expos as $expo)
-                        <tr>
-                            <td>
-                                {{ $expo->danger->name }}
-                            </td>
-                            <td class="center">
-                                {{ count($expo->pivot($single_document->id)) === 0 ? "Non" : "Oui"  }}
-                            </td>
-                        </tr>
+                        @if ($expo->danger->name === "Travail de nuit")
+                            <tr>
+                                <td>
+                                    Travail de nuit dans les conditions fixées aux articles L. 3122-2 à L. 3122-5
+                                </td>
+                                <td class="center">
+                                    {{ count($expo->pivot($single_document->id)) === 0 ? "Non" : "Oui"  }}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Travail en équipes successives alternantes
+                                </td>
+                                <td class="center">
+                                    {{ count($expo->pivot($single_document->id)) === 0 ? "Non" : "Oui"  }}
+                                </td>
+                            </tr>
+                        @else
+                            <tr>
+                                <td>
+                                    {{ $expo->danger->name }}
+                                </td>
+                                <td class="center">
+                                    {{ count($expo->pivot($single_document->id)) === 0 ? "Non" : "Oui"  }}
+                                </td>
+                            </tr>
+                        @endif
                     @endforeach
                 </tbody>
             </table>
@@ -1427,19 +1438,19 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
 
         <div class="body body--notif">
             <h1 class="head-title" id="expoRiskPro">10. EVALUATION DE L'EXPOSITION AUX "FACTEURS DE RISQUES PROFESSIONNELS"</h1>
             <p class="text-color-red">
                 A noter : La durée annuelle d’exposition considérée est de 220 jours.
-                Seules les unités de travail concernées par une exposition sont présentées. Ce qui implique que les unités non présentes dans le tableau ne sont pas concernées. 
+                Seules les unités de travail concernées par une exposition sont présentées. Ce qui implique que les unités non présentes dans le tableau ne sont pas concernées.
             </p>
             <table class="table table--risk-post">
                 <thead>
                     <tr>
-                        <td class="theader yellow" colspan="8">
+                        <td class="theader yellow-v" colspan="8">
                             ANNEXE D’EVALUATION DE L’EXPOSITION AUX FACTEURS DE RISQUES PROFESSIONNELS
                         </td>
                     </tr>
@@ -1460,7 +1471,7 @@
                             Nombre de personnes concernées
                         </td>
                         <td class="theader">
-                            Détail de l’exposiatin 
+                            Détail de l’exposiatin
                         </td>
                         <td class="theader">
                             Total
@@ -1476,7 +1487,7 @@
 
                     @foreach ($single_document->dangers()->whereHas('danger.exposition')->get() as $danger)
                         @php
-                            $pivot = $danger->danger->exposition->pivot($single_document->id);    
+                            $pivot = $danger->danger->exposition->pivot($single_document->id);
                         @endphp
                         @if (count($pivot) === 0)
                             <tr>
@@ -1489,7 +1500,7 @@
                                 <td></td>
                                 <td class="center">Non concernée</td>
                             </tr>
-                        @else  
+                        @else
                             @foreach ($single_document->work_unit as $sd_work_unit)
                                 @if ($sd_work_unit->sd_danger($danger->id) && $sd_work_unit->sd_danger($danger->id)->pivot->exist)
                                     @if ($sd_work_unit->sd_danger($danger->id)->pivot->exposition)
@@ -1499,59 +1510,59 @@
                                         @foreach ($danger->danger->exposition->exposition_groups as $key => $exposition_group)
                                             @foreach ($exposition_group->exposition_questions as  $exposition_question)
                                                 @php
-                                                    $sd_exposition_question = $exposition_question->sd_work_unit_exposition_question($sd_work_unit->id);    
+                                                    $sd_exposition_question = $exposition_question->sd_work_unit_exposition_question($sd_work_unit->id);
                                                 @endphp
-                                                
-                                                <tr>
-                                                    @if ($key === 0)
-                                                        <td class="center" rowspan="{{count($count) > 0 ? count($count) : 1 }}">
-                                                            {{ $danger->danger->name }}
-                                                        </td>
-                                                        <td class="center" rowspan="{{count($count) > 0 ? count($count) : 1 }}">
-                                                            {{ $sd_work_unit->name }}
-                                                        </td>
-                                                        <td rowspan="{{count($count) > 0 ? count($count) : 1 }}">
-                                                            {{ $exposition_group->intervention_type_label }}
-                                                        </td>
-                                                    @endif
-                                                    @if (isset($sd_exposition_question))
-                                                        <td>{{ $sd_exposition_question->intervention_type }}</td>
-                                                        <td class="center">{{ $sd_exposition_question->number_employee }}</td>
-                                                        <td>
-                                                            @if ($exposition_group->type === "default")
-                                                                {{ $exposition_group->value_label." : "}} <span class="text-color-{{$exposition_group->calculation($sd_exposition_question->value)}}">{{ $sd_exposition_question->value }}</span>
-                                                            @else
-                                                                Durée en mm / j <span class="text-color-{{$exposition_group->calculation($sd_exposition_question->minutes)}}">{{$sd_exposition_question->minutes}} </span>
-                                                                Durée en h / an <span class="text-color-{{$exposition_group->calculation($sd_exposition_question->value)}}">{{$sd_exposition_question->value}}</span>
-                                                            @endif
-                                                        </td>
-                                                        @if ($exposition_group->name === "exposition_group_team_work" && $exposition_group->name === "exposition_group_night_work")
-                                                            @php
-                                                                $result = 0;
-                                                                
-                                                            @endphp
-                                                            <td class="center" rowspan="{{ count($count) }}">Total h / an : <span class="text-color-{{$exposition_group->calculation($result)}}">{{ $result }}</span></td>
-                                                        @else
-                                                            @if ($sd_exposition_question->exposition_question->exposition_group->type === "default")
-                                                                <td class="center"></td>
-                                                            @else
-                                                                <td class="center">Total h / an : <span class="text-color-{{$exposition_group->calculation($sd_exposition_question->value)}}">{{$sd_exposition_question->value}}</span></td>
-                                                            @endif
-                                                        @endif
-                                                        
-                                                    
+
+                                                @if (isset($sd_exposition_question))
+                                                    <tr>
+
                                                         @if ($key === 0)
-                                                            <td rowspan="{{count($count) > 0 ? count($count) : 1 }}" class="center {{$exposition_group->calculation($sd_exposition_question->value)}}"> {{$exposition_group->translate($sd_exposition_question->value)}} </td>
+                                                            <td class="center" rowspan="{{count($count) > 0 ? count($count) : 1 }}">
+                                                                {{ $danger->danger->name }}
+                                                            </td>
+                                                            <td class="center" rowspan="{{count($count) > 0 ? count($count) : 1 }}">
+                                                                {{ $sd_work_unit->name }}
+                                                            </td>
+                                                            <td rowspan="{{count($count) > 0 ? count($count) : 1 }}">
+                                                                {{ $exposition_group->intervention_type_label }}
+                                                            </td>
                                                         @endif
-                                                    @else
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td class="center">Non concernée</td>
-                                                    @endif
-                                                </tr>
-                                                
+                                                        @if (isset($sd_exposition_question))
+                                                            <td>{{ $sd_exposition_question->intervention_type }}</td>
+                                                            <td class="center">{{ $sd_exposition_question->number_employee }}</td>
+                                                            <td>
+                                                                @if ($exposition_group->type === "default")
+                                                                    {{ $exposition_group->value_label." : "}} <span class="text-color-{{$exposition_group->calculation($sd_exposition_question->value)}}">{{ $sd_exposition_question->value }}</span>
+                                                                @else
+                                                                    Durée en mm / j <span class="text-color-{{$exposition_group->calculation($sd_exposition_question->minutes)}}">{{$sd_exposition_question->minutes}} </span>
+                                                                    Durée en h / an <span class="text-color-{{$exposition_group->calculation($sd_exposition_question->value)}}">{{$sd_exposition_question->value}}</span>
+                                                                @endif
+                                                            </td>
+                                                            @if ($exposition_group->name === "exposition_group_team_work" && $exposition_group->name === "exposition_group_night_work")
+                                                                @php
+                                                                    $result = 0;
+                                                                @endphp
+                                                                <td class="center" rowspan="{{ count($count) }}">Total h / an : <span class="text-color-{{$exposition_group->calculation($result)}}">{{ $result }}</span></td>
+                                                            @else
+                                                                @if ($sd_exposition_question->exposition_question->exposition_group->type === "default")
+                                                                    <td class="center"></td>
+                                                                @else
+                                                                    <td class="center">Total h / an : <span class="text-color-{{$exposition_group->calculation($sd_exposition_question->value)}}">{{$sd_exposition_question->value}}</span></td>
+                                                                @endif
+                                                            @endif
+                                                            @if ($key === 0)
+                                                                <td rowspan="{{count($count) > 0 ? count($count) : 1 }}" class="center {{$exposition_group->calculation($sd_exposition_question->value)}}"> {{$exposition_group->translate($sd_exposition_question->value)}} </td>
+                                                            @endif
+                                                        @else
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td class="center">Non concernée</td>
+                                                        @endif
+                                                    </tr>
+                                                @endif
+
                                             @endforeach
                                         @endforeach
                                     @endif
@@ -1574,7 +1585,7 @@
 
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
 
         <div class="body body--notif">

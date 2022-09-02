@@ -37,7 +37,7 @@
                                     </div>
                                 </td>
                                 <td class="td_restraint">
-                                    <button class="btn {{ $sd_risk->color($sd_risk->total()) }} btn-small">{{ $sd_risk->total() }}</button>
+                                    <button class="btn {{ $sd_risk->color($sd_risk->total(),true) }} btn-small">{{ $sd_risk->total() }}</button>
                                 </td>
                             </tr>
                         @endforeach

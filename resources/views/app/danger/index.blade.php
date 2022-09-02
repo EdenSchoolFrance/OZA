@@ -73,8 +73,8 @@
                                         <th class="th_rb">RB</th>
                                         <th class="th_existing_measure">Mesure existante</th>
                                         <th class="th_rr">RR</th>
-                                        <th class="th_proposed_measure">Mesure proposée</th>
                                         <th class="th_criticality">Criticité</th>
+                                        <th class="th_proposed_measure">Mesure proposée</th>
                                         <th class="th_actions"></th>
                                     </tr>
                                 </thead>
@@ -85,7 +85,7 @@
                                                 <p>@stripTags($risk->name)</p>
                                             </td>
                                             <td class="td_rb">
-                                                <button class="btn {{ $risk->color($risk->total()) }} btn-small">{{ $risk->total() }}</button>
+                                                <button class="btn {{ $risk->color($risk->total(),true) }} btn-small">{{ $risk->total() }}</button>
                                                 <div class="list list--text">
                                                     <div class="list-row">
                                                         <p class="list-point list-point--text">F</p>
@@ -118,7 +118,10 @@
                                                 </div>
                                             </td>
                                             <td class="td_rr">
-                                                <button class="btn {{ $risk->color( isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total()) }} btn-small">{{ isset($risk->sd_restraints_exist[0]) ? ($risk->totalRR($risk->sd_restraints) === 0 ? $risk->total() : $risk->totalRR($risk->sd_restraints)) : $risk->total() }}</button>
+                                                <button class="btn {{ $risk->color( isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total(),false) }} btn-small">{{ isset($risk->sd_restraints_exist[0]) ? ($risk->totalRR($risk->sd_restraints_exist) === 0 ? $risk->total() : $risk->totalRR($risk->sd_restraints_exist)) : $risk->total() }}</button>
+                                            </td>
+                                            <td class="td_criticality">
+                                                <button type="button" class="btn {{ $risk->color(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total(),false) }} btn-small">{{ $risk->colorTotal(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total(),false) }}</button>
                                             </td>
                                             <td class="td_proposed_measure">
                                                 <div class="list">
@@ -131,9 +134,6 @@
                                                         @endif
                                                     @endforeach
                                                 </div>
-                                            </td>
-                                            <td class="td_criticality">
-                                                <button type="button" class="btn {{ $risk->color(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total()) }} btn-small">{{ $risk->colorTotal(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints) : $risk->total()) }}</button>
                                             </td>
                                             <td class="td_actions">
                                                 <div>
@@ -194,8 +194,8 @@
                                                 <th class="th_rb">RB</th>
                                                 <th class="th_existing_measure">Mesure existante</th>
                                                 <th class="th_rr">RR</th>
-                                                <th class="th_proposed_measure">Mesure proposée</th>
                                                 <th class="th_criticality">Criticité</th>
+                                                <th class="th_proposed_measure">Mesure proposée</th>
                                                 <th class="th_actions"></th>
                                             </tr>
                                             </thead>
@@ -207,7 +207,7 @@
                                                         <p>@stripTags($risk->name)</p>
                                                     </td>
                                                     <td class="td_rb">
-                                                        <button class="btn {{ $risk->color($risk->total()) }} btn-small">{{ $risk->total() }}</button>
+                                                        <button class="btn {{ $risk->color($risk->total(),true) }} btn-small">{{ $risk->total() }}</button>
                                                         <div class="list list--text">
                                                             <div class="list-row">
                                                                 <p class="list-point list-point--text">F</p>
@@ -240,7 +240,10 @@
                                                         </div>
                                                     </td>
                                                     <td class="td_rr">
-                                                        <button class="btn {{ $risk->color( isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total()) }} btn-small">{{ isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints) : $risk->total() }}</button>
+                                                        <button class="btn {{ $risk->color( isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total(),false) }} btn-small">{{ isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total() }}</button>
+                                                    </td>
+                                                    <td class="td_criticality">
+                                                        <button type="button" class="btn {{ $risk->color(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total(),false) }} btn-small">{{ $risk->colorTotal(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total(), false) }}</button>
                                                     </td>
                                                     <td class="td_proposed_measure">
                                                         <div class="list">
@@ -253,9 +256,6 @@
                                                             @endif
                                                         @endforeach
                                                         </div>
-                                                    </td>
-                                                    <td class="td_criticality">
-                                                        <button type="button" class="btn {{ $risk->color(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total()) }} btn-small">{{ $risk->colorTotal(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints) : $risk->total()) }}</button>
                                                     </td>
                                                     <td class="td_actions">
                                                         <div>
@@ -356,12 +356,18 @@
                                                                                 @if (!$exposition_question->options)
                                                                                     <input type="text" class="form-control" name="exposition_intervention_type[{{ $exposition_group->id }}_{{ $exposition_question->id }}]" value="{{ old('exposition_intervention_type.' . $exposition_group->id . '_' . $exposition_question->id) ? old('exposition_intervention_type.' . $exposition_group->id . '_' . $exposition_question->id) : ($sd_exposition_question ? $sd_exposition_question->intervention_type : "") }}" placeholder="Préciser le type d’intervention ou de travaux">
                                                                                 @else
-                                                                                    <select name="exposition_intervention_type[{{ $exposition_group->id }}_{{ $exposition_question->id }}]" class="form-control">
-                                                                                        <option value="">Préciser le type d’intervention ou de travaux</option>
+                                                                                    <div class="list-container">
+                                                                                        <div>
+                                                                                            <input type="radio" id="exposition_intervention_type[{{ $exposition_group->id }}_{{ $exposition_question->id }}]_nothing" name="exposition_intervention_type[{{ $exposition_group->id }}_{{ $exposition_question->id }}]" value="" {{ (old('exposition_intervention_type.' . $exposition_group->id . '_' . $exposition_question->id) == null) || !$sd_exposition_question ? "checked" : "" }}>
+                                                                                            <label for="exposition_intervention_type[{{ $exposition_group->id }}_{{ $exposition_question->id }}]_nothing">Néant</label>
+                                                                                        </div>
                                                                                         @foreach (unserialize($exposition_question->options) as $key => $option)
-                                                                                            <option value="{{ $key }}" {{ old('exposition_intervention_type.' . $exposition_group->id . '_' . $exposition_question->id) ? (old('exposition_intervention_type.' . $exposition_group->id . '_' . $exposition_question->id) == $key ? "selected" : "") : ($sd_exposition_question ? ($sd_exposition_question->intervention_type == $option ? "selected" : "") : "") }}>{{ $option }}</option>
+                                                                                            <div>
+                                                                                                <input type="radio" id="exposition_intervention_type[{{ $exposition_group->id }}_{{ $exposition_question->id }}]_{{ $key }}" name="exposition_intervention_type[{{ $exposition_group->id }}_{{ $exposition_question->id }}]" value="{{ $key }}" {{ old('exposition_intervention_type.' . $exposition_group->id . '_' . $exposition_question->id) != null ? (old('exposition_intervention_type.' . $exposition_group->id . '_' . $exposition_question->id) == $key ? "checked" : "") : ($sd_exposition_question ? ($sd_exposition_question->intervention_type == $option ? "checked" : "") : "") }}>
+                                                                                                <label for="exposition_intervention_type[{{ $exposition_group->id }}_{{ $exposition_question->id }}]_{{ $key }}">{{ $option }}</label>
+                                                                                            </div>
                                                                                         @endforeach
-                                                                                    </select>
+                                                                                    </div>
                                                                                 @endif
                                                                                 @if ($exposition_group->type != "duration" || count($exposition_group->exposition_questions) == 1)
                                                                                     <p class="info info--success">{{ $exposition_question->intensity }}</p>
