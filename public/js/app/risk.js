@@ -180,10 +180,10 @@ on('.btn-modal-risk-oza-add', 'click', (el, e) => {
     for (let i = 0; i < all.length ; i++) {
         if (all[i].querySelector('.btn-restraint-modal-oza').checked === true){
             let id = Date.now();
-            let tech = all[i].querySelector('.radio-bar-tech input:checked').value || 'null'
-            let orga = all[i].querySelector('.radio-bar-orga input:checked').value || 'null'
-            let human = all[i].querySelector('.radio-bar-human input:checked').value || 'null'
-            let title = all[i].querySelector('.con').innerText || "Mesure"
+            let tech = all[i].querySelector('.radio-bar-tech input:checked').value || `null`
+            let orga = all[i].querySelector('.radio-bar-orga input:checked').value || `null`
+            let human = all[i].querySelector('.radio-bar-human input:checked').value || `null`
+            let title = all[i].querySelector('.con').innerText || `Mesure`
             createRestraint(tech,orga,human,title,id);
         }else{
             let title = all[i].querySelector('.con').innerText
