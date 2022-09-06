@@ -52,6 +52,14 @@ class PDFController extends Controller
             $q->where('id', $single_document->id);
         })->get();
 
+        $sd_works_units = $single_document->work_unit_pdf;
+        $all = [
+            "id" => "tous",
+            "name" => "tous"
+        ];
+        $sd_works_units->push($all);
+        $works_units = $sd_works_units->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE);
+
 
         $dangers = $single_document->dangers()->whereHas('danger.exposition')->get();
 
@@ -151,7 +159,8 @@ class PDFController extends Controller
             'date',
             'sd_dangers',
             'works',
-            'dangers')
+            'dangers',
+            'works_units')
         )->setPaper('a4', 'landscape');
 
         //return $pdf->stream();

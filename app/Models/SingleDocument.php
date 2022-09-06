@@ -58,6 +58,11 @@ class SingleDocument extends Model
         return $this->hasMany(SdWorkUnit::class)->orderByDesc("name");
     }
 
+    public function work_unit_pdf()
+    {
+        return $this->hasMany(SdWorkUnit::class)->orderByDesc("name");
+    }
+
     public function client()
     {
         return $this->belongsTo(Client::class);
