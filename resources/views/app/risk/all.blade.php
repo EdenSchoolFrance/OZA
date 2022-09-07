@@ -63,7 +63,7 @@
                                     <button class="btn {{ $sd_risk->color($sd_risk->totalRR($sd_risk->sd_restraints_exist),false) }} btn-small">{{ $sd_risk->totalRR($sd_risk->sd_restraints_exist) }}</button>
                                 </td>
                                 <td class="td_criticality" data-sort="{{ $sd_risk->totalRR($sd_risk->sd_restraints_exist) }}">
-                                    <button type="button" class="btn {{ $sd_risk->color(($sd_risk->totalRR($sd_risk->sd_restraints_exist)),false) }} btn-small">{{ $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints_exist),false) }}</button>
+                                    <button type="button" class="btn {{ $sd_risk->colorC(($sd_risk->totalRR($sd_risk->sd_restraints_exist)),false) }} btn-small">{{ $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints_exist),false) }}</button>
                                 </td>
                                 <td class="td_proposed_measure">
                                     <div class="list">

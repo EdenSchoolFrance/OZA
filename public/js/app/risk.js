@@ -296,7 +296,7 @@ function calculRestraintColorDisplay(){
     setColor(statusNumber,total,false);
     statusNumber.innerText = total;
     totalEnd(status,total,false);
-    setColor(status,total,false);
+    setColorC(status,total,false);
 }
 
 function restraintCalcul(x){
@@ -394,6 +394,46 @@ function setColor(el,total,RB){
         switch (true) {
             case (total <= 12.5) :
             case (total < 24) :
+                break;
+            case (total < 30) :
+                el.classList.add('btn-warn');
+                break;
+            case (total >= 30) :
+                el.classList.add('btn-danger');
+                break;
+        }
+    }
+
+}
+
+
+function setColorC(el,total,RB){
+    if (RB === true){
+        el.className = ""
+        el.classList.add('btn')
+        switch (true) {
+            case (total <= 12.5) :
+                el.classList.add('btn-success');
+                break;
+            case (total < 24) :
+                el.classList.add('btn-yellow');
+                break;
+            case (total < 30) :
+                el.classList.add('btn-warn');
+                break;
+            case (total >= 30) :
+                el.classList.add('btn-danger');
+                break;
+        }
+    }else{
+        el.className = ""
+        el.classList.add('btn')
+        switch (true) {
+            case (total <= 12.5) :
+                el.classList.add('btn-success');
+                break;
+            case (total < 24) :
+                el.classList.add('btn-yellow');
                 break;
             case (total < 30) :
                 el.classList.add('btn-warn');
