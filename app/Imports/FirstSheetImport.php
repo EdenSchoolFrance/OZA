@@ -30,6 +30,7 @@ class FirstSheetImport implements ToCollection
         for ($i=3; $i < count($collection); $i++) {
 
             $sd_danger = $this->lockDanger($collection[$i][4]);
+            if ($sd_danger === null) return $this->error("Danger introuvable", $i);
             $sd_work_unit = $this->lockWorkUnit($collection[$i][3]);
 
             $data = [
@@ -199,18 +200,23 @@ class FirstSheetImport implements ToCollection
     protected function lockDanger($data)
     {
         $single_document = $this->single_document;
+
         $danger = DB::table('dangers')
             ->where('info', 'like', substr($data, 0, 10)."%")
             ->first();
+        if (!$danger) return null;
 
         $sd_danger = SdDanger::where('danger_id', $danger->id)->whereHas('single_document', function ($q) use ($single_document){
             $q->where('id', $single_document->id);
         })->first();
+        if (!$sd_danger) return null;
 
         return $sd_danger;
     }
 
-
+    protected function error($msg, $line){
+        
+    }
 
 
 }
