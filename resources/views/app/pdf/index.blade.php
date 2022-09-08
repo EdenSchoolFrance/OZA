@@ -1283,7 +1283,7 @@
                                             <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneOrga(), 1), "orga") }}</td>
                                             <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneHum(), 1), "hum") }}</td>
                                             <td class="center min-width min-width-right"> {{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->totalRR($sd_risk->sd_restraints_exist) : $sd_risk->total() }}</td>
-                                            <td class="center criticity {{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints_exist),false) :  $sd_risk->@($sd_risk->total(),true) }}">{{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints),false) : $sd_risk->colorTotal($sd_risk->total(),true) }}</td>
+                                            <td class="center criticity {{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints_exist),false) :  $sd_risk->colorPDF($sd_risk->total(),true) }}">{{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints),false) : $sd_risk->colorTotal($sd_risk->total(),true) }}</td>
                                             <td class="restraint_proposed">
                                                 @foreach($sd_risk->sd_restraints_porposed as $sd_restraint)
                                                     * @stripTags($sd_restraint->name) <br>
@@ -1561,6 +1561,9 @@
                                             @foreach ($exposition_group->exposition_questions as  $exposition_question)
                                                 @php
                                                     $sd_exposition_question = $exposition_question->sd_work_unit_exposition_question($sd_work_unit->id);
+                                                    if(isset($sd_exposition_question)){
+                                                        $old_sd_exposition_question = $sd_exposition_question;
+                                                    }
                                                 @endphp
 
                                                 @if (isset($sd_exposition_question))
@@ -1611,6 +1614,12 @@
                                                             <td class="center">Non concernée</td>
                                                         @endif
                                                     </tr>
+
+                                                @elseif (!isset($sd_exposition_question) && $key === 1 && isset($old_sd_exposition_question))
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
                                                 @endif
 
                                             @endforeach
