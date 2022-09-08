@@ -1616,10 +1616,12 @@
                                                     </tr>
 
                                                 @elseif (!isset($sd_exposition_question) && $key === 1 && isset($old_sd_exposition_question))
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
                                                 @endif
 
                                             @endforeach
