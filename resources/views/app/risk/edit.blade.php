@@ -257,6 +257,17 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div class="line">
+                    <div class="left">
+                        <span class="bold">Criticité de la situation actuelle</span>
+                    </div>
+                    <div class="right">
+                        <button type="button" class="btn {{ $risk->color(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total(),false) }}" data-id="status">{{ $risk->colorTotal(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total(),false) }}</button>
+                    </div>
+                </div>
+            </div>
+
             <hr>
 
             <div class="row">
@@ -284,16 +295,7 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="line">
-                    <div class="left">
-                        <span class="bold">Criticité de la situation actuelle</span>
-                    </div>
-                    <div class="right">
-                        <button type="button" class="btn {{ $risk->color(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total(),false) }}" data-id="status">{{ $risk->colorTotal(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total(),false) }}</button>
-                    </div>
-                </div>
-            </div>
+
             <div class="row row--submit">
                 <button class="btn btn-success">Mettre à jour le risque</button>
             </div>

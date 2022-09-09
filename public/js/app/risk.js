@@ -100,7 +100,7 @@ on('.btn-delete', 'click', (el, e) => {
 
 on('.btn-delete-restraint', 'click', (el, e) => {
     el.closest('li').remove();
-    let restraints = $('.res-pro')
+    let restraints = $('li.res-pro')
     if (restraints.length === 0){
         let content = `<li>Aucune mesure proposée</li>`;
         let ul = document.createElement('ul')
@@ -115,7 +115,8 @@ on('.btn-add-restraint', 'click', (el, e) => {
     if (all[all.length - 2] !== undefined && all[all.length - 2] !== el.closest('li') && all[all.length - 2].querySelector('textarea').value === ''){
         all[all.length - 2].querySelector('textarea').focus();
     }else{
-        let restraints = $('.res-pro')
+        let restraints = $('li.res-pro')
+        console.log(restraints)
         if (restraints.length === 0){
             $('.nothing_restraint_pro', document, 0).remove();
         }
