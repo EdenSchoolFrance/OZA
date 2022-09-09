@@ -1,6 +1,22 @@
 @extends('app')
 
 @section('content')
+    @if(isset($excelErrors))
+        <div class="alert alert-danger">
+            <p>
+                @foreach($excelErrors as $error)
+                    {{ $error->error . ", a la line : ". $error->line }} <br>
+                @endforeach
+            </p>
+            <button type="button" data-dismiss="alert" class="btn-close"><i class="fas fa-times"></i></button>
+        </div>
+        @php
+            foreach ($excelErrors as $error){
+                $error->delete();
+            }
+        @endphp
+    @endif
+
     <div class="content client">
         <div class="card card--add-client">
             <form class="card-body" action="{{ route('admin.single_document.update', [$sd->client->id, $sd->id]) }}" method="post">

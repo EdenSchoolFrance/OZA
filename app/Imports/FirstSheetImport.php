@@ -2,12 +2,14 @@
 
 namespace App\Imports;
 
-use App\Models\Danger;
+use App\Models\ErrorExcel;
 use App\Models\SdDanger;
+use App\Models\SdRestraint;
 use App\Models\SdRisk;
 use App\Models\SdWorkUnit;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
+use DB;
 
 class FirstSheetImport implements ToCollection
 {
@@ -25,37 +27,61 @@ class FirstSheetImport implements ToCollection
 
     public function collection(Collection $collection)
     {
-        //var_dump($this->single_document);
-        //var_dump($collection[3][3]);
+
         for ($i=3; $i < count($collection); $i++) {
-            /**
-             * $danger = $collection[$i][4];
-             * $work_unit = $collection[$i][3];
-             * $risk = $collection[$i][5];
-             * $frequency = $collection[$i][6];
-             * $probability = $collection[$i][7];
-             * $gravity = $collection[$i][8];
-             * $impact = $collection[$i][9];
-             */
 
             $sd_danger = $this->lockDanger($collection[$i][4]);
+            if ($sd_danger === null){
+                $this->error("Danger introuvable", $i);
+                continue;
+            }
             $sd_work_unit = $this->lockWorkUnit($collection[$i][3]);
+            if ($sd_work_unit === null){
+                $this->error("Unité de travail introuvable", $i);
+                continue;
+            }
 
             $data = [
                 "danger" => $sd_danger,
                 "work_unit" => $sd_work_unit,
-                "risk" => $collection[$i][5],
-                "frequency" => $collection[$i][6],
-                "probability" => $collection[$i][7],
-                "gravity" => $collection[$i][8],
-                "impact" => $collection[$i][9],
-                "restraint" => $collection[$i][11]
+                "risk" => $collection[$i][7],
+                "frequency" => $collection[$i][8],
+                "probability" => $collection[$i][9],
+                "gravity" => $collection[$i][10],
+                "impact" => $collection[$i][11],
+                "restraint_exist" => $collection[$i][13],
+                "tech" => $collection[$i][14],
+                "orga" => $collection[$i][15],
+                "human" => $collection[$i][16],
+                "restraint" => $collection[$i][26]
             ];
+
+            if ($sd_danger->exist === null){
+                $sd_danger->exist = 1;
+                $sd_danger->save();
+            }
+            if ($sd_work_unit === false){
+                $sd_danger->ut_all = 1;
+                $sd_danger->save();
+            }else{
+                if ($sd_danger->sd_works_units()->where('sd_work_unit_id', $sd_work_unit->id)->first()){
+                    $sd_danger->sd_works_units()->updateExistingPivot($sd_work_unit->id, [
+                        'exist' => 1
+                    ]);
+                } else {
+                    $sd_danger->sd_works_units()->attach($sd_work_unit, ['exist' => 1]);
+                }
+            }
+
+
+
             $risk = $this->createRisk($data);
 
             $this->deleteTab[] = $risk->id;
 
         }
+
+        return back()->with('status', "Risk importer");
     }
 
     protected function createRisk($data)
@@ -66,7 +92,8 @@ class FirstSheetImport implements ToCollection
             "semaine" => "week",
             "mois" => "mouth",
             "an" => "year",
-            "< fois par an" => "year+"
+            "< 1 fois par an" => "year+",
+            "non concerné" => "year+"
         ];
 
         $pro = [
@@ -74,7 +101,8 @@ class FirstSheetImport implements ToCollection
             "élevée" => "high",
             "non faible" => "medium",
             "faible" => "weak",
-            "très faible" => "very weak"
+            "très faible" => "very weak",
+            "non concerné" => "very weak"
         ];
 
         $gra = [
@@ -82,7 +110,8 @@ class FirstSheetImport implements ToCollection
             "IPP" => "ipp",
             "AAA" => "aaa",
             "ASA" => "asa",
-            "impact faible" => "weak impact"
+            "impact faible" => "weak impact",
+            "non concerné" => "weak impact"
         ];
 
         $imp = [
@@ -90,34 +119,11 @@ class FirstSheetImport implements ToCollection
             "F" => "female",
             "H" => "null"
         ];
-        $frequency = "year+";
-        $probability = "very weak";
-        $gravity = "death";
-        $impact = "null";
 
-        for ($i = 0; $i < count($fre); $i++){
-            if ($fre[$i] === $data["frequency"]){
-                $frequency = $fre[$i];
-            }
-        }
-
-        for ($i = 0; $i < count($pro); $i++){
-            if ($pro[$i] === $data["probability"]){
-                $probability = $pro[$i];
-            }
-        }
-
-        for ($i = 0; $i < count($gra); $i++){
-            if ($gra[$i] === $data["gravity"]){
-                $gravity = $gra[$i];
-            }
-        }
-
-        for ($i = 0; $i < count($imp); $i++){
-            if ($imp[$i] === $data["impact"]){
-                $impact = $imp[$i];
-            }
-        }
+        $frequency = $fre[$data["frequency"]];
+        $probability = $pro[$data["probability"]];
+        $gravity = $gra[$data["gravity"]];
+        $impact = $imp[$data["impact"]];
 
         $sd_risk = new SdRisk();
         $sd_risk->id = uniqid();
@@ -127,26 +133,82 @@ class FirstSheetImport implements ToCollection
         $sd_risk->gravity = $gravity;
         $sd_risk->impact = $impact;
         $sd_risk->sd_danger()->associate($data["danger"]);
-        if ($data["work_unit"] !== null) $sd_risk->sd_work_unit()->associate($data["work_unit"]);
+        if (!empty($data["work_unit"])) $sd_risk->sd_work_unit()->associate($data["work_unit"]);
         $sd_risk->save();
+
+        if (!empty($data["restraint_exist"])) $this->restraintExist($data, $sd_risk);
+        if (!empty($data["restraint"])) $this->restraint($data, $sd_risk);
+
 
         return $sd_risk;
 
+    }
+
+    protected function restraintExist($data, $sd_risk)
+    {
+
+        $restraint_exist = explode("*", $data["restraint_exist"]);
+
+        $tabValue = [
+            "très bon" => "very good",
+            "bon" => "good",
+            "moy" => "medium",
+            "0" => "null"
+        ];
+
+        $tech = $tabValue[$data["tech"]];
+        $orga = $tabValue[$data["orga"]];
+        $human = $tabValue[$data["human"]];
 
 
+        for ($i = 1; $i < count($restraint_exist); $i++){
+            $name = $restraint_exist[$i];
+            if (strpos(substr($name, 0, 1), ' ') !== FALSE) {
+                $name = substr($name, 1);
+            }
+
+            $sd_restraint = new SdRestraint();
+            $sd_restraint->id = uniqid();
+            $sd_restraint->name = $name;
+            $sd_restraint->technical = $tech;
+            $sd_restraint->organizational = $orga;
+            $sd_restraint->human = $human;
+            $sd_restraint->exist = true;
+            $sd_restraint->sd_risk()->associate($sd_risk);
+            $sd_restraint->save();
+        }
+    }
+
+    protected function restraint($data, $sd_risk)
+    {
+
+        $restraint = explode("*", $data["restraint"]);
+
+        for ($i = 1; $i < count($restraint); $i++){
+            $name = $restraint[$i];
+            if (strpos(substr($name, 0, 1), ' ') !== FALSE) {
+                $name = substr($name, 1);
+            }
+
+            $sd_restraint = new SdRestraint();
+            $sd_restraint->id = uniqid();
+            $sd_restraint->name = $name;
+            $sd_restraint->exist = false;
+            $sd_restraint->sd_risk()->associate($sd_risk);
+            $sd_restraint->save();
+        }
     }
 
     protected function lockWorkUnit($data)
     {
 
         if ($data === "Tous"){
-            return null;
+            return false;
         }else{
             $single_document = $this->single_document;
             $sd_work_unit = SdWorkUnit::where('name', $data)->whereHas('single_document', function ($q) use ($single_document){
                 $q->where('id', $single_document->id);
             })->first();
-            if (!$sd_work_unit) $this->deleteAll("WorkUnit introuvable");
             return $sd_work_unit;
         }
 
@@ -155,23 +217,29 @@ class FirstSheetImport implements ToCollection
     protected function lockDanger($data)
     {
         $single_document = $this->single_document;
-        $danger = Danger::where('info', $data)->first();
+
+        $danger = DB::table('dangers')
+            ->where('info', 'like', substr($data, 0, 10)."%")
+            ->first();
+        if (!$danger) return null;
+
         $sd_danger = SdDanger::where('danger_id', $danger->id)->whereHas('single_document', function ($q) use ($single_document){
             $q->where('id', $single_document->id);
         })->first();
-        if (!$danger || !$sd_danger) $this->deleteAll("Danger introuvable !");
+        if (!$sd_danger) return null;
+
         return $sd_danger;
     }
 
-    protected function deleteAll($dataError)
+    protected function error($msg, $line)
     {
-        for ($i=0; $i < count($this->deleteAll); $i++) {
-            SdRisk::where('id', $this->deleteAll[$i])->delete();
-        }
-        return back()->with('status', $dataError)->with('status_type','danger');
+        $error = new ErrorExcel();
+        $error->id = uniqid();
+        $error->line = $line+1;
+        $error->error = $msg;
+        $error->single_document()->associate($this->single_document);
+        $error->save();
     }
-
-
 
 
 }

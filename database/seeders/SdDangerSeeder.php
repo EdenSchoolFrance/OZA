@@ -17,12 +17,19 @@ class SdDangerSeeder extends Seeder
     public function run()
     {
         $single_document = SingleDocument::where('name', 'Siege')->first();
+        $single_document2 = SingleDocument::where('name', 'Import')->first();
         $dangers = Danger::all();
 
         foreach ($dangers as $danger) {
             $sdDanger = new SdDanger();
             $sdDanger->id = uniqid();
             $sdDanger->single_document()->associate($single_document);
+            $sdDanger->danger()->associate($danger);
+            $sdDanger->save();
+
+            $sdDanger = new SdDanger();
+            $sdDanger->id = uniqid();
+            $sdDanger->single_document()->associate($single_document2);
             $sdDanger->danger()->associate($danger);
             $sdDanger->save();
         }

@@ -15,11 +15,12 @@ class ImportController extends Controller
         $request->validate([
             'excel' => 'nullable|mimes:xlsx,xlsm,xlsb,xltx,xltm,xls,xlt,xml,xlam,xla,xlw,xlr',
         ]);
-        
-        $import = new RiskImport($single_document);
-        
 
-        Excel::import($import, $request->file('excel'));
+        $import = new RiskImport($single_document);
+
+        $check = Excel::import($import, $request->file('excel'));
+
+        return back();
 
     }
 

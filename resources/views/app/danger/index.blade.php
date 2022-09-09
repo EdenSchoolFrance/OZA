@@ -169,7 +169,7 @@
                     </div>
                 </div>
 
-                @foreach($single_document->work_unit as $sd_work_unit)
+                @foreach($single_document->work_unit->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE) as $sd_work_unit)
                     @if($sd_work_unit->validated === 1)
                         <div class="card card--risk card--risk-{{ $sd_work_unit->id }} {{ $sd_work_unit->sd_danger($danger->id) ? ($sd_work_unit->sd_danger($danger->id)->pivot->exist ? 'card--risk-stretchable card--risk-opened' : '') : '' }}" >
                             <div class="card-header">

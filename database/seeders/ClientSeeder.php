@@ -27,5 +27,16 @@ class ClientSeeder extends Seeder
         $client->city = "Paris";
         $client->expert()->associate($expert_oza);
         $client->save();
+
+        $client = new Client();
+        $client->id = uniqid();
+        $client->name = "Test";
+        $client->image_type = 'png';
+        $client->client_number = "087474175";
+        $client->adress = "12 rue du louvre";
+        $client->city_zipcode = "75000";
+        $client->city = "Paris";
+        $client->expert()->associate($expert_oza);
+        $client->save();
     }
 }
