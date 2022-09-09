@@ -12,6 +12,7 @@ class ErrorExcel extends Model
     public $timestamps = false;
     public $incrementing = false;
     protected $keyType = 'string';
+    protected $table = 'error_excel';
 
     /**
      * The attributes that are mass assignable.

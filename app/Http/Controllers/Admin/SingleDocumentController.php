@@ -94,13 +94,18 @@ class SingleDocumentController extends Controller
         $packs = Pack::all();
 
         $sd = $single_document;
-        
+
         $import = true;
         if (count($single_document->work_unit) === 0){
             $import = false;
         }
 
-        return view('admin.single_document.edit', compact('page', 'sd', 'dangers', 'packs', 'import'));
+        $excelErrors = $sd->errors_excel;
+        if (isset($excelErrors[0])){
+            return view('admin.single_document.edit', compact('page', 'sd', 'dangers', 'packs', 'import','excelErrors'));
+        }else{
+            return view('admin.single_document.edit', compact('page', 'sd', 'dangers', 'packs', 'import'));
+        }
     }
 
     public function update(Request $request, Client $client, SingleDocument $single_document)

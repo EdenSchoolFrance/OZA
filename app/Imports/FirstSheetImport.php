@@ -2,6 +2,7 @@
 
 namespace App\Imports;
 
+use App\Models\ErrorExcel;
 use App\Models\SdDanger;
 use App\Models\SdRestraint;
 use App\Models\SdRisk;
@@ -30,8 +31,15 @@ class FirstSheetImport implements ToCollection
         for ($i=3; $i < count($collection); $i++) {
 
             $sd_danger = $this->lockDanger($collection[$i][4]);
-            if ($sd_danger === null) return $this->error("Danger introuvable", $i);
+            if ($sd_danger === null){
+                $this->error("Danger introuvable", $i);
+                continue;
+            }
             $sd_work_unit = $this->lockWorkUnit($collection[$i][3]);
+            if ($sd_work_unit === null){
+                $this->error("Unité de travail introuvable", $i);
+                continue;
+            }
 
             $data = [
                 "danger" => $sd_danger,
@@ -48,16 +56,24 @@ class FirstSheetImport implements ToCollection
                 "restraint" => $collection[$i][26]
             ];
 
-            if ($sd_danger->exist === 0){
+            if ($sd_danger->exist === null){
                 $sd_danger->exist = 1;
                 $sd_danger->save();
             }
-            if ($sd_work_unit === null){
+            if ($sd_work_unit === false){
                 $sd_danger->ut_all = 1;
                 $sd_danger->save();
-            }else if (!$sd_danger->sd_works_units()->where('sd_work_unit_id', $sd_work_unit->id)->first()){
-                $sd_danger->sd_works_units()->attach($sd_work_unit, ['exist' => 1]);
+            }else{
+                if ($sd_danger->sd_works_units()->where('sd_work_unit_id', $sd_work_unit->id)->first()){
+                    $sd_danger->sd_works_units()->updateExistingPivot($sd_work_unit->id, [
+                        'exist' => 1
+                    ]);
+                } else {
+                    $sd_danger->sd_works_units()->attach($sd_work_unit, ['exist' => 1]);
+                }
             }
+
+
 
             $risk = $this->createRisk($data);
 
@@ -117,7 +133,7 @@ class FirstSheetImport implements ToCollection
         $sd_risk->gravity = $gravity;
         $sd_risk->impact = $impact;
         $sd_risk->sd_danger()->associate($data["danger"]);
-        if ($data["work_unit"] !== null) $sd_risk->sd_work_unit()->associate($data["work_unit"]);
+        if (!empty($data["work_unit"])) $sd_risk->sd_work_unit()->associate($data["work_unit"]);
         $sd_risk->save();
 
         if (!empty($data["restraint_exist"])) $this->restraintExist($data, $sd_risk);
@@ -128,7 +144,8 @@ class FirstSheetImport implements ToCollection
 
     }
 
-    protected function restraintExist($data, $sd_risk){
+    protected function restraintExist($data, $sd_risk)
+    {
 
         $restraint_exist = explode("*", $data["restraint_exist"]);
 
@@ -162,7 +179,8 @@ class FirstSheetImport implements ToCollection
         }
     }
 
-    protected function restraint($data, $sd_risk){
+    protected function restraint($data, $sd_risk)
+    {
 
         $restraint = explode("*", $data["restraint"]);
 
@@ -185,13 +203,12 @@ class FirstSheetImport implements ToCollection
     {
 
         if ($data === "Tous"){
-            return null;
+            return false;
         }else{
             $single_document = $this->single_document;
             $sd_work_unit = SdWorkUnit::where('name', $data)->whereHas('single_document', function ($q) use ($single_document){
                 $q->where('id', $single_document->id);
             })->first();
-            if ($sd_work_unit === null) return null;
             return $sd_work_unit;
         }
 
@@ -214,8 +231,14 @@ class FirstSheetImport implements ToCollection
         return $sd_danger;
     }
 
-    protected function error($msg, $line){
-        
+    protected function error($msg, $line)
+    {
+        $error = new ErrorExcel();
+        $error->id = uniqid();
+        $error->line = $line+1;
+        $error->error = $msg;
+        $error->single_document()->associate($this->single_document);
+        $error->save();
     }
 
 

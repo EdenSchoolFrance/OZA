@@ -31,7 +31,7 @@ class DangerController extends Controller
             $q->where('id', $danger->id);
         })->get();
 
-        $sd_works_units = $danger->sd_works_units()->wherePivot('exist',1)->get();
+        $sd_works_units = $danger->sd_works_units()->wherePivot('exist',1)->get()->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE);
 
         return view('app.danger.index', compact('page', 'single_document','danger','risks_all','sd_works_units'));
     }
