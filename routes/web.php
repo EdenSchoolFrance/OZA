@@ -105,7 +105,7 @@ Route::middleware(['auth'])->group(function() {
                 Route::post('/client/{client}/single_document/{single_document}/delete', [SingleDocumentAdminController::class, 'delete'])->name('admin.single_document.delete');
                 Route::post('/client/single_document/duplicate', [SingleDocumentAdminController::class, 'duplicate'])->name('admin.single_document.duplicate');
 
-                
+
 
                 Route::get('/help/workunit', [WorkUnitAdminController::class, 'index'])->name('admin.help.workunit');
                 Route::get('/help/workunit/create', [WorkUnitAdminController::class, 'create'])->name('admin.help.workunit.create');
@@ -154,7 +154,7 @@ Route::middleware(['auth'])->group(function() {
                 Route::post('/{doc_name}/file/upload', [DocController::class, 'upload'])->name('documentation.upload');
                 Route::post('/{doc_name}/file/delete', [DocController::class, 'delete'])->name('documentation.delete');
 
-                Route::get('/doc/{doc_name}/file/download/{file_name}', [DocController::class, 'download'])->name('documentation.download');
+
             });
 
             /*================ ADMIN | EXPERT ================*/
@@ -254,6 +254,8 @@ Route::middleware(['auth'])->group(function() {
         Route::get('/{single_document}/history/download/{id}', [HistorieController::class, 'download'])->name('history.download');
 
         Route::get('/{single_document}/{doc_name?}', [DocController::class, 'index'])->name('documentation');
+
+        Route::get('/doc/{doc_name}/file/download/{file_name}', [DocController::class, 'download'])->name('documentation.download');
 
     });
 });
