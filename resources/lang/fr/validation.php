@@ -134,7 +134,13 @@ return [
         'password' => [
             'min' => 'Votre mot de passe doit contenir au moins 8 caractères, dont 1 majuscule, 1 minuscule, 1 chiffre et 1 caractère spécial',
             'regex' => 'Votre mot de passe doit contenir au moins 8 caractères, dont 1 majuscule, 1 minuscule, 1 chiffre et 1 caractère spécial'
-        ]
+        ],
+        'risk_psycho_exposition_groups' => [
+            'required_if' => 'Veuillez renseigner le nom du groupe d\'expositions homogènes'
+        ],
+        'risk_psycho_exposition_groups.*' => [
+            'required' => 'Veuillez renseigner un nom au groupe d\'expositions homogènes'
+        ],
     ],
     'attributes' =>[
         'address'               => 'adresse',
@@ -209,6 +215,12 @@ return [
         'name_subitem'          => 'nom de la catégorie',
         'comment'               => 'commentaire',
         'work_history'          => 'historique',
-        'work_unit_entitled'    => ''
+        'work_unit_entitled'    => '',
+        'number_quiz'           => "nombre de questionnaires exploités",
+        'stress_level'          => "niveau de stress moyen",
+        'questions.*.never'     => "jamais / non",
+        'questions.*.sometimes' => "parfois / plutôt non",
+        'questions.*.often'     => "souvent / plutôt oui",
+        'questions.*.always'    => "Toujours / oui",
     ]
 ];

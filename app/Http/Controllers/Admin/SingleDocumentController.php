@@ -11,6 +11,7 @@ use App\Models\SdDanger;
 use Illuminate\Http\Request;
 use App\Models\SingleDocument;
 use App\Http\Controllers\Controller;
+use App\Models\SdPsychosocialGroup;
 
 class SingleDocumentController extends Controller
 {
@@ -54,7 +55,10 @@ class SingleDocumentController extends Controller
             'name_single_document' => 'required',
             'number_ut' => 'required|integer|min:0',
             'dangers' => 'required|array',
-            'dangers.*' => 'exists:dangers,id'
+            'dangers.*' => 'exists:dangers,id',
+            'risk_psycho' => 'required',
+            'risk_psycho_exposition_groups' => 'required_if:risk_psycho,yes|array',
+            'risk_psycho_exposition_groups.*' => 'required',
         ]);
 
         $users = User::where('client_id', $client->id)->whereHas('role', function ($q) {
@@ -64,6 +68,9 @@ class SingleDocumentController extends Controller
         $single_document = new SingleDocument();
         $single_document->id = uniqid();
         $single_document->name = $request->name_single_document;
+        if ($request->risk_psycho == 'yes') {
+            $single_document->risk_psycho = true;
+        }
         $single_document->work_unit_limit = $request->number_ut;
         $single_document->client()->associate($client);
         $single_document->save();
@@ -77,6 +84,16 @@ class SingleDocumentController extends Controller
             $sd_danger->single_document()->associate($single_document);
             $sd_danger->danger()->associate($danger);
             $sd_danger->save();
+        }
+
+        if ($single_document->risk_psycho) {
+            foreach ($request->risk_psycho_exposition_groups as $risk_psycho_exposition_group) {
+                $sdPsychosocialGroup = new SdPsychosocialGroup();
+                $sdPsychosocialGroup->id = uniqid();
+                $sdPsychosocialGroup->name = $risk_psycho_exposition_group;
+                $sdPsychosocialGroup->single_document()->associate($single_document);
+                $sdPsychosocialGroup->save();
+            }
         }
 
         return back()->with('status', 'Le document unique a bien été créé !');
@@ -114,11 +131,19 @@ class SingleDocumentController extends Controller
             'name_single_document' => 'required',
             'number_ut' => 'required|integer|min:0',
             'dangers' => 'required|array',
-            'dangers.*' => 'exists:dangers,id'
+            'dangers.*' => 'exists:dangers,id',
+            'risk_psycho' => 'required',
+            'risk_psycho_exposition_groups' => 'required_if:risk_psycho,yes|array',
+            'risk_psycho_exposition_groups.*' => 'required',
         ]);
 
         $single_document->name = $request->name_single_document;
         $single_document->work_unit_limit = $request->number_ut;
+        if ($request->risk_psycho == 'yes') {
+            $single_document->risk_psycho = true;
+        } else {
+            $single_document->risk_psycho = false;
+        }
         $single_document->save();
 
         $dangers = SdDanger::whereHas('single_document', function ($q) use ($single_document) {
@@ -141,6 +166,31 @@ class SingleDocumentController extends Controller
             $sd_danger->single_document()->associate($single_document);
             $sd_danger->danger()->associate($danger);
             $sd_danger->save();
+        }
+
+        if ($single_document->risk_psycho) {
+            $risk_psycho_groups_request = $request->risk_psycho_exposition_groups;
+
+            foreach ($single_document->psychosocial_groups as $psychosocial_group) {
+                if (in_array($psychosocial_group->id, $risk_psycho_groups_request)) {
+                    $psychosocial_group->name = $risk_psycho_groups_request[$psychosocial_group->id];
+                    unset($risk_psycho_groups_request[$psychosocial_group->id]);
+                } else {
+                    $psychosocial_group->delete();
+                }
+            }
+
+            foreach ($risk_psycho_groups_request as $item) {
+                $sdPsychosocialGroup = new SdPsychosocialGroup();
+                $sdPsychosocialGroup->id = uniqid();
+                $sdPsychosocialGroup->name = $item;
+                $sdPsychosocialGroup->single_document()->associate($single_document);
+                $sdPsychosocialGroup->save();
+            }
+        } else {
+            foreach ($single_document->psychosocial_groups as $psychosocial_group) {
+                $psychosocial_group->delete();
+            }
         }
 
         return back()->with('status', 'Le document unique a bien été mis à jour !');

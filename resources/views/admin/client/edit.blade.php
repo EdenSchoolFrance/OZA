@@ -200,10 +200,19 @@
                                     @error('name_single_document')
                                         <p class="message-error">{{ $message }}</p>
                                     @enderror
-                                    @error('dangers')
-                                        <p class="message-error">{{ $message }}</p>
-                                    @enderror
                                 </div>
+                            </div>
+                            <div class="line">
+                                <div class="left"></div>
+                                <div class="right">
+                                    <hr class="separation">
+                                </div>
+                            </div>
+                            <div class="line">
+                                <div class="left">
+                                    <h3>Evaluation des risques professionnels</h3>
+                                </div>
+                                <div class="right"></div>
                             </div>
                             <div class="line">
                                 <div class="left">
@@ -212,7 +221,10 @@
                                 <div class="right">
                                     <input type="number" name="number_ut" id="number_ut" class="form-control @error('number_ut') invalid @enderror" value="{{ old('number_ut') }}" placeholder="Nombre d'UT maximum (0 = illimité)">
                                     @error('number_ut')
-                                    <p class="message-error">{{ $message }}</p>
+                                        <p class="message-error">{{ $message }}</p>
+                                    @enderror
+                                    @error('dangers')
+                                        <p class="message-error">{{ $message }}</p>
                                     @enderror
                                 </div>
                             </div>
@@ -237,6 +249,65 @@
                                             <label for="danger_{{ $danger->id }}">{{ $danger->name }}</label>
                                         </div>
                                     @endforeach
+                                </div>
+                            </div>
+                            <div class="line">
+                                <div class="left"></div>
+                                <div class="right">
+                                    <hr class="separation">
+                                </div>
+                            </div>
+                            <div class="line">
+                                <div class="left">
+                                    <h3>Evaluation des risques psychosociaux</h3>
+                                </div>
+                                <div class="right"></div>
+                            </div>
+                            <div class="line">
+                                <div class="left">
+                                    <p>Option souscrite</p>
+                                </div>
+                                <div class="right">
+                                    <div>
+                                        <input type="radio" id="risk_psycho_yes" name="risk_psycho" value="yes" {{ old('risk_psycho') && old('risk_psycho') == "yes" ? 'checked' : '' }}>
+                                        <label for="risk_psycho_yes">Oui</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" id="risk_psycho_no" name="risk_psycho" value="no" {{ old('risk_psycho') && old('risk_psycho') == "no" ? 'checked' : '' }}>
+                                        <label for="risk_psycho_no">Non</label>
+                                    </div>
+                                    @error('risk_psycho')
+                                        <p class="message-error">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="line">
+                                <div class="left">
+                                    <p>Définition des groupes d'expositions homogènes</p>
+                                </div>
+                                <div class="right">
+                                    <ul class="list-content list-content--exposition">
+                                        @if (old('risk_psycho_exposition_groups'))
+                                            @foreach (old('risk_psycho_exposition_groups') as $key => $item)
+                                                <li class="list-item">
+                                                    <button type="button" class="btn btn-text btn-small btn-delete"><i class="far fa-times-circle"></i></button>
+                                                    <input type="text" class="form-control" name="risk_psycho_exposition_groups[]" placeholder="Nom du groupe d'expositions homogènes" value="{{ $item }}">
+                                                </li>
+                                            @endforeach
+                                        @else
+                                            <li class="list-item">
+                                                <button type="button" class="btn btn-text btn-small btn-delete"><i class="far fa-times-circle"></i></button>
+                                                <input type="text" class="form-control" name="risk_psycho_exposition_groups[]" placeholder="Nom du groupe d'expositions homogènes" value="">
+                                            </li>
+                                        @endif
+                                    </ul>
+                                    <button type="button" class="btn btn-text btn-yellow btn-add-exposition"><i class="fas fa-plus"></i> Ajouter</button>
+                                    @error('risk_psycho_exposition_groups')
+                                        <p class="message-error">{{ $message }}</p>
+                                    @enderror
+                                    @error('risk_psycho_exposition_groups.*')
+                                        <p class="message-error">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                         </div>

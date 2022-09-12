@@ -29,6 +29,10 @@ const scrollTo = (selector, nav = true, behavior = "auto", element = window) => 
     });
 }
 
+Array.prototype.pluck = function(key) {
+    return this.map(function(object) { return object[key]; });
+};
+
 on('.btn-group-dropdown .btn.toggle-dropdown:not(.disabled)', 'click', (el, e) => {
     let btnGroup = el.closest('.btn-group-dropdown');
 
@@ -269,5 +273,43 @@ on('.eye-password', 'click', (el, e) => {
         type.type = "text";
         classlist.remove('fa-eye-slash');
         classlist.add('fa-eye');
+    }
+});
+
+
+/*==============================
+       Button Group Number
+==============================*/
+
+on('.btn-group-number .btn-num', 'click', (el, e) => {
+    let input = $('input', el.closest('.btn-group-number'), 0);
+
+    let min = false;
+    let max = false;
+    let change = false;
+    let step = parseFloat(input.step) || 1;
+
+    if (input.min != "") {
+        min = parseFloat(input.min);
+    }
+
+    if (input.max != "") {
+        max = parseFloat(input.max);
+    }
+
+    if (el.dataset.value === 'less') {
+        if (min === false || input.value > min) {
+            input.value = parseFloat(input.value) - step;
+            change = true;
+        }
+    } else if (el.dataset.value === 'more'){
+        if (max === false || input.value < max) {
+            input.value = parseFloat(input.value) + step;
+            change = true;
+        }
+    }
+
+    if (change) {
+        input.dispatchEvent(new Event('change', { bubbles: true }));
     }
 });

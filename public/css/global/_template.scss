@@ -273,6 +273,24 @@ main {
                     margin: 0;
                 }
             }
+            
+            .psychosocial {
+                font-size: 30px;
+                margin-top: 5px;
+                margin-left: 30px;
+                display: flex;
+
+                p {
+                    margin: 0;
+                    font-family: 'Hind-SemiBold';
+                    font-size: 27px;
+
+                    &:first-of-type {
+                        margin-right: 20px;
+                        white-space: nowrap;
+                    }
+                }
+            }
 
             .infos {
                 color: $dark;

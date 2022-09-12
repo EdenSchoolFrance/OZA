@@ -73,9 +73,15 @@ class SingleDocument extends Model
         return $this->hasMany(Historie::class);
     }
 
+
     public function errors_excel()
     {
         return $this->hasMany(ErrorExcel::class);
+    }
+    
+    public function psychosocial_groups()
+    {
+        return $this->hasMany(SdPsychosocialGroup::class);
     }
 
     public function moyenneRB()

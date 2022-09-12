@@ -19,6 +19,7 @@ use App\Http\Controllers\PresentationController;
 use App\Http\Controllers\ResetPasswordController;
 
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\Admin\PsychosocialController;
 use App\Http\Controllers\Admin\ItemController as ItemAdminController;
 use App\Http\Controllers\Admin\RiskController as RiskAdminController;
 use App\Http\Controllers\Admin\UserController as UserAdminController;
@@ -172,6 +173,8 @@ Route::middleware(['auth'])->group(function() {
 
 
                 Route::post('/client/{client}/single_document/{single_document}/import', [ImportController::class, 'importExcel'])->name('admin.single_document.import');
+
+                Route::post('/{single_document}/{psychosocial_group}/evaluation', [PsychosocialController::class, 'evaluation_store'])->name('risk_psycho.evaluation.store');
             });
         });
 
@@ -246,6 +249,8 @@ Route::middleware(['auth'])->group(function() {
             Route::post('/{single_document}/danger/{danger}/create/filter', [RiskController::class, 'filter'])->name('risk.filter');
             Route::post('/{single_document}/danger/{danger}/comment', [DangerController::class, 'comment'])->name('danger.comment');
         });
+
+        Route::get('/{single_document}/{psychosocial_group}/evaluation', [PsychosocialController::class, 'evaluation'])->name('risk_psycho.evaluation');
 
         Route::get('/{single_document}/pdf', [PDFController::class, 'viewpdf'])->name('pdf.view');
         Route::get('/{single_document}/pdf/download', [PDFController::class, 'create'])->name('pdf.download');
