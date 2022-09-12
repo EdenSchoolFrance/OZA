@@ -104,7 +104,7 @@ class SingleDocumentController extends Controller
         $page = [
             'title' => 'Modification du document unique : ' . $single_document->name,
             'sidebar' => 'clients',
-            'sub_sidebar' => '',
+            'sub_sidebar' => 'single_document',
         ];
 
         $dangers = Danger::all()->sortBy('name');
@@ -112,7 +112,17 @@ class SingleDocumentController extends Controller
 
         $sd = $single_document;
 
-        return view('admin.single_document.edit', compact('page', 'sd', 'dangers', 'packs'));
+        $import = true;
+        if (count($single_document->work_unit) === 0){
+            $import = false;
+        }
+
+        $excelErrors = $sd->errors_excel;
+        if (isset($excelErrors[0])){
+            return view('admin.single_document.edit', compact('page', 'sd', 'dangers', 'packs', 'import','excelErrors'));
+        }else{
+            return view('admin.single_document.edit', compact('page', 'sd', 'dangers', 'packs', 'import'));
+        }
     }
 
     public function update(Request $request, Client $client, SingleDocument $single_document)

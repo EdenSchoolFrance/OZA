@@ -31,7 +31,7 @@ class DangerController extends Controller
             $q->where('id', $danger->id);
         })->get();
 
-        $sd_works_units = $danger->sd_works_units()->wherePivot('exist',1)->get();
+        $sd_works_units = $danger->sd_works_units()->wherePivot('exist',1)->get()->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE);
 
         return view('app.danger.index', compact('page', 'single_document','danger','risks_all','sd_works_units'));
     }
@@ -157,6 +157,8 @@ class DangerController extends Controller
             $q->where('id', $single_document->id);
         })->first();
 
+        if ($danger->exist === null) return back()->with('status', 'Vous devez renseigner si ce danger concerne quelqu’un au sein de l’entreprise avant de pouvoir valider !')->with('status_type','danger');
+
         if ($danger->exist === 1){
             $all = 0;
             $ut_all = 1;
@@ -165,7 +167,7 @@ class DangerController extends Controller
             else if ($danger->ut_all === 0){
                 $all++;
                 $ut_all = 0;
-            } else if ($danger->ut_all === 1 && !isset($danger->sd_risks_ut_all()[0])) return back()->with('status', 'Les unités validées doivent contenir au moins un risque !')->with('status_type','danger');
+            } else if ($danger->ut_all === 1 && $danger->sd_risks_ut_all() === null) return back()->with('status', 'Les unités validées doivent contenir au moins un risque !')->with('status_type','danger');
 
             $sd_works_units = SdWorkUnit::where('validated',1)->whereHas('single_document', function ($q) use ($single_document){
                 $q->where('id', $single_document->id);

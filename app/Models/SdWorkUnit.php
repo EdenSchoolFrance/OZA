@@ -58,4 +58,9 @@ class SdWorkUnit extends Model
     {
         return $this->sd_risks->where('sd_danger_id', $id);
     }
+
+    public function sd_expositions_questions()
+    {
+        return $this->hasMany(SdExpositionQuestion::class);
+    }
 }

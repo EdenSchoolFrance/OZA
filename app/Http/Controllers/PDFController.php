@@ -8,6 +8,7 @@ use App\Models\Item;
 use App\Models\SdRisk;
 use App\Models\SubItem;
 use App\Models\Historie;
+use App\Models\SdDanger;
 use App\Models\SdExpositionQuestion;
 use App\Models\SdWorkUnit;
 use Carbon\Carbon;
@@ -20,7 +21,6 @@ class PDFController extends Controller
 {
     public function viewpdf($id)
     {
-        //return view('app.pdf.index');
         $single_document = $this->checkSingleDocument($id);
 
         $item_mat = Item::where('name', 'Matériels')->first();
@@ -30,12 +30,17 @@ class PDFController extends Controller
         $sd_risks = SdRisk::whereHas('sd_danger', function ($q) use ($single_document) {
             $q->where('single_document_id', $single_document->id);
         })->get()->sort(function ($a, $b) {
-            return $b->totalRR($b->sd_restraints); - $a->totalRR($a->sd_restraints);
+            if ($a->totalRR($a->sd_restraints_exist) == $b->totalRR($b->sd_restraints_exist)){
+                return 0;
+            }
+            return ($b->totalRR($b->sd_restraints_exist) < $a->totalRR($a->sd_restraints_exist)) ? -1 : 1;
         });
 
         $sd_risks_posts = SdRisk::whereHas('sd_danger', function ($q) use ($single_document) {
             $q->where('single_document_id', $single_document->id);
-        })->get()->filter(function ($sd_risk, $key) {
+        })->get()->sort(function ($a, $b){
+            return $b->total() - $a->total();
+        })->filter(function ($sd_risk, $key) {
             return $sd_risk->total() > 23;
         })->all();
 
@@ -43,11 +48,27 @@ class PDFController extends Controller
             $q->where('id', $single_document->id);
         })->get();
 
+        $sd_dangers = SdDanger::whereHas('single_document', function ($q) use ($single_document) {
+            $q->where('id', $single_document->id);
+        })->get();
+
+        $sd_works_units = $single_document->work_unit_pdf;
+        $all = [
+            "id" => "tous",
+            "name" => "tous"
+        ];
+        $sd_works_units->push($all);
+        $works_units = $sd_works_units->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE);
+
+
+        $dangers = $single_document->dangers()->whereHas('danger.exposition')->get();
+
+
         $numberEmUt = 0;
         $numberEmExpo = 0;
         foreach ($works as $work){
             $numberEmUt = $numberEmUt + $work->number_employee;
-            
+
             $expos_questions = SdExpositionQuestion::whereHas('sd_work_unit', function ($q) use ($work) {
                 $q->where('sd_work_unit_id', $work->id);
             })->get();
@@ -59,7 +80,7 @@ class PDFController extends Controller
 
         $expos = Exposition::all();
 
-    
+
         setlocale(LC_TIME, 'fr', 'fr_FR', 'fr_FR.ISO8859-1');
         $histories = Historie::find(session('status'));
 
@@ -71,7 +92,7 @@ class PDFController extends Controller
                 'labels' => ['Acceptable', 'A améliorer', 'Agir vite', 'STOP'],
                 'datasets' => [
                     [
-                        'backgroundColor' => ['#43A389', '#F9CA62', '#F8912A', '#B32A3C'],
+                        'backgroundColor' => ["#43A389", "#F8912A","#FF7D8E","#B32A3C"],
                         'data' => $single_document->graphique(),
                         'borderWidth' => 0
                     ]
@@ -81,14 +102,14 @@ class PDFController extends Controller
                 'plugins' => [
                     'outlabels' => [
                         'text' => "%p \n (%l)",
-                        'color' => ['#43A389', '#F9CA62', '#F8912A', '#B32A3C'],
+                        'color' => ["#43A389", "#F8912A","#FF7D8E","#B32A3C"],
                         'backgroundColor' => 'transparent',
                         'lineColor' => 'transparent',
                         'stretch' => 20,
                         'font' => [
                             'resizable' => true,
-                            'minSize' => 15,
-                            'maxSize' => 18
+                            'minSize' => 13,
+                            'maxSize' => 13
                         ]
                     ]
                 ],
@@ -102,17 +123,51 @@ class PDFController extends Controller
                 ]
             ]
         ];
-        $chart = file_get_contents("https://quickchart.io/chart?w=500&h=300&c=" . urlencode(json_encode($chartConfig)));
+
+
+        if (!function_exists('curl_init'))
+        {
+            die('CURL is not installed!');
+        }
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "https://quickchart.io/chart?w=500&h=300&c=" . urlencode(json_encode($chartConfig)));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $chart = curl_exec($ch);
+        curl_close($ch);
+
+        //$chart = file_get_contents("https://quickchart.io/chart?w=500&h=300&c=" . urlencode(json_encode($chartConfig)));
+        if ( !Storage::exists('private/' . $single_document->client->id ) ) {
+            Storage::makeDirectory('private/' . $single_document->client->id, 0775, true );
+        }
         $chartUrl = storage_path('app/private/' . $single_document->client->id . '/chart.png');
 
         File::put($chartUrl, $chart);
 
-        $pdf = PDF::loadView('app.pdf.index', compact('chartUrl', 'single_document', 'item_mat', 'item_veh', 'item_eng', 'sd_risks', 'sd_risks_posts', 'numberEmUt', 'numberEmExpo', 'expos', 'date'))->setPaper('a4', 'landscape');
+        $pdf = PDF::loadView('app.pdf.index',
+            compact(
+            'chartUrl',
+            'single_document',
+            'item_mat',
+            'item_veh',
+            'item_eng',
+            'sd_risks',
+            'sd_risks_posts',
+            'numberEmUt',
+            'numberEmExpo',
+            'expos',
+            'date',
+            'sd_dangers',
+            'works',
+            'dangers',
+            'works_units')
+        )->setPaper('a4', 'landscape');
 
-        return $pdf->stream();
-        //Storage::put('/private/' . $single_document->client->id . '/du/' . $histories->id . '.pdf', $pdf->download()->getOriginalContent());
+        //return $pdf->stream();
 
-        //return back()->with('status', 'Document unique généré avec succès, vous pouvez maintenant le télécharger !');
+        Storage::put('/private/' . $single_document->client->id . '/du/' . $histories->id . '.pdf', $pdf->download()->getOriginalContent());
+
+        return back()->with('status', 'Document unique généré avec succès, vous pouvez maintenant le télécharger !');
     }
 
     public static function create()

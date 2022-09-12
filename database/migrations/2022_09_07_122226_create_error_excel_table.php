@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHistoriesTable extends Migration
+class CreateErrorExcelTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateHistoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('histories', function (Blueprint $table) {
+        Schema::create('error_excel', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->text('work');
-            $table->date('date');
-
-            $table->foreignUuid('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('line');
+            $table->string('error');
 
             $table->foreignUuid('single_document_id');
             $table->foreign('single_document_id')->references('id')->on('single_documents')->onDelete('cascade');
@@ -33,6 +30,6 @@ class CreateHistoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('histories');
+        Schema::dropIfExists('error_excel');
     }
 }

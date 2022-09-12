@@ -257,7 +257,21 @@
                                     <p class="message-error">{{ $message }}</p>
                                 </li>
                             @enderror
+                            <li class="none error-restraint">
+                                <p class="message-error"></p>
+                            </li>
                         </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="line">
+                    <div class="left">
+                        <span class="bold">Criticité de la situation actuelle</span>
+                    </div>
+                    <div class="right">
+                        <button type="button" class="btn btn-success" data-id="status">Acceptable</button>
                     </div>
                 </div>
             </div>
@@ -289,16 +303,6 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="line">
-                    <div class="left">
-                        <span class="bold">Criticité de la situation actuelle</span>
-                    </div>
-                    <div class="right">
-                        <button type="button" class="btn btn-success" data-id="status">Acceptable</button>
-                    </div>
-                </div>
-            </div>
             <div class="row row--submit">
                 <button class="btn btn-success">Valider le risque</button>
             </div>
@@ -318,13 +322,10 @@
                             <div class="content-modal-oza">
                                 <div class="row">
                                     <div class="line">
-                                        <div class="left">
-                                            <label class="con"> @stripTags($restraint->name)
-                                                <input type="checkbox" class="btn-restraint-modal-oza" name="restraint_modal[]" value="{{ $restraint->id }}">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </div>
-                                        <div class="right"></div>
+                                        <label class="con"> @stripTags($restraint->name)
+                                            <input type="checkbox" class="btn-restraint-modal-oza" name="restraint_modal[]" value="{{ $restraint->id }}">
+                                            <span class="checkmark"></span>
+                                        </label>
                                     </div>
                                 </div>
                                 <div class="restraint-modal-content">
@@ -716,7 +717,7 @@
     @if(old('restraint_proposed'))
         <script>
             @foreach(old('restraint_proposed') as $restraint)
-                createRestraintProposed('@stripTags($restraint)')
+                createRestraintProposed(`@stripTags($restraint)`)
             @endforeach
         </script>
     @endif

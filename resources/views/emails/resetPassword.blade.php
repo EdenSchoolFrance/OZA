@@ -4,8 +4,9 @@
         <meta charset="utf-8">
     </head>
     <body>
-        <h2>Reset du mot de passe</h2>
-        <p>Cliquez sur le lien pour modifier votre mot de passe</p>
-        <a href="{{ route('resetPassword', [$data['token']]) }}">Modifier mon mot de passe</a>
+        <p>Bonjour,</p>
+        <p>Pour réinitialiser votre mot de passe, merci de cliquer sur le lien suivant : <a href="{{ route('resetPassword', [$data['token']]) }}">ICI</a> </p>
+        <p>Si vous n'êtes pas à l'origine de cette demande, ne tenez pas compte de ce message.</p>
+        <p>Cordialement.</p>
     </body>
 </html>

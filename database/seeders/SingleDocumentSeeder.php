@@ -18,6 +18,7 @@ class SingleDocumentSeeder extends Seeder
     public function run()
     {
         $client = Client::where('name', 'Biocoop')->first();
+        $clientT = Client::where('name', 'Test')->first();
         $admin = User::where('email', 'adminclient@gmail.com')->first();
         $manager = User::where('email', 'managerclient@gmail.com')->first();
         $editor = User::where('email', 'editorclient@gmail.com')->first();
@@ -45,5 +46,24 @@ class SingleDocumentSeeder extends Seeder
         $sd->users()->attach($manager);
         $sd->users()->attach($editor);
         $sd->users()->attach($reader);
+
+        $sd = new SingleDocument();
+        $sd->id = uniqid();
+        $sd->name = "Import";
+        $sd->name_enterprise = "Test";
+        $sd->adress = "12 rue du louvre";
+        $sd->city_zipcode = "75000";
+        $sd->city = "Paris";
+        $sd->sector = "Secteur";
+        $sd->activity_description = "Description de l'activité";
+        $sd->premise_description = "Description des locaux";
+        $sd->firstname = "Jhon";
+        $sd->lastname = "Doe";
+        $sd->email = "jhon.doe@bicoop.fr";
+        $sd->phone = "0614875412";
+        $sd->function = "Responsable DU";
+        $sd->work_unit_limit = 70;
+        $sd->client()->associate($clientT);
+        $sd->save();
     }
 }

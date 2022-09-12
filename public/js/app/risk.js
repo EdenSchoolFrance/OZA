@@ -23,16 +23,18 @@ on('.modal--risk .btn-modal-risk-add', 'click', (el, e) => {
     if (el.dataset.id){
         id = el.dataset.id
         el.removeAttribute('data-id');
-        let tech = $('.radio-bar-tech input:checked',document,0).value || 'null'
-        let orga = $('.radio-bar-orga input:checked',document,0).value || 'null'
-        let human = $('.radio-bar-human input:checked',document,0).value || 'null'
+        let d = el.closest(".modal-body")
+        let tech = d.querySelector('.radio-bar-tech input:checked').value || 'null'
+        let orga = d.querySelector('.radio-bar-orga input:checked').value|| 'null'
+        let human = d.querySelector('.radio-bar-human input:checked').value || 'null'
         let title = $('#nameRisk', document, 0).value || "Mesure"
         if (tech === "null" && orga === "null" && human === "null") return errorRestraintCreate();
         editRestraint(tech,orga,human,title,id)
     }else{
-        let tech = $('.radio-bar-tech input:checked',document,0).value || 'null'
-        let orga = $('.radio-bar-orga input:checked',document,0).value || 'null'
-        let human = $('.radio-bar-human input:checked',document,0).value || 'null'
+        let d = el.closest(".modal-body")
+        let tech = d.querySelector('.radio-bar-tech input:checked').value || 'null'
+        let orga = d.querySelector('.radio-bar-orga input:checked').value|| 'null'
+        let human = d.querySelector('.radio-bar-human input:checked').value || 'null'
         let title = $('#nameRisk', document, 0).value || "Mesure"
         if (tech === "null" && orga === "null" && human === "null") return errorRestraintCreate();
         createRestraint(tech,orga,human,title,id)
@@ -84,7 +86,7 @@ on('.btn-delete', 'click', (el, e) => {
     calculRestraintColorDisplay();
     let restraints = $('.restraint_ex');
     if (restraints.length === 0){
-        let content = 
+        let content =
         `<ul>
             <li>Aucune mesure existante</li>
         </ul>`;
@@ -98,7 +100,7 @@ on('.btn-delete', 'click', (el, e) => {
 
 on('.btn-delete-restraint', 'click', (el, e) => {
     el.closest('li').remove();
-    let restraints = $('.restraints-pro')
+    let restraints = $('li.res-pro')
     if (restraints.length === 0){
         let content = `<li>Aucune mesure proposée</li>`;
         let ul = document.createElement('ul')
@@ -113,14 +115,15 @@ on('.btn-add-restraint', 'click', (el, e) => {
     if (all[all.length - 2] !== undefined && all[all.length - 2] !== el.closest('li') && all[all.length - 2].querySelector('textarea').value === ''){
         all[all.length - 2].querySelector('textarea').focus();
     }else{
-        let restraints = $('.restraints-pro')
+        let restraints = $('li.res-pro')
+        console.log(restraints)
         if (restraints.length === 0){
             $('.nothing_restraint_pro', document, 0).remove();
         }
         let content ='<button type="button" class="btn btn-text btn-small btn-delete-restraint"><i class="far fa-times-circle"></i></button>\n' +
             '<textarea class="form-control auto-resize" placeholder="" name="restraint_proposed[]"></textarea>'
         let li = document.createElement('li');
-        li.setAttribute('class','restraints-pro')
+        li.setAttribute('class','res-pro')
         li.innerHTML = content;
         el.closest('li').before(li);
     }
@@ -178,10 +181,10 @@ on('.btn-modal-risk-oza-add', 'click', (el, e) => {
     for (let i = 0; i < all.length ; i++) {
         if (all[i].querySelector('.btn-restraint-modal-oza').checked === true){
             let id = Date.now();
-            let tech = all[i].querySelector('.radio-bar-tech input:checked').value || 'null'
-            let orga = all[i].querySelector('.radio-bar-orga input:checked').value || 'null'
-            let human = all[i].querySelector('.radio-bar-human input:checked').value || 'null'
-            let title = all[i].querySelector('.con').innerText || "Mesure"
+            let tech = all[i].querySelector('.radio-bar-tech input:checked').value || `null`
+            let orga = all[i].querySelector('.radio-bar-orga input:checked').value || `null`
+            let human = all[i].querySelector('.radio-bar-human input:checked').value || `null`
+            let title = all[i].querySelector('.con').innerText || `Mesure`
             createRestraint(tech,orga,human,title,id);
         }else{
             let title = all[i].querySelector('.con').innerText
@@ -193,7 +196,7 @@ on('.btn-modal-risk-oza-add', 'click', (el, e) => {
 on('.radio-bar .con input', 'click', (el, e) => {
     let total = $('.btn-calcul-risk', document, 0)
     total.innerText = riskCalcul()
-    setColor(total,riskCalcul());
+    setColor(total,riskCalcul(),true);
     total.classList.add('btn-small', 'btn-calcul-risk')
     calculRestraintColorDisplay();
 });
@@ -291,25 +294,24 @@ function calculRestraintColorDisplay(){
     let total = restraintCalcul()
     let statusNumber = $('button[data-id="status-number"]', document, 0)
     let status = $('button[data-id="status"]', document, 0)
-    setColor(statusNumber,total);
+    setColor(statusNumber,total,false);
     statusNumber.innerText = total;
-    totalEnd(status,total);
-    setColor(status,total);
+    totalEnd(status,total,false);
+    setColorC(status,total,false);
 }
 
-function restraintCalcul(){
+function restraintCalcul(x){
     let RB = riskCalcul();
     let totalEnd = 0;
     let count = 0;
-    let all = $('input[name="restraint[]"]');
-    if (all.length <= 0) return RB;
+    let all = $('input[name="res_id[]"]');
+    if (all.length < 1) return RB;
     for (let i = 0; i < all.length ; i++) {
-        let allValue = all[i].value.split('|');
+        let divSup = all[i].closest('li');
         let tech;
         let orga;
         let human;
-
-        switch (allValue[0]){
+        switch (divSup.querySelector('input[name="res_tech[]"]').value){
             case "very good" :
                 tech = 4
                 break
@@ -323,7 +325,7 @@ function restraintCalcul(){
                 tech = 0
                 break
         }
-        switch (allValue[1]){
+        switch (divSup.querySelector('input[name="res_orga[]"]').value){
             case "very good" :
                 orga = 3
                 break
@@ -337,7 +339,7 @@ function restraintCalcul(){
                 orga = 0
                 break
         }
-        switch (allValue[2]){
+        switch (divSup.querySelector('input[name="res_human[]"]').value){
             case "very good" :
                 human = 3
                 break
@@ -351,7 +353,7 @@ function restraintCalcul(){
                 human = 0
                 break
         }
-       
+
         let total = tech + orga + human;
 
         totalEnd = total+totalEnd;
@@ -361,51 +363,123 @@ function restraintCalcul(){
 
     if (count === 0) return RB;
 
+
     let A = totalEnd + 1/10 * count;
+    let cal;
+    if (A >= 18.6) cal = pon.find( x => x.sum === 18.6)
+    else cal = pon.find( x => x.sum === A);
 
-    let cal = pon.find( x => x.sum === A);
-
-    return Math.round(cal.weighting * RB, 1);
-
-    // if (Math.ceil((RB * totalEnd) / count) === 0) return RB;
-    // else return Math.ceil((RB * totalEnd) / count);
+    let end = cal.weighting * RB
+    return end.toFixed(1);
 
 }
 
-function setColor(el,total){
-    el.className = ""
-    el.classList.add('btn')
-    switch (true) {
-        case (total <= 15) :
-            el.classList.add('btn-success');
-            break;
-        case (total < 20) :
-            el.classList.add('btn-warning');
-            break;
-        case (total < 30) :
-            el.classList.add('btn-warn');
-            break;
-        case (total >= 30) :
-            el.classList.add('btn-danger');
-            break;
+function setColor(el,total,RB){
+    if (RB === true){
+        el.className = ""
+        el.classList.add('btn')
+        switch (true) {
+            case (total <= 12.5) :
+            case (total < 24) :
+                break;
+            case (total < 30) :
+                el.classList.add('btn-warn');
+                break;
+            case (total >= 30) :
+                el.classList.add('btn-danger');
+                break;
+        }
+    }else{
+        el.className = ""
+        el.classList.add('btn')
+        switch (true) {
+            case (total <= 12.5) :
+            case (total < 24) :
+                break;
+            case (total < 30) :
+                el.classList.add('btn-warn');
+                break;
+            case (total >= 30) :
+                el.classList.add('btn-danger');
+                break;
+        }
     }
+
 }
 
-function totalEnd(el,number){
-    switch (true){
-        case (number <= 15) :
-            el.innerText = "Acceptable"
-            break
-        case (number < 20) :
-            el.innerText = "A améliorer"
-            break
-        case (number < 30) :
-            el.innerText = "Agir vite"
-            break
-        case (number >= 30) :
-            el.innerText = "STOP"
-            break
+
+function setColorC(el,total,RB){
+    if (RB === true){
+        el.className = ""
+        el.classList.add('btn')
+        switch (true) {
+            case (total <= 12.5) :
+                el.classList.add('btn-success');
+                break;
+            case (total < 24) :
+                el.classList.add('btn-yellow');
+                break;
+            case (total < 30) :
+                el.classList.add('btn-warn');
+                break;
+            case (total >= 30) :
+                el.classList.add('btn-danger');
+                break;
+        }
+    }else{
+        el.className = ""
+        el.classList.add('btn')
+        switch (true) {
+            case (total <= 12.5) :
+                el.classList.add('btn-success');
+                break;
+            case (total < 24) :
+                el.classList.add('btn-yellow');
+                break;
+            case (total < 30) :
+                el.classList.add('btn-warn');
+                break;
+            case (total >= 30) :
+                el.classList.add('btn-danger');
+                break;
+        }
     }
+
+}
+
+function totalEnd(el,number,RB){
+    if (RB === true){
+        switch (true){
+            case (number <= 12.5) :
+                el.innerText = "Acceptable"
+                break
+            case (number < 24) :
+                el.innerText = "A améliorer"
+                break
+            case (number < 30) :
+                el.innerText = "Agir vite"
+                break
+            case (number >= 30) :
+                el.innerText = "STOP"
+                break
+        }
+    }else{
+        switch (true){
+            case (number <= 12.5) :
+                el.innerText = "Acceptable"
+                break
+            case (number < 24) :
+                el.innerText = "A améliorer"
+                break
+            case (number < 30) :
+                el.innerText = "Agir vite"
+                break
+            case (number >= 30) :
+                el.innerText = "STOP"
+                break
+        }
+    }
+
 }
 
 
@@ -487,7 +561,7 @@ function editRestraint(tech,orga,human,title,id){
 }
 
 function createRestraintProposed(title){
-    let restraints = $('.restraints-pro')
+    let restraints = $('.res-pro')
     if (restraints.length === 0){
         $('.nothing_restraint_pro', document, 0).remove();
     }

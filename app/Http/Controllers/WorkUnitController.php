@@ -32,7 +32,7 @@ class WorkUnitController extends Controller
 
         $works = SdWorkUnit::whereHas('single_document', function ($q) use ($id) {
             $q->where('id', $id);
-        })->orderBy('name')->get();
+        })->orderBy('name')->get()->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE);
 
         $items = Item::all();
 
@@ -101,7 +101,7 @@ class WorkUnitController extends Controller
 
         $request->validate([
             'work_unit_entitled' => 'required',
-            'number_employee' => 'required|numeric|min:1',
+            'number_employee' => 'required|numeric',
             'type' => 'required',
             'activities' => 'required|array'
         ]);
@@ -154,7 +154,7 @@ class WorkUnitController extends Controller
 
         $request->validate([
             'work_unit_entitled' => 'required',
-            'number_employee' => 'required|numeric|min:1',
+            'number_employee' => 'required|numeric',
             'type' => 'required',
             'activities' => 'required|array'
         ]);

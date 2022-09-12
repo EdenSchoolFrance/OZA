@@ -33,7 +33,7 @@ class SdRisk extends Model
 
     public function sd_work_unit()
     {
-        return $this->belongsTo(SdWorkUnit::class);
+        return $this->belongsTo(SdWorkUnit::class)->orderByDesc("name");
     }
 
     public function sd_restraints()
@@ -221,7 +221,7 @@ class SdRisk extends Model
                     break;
             }
             $total = $tech + $orga + $human;
-            
+
             $totalEnd = $total+$totalEnd;
 
             $count++;
@@ -233,49 +233,115 @@ class SdRisk extends Model
         if ($A >= 18.6) $Pon = RiskCalculation::where('sum', 18.6)->first();
         else if ($A <= 1.0) $Pon = RiskCalculation::where('sum', 1.0)->first();
         else $Pon = RiskCalculation::where('sum', $A)->first();
-        
-    
+
+
         $cal = $Pon->weighting * $RB;
 
         return round($cal, 1);
     }
 
-    public function color($number){
-        switch (true) {
-            case ($number <= 15) :
-                return 'btn-success';
-            case ($number < 20) :
-                return 'btn-warning';
-            case ($number < 30) :
-                return 'btn-warn';
-            case ($number >= 30) :
-                return 'btn-danger';
+    public function color($number, $RB){
+        if ($RB === true){
+            switch (true) {
+                case ($number <= 12.5) :
+                case ($number < 24) :
+                    return '';
+                case ($number < 30) :
+                    return 'btn-warn';
+                case ($number >= 30) :
+                    return 'btn-danger';
+            }
+        }else{
+            switch (true) {
+                case ($number <= 12.5) :
+                case ($number < 24) :
+                    return '';
+                case ($number < 30) :
+                    return 'btn-warn';
+                case ($number >= 30) :
+                    return 'btn-danger';
+            }
         }
+
     }
 
-    public function colorPDF($number){
-        switch (true) {
-            case ($number <= 15) :
-                return 'green';
-            case ($number < 20) :
-                return 'yellow';
-            case ($number < 30) :
-                return 'pink';
-            case ($number >= 30) :
-                return 'red';
+    public function colorC($number, $RB){
+        if ($RB === true){
+            switch (true) {
+                case ($number <= 12.5) :
+                    return 'btn-success';
+                case ($number < 24) :
+                    return 'btn-yellow';
+                case ($number < 30) :
+                    return 'btn-warn';
+                case ($number >= 30) :
+                    return 'btn-danger';
+            }
+        }else{
+            switch (true) {
+                case ($number <= 12.5) :
+                    return 'btn-success';
+                case ($number < 24) :
+                    return 'btn-yellow';
+                case ($number < 30) :
+                    return 'btn-warn';
+                case ($number >= 30) :
+                    return 'btn-danger';
+            }
         }
+
     }
 
-    public function colorTotal($number){
-        switch (true) {
-            case ($number <= 15) :
-                return 'Acceptable';
-            case ($number < 20) :
-                return 'A améliorer';
-            case ($number < 30):
-                return 'Agir vite';
-            case ($number >= 30) :
-                return 'STOP';
+    public function colorPDF($number, $RB){
+        if ($RB === true){
+            switch (true) {
+                case ($number <= 12.5) :
+                    return 'green';
+                case ($number < 24) :
+                    return 'yellow';
+                case ($number < 30) :
+                    return 'pink';
+                case ($number >= 30) :
+                    return 'red';
+            }
+        }else{
+            switch (true) {
+                case ($number <= 12.5) :
+                    return 'green';
+                case ($number < 24) :
+                    return 'yellow';
+                case ($number < 30) :
+                    return 'pink';
+                case ($number >= 30) :
+                    return 'red';
+            }
+        }
+
+    }
+
+    public function colorTotal($number, $RB){
+        if ($RB === true){
+            switch (true) {
+                case ($number <= 12.5) :
+                    return 'Acceptable';
+                case ($number < 24) :
+                    return 'A améliorer';
+                case ($number < 30):
+                    return 'Agir vite';
+                case ($number >= 30) :
+                    return 'STOP';
+            }
+        }else {
+            switch (true) {
+                case ($number <= 12.5) :
+                    return 'Acceptable';
+                case ($number < 24) :
+                    return 'A améliorer';
+                case ($number < 30):
+                    return 'Agir vite';
+                case ($number >= 30) :
+                    return 'STOP';
+            }
         }
     }
 
@@ -310,6 +376,41 @@ class SdRisk extends Model
         }
         if ($count === 0) return '-';
         return ceil($total / $count);
+    }
+
+    public function translateRR($number, $type){
+
+        switch (true){
+            case ($type === "tech"):
+                switch (true){
+                    case ($number == 4) :
+                        return "très bon";
+                    case ($number == 3):
+                        return "bon";
+                    case ($number == 2):
+                        return "moy";
+                    case ($number == 0):
+                        return "0";
+                }
+                break;
+            case ($type === "orga"):
+            case ($type === "hum"):
+                switch (true){
+                    case ($number == 3) :
+                        return "très bon";
+                    case ($number == 2):
+                        return "bon";
+                    case ($number == 1):
+                        return "moy";
+                    case ($number == 0):
+                        return "0";
+                }
+                break;
+
+            default:
+                return "0";
+
+        }
     }
 
 }

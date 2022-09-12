@@ -1,6 +1,22 @@
 @extends('app')
 
 @section('content')
+    @if(isset($excelErrors))
+        <div class="alert alert-danger">
+            <p>
+                @foreach($excelErrors as $error)
+                    {{ $error->error . ", a la line : ". $error->line }} <br>
+                @endforeach
+            </p>
+            <button type="button" data-dismiss="alert" class="btn-close"><i class="fas fa-times"></i></button>
+        </div>
+        @php
+            foreach ($excelErrors as $error){
+                $error->delete();
+            }
+        @endphp
+    @endif
+
     <div class="content client">
         <div class="card card--add-client">
             <form class="card-body" action="{{ route('admin.single_document.update', [$sd->client->id, $sd->id]) }}" method="post">
@@ -154,6 +170,37 @@
                     </div>
                 @endif
             </form>
+            @if ($import === true)
+                <hr>
+                <form class="card-body" action="{{ route('admin.single_document.import', [$sd->client->id, $sd->id]) }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row">
+                        <div class="line">
+                            <div class="left">
+                                <label for="import">Fichier excel</label>
+                            </div>
+                            <div class="right">
+                                <label for="excel" class="form-control form-control--file @error('excel') invalid @enderror">
+                                    <span>Choisir un fichier excel</span>
+                                    <span>
+                                        Parcourir
+                                        <input type="file" name="excel" id="excel" class="inputLogo" placeholder="Choisir un fichier excel">
+                                    </span>
+                                </label>
+                                @error('excel')
+                                    <p class="message-error">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="left"></div>
+                            <div class="right">
+                                <button type="submit" class="btn btn-success">Importer</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            @endif
         </div>
 
         @if (Auth::user()->hasPermission('ADMIN'))

@@ -241,6 +241,7 @@ span {
                 padding-top: 70px;
 
                 .subtitle {
+                    font-size: 25px;
                     font-weight: bold;
                 }
 
@@ -325,6 +326,11 @@ table {
                 color: $white;
             }
 
+            &.orange {
+                background-color: $orange;
+                color: $white;
+            }
+
             &.red {
                 background-color: $danger;
                 color: $white;
@@ -362,8 +368,18 @@ table {
                 color: $white;
             }
 
+            &.yellow-v {
+                background-color: $warning;
+                color: $black;
+            }
+
             &.pink {
                 background-color: $pink;
+                color: $white;
+            }
+
+            &.orange {
+                background-color: $orange;
                 color: $white;
             }
 
@@ -563,6 +579,8 @@ table {
         }
 
         &--risk-post {
+            margin-top: 15px;
+            margin-bottom: 15px;
             tr td {
                 font-size: 10px;
             }
