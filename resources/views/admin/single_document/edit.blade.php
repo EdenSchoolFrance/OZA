@@ -5,7 +5,7 @@
         <div class="alert alert-danger">
             <p>
                 @foreach($excelErrors as $error)
-                    {{ $error->error . ", a la line : ". $error->line }} <br>
+                    {{ $error->error . ", à la ligne : ". $error->line }} <br>
                 @endforeach
             </p>
             <button type="button" data-dismiss="alert" class="btn-close"><i class="fas fa-times"></i></button>

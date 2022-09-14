@@ -150,6 +150,9 @@ class ClientController extends Controller
         $file = $request->file('logo');
 
         if ($file) {
+            if ( !Storage::exists('/public/' . $client->id ) ) {
+                Storage::makeDirectory('/public/' . $client->id, 0775, true );
+            }
             Storage::delete('/public/' . $client->id . 'logo.' . $client->image_type);
             Storage::putFileAs('/public/' . $client->id, $file, 'logo.' . $file->extension());
         }

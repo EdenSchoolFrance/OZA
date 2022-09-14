@@ -81,7 +81,7 @@ class FirstSheetImport implements ToCollection
 
         }
 
-        return back()->with('status', "Risk importer");
+        return back()->with('status', "Import terminé");
     }
 
     protected function createRisk($data)
