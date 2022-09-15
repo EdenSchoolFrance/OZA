@@ -20,15 +20,15 @@
                                 <td class="td_work_unit" data-sort="{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "UT Tous" }} {{ $sd_risk->sd_danger->danger->name }}">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "UT Tous" }}</td>
                                 <td class="td_danger">{{ $sd_risk->sd_danger->danger->name }}</td>
                                 <td class="td_risk">{{ $sd_risk->name }}</td>
-                                <td class="td_evaluation" data-sort="{{ $sd_risk->totalRR($sd_risk->sd_restraints_exist) }}">
+                                <td class="td_evaluation" data-sort="{{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->totalRR($sd_risk->sd_restraints_exist) : $sd_risk->total() }}">
                                     <div class="list list--text list--space">
                                         <div class="list-row">
                                             <p class="list-point list-point--text">RR</p>
-                                            <button class="btn {{ $sd_risk->color($sd_risk->totalRR($sd_risk->sd_restraints_exist),false) }} btn-small">{{ $sd_risk->totalRR($sd_risk->sd_restraints) }}</button>
+                                            <button class="btn {{ $risk->color( isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total(),false) }} btn-small">{{ isset($risk->sd_restraints_exist[0]) ? ($risk->totalRR($risk->sd_restraints_exist) === 0 ? $risk->total() : $risk->totalRR($risk->sd_restraints_exist)) : $risk->total() }}</button>
                                         </div>
                                         <div class="list-row">
                                             <p class="list-point list-point--text">C</p>
-                                            <button type="button" class="btn {{ $sd_risk->color(($sd_risk->totalRR($sd_risk->sd_restraints_exist)),false) }} btn-small">{{ $sd_risk->colorTotal(($sd_risk->totalRR($sd_risk->sd_restraints)),false) }}</button>
+                                            <button type="button" class="btn {{ $risk->colorC(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total(),false) }} btn-small">{{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints),false) : $sd_risk->colorTotal($sd_risk->total(),true) }}</button>
                                         </div>
                                     </div>
                                 </td>
