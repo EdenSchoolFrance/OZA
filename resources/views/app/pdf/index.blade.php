@@ -520,7 +520,7 @@
                                 <td class="criticity center {{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints_exist),false) :  $sd_risk->colorPDF($sd_risk->total(),true) }}">{{ $risk->colorTotal(isset($risk->sd_restraints_exist[0]) ? $risk->totalRR($risk->sd_restraints_exist) : $risk->total(),false) }}</td>
                                 <td class="restraint">
                                     @foreach($sd_risk->sd_restraints_porposed as $sd_restraint)
-                                        @stripTags($sd_restraint->name)<br>
+                                        * @stripTags($sd_restraint->name)<br>
                                     @endforeach
                                 </td>
                                 <td class="comment"></td>
