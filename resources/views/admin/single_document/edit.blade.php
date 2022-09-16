@@ -18,6 +18,9 @@
     @endif
 
     <div class="content client">
+        <div class="link--right">
+            <a href="{{ route('dashboard', [$sd->id]) }}" class="btn btn-yellow"><i class="far fa-eye"></i>Visualiser le DU</a>
+        </div>
         <div class="card card--add-client">
             <form class="card-body" action="{{ route('admin.single_document.update', [$sd->client->id, $sd->id]) }}" method="post">
                 @csrf
