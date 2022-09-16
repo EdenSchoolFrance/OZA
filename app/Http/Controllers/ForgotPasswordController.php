@@ -29,14 +29,17 @@ class ForgotPasswordController extends Controller
         ]);
 
         $token = Str::random(64);
-  
+
         DB::table('password_resets')->insert([
-            'email' => $request->email, 
-            'token' => $token, 
+            'email' => $request->email,
+            'token' => $token,
             'created_at' => Carbon::now()
         ]);
 
-        Mail::to($request->email)->queue(new ResetPassword(["token" => $token]));
+        Mail::send('emails.resetPassword', ['token' => $token], function($message) use($request){
+            $message->to($request->email);
+            $message->subject('Réinitialisation du mot de passe');
+        });
 
         return back()->with('status', 'Un mail vous a été envoyé !');
     }

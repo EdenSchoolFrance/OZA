@@ -58,7 +58,7 @@ class HistorieController extends Controller
 
         $historie->delete();
 
-        return back()->with('status', 'Une version historique de ce document unique a bien été supprimé !');
+        return back()->with('status', 'Une version historique de ce document unique a bien été supprimée !');
     }
 
     public function download($id, $historical_id){
