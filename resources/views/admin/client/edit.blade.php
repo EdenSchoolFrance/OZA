@@ -48,7 +48,7 @@
                             <label for="logo">Logo actuel</label>
                         </div>
                         <div class="right">
-                            <img src="{{ asset('/storage/' . $client->id . '/logo.' . $client->image_type) }}" alt="Logo actuel client" style="max-height: 100px; max-width: 250px;">
+                            <img src="{{ asset('/storage/' . $client->id . '/'. $client->image) }}" alt="Logo actuel client" style="max-height: 100px; max-width: 250px;">
                         </div>
                     </div>
                     <div class="line">

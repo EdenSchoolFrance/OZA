@@ -79,11 +79,12 @@ class ClientController extends Controller
 
         $admin_client = Role::where('permission', 'ADMIN')->first();
         $file = $request->file('logo');
+        $name = uniqid();
 
         $client = new Client();
         $client->id = uniqid();
         $client->name = $request->name_enterprise;
-        $client->image_type = $file->extension();
+        $client->image = $name.'.'.$file->extension();
         $client->client_number = $request->client_number;
         $client->adress = $request->adress;
         $client->additional_adress = $request->additional_adress;
@@ -107,7 +108,7 @@ class ClientController extends Controller
         Storage::makeDirectory('/public/' . $client->id);
         Storage::makeDirectory('/private/' . $client->id . '/du');
 
-        Storage::putFileAs('/public/' . $client->id, $file, 'logo.' . $file->extension());
+        Storage::putFileAs('/public/' . $client->id, $file, $name.'.' . $file->extension());
 
         return redirect()->route('admin.client.edit', [$client->id, 'tab' => 'du'])->with('status', 'Le client a bien été créé !');
     }
@@ -148,17 +149,17 @@ class ClientController extends Controller
         ]);
 
         $file = $request->file('logo');
-
+        $name = uniqid();
         if ($file) {
             if ( !Storage::exists('/public/' . $client->id ) ) {
                 Storage::makeDirectory('/public/' . $client->id, 0775, true );
             }
-            Storage::delete('/public/' . $client->id . 'logo.' . $client->image_type);
-            Storage::putFileAs('/public/' . $client->id, $file, 'logo.' . $file->extension());
+            Storage::delete('/public/' . $client->id ."/". $client->image);
+            Storage::putFileAs('/public/' . $client->id, $file, $name.'.' . $file->extension());
         }
 
         $client->name = $request->name_enterprise;
-        if ($file) $client->image_type = $file->extension();
+        if ($file) $client->image = $name.'.'.$file->extension();
         $client->client_number = $request->client_number;
         $client->adress = $request->adress;
         $client->additional_adress = $request->additional_adress;

@@ -10,7 +10,7 @@
         <div class="right">
             @isset($single_document)
                 <div class="nav-link nav-link--single-documents">
-                    <img src="{{ asset('/storage/' . $single_document->client->id . '/logo.' . $single_document->client->image_type) }}" alt="Logo">
+                    <img src="{{ asset('/storage/' . $single_document->client->id . '/' . $single_document->client->image) }}" alt="Logo">
                     <div class="btn-group-dropdown">
                         @if (Auth::user()->hasAccess('oza'))
                             <button type="button" class="btn toggle-dropdown @if(count($single_document->client->single_documents) == 1) disabled @endif">
