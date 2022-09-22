@@ -66,24 +66,75 @@ class PDFController extends Controller
 
         foreach($single_document->dangers->sortBy('danger.name') as $sd_danger) {
 
-            $verif = $sd_danger->exist_risk();
+            if (count($sd_works) > 1) {
 
-            if ($verif === false){
+                $verif = $sd_danger->exist_risk();
 
-                $item = [
-                    "info" => "all",
-                    "sd_work_unit" => "Tous",
-                    "sd_work_unit_name" => "Tous",
-                    "sd_danger" => $sd_danger,
-                    "sd_danger_name" => $sd_danger->danger->name,
-                    "sd_risks" => [],
-                ];
-                foreach ($sd_danger->sd_risks_ut_all() as $sd_risk){
-                    $item["sd_risks"][] = $sd_risk;
+                if ($verif === false) {
+
+                    $item = [
+                        "info" => "all",
+                        "sd_work_unit" => "Tous",
+                        "sd_work_unit_name" => "Tous",
+                        "sd_danger" => $sd_danger,
+                        "sd_danger_name" => $sd_danger->danger->name,
+                        "sd_risks" => [],
+                    ];
+                    foreach ($sd_danger->sd_risks_ut_all() as $sd_risk) {
+                        $item["sd_risks"][] = $sd_risk;
+                    }
+                    $sd_risks_final[] = $item;
+
+                } else if ($verif === true && ($sd_danger->ut_all === 0 || $sd_danger->ut_all === null)) {
+
+                    foreach ($sd_works as $sd_work) {
+                        $item = [
+                            "info" => "notAll",
+                            "sd_work_unit" => $sd_work,
+                            "sd_work_unit_name" => $sd_work->name,
+                            "sd_danger" => $sd_danger,
+                            "sd_danger_name" => $sd_danger->danger->name,
+                            "sd_risks" => []
+                        ];
+                        foreach ($sd_work->sd_danger_risks($sd_danger->id) as $sd_risk) {
+                            $item["sd_risks"][] = $sd_risk;
+                        }
+                        $sd_risks_final[] = $item;
+                    }
+
+                } else if ($verif === true && $sd_danger->ut_all > 0) {
+
+                    $all = [
+                        "info" => "allAndDanger",
+                        "sd_work_unit" => "Tous",
+                        "sd_work_unit_name" => "Tous",
+                        "sd_danger" => $sd_danger,
+                        "sd_danger_name" => $sd_danger->danger->name,
+                        "sd_risks" => [],
+                    ];
+                    foreach ($sd_danger->sd_risks_ut_all() as $sd_risk) {
+                        $all["sd_risks"][] = $sd_risk;
+                    }
+                    $sd_risks_final[] = $all;
+
+                    foreach ($sd_works as $sd_work) {
+                        if (count($sd_work->sd_danger_risks($sd_danger->id)) > 0) {
+                            $item = [
+                                "info" => "allAndDanger",
+                                "sd_work_unit" => $sd_work,
+                                "sd_work_unit_name" => $sd_work->name,
+                                "sd_danger" => $sd_danger,
+                                "sd_danger_name" => $sd_danger->danger->name,
+                                "sd_risks" => []
+                            ];
+                            foreach ($sd_work->sd_danger_risks($sd_danger->id) as $sd_risk) {
+                                $item["sd_risks"][] = $sd_risk;
+                            }
+                            $sd_risks_final[] = $item;
+                        }
+                    }
                 }
-                $sd_risks_final[] = $item;
-
-            } else if ($verif === true && ($sd_danger->ut_all === 0 || $sd_danger->ut_all === null) ){
+            }else{
 
                 foreach ($sd_works as $sd_work) {
                     $item = [
@@ -100,37 +151,6 @@ class PDFController extends Controller
                     $sd_risks_final[] = $item;
                 }
 
-            }else if ($verif === true && $sd_danger->ut_all > 0){
-
-                $all = [
-                    "info" => "allAndDanger",
-                    "sd_work_unit" => "Tous",
-                    "sd_work_unit_name" => "Tous",
-                    "sd_danger" => $sd_danger,
-                    "sd_danger_name" => $sd_danger->danger->name,
-                    "sd_risks" => [],
-                ];
-                foreach ($sd_danger->sd_risks_ut_all() as $sd_risk){
-                    $all["sd_risks"][] = $sd_risk;
-                }
-                $sd_risks_final[] = $all;
-
-                foreach ($sd_works as $sd_work) {
-                    if (count($sd_work->sd_danger_risks($sd_danger->id)) > 0) {
-                        $item = [
-                            "info" => "allAndDanger",
-                            "sd_work_unit" => $sd_work,
-                            "sd_work_unit_name" => $sd_work->name,
-                            "sd_danger" => $sd_danger,
-                            "sd_danger_name" => $sd_danger->danger->name,
-                            "sd_risks" => []
-                        ];
-                        foreach ($sd_work->sd_danger_risks($sd_danger->id) as $sd_risk) {
-                            $item["sd_risks"][] = $sd_risk;
-                        }
-                        $sd_risks_final[] = $item;
-                    }
-                }
             }
         }
 
