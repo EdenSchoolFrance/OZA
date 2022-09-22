@@ -1211,107 +1211,54 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($works_units as $sd_work_unit)
-                        @foreach($single_document->dangers->sortBy('danger.name') as $sd_danger)
-                            @if($sd_work_unit['name'] !== 'tous')
-                                @if(count($sd_work_unit->sd_danger_risks($sd_danger->id)) > 0)
-                                    @foreach($sd_work_unit->sd_danger_risks($sd_danger->id) as $sd_risk)
-
-                                        <tr>
-                                            <td class="workunit">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "Tous" }}</td>
-                                            <td class="danger">{{ $sd_risk->sd_danger->danger->name }}</td>
-                                            <td class="risk">@stripTags($sd_risk->name)</td>
-                                            <td class="center min-width min-width-left">{{ $sd_risk->translate($sd_risk->frequency,'frequency') }}</td>
-                                            <td class="center min-width min-width-left">{{ $sd_risk->translate($sd_risk->probability,'probability') }}</td>
-                                            <td class="center min-width min-width-left">{{ $sd_risk->translate($sd_risk->gravity,'gravity') }}</td>
-                                            <td class="center min-width min-width-left">{{ $sd_risk->translate($sd_risk->impact,'impact') }}</td>
-                                            <td class="center min-width min-width-left {{ $sd_risk->total() >= 24 ? "pink" : "" }}">{{ $sd_risk->total() }}</td>
-                                            <td class="restraint">
-                                                @foreach($sd_risk->sd_restraints_exist as $sd_restraint)
-                                                    * @stripTags($sd_restraint->name) <br>
-                                                @endforeach
-                                            </td>
-                                            <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneTech(), 1), "tech") }}</td>
-                                            <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneOrga(), 1), "orga") }}</td>
-                                            <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneHum(), 1), "hum") }}</td>
-                                            <td class="center min-width min-width-right"> {{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->totalRR($sd_risk->sd_restraints_exist) : $sd_risk->total() }}</td>
-                                            <td class="center criticity {{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints_exist),false) :  $sd_risk->colorPDF($sd_risk->total(),true) }}">{{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints),false) : $sd_risk->colorTotal($sd_risk->total(),true) }}</td>
-                                            <td class="restraint_proposed">
-                                                @foreach($sd_risk->sd_restraints_porposed as $sd_restraint)
-                                                    * @stripTags($sd_restraint->name) <br>
-                                                @endforeach
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                @else
-                                    <tr>
-                                        <td class="workunit">{{ $sd_work_unit->name }}</td>
-                                        <td class="danger">{{ $sd_danger->danger->name }}</td>
-                                        <td class="risk">Non concerné actuellement</td>
-                                        <td class="center min-width min-width-left">NC</td>
-                                        <td class="center min-width min-width-left">NC</td>
-                                        <td class="center min-width min-width-left">NC</td>
-                                        <td class="center min-width min-width-left">NON</td>
-                                        <td class="center min-width min-width-left">0</td>
-                                        <td class="restraint"></td>
-                                        <td class="center min-width min-width-right">0</td>
-                                        <td class="center min-width min-width-right">0</td>
-                                        <td class="center min-width min-width-right">0</td>
-                                        <td class="center min-width min-width-right">0</td>
-                                        <td class="center green criticity">0</td>
-                                        <td class="restraint_proposed"></td>
-                                    </tr>
-                                @endif
-                            @else
-                                @if(count($sd_danger->sd_risks_ut_all()) > 0)
-                                    @foreach($sd_danger->sd_risks_ut_all() as $sd_risk)
-                                        <tr>
-                                            <td class="workunit">Tous</td>
-                                            <td class="danger">{{ $sd_risk->sd_danger->danger->name }}</td>
-                                            <td class="risk">@stripTags($sd_risk->name)</td>
-                                            <td class="center min-width min-width-left">{{ $sd_risk->translate($sd_risk->frequency,'frequency') }}</td>
-                                            <td class="center min-width min-width-left">{{ $sd_risk->translate($sd_risk->probability,'probability') }}</td>
-                                            <td class="center min-width min-width-left">{{ $sd_risk->translate($sd_risk->gravity,'gravity') }}</td>
-                                            <td class="center min-width min-width-left">{{ $sd_risk->translate($sd_risk->impact,'impact') }}</td>
-                                            <td class="center min-width min-width-left {{ $sd_risk->total() >= 24 ? "pink" : "" }}">{{ $sd_risk->total() }}</td>
-                                            <td class="restraint">
-                                                @foreach($sd_risk->sd_restraints_exist as $sd_restraint)
-                                                    * @stripTags($sd_restraint->name) <br>
-                                                @endforeach
-                                            </td>
-                                            <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneTech(), 1), "tech") }}</td>
-                                            <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneOrga(), 1), "orga") }}</td>
-                                            <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneHum(), 1), "hum") }}</td>
-                                            <td class="center min-width min-width-right"> {{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->totalRR($sd_risk->sd_restraints_exist) : $sd_risk->total() }}</td>
-                                            <td class="center criticity {{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints_exist),false) :  $sd_risk->colorPDF($sd_risk->total(),true) }}">{{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints),false) : $sd_risk->colorTotal($sd_risk->total(),true) }}</td>
-                                            <td class="restraint_proposed">
-                                                @foreach($sd_risk->sd_restraints_porposed as $sd_restraint)
-                                                    * @stripTags($sd_restraint->name) <br>
-                                                @endforeach
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                @else
-                                    <tr>
-                                        <td class="workunit">Tous</td>
-                                        <td class="danger">{{ $sd_danger->danger->name }}</td>
-                                        <td class="risk">Non concerné actuellement</td>
-                                        <td class="center min-width min-width-left">NC</td>
-                                        <td class="center min-width min-width-left">NC</td>
-                                        <td class="center min-width min-width-left">NC</td>
-                                        <td class="center min-width min-width-left">NON</td>
-                                        <td class="center min-width min-width-left">0</td>
-                                        <td class="restraint"></td>
-                                        <td class="center min-width min-width-right">0</td>
-                                        <td class="center min-width min-width-right">0</td>
-                                        <td class="center min-width min-width-right">0</td>
-                                        <td class="center min-width min-width-right">0</td>
-                                        <td class="center green criticity">0</td>
-                                        <td class="restraint_proposed"></td>
-                                    </tr>
-                                @endif
-                            @endif
-                        @endforeach
+                    @foreach($sd_risks_final as $final)
+                        @if(!empty($final["sd_risks"]))
+                            @foreach($final["sd_risks"] as $sd_risk)
+                                <tr>
+                                    <td class="workunit">{{ $final["sd_work_unit"] === "Tous" ? "Tous" : $final["sd_work_unit"]->name }}</td>
+                                    <td class="danger">{{ $final["sd_danger"]->danger->name }}</td>
+                                    <td class="risk">@stripTags($sd_risk->name)</td>
+                                    <td class="center min-width min-width-left">{{ $sd_risk->translate($sd_risk->frequency,'frequency') }}</td>
+                                    <td class="center min-width min-width-left">{{ $sd_risk->translate($sd_risk->probability,'probability') }}</td>
+                                    <td class="center min-width min-width-left">{{ $sd_risk->translate($sd_risk->gravity,'gravity') }}</td>
+                                    <td class="center min-width min-width-left">{{ $sd_risk->translate($sd_risk->impact,'impact') }}</td>
+                                    <td class="center min-width min-width-left {{ $sd_risk->total() >= 24 ? "pink" : "" }}">{{ $sd_risk->total() }}</td>
+                                    <td class="restraint">
+                                        @foreach($sd_risk->sd_restraints_exist as $sd_restraint)
+                                            * @stripTags($sd_restraint->name) <br>
+                                        @endforeach
+                                    </td>
+                                    <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneTech(), 1), "tech") }}</td>
+                                    <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneOrga(), 1), "orga") }}</td>
+                                    <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneHum(), 1), "hum") }}</td>
+                                    <td class="center min-width min-width-right"> {{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->totalRR($sd_risk->sd_restraints_exist) : $sd_risk->total() }}</td>
+                                    <td class="center criticity {{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints_exist),false) :  $sd_risk->colorPDF($sd_risk->total(),true) }}">{{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints),false) : $sd_risk->colorTotal($sd_risk->total(),true) }}</td>
+                                    <td class="restraint_proposed">
+                                        @foreach($sd_risk->sd_restraints_porposed as $sd_restraint)
+                                            * @stripTags($sd_restraint->name) <br>
+                                        @endforeach
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr>
+                                <td class="workunit">{{ $final["sd_work_unit"] === "Tous" ? "Tous" : $final["sd_work_unit"]->name }}</td>
+                                <td class="danger">{{ $final["sd_danger"]->danger->name }}</td>
+                                <td class="risk">Non concerné actuellement</td>
+                                <td class="center min-width min-width-left">NC</td>
+                                <td class="center min-width min-width-left">NC</td>
+                                <td class="center min-width min-width-left">NC</td>
+                                <td class="center min-width min-width-left">NON</td>
+                                <td class="center min-width min-width-left">0</td>
+                                <td class="restraint"></td>
+                                <td class="center min-width min-width-right">0</td>
+                                <td class="center min-width min-width-right">0</td>
+                                <td class="center min-width min-width-right">0</td>
+                                <td class="center min-width min-width-right">0</td>
+                                <td class="center green criticity">0</td>
+                                <td class="restraint_proposed"></td>
+                            </tr>
+                        @endif
                     @endforeach
                 </tbody>
             </table>

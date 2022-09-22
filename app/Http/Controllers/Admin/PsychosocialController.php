@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\SingleDocument;
 use Illuminate\Http\Request;
 use App\Models\SdPsychosocialGroup;
 use App\Http\Controllers\Controller;
@@ -95,5 +96,13 @@ class PsychosocialController extends Controller
         $psychosocial_group->save();
 
         return back()->with('status', 'Le questionnaire a bien été enregistré !');
+    }
+
+
+    public function restraint($id){
+
+        $single_document = $this->checkSingleDocument($id);
+
+
     }
 }

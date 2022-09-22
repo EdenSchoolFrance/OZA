@@ -52,4 +52,21 @@ class SdDanger extends Model
         return $this->sd_risk->where('sd_work_unit_id',null);
     }
 
+    public function exist_risk()
+    {
+        $temp = false;
+        $works_units = $this->sd_works_units()->wherePivot('exist',1)->get();
+
+        foreach ($works_units as $work_unit){
+
+            if (count($work_unit->sd_danger_risks($this->id)) > 0)
+                $temp = true;
+        }
+
+        if ($temp === false)
+            return false;
+        else
+            return true;
+    }
+
 }

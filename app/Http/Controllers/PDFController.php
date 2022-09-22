@@ -53,13 +53,94 @@ class PDFController extends Controller
         })->get();
 
         $sd_works_units = $single_document->work_unit_pdf;
-        $all = [
-            "id" => "tous",
-            "name" => "tous"
-        ];
-        $sd_works_units->push($all);
+//        $all = [
+//            "id" => "tous",
+//            "name" => "tous"
+//        ];
+//        $sd_works_units->push($all);
         $works_units = $sd_works_units->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE);
 
+        $sd_risks_final = [];
+
+        $sd_works = $single_document->work_unit_pdf;
+
+        foreach($single_document->dangers->sortBy('danger.name') as $sd_danger) {
+
+            $verif = $sd_danger->exist_risk();
+
+            if ($verif === false){
+
+                $item = [
+                    "info" => "all",
+                    "sd_work_unit" => "Tous",
+                    "sd_work_unit_name" => "Tous",
+                    "sd_danger" => $sd_danger,
+                    "sd_danger_name" => $sd_danger->danger->name,
+                    "sd_risks" => [],
+                ];
+                foreach ($sd_danger->sd_risks_ut_all() as $sd_risk){
+                    $item["sd_risks"][] = $sd_risk;
+                }
+                $sd_risks_final[] = $item;
+
+            } else if ($verif === true && ($sd_danger->ut_all === 0 || $sd_danger->ut_all === null) ){
+
+                foreach ($sd_works as $sd_work) {
+                    $item = [
+                        "info" => "notAll",
+                        "sd_work_unit" => $sd_work,
+                        "sd_work_unit_name" => $sd_work->name,
+                        "sd_danger" => $sd_danger,
+                        "sd_danger_name" => $sd_danger->danger->name,
+                        "sd_risks" => []
+                    ];
+                    foreach ($sd_work->sd_danger_risks($sd_danger->id) as $sd_risk) {
+                        $item["sd_risks"][] = $sd_risk;
+                    }
+                    $sd_risks_final[] = $item;
+                }
+
+            }else if ($verif === true && $sd_danger->ut_all > 0){
+
+                $all = [
+                    "info" => "allAndDanger",
+                    "sd_work_unit" => "Tous",
+                    "sd_work_unit_name" => "Tous",
+                    "sd_danger" => $sd_danger,
+                    "sd_danger_name" => $sd_danger->danger->name,
+                    "sd_risks" => [],
+                ];
+                foreach ($sd_danger->sd_risks_ut_all() as $sd_risk){
+                    $all["sd_risks"][] = $sd_risk;
+                }
+                $sd_risks_final[] = $all;
+
+                foreach ($sd_works as $sd_work) {
+                    if (count($sd_work->sd_danger_risks($sd_danger->id)) > 0) {
+                        $item = [
+                            "info" => "allAndDanger",
+                            "sd_work_unit" => $sd_work,
+                            "sd_work_unit_name" => $sd_work->name,
+                            "sd_danger" => $sd_danger,
+                            "sd_danger_name" => $sd_danger->danger->name,
+                            "sd_risks" => []
+                        ];
+                        foreach ($sd_work->sd_danger_risks($sd_danger->id) as $sd_risk) {
+                            $item["sd_risks"][] = $sd_risk;
+                        }
+                        $sd_risks_final[] = $item;
+                    }
+                }
+            }
+        }
+
+        $final = array_multisort(
+            array_column($sd_risks_final, 'sd_work_unit_name'),  SORT_NATURAL|SORT_FLAG_CASE,
+            array_column($sd_risks_final, 'sd_danger_name'), SORT_NATURAL|SORT_FLAG_CASE,
+            $sd_risks_final);
+
+
+        //dd($sd_risks_final);
 
         $dangers = $single_document->dangers()->whereHas('danger.exposition')->get();
 
@@ -160,7 +241,8 @@ class PDFController extends Controller
             'sd_dangers',
             'works',
             'dangers',
-            'works_units')
+            'works_units',
+            'sd_risks_final')
         )->setPaper('a4', 'landscape');
 
         //return $pdf->stream();
