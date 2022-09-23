@@ -29,11 +29,13 @@ class PDFController extends Controller
 
         $sd_risks = SdRisk::whereHas('sd_danger', function ($q) use ($single_document) {
             $q->where('single_document_id', $single_document->id);
-        })->get()->sort(function ($a, $b) {
-            if ($a->totalRR($a->sd_restraints_exist) == $b->totalRR($b->sd_restraints_exist)){
-                return 0;
-            }
-            return ($b->totalRR($b->sd_restraints_exist) < $a->totalRR($a->sd_restraints_exist)) ? -1 : 1;
+        })->whereHas('sd_restraints', function ($q) {
+            $q->where('exist', 0);
+        })->get()->sortByDesc(function ($sd_risk, $key) {
+            if (isset($sd_risk->sd_restraints_exist[0]))
+                return $sd_risk->totalRR($sd_risk->sd_restraints_exist);
+            else
+                return $sd_risk->total();
         });
 
         $sd_risks_posts = SdRisk::whereHas('sd_danger', function ($q) use ($single_document) {
@@ -53,11 +55,7 @@ class PDFController extends Controller
         })->get();
 
         $sd_works_units = $single_document->work_unit_pdf;
-//        $all = [
-//            "id" => "tous",
-//            "name" => "tous"
-//        ];
-//        $sd_works_units->push($all);
+
         $works_units = $sd_works_units->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE);
 
         $sd_risks_final = [];
