@@ -501,7 +501,7 @@ function createRestraint(tech,orga,human,title,id){
         '     <i class="far fa-times-circle btn-delete"></i>\n' +
         '     <p class="title-restraint"></p> \n' +
         '     <button data-modal=".modal--risk" data-id="'+id+'" class="btn btn-yellow btn-text btn-edit-modal-risk" type="button"><i class="far fa-edit text-color-yellow"></i></button>\n' +
-        '     <input type="hidden" value="'+(title)+'" name="res_title[]">' +
+        '     <input type="hidden" value="'+escapeHtml(title)+'" name="res_title[]">' +
         '     <input type="hidden" value="'+tech+'" name="res_tech[]">' +
         '     <input type="hidden" value="'+orga+'" name="res_orga[]">' +
         '     <input type="hidden" value="'+human+'" name="res_human[]">' +
@@ -537,7 +537,7 @@ function editRestraint(tech,orga,human,title,id){
         '     <i class="far fa-times-circle btn-delete"></i>\n' +
         '     <p class="title-restraint"></p> \n' +
         '     <button data-modal=".modal--risk" data-id="'+id+'" class="btn btn-yellow btn-text btn-edit-modal-risk" type="button"><i class="far fa-edit text-color-yellow"></i></button>\n' +
-        '     <input type="hidden" value="'+(title)+'" name="res_title[]">' +
+        '     <input type="hidden" value="'+escapeHtml(title)+'" name="res_title[]">' +
         '     <input type="hidden" value="'+tech+'" name="res_tech[]">' +
         '     <input type="hidden" value="'+orga+'" name="res_orga[]">' +
         '     <input type="hidden" value="'+human+'" name="res_human[]">' +
