@@ -138,30 +138,11 @@
                     <span class="number">11</span>
                     <p><span class="line"><a href="#historie" class="link">HISTORIQUE DES ACTIONS REALISÉES</a></span></p>
                 </li>
-                <li>
-                    <span class="number">12</span>
-                    <p><span class="line"><a href="#annexes" class="link">ANNEXES</a></span></p>
-                </li>
                 <li class="no-border">
                     <p><span class="line">Glossaire</span></p>
                 </li>
                 <li class="no-border">
-                    <p><span class="line">Attestations ("Déplacements" - "Formation sécurité" - "Exposition aux facteurs de risques professionnels")</span></p>
-                </li>
-                <li class="no-border">
-                    <p><span class="line">Fiche d’évaluation simplifiée des risques d’interférence et de coactivité</span></p>
-                </li>
-                <li class="no-border">
-                    <p><span class="line">Arrêté du 19-03-1993 (travaux dangereux mis en œuvre par une entreprise extérieure)</span></p>
-                </li>
-                <li class="no-border">
-                    <p><span class="line">Arrêté du 25-02-2003 (travaux à risques particuliers sur chantier de BTP)</span></p>
-                </li>
-                <li class="no-border">
-                    <p><span class="line">Fiche pratique « Hygiène des mains »</span></p>
-                </li>
-                <li class="no-border">
-                    <p><span class="line">Fiche pratique « Prévention COVID-19 »</span></p>
+                    <p><span class="line">L'ensemble des annexes peuvent être consultées et imprimées depuis votre application DU OZA Online</span></p>
                 </li>
             </ul>
         </div>
@@ -1588,24 +1569,6 @@
         <div class="footer">
             <p> Copyright © OZA DUERP Online</p>
             <p class="page-num">EVALUATION DE L'EXPOSITION</p>
-        </div>
-    </section>
-
-    <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-        </div>
-
-        <div class="body body--notif">
-            <h1 class="head-title" id="annexes">12. ANNEXES</h1>
-            <p class="">
-                L'ensemble des annexes peuvent être consultées et imprimées depuis votre application DU OZA Online.
-            </p>
-        </div>
-
-        <div class="footer">
-            <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">ANNEXES</p>
         </div>
     </section>
 
