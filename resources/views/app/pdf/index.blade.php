@@ -1365,7 +1365,7 @@
                 <thead>
                     <tr>
                         <td class="theader yellow-v">
-                            Facteurs de risque professionnels
+                            Facteurs de risques professionnels
                         </td>
                         <td class="theader yellow-v">
                             Unité exposée au-delà des seuils
