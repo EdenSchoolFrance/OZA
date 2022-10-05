@@ -132,18 +132,19 @@ class SingleDocumentController extends Controller
             'number_ut' => 'required|integer|min:0',
             'dangers' => 'required|array',
             'dangers.*' => 'exists:dangers,id',
-            'risk_psycho' => 'required',
-            'risk_psycho_exposition_groups' => 'required_if:risk_psycho,yes|array',
-            'risk_psycho_exposition_groups.*' => 'required',
+//            'risk_psycho' => 'required',
+//            'risk_psycho_exposition_groups' => 'required_if:risk_psycho,yes|array',
+//            'risk_psycho_exposition_groups.*' => 'required',
         ]);
 
         $single_document->name = $request->name_single_document;
         $single_document->work_unit_limit = $request->number_ut;
-        if ($request->risk_psycho == 'yes') {
-            $single_document->risk_psycho = true;
-        } else {
-            $single_document->risk_psycho = false;
-        }
+
+//        if ($request->risk_psycho == 'yes') {
+//            $single_document->risk_psycho = true;
+//        } else {
+//            $single_document->risk_psycho = false;
+//        }
         $single_document->save();
 
         $dangers = SdDanger::whereHas('single_document', function ($q) use ($single_document) {
@@ -168,30 +169,30 @@ class SingleDocumentController extends Controller
             $sd_danger->save();
         }
 
-        if ($single_document->risk_psycho) {
-            $risk_psycho_groups_request = $request->risk_psycho_exposition_groups;
-
-            foreach ($single_document->psychosocial_groups as $psychosocial_group) {
-                if (in_array($psychosocial_group->id, $risk_psycho_groups_request)) {
-                    $psychosocial_group->name = $risk_psycho_groups_request[$psychosocial_group->id];
-                    unset($risk_psycho_groups_request[$psychosocial_group->id]);
-                } else {
-                    $psychosocial_group->delete();
-                }
-            }
-
-            foreach ($risk_psycho_groups_request as $item) {
-                $sdPsychosocialGroup = new SdPsychosocialGroup();
-                $sdPsychosocialGroup->id = uniqid();
-                $sdPsychosocialGroup->name = $item;
-                $sdPsychosocialGroup->single_document()->associate($single_document);
-                $sdPsychosocialGroup->save();
-            }
-        } else {
-            foreach ($single_document->psychosocial_groups as $psychosocial_group) {
-                $psychosocial_group->delete();
-            }
-        }
+//        if ($single_document->risk_psycho) {
+//            $risk_psycho_groups_request = $request->risk_psycho_exposition_groups;
+//
+//            foreach ($single_document->psychosocial_groups as $psychosocial_group) {
+//                if (in_array($psychosocial_group->id, $risk_psycho_groups_request)) {
+//                    $psychosocial_group->name = $risk_psycho_groups_request[$psychosocial_group->id];
+//                    unset($risk_psycho_groups_request[$psychosocial_group->id]);
+//                } else {
+//                    $psychosocial_group->delete();
+//                }
+//            }
+//
+//            foreach ($risk_psycho_groups_request as $item) {
+//                $sdPsychosocialGroup = new SdPsychosocialGroup();
+//                $sdPsychosocialGroup->id = uniqid();
+//                $sdPsychosocialGroup->name = $item;
+//                $sdPsychosocialGroup->single_document()->associate($single_document);
+//                $sdPsychosocialGroup->save();
+//            }
+//        } else {
+//            foreach ($single_document->psychosocial_groups as $psychosocial_group) {
+//                $psychosocial_group->delete();
+//            }
+//        }
 
         return back()->with('status', 'Le document unique a bien été mis à jour !');
     }
