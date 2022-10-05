@@ -1,6 +1,12 @@
 <nav class="nav">
     <div class="left">
-        <img src="{{ asset('/img/logo.png') }}" alt="Logo OZA">
+        @if (Auth::check() && !Auth::user()->oza && isset($single_document))
+            <a href="{{ route('dashboard.home') }}">
+                <img src="{{ asset('/img/logo.png') }}" alt="Logo OZA">
+            </a>
+        @else
+            <img src="{{ asset('/img/logo.png') }}" alt="Logo OZA">
+        @endif
         @if (Auth::check() && Auth::user()->oza && isset($single_document))
             <a href="{{ route('admin.clients') }}" class="btn-back"><i class="fas fa-chevron-left"></i> {{ "Retour interface OZA" }}</a>
         @endif
@@ -95,7 +101,7 @@
         </div>
 
         @if (Auth::user()->hasAccess('client'))
-            <div class="tooltip tooltip--contact-expert">
+            <div class="tooltip tooltip--contact-expert" style="top: -80px; left: -80px">
                 <p>{{ Auth::user()->client->expert->lastname }} {{ Auth::user()->client->expert->firstname }}</p>
                 <p>E-mail : {{ Auth::user()->client->expert->email }}</p>
                 <p>Téléphone : {{ Auth::user()->client->expert->phone }}</p>
