@@ -231,7 +231,7 @@ class RiskController extends Controller
         if ($sd_work_unit) $sd_risk->sd_work_unit()->associate($sd_work_unit);
         $sd_risk->save();
 
-        if (isset($request->res_title) && isset($request->res_tech) && isset($request->res_orga) && isset($request->res_human)){
+        if (isset($request->res_title) && isset($request->res_tech) && isset($request->res_orga) && isset($request->res_human) && isset($request->res_date)){
             foreach ($request->res_title as $key => $res_title ){
 
                 $sd_restraint = new SdRestraint();
@@ -240,6 +240,7 @@ class RiskController extends Controller
                 $sd_restraint->technical = $request->res_tech[$key];
                 $sd_restraint->organizational = $request->res_orga[$key];
                 $sd_restraint->human = $request->res_human[$key];
+                $sd_restraint->date = $request->res_date[$key];
                 $sd_restraint->exist = true;
                 $sd_restraint->sd_risk()->associate($sd_risk);
                 $sd_restraint->save();

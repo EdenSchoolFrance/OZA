@@ -322,6 +322,7 @@
                             </div>
                             <div class="right">
                                 <textarea id="nameRisk" class="form-control auto-resize" placeholder="Décrire la mesure mise en place"></textarea>
+                                <input type="hidden" id="dateRisk" value="">
                             </div>
                         </div>
                     </div>
@@ -506,14 +507,14 @@
         <script>
             // exemple text : t&#039;es
             @foreach(old('res_title') as $key => $res_title)
-                createRestraint('{{ old("res_tech")[$key] }}','{{ old("res_orga")[$key] }}','{{ old("res_human")[$key] }}',`{!! strip_tags($res_title) !!}`)
+                createRestraint('{{ old("res_tech")[$key] }}','{{ old("res_orga")[$key] }}','{{ old("res_human")[$key] }}',`{!! strip_tags($res_title) !!}`,'{{ old("res_date")[$key] }}')
             @endforeach
         </script>
     @elseif(isset($risk))
         @foreach($risk->sd_restraints as $restraint)
             @if($restraint->exist === 1)
                 <script>
-                    createRestraint('{{ $restraint->technical }}','{{ $restraint->organizational }}','{{ $restraint->human }}',`@stripTags($restraint->name)`,'{{ $restraint->id }}');
+                    createRestraint('{{ $restraint->technical }}','{{ $restraint->organizational }}','{{ $restraint->human }}',`@stripTags($restraint->name)`,'{{ $restraint->id }}','{{ $restraint->date }}');
                 </script>
             @endif
         @endforeach

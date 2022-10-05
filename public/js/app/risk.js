@@ -28,16 +28,18 @@ on('.modal--risk .btn-modal-risk-add', 'click', (el, e) => {
         let orga = d.querySelector('.radio-bar-orga input:checked').value|| 'null'
         let human = d.querySelector('.radio-bar-human input:checked').value || 'null'
         let title = $('#nameRisk', document, 0).value || "Mesure"
+        let date = $('#dateRisk', document, 0).value || "null"
         if (tech === "null" && orga === "null" && human === "null") return errorRestraintCreate();
-        editRestraint(tech,orga,human,title,id)
+        editRestraint(tech,orga,human,title,id,date)
     }else{
         let d = el.closest(".modal-body")
         let tech = d.querySelector('.radio-bar-tech input:checked').value || 'null'
         let orga = d.querySelector('.radio-bar-orga input:checked').value|| 'null'
         let human = d.querySelector('.radio-bar-human input:checked').value || 'null'
         let title = $('#nameRisk', document, 0).value || "Mesure"
+        let date = $('#dateRisk', document, 0).value || "null"
         if (tech === "null" && orga === "null" && human === "null") return errorRestraintCreate();
-        createRestraint(tech,orga,human,title,id)
+        createRestraint(tech,orga,human,title,id,date)
     }
 
 });
@@ -52,6 +54,8 @@ on('.btn-edit-modal-risk', 'click', (el, e) => {
     let techA = el.closest('li').querySelector('input[name="res_tech[]"]').value
     let orgaA = el.closest('li').querySelector('input[name="res_orga[]"]').value
     let humanA = el.closest('li').querySelector('input[name="res_human[]"]').value
+    let date = el.closest('li').querySelector('input[name="res_date[]"]').value
+    $('#dateRisk', document, 0).value = date;
     $('#nameRisk', document, 0).value = title
     for (let i = 0; i < tech.length ; i++) {
         tech[i].checked = tech[i].value === techA;
@@ -76,6 +80,7 @@ on('.btn-open-risk', 'click', (el, e) => {
     let orga = $('.radio-bar-orga input')[0].checked = true
     let human = $('.radio-bar-human input')[0].checked = true
     $('#nameRisk', document, 0).value = ''
+    $('#dateRisk', document, 0).value = ''
     let btn_add = $('.btn-modal-risk-add', document, 0)
     if (btn_add.dataset.id) btn_add.removeAttribute('data-id');
 
@@ -116,7 +121,6 @@ on('.btn-add-restraint', 'click', (el, e) => {
         all[all.length - 2].querySelector('textarea').focus();
     }else{
         let restraints = $('li.res-pro')
-        console.log(restraints)
         if (restraints.length === 0){
             $('.nothing_restraint_pro', document, 0).remove();
         }
@@ -185,7 +189,7 @@ on('.btn-modal-risk-oza-add', 'click', (el, e) => {
             let orga = all[i].querySelector('.radio-bar-orga input:checked').value || `null`
             let human = all[i].querySelector('.radio-bar-human input:checked').value || `null`
             let title = all[i].querySelector('.con').innerText || `Mesure`
-            createRestraint(tech,orga,human,title,id);
+            createRestraint(tech,orga,human,title,id,null);
         }else{
             let title = all[i].querySelector('.con').innerText
             createRestraintProposed(title);
@@ -488,7 +492,7 @@ function totalEnd(el,number,RB){
 ==============================*/
 
 
-function createRestraint(tech,orga,human,title,id){
+function createRestraint(tech,orga,human,title,id,date){
     let restraint = $('.restraint', document, 0)
     let restraints = $('.restraint_ex');
     if (restraints.length === 0){
@@ -506,6 +510,7 @@ function createRestraint(tech,orga,human,title,id){
         '     <input type="hidden" value="'+orga+'" name="res_orga[]">' +
         '     <input type="hidden" value="'+human+'" name="res_human[]">' +
         '     <input type="hidden" value="'+id+'" name="res_id[]">' +
+        '     <input type="hidden" value="'+date+'" name="res_date[]">' +
         '    </p>\n' +
         '   </li>\n' +
         '   \n' +
@@ -527,7 +532,7 @@ function createRestraint(tech,orga,human,title,id){
     calculRestraintColorDisplay();
 }
 
-function editRestraint(tech,orga,human,title,id){
+function editRestraint(tech,orga,human,title,id,date){
     let rest = $('button[data-id="'+id+'"]', document, 0).closest('div.row')
     rest.querySelector('ul').remove();
     let content =
@@ -542,6 +547,7 @@ function editRestraint(tech,orga,human,title,id){
         '     <input type="hidden" value="'+orga+'" name="res_orga[]">' +
         '     <input type="hidden" value="'+human+'" name="res_human[]">' +
         '     <input type="hidden" value="'+id+'" name="res_id[]">' +
+        '     <input type="hidden" value="'+date+'" name="res_date[]">' +
         '    </p>\n' +
         '   </li>\n' +
         '   \n' +
