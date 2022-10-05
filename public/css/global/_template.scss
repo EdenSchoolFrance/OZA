@@ -135,7 +135,8 @@ nav.nav {
         &>div {
             &.left {
                 .btn-back {
-                    display: block;
+                    display: flex;
+                    align-items: center;
                 }
             }
 
