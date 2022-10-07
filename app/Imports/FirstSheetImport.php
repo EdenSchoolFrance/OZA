@@ -33,12 +33,14 @@ class FirstSheetImport implements ToCollection
             $sd_danger = $this->lockDanger($collection[$i][4]);
             if ($sd_danger === null){
                 $this->error("Danger introuvable", $i);
-                continue;
+                $this->cancel();
+                break;
             }
             $sd_work_unit = $this->lockWorkUnit($collection[$i][3]);
             if ($sd_work_unit === null){
                 $this->error("Unité de travail introuvable", $i);
-                continue;
+                $this->cancel();
+                break;
             }
 
             $data = [
@@ -239,6 +241,12 @@ class FirstSheetImport implements ToCollection
         $error->error = $msg;
         $error->single_document()->associate($this->single_document);
         $error->save();
+    }
+
+    protected function cancel(){
+        foreach ($this->deleteTab as $id){
+            SdRisk::find($id)->delete();
+        }
     }
 
 
