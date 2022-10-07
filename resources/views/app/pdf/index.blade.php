@@ -1293,6 +1293,7 @@
                     @endforeach
                 </tbody>
             </table>
+            <p></p>
         </div>
 
         <div class="footer">
@@ -1356,6 +1357,7 @@
                     @endforeach
                 </tbody>
             </table>
+            <p></p>
         </div>
 
         <div class="footer">
@@ -1455,6 +1457,7 @@
                     @endforeach
                 </tbody>
             </table>
+            <p></p>
         </div>
 
         <div class="footer">
