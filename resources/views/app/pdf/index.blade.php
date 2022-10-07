@@ -252,7 +252,7 @@
             <tr>
                 <td>
                     <span class="bold">Pour : </span><br>
-                    {{ $single_document->client->name }}
+                    {{ $single_document->name_enterprise }}
                 </td>
                 <td>
                     <span class="bold">Téléphone : </span><br>
