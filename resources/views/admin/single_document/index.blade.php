@@ -50,7 +50,6 @@
                         @endif
                     </tbody>
                 </table>
-                {{ $single_documents->links() }}
             </div>
         </div>
 

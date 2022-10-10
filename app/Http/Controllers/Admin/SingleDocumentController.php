@@ -23,7 +23,7 @@ class SingleDocumentController extends Controller
             'sub_sidebar' => 'single_document',
         ];
 
-        $single_documents = SingleDocument::query();
+        $single_documents = SingleDocument::all();
         $filter = null;
 
         if (isset($_GET['filter'])) {
@@ -42,7 +42,6 @@ class SingleDocumentController extends Controller
             }
         }
 
-        $single_documents = $single_documents->paginate(50);
 
         $clients = Client::all();
 
