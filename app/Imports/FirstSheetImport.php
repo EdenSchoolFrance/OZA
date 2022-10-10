@@ -30,17 +30,17 @@ class FirstSheetImport implements ToCollection
 
         for ($i=3; $i < count($collection); $i++) {
 
+            if ($collection[$i][0] === null) continue;
+
             $sd_danger = $this->lockDanger($collection[$i][4]);
             if ($sd_danger === null){
                 $this->error("Danger introuvable", $i);
-                $this->cancel();
-                break;
+                continue;
             }
             $sd_work_unit = $this->lockWorkUnit($collection[$i][3]);
             if ($sd_work_unit === null){
                 $this->error("Unité de travail introuvable", $i);
-                $this->cancel();
-                break;
+                continue;
             }
 
             $data = [
@@ -55,7 +55,7 @@ class FirstSheetImport implements ToCollection
                 "tech" => $collection[$i][14],
                 "orga" => $collection[$i][15],
                 "human" => $collection[$i][16],
-                "restraint" => $collection[$i][26]
+                "restraint" => $collection[$i][27]
             ];
 
             if ($sd_danger->exist === null){
@@ -83,7 +83,14 @@ class FirstSheetImport implements ToCollection
 
         }
 
-        return back()->with('status', "Import terminé");
+        $errors = $this->single_document->errors_excel;
+
+        if (count($errors) > 0){
+            $this->cancel();
+            return back()->with('status','Import annulé')->with('status_type','danger');
+        }else{
+            return back()->with('status', "Import terminé");
+        }
     }
 
     protected function createRisk($data)
@@ -248,6 +255,5 @@ class FirstSheetImport implements ToCollection
             SdRisk::find($id)->delete();
         }
     }
-
 
 }
