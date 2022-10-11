@@ -240,7 +240,7 @@ class RiskController extends Controller
                 $sd_restraint->technical = $request->res_tech[$key];
                 $sd_restraint->organizational = $request->res_orga[$key];
                 $sd_restraint->human = $request->res_human[$key];
-                $sd_restraint->date = $request->res_date[$key];
+                if ($request->res_date[$key] !== 'null' && !empty($request->res_date[$key])) $sd_restraint->date = $request->res_date[$key];
                 $sd_restraint->exist = true;
                 $sd_restraint->sd_risk()->associate($sd_risk);
                 $sd_restraint->save();
