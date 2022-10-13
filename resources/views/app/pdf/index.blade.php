@@ -1678,7 +1678,7 @@
                     {{ $numberEmExpo }}
                 </td>
                 <td class="{{$numberEmExpo/$numberEmUt === 0 ? "green" : "red" }} center">
-                    {{ 100 * ($numberEmExpo/$numberEmUt)."%"}}
+                    {{ 100 * ($numberEmExpo/$numberEmUt) >= 100 ? "100%" : round(100 * ($numberEmExpo/$numberEmUt),2)."%"}}
                 </td>
             </tr>
             </tbody>
