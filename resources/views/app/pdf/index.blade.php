@@ -172,7 +172,7 @@
                 <p><span class="line"><a href="#historie" class="link">HISTORIQUE DES ACTIONS REALISÉES</a></span></p>
             </li>
             <li class="no-border">
-                <p><span class="line">L'ensemble des annexes peuvent être consultées et imprimées depuis votre application DU OZA Online</span>
+                <p><span class="line">Les annexes peuvent être consultées et imprimées depuis votre application DU OZA Online</span>
                 </p>
             </li>
         </ul>
@@ -1678,7 +1678,7 @@
                     {{ $numberEmExpo }}
                 </td>
                 <td class="{{$numberEmExpo/$numberEmUt === 0 ? "green" : "red" }} center">
-                    {{ $numberEmExpo/$numberEmUt."%"}}
+                    {{ 100 * ($numberEmExpo/$numberEmUt)."%"}}
                 </td>
             </tr>
             </tbody>
