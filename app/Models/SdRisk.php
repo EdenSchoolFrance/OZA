@@ -265,6 +265,31 @@ class SdRisk extends Model
 
     }
 
+    public function colorPost($number, $RB){
+        if ($RB === true){
+            switch (true) {
+                case ($number <= 12.5) :
+                case ($number < 24) :
+                    return '';
+                case ($number < 30) :
+                    return 'btn-warn';
+                case ($number >= 30) :
+                    return 'btn-danger';
+            }
+        }else{
+            switch (true) {
+                case ($number <= 12.5) :
+                case ($number < 24) :
+                    return '';
+                case ($number < 30) :
+                    return 'btn-warn';
+                case ($number >= 30) :
+                    return 'btn-danger';
+            }
+        }
+
+    }
+
     public function colorC($number, $RB){
         if ($RB === true){
             switch (true) {
