@@ -22,7 +22,7 @@ class ClientController extends Controller
             'sub_sidebar' => 'list',
         ];
 
-        $clients = Client::query();
+        $clients = Client::all();
         $filter = null;
 
         if (isset($_GET['filter'])) {
@@ -40,8 +40,6 @@ class ClientController extends Controller
                 }
             }
         }
-
-        $clients = $clients->paginate(50);
 
         return view('admin.client.index', compact('page', 'clients', 'filter'));
     }

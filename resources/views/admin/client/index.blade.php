@@ -56,7 +56,6 @@
                         @endif
                     </tbody>
                 </table>
-                {{ $clients->links() }}
             </div>
             @if (Auth::user()->hasPermission('ADMIN'))
                 <div class="card-footer">
