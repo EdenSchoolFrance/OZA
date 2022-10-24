@@ -262,7 +262,7 @@
             <tr>
                 <td>
                     <span class="bold">Adresse postale : </span><br>
-                    {{ $single_document->adress }}
+                    {{ $single_document->adress }}, {{ $single_document->city }}, {{ $single_document->city_zipcode }}
                 </td>
                 <td>
                     <span class="bold">Email : </span><br>
