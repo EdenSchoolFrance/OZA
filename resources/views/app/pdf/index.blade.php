@@ -323,7 +323,7 @@
     </div>
 </section>
 
-@foreach($single_document->work_unit as $key => $sd_work_unit)
+@foreach($works_units as $key => $sd_work_unit)
     <section class="page">
         <div class="header">
             <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
