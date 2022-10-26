@@ -316,6 +316,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <p class="title">Mesure de prévention existante</p>
+                        <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
                     </div>
                     <div class="modal-body">
                         @foreach($risk->restraint as $restraint)
