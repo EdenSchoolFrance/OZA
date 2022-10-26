@@ -34,7 +34,7 @@ class ExpositionQuestionSeeder extends Seeder
             ],
             "exposition_group_noise_level" => [
                 [
-                    "intensity" => "< 81 décibels (A)",
+                    "intensity" => "> 81 décibels (A)",
                     "options" => null
 //                        [
 //                        "L’utilisation des outils électroportatifs et machines listés dans la partie \"Présentation de la structure\" sur l'année ne génère pas un niveau d'exposition au bruit rapporté à une période de référence de huit heures supérieur à 81 dB(A).",
@@ -47,7 +47,7 @@ class ExpositionQuestionSeeder extends Seeder
             ],
             "exposition_group_sound_pressure_level" => [
                 [
-                    "intensity" => "< 135 décibels (A)",
+                    "intensity" => "> 135 décibels (A)",
                     "options" => null
                 ],
             ],

@@ -146,22 +146,22 @@
                 <p><span class="line"><a href="#listPost"
                                          class="link">LISTE DES POSTES DE TRAVAIL A RISQUE PARTICULIER</a></span></p>
             </li>
-            <li>
-                <span class="number">7</span>
-                <p><span class="line"><a href="#evalRiskPsycho" class="link">EVALUATION DETAILLEE DU RISQUE PSYCHOSOCIAL ET <span>PLAN D’ACTION</span></a></span>
-                </p>
-            </li>
-            <li>
-                <span class="number">8</span>
-                <p><span class="line"><a href="#evalRiskChimi"
-                                         class="link">EVALUATION DETAILLEE DU RISQUE CHIMIQUE ET <span>PLAN D’ACTION</span></a></span>
-                </p>
-            </li>
-            <li>
-                <span class="number">9</span>
-                <p><span class="line"><a href="#explo" class="link">DOCUMENT RELATIF A LA PREVENTION CONTRE L’EXPLOSION ET <span>PLAN D’ACTION</span></a></span>
-                </p>
-            </li>
+{{--            <li>--}}
+{{--                <span class="number">7</span>--}}
+{{--                <p><span class="line"><a href="#evalRiskPsycho" class="link">EVALUATION DETAILLEE DU RISQUE PSYCHOSOCIAL ET <span>PLAN D’ACTION</span></a></span>--}}
+{{--                </p>--}}
+{{--            </li>--}}
+{{--            <li>--}}
+{{--                <span class="number">8</span>--}}
+{{--                <p><span class="line"><a href="#evalRiskChimi"--}}
+{{--                                         class="link">EVALUATION DETAILLEE DU RISQUE CHIMIQUE ET <span>PLAN D’ACTION</span></a></span>--}}
+{{--                </p>--}}
+{{--            </li>--}}
+{{--            <li>--}}
+{{--                <span class="number">9</span>--}}
+{{--                <p><span class="line"><a href="#explo" class="link">DOCUMENT RELATIF A LA PREVENTION CONTRE L’EXPLOSION ET <span>PLAN D’ACTION</span></a></span>--}}
+{{--                </p>--}}
+{{--            </li>--}}
             <li>
                 <span class="number">10</span>
                 <p><span class="line"><a href="#expoRiskPro" class="link">EXPOSITION AUX FACTEURS DE RISQUES PROFESSIONNELS ET <span>PLAN D’ACTION</span></a></span>
@@ -1808,10 +1808,11 @@
                     @foreach ($single_document->work_unit as $sd_work_unit)
                         @if ($sd_work_unit->sd_danger($danger->id) && $sd_work_unit->sd_danger($danger->id)->pivot->exist)
                             @if ($sd_work_unit->sd_danger($danger->id)->pivot->exposition)
-                                @php
-                                    $count = $danger->danger->exposition->exposition_groups;
-                                @endphp
+
                                 @foreach ($danger->danger->exposition->exposition_groups as $key => $exposition_group)
+                                    @php
+                                        $count = $exposition_group->exposition_questions;
+                                    @endphp
                                     @foreach ($exposition_group->exposition_questions as  $exposition_question)
                                         @php
                                             $sd_exposition_question = $exposition_question->sd_work_unit_exposition_question($sd_work_unit->id);
@@ -1823,7 +1824,7 @@
                                         @if (isset($sd_exposition_question))
                                             <tr>
 
-                                                @if ($key === 0)
+                                                @if ($key === 0 && $exposition_question->id === $count[0]->id)
                                                     <td class="center"
                                                         rowspan="{{count($count) > 0 ? count($count) : 1 }}">
                                                         {{ $danger->danger->name }}
@@ -1835,7 +1836,19 @@
                                                     <td rowspan="{{count($count) > 0 ? count($count) : 1 }}">
                                                         {{ $exposition_group->intervention_type_label }}
                                                     </td>
-                                                @elseif ($key > 0 && $count[0]->exposition_questions[0]->sd_work_unit_exposition_question($sd_work_unit->id) === null)
+                                                @elseif ($key > 0 && $count[0]->sd_work_unit_exposition_question($sd_work_unit->id) === null)
+                                                    <td class="center"
+                                                        rowspan="{{1}}">
+                                                        {{ $danger->danger->name }}
+                                                    </td>
+                                                    <td class="center"
+                                                        rowspan="{{1}}">
+                                                        {{ $sd_work_unit->name }}
+                                                    </td>
+                                                    <td rowspan="{{1}}">
+                                                        {{ $exposition_group->intervention_type_label }}
+                                                    </td>
+                                                @elseif($key > 0 && count($count) === 1)
                                                     <td class="center"
                                                         rowspan="{{1}}">
                                                         {{ $danger->danger->name }}
@@ -1879,11 +1892,7 @@
                                                             </td>
                                                         @endif
                                                     @endif
-                                                    @if ($key === 0)
-                                                        <td rowspan="{{count($count) > 0 ? count($count) : 1 }}" class="center {{$exposition_group->calculation($sd_exposition_question->value)}}"> {{$exposition_group->translate($sd_exposition_question->value)}} </td>
-                                                    @elseif($key > 0 && $count[0]->exposition_questions[0]->sd_work_unit_exposition_question($sd_work_unit->id) === null)
-                                                        <td rowspan="{{1}}" class="center {{$exposition_group->calculation($sd_exposition_question->value)}}"> {{$exposition_group->translate($sd_exposition_question->value)}} </td>
-                                                    @endif
+                                                    <td rowspan="{{1}}" class="center {{$exposition_group->calculation($sd_exposition_question->value)}}"> {{$exposition_group->translate($sd_exposition_question->value)}} </td>
                                                 @else
                                                     <td></td>
                                                     <td></td>

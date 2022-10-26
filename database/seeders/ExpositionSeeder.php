@@ -30,7 +30,7 @@ class ExpositionSeeder extends Seeder
             ],
             [
                 "name" => "exposition_noise",
-                "info" => "Le niveau d’exposition au bruit rapporté à une période de référence de huit heures ne peut dépasser au moins 81 décibels (A) plus de 600 h / an. </br> L’exposition à un niveau de pression acoustique de crête ne doit pas dépasser 135 décibels (C) plus de 120 fois / an.",
+                "info" => "Pour > 81 décibel : \"Le niveau d’exposition au bruit rapporté à une période de référence de huit heures ne doit pas dépasser 81 décibels (A) plus de 600 h / an.\" </br> Pour > 135 décibel : \"L’exposition à un niveau de pression acoustique de crête ne doit pas dépasser 135 décibels (C) plus de 120 fois / an.\"",
                 "alert" => "l’exposition étant critique, veuillez vous assurer que les mesures proposées lors de l’évaluation des risques de l’UT vous permettent d’agir sur ce facteur.",
                 "danger" => "Bruit"
             ],

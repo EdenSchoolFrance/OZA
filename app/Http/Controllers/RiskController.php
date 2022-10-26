@@ -209,6 +209,8 @@ class RiskController extends Controller
 
         $sd_work_unit = SdWorkUnit::find($id_sd_work_unit);
 
+        if (!$sd_work_unit) abort(404);
+
         $request->validate([
             'name_risk' => 'required',
             'frequency' => 'required',
@@ -218,6 +220,9 @@ class RiskController extends Controller
         ]);
 
         $old_sd_risk = SdRisk::find($id_risk);
+
+        if (!$old_sd_risk) abort(404);
+
         $old_sd_risk->delete();
 
         $sd_risk = new SdRisk();
