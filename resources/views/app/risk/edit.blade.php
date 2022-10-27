@@ -13,7 +13,7 @@
                         <label for="nameRisk">Intitulé du risque</label>
                     </div>
                     <div class="right">
-                        <input type="text" class="form-control" name="name_risk" id="workName" placeholder="Vente - Boulangerie pâtisserie" value="@if(old('name_risk')){{ old('name_risk') }}@else{{ isset($risk) ? $risk->name : '' }}@endif">
+                        <textarea type="text" class="form-control" name="name_risk" id="workName" placeholder="Vente - Boulangerie pâtisserie">@if(old('name_risk')){{ old('name_risk') }}@else{{ isset($risk) ? $risk->name : '' }}@endif</textarea>
                     </div>
                 </div>
                 @error('name_risk')
