@@ -31,6 +31,7 @@ class FirstSheetImport implements ToCollection
         for ($i=3; $i < count($collection); $i++) {
 
             if ($collection[$i][0] === null) continue;
+            if ($collection[$i][7] === "Non concerné actuellement") continue;
 
             $sd_danger = $this->lockDanger($collection[$i][4]);
             if ($sd_danger === null){
