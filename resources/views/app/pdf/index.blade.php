@@ -1933,6 +1933,126 @@
 </section>
 
 
+{{--<section class="page">--}}
+{{--    <div class="header">--}}
+{{--        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>--}}
+{{--    </div>--}}
+
+{{--    <div class="body body--notif">--}}
+{{--        <h1 class="head-title" id="expoRiskPro">11. HISTORIQUE DES MISES A JOUR ET DES ACTIONS REALISEES</h1>--}}
+{{--        <table class="table table--risk-post">--}}
+{{--            <thead>--}}
+{{--            <tr>--}}
+{{--                <td class="theader yellow-v" colspan="6">--}}
+{{--                    PLAN D'ACTION--}}
+{{--                </td>--}}
+{{--            </tr>--}}
+{{--            <tr>--}}
+{{--                <td class="theader">--}}
+{{--                    Facteur de risque--}}
+{{--                </td>--}}
+{{--                <td class="theader">--}}
+{{--                    Unité de Travail--}}
+{{--                </td>--}}
+{{--                <td class="theader">--}}
+{{--                    Situation--}}
+{{--                </td>--}}
+{{--                <td class="theader">--}}
+{{--                    Mesure proposée--}}
+{{--                </td>--}}
+{{--                <td class="theader">--}}
+{{--                    Date de réalisation--}}
+{{--                </td>--}}
+{{--                <td class="theader">--}}
+{{--                    Commentaire, complément, autres actions--}}
+{{--                </td>--}}
+{{--            </tr>--}}
+{{--            </thead>--}}
+{{--            <tbody>--}}
+
+
+{{--            @foreach ($single_document->dangers()->whereHas('danger.exposition')->get() as $danger)--}}
+{{--                @php--}}
+{{--                    $pivot = $danger->danger->exposition->pivot($single_document->id);--}}
+{{--                @endphp--}}
+{{--                @if (count($pivot) === 0)--}}
+{{--                    <tr>--}}
+{{--                        <td class="center">{{ $danger->danger->name }}</td>--}}
+{{--                        <td class="center">TOUS</td>--}}
+{{--                        <td class="center">Non concernée</td>--}}
+{{--                        <td>Néant</td>--}}
+{{--                        <td></td>--}}
+{{--                        <td></td>--}}
+{{--                    </tr>--}}
+{{--                @else--}}
+{{--                    @foreach ($single_document->work_unit as $sd_work_unit)--}}
+{{--                        @if ($sd_work_unit->sd_danger($danger->id) && $sd_work_unit->sd_danger($danger->id)->pivot->exist)--}}
+{{--                            @if ($sd_work_unit->sd_danger($danger->id)->pivot->exposition)--}}
+{{--                                @php--}}
+{{--                                    $count = $danger->danger->exposition->exposition_groups;--}}
+{{--                                @endphp--}}
+{{--                                @foreach ($danger->danger->exposition->exposition_groups as $key => $exposition_group)--}}
+{{--                                    @foreach ($exposition_group->exposition_questions as  $exposition_question)--}}
+{{--                                        @php--}}
+{{--                                            $sd_exposition_question = $exposition_question->sd_work_unit_exposition_question($sd_work_unit->id);--}}
+{{--                                            if(isset($sd_exposition_question)){--}}
+{{--                                                $old_sd_exposition_question = $sd_exposition_question;--}}
+{{--                                            }--}}
+{{--                                        @endphp--}}
+
+{{--                                        @if (isset($sd_exposition_question))--}}
+{{--                                            <tr>--}}
+
+{{--                                                @if ($key === 0)--}}
+{{--                                                    <td class="center"--}}
+{{--                                                        rowspan="{{count($count) > 0 ? count($count) : 1 }}">--}}
+{{--                                                        {{ $danger->danger->name }}--}}
+{{--                                                    </td>--}}
+{{--                                                @elseif ($key > 0 && $count[0]->exposition_questions[0]->sd_work_unit_exposition_question($sd_work_unit->id) === null)--}}
+{{--                                                    <td class="center"--}}
+{{--                                                        rowspan="{{1}}">--}}
+{{--                                                        {{ $danger->danger->name }}--}}
+{{--                                                    </td>--}}
+{{--                                                @endif--}}
+{{--                                                @if (isset($sd_exposition_question))--}}
+{{--                                                    <td class="center">{{ $sd_work_unit->name }}</td>--}}
+{{--                                                    <td class="center {{$exposition_group->calculation($sd_exposition_question->value)}}"> {{$exposition_group->translate($sd_exposition_question->value)}} </td>--}}
+{{--                                                    <td class="center">{{ $sd_exposition_question->intervention_type }}</td>--}}
+{{--                                                    <td></td>--}}
+{{--                                                    <td></td>--}}
+{{--                                                @else--}}
+{{--                                                    <td></td>--}}
+{{--                                                    <td class="center">Non concernée</td>--}}
+{{--                                                    <td>Néant</td>--}}
+{{--                                                    <td></td>--}}
+{{--                                                    <td></td>--}}
+
+{{--                                                @endif--}}
+{{--                                            </tr>--}}
+{{--                                        @endif--}}
+
+{{--                                    @endforeach--}}
+{{--                                @endforeach--}}
+{{--                            @endif--}}
+{{--                        @endif--}}
+{{--                    @endforeach--}}
+{{--                @endif--}}
+{{--            @endforeach--}}
+{{--            </tbody>--}}
+{{--        </table>--}}
+{{--        <p class="text-color-red">--}}
+{{--            Lorsque la situation est critique (Exposé), veuillez vous assurer que les mesures proposées lors de--}}
+{{--            l’évaluation des risques de l’UT vous permettent d’agir sur ce facteur.--}}
+{{--        </p>--}}
+{{--    </div>--}}
+
+{{--    <div class="footer">--}}
+{{--        <p> Copyright © OZA DUERP Online</p>--}}
+{{--        <p class="page-num">EVALUATION DE L'EXPOSITION</p>--}}
+{{--    </div>--}}
+{{--</section>--}}
+
+
 <section class="page">
     <div class="header">
         <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
@@ -1940,110 +2060,46 @@
 
     <div class="body body--notif">
         <h1 class="head-title" id="expoRiskPro">11. HISTORIQUE DES MISES A JOUR ET DES ACTIONS REALISEES</h1>
-        <table class="table table--risk-post">
+        <table class="table table--restraint">
             <thead>
             <tr>
-                <td class="theader yellow-v" colspan="6">
-                    PLAN D'ACTION
-                </td>
-            </tr>
-            <tr>
-                <td class="theader">
-                    Facteur de risque
-                </td>
-                <td class="theader">
-                    Unité de Travail
-                </td>
-                <td class="theader">
-                    Situation
-                </td>
-                <td class="theader">
-                    Mesure proposée
-                </td>
-                <td class="theader">
-                    Date de réalisation
-                </td>
-                <td class="theader">
-                    Commentaire, complément, autres actions
-                </td>
+                <th class="th_work_unit">Unité de travail</th>
+                <th class="th_danger">Danger</th>
+                <th class="th_risk">Risque</th>
+                <th class="th_restraint">Mesure(s) réalisée(s)</th>
+                <th class="th_date">Date de réalisation</th>
             </tr>
             </thead>
             <tbody>
-
-
-            @foreach ($single_document->dangers()->whereHas('danger.exposition')->get() as $danger)
-                @php
-                    $pivot = $danger->danger->exposition->pivot($single_document->id);
-                @endphp
-                @if (count($pivot) === 0)
-                    <tr>
-                        <td class="center">{{ $danger->danger->name }}</td>
-                        <td class="center">TOUS</td>
-                        <td class="center">Non concernée</td>
-                        <td>Néant</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                @else
-                    @foreach ($single_document->work_unit as $sd_work_unit)
-                        @if ($sd_work_unit->sd_danger($danger->id) && $sd_work_unit->sd_danger($danger->id)->pivot->exist)
-                            @if ($sd_work_unit->sd_danger($danger->id)->pivot->exposition)
-                                @php
-                                    $count = $danger->danger->exposition->exposition_groups;
-                                @endphp
-                                @foreach ($danger->danger->exposition->exposition_groups as $key => $exposition_group)
-                                    @foreach ($exposition_group->exposition_questions as  $exposition_question)
-                                        @php
-                                            $sd_exposition_question = $exposition_question->sd_work_unit_exposition_question($sd_work_unit->id);
-                                            if(isset($sd_exposition_question)){
-                                                $old_sd_exposition_question = $sd_exposition_question;
-                                            }
-                                        @endphp
-
-                                        @if (isset($sd_exposition_question))
-                                            <tr>
-
-                                                @if ($key === 0)
-                                                    <td class="center"
-                                                        rowspan="{{count($count) > 0 ? count($count) : 1 }}">
-                                                        {{ $danger->danger->name }}
-                                                    </td>
-                                                @elseif ($key > 0 && $count[0]->exposition_questions[0]->sd_work_unit_exposition_question($sd_work_unit->id) === null)
-                                                    <td class="center"
-                                                        rowspan="{{1}}">
-                                                        {{ $danger->danger->name }}
-                                                    </td>
-                                                @endif
-                                                @if (isset($sd_exposition_question))
-                                                    <td class="center">{{ $sd_work_unit->name }}</td>
-                                                    <td class="center {{$exposition_group->calculation($sd_exposition_question->value)}}"> {{$exposition_group->translate($sd_exposition_question->value)}} </td>
-                                                    <td class="center">{{ $sd_exposition_question->intervention_type }}</td>
-                                                    <td></td>
-                                                    <td></td>
-                                                @else
-                                                    <td></td>
-                                                    <td class="center">Non concernée</td>
-                                                    <td>Néant</td>
-                                                    <td></td>
-                                                    <td></td>
-
-                                                @endif
-                                            </tr>
-                                        @endif
-
-                                    @endforeach
-                                @endforeach
-                            @endif
-                        @endif
-                    @endforeach
-                @endif
+            @foreach ($sd_risks as $sd_risk)
+                @foreach ($sd_risk->sd_restraints_archived as $sd_restraint)
+                    @if ($sd_restraint->id === $sd_risk->sd_restraints_archived[0]->id)
+                        <tr>
+                            <td class="td_work_unit">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : 'UT Tous' }}</td>
+                            <td class="td_danger">{{ $sd_risk->sd_danger->danger->name }}</td>
+                            <td class="td_risk">{{ $sd_risk->name }}</td>
+                            <td class="td_restraint">{{ $sd_restraint->name }}</td>
+                            <td class="td_date">{{ date("d/m/Y", strtotime($sd_restraint->date)) }}</td>
+                        </tr>
+                    @else
+                        <tr>
+                            <td class="td_none"></td>
+                            <td class="td_none"></td>
+                            <td class="td_none"></td>
+                            <td class="td_restraint">{{ $sd_restraint->name }}</td>
+                            <td class="td_date">{{ date("d/m/Y", strtotime($sd_restraint->date)) }}</td>
+                        </tr>
+                    @endif
+                @endforeach
             @endforeach
+
+            @if (count($sd_risks) == 0)
+                <tr class="no-data no-data--centered">
+                    <td colspan="5">Aucune mesure archivée</td>
+                </tr>
+            @endif
             </tbody>
         </table>
-        <p class="text-color-red">
-            Lorsque la situation est critique (Exposé), veuillez vous assurer que les mesures proposées lors de
-            l’évaluation des risques de l’UT vous permettent d’agir sur ce facteur.
-        </p>
     </div>
 
     <div class="footer">

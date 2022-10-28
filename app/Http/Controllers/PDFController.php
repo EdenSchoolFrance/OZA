@@ -180,6 +180,13 @@ class PDFController extends Controller
         $expos = Exposition::all();
 
 
+        $sd_risks = SdRisk::whereHas('sd_danger', function ($q) use ($single_document){
+            $q->where('single_document_id', $single_document->id);
+        })->whereHas('sd_restraints', function ($q) {
+            $q->where('exist', 1)->whereNotNull('date');
+        })->get();
+
+
         setlocale(LC_TIME, 'fr', 'fr_FR', 'fr_FR.ISO8859-1');
         $histories = Historie::find(session('status'));
 
@@ -260,7 +267,8 @@ class PDFController extends Controller
             'works',
             'dangers',
             'works_units',
-            'sd_risks_final')
+            'sd_risks_final',
+            'sd_risks')
         )->setPaper('a4', 'landscape');
 
         //return $pdf->stream();
