@@ -422,6 +422,15 @@ table {
             }
         }
 
+        &--action-plan-v2 {
+            tbody tr td {
+                height: 50px;
+            }
+            td{
+                margin-left: 5px;
+            }
+        }
+
         &--info-gen {
             margin-bottom: 30px;
 

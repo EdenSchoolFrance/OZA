@@ -2060,14 +2060,19 @@
 
     <div class="body body--notif">
         <h1 class="head-title" id="expoRiskPro">11. HISTORIQUE DES MISES A JOUR ET DES ACTIONS REALISEES</h1>
-        <table class="table table--restraint">
+        <table class="table table--document_versions">
             <thead>
             <tr>
-                <th class="th_work_unit">Unité de travail</th>
-                <th class="th_danger">Danger</th>
-                <th class="th_risk">Risque</th>
-                <th class="th_restraint">Mesure(s) réalisée(s)</th>
-                <th class="th_date">Date de réalisation</th>
+                <th class="green" colspan="5">
+                    PLAN D'ACTION
+                </th>
+            </tr>
+            <tr>
+                <td class="theader th_work_unit">Unité de travail</td>
+                <td class="theader th_danger">Danger</td>
+                <td class="theader th_risk">Risque</td>
+                <td class="theader th_restraint">Mesure(s) réalisée(s)</td>
+                <td class="theader th_date">Date de réalisation</td>
             </tr>
             </thead>
             <tbody>
