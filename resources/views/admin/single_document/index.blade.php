@@ -23,30 +23,74 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($single_documents as $sd)
-                            <tr>
-                                <td class="td_name">{{ $sd->name }}</td>
-                                <td class="td_client">{{ $sd->client->name }}</td>
-                                <td class="td_access">{{ $sd->archived ? 'Archivé' : 'En cours' }}</td>
-                                <td class="td_actions">
-                                    @if (Auth::user()->hasPermission('ADMIN'))
-                                        @if ($sd->archived)
-                                            <button data-modal=".modal--unarchive" data-id="{{ $sd->id }}"><i class="fas fa-box-open" data-tooltip=".tooltip--unarchive" data-placement="top" data-tooltable="true"></i></button>
-                                        @else
-                                            <button data-modal=".modal--archive" data-id="{{ $sd->id }}"><i class="fas fa-archive" data-tooltip=".tooltip--archive" data-placement="top" data-tooltable="true"></i></button>
+                        @if($_GET['filter']['client'] !== "")
+                            @php
+                                $display = 0;
+                            @endphp
+                            @foreach($clients as $client)
+                                @foreach($client->single_documents as $sd)
+                                    @php
+                                        if ($_GET['filter']['status'] !== "") {
+                                            if ($_GET['filter']['status'] == "in_progress") {
+                                                if ($sd->archived !== 0) continue;
+                                            } elseif ($_GET['filter']['status'] == "archived") {
+                                                if ($sd->archived !== 1) continue;
+                                            }
+                                        }
+                                    @endphp
+                                    <tr>
+                                        <td class="td_name">{{ $sd->name }}</td>
+                                        <td class="td_client">{{ $sd->client->name }}</td>
+                                        <td class="td_access">{{ $sd->archived ? 'Archivé' : 'En cours' }}</td>
+                                        <td class="td_actions">
+                                            @if (Auth::user()->hasPermission('ADMIN'))
+                                                @if ($sd->archived)
+                                                    <button data-modal=".modal--unarchive" data-id="{{ $sd->id }}"><i class="fas fa-box-open" data-tooltip=".tooltip--unarchive" data-placement="top" data-tooltable="true"></i></button>
+                                                @else
+                                                    <button data-modal=".modal--archive" data-id="{{ $sd->id }}"><i class="fas fa-archive" data-tooltip=".tooltip--archive" data-placement="top" data-tooltable="true"></i></button>
+                                                @endif
+                                            @endif
+                                            <a data-modal=".modal--duplicate" data-client="{{ $sd->client->id }}" data-id="{{ $sd->id }}" ><i class="far fa-clone" data-tooltip=".tooltip--dupli" data-placement="top" data-tooltable="true"></i></a>
+                                            <a href="{{ route('admin.single_document.edit', [$sd->client->id, $sd->id]) }}"><i class="far fa-edit" data-tooltip=".tooltip--edit" data-placement="top" data-tooltable="true"></i></a>
+                                            <a href="{{ route('dashboard', [$sd->id]) }}"><i class="far fa-eye" data-tooltip=".tooltip--show" data-placement="top" data-tooltable="true"></i></a>
+                                        </td>
+                                    </tr>
+                                    @php
+                                        $display++;
+                                    @endphp
+                                @endforeach
+                            @endforeach
+                            @if (count($clients) == 0 || $display === 0)
+                                <tr class="no-data no-data--centered">
+                                    <td colspan="5">Aucun document unique</td>
+                                </tr>
+                            @endif
+                        @else
+                            @foreach($single_documents as $sd)
+                                <tr>
+                                    <td class="td_name">{{ $sd->name }}</td>
+                                    <td class="td_client">{{ $sd->client->name }}</td>
+                                    <td class="td_access">{{ $sd->archived ? 'Archivé' : 'En cours' }}</td>
+                                    <td class="td_actions">
+                                        @if (Auth::user()->hasPermission('ADMIN'))
+                                            @if ($sd->archived)
+                                                <button data-modal=".modal--unarchive" data-id="{{ $sd->id }}"><i class="fas fa-box-open" data-tooltip=".tooltip--unarchive" data-placement="top" data-tooltable="true"></i></button>
+                                            @else
+                                                <button data-modal=".modal--archive" data-id="{{ $sd->id }}"><i class="fas fa-archive" data-tooltip=".tooltip--archive" data-placement="top" data-tooltable="true"></i></button>
+                                            @endif
                                         @endif
-                                    @endif
-                                    <a data-modal=".modal--duplicate" data-client="{{ $sd->client->id }}" data-id="{{ $sd->id }}" ><i class="far fa-clone" data-tooltip=".tooltip--dupli" data-placement="top" data-tooltable="true"></i></a>
-                                    <a href="{{ route('admin.single_document.edit', [$sd->client->id, $sd->id]) }}"><i class="far fa-edit" data-tooltip=".tooltip--edit" data-placement="top" data-tooltable="true"></i></a>
-                                    <a href="{{ route('dashboard', [$sd->id]) }}"><i class="far fa-eye" data-tooltip=".tooltip--show" data-placement="top" data-tooltable="true"></i></a>
-                                </td>
-                            </tr>
-                        @endforeach
+                                        <a data-modal=".modal--duplicate" data-client="{{ $sd->client->id }}" data-id="{{ $sd->id }}" ><i class="far fa-clone" data-tooltip=".tooltip--dupli" data-placement="top" data-tooltable="true"></i></a>
+                                        <a href="{{ route('admin.single_document.edit', [$sd->client->id, $sd->id]) }}"><i class="far fa-edit" data-tooltip=".tooltip--edit" data-placement="top" data-tooltable="true"></i></a>
+                                        <a href="{{ route('dashboard', [$sd->id]) }}"><i class="far fa-eye" data-tooltip=".tooltip--show" data-placement="top" data-tooltable="true"></i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
 
-                        @if (count($single_documents) == 0)
-                            <tr class="no-data no-data--centered">
-                                <td colspan="5">Aucun document unique</td>
-                            </tr>
+                            @if (count($single_documents) == 0)
+                                <tr class="no-data no-data--centered">
+                                    <td colspan="5">Aucun document unique</td>
+                                </tr>
+                            @endif
                         @endif
                     </tbody>
                 </table>

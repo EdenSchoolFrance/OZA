@@ -25,12 +25,13 @@ class SingleDocumentController extends Controller
 
         $single_documents = SingleDocument::all();
         $filter = null;
+        $clients = Client::all();
 
         if (isset($_GET['filter'])) {
             $filter = $_GET['filter'];
 
             if ($_GET['filter']['client'] !== "") {
-                $single_documents = $single_documents->where('name','LIKE','%' . $_GET['filter']['client'] . '%');
+                $clients = Client::where('name', 'LIKE', '%' . $_GET['filter']['client'] . '%')->get();
             }
 
             if ($_GET['filter']['status'] !== "") {
@@ -41,9 +42,6 @@ class SingleDocumentController extends Controller
                 }
             }
         }
-
-
-        $clients = Client::all();
 
         return view('admin.single_document.index', compact('page', 'single_documents', 'filter', 'clients'));
     }
