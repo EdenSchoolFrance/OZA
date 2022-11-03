@@ -23,7 +23,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if($_GET['filter']['client'] !== "")
+                        @if(isset($_GET['filter']) && $_GET['filter']['client'] !== "" )
                             @php
                                 $display = 0;
                             @endphp
