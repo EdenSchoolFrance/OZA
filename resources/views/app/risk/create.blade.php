@@ -449,6 +449,7 @@
                                 </div>
                                 <div class="right">
                                     <button type="button" class="btn btn-success btn-modal-risk-oza-add btn-close" data-dismiss="modal">Ajouter</button>
+                                    <button type="button" class="btn btn-danger btn-inv btn-modal-risk-oza-add-v2 btn-close" data-dismiss="modal" style="margin-left: 15px">Pas de mesure de prévention existante</button>
                                 </div>
                             </div>
                         </div>

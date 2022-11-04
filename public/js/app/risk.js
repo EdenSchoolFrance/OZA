@@ -164,12 +164,7 @@ function color(word){
 }
 
 
-on('.btn-open-risk-restraint-oza', 'click', (el, e) => {
-    el.classList.remove('btn-open-risk-restraint-oza');
-    el.classList.add('btn-open-risk');
-    el.removeAttribute('data-modal')
-    el.setAttribute('data-modal','.modal--risk')
-});
+
 
 on('.btn-restraint-modal-oza', 'click', (el, e) => {
     if (el.checked === true){
@@ -195,6 +190,26 @@ on('.btn-modal-risk-oza-add', 'click', (el, e) => {
             createRestraintProposed(title);
         }
     }
+    let item = $('.btn-open-risk-restraint-oza', document, 0)
+    item.classList.remove('btn-open-risk-restraint-oza');
+    item.classList.add('btn-open-risk');
+    item.removeAttribute('data-modal')
+    item.setAttribute('data-modal','.modal--risk')
+});
+
+on('.btn-modal-risk-oza-add-v2', 'click', (el, e) => {
+
+    let all = $('.modal--risk-restraint-oza .content-modal-oza')
+    for (let i = 0; i < all.length ; i++) {
+        let title = all[i].querySelector('.con').innerText
+        createRestraintProposed(title);
+    }
+
+    let item = $('.btn-open-risk-restraint-oza', document, 0)
+    item.classList.remove('btn-open-risk-restraint-oza');
+    item.classList.add('btn-open-risk');
+    item.removeAttribute('data-modal')
+    item.setAttribute('data-modal','.modal--risk')
 });
 
 on('.radio-bar .con input', 'click', (el, e) => {
