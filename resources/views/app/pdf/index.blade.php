@@ -2063,7 +2063,7 @@
         <table class="table table--document_versions">
             <thead>
             <tr>
-                <th class="green" colspan="5">
+                <th class="green" colspan="8">
                     PLAN D'ACTION
                 </th>
             </tr>
@@ -2071,8 +2071,11 @@
                 <td class="theader th_work_unit">Unité de travail</td>
                 <td class="theader th_danger">Danger</td>
                 <td class="theader th_risk">Risque</td>
+                <td class="theader risk_residuel">Risque résiduel</td>
+                <td class="theader criticity">Criticité</td>
                 <td class="theader th_restraint">Mesure(s) réalisée(s)</td>
                 <td class="theader th_date">Date de réalisation</td>
+                <td class="theader comment">Commentaire</td>
             </tr>
             </thead>
             <tbody>
@@ -2083,16 +2086,22 @@
                             <td class="td_work_unit">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : 'UT Tous' }}</td>
                             <td class="td_danger">{{ $sd_risk->sd_danger->danger->name }}</td>
                             <td class="td_risk">{{ $sd_risk->name }}</td>
+                            <td class="risk_residuel center">{{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->totalRR($sd_risk->sd_restraints_exist) : $sd_risk->total() }}</td>
+                            <td class="criticity center {{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints_exist),false) :  $sd_risk->colorPDF($sd_risk->total(),true) }}">{{ $sd_risk->colorTotal(isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->totalRR($sd_risk->sd_restraints_exist) : $sd_risk->total(),false) }}</td>
                             <td class="td_restraint">{{ $sd_restraint->name }}</td>
                             <td class="td_date">{{ date("d/m/Y", strtotime($sd_restraint->date)) }}</td>
+                            <td class="comment"></td>
                         </tr>
                     @else
                         <tr>
                             <td class="td_none"></td>
                             <td class="td_none"></td>
                             <td class="td_none"></td>
+                            <td class="td_none"></td>
+                            <td class="td_none"></td>
                             <td class="td_restraint">{{ $sd_restraint->name }}</td>
                             <td class="td_date">{{ date("d/m/Y", strtotime($sd_restraint->date)) }}</td>
+                            <td class="comment"></td>
                         </tr>
                     @endif
                 @endforeach
@@ -2100,7 +2109,7 @@
 
             @if (count($sd_risks) == 0)
                 <tr class="no-data no-data--centered">
-                    <td colspan="5">Aucune mesure archivée</td>
+                    <td colspan="8" class="center">Aucune mesure archivée</td>
                 </tr>
             @endif
             </tbody>
