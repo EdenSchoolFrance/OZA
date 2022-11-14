@@ -30,8 +30,8 @@ class SingleDocumentController extends Controller
         if (isset($_GET['filter'])) {
             $filter = $_GET['filter'];
 
-            if ($_GET['filter']['client'] !== "") {
-                $clients = Client::where('name', 'LIKE', '%' . $_GET['filter']['client'] . '%')->get();
+            if ($_GET['filter']['du'] !== "") {
+                $single_documents = SingleDocument::where('name', 'LIKE', '%' . $_GET['filter']['du'] . '%')->get();
             }
 
             if ($_GET['filter']['status'] !== "") {
