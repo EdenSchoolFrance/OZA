@@ -180,7 +180,7 @@ class PDFController extends Controller
         $expos = Exposition::all();
 
 
-        $sd_risks = SdRisk::whereHas('sd_danger', function ($q) use ($single_document){
+        $sd_risks_v2 = SdRisk::whereHas('sd_danger', function ($q) use ($single_document){
             $q->where('single_document_id', $single_document->id);
         })->whereHas('sd_restraints', function ($q) {
             $q->where('exist', 1)->whereNotNull('date');
@@ -268,7 +268,7 @@ class PDFController extends Controller
             'dangers',
             'works_units',
             'sd_risks_final',
-            'sd_risks')
+            'sd_risks_v2')
         )->setPaper('a4', 'landscape');
 
         //return $pdf->stream();

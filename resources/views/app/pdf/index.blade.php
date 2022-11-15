@@ -2079,7 +2079,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach ($sd_risks as $sd_risk)
+            @foreach ($sd_risks_v2 as $sd_risk)
                 @foreach ($sd_risk->sd_restraints_archived as $sd_restraint)
                     @if ($sd_restraint->id === $sd_risk->sd_restraints_archived[0]->id)
                         <tr>
@@ -2107,7 +2107,7 @@
                 @endforeach
             @endforeach
 
-            @if (count($sd_risks) == 0)
+            @if (count($sd_risks_v2) == 0)
                 <tr class="no-data no-data--centered">
                     <td colspan="8" class="center">Aucune mesure archivée</td>
                 </tr>
