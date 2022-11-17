@@ -13,6 +13,22 @@ use Database\Seeders\PsychosocialQuestionSeeder;
 
 class PsychosocialController extends Controller
 {
+
+    public function index()
+    {
+        $page = [
+            'title' => 'Risques psychosociaux (complétion)',
+            'infos' => null,
+            'sidebar' => 'help',
+            'sub_sidebar' => 'risk_psycho'
+        ];
+
+        $questions = PsychosocialQuestion::all();
+
+        return view('admin.psychosocial.index', compact('page', 'questions'));
+    }
+
+
     public function evaluation($id, $id_psychosocial_group)
     {
         $single_document = $this->checkSingleDocument($id);
@@ -102,6 +118,13 @@ class PsychosocialController extends Controller
     public function restraint($id){
 
         $single_document = $this->checkSingleDocument($id);
+
+
+    }
+
+
+    public function help_store(Request $request){
+
 
 
     }

@@ -85,74 +85,74 @@
                             @endforeach
                         </div>
                     </div>
-{{--                    <div class="line">--}}
-{{--                        <div class="left"></div>--}}
-{{--                        <div class="right">--}}
-{{--                            <hr class="separation">--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <div class="line">--}}
-{{--                        <div class="left">--}}
-{{--                            <h3>Evaluation des risques psychosociaux</h3>--}}
-{{--                        </div>--}}
-{{--                        <div class="right"></div>--}}
-{{--                    </div>--}}
-{{--                    <div class="line">--}}
-{{--                        <div class="left">--}}
-{{--                            <p>Option souscrite</p>--}}
-{{--                        </div>--}}
-{{--                        <div class="right">--}}
-{{--                            <div>--}}
-{{--                                <input type="radio" id="risk_psycho_yes" name="risk_psycho" value="yes" {{ old('risk_psycho') ? (old('risk_psycho') == "yes" ? 'checked' : '') : ($sd->risk_psycho ? 'checked' : '') }}>--}}
-{{--                                <label for="risk_psycho_yes">Oui</label>--}}
-{{--                            </div>--}}
-{{--                            <div>--}}
-{{--                                <input type="radio" id="risk_psycho_no" name="risk_psycho" value="no" {{ old('risk_psycho') ? (old('risk_psycho') == "no" ? 'checked' : '') : (!$sd->risk_psycho ? 'checked' : '') }}>--}}
-{{--                                <label for="risk_psycho_no">Non</label>--}}
-{{--                            </div>--}}
-{{--                            @error('risk_psycho')--}}
-{{--                                <p class="message-error">{{ $message }}</p>--}}
-{{--                            @enderror--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <div class="line">--}}
-{{--                        <div class="left">--}}
-{{--                            <p>Définition des groupes d'expositions homogènes</p>--}}
-{{--                        </div>--}}
-{{--                        <div class="right">--}}
-{{--                            <ul class="list-content list-content--exposition">--}}
-{{--                                @if (old('risk_psycho_exposition_groups'))--}}
-{{--                                    @foreach (old('risk_psycho_exposition_groups') as $key => $item)--}}
-{{--                                        <li class="list-item">--}}
-{{--                                            <button type="button" class="btn btn-text btn-small btn-delete"><i class="far fa-times-circle"></i></button>--}}
-{{--                                            <input type="text" class="form-control" name="risk_psycho_exposition_groups[]" placeholder="Nom du groupe d'expositions homogènes" value="{{ $item }}">--}}
-{{--                                        </li>--}}
-{{--                                    @endforeach--}}
-{{--                                @else--}}
-{{--                                    @if (count($sd->psychosocial_groups) > 0)--}}
-{{--                                        @foreach ($sd->psychosocial_groups as $key => $item)--}}
-{{--                                            <li class="list-item">--}}
-{{--                                                <button type="button" class="btn btn-text btn-small btn-delete"><i class="far fa-times-circle"></i></button>--}}
-{{--                                                <input type="text" class="form-control" name="risk_psycho_exposition_groups[{{ $item->id }}]" placeholder="Nom du groupe d'expositions homogènes" value="{{ $item->name }}">--}}
-{{--                                            </li>--}}
-{{--                                        @endforeach--}}
-{{--                                    @else--}}
-{{--                                        <li class="list-item">--}}
-{{--                                            <button type="button" class="btn btn-text btn-small btn-delete"><i class="far fa-times-circle"></i></button>--}}
-{{--                                            <input type="text" class="form-control" name="risk_psycho_exposition_groups[]" placeholder="Nom du groupe d'expositions homogènes" value="">--}}
-{{--                                        </li>--}}
-{{--                                    @endif--}}
-{{--                                @endif--}}
-{{--                            </ul>--}}
-{{--                            <button type="button" class="btn btn-text btn-yellow btn-add-exposition"><i class="fas fa-plus"></i> Ajouter</button>--}}
-{{--                            @error('risk_psycho_exposition_groups')--}}
-{{--                                <p class="message-error">{{ $message }}</p>--}}
-{{--                            @enderror--}}
-{{--                            @error('risk_psycho_exposition_groups.*')--}}
-{{--                                <p class="message-error">{{ $message }}</p>--}}
-{{--                            @enderror--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
+                    <div class="line">
+                        <div class="left"></div>
+                        <div class="right">
+                            <hr class="separation">
+                        </div>
+                    </div>
+                    <div class="line">
+                        <div class="left">
+                            <h3>Evaluation des risques psychosociaux</h3>
+                        </div>
+                        <div class="right"></div>
+                    </div>
+                    <div class="line">
+                        <div class="left">
+                            <p>Option souscrite</p>
+                        </div>
+                        <div class="right">
+                            <div>
+                                <input type="radio" id="risk_psycho_yes" name="risk_psycho" value="yes" {{ old('risk_psycho') ? (old('risk_psycho') == "yes" ? 'checked' : '') : ($sd->risk_psycho ? 'checked' : '') }}>
+                                <label for="risk_psycho_yes">Oui</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="risk_psycho_no" name="risk_psycho" value="no" {{ old('risk_psycho') ? (old('risk_psycho') == "no" ? 'checked' : '') : (!$sd->risk_psycho ? 'checked' : '') }}>
+                                <label for="risk_psycho_no">Non</label>
+                            </div>
+                            @error('risk_psycho')
+                                <p class="message-error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="line">
+                        <div class="left">
+                            <p>Définition des groupes d'expositions homogènes</p>
+                        </div>
+                        <div class="right">
+                            <ul class="list-content list-content--exposition">
+                                @if (old('risk_psycho_exposition_groups'))
+                                    @foreach (old('risk_psycho_exposition_groups') as $key => $item)
+                                        <li class="list-item">
+                                            <button type="button" class="btn btn-text btn-small btn-delete"><i class="far fa-times-circle"></i></button>
+                                            <input type="text" class="form-control" name="risk_psycho_exposition_groups[]" placeholder="Nom du groupe d'expositions homogènes" value="{{ $item }}">
+                                        </li>
+                                    @endforeach
+                                @else
+                                    @if (count($sd->psychosocial_groups) > 0)
+                                        @foreach ($sd->psychosocial_groups as $key => $item)
+                                            <li class="list-item">
+                                                <button type="button" class="btn btn-text btn-small btn-delete"><i class="far fa-times-circle"></i></button>
+                                                <input type="text" class="form-control" name="risk_psycho_exposition_groups[{{ $item->id }}]" placeholder="Nom du groupe d'expositions homogènes" value="{{ $item->name }}">
+                                            </li>
+                                        @endforeach
+                                    @else
+                                        <li class="list-item">
+                                            <button type="button" class="btn btn-text btn-small btn-delete"><i class="far fa-times-circle"></i></button>
+                                            <input type="text" class="form-control" name="risk_psycho_exposition_groups[]" placeholder="Nom du groupe d'expositions homogènes" value="">
+                                        </li>
+                                    @endif
+                                @endif
+                            </ul>
+                            <button type="button" class="btn btn-text btn-yellow btn-add-exposition"><i class="fas fa-plus"></i> Ajouter</button>
+                            @error('risk_psycho_exposition_groups')
+                                <p class="message-error">{{ $message }}</p>
+                            @enderror
+                            @error('risk_psycho_exposition_groups.*')
+                                <p class="message-error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="line">
