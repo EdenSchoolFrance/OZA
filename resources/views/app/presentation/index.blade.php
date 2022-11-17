@@ -203,6 +203,17 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="line">
+                        <div class="left">
+                            <label for="phone">Poste</label>
+                        </div>
+                        <div class="right">
+                            <input type="text" name="post" class="form-control @error('post') invalid @enderror" placeholder="Intitulé du poste" value="{{ old('post') ? old('post') : $single_document->function }}" required {{ session('type') == 'resp' ?: 'disabled' }}>
+                            @error('post')
+                            <p class="message-error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
 
                 <div class="row row--submit">

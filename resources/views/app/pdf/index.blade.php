@@ -212,8 +212,8 @@
             <tbody>
             @foreach($single_document->histories as $historie)
                 <tr>
-                    <td class="name center">{{ $historie->user->firstname }} {{ $historie->user->lastname }}</td>
-                    <td class="function center">{{ $historie->user->post }}</td>
+                    <td class="name center">{{ $single_document->firstname }} {{ $single_document->lastname }}</td>
+                    <td class="function center">{{ $single_document->function }}</td>
                     <td class="visa center"></td>
                     <td class="work">{{ $historie->work }}</td>
                     <td class="date center">{{ date("d/m/Y", strtotime($historie->date)) }}</td>

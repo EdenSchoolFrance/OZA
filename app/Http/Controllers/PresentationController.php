@@ -32,7 +32,7 @@ class PresentationController extends Controller
                 'city_zipcode' => 'required',
                 'city' => 'required'
             ]);
-    
+
             if ($validator->fails()) {
                 return back()->withErrors($validator)->withInput()->with('type', $type);
             }
@@ -54,7 +54,7 @@ class PresentationController extends Controller
             if ($validator->fails()) {
                 return back()->withErrors($validator)->withInput()->with('type', $type);
             }
-          
+
             $single = SingleDocument::find($id);
             $single->sector = $request->sector;
             $single->activity_description = $request->activity_description;
@@ -65,18 +65,20 @@ class PresentationController extends Controller
                 'firstname' => 'required',
                 'lastname' => 'required',
                 'email' => 'required',
-                'phone' => 'required'
+                'phone' => 'required',
+                'post' => 'required'
             ]);
-          
+
             if ($validator->fails()) {
                 return back()->withErrors($validator)->withInput()->with('type', $type);
             }
-          
+
             $single = SingleDocument::find($id);
             $single->firstname = $request->firstname;
             $single->lastname = $request->lastname;
             $single->email = $request->email;
             $single->phone = $request->phone;
+            $single->function = $request->post;
             $single->save();
         }
 
