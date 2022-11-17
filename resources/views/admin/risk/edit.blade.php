@@ -124,7 +124,7 @@
                                 <label>Semaine</label>
                                 <label>Mois</label>
                                 <label>Années</label>
-                                <label>>Années</label>
+                                <label>&lt;Années</label>
                             </div>
                             @error('frequency')
                                 <p class="message-error">{{ $message }}</p>
@@ -293,7 +293,7 @@
 
     <div class="tooltip tooltip--fre">
         <p>La fréquence d'exposition est évaluée selon une échelle à 5 niveaux :</p>
-        <p>> An : exposition extrêmement rare de moins de une fois par an</p>
+        <p>&lt; An : exposition extrêmement rare de moins de une fois par an</p>
         <p>An : exposition rare de une à plusieurs fois par an</p>
         <p>Mois : exposition peu fréquente de une à plusieurs fois par mois</p>
         <p>Semaine : exposition fréquente de une à plusieurs fois par semaine</p>

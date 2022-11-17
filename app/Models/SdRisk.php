@@ -68,7 +68,7 @@ class SdRisk extends Model
                     case 'year' :
                         return 'An';
                     case 'year+' :
-                        return '> An';
+                        return '< An';
                 }
             break;
             case 'probability' :

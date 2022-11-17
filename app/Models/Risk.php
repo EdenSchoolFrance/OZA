@@ -109,7 +109,7 @@ class Risk extends Model
                     case 'year' :
                         return 'Année';
                     case 'year+' :
-                        return '> Année';
+                        return '< Année';
                 }
                 break;
             case 'probability' :

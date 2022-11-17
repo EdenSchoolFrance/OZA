@@ -78,7 +78,7 @@
                                 <label>Semaine</label>
                                 <label>Mois</label>
                                 <label>An</label>
-                                <label>>An</label>
+                                <label>&lt;An</label>
                             </div>
                             @error('frequency')
                                 <p class="message-error">{{ $message }}</p>
@@ -676,7 +676,7 @@
     @endif
 
     <div class="tooltip tooltip--fre">
-        <p>> An : exposition extrêmement rare de moins de une fois par an</p>
+        <p>&lt; An : exposition extrêmement rare de moins de une fois par an</p>
         <p>An : exposition rare de une à plusieurs fois par an</p>
         <p>Mois : exposition peu fréquente de une à plusieurs fois par mois</p>
         <p>Semaine : exposition fréquente de une à plusieurs fois par semaine</p>
