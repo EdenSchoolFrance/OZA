@@ -40,7 +40,7 @@
                                             </li>
                                         @endforeach
                                         <li>
-                                            <button class="btn btn-yellow btn-text btn-add-restraint" data-id="{{ $question->id }}" type="button">+ Ajouter une mesure proposée</button>
+                                            <button class="btn btn-yellow btn-text btn-add-restraint-v2" data-id="{{ $question->id }}" type="button">+ Ajouter une mesure proposée</button>
                                         </li>
                                         @error('restraint_proposed')
                                         <li>
@@ -54,7 +54,7 @@
                     </tbody>
                 </table>
                 <div class="row row--submit">
-                    <button class="btn btn-success">Valider le risque</button>
+                    <button class="btn btn-success">Valider les questions</button>
                 </div>
             </div>
         </form>
