@@ -165,18 +165,35 @@ class PsychosocialController extends Controller
 
             $response->restraints()->delete();
 
-            $temp = "restraint_proposed_".$response->id;
+            $P = "restraint_proposed_".$response->id;
 
-            if ($request->$temp){
+            if ($request->$P){
 
-                foreach ($request->$temp as $res){
+                if (isset($request->$P['checked'])){
+                    foreach ((array) $request->$P['checked'] as $res){
 
-                    $restraint = new SdPsychosocialResponseRestraint();
-                    $restraint->id = uniqid();
-                    $restraint->text = $res;
-                    $restraint->response()->associate($response);
-                    $restraint->save();
+                        if ($res !== null){
+                            $restraint = new SdPsychosocialResponseRestraint();
+                            $restraint->id = uniqid();
+                            $restraint->text = $res;
+                            $restraint->checked = true;
+                            $restraint->response()->associate($response);
+                            $restraint->save();
+                        }
+                    }
+                }
+                if (isset($request->$P['not-checked'])){
+                    foreach ((array) $request->$P['not-checked'] as $res){
 
+                        if ($res !== null){
+                            $restraint = new SdPsychosocialResponseRestraint();
+                            $restraint->id = uniqid();
+                            $restraint->text = $res;
+                            $restraint->checked = false;
+                            $restraint->response()->associate($response);
+                            $restraint->save();
+                        }
+                    }
                 }
 
             }
@@ -200,11 +217,13 @@ class PsychosocialController extends Controller
 
                 foreach ($request->$temp as $res){
 
-                    $restraint = new PsychosocialQuestionRestraint();
-                    $restraint->id = uniqid();
-                    $restraint->text = $res;
-                    $restraint->question()->associate($question);
-                    $restraint->save();
+                    if ($res !== null){
+                        $restraint = new PsychosocialQuestionRestraint();
+                        $restraint->id = uniqid();
+                        $restraint->text = $res;
+                        $restraint->question()->associate($question);
+                        $restraint->save();
+                    }
 
                 }
 
@@ -212,5 +231,32 @@ class PsychosocialController extends Controller
 
         }
         return back()->with('status', 'Les questions on bien étais mise à jour !');
+    }
+
+    public function action($id, $id_psychosocial_group){
+
+        $single_document = $this->checkSingleDocument($id);
+
+        $psychosocial_group = SdPsychosocialGroup::where('id', $id_psychosocial_group)->whereHas('single_document', function ($q) use ($single_document){
+            $q->where('id', $single_document->id);
+        })->first();
+
+        if (!$psychosocial_group) abort(404);
+
+        $page = [
+            'title' => 'Plan d’action de réduction des risques psychosociaux',
+            'psychosocial' => $psychosocial_group->name,
+            'sidebar' => 'action_plan',
+            'sub_sidebar' => $psychosocial_group->id
+        ];
+
+        $responses = SdPsychosocialResponse::whereHas('group' , function ($q) use ($psychosocial_group){
+            $q->where('id', $psychosocial_group->id);
+        })->get()->filter(function ($rep, $key){
+            if (isset($rep->restraints[0]))
+                return $rep;
+        });
+
+        return view('admin.psychosocial.action.index', compact('page', 'single_document', 'psychosocial_group', 'responses'));
     }
 }

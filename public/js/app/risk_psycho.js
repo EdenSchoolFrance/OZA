@@ -7,8 +7,9 @@ on('.btn-add-restraint', 'click', (el, e) => {
         if (restraints.length === 0){
             el.closest('td').querySelector('.nothing_restraint_pro').remove();
         }
-        let content ='<button type="button" class="btn btn-text btn-small btn-delete-restraint"><i class="far fa-times-circle"></i></button>\n' +
-            '<textarea class="form-control auto-resize" placeholder="" name="restraint_proposed_'+el.dataset.id+'[]"></textarea>'
+        let content ='<input type="checkbox" class="btn-check" data-on="false" data-id="'+el.dataset.id+'">\n' +
+            '<textarea class="form-control auto-resize" placeholder="" name="restraint_proposed_'+el.dataset.id+'[not-checked][]"></textarea>\n' +
+            '<button type="button" class="btn btn-text btn-small btn-delete-restraint"><i class="far fa-times-circle"></i></button>'
         let li = document.createElement('li');
         li.setAttribute('class','res-pro')
         li.innerHTML = content;
@@ -27,5 +28,16 @@ on('.btn-delete-restraint', 'click', (el, e) => {
         ul.setAttribute('class','nothing_restraint_pro');
         ul.innerHTML = content;
         t.before(ul)
+    }
+});
+
+on('.btn-check', 'click', (el, e) => {
+
+    if (el.checked){
+        el.closest('li').querySelector('textarea').removeAttribute('name')
+        el.closest('li').querySelector('textarea').setAttribute('name', 'restraint_proposed_'+el.dataset.id+'[checked][]')
+    }else{
+        el.closest('li').querySelector('textarea').removeAttribute('name')
+        el.closest('li').querySelector('textarea').setAttribute('name', 'restraint_proposed_'+el.dataset.id+'[not-checked][]')
     }
 });

@@ -189,6 +189,10 @@ Route::middleware(['auth'])->group(function() {
                 Route::get('/{single_document}/{psychosocial_group}/restraint', [PyschosocialAdminController::class, 'restraint'])->name('risk_psycho.restraint');
 
                 Route::post('/{single_document}/{psychosocial_group}/restraint', [PyschosocialAdminController::class, 'restraint_store'])->name('risk_psycho.restraint.store');
+
+                Route::get('/{single_document}/{psychosocial_group}/action', [PyschosocialAdminController::class, 'action'])->name('risk_psycho.action');
+
+                //Route::post('/{single_document}/{psychosocial_group}/action', [PyschosocialAdminController::class, 'action_store'])->name('risk_psycho.action.store');
             });
         });
 

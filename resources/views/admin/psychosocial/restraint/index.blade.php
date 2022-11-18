@@ -21,7 +21,7 @@
                         <tbody>
                             @if(count($responses) === 0)
                                 <tr class="no-data no-data--centered">
-                                    <td colspan="{{ 3 }}">
+                                    <td colspan="{{ 6 }}">
                                         Aucun risque
                                     </td>
                                 </tr>
@@ -29,9 +29,7 @@
                             @php
                                 $help = true;
                                 foreach ($responses as $response){
-                                    if (isset($response->restraints[0])){
-                                        $help = false;
-                                    }
+                                    if (isset($response->restraints[0])) $help = false;
                                 }
                             @endphp
                             @foreach($responses as $response)
@@ -52,15 +50,16 @@
                                             @if($help === true)
                                                 @foreach($response->question->restraints as $restraint)
                                                     <li class="res-pro">
-                                                        <button type="button" class="btn btn-text btn-small btn-delete-restraint"><i class="far fa-times-circle"></i></button>
-                                                        <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed_{{ $response->id }}[]">{{ $restraint->text }}</textarea>
+                                                        <input type="checkbox" class="btn-check" data-id="{{ $response->id }}">
+                                                        <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed_{{ $response->id }}[not-checked][]">{{ $restraint->text }}</textarea>
                                                     </li>
                                                 @endforeach
                                             @endif
                                             @foreach($response->restraints as $restraint)
                                                 <li class="res-pro">
+                                                    <input type="checkbox" class="btn-check" data-id="{{ $response->id }}" {{$restraint->checked === 1 ? 'checked' : ''}}>
+                                                    <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed_{{ $response->id }}[{{$restraint->checked === 1 ? 'checked' : 'not-checked'}}][]">{{ $restraint->text }}</textarea>
                                                     <button type="button" class="btn btn-text btn-small btn-delete-restraint"><i class="far fa-times-circle"></i></button>
-                                                    <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed_{{ $response->id }}[]">{{ $restraint->text }}</textarea>
                                                 </li>
                                             @endforeach
                                             <li>

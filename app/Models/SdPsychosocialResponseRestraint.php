@@ -20,6 +20,9 @@ class SdPsychosocialResponseRestraint extends Model
      */
     protected $fillable = [
         'text',
+        'decision',
+        'date',
+        'checked'
     ];
 
     public function response()
@@ -29,6 +32,6 @@ class SdPsychosocialResponseRestraint extends Model
 
     public function question()
     {
-        return $this->belongsTo(PsychosocialQuestion::class);
+        return $this->belongsTo(PsychosocialQuestion::class, 'psychosocial_response_restraint_id');
     }
 }
