@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\PsychosocialQuestionRestraint;
+use App\Models\SdPsychosocialResponseRestraint;
 use App\Models\SingleDocument;
 use Illuminate\Http\Request;
 use App\Models\SdPsychosocialGroup;
@@ -115,17 +117,100 @@ class PsychosocialController extends Controller
     }
 
 
-    public function restraint($id){
+    public function restraint($id, $id_psychosocial_group){
 
         $single_document = $this->checkSingleDocument($id);
 
+        $psychosocial_group = SdPsychosocialGroup::where('id', $id_psychosocial_group)->whereHas('single_document', function ($q) use ($single_document){
+            $q->where('id', $single_document->id);
+        })->first();
 
+        if (!$psychosocial_group) abort(404);
+
+        $page = [
+            'title' => 'Définition des mesures à prendre',
+            'psychosocial' => $psychosocial_group->name,
+            'sidebar' => 'risk_psycho',
+            'sub_sidebar' => $psychosocial_group->id . '.restraint'
+        ];
+
+        $responses = SdPsychosocialResponse::whereHas('group' , function ($q) use ($psychosocial_group){
+            $q->where('id', $psychosocial_group->id);
+        })->get()->filter(function ($rep, $key){
+            if ($rep->priority()['text'] === "Modéré" || $rep->priority()['text'] === "Elevé")
+                return $rep;
+        });
+
+        return view('admin.psychosocial.restraint.index', compact('page', 'single_document', 'psychosocial_group', 'responses'));
+    }
+
+    public function restraint_store(Request $request, $id, $id_psychosocial_group){
+
+        $single_document = $this->checkSingleDocument($id);
+
+        $psychosocial_group = SdPsychosocialGroup::where('id', $id_psychosocial_group)->whereHas('single_document', function ($q) use ($single_document){
+            $q->where('id', $single_document->id);
+        })->first();
+
+        if (!$psychosocial_group) abort(404);
+
+        $responses = SdPsychosocialResponse::whereHas('group' , function ($q) use ($psychosocial_group){
+            $q->where('id', $psychosocial_group->id);
+        })->get()->filter(function ($rep, $key){
+            if ($rep->priority()['text'] === "Modéré" || $rep->priority()['text'] === "Elevé")
+                return $rep;
+        });
+
+        foreach ($responses as $response){
+
+            $response->restraints()->delete();
+
+            $temp = "restraint_proposed_".$response->id;
+
+            if ($request->$temp){
+
+                foreach ($request->$temp as $res){
+
+                    $restraint = new SdPsychosocialResponseRestraint();
+                    $restraint->id = uniqid();
+                    $restraint->text = $res;
+                    $restraint->response()->associate($response);
+                    $restraint->save();
+
+                }
+
+            }
+
+        }
+        return back()->with('status', 'Les questions on bien étais mise à jour !');
     }
 
 
     public function help_store(Request $request){
 
+        $questions = PsychosocialQuestion::all();
 
+        foreach ($questions as $question){
 
+            $question->restraints()->delete();
+
+            $temp = "restraint_proposed_".$question->id;
+
+            if ($request->$temp){
+
+                foreach ($request->$temp as $res){
+
+                    $restraint = new PsychosocialQuestionRestraint();
+                    $restraint->id = uniqid();
+                    $restraint->text = $res;
+                    $restraint->question()->associate($question);
+                    $restraint->save();
+
+                }
+
+            }
+
+        }
+        return back()->with('status', 'Les questions on bien étais mise à jour !');
     }
 }

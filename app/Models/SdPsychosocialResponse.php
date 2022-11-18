@@ -40,4 +40,65 @@ class SdPsychosocialResponse extends Model
     {
         return $this->hasMany(SdPsychosocialResponseRestraint::class);
     }
+
+    public function intensity(){
+        $question = $this->question;
+
+        if ($question->order <= 13) {
+            $intensity = ($this->sometimes * 3.3333) + ($this->often * 6.6666) + ($this->always * 10);
+        } else {
+            $intensity = ($this->never * 10) + ($this->sometimes * 6.6666) + ($this->often * 3.3333);
+        }
+
+        return number_format($intensity, 1);
+    }
+
+    public function priority(){
+
+        $question = $this->question;
+
+        $intensity = $this->intensity();
+
+        $priority = [
+            "class" => "btn-success",
+            "text" => "Non concerné"
+        ];
+
+        if ($intensity < 2.5) {
+            $priority = [
+                "class" => "btn-success",
+                "text" => "Non concerné"
+            ];
+        } elseif ($intensity >= 2.5 && $intensity < 5) {
+            $priority = [
+                "class" => "btn-yellow",
+                "text" => "Faible"
+            ];
+        } elseif ($intensity >= 5 && $intensity < 7.5) {
+            $priority = [
+                "class" => "btn-warning",
+                "text" => "Modéré"
+            ];
+        } elseif ($intensity >= 7.5) {
+            $priority = [
+                "class" => "btn-danger",
+                "text" => "Elevé"
+            ];
+        }
+
+        return $priority;
+    }
+
+    public function extreme(){
+
+        $question = $this->question;
+
+        if ($question->order <= 13) {
+            $extreme = $this->always;
+        } else {
+            $extreme = $this->never;
+        }
+
+        return $extreme;
+    }
 }

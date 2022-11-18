@@ -111,6 +111,21 @@ table.table--work_units {
                         max-width: 300px;
                     }
                 }
+                .res-pro{
+                    display: flex;
+                    margin: 5px 0;
+                    textarea {
+                        border-color: transparent;
+                        padding: 10px;
+
+                        &:focus,
+                        &.active {
+                            padding: 10px 15px;
+                            background-color: #F7F7F7;
+                            border-color: $border_head;
+                        }
+                    }
+                }
 
                 .table-resizable {
                     overflow: hidden;

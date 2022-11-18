@@ -2,16 +2,15 @@
 
 @section('content')
     <div class="content">
-        <form action="{{ route('admin.help.risk_psycho.store') }}" class="card card--work_units" method="post">
+        <form action="{{ route('admin.help.risk_psycho.store') }}" class="card card--add-risk" method="post">
             @csrf
-            <div class="card-header"></div>
             <div class="card-body">
 
                 <table class="table table--work_units">
                     <thead>
                         <tr>
-                            <th class="td_question">Famille de facteurs</th>
-                            <th class="th_restraint">Mesure(s) de prévention et de protection à mettre en place</th>
+                            <th class="td_question" style="width: 50%">Famille de facteurs</th>
+                            <th class="th_restraint" style="width: 50%">Mesure(s) de prévention et de protection à mettre en place</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -25,8 +24,8 @@
                         @foreach($questions as $question)
                             <tr data-order="{{ $question->order }}">
                                 <td class="td_question">{{ $question->order }}. {{ $question->info }}</td>
-                                <td class="td_restraint res-pro">
-                                    @if(count($question->restraint) === 0)
+                                <td class="td_restraint">
+                                    @if(count($question->restraints) === 0)
                                         <ul class="nothing_restraint_pro">
                                             <li>
                                                 Aucune mesure proposée
@@ -35,13 +34,13 @@
                                     @endif
                                     <ul class="restraint-proposed">
                                         @foreach($question->restraints as $restraint)
-                                            <li>
+                                            <li class="res-pro">
                                                 <button type="button" class="btn btn-text btn-small btn-delete-restraint"><i class="far fa-times-circle"></i></button>
                                                 <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed_{{ $question->id }}[]">{{ $restraint->text }}</textarea>
                                             </li>
                                         @endforeach
                                         <li>
-                                            <button class="btn btn-yellow btn-text btn-add-restraint" data-list="" type="button">+ Ajouter une mesure proposée</button>
+                                            <button class="btn btn-yellow btn-text btn-add-restraint" data-id="{{ $question->id }}" type="button">+ Ajouter une mesure proposée</button>
                                         </li>
                                         @error('restraint_proposed')
                                         <li>
@@ -54,6 +53,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="row row--submit">
+                    <button class="btn btn-success">Valider le risque</button>
+                </div>
             </div>
         </form>
     </div>

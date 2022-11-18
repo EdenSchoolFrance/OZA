@@ -179,10 +179,16 @@ Route::middleware(['auth'])->group(function() {
 
                 Route::post('/client/{client}/single_document/{single_document}/import', [ImportController::class, 'importExcel'])->name('admin.single_document.import');
 
-                Route::post('/{single_document}/{psychosocial_group}/evaluation', [PsychosocialAdminController::class, 'evaluation_store'])->name('risk_psycho.evaluation.store');
+
 
                 //Temporaire
-                Route::get('/{single_document}/{psychosocial_group}/evaluation', [PsychosocialAdminController::class, 'evaluation'])->name('risk_psycho.evaluation');
+                Route::get('/{single_document}/{psychosocial_group}/evaluation', [PyschosocialAdminController::class, 'evaluation'])->name('risk_psycho.evaluation');
+
+                Route::post('/{single_document}/{psychosocial_group}/evaluation', [PyschosocialAdminController::class, 'evaluation_store'])->name('risk_psycho.evaluation.store');
+
+                Route::get('/{single_document}/{psychosocial_group}/restraint', [PyschosocialAdminController::class, 'restraint'])->name('risk_psycho.restraint');
+
+                Route::post('/{single_document}/{psychosocial_group}/restraint', [PyschosocialAdminController::class, 'restraint_store'])->name('risk_psycho.restraint.store');
             });
         });
 

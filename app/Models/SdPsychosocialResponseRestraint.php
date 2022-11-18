@@ -24,7 +24,7 @@ class SdPsychosocialResponseRestraint extends Model
 
     public function response()
     {
-        return $this->belongsTo(SdPsychosocialResponse::class);
+        return $this->belongsTo(SdPsychosocialResponse::class, 'sd_psychosocial_response_id');
     }
 
     public function question()

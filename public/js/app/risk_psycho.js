@@ -5,7 +5,7 @@ on('.btn-add-restraint', 'click', (el, e) => {
     }else{
         let restraints = $('li.res-pro')
         if (restraints.length === 0){
-            $('.nothing_restraint_pro', document, 0).remove();
+            el.closest('td').querySelector('.nothing_restraint_pro').remove();
         }
         let content ='<button type="button" class="btn btn-text btn-small btn-delete-restraint"><i class="far fa-times-circle"></i></button>\n' +
             '<textarea class="form-control auto-resize" placeholder="" name="restraint_proposed_'+el.dataset.id+'[]"></textarea>'
@@ -17,6 +17,8 @@ on('.btn-add-restraint', 'click', (el, e) => {
 });
 
 on('.btn-delete-restraint', 'click', (el, e) => {
+    let t = el.closest('tr').querySelector('.restraint-proposed');
+
     el.closest('li').remove();
     let restraints = $('li.res-pro')
     if (restraints.length === 0){
@@ -24,6 +26,6 @@ on('.btn-delete-restraint', 'click', (el, e) => {
         let ul = document.createElement('ul')
         ul.setAttribute('class','nothing_restraint_pro');
         ul.innerHTML = content;
-        $('.restraint-proposed', document, 0).before(ul)
+        t.before(ul)
     }
 });

@@ -24,6 +24,6 @@ class PsychosocialQuestionRestraint extends Model
 
     public function question()
     {
-        return $this->belongsTo(PsychosocialQuestion::class);
+        return $this->belongsTo(PsychosocialQuestion::class, "psychosocial_question_id");
     }
 }

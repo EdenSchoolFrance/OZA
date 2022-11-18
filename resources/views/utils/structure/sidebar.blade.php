@@ -123,7 +123,7 @@
                                     <a href="{{ route('risk_psycho.evaluation', [$single_document->id, $psychosocial_group->id]) }}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Evaluations</a>
                                 </li>
                                 <li class="sidebar-nav-item {{ $page['sidebar'] == "risk_psycho" && $page['sub_sidebar'] == $psychosocial_group->id . ".restraint" ? 'active' : '' }}">
-                                    <a href="#" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Mesures</a>
+                                    <a href="{{ route('risk_psycho.restraint', [$single_document->id, $psychosocial_group->id]) }}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Mesures</a>
                                 </li>
                             @endforeach
                         </ul>
