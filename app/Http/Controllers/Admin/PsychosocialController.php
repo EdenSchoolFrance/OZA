@@ -259,4 +259,31 @@ class PsychosocialController extends Controller
 
         return view('admin.psychosocial.action.index', compact('page', 'single_document', 'psychosocial_group', 'responses'));
     }
+
+    public function action_store(Request $request,$id, $id_psychosocial_group){
+
+        $single_document = $this->checkSingleDocument($id);
+
+        $psychosocial_group = SdPsychosocialGroup::where('id', $id_psychosocial_group)->whereHas('single_document', function ($q) use ($single_document){
+            $q->where('id', $single_document->id);
+        })->first();
+
+        if (!$psychosocial_group) abort(404);
+
+        $request->validate([
+            'id' => 'required',
+            'date_restraint' => 'required',
+            'decision_restraint' => 'required'
+        ]);
+
+        $sd_psycho_restraint = SdPsychosocialResponseRestraint::find($request->id);
+
+        if (!$sd_psycho_restraint) abort(404);
+
+        $sd_psycho_restraint->date = $request->date_restraint;
+        $sd_psycho_restraint->decision = $request->decision_restraint;
+        $sd_psycho_restraint->save();
+
+        return back()->with('status', 'La mesure a bien été mise à jour !');
+    }
 }

@@ -59,3 +59,12 @@ on('.btn-check', 'click', (el, e) => {
         el.closest('li').querySelector('textarea').setAttribute('name', 'restraint_proposed_'+el.dataset.id+'[not-checked][]')
     }
 });
+
+on('button[data-modal=".modal--restraint"]', 'click', (el, e) => {
+
+    $('.modal--restraint input[name="id"]', document, 0).value = el.dataset.id;
+    $('.modal--restraint .modal-body p', document, 0).innerText = "Rappel de la mesure : \n"+el.dataset.title;
+    $('.modal--restraint input[name="date_restraint"]', document,0).value = el.dataset.date;
+    $('.modal--restraint textarea[name="decision_restraint"]', document,0).value = el.dataset.decision;
+
+});
