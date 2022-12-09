@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Exposition;
+use App\Models\PsychosocialQuestion;
+use App\Models\SdPsychosocialGroup;
 use PDF;
 use App\Models\Item;
 use App\Models\SdRisk;
@@ -187,6 +189,21 @@ class PDFController extends Controller
         })->get();
 
 
+        //Psycho
+
+        $psychosocial_groups = null;
+        $questions = null;
+
+        if ($single_document->risk_psycho){
+
+            $psychosocial_groups = SdPsychosocialGroup::whereHas('single_document', function ($q) use ($single_document){
+                $q->where('id', $single_document->id);
+            })->get();
+
+            $questions = PsychosocialQuestion::all();
+        }
+
+
         setlocale(LC_TIME, 'fr', 'fr_FR', 'fr_FR.ISO8859-1');
         $histories = Historie::find(session('status'));
 
@@ -268,7 +285,9 @@ class PDFController extends Controller
             'dangers',
             'works_units',
             'sd_risks_final',
-            'sd_risks_v2')
+            'sd_risks_v2',
+            'psychosocial_groups',
+            'questions')
         )->setPaper('a4', 'landscape');
 
         //return $pdf->stream();

@@ -70,7 +70,7 @@ class PsychosocialController extends Controller
         $request->validate([
             'checked' => 'required',
             'number_quiz' => 'required|integer|min:1',
-            'stress_level' => 'required|integer|min:0|max:100',
+            'stress_level' => 'required|numeric|between:0,99.99',
             'questions' => 'required|array',
             'questions.*.never' => 'required|integer|min:0',
             'questions.*.sometimes' => 'required|integer|min:0',

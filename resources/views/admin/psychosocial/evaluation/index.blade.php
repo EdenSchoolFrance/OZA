@@ -51,6 +51,8 @@
                                     $intensity = ($never * 10) + ($sometimes * 6.6666) + ($often * 3.3333);
                                 }
 
+                                $intensity = ($intensity / $psychosocial_group->number_quiz);
+
                                 $intensity = number_format($intensity, 1);
 
                                 if ($intensity < 2.5) {

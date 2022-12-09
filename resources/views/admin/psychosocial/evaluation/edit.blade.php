@@ -24,9 +24,7 @@
                 <div>
                     <p>Niveau de stress moyen (de 0 à 100) :</p>
                     <div class="btn-group-number">
-                        <button type="button" class="btn btn-text btn-num" data-value="less"><i class="fas fa-minus"></i></button>
-                        <input type="number" class="form-control" id="stress_level" name="stress_level" value="{{ $stress_level }}" min="0" max="100">
-                        <button type="button" class="btn btn-text btn-num" data-value="more"><i class="fas fa-plus"></i></button>
+                        <input type="number" class="form-control" id="stress_level" name="stress_level" value="{{ $stress_level }}" min="0" max="100" step=".1">
                     </div>
                 </div>
                 @error('stress_level')
@@ -72,6 +70,8 @@
                                 } else {
                                     $intensity = ($never * 10) + ($sometimes * 6.6666) + ($often * 3.3333);
                                 }
+
+                                $intensity = ($intensity / $number_quiz);
 
                                 $intensity = number_format($intensity, 1);
 
@@ -148,7 +148,7 @@
                 </table>
             </div>
         </div>
-    
+
         <div class="card card--submit card--submit-danger">
             <div class="card-body">
                 <button type="submit" data-value="true" class="btn btn-success btn-submit">VALIDER LE QUESTIONNAIRE</button>

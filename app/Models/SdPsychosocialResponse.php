@@ -43,12 +43,15 @@ class SdPsychosocialResponse extends Model
 
     public function intensity(){
         $question = $this->question;
+        $number_quiz = $this->group->number_quiz;
 
-        if ($question->order <= 13) {
+        if ($question->order < 13) {
             $intensity = ($this->sometimes * 3.3333) + ($this->often * 6.6666) + ($this->always * 10);
         } else {
             $intensity = ($this->never * 10) + ($this->sometimes * 6.6666) + ($this->often * 3.3333);
         }
+
+        $intensity = ($intensity / $number_quiz);
 
         return number_format($intensity, 1);
     }

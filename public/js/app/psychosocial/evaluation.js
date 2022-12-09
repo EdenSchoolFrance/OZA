@@ -42,6 +42,8 @@ on('.card--psychosocial-evaluation-quiz table tbody tr input[type="number"]', 'c
         intensity_level = ((never * 10) + (sometimes * 6.6666) + (often * 3.3333)).toFixed(1);
     }
 
+    intensity_level = intensity_level / number_quiz;
+
     $('.td_intensity_level', row, 0).innerHTML = intensity_level;
 
     if (intensity_level < 2.5) {
