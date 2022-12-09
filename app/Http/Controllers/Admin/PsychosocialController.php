@@ -71,6 +71,7 @@ class PsychosocialController extends Controller
             'checked' => 'required',
             'number_quiz' => 'required|integer|min:1',
             'stress_level' => 'required|numeric|between:0,99.99',
+            'employee' => 'required|integer|min:1',
             'questions' => 'required|array',
             'questions.*.never' => 'required|integer|min:0',
             'questions.*.sometimes' => 'required|integer|min:0',
@@ -88,6 +89,7 @@ class PsychosocialController extends Controller
 
         $psychosocial_group->number_quiz = $request->number_quiz;
         $psychosocial_group->stress_level = $request->stress_level;
+        $psychosocial_group->employee = $request->employee;
 
         foreach ($questions as $question) {
             $response = $question->response($psychosocial_group->id);

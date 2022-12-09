@@ -1449,7 +1449,7 @@
         <table class="table table--action">
             <thead>
             <tr>
-                <th colspan="15" class="green">5. EVALUATION DES RISQUES PROFESSIONNELS</th>
+                <th colspan="12" class="green">5. EVALUATION DES RISQUES PROFESSIONNELS</th>
             </tr>
             <tr>
                 <td class="theader">
@@ -1818,82 +1818,271 @@
             </div>
 
             <div class="body body--notif">
-                <h1 class="head-title">BILAN DES QUESTIONNAIRES D'ÉVALUATION DES RISQUES PSYCHOSOCIAUX</h1>
+                <h1 class="head-title">QUESTIONNAIRES D'ÉVALUATION DES RISQUES PSYCHOSOCIAUX</h1>
 
-                <h3 class="head-subtitle">Groupe d’exposition homogène : <span class="text-color-yellow"> </span></h3>
+                <h3 class="head-subtitle">Groupe d’exposition homogène : <span class="text-color-yellow">{{ $psychosocial_group->name }}</span></h3>
 
-                <table class="table table--psycho">
-                    <thead>
-                        <tr>
-                            <th colspan="5">Nombre de questionnaires exploités</th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <th rowspan="2">Questions</th>
-                            <th>Jamais</th>
-                            <th>Parfois</th>
-                            <th>Souvent</th>
-                            <th>Toujours</th>
-                            <th rowspan="2">Moyen</th>
-                        </tr>
-                        <tr>
-                            <th>Non</th>
-                            <th>Plutôt non</th>
-                            <th>Plutôt oui</th>
-                            <th>Oui</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($questions as $question)
-                            @php
-                                $response = $question->response($psychosocial_group->id)
-                            @endphp
-                            <tr>
-                                <td>{{ $question->order }} : {{ $question->info }}</td>
-                                <td>{{ $response->id }}</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        @endforeach
-                    </tbody>
+                <table class="table table--inv">
+                    <tr>
+                        <td style="width: 50%">
+                            <table class="table table--psycho">
+                                <thead>
+                                    <tr>
+                                        <th colspan="5">Nombre de questionnaires exploités </th>
+                                        <th>{{ $psychosocial_group->number_quiz }}</th>
+                                    </tr>
+                                    <tr>
+                                        <th rowspan="2" class="th_question">Questions</th>
+                                        <th class="th_awe">Jamais</th>
+                                        <th class="th_awe">Parfois</th>
+                                        <th class="th_awe">Souvent</th>
+                                        <th class="th_awe">Toujours</th>
+                                        <th rowspan="2" class="th_awe">Moyen</th>
+                                    </tr>
+                                    <tr>
+                                        <th class="th_awe">Non</th>
+                                        <th class="th_awe">Plutôt non</th>
+                                        <th class="th_awe">Plutôt oui</th>
+                                        <th class="th_awe">Oui</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($questions as $key => $question)
+                                        @if($key <= 12)
+                                            @php
+                                                $response = $question->response($psychosocial_group->id)
+                                            @endphp
+                                            <tr>
+                                                <td class="td_question">{{ $question->order }} : {{ $question->info }}</td>
+                                                <td class="td_all">{{ $response->never }}</td>
+                                                <td class="td_all">{{ $response->sometimes }}</td>
+                                                <td class="td_all">{{ $response->often }}</td>
+                                                <td class="td_all">{{ $response->always }}</td>
+                                                <td class="td_all">{{ $response->intensity() }}</td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            <p></p>
+                        </td>
+                        <td style="width: 50%">
+                            <table class="table table--psycho">
+                                <thead>
+                                    <tr>
+                                        <th colspan="5">D’une façon générale, comment évaluez-vous votre niveau de stress sur une échelle de zéro à 100</th>
+                                        <th>{{ $psychosocial_group->stress_level }}</th>
+                                    </tr>
+                                    <tr>
+                                        <th rowspan="2" class="th_question">Questions</th>
+                                        <th class="th_awe">Jamais</th>
+                                        <th class="th_awe">Parfois</th>
+                                        <th class="th_awe">Souvent</th>
+                                        <th class="th_awe">Toujours</th>
+                                        <th rowspan="2" class="th_awe">Moyen</th>
+                                    </tr>
+                                    <tr>
+                                        <th class="th_awe">Non</th>
+                                        <th class="th_awe">Plutôt non</th>
+                                        <th class="th_awe">Plutôt oui</th>
+                                        <th class="th_awe">Oui</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for($i = 13; $i < count($questions); $i++)
+                                        @php
+                                            $response = $questions[$i]->response($psychosocial_group->id)
+                                        @endphp
+                                        <tr>
+                                            <td class="td_question">{{ $questions[$i]->order }} : {{ $questions[$i]->info }}</td>
+                                            <td class="td_all">{{ $response->never }}</td>
+                                            <td class="td_all">{{ $response->sometimes }}</td>
+                                            <td class="td_all">{{ $response->often }}</td>
+                                            <td class="td_all">{{ $response->always }}</td>
+                                            <td class="td_all">{{ $response->intensity() }}</td>
+                                        </tr>
+                                    @endfor
+                                </tbody>
+                            </table>
+                            <p></p>
+                        </td>
+                    </tr>
                 </table>
-
-                <table class="table table--psycho">
-                    <thead>
-                    <tr>
-                        <th colspan="5">D’une façon générale, comment évaluez-vous votre niveau de stress sur une échelle de zéro à 100</th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <th rowspan="2">Questions</th>
-                        <th>Jamais</th>
-                        <th>Parfois</th>
-                        <th>Souvent</th>
-                        <th>Toujours</th>
-                        <th rowspan="2">Moyen</th>
-                    </tr>
-                    <tr>
-                        <th>Non</th>
-                        <th>Plutôt non</th>
-                        <th>Plutôt oui</th>
-                        <th>Oui</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    </tbody>
-                </table>
-
+                <p></p>
             </div>
+
+
+            <div class="footer">
+                <p> Copyright © OZA DUERP Online</p>
+                <p class="page-num">LES RISQUES PSYCHOSOCIAUX</p>
+            </div>
+        </section>
+    @endforeach
+
+
+    @foreach($psychosocial_groups as $psychosocial_group)
+        <section class="page">
+            <div class="header">
+                <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
+                    , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
+            </div>
+
+            <div class="body body--notif">
+                <h1 class="head-title">QUESTIONNAIRES D'ÉVALUATION DES RISQUES PSYCHOSOCIAUX</h1>
+
+                <h3 class="head-subtitle">Groupe d’exposition homogène : <span class="text-color-yellow">{{ $psychosocial_group->name }}</span></h3>
+
+                <table class="table table--inv">
+                    <tr>
+                        <td style="width: 50%">
+                            <table class="table table--psycho">
+                                <thead>
+                                    <tr>
+                                        <th colspan="3" class="green">Niveau de risque Psychosocial moyen</th>
+                                    </tr>
+                                    <tr>
+                                        <th class="th_question">Facteurs de risques psychosociaux</th>
+                                        <th class="th_intensity">Niveau d’intensité</th>
+                                        <th class="th_action">Priorité d’action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($questions as $key => $question)
+                                    @if($key <= 12)
+                                        @php
+                                            $response = $question->response($psychosocial_group->id)
+                                        @endphp
+                                        <tr>
+                                            <td class="td_question">{{ $question->order }} : {{ $question->info }}</td>
+                                            <td class="td_all">{{ $response->intensity() }}</td>
+                                            <td class="td_all {{ $response->priorityPDF()['class'] }}">{{ $response->priorityPDF()['text'] }}</td>
+                                        </tr>
+                                    @endif
+                                @endforeach
+                                </tbody>
+                            </table>
+                            <p></p>
+                        </td>
+                        <td style="width: 50%">
+                            <table class="table table--psycho">
+                                <thead>
+                                    <tr>
+                                        <th colspan="3" class="green">Niveau de risque Psychosocial moyen</th>
+                                    </tr>
+                                    <tr>
+                                        <th class="th_question">Facteurs de risques psychosociaux</th>
+                                        <th class="th_intensity">Niveau d’intensité</th>
+                                        <th class="th_action">Priorité d’action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @for($i = 13; $i < count($questions); $i++)
+                                    @php
+                                        $response = $questions[$i]->response($psychosocial_group->id)
+                                    @endphp
+                                    <tr>
+                                        <td class="td_question">{{ $questions[$i]->order }} : {{ $questions[$i]->info }}</td>
+                                        <td class="td_all">{{ $response->intensity() }}</td>
+                                        <td class="td_all {{ $response->priorityPDF()['class'] }}">{{ $response->priorityPDF()['text'] }}</td>
+                                    </tr>
+                                @endfor
+                                </tbody>
+                            </table>
+                            <p></p>
+                        </td>
+                    </tr>
+                </table>
+                <p></p>
+            </div>
+
+
+            <div class="footer">
+                <p> Copyright © OZA DUERP Online</p>
+                <p class="page-num">LES RISQUES PSYCHOSOCIAUX</p>
+            </div>
+        </section>
+    @endforeach
+
+
+    @foreach($psychosocial_groups as $psychosocial_group)
+        <section class="page">
+            <div class="header">
+                <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
+                    , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
+            </div>
+
+            <div class="body body--notif">
+                <h1 class="head-title">QUESTIONNAIRES D'ÉVALUATION DES RISQUES PSYCHOSOCIAUX</h1>
+
+                <h3 class="head-subtitle">Groupe d’exposition homogène : <span class="text-color-yellow">{{ $psychosocial_group->name }}</span></h3>
+
+                <table class="table table--inv">
+                    <tr>
+                        <td style="width: 50%">
+                            <table class="table table--psycho">
+                                <thead>
+                                <tr>
+                                    <th colspan="2" class="green">Risque Psychosocial individuel</th>
+                                </tr>
+                                <tr>
+                                    <th class="th_question">Facteurs de risques psychosociaux</th>
+                                    <th class="th_intensity">Nombre de réponses extrêmes</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($questions as $key => $question)
+                                    @if($key <= 12)
+                                        @php
+                                            $response = $question->response($psychosocial_group->id)
+                                        @endphp
+                                        <tr>
+                                            <td class="td_question">{{ $question->order }} : {{ $question->info }}</td>
+                                            <td class="td_all">{{ $response->extreme() }}</td>
+                                        </tr>
+                                    @endif
+                                @endforeach
+                                </tbody>
+                            </table>
+                            <p></p>
+                        </td>
+                        <td style="width: 50%">
+                            <table class="table table--psycho">
+                                <thead>
+                                <tr>
+                                    <th colspan="2" class="green">Risque Psychosocial individuel</th>
+                                </tr>
+                                <tr>
+                                    <th class="th_question">Facteurs de risques psychosociaux</th>
+                                    <th class="th_intensity">Nombre de réponses extrêmes</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @for($i = 13; $i < count($questions); $i++)
+
+                                    @if($i === (count($questions) - 1))
+                                        <tr>
+                                            <td class="td_question">Nombre de salariés en souffrance : </td>
+                                            <td class="td_all">{{ $psychosocial_group->employee }}</td>
+                                        </tr>
+                                    @else
+                                        @php
+                                            $response = $questions[$i]->response($psychosocial_group->id)
+                                        @endphp
+                                        <tr>
+                                            <td class="td_question">{{ $questions[$i]->order }} : {{ $questions[$i]->info }}</td>
+                                            <td class="td_all">{{ $response->extreme() }}</td>
+                                        </tr>
+                                    @endif
+                                @endfor
+                                </tbody>
+                            </table>
+                            <p></p>
+                        </td>
+                    </tr>
+                </table>
+                <p></p>
+            </div>
+
 
             <div class="footer">
                 <p> Copyright © OZA DUERP Online</p>

@@ -18,6 +18,7 @@ class CreateSdPsychosocialGroupsTable extends Migration
             $table->string('name');
             $table->integer('number_quiz')->default(0);
             $table->float('stress_level', 5, 1)->default(0);
+            $table->float('employee', 5, 1)->default(0);
             $table->boolean('validated')->default(0);
 
             $table->foreignUuid('single_document_id');

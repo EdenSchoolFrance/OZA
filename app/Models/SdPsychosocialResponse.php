@@ -51,7 +51,7 @@ class SdPsychosocialResponse extends Model
             $intensity = ($this->never * 10) + ($this->sometimes * 6.6666) + ($this->often * 3.3333);
         }
 
-        $intensity = ($intensity / $number_quiz);
+        if ($number_quiz > 0) $intensity = ($intensity / $number_quiz);
 
         return number_format($intensity, 1);
     }
@@ -85,6 +85,42 @@ class SdPsychosocialResponse extends Model
         } elseif ($intensity >= 7.5) {
             $priority = [
                 "class" => "btn-danger",
+                "text" => "Elevé"
+            ];
+        }
+
+        return $priority;
+    }
+
+    public function priorityPDF(){
+
+        $question = $this->question;
+
+        $intensity = $this->intensity();
+
+        $priority = [
+            "class" => "green",
+            "text" => "Non concerné"
+        ];
+
+        if ($intensity < 2.5) {
+            $priority = [
+                "class" => "green",
+                "text" => "Non concerné"
+            ];
+        } elseif ($intensity >= 2.5 && $intensity < 5) {
+            $priority = [
+                "class" => "yellow",
+                "text" => "Faible"
+            ];
+        } elseif ($intensity >= 5 && $intensity < 7.5) {
+            $priority = [
+                "class" => "pink",
+                "text" => "Modéré"
+            ];
+        } elseif ($intensity >= 7.5) {
+            $priority = [
+                "class" => "red",
                 "text" => "Elevé"
             ];
         }

@@ -42,7 +42,7 @@ on('.card--psychosocial-evaluation-quiz table tbody tr input[type="number"]', 'c
         intensity_level = ((never * 10) + (sometimes * 6.6666) + (often * 3.3333)).toFixed(1);
     }
 
-    intensity_level = intensity_level / number_quiz;
+    if (number_quiz > 0) intensity_level = (intensity_level / number_quiz).toFixed(1);
 
     $('.td_intensity_level', row, 0).innerHTML = intensity_level;
 
@@ -66,7 +66,7 @@ on('.card--psychosocial-evaluation-quiz table tbody tr input[type="number"]', 'c
         $('.td_extreme', row, 0).innerHTML = never;
     }
 
-    $('.card--psychosocial-evaluation-quiz table tfoot tr .td_extreme_all', document, 0).innerHTML = $('.card--psychosocial-evaluation-quiz table tbody tr .td_extreme').pluck('innerText').reduce((a, b) => parseInt(a) + parseInt(b), 0);
+    $('.card--psychosocial-evaluation-quiz table tfoot tr .td_extreme_all input', document, 0).value = $('.card--psychosocial-evaluation-quiz table tbody tr .td_extreme').pluck('innerText').reduce((a, b) => parseInt(a) + parseInt(b), 0);
 });
 
 on('.btn-submit', 'click', (el, e) => {

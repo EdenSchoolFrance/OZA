@@ -595,8 +595,46 @@ table {
             }
         }
 
+        &--inv{
+            height: 500px;
+            border: none;
+            th{
+                border: none;
+            }
+            td{
+                border: none;
+            }
+            tr{
+                border: none;
+            }
+        }
         &--psycho{
-            width: 46%;
+            height: 70%;
+            tr{
+                th{
+                    color: $black;
+                }
+            }
+            td, th{
+                border: 1px solid black !important;
+                font-size: 10px;
+            }
+            .th_question{
+                width: 70%;
+            }
+            .th_awe{
+                font-size: 7px !important;
+            }
+
+            .td_question{
+                font-size: 10px;
+                text-align: start;
+            }
+            .td_all{
+                font-size: 10px;
+                text-align: center;
+            }
+
         }
     }
 }

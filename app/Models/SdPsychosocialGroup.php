@@ -22,6 +22,7 @@ class SdPsychosocialGroup extends Model
         'name',
         'number_quiz',
         'stress_level',
+        'employee',
         'validated',
     ];
 

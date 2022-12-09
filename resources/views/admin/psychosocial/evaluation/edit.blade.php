@@ -7,6 +7,7 @@
         @php
             $number_quiz = old('number_quiz', $psychosocial_group->number_quiz);
             $stress_level = old('stress_level', $psychosocial_group->stress_level);
+            $employee = old('$employee', $psychosocial_group->employee);
         @endphp
         <div class="card card--psychosocial-evaluation">
             <div class="card-body">
@@ -71,7 +72,7 @@
                                     $intensity = ($never * 10) + ($sometimes * 6.6666) + ($often * 3.3333);
                                 }
 
-                                $intensity = ($intensity / $number_quiz);
+                                if ($number_quiz > 0) $intensity = ($intensity / $number_quiz);
 
                                 $intensity = number_format($intensity, 1);
 
@@ -142,7 +143,7 @@
                     <tfoot>
                         <tr>
                             <td colspan="9">Nombre de salariés en souffrance</td>
-                            <td class="td_extreme_all">{{ $extreme_all }}</td>
+                            <td class="td_extreme_all"><input type="number" class="form-control" id="employee" name="employee" value="{{ $employee }}"></td>
                         </tr>
                     </tfoot>
                 </table>
