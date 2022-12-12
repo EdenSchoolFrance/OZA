@@ -23,7 +23,7 @@
                             @if(count($responses) === 0)
                                 <tr class="no-data no-data--centered">
                                     <td colspan="{{ 6 }}">
-                                        Aucune données
+                                        Aucune donnée
                                     </td>
                                 </tr>
                             @endif

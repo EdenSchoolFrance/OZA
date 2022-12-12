@@ -201,7 +201,7 @@ class PsychosocialController extends Controller
             }
 
         }
-        return back()->with('status', 'Les questions on bien étais mise à jour !');
+        return back()->with('status', 'Les questions on bien été mise à jour !');
     }
 
 
@@ -232,7 +232,7 @@ class PsychosocialController extends Controller
             }
 
         }
-        return back()->with('status', 'Les questions on bien étais mise à jour !');
+        return back()->with('status', 'Les questions on bien été mise à jour !');
     }
 
     public function action($id, $id_psychosocial_group){

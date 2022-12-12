@@ -22,7 +22,7 @@
                             @if(count($responses) === 0)
                                 <tr class="no-data no-data--centered">
                                     <td colspan="{{ 6 }}">
-                                        Aucun risque
+                                        Aucune donnée
                                     </td>
                                 </tr>
                             @endif

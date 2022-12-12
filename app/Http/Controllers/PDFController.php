@@ -290,11 +290,11 @@ class PDFController extends Controller
             'questions')
         )->setPaper('a4', 'landscape');
 
-        return $pdf->stream();
+        //return $pdf->stream();
 
-//        Storage::put('/private/' . $single_document->client->id . '/du/' . $histories->id . '.pdf', $pdf->download()->getOriginalContent());
-//
-//        return back()->with('status', 'Document unique généré avec succès, vous pouvez maintenant le télécharger !');
+        Storage::put('/private/' . $single_document->client->id . '/du/' . $histories->id . '.pdf', $pdf->download()->getOriginalContent());
+
+        return back()->with('status', 'Document unique généré avec succès, vous pouvez maintenant le télécharger !');
     }
 
     public static function create()
