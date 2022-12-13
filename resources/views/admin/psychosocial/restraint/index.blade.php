@@ -50,15 +50,15 @@
                                             @if($help === true)
                                                 @foreach($response->question->restraints as $restraint)
                                                     <li class="res-pro">
-                                                        <input type="checkbox" class="btn-check" data-id="{{ $response->id }}">
-                                                        <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed_{{ $response->id }}[not-checked][]">{{ $restraint->text }}</textarea>
+                                                        <input type="checkbox" class="btn-check" data-id="{{ $response->id }}" data-tab="{{ $restraint->id }}">
+                                                        <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed_{{ $response->id }}[not-checked][{{ $restraint->id }}][]">{{ $restraint->text }}</textarea>
                                                     </li>
                                                 @endforeach
                                             @endif
                                             @foreach($response->restraints as $restraint)
                                                 <li class="res-pro">
-                                                    <input type="checkbox" class="btn-check" data-id="{{ $response->id }}" {{$restraint->checked === 1 ? 'checked' : ''}}>
-                                                    <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed_{{ $response->id }}[{{$restraint->checked === 1 ? 'checked' : 'not-checked'}}][]">{{ $restraint->text }}</textarea>
+                                                    <input type="checkbox" class="btn-check" data-id="{{ $response->id }}" {{$restraint->checked === 1 ? 'checked' : ''}} data-tab="{{ $restraint->id }}">
+                                                    <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed_{{ $response->id }}[{{$restraint->checked === 1 ? 'checked' : 'not-checked'}}][{{ $restraint->id }}][]">{{ $restraint->text }}</textarea>
                                                     <button type="button" class="btn btn-text btn-small btn-delete-restraint"><i class="far fa-times-circle"></i></button>
                                                 </li>
                                             @endforeach

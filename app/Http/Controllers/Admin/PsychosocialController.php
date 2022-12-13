@@ -165,39 +165,71 @@ class PsychosocialController extends Controller
 
         foreach ($responses as $response){
 
-            $response->restraints()->delete();
-
+            $tabDelete = [];
+            foreach ($response->restraints as $res ) {
+                $tabDelete[] = $res->id;
+            }
             $P = "restraint_proposed_".$response->id;
 
             if ($request->$P){
 
                 if (isset($request->$P['checked'])){
-                    foreach ((array) $request->$P['checked'] as $res){
+                    foreach ((array) $request->$P['checked'] as $key => $res){
 
-                        if ($res !== null){
-                            $restraint = new SdPsychosocialResponseRestraint();
-                            $restraint->id = uniqid();
-                            $restraint->text = $res;
-                            $restraint->checked = true;
-                            $restraint->response()->associate($response);
-                            $restraint->save();
+                        if ($res[0] !== null){
+                            if ($key === "none"){
+                                for ($i = 0; $i < count($res); $i++) {
+                                    $restraint = new SdPsychosocialResponseRestraint();
+                                    $restraint->id = uniqid();
+                                    $restraint->text = $res[$i];
+                                    $restraint->checked = true;
+                                    $restraint->response()->associate($response);
+                                    $restraint->save();
+                                }
+                            }else{
+                                $restraint = SdPsychosocialResponseRestraint::find($key);
+                                $restraint->text = $res[0];
+                                $restraint->checked = true;
+                                $restraint->save();
+
+                                $index = array_search($key, $tabDelete);
+                                unset($tabDelete[$index]);
+                            }
                         }
                     }
                 }
                 if (isset($request->$P['not-checked'])){
-                    foreach ((array) $request->$P['not-checked'] as $res){
+                    foreach ((array) $request->$P['not-checked'] as $key => $res){
 
-                        if ($res !== null){
-                            $restraint = new SdPsychosocialResponseRestraint();
-                            $restraint->id = uniqid();
-                            $restraint->text = $res;
-                            $restraint->checked = false;
-                            $restraint->response()->associate($response);
-                            $restraint->save();
+                        if ($res[0] !== null){
+                            if ($key === "none"){
+                                for ($i = 0; $i < count($res); $i++) {
+                                    $restraint = new SdPsychosocialResponseRestraint();
+                                    $restraint->id = uniqid();
+                                    $restraint->text = $res[$i];
+                                    $restraint->checked = false;
+                                    $restraint->response()->associate($response);
+                                    $restraint->save();
+                                }
+                            }else{
+                                $restraint = SdPsychosocialResponseRestraint::find($key);
+                                $restraint->text = $res[0];
+                                $restraint->checked = false;
+                                $restraint->save();
+
+                                $index = array_search($key, $tabDelete);
+                                unset($tabDelete[$index]);
+                            }
                         }
                     }
                 }
 
+            }
+
+            if (count($tabDelete) > 0){
+                for ($i = 0; $i < count($tabDelete); $i++){
+                    SdPsychosocialResponseRestraint::find($tabDelete[$i])->delete();
+                }
             }
 
         }

@@ -151,17 +151,17 @@
                 <p><span class="line"><a href="#evalRiskPsycho" class="link">EVALUATION DETAILLEE DU RISQUE PSYCHOSOCIAL ET <span>PLAN D’ACTION</span></a></span>
                 </p>
             </li>
-{{--            <li>--}}
-{{--                <span class="number">8</span>--}}
-{{--                <p><span class="line"><a href="#evalRiskChimi"--}}
-{{--                                         class="link">EVALUATION DETAILLEE DU RISQUE CHIMIQUE ET <span>PLAN D’ACTION</span></a></span>--}}
-{{--                </p>--}}
-{{--            </li>--}}
-{{--            <li>--}}
-{{--                <span class="number">9</span>--}}
-{{--                <p><span class="line"><a href="#explo" class="link">DOCUMENT RELATIF A LA PREVENTION CONTRE L’EXPLOSION ET <span>PLAN D’ACTION</span></a></span>--}}
-{{--                </p>--}}
-{{--            </li>--}}
+            {{--            <li>--}}
+            {{--                <span class="number">8</span>--}}
+            {{--                <p><span class="line"><a href="#evalRiskChimi"--}}
+            {{--                                         class="link">EVALUATION DETAILLEE DU RISQUE CHIMIQUE ET <span>PLAN D’ACTION</span></a></span>--}}
+            {{--                </p>--}}
+            {{--            </li>--}}
+            {{--            <li>--}}
+            {{--                <span class="number">9</span>--}}
+            {{--                <p><span class="line"><a href="#explo" class="link">DOCUMENT RELATIF A LA PREVENTION CONTRE L’EXPLOSION ET <span>PLAN D’ACTION</span></a></span>--}}
+            {{--                </p>--}}
+            {{--            </li>--}}
             <li>
                 <span class="number">10</span>
                 <p><span class="line"><a href="#expoRiskPro" class="link">EXPOSITION AUX FACTEURS DE RISQUES PROFESSIONNELS ET <span>PLAN D’ACTION</span></a></span>
@@ -1445,7 +1445,9 @@
     </div>
 
     <div class="body">
-        <p class="center legend info"> F = Fréquence | P = Probabilité | GP = Gravité potentiel | ID = Impact différencié | RB = Risque brut{{--| T = Technique | O = Oragnisationnelle | H = Humain--}} | RR = Risque résiduel</p>
+        <p class="center legend info"> F = Fréquence | P = Probabilité | GP = Gravité potentiel | ID = Impact
+            différencié | RB = Risque brut{{--| T = Technique | O = Oragnisationnelle | H = Humain--}} | RR = Risque
+            résiduel</p>
         <table class="table table--action">
             <thead>
             <tr>
@@ -1480,15 +1482,15 @@
                     Mesures de prévention et de protection existantes : Technique, Organisationnelle, Protection,
                     Humaine (information)
                 </td>
-{{--                <td class="theader">--}}
-{{--                    T--}}
-{{--                </td>--}}
-{{--                <td class="theader">--}}
-{{--                    O--}}
-{{--                </td>--}}
-{{--                <td class="theader">--}}
-{{--                    H--}}
-{{--                </td>--}}
+                {{--                <td class="theader">--}}
+                {{--                    T--}}
+                {{--                </td>--}}
+                {{--                <td class="theader">--}}
+                {{--                    O--}}
+                {{--                </td>--}}
+                {{--                <td class="theader">--}}
+                {{--                    H--}}
+                {{--                </td>--}}
                 <td class="theader">
                     RR
                 </td>
@@ -1518,9 +1520,9 @@
                                     * @stripTags($sd_restraint->name) <br>
                                 @endforeach
                             </td>
-{{--                            <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneTech(), 1), "tech") }}</td>--}}
-{{--                            <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneOrga(), 1), "orga") }}</td>--}}
-{{--                            <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneHum(), 1), "hum") }}</td>--}}
+                            {{--                            <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneTech(), 1), "tech") }}</td>--}}
+                            {{--                            <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneOrga(), 1), "orga") }}</td>--}}
+                            {{--                            <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneHum(), 1), "hum") }}</td>--}}
                             <td class="center min-width min-width-right"> {{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->totalRR($sd_risk->sd_restraints_exist) : $sd_risk->total() }}</td>
                             <td class="center criticity {{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints_exist),false) :  $sd_risk->colorPDF($sd_risk->total(),true) }}">{{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints),false) : $sd_risk->colorTotal($sd_risk->total(),true) }}</td>
                             <td class="restraint_proposed">
@@ -1541,9 +1543,9 @@
                         <td class="center min-width min-width-left">NON</td>
                         <td class="center min-width min-width-left">0</td>
                         <td class="restraint"></td>
-{{--                        <td class="center min-width min-width-right">0</td>--}}
-{{--                        <td class="center min-width min-width-right">0</td>--}}
-{{--                        <td class="center min-width min-width-right">0</td>--}}
+                        {{--                        <td class="center min-width min-width-right">0</td>--}}
+                        {{--                        <td class="center min-width min-width-right">0</td>--}}
+                        {{--                        <td class="center min-width min-width-right">0</td>--}}
                         <td class="center min-width min-width-right">0</td>
                         <td class="center green criticity">0</td>
                         <td class="restraint_proposed"></td>
@@ -1643,31 +1645,52 @@
 
             <p>
                 <span class="bold">1. Quels dangers liés aux RPS ?</span> <br>
-                Le Ministère du travail Français en donne cette définition sur son site www.travail-emploi.gouv.fr : « Les risques psychosociaux (RPS) sont à l’interface de l’individu et de sa situation de travail d’où le terme de risque psychosocial. Sous l’entité RPS, on entend stress mais aussi violences internes (harcèlement moral, harcèlement sexuel) et violences externes (exercées par des personnes extérieures à l’entreprise à l’encontre des salariés) ».<br>
-                <span class="bold">L’agence Européenne</span> pour la sécurité et la santé au travail considère pour sa part que : « Les risques psychosociaux et le stress occasionné par le travail font partie des principaux défis à relever dans le domaine de la santé et la sécurité au travail. Ils ont une incidence considérable sur la santé des personnes, des organisations et des économies nationales. <br>
+                Le Ministère du travail Français en donne cette définition sur son site www.travail-emploi.gouv.fr : «
+                Les risques psychosociaux (RPS) sont à l’interface de l’individu et de sa situation de travail d’où le
+                terme de risque psychosocial. Sous l’entité RPS, on entend stress mais aussi violences internes
+                (harcèlement moral, harcèlement sexuel) et violences externes (exercées par des personnes extérieures à
+                l’entreprise à l’encontre des salariés) ».<br>
+                <span class="bold">L’agence Européenne</span> pour la sécurité et la santé au travail considère pour sa
+                part que : « Les risques psychosociaux et le stress occasionné par le travail font partie des principaux
+                défis à relever dans le domaine de la santé et la sécurité au travail. Ils ont une incidence
+                considérable sur la santé des personnes, des organisations et des économies nationales. <br>
                 Les dangers qui génèrent les RPS sont notamment : <br>
-                - Le déséquilibre entre la perception qu’une personne a des contraintes de son environnement de travail et la perception qu’elle a de ses propres ressources pour y faire face ; <br>
+                - Le déséquilibre entre la perception qu’une personne a des contraintes de son environnement de travail
+                et la perception qu’elle a de ses propres ressources pour y faire face ; <br>
                 - Les violences internes commises au sein de l’entreprise par des salariés ; <br>
                 - Les violences externes commises sur des salariés par des personnes externes à l’entreprise.
             </p>
 
             <p>
                 <span class="bold">2. Quels risques et conséquences liés aux RPS ?</span> <br>
-                L’exposition à ces situations de travail peut avoir des conséquences sur la santé des salariés, notamment en termes de maladies cardio-vasculaires, de troubles musculosquelettiques, de troubles anxio-dépressifs, d’épuisement professionnel, voire de suicide.<br>
-                Les risques psychosociaux engendrent également un coût important pour les entreprises à travers une croissance des absences, des inaptitudes, du turnover, des reconnaissances de maladie professionnelle, des retards, de l’improductivité et des tensions sociales.
+                L’exposition à ces situations de travail peut avoir des conséquences sur la santé des salariés,
+                notamment en termes de maladies cardio-vasculaires, de troubles musculosquelettiques, de troubles
+                anxio-dépressifs, d’épuisement professionnel, voire de suicide.<br>
+                Les risques psychosociaux engendrent également un coût important pour les entreprises à travers une
+                croissance des absences, des inaptitudes, du turnover, des reconnaissances de maladie professionnelle,
+                des retards, de l’improductivité et des tensions sociales.
             </p>
 
             <p>
                 <span class="bold">2.1. Facteurs potentiels de RPS au travail :</span> <br>
-                - Mauvaise communication, niveau de soutien insuffisant pour la résolution des problèmes et le développement personnel, absence de définition des objectifs.<br>
+                - Mauvaise communication, niveau de soutien insuffisant pour la résolution des problèmes et le
+                développement personnel, absence de définition des objectifs.<br>
                 - Ambiguïté et conflits de rôles, imprécision de la définition des responsabilités des travailleurs.<br>
-                - Stagnation et incertitude dans la carrière, promotion insuffisante ou excessive, salaire bas, insécurité professionnelle, valeur sociale du travail insuffisante. - Participation insuffisante à la prise de décision, manque de contrôle sur le travail.<br>
-                - Isolement social ou physique, mauvais rapports avec les supérieurs, conflits interpersonnels, manque de soutien social.<br>
-                - Exigences contradictoires entre le travail et la vie privée, soutien insuffisant à la maison, difficultés à concilier vie professionnelle et vie privée.<br>
-                - Problèmes concernant la fiabilité, la disponibilité, l’adaptation, l’entretien ou la réparation de l’équipement et des moyens.<br>
-                - Manque de variété ou cycles de travail court, travail fragmenté ou insignifiant, sous-utilisation des compétences, grande insécurité.<br>
-                - Surcharge ou manque de travail, manque de contrôle sur le rythme de travail, niveau élevé de pression par rapport au temps imparti pour effectuer le travail.<br>
-                - Travail posté, plannings inflexibles, horaires de travail imprévisibles, longues heures de travail ou travail effectué en dehors des heures normales,<br>
+                - Stagnation et incertitude dans la carrière, promotion insuffisante ou excessive, salaire bas,
+                insécurité professionnelle, valeur sociale du travail insuffisante. - Participation insuffisante à la
+                prise de décision, manque de contrôle sur le travail.<br>
+                - Isolement social ou physique, mauvais rapports avec les supérieurs, conflits interpersonnels, manque
+                de soutien social.<br>
+                - Exigences contradictoires entre le travail et la vie privée, soutien insuffisant à la maison,
+                difficultés à concilier vie professionnelle et vie privée.<br>
+                - Problèmes concernant la fiabilité, la disponibilité, l’adaptation, l’entretien ou la réparation de
+                l’équipement et des moyens.<br>
+                - Manque de variété ou cycles de travail court, travail fragmenté ou insignifiant, sous-utilisation des
+                compétences, grande insécurité.<br>
+                - Surcharge ou manque de travail, manque de contrôle sur le rythme de travail, niveau élevé de pression
+                par rapport au temps imparti pour effectuer le travail.<br>
+                - Travail posté, plannings inflexibles, horaires de travail imprévisibles, longues heures de travail ou
+                travail effectué en dehors des heures normales,<br>
                 - Harcèlement moral ou sexuel,<br>
                 - Conflits exacerbés entre des personnes ou entre des équipes,<br>
                 - Insultes, menaces, agressions.
@@ -1691,13 +1714,25 @@
 
             <p>
                 <span class="bold">2.2. Indicateurs de RPS au travail</span> <br>
-                - Les réactions physiologiques : maladies hypertensives, affections cardiaques, lésions articulaires de type rhumatismal. Un stress intense se traduit par une forte usure de l’organisme qui affecte la santé.<br>
-                - Les réactions émotionnelles s’expriment par des variations de l’humeur telles que l’irritabilité, l’anxiété ou encore la dépression, phase ultime du stress. Elles peuvent également se manifester par une baisse d’estime de soi, d’un sentiment d’infériorité ou d’insatisfaction au travail.<br>
-                - Les réactions comportementales comme une augmentation de la consommation de tabac, alcool, antidépresseurs, voire des réactions violentes ou même des tentatives de suicide ; la diminution de la capacité à traiter l’information est fonction du niveau de stress. A un niveau de stress élevé, l’effort compensatoire atteint son plafond et l’effet différentiel du stress devient clairement observable sur la performance.<br>
-                Constituent des exemples d’agissements constitutifs de risque psychosocial, qu’ils soient commis par un employeur ou un autre salarié : - Ne pas informer le salarié de la tenue des réunions de son service ;<br>
+                - Les réactions physiologiques : maladies hypertensives, affections cardiaques, lésions articulaires de
+                type rhumatismal. Un stress intense se traduit par une forte usure de l’organisme qui affecte la
+                santé.<br>
+                - Les réactions émotionnelles s’expriment par des variations de l’humeur telles que l’irritabilité,
+                l’anxiété ou encore la dépression, phase ultime du stress. Elles peuvent également se manifester par une
+                baisse d’estime de soi, d’un sentiment d’infériorité ou d’insatisfaction au travail.<br>
+                - Les réactions comportementales comme une augmentation de la consommation de tabac, alcool,
+                antidépresseurs, voire des réactions violentes ou même des tentatives de suicide ; la diminution de la
+                capacité à traiter l’information est fonction du niveau de stress. A un niveau de stress élevé, l’effort
+                compensatoire atteint son plafond et l’effet différentiel du stress devient clairement observable sur la
+                performance.<br>
+                Constituent des exemples d’agissements constitutifs de risque psychosocial, qu’ils soient commis par un
+                employeur ou un autre salarié : - Ne pas informer le salarié de la tenue des réunions de son service
+                ;<br>
                 - Refus systématique de toutes les demandes de formation et de congés sans justification objective ;<br>
-                - Retrait d’avantages tels que véhicule de fonction, téléphone ou ordinateur portable sans justification objective ;<br>
-                - Mise au « placard », c’est-à-dire suppression progressive des tâches prévues au contrat de travail et isolement ; <br>
+                - Retrait d’avantages tels que véhicule de fonction, téléphone ou ordinateur portable sans justification
+                objective ;<br>
+                - Mise au « placard », c’est-à-dire suppression progressive des tâches prévues au contrat de travail et
+                isolement ; <br>
                 - Dénigrements systématiques, insultes ou agressions verbales répétitives ;<br>
                 - Charge de travail incompatible avec les compétences et / ou les moyens confiés au salarié ;<br>
                 - Surveillance disproportionnée de l’exécution de la prestation de travail ;<br>
@@ -1706,18 +1741,32 @@
 
             <p>
                 <span class="bold">2.3. Evaluation des RPS</span> <br>
-                L’évaluation des RPS est un processus complexe. Il nécessite d’observer à la fois l’organisation du travail et son environnement, les exigences de productivité, les relations sociales et le management.<br>
+                L’évaluation des RPS est un processus complexe. Il nécessite d’observer à la fois l’organisation du
+                travail et son environnement, les exigences de productivité, les relations sociales et le
+                management.<br>
                 Le challenge consiste à objectiver des risques qui paraissent tout à fait subjectifs.<br>
-                L’identification des risques psychosociaux passe par la mobilisation du personnel à travers des échanges, questionnaires, réunions, menés avec tous les salariés ou les représentants du personnel. Le service de santé au travail ou des intervenants extérieurs spécialisés peuvent aider à cette évaluation en jouant le rôle d’intermédiaire et de garant de l’objectivité de la démarche.<br>
-                La mise à jour régulière du document unique sur le sujet des risques psychosociaux est impérative. En effet, ces risques évoluent rapidement dans le temps et peuvent ainsi apparaître ou disparaître, notamment lors de restructuration, changement de méthode, de lieux de travail ou de management.<br>
-                Une généralisation du processus d’analyse des risques ne peut être opérée. Mais pour faciliter l’évaluation de ces risques et leur intégration dans le document unique, des outils communs à toutes les branches d’activité existent, notamment les outils et méthodes de l’INRS.<br>
-                La démarche d’analyse de OZA utilisée dans ce Document Unique (ci-après au paragraphe 5) reprend l’outil proposé par l’INRS pour les entreprises de plus de 50 salariés (ED 6140 Outil RPS-DU) en l’adaptant également aux entreprises plus petites.
+                L’identification des risques psychosociaux passe par la mobilisation du personnel à travers des
+                échanges, questionnaires, réunions, menés avec tous les salariés ou les représentants du personnel. Le
+                service de santé au travail ou des intervenants extérieurs spécialisés peuvent aider à cette évaluation
+                en jouant le rôle d’intermédiaire et de garant de l’objectivité de la démarche.<br>
+                La mise à jour régulière du document unique sur le sujet des risques psychosociaux est impérative. En
+                effet, ces risques évoluent rapidement dans le temps et peuvent ainsi apparaître ou disparaître,
+                notamment lors de restructuration, changement de méthode, de lieux de travail ou de management.<br>
+                Une généralisation du processus d’analyse des risques ne peut être opérée. Mais pour faciliter
+                l’évaluation de ces risques et leur intégration dans le document unique, des outils communs à toutes les
+                branches d’activité existent, notamment les outils et méthodes de l’INRS.<br>
+                La démarche d’analyse de OZA utilisée dans ce Document Unique (ci-après au paragraphe 5) reprend l’outil
+                proposé par l’INRS pour les entreprises de plus de 50 salariés (ED 6140 Outil RPS-DU) en l’adaptant
+                également aux entreprises plus petites.
             </p>
 
             <p>
                 <span class="bold">3. Quel cadre et limites réglementaires pour les RPS ?</span> <br>
-                Une obligation générale de sécurité incombe à l’employeur. Elle est énoncée de la façon suivante dans la Code du travail : L’employeur prend les mesures nécessaires pour assurer la sécurité et protéger la santé physique et mentale des travailleurs.<br>
-                Le harcèlement moral, le harcèlement sexuel et les agissements sexistes sont interdits en France par le Code du travail et par le Code pénal.<br>
+                Une obligation générale de sécurité incombe à l’employeur. Elle est énoncée de la façon suivante dans la
+                Code du travail : L’employeur prend les mesures nécessaires pour assurer la sécurité et protéger la
+                santé physique et mentale des travailleurs.<br>
+                Le harcèlement moral, le harcèlement sexuel et les agissements sexistes sont interdits en France par le
+                Code du travail et par le Code pénal.<br>
             </p>
         </div>
 
@@ -1739,16 +1788,24 @@
 
             <p>
                 <span class="bold">4. Quels moyens de prévention des RPS ?</span> <br>
-                Pour mettre en œuvre sa stratégie de prévention, l’employeur a notamment la possibilité de s’appuyer sur le service de santé au travail. La logique de prévention s’appuiera sur les données de sortie de l’évaluation des risques qui aura été réalisée selon les phases logiques :<br>
+                Pour mettre en œuvre sa stratégie de prévention, l’employeur a notamment la possibilité de s’appuyer sur
+                le service de santé au travail. La logique de prévention s’appuiera sur les données de sortie de
+                l’évaluation des risques qui aura été réalisée selon les phases logiques :<br>
                 - D’identification des facteurs de risques,<br>
-                - De quantification des facteurs de risques, - De hiérarchisation des facteurs de risques, réalisées pour chaque unité de travail.<br>
-                Les mesures de prévention porteront logiquement sur tous les facteurs de risque identifiés comme prioritaires lors de l’évaluation, notamment : - L’organisation du travail et son environnement, notamment pour le rendre plus stimulant,<br>
-                - Les exigences de productivité, notamment en adaptant le travail demandé aux capacités et aux ressources des salariés,<br>
+                - De quantification des facteurs de risques, - De hiérarchisation des facteurs de risques, réalisées
+                pour chaque unité de travail.<br>
+                Les mesures de prévention porteront logiquement sur tous les facteurs de risque identifiés comme
+                prioritaires lors de l’évaluation, notamment : - L’organisation du travail et son environnement,
+                notamment pour le rendre plus stimulant,<br>
+                - Les exigences de productivité, notamment en adaptant le travail demandé aux capacités et aux
+                ressources des salariés,<br>
                 - Les relations sociales et interpersonnelles,<br>
                 - Le management,<br>
                 - La définition claire des rôles et des responsabilités de chacun,<br>
                 - La possibilité donnée aux salariés de participer aux changements qui affecteront leur travail,<br>
-                - L’amélioration de la communication de l’entreprise sur sa stratégie afin de réduire les incertitudes, - La facilitation et l’amélioration des échanges et du dialogue entre tous les acteurs de l’entreprise,<br>
+                - L’amélioration de la communication de l’entreprise sur sa stratégie afin de réduire les incertitudes,
+                - La facilitation et l’amélioration des échanges et du dialogue entre tous les acteurs de
+                l’entreprise,<br>
                 - L’aménagement des locaux pour lutter contre le risque d’agression,<br>
                 -….<br>
                 Le service de santé au travail prendra pour sa part en charge les salariés identifiés en souffrance.
@@ -1782,7 +1839,9 @@
 
             <p>
                 <span class="bold">2ème étape</span> <br>
-                Le niveau de risque moyen est calculé en effectuant la moyenne pondérée des réponses obtenues pour chaque question avec les pondérations suivantes : « non concerné » = 0 ; « risque faible » = 3,33 ; « risque modéré » = 6,66 ; « risque élevé » = 10<br>
+                Le niveau de risque moyen est calculé en effectuant la moyenne pondérée des réponses obtenues pour
+                chaque question avec les pondérations suivantes : « non concerné » = 0 ; « risque faible » = 3,33 ; «
+                risque modéré » = 6,66 ; « risque élevé » = 10<br>
                 Le niveau de risque moyen est présenté selon la cotation du risque suivante :<br>
                 < 2,5 Non concerné<br>
                 2,5 à 4,9 = Faible<br>
@@ -1793,9 +1852,14 @@
 
             <p>
                 <span class="bold">3ème étape</span> <br>
-                Une analyse du risque psychosocial individuel est également effectuée en examinant chaque questionnaire individuellement.<br>
-                Le nombre de salariés en souffrance est reporté dans le tableau « Niveau de risque Psychosocial individuel ».<br>
-                Les salariés en souffrance sont ceux qui ont répondu de façon extrême à plus de trois questions et qui ont positionné leur réponse au-delà de 66 sur l’échelle de niveau de stress ; et ceux qui ont répondu de façon extrême à la question 21 et qui ont positionné leur réponse au-delà de 66 sur l’échelle de niveau de stress. Voir tableau « Niveau de risque Psychosocial individuel ».
+                Une analyse du risque psychosocial individuel est également effectuée en examinant chaque questionnaire
+                individuellement.<br>
+                Le nombre de salariés en souffrance est reporté dans le tableau « Niveau de risque Psychosocial
+                individuel ».<br>
+                Les salariés en souffrance sont ceux qui ont répondu de façon extrême à plus de trois questions et qui
+                ont positionné leur réponse au-delà de 66 sur l’échelle de niveau de stress ; et ceux qui ont répondu de
+                façon extrême à la question 21 et qui ont positionné leur réponse au-delà de 66 sur l’échelle de niveau
+                de stress. Voir tableau « Niveau de risque Psychosocial individuel ».
             </p>
 
             <p>
@@ -1820,48 +1884,49 @@
             <div class="body body--notif">
                 <h1 class="head-title">QUESTIONNAIRES D'ÉVALUATION DES RISQUES PSYCHOSOCIAUX</h1>
 
-                <h3 class="head-subtitle">Groupe d’exposition homogène : <span class="text-color-yellow">{{ $psychosocial_group->name }}</span></h3>
+                <h3 class="head-subtitle">Groupe d’exposition homogène : <span
+                        class="text-color-yellow">{{ $psychosocial_group->name }}</span></h3>
 
                 <table class="table table--inv">
                     <tr>
                         <td style="width: 50%">
                             <table class="table table--psycho">
                                 <thead>
-                                    <tr>
-                                        <th colspan="5">Nombre de questionnaires exploités </th>
-                                        <th>{{ $psychosocial_group->number_quiz }}</th>
-                                    </tr>
-                                    <tr>
-                                        <th rowspan="2" class="th_question">Questions</th>
-                                        <th class="th_awe">Jamais</th>
-                                        <th class="th_awe">Parfois</th>
-                                        <th class="th_awe">Souvent</th>
-                                        <th class="th_awe">Toujours</th>
-                                        <th rowspan="2" class="th_awe">Moyen</th>
-                                    </tr>
-                                    <tr>
-                                        <th class="th_awe">Non</th>
-                                        <th class="th_awe">Plutôt non</th>
-                                        <th class="th_awe">Plutôt oui</th>
-                                        <th class="th_awe">Oui</th>
-                                    </tr>
+                                <tr>
+                                    <th colspan="5">Nombre de questionnaires exploités</th>
+                                    <th>{{ $psychosocial_group->number_quiz }}</th>
+                                </tr>
+                                <tr>
+                                    <th rowspan="2" class="th_question">Questions</th>
+                                    <th class="th_awe">Jamais</th>
+                                    <th class="th_awe">Parfois</th>
+                                    <th class="th_awe">Souvent</th>
+                                    <th class="th_awe">Toujours</th>
+                                    <th rowspan="2" class="th_awe">Moyen</th>
+                                </tr>
+                                <tr>
+                                    <th class="th_awe">Non</th>
+                                    <th class="th_awe">Plutôt non</th>
+                                    <th class="th_awe">Plutôt oui</th>
+                                    <th class="th_awe">Oui</th>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($questions as $key => $question)
-                                        @if($key <= 12)
-                                            @php
-                                                $response = $question->response($psychosocial_group->id)
-                                            @endphp
-                                            <tr>
-                                                <td class="td_question">{{ $question->order }} : {{ $question->info }}</td>
-                                                <td class="td_all">{{ $response->never }}</td>
-                                                <td class="td_all">{{ $response->sometimes }}</td>
-                                                <td class="td_all">{{ $response->often }}</td>
-                                                <td class="td_all">{{ $response->always }}</td>
-                                                <td class="td_all">{{ $response->intensity() }}</td>
-                                            </tr>
-                                        @endif
-                                    @endforeach
+                                @foreach($questions as $key => $question)
+                                    @if($key <= 12)
+                                        @php
+                                            $response = $question->response($psychosocial_group->id)
+                                        @endphp
+                                        <tr>
+                                            <td class="td_question">{{ $question->order }} : {{ $question->info }}</td>
+                                            <td class="td_all">{{ $response->never }}</td>
+                                            <td class="td_all">{{ $response->sometimes }}</td>
+                                            <td class="td_all">{{ $response->often }}</td>
+                                            <td class="td_all">{{ $response->always }}</td>
+                                            <td class="td_all">{{ $response->intensity() }}</td>
+                                        </tr>
+                                    @endif
+                                @endforeach
                                 </tbody>
                             </table>
                             <p></p>
@@ -1869,39 +1934,42 @@
                         <td style="width: 50%">
                             <table class="table table--psycho">
                                 <thead>
-                                    <tr>
-                                        <th colspan="5">D’une façon générale, comment évaluez-vous votre niveau de stress sur une échelle de zéro à 100</th>
-                                        <th>{{ $psychosocial_group->stress_level }}</th>
-                                    </tr>
-                                    <tr>
-                                        <th rowspan="2" class="th_question">Questions</th>
-                                        <th class="th_awe">Jamais</th>
-                                        <th class="th_awe">Parfois</th>
-                                        <th class="th_awe">Souvent</th>
-                                        <th class="th_awe">Toujours</th>
-                                        <th rowspan="2" class="th_awe">Moyen</th>
-                                    </tr>
-                                    <tr>
-                                        <th class="th_awe">Non</th>
-                                        <th class="th_awe">Plutôt non</th>
-                                        <th class="th_awe">Plutôt oui</th>
-                                        <th class="th_awe">Oui</th>
-                                    </tr>
+                                <tr>
+                                    <th colspan="5">D’une façon générale, comment évaluez-vous votre niveau de stress
+                                        sur une échelle de zéro à 100
+                                    </th>
+                                    <th>{{ $psychosocial_group->stress_level }}</th>
+                                </tr>
+                                <tr>
+                                    <th rowspan="2" class="th_question">Questions</th>
+                                    <th class="th_awe">Jamais</th>
+                                    <th class="th_awe">Parfois</th>
+                                    <th class="th_awe">Souvent</th>
+                                    <th class="th_awe">Toujours</th>
+                                    <th rowspan="2" class="th_awe">Moyen</th>
+                                </tr>
+                                <tr>
+                                    <th class="th_awe">Non</th>
+                                    <th class="th_awe">Plutôt non</th>
+                                    <th class="th_awe">Plutôt oui</th>
+                                    <th class="th_awe">Oui</th>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    @for($i = 13; $i < count($questions); $i++)
-                                        @php
-                                            $response = $questions[$i]->response($psychosocial_group->id)
-                                        @endphp
-                                        <tr>
-                                            <td class="td_question">{{ $questions[$i]->order }} : {{ $questions[$i]->info }}</td>
-                                            <td class="td_all">{{ $response->never }}</td>
-                                            <td class="td_all">{{ $response->sometimes }}</td>
-                                            <td class="td_all">{{ $response->often }}</td>
-                                            <td class="td_all">{{ $response->always }}</td>
-                                            <td class="td_all">{{ $response->intensity() }}</td>
-                                        </tr>
-                                    @endfor
+                                @for($i = 13; $i < count($questions); $i++)
+                                    @php
+                                        $response = $questions[$i]->response($psychosocial_group->id)
+                                    @endphp
+                                    <tr>
+                                        <td class="td_question">{{ $questions[$i]->order }}
+                                            : {{ $questions[$i]->info }}</td>
+                                        <td class="td_all">{{ $response->never }}</td>
+                                        <td class="td_all">{{ $response->sometimes }}</td>
+                                        <td class="td_all">{{ $response->often }}</td>
+                                        <td class="td_all">{{ $response->always }}</td>
+                                        <td class="td_all">{{ $response->intensity() }}</td>
+                                    </tr>
+                                @endfor
                                 </tbody>
                             </table>
                             <p></p>
@@ -1928,23 +1996,24 @@
             </div>
 
             <div class="body body--notif">
-                <h1 class="head-title">QUESTIONNAIRES D'ÉVALUATION DES RISQUES PSYCHOSOCIAUX</h1>
+                <h1 class="head-title">NIVEAU DE RISQUE PSYCHOSOCIAL MOYEN</h1>
 
-                <h3 class="head-subtitle">Groupe d’exposition homogène : <span class="text-color-yellow">{{ $psychosocial_group->name }}</span></h3>
+                <h3 class="head-subtitle">Groupe d’exposition homogène : <span
+                        class="text-color-yellow">{{ $psychosocial_group->name }}</span></h3>
 
                 <table class="table table--inv">
                     <tr>
                         <td style="width: 50%">
                             <table class="table table--psycho">
                                 <thead>
-                                    <tr>
-                                        <th colspan="3" class="green">Niveau de risque Psychosocial moyen</th>
-                                    </tr>
-                                    <tr>
-                                        <th class="th_question">Facteurs de risques psychosociaux</th>
-                                        <th class="th_intensity">Niveau d’intensité</th>
-                                        <th class="th_action">Priorité d’action</th>
-                                    </tr>
+                                <tr>
+                                    <th colspan="3" class="green">Niveau de risque Psychosocial moyen</th>
+                                </tr>
+                                <tr>
+                                    <th class="th_question">Facteurs de risques psychosociaux</th>
+                                    <th class="th_intensity">Niveau d’intensité</th>
+                                    <th class="th_action">Priorité d’action</th>
+                                </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($questions as $key => $question)
@@ -1966,14 +2035,14 @@
                         <td style="width: 50%">
                             <table class="table table--psycho">
                                 <thead>
-                                    <tr>
-                                        <th colspan="3" class="green">Niveau de risque Psychosocial moyen</th>
-                                    </tr>
-                                    <tr>
-                                        <th class="th_question">Facteurs de risques psychosociaux</th>
-                                        <th class="th_intensity">Niveau d’intensité</th>
-                                        <th class="th_action">Priorité d’action</th>
-                                    </tr>
+                                <tr>
+                                    <th colspan="3" class="green">Niveau de risque Psychosocial moyen</th>
+                                </tr>
+                                <tr>
+                                    <th class="th_question">Facteurs de risques psychosociaux</th>
+                                    <th class="th_intensity">Niveau d’intensité</th>
+                                    <th class="th_action">Priorité d’action</th>
+                                </tr>
                                 </thead>
                                 <tbody>
                                 @for($i = 13; $i < count($questions); $i++)
@@ -1981,7 +2050,8 @@
                                         $response = $questions[$i]->response($psychosocial_group->id)
                                     @endphp
                                     <tr>
-                                        <td class="td_question">{{ $questions[$i]->order }} : {{ $questions[$i]->info }}</td>
+                                        <td class="td_question">{{ $questions[$i]->order }}
+                                            : {{ $questions[$i]->info }}</td>
                                         <td class="td_all">{{ $response->intensity() }}</td>
                                         <td class="td_all {{ $response->priorityPDF()['class'] }}">{{ $response->priorityPDF()['text'] }}</td>
                                     </tr>
@@ -2012,9 +2082,10 @@
             </div>
 
             <div class="body body--notif">
-                <h1 class="head-title">QUESTIONNAIRES D'ÉVALUATION DES RISQUES PSYCHOSOCIAUX</h1>
+                <h1 class="head-title">RISQUE PSYCHOSOCIAL INDIVIDUEL</h1>
 
-                <h3 class="head-subtitle">Groupe d’exposition homogène : <span class="text-color-yellow">{{ $psychosocial_group->name }}</span></h3>
+                <h3 class="head-subtitle">Groupe d’exposition homogène : <span
+                        class="text-color-yellow">{{ $psychosocial_group->name }}</span></h3>
 
                 <table class="table table--inv">
                     <tr>
@@ -2061,7 +2132,7 @@
 
                                     @if($i === (count($questions) - 1))
                                         <tr>
-                                            <td class="td_question">Nombre de salariés en souffrance : </td>
+                                            <td class="td_question">Nombre de salariés en souffrance :</td>
                                             <td class="td_all">{{ $psychosocial_group->employee }}</td>
                                         </tr>
                                     @else
@@ -2069,7 +2140,8 @@
                                             $response = $questions[$i]->response($psychosocial_group->id)
                                         @endphp
                                         <tr>
-                                            <td class="td_question">{{ $questions[$i]->order }} : {{ $questions[$i]->info }}</td>
+                                            <td class="td_question">{{ $questions[$i]->order }}
+                                                : {{ $questions[$i]->info }}</td>
                                             <td class="td_all">{{ $response->extreme() }}</td>
                                         </tr>
                                     @endif
@@ -2090,6 +2162,101 @@
             </div>
         </section>
     @endforeach
+
+    <section class="page">
+        <div class="header">
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
+                , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
+        </div>
+
+        <div class="body">
+            <h1 class="head-title" id="listPost">PLAN D'ACTION DE RÉDUCTION DES RISQUES PSYCHOSOCIAUX</h1>
+
+            <table class="table table--action">
+                <thead>
+                <tr>
+                    <th colspan="9" class="green">Plan d’action de réduction des Risques Psychosociaux</th>
+                </tr>
+                <tr>
+                    <td class="theader">
+                        Groupe d'exposition homogène
+                    </td>
+                    <td class="theader">
+                        Famille de facteurs de risques psychosociaux
+                    </td>
+                    <td class="theader">
+                        Niveau d’intensité
+                    </td>
+                    <td class="theader min-width">
+                        Réponses extrêmes
+                    </td>
+                    <td class="theader min-width">
+                        Priorité d'action
+                    </td>
+                    <td class="theader min-width">
+                        Mesure de prévention et de protection à mettre en place
+                    </td>
+                    <td class="theader min-width">
+                        Décision sur les actions proposées :
+                        - Sera réalisé le (date)
+                        - Ne sera pas réalisé
+                    </td>
+                    <td class="theader min-width">
+                        Date de réalisation
+                    </td>
+                    <td class="theader max-width">
+                        Commentaire, complément, autres actions
+                    </td>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($psychosocial_groups as $psychosocial_group)
+                    @foreach($psychosocial_group->responses as $response)
+                        <tr>
+                            <td rowspan="{{ count($response->restraints) === 0 ? 1 : count($response->restraints) }}"
+                                class="psycho-group">{{ $psychosocial_group->name }}</td>
+                            <td rowspan="{{ count($response->restraints) === 0 ? 1 : count($response->restraints) }}"
+                                class="question">{{ $response->question->info }}</td>
+                            <td rowspan="{{ count($response->restraints) === 0 ? 1 : count($response->restraints) }}"
+                                class="intensity min-width min-width-left">{{ $response->intensity() }}</td>
+                            <td rowspan="{{ count($response->restraints) === 0 ? 1 : count($response->restraints) }}"
+                                class="extreme min-width min-width-left">{{ $response->extreme() }}</td>
+                            <td rowspan="{{ count($response->restraints) === 0 ? 1 : count($response->restraints) }}"
+                                class="action min-width min-width-left {{ $response->priorityPDF()['class'] }}"> {{ $response->priorityPDF()['text'] }}</td>
+                            @if(count($response->restraints) === 0)
+                                <td class="restraint"></td>
+                                <td class="decision"></td>
+                                <td class="date"></td>
+                                <td class="comment"></td>
+                            @else
+                                <td class="restraint">{{ $response->restraints[0]->text }}</td>
+                                <td class="decision">{{ $response->restraints[0]->decision ?  : "" }}</td>
+                                <td class="date">{{ $response->restraints[0]->date ? date("d/m/Y", strtotime($response->restraints[0]->date)) : "" }}</td>
+                                <td class="comment"></td>
+                            @endif
+                        </tr>
+                        @if(count($response->restraints) > 1)
+                            @for($i = 1; $i < count($response->restraints); $i++)
+                                <tr>
+                                    <td class="restraint">{{ $response->restraints[$i]->text }}</td>
+                                    <td class="decision">{{ $response->restraints[$i]->decision ?  : "" }}</td>
+                                    <td class="date">{{ $response->restraints[$i]->date ? date("d/m/Y", strtotime($response->restraints[$i]->date)) : "" }}</td>
+                                    <td class="comment"></td>
+                                </tr>
+                            @endfor
+                        @endif
+                    @endforeach
+                @endforeach
+                </tbody>
+            </table>
+            <p></p>
+        </div>
+
+        <div class="footer">
+            <p>Copyright © OZA DUERP Online</p>
+            <p class="page-num">EVALUATION DES RISQUES PROFESSIONNELS</p>
+        </div>
+    </section>
 
 @endif
 
@@ -2351,7 +2518,8 @@
                                                             </td>
                                                         @endif
                                                     @endif
-                                                    <td rowspan="{{1}}" class="center {{$exposition_group->calculation($sd_exposition_question->value)}}"> {{$exposition_group->translate($sd_exposition_question->value)}} </td>
+                                                    <td rowspan="{{1}}"
+                                                        class="center {{$exposition_group->calculation($sd_exposition_question->value)}}"> {{$exposition_group->translate($sd_exposition_question->value)}} </td>
                                                 @else
                                                     <td></td>
                                                     <td></td>
@@ -2514,7 +2682,8 @@
 
 <section class="page">
     <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
+        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
+            , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
     </div>
 
     <div class="body body--notif">
@@ -2580,7 +2749,6 @@
         <p class="page-num">EVALUATION DE L'EXPOSITION</p>
     </div>
 </section>
-
 
 
 </body>

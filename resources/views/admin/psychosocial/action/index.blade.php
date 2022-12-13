@@ -46,6 +46,13 @@
                                     </tr>
                                 @endforeach
                             @endforeach
+                            @if($psychosocial_group->employee > 0)
+                                <tr>
+                                    <td class="td_question" colspan="2">Présence de salariés en souffrance</td>
+                                    <td class="td_restraint" colspan="3">Informer le médecin du travail de cette situation afin qu'il puisse intégrer cette problématique dans ses actions de prévention.</td>
+                                    <td class="td_actions"></td>
+                                </tr>
+                            @endif
                         </tbody>
                     </table>
                 </div>
