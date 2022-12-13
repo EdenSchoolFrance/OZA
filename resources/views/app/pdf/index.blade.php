@@ -2212,6 +2212,11 @@
                 <tbody>
                 @foreach($psychosocial_groups as $psychosocial_group)
                     @foreach($psychosocial_group->responses as $response)
+                        @php
+                            if ($response->priority()['text'] === "Non concerné" || $response->priority()['text'] === "Faible"){
+                                $response->restraints()->delete();
+                            }
+                        @endphp
                         <tr>
                             <td rowspan="{{ count($response->restraints) === 0 ? 1 : count($response->restraints) }}"
                                 class="psycho-group">{{ $psychosocial_group->name }}</td>

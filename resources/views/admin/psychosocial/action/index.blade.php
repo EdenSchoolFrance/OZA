@@ -28,23 +28,32 @@
                                 </tr>
                             @endif
                             @foreach($responses as $response)
-                                <tr data-order="{{ $response->question->order }}">
-                                    <td rowspan="{{ count($response->restraints) + 1 }}" class="td_question">{{ $response->question->order }}. {{ $response->question->info }}</td>
-                                    <td rowspan="{{ count($response->restraints) + 1 }}" class="td_priority"><button type="button" class="btn btn-small {{ $response->priority()["class"] }}">{{ $response->priority()["text"] }}</button></td>
-                                </tr>
-                                @foreach($response->restraints as $key => $restraint)
-                                    @php
-                                        $key++;
-                                    @endphp
-                                    <tr>
-                                        <td class="td_restraint">{{ $restraint->text }}</td>
-                                        <td class="td_decision">{{ $restraint->decision }}</td>
-                                        <td class="td_date">{{ $restraint->date ? date("d/m/Y", strtotime($restraint->date)) : "" }}</td>
-                                        <td class="td_actions">
-                                            <button type="button" data-modal=".modal--restraint" data-id="{{ $restraint->id }}" data-title="{{ $restraint->text }}" @if($restraint->date) data-date="{{ $restraint->date }}" data-decision="{{ $restraint->decision }}" @endif><i class="far fa-edit" data-tooltip=".tooltip--edit" data-placement="top" data-tooltable="true"></i></button>
-                                        </td>
+                                @php
+                                    $pass = true;
+                                    if ($response->priority()['text'] === "Non concerné" || $response->priority()['text'] === "Faible"){
+                                        $response->restraints()->delete();
+                                        $pass = false;
+                                    }
+                                @endphp
+                                @if($pass)
+                                    <tr data-order="{{ $response->question->order }}">
+                                        <td rowspan="{{ count($response->restraints) + 1 }}" class="td_question">{{ $response->question->order }}. {{ $response->question->info }}</td>
+                                        <td rowspan="{{ count($response->restraints) + 1 }}" class="td_priority"><button type="button" class="btn btn-small {{ $response->priority()["class"] }}">{{ $response->priority()["text"] }}</button></td>
                                     </tr>
-                                @endforeach
+                                    @foreach($response->restraints as $key => $restraint)
+                                        @php
+                                            $key++;
+                                        @endphp
+                                        <tr>
+                                            <td class="td_restraint">{{ $restraint->text }}</td>
+                                            <td class="td_decision">{{ $restraint->decision }}</td>
+                                            <td class="td_date">{{ $restraint->date ? date("d/m/Y", strtotime($restraint->date)) : "" }}</td>
+                                            <td class="td_actions">
+                                                <button type="button" data-modal=".modal--restraint" data-id="{{ $restraint->id }}" data-title="{{ $restraint->text }}" @if($restraint->date) data-date="{{ $restraint->date }}" data-decision="{{ $restraint->decision }}" @endif><i class="far fa-edit" data-tooltip=".tooltip--edit" data-placement="top" data-tooltable="true"></i></button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
                             @endforeach
                             @if($psychosocial_group->employee > 0)
                                 <tr>
