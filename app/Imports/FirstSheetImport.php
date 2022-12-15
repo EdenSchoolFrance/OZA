@@ -100,7 +100,7 @@ class FirstSheetImport implements ToCollection
         $fre = [
             "jour" => "day",
             "semaine" => "week",
-            "mois" => "mouth",
+            "mois" => "month",
             "an" => "year",
             "< 1 fois par an" => "year+",
             "non concerné" => "year+"
