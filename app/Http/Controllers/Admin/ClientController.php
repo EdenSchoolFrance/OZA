@@ -29,7 +29,7 @@ class ClientController extends Controller
             $filter = $_GET['filter'];
 
             if ($_GET['filter']['client'] !== "") {
-                $clients = $clients->where('name','LIKE','%' . $_GET['filter']['client'] . '%');
+                $clients = Client::where('name','LIKE','%' . $_GET['filter']['client'] . '%')->get();
             }
 
             if ($_GET['filter']['status'] !== "") {

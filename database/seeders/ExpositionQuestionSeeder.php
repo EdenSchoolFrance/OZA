@@ -53,13 +53,13 @@ class ExpositionQuestionSeeder extends Seeder
             ],
             "exposition_group_night_work" => [
                 [
-                    "intensity" => "Travail de jour : de 5h00 à 00h00",
+                    "intensity" => "Travail de nuit : de 00h00 à 5h00",
                     "options" => null
                 ],
             ],
             "exposition_group_team_work" => [
                 [
-                    "intensity" => "Travail de jour : de 5h00 à 00h00",
+                    "intensity" => "Travail de nuit : de 00h00 à 5h00",
                     "options" => null
                 ],
             ],

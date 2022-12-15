@@ -66,7 +66,6 @@ on('.card--psychosocial-evaluation-quiz table tbody tr input[type="number"]', 'c
         $('.td_extreme', row, 0).innerHTML = never;
     }
 
-    $('.card--psychosocial-evaluation-quiz table tfoot tr .td_extreme_all input', document, 0).value = $('.card--psychosocial-evaluation-quiz table tbody tr .td_extreme').pluck('innerText').reduce((a, b) => parseInt(a) + parseInt(b), 0);
 });
 
 on('.btn-submit', 'click', (el, e) => {

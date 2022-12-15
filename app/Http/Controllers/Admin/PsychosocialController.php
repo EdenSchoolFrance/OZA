@@ -71,7 +71,7 @@ class PsychosocialController extends Controller
             'checked' => 'required',
             'number_quiz' => 'required|integer|min:1',
             'stress_level' => 'required|numeric|between:0,99.99',
-            'employee' => 'required|integer|min:1',
+            'employee' => 'required|integer|min:0',
             'questions' => 'required|array',
             'questions.*.never' => 'required|integer|min:0',
             'questions.*.sometimes' => 'required|integer|min:0',

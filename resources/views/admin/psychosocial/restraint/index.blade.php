@@ -50,8 +50,8 @@
                                             @if($help === true)
                                                 @foreach($response->question->restraints as $restraint)
                                                     <li class="res-pro">
-                                                        <input type="checkbox" class="btn-check" data-id="{{ $response->id }}" data-tab="{{ $restraint->id }}">
-                                                        <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed_{{ $response->id }}[not-checked][{{ $restraint->id }}][]">{{ $restraint->text }}</textarea>
+                                                        <input type="checkbox" class="btn-check" data-id="{{ $response->id }}" data-tab="none">
+                                                        <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed_{{ $response->id }}[not-checked][none][]">{{ $restraint->text }}</textarea>
                                                     </li>
                                                 @endforeach
                                             @endif

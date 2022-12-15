@@ -4,6 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>PDF OZA</title>
     <link rel="stylesheet" href="{{ public_path('css/pdf/pdf.min.css') }}">
 </head>
@@ -44,8 +45,8 @@
 
 <section class="page page--second">
     <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-            , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
+        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
+            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
     </div>
 
     <div class="body">
@@ -103,8 +104,8 @@
 
 <section class="page">
     <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-            , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
+        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
+            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
     </div>
 
     <div class="body">
@@ -186,8 +187,8 @@
 
 <section class="page">
     <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-            , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
+        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
+            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
     </div>
 
     <div class="body">
@@ -231,8 +232,8 @@
 
 <section class="page">
     <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-            , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
+        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
+            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
     </div>
 
     <div class="body">
@@ -289,8 +290,8 @@
 
 <section class="page">
     <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-            , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
+        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
+            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
     </div>
 
     <div class="body">
@@ -473,8 +474,8 @@
 
 <section class="page">
     <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-            , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
+        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
+            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
     </div>
 
     <div class="body">
@@ -526,8 +527,8 @@
 
 <section class="page">
     <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-            , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
+        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
+            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
     </div>
 
     <div class="body body--notif">
@@ -574,8 +575,8 @@
 
 <section class="page">
     <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-            , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
+        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
+            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
     </div>
 
     <div class="body">
@@ -645,8 +646,8 @@
 
 <section class="page">
     <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-            , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
+        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
+            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
     </div>
 
     <div class="body body--notif">
@@ -698,8 +699,8 @@
 
 <section class="page">
     <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-            , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
+        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
+            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
     </div>
 
     <div class="body body--notif">
@@ -763,8 +764,8 @@
 
 <section class="page">
     <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-            , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
+        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
+            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
     </div>
     <div class="body body--notif">
         <p>
@@ -828,8 +829,8 @@
 
 <section class="page">
     <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-            , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
+        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
+            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
     </div>
     <div class="body body--notif">
         <p>
@@ -902,8 +903,8 @@
 
 <section class="page">
     <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-            , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
+        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
+            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
     </div>
     <div class="body body--notif">
         <p>
@@ -976,8 +977,8 @@
 
 <section class="page">
     <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-            , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
+        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
+            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
     </div>
     <div class="body body--notif">
         <h1 class="head-title" id="evalRisk">4. NOTICE EXPLICATIVE DE L'EVALUATION DES RISQUES</h1>
@@ -1040,8 +1041,8 @@
 
 <section class="page">
     <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-            , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
+        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
+            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
     </div>
     <div class="body body--notif">
         <p>
@@ -1117,8 +1118,8 @@
 
 <section class="page">
     <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-            , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
+        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
+            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
     </div>
     <div class="body body--notif">
         <p>
@@ -1171,8 +1172,8 @@
 
 <section class="page">
     <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-            , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
+        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
+            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
     </div>
     <div class="body body--rules">
         <h1 class="head-title" id="evalRiskPro">5. EVALUATION DES RISQUES PROFESSIONNELS PAR UNITÉ DE TRAVAIL</h1>
@@ -1241,8 +1242,8 @@
 
 <section class="page">
     <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-            , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
+        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
+            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
     </div>
     <div class="body body--rules">
         <p class="bold">
@@ -1318,8 +1319,8 @@
 
 <section class="page">
     <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-            , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
+        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
+            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
     </div>
     <div class="body body--rules">
         <p class="bold">
@@ -1400,8 +1401,8 @@
 
 <section class="page">
     <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-            , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
+        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
+            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
     </div>
     <div class="body body--rules">
         <p class="bold">
@@ -1440,8 +1441,8 @@
 
 <section class="page">
     <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-            , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
+        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
+            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
     </div>
 
     <div class="body">
@@ -1565,8 +1566,8 @@
 
 <section class="page">
     <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-            , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
+        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
+            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
     </div>
 
     <div class="body body--notif">
@@ -2267,8 +2268,8 @@
 
 <section class="page">
     <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-            , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
+        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
+            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
     </div>
 
     <div class="body body--notif">
@@ -2371,8 +2372,8 @@
 
 <section class="page">
     <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-            , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
+        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
+            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
     </div>
 
     <div class="body body--notif">
@@ -2687,8 +2688,8 @@
 
 <section class="page">
     <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-            , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
+        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
+            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
     </div>
 
     <div class="body body--notif">

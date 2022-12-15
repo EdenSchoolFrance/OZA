@@ -36,7 +36,7 @@ class ExpositionSeeder extends Seeder
             ],
             [
                 "name" => "exposition_night_work",
-                "info" => "Il n’est pas possible d’effectuer une heure de travail entre 24 heures et 5 heures (hors nuits effectuées dans le cadre d’équipes successives alternantes) plus de 120 nuits par an. Et Le travail en équipes successives alternantes impliquant au minimum une heure de travail entre 24 heures et 5 heures ne doit pas avoir lieu plus de 50 nuits par an.",
+                "info" => "Ne pas travailler une heure ou plus entre 24 heures et 5 heures plus de 120 nuits par an (hors nuits effectuées dans le cadre d’équipes successives alternantes). Et ne pas travailler une heure ou plus entre 24 heures et 5 heures plus de 50 nuits par an dans le cadre d’un travail en équipes successives alternantes.",
                 "alert" => "l’exposition étant critique, veuillez vous assurer que les mesures proposées lors de l’évaluation des risques de l’UT vous permettent d’agir sur ce facteur.",
                 "danger" => "Travail de nuit"
             ],

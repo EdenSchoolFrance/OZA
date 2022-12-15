@@ -229,7 +229,7 @@ class FirstSheetImport implements ToCollection
         $single_document = $this->single_document;
 
         $danger = DB::table('dangers')
-            ->where('info', 'like', mb_substr($data, 0, 25, "UTF-8")."%")
+            ->where('info', 'like', mb_substr($data, 0, 70, "UTF-8")."%")
             ->first();
         if (!$danger) return null;
 

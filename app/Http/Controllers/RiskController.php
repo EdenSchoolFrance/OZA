@@ -28,8 +28,6 @@ class RiskController extends Controller
         $sd_risks = SdRisk::whereHas('sd_danger', function ($q) use ($single_document) {
             $q->where('single_document_id', $single_document->id)
                 ->where('exist', 1);
-        })->whereHas('sd_restraints', function ($q) {
-            $q->where('exist', 1);
         })->get();
 
         return view('app.risk.all', compact('page', 'single_document', 'sd_risks'));
