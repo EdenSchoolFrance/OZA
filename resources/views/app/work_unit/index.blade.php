@@ -5,7 +5,11 @@
         <div class="card card--work_units">
             <div class="card-header">
                 <button class="btn-resize-all btn btn-text"><i class="far fa-minus-square"></i> Afficher/cacher tous les détails</button>
-                <a href="{{ route('work.create', [$single_document->id]) }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UNE UNITE DE TRAVAIL</a>
+                @if(count($works) >= $single_document->work_unit_limit && $single_document->work_unit_limit !== 0)
+                    <button type="button" class="btn btn-dark-purple" disabled><i class="fas fa-plus"></i> AJOUTER UNE UNITE DE TRAVAIL</button>
+                @else
+                    <a href="{{ route('work.create', [$single_document->id]) }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UNE UNITE DE TRAVAIL</a>
+                @endif
             </div>
             <div class="card-body">
                 <table class="table table--work_units table--resizable">
@@ -100,9 +104,13 @@
             </div>
         </div>
         <div class="work-btn">
-            <a href="{{route('work.create', [$single_document->id])}}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UNE UNITE DE TRAVAIL</a>
+            @if(count($works) >= $single_document->work_unit_limit && $single_document->work_unit_limit !== 0)
+                <button type="button" class="btn btn-dark-purple" disabled><i class="fas fa-plus"></i> AJOUTER UNE UNITE DE TRAVAIL</button>
+            @else
+                <a href="{{ route('work.create', [$single_document->id]) }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UNE UNITE DE TRAVAIL</a>
+            @endif
         </div>
-        
+
         @if (Auth::user()->hasPermission(['ADMIN', 'EXPERT', 'MANAGER', 'EDITOR']))
             <div class="modal modal--delete">
                 <div class="modal-dialog">

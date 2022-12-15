@@ -1876,14 +1876,16 @@
                                         @php
                                             $response = $question->response($psychosocial_group->id)
                                         @endphp
-                                        <tr>
-                                            <td class="td_question">{{ $question->order }} : {{ $question->info }}</td>
-                                            <td class="td_all">{{ $response->never }}</td>
-                                            <td class="td_all">{{ $response->sometimes }}</td>
-                                            <td class="td_all">{{ $response->often }}</td>
-                                            <td class="td_all">{{ $response->always }}</td>
-                                            <td class="td_all">{{ $response->intensity() }}</td>
-                                        </tr>
+                                        @if(isset($response))
+                                            <tr>
+                                                <td class="td_question">{{ $question->order }} : {{ $question->info }}</td>
+                                                <td class="td_all">{{ $response->never }}</td>
+                                                <td class="td_all">{{ $response->sometimes }}</td>
+                                                <td class="td_all">{{ $response->often }}</td>
+                                                <td class="td_all">{{ $response->always }}</td>
+                                                <td class="td_all">{{ $response->intensity() }}</td>
+                                            </tr>
+                                        @endif
                                     @endif
                                 @endforeach
                                 </tbody>
@@ -1919,15 +1921,17 @@
                                     @php
                                         $response = $questions[$i]->response($psychosocial_group->id)
                                     @endphp
-                                    <tr>
-                                        <td class="td_question">{{ $questions[$i]->order }}
-                                            : {{ $questions[$i]->info }}</td>
-                                        <td class="td_all">{{ $response->never }}</td>
-                                        <td class="td_all">{{ $response->sometimes }}</td>
-                                        <td class="td_all">{{ $response->often }}</td>
-                                        <td class="td_all">{{ $response->always }}</td>
-                                        <td class="td_all">{{ $response->intensity() }}</td>
-                                    </tr>
+                                    @if(isset($response))
+                                        <tr>
+                                            <td class="td_question">{{ $questions[$i]->order }}
+                                                : {{ $questions[$i]->info }}</td>
+                                            <td class="td_all">{{ $response->never }}</td>
+                                            <td class="td_all">{{ $response->sometimes }}</td>
+                                            <td class="td_all">{{ $response->often }}</td>
+                                            <td class="td_all">{{ $response->always }}</td>
+                                            <td class="td_all">{{ $response->intensity() }}</td>
+                                        </tr>
+                                    @endif
                                 @endfor
                                 </tbody>
                             </table>
@@ -1980,11 +1984,13 @@
                                         @php
                                             $response = $question->response($psychosocial_group->id)
                                         @endphp
-                                        <tr>
-                                            <td class="td_question">{{ $question->order }} : {{ $question->info }}</td>
-                                            <td class="td_all">{{ $response->intensity() }}</td>
-                                            <td class="td_all {{ $response->priorityPDF()['class'] }}">{{ $response->priorityPDF()['text'] }}</td>
-                                        </tr>
+                                        @if(isset($response))
+                                            <tr>
+                                                <td class="td_question">{{ $question->order }} : {{ $question->info }}</td>
+                                                <td class="td_all">{{ $response->intensity() }}</td>
+                                                <td class="td_all {{ $response->priorityPDF()['class'] }}">{{ $response->priorityPDF()['text'] }}</td>
+                                            </tr>
+                                        @endif
                                     @endif
                                 @endforeach
                                 </tbody>
@@ -2008,12 +2014,14 @@
                                     @php
                                         $response = $questions[$i]->response($psychosocial_group->id)
                                     @endphp
-                                    <tr>
-                                        <td class="td_question">{{ $questions[$i]->order }}
-                                            : {{ $questions[$i]->info }}</td>
-                                        <td class="td_all">{{ $response->intensity() }}</td>
-                                        <td class="td_all {{ $response->priorityPDF()['class'] }}">{{ $response->priorityPDF()['text'] }}</td>
-                                    </tr>
+                                    @if(isset($response))
+                                        <tr>
+                                            <td class="td_question">{{ $questions[$i]->order }}
+                                                : {{ $questions[$i]->info }}</td>
+                                            <td class="td_all">{{ $response->intensity() }}</td>
+                                            <td class="td_all {{ $response->priorityPDF()['class'] }}">{{ $response->priorityPDF()['text'] }}</td>
+                                        </tr>
+                                    @endif
                                 @endfor
                                 </tbody>
                             </table>
@@ -2065,10 +2073,12 @@
                                         @php
                                             $response = $question->response($psychosocial_group->id)
                                         @endphp
-                                        <tr>
-                                            <td class="td_question">{{ $question->order }} : {{ $question->info }}</td>
-                                            <td class="td_all">{{ $response->extreme() }}</td>
-                                        </tr>
+                                        @if(isset($response))
+                                            <tr>
+                                                <td class="td_question">{{ $question->order }} : {{ $question->info }}</td>
+                                                <td class="td_all">{{ $response->extreme() }}</td>
+                                            </tr>
+                                        @endif
                                     @endif
                                 @endforeach
                                 </tbody>
@@ -2098,11 +2108,13 @@
                                         @php
                                             $response = $questions[$i]->response($psychosocial_group->id)
                                         @endphp
-                                        <tr>
-                                            <td class="td_question">{{ $questions[$i]->order }}
-                                                : {{ $questions[$i]->info }}</td>
-                                            <td class="td_all">{{ $response->extreme() }}</td>
-                                        </tr>
+                                        @if(isset($response))
+                                            <tr>
+                                                <td class="td_question">{{ $questions[$i]->order }}
+                                                    : {{ $questions[$i]->info }}</td>
+                                                <td class="td_all">{{ $response->extreme() }}</td>
+                                            </tr>
+                                        @endif
                                     @endif
                                 @endfor
                                 </tbody>
@@ -2260,17 +2272,31 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td class="center">
-                    {{ $numberEmUt }}
-                </td>
-                <td class="{{ $numberEmExpo === 0 ? "green" : "red" }} center">
-                    {{ $numberEmExpo }}
-                </td>
-                <td class="{{$numberEmExpo/$numberEmUt === 0 ? "green" : "red" }} center">
-                    {{ 100 * ($numberEmExpo/$numberEmUt) >= 100 ? "100%" : round(100 * ($numberEmExpo/$numberEmUt),2)."%"}}
-                </td>
-            </tr>
+            @if($numberEmUt !== 0)
+                <tr>
+                    <td class="center">
+                        {{ $numberEmUt }}
+                    </td>
+                    <td class="{{ $numberEmExpo === 0 ? "green" : "red" }} center">
+                        {{ $numberEmExpo }}
+                    </td>
+                    <td class="{{$numberEmExpo/$numberEmUt === 0 ? "green" : "red" }} center">
+                        {{ 100 * ($numberEmExpo/$numberEmUt) >= 100 ? "100%" : round(100 * ($numberEmExpo/$numberEmUt),2)."%"}}
+                    </td>
+                </tr>
+            @else
+                <tr>
+                    <td class="center">
+                        0
+                    </td>
+                    <td class="green center">
+                        0
+                    </td>
+                    <td class="green center">
+                        0%
+                    </td>
+                </tr>
+            @endif
             </tbody>
         </table>
 
