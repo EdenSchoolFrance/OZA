@@ -344,14 +344,13 @@
             <table class="table table--work_unit">
                 <thead>
                 <tr>
-                    <th class="yellow" colspan="2">UNITÉ DE TRAVAIL</th>
+                    <th class="yellow" colspan="1">UNITÉ DE TRAVAIL</th>
+                </tr>
+                <tr>
+                    <th colspan="1"><span class="bold">{{ $sd_work_unit->name }}</span></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td colspan="2"><span class="bold">{{ $sd_work_unit->name }}</span></td>
-                </tr>
-                <tr>
                     @php
                         $all_activitie = "";
                         foreach ($sd_work_unit->activities as $ac){
@@ -359,108 +358,67 @@
                         }
 
                     @endphp
-                    @if(strlen($all_activitie) < 1800)
-                        <td>
-                            <p>
-                                <span class="bold">Principale(s) activité(s) : </span><br>
-                                @foreach($sd_work_unit->activities as $activitie)
-                                    - @stripTags($activitie->text) <br>
-                                @endforeach
-                            </p>
-                            <p>
-                                <span class="bold">Machine(s) : </span><br>
-                                @foreach($item_mat->sub_items as $sub_item)
-                                    @if(count($sd_work_unit->items->where('sub_item_id', $sub_item->id)) !== 0)
-                                        {{ $sub_item->name }}
-                                        : {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }}
-                                        ,
-                                    @else
-                                        {{ $sub_item->name }} : Néant
-                                    @endif
-                                    <br>
-                                @endforeach
-                            </p>
-                        </td>
-                        <td>
-                            <p>
-                                <span class="bold">Véhicule(s) : </span><br>
-                                @foreach($item_veh->sub_items as $sub_item)
-                                    @if(count($sd_work_unit->items->where('sub_item_id', $sub_item->id)) !== 0)
-                                        {{ $sub_item->name }}
-                                        : {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }}
-                                        ,
-                                    @else
-                                        {{ $sub_item->name }} : Néant
-                                    @endif
-                                    <br>
-                                @endforeach
-                            </p>
-                            <p>
-                                <span class="bold">Engin(s) et appareil(s) de manutention mécanique : </span><br>
-                                @foreach($item_eng->sub_items as $sub_item)
-                                    @if(count($sd_work_unit->items->where('sub_item_id', $sub_item->id)) !== 0)
-                                        {{ $sub_item->name }}
-                                        : {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }}
-                                        ,
-                                    @else
-                                        {{ $sub_item->name }} : Néant
-                                    @endif
-                                    <br>
-                                @endforeach
-                            </p>
-                        </td>
-                    @else
-                        <td>
-                            <p>
-                                <span class="bold">Principale(s) activité(s) : </span><br>
-                                @foreach($sd_work_unit->activities as $activitie)
-                                    - @stripTags($activitie->text) <br>
-                                @endforeach
-                            </p>
-                        </td>
-                        <td>
-                            <p>
-                                <span class="bold">Machine(s) : </span><br>
-                                @foreach($item_mat->sub_items as $sub_item)
-                                    @if(count($sd_work_unit->items->where('sub_item_id', $sub_item->id)) !== 0)
-                                        {{ $sub_item->name }}
-                                        : {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }}
-                                        ,
-                                    @else
-                                        {{ $sub_item->name }} : Néant
-                                    @endif
-                                    <br>
-                                @endforeach
-                            </p>
-                            <p>
-                                <span class="bold">Véhicule(s) : </span><br>
-                                @foreach($item_veh->sub_items as $sub_item)
-                                    @if(count($sd_work_unit->items->where('sub_item_id', $sub_item->id)) !== 0)
-                                        {{ $sub_item->name }}
-                                        : {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }}
-                                        ,
-                                    @else
-                                        {{ $sub_item->name }} : Néant
-                                    @endif
-                                    <br>
-                                @endforeach
-                            </p>
-                            <p>
-                                <span class="bold">Engin(s) et appareil(s) de manutention mécanique : </span><br>
-                                @foreach($item_eng->sub_items as $sub_item)
-                                    @if(count($sd_work_unit->items->where('sub_item_id', $sub_item->id)) !== 0)
-                                        {{ $sub_item->name }}
-                                        : {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }}
-                                        ,
-                                    @else
-                                        {{ $sub_item->name }} : Néant
-                                    @endif
-                                    <br>
-                                @endforeach
-                            </p>
-                        </td>
-                    @endif
-                </tr>
+                        <tr>
+                            <td>
+                                <p>
+                                    <span class="bold">Principale(s) activité(s) : </span><br>
+                                    @foreach($sd_work_unit->activities as $activitie)
+                                        - @stripTags($activitie->text) <br>
+                                    @endforeach
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>
+                                    <span class="bold">Machine(s) : </span><br>
+                                    @foreach($item_mat->sub_items as $sub_item)
+                                        @if(count($sd_work_unit->items->where('sub_item_id', $sub_item->id)) !== 0)
+                                            {{ $sub_item->name }}
+                                            : {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }}
+                                            ,
+                                        @else
+                                            {{ $sub_item->name }} : Néant
+                                        @endif
+                                        <br>
+                                    @endforeach
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>
+                                    <span class="bold">Véhicule(s) : </span><br>
+                                    @foreach($item_veh->sub_items as $sub_item)
+                                        @if(count($sd_work_unit->items->where('sub_item_id', $sub_item->id)) !== 0)
+                                            {{ $sub_item->name }}
+                                            : {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }}
+                                            ,
+                                        @else
+                                            {{ $sub_item->name }} : Néant
+                                        @endif
+                                        <br>
+                                    @endforeach
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>
+                                    <span class="bold">Engin(s) et appareil(s) de manutention mécanique : </span><br>
+                                    @foreach($item_eng->sub_items as $sub_item)
+                                        @if(count($sd_work_unit->items->where('sub_item_id', $sub_item->id)) !== 0)
+                                            {{ $sub_item->name }}
+                                            : {{ $sd_work_unit->items->where('sub_item_id', $sub_item->id)->pluck('name')->implode(', ') }}
+                                            ,
+                                        @else
+                                            {{ $sub_item->name }} : Néant
+                                        @endif
+                                        <br>
+                                    @endforeach
+                                </p>
+                            </td>
+                        </tr>
                 </tbody>
             </table>
         </div>

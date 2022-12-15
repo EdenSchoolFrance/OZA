@@ -732,6 +732,8 @@
             let danger = '{{ $danger->id }}';
             let workUnit = '{{ $id_sd_work_unit }}';
 
+            let risk = '{{ isset($risk) ? $risk->id : "none" }}';
+
             document.getElementById('filter-sa').addEventListener('change', filterRisk);
             document.getElementById('filter-ut').addEventListener('keyup', filterRisk);
 
