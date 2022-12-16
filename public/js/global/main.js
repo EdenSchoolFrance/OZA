@@ -313,3 +313,15 @@ on('.btn-group-number .btn-num', 'click', (el, e) => {
         input.dispatchEvent(new Event('change', { bubbles: true }));
     }
 });
+
+document.addEventListener('paste', (event) => {
+
+    event.preventDefault();
+
+    let temp = encodeURI(event.clipboardData.getData('text'))
+    temp = temp.replace("e%CC%80", '%C3%A8');
+    temp = temp.replace("a%CC%80", '%C3%A0');
+    temp = temp.replace("e%CC%81", '%C3%A9');
+    window.document.execCommand('insertText', false, decodeURI(temp));
+
+});

@@ -193,7 +193,7 @@ class PsychosocialController extends Controller
                                 $restraint->save();
 
                                 $index = array_search($key, $tabDelete);
-                                unset($tabDelete[$index]);
+                                array_splice($tabDelete, $index, $index+1);
                             }
                         }
                     }
@@ -218,7 +218,7 @@ class PsychosocialController extends Controller
                                 $restraint->save();
 
                                 $index = array_search($key, $tabDelete);
-                                unset($tabDelete[$index]);
+                                array_splice($tabDelete, $index, $index+1);
                             }
                         }
                     }
