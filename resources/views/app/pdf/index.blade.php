@@ -333,13 +333,15 @@
 
         <div class="body">
             @if($key === 0)
-                <p class="info text-color-red">
-                    <span class="bold">Rappel :</span> Pour chaque unité de travail, l’évaluation des risques porte sur
-                    les activités principales.<br>
-                    Lorsqu’une personne affectée à une unité de travail met en œuvre de la polyvalence sur d’autres
-                    unités de travail, l’exposition globale de la personne considérée doit être appréciée en fonction du
-                    temps travaillé dans chaque unité de travail en moyenne sur l’année.
-                </p>
+                <table class="table table--inv-v2">
+                    <p class="info text-color-red">
+                        <span class="bold">Rappel :</span> Pour chaque unité de travail, l’évaluation des risques porte sur
+                        les activités principales.<br>
+                        Lorsqu’une personne affectée à une unité de travail met en œuvre de la polyvalence sur d’autres
+                        unités de travail, l’exposition globale de la personne considérée doit être appréciée en fonction du
+                        temps travaillé dans chaque unité de travail en moyenne sur l’année.
+                    </p>
+                </table>
             @endif
             <table class="table table--work_unit">
                 <thead>
