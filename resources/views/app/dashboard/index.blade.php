@@ -45,10 +45,10 @@
                 </div>
                 <div class="card-body">
                    <div class="row">
-                       <p>Date de création :  10/10/2022</p>
+                      <p>Date de création : {{ date("d/m/Y",strtotime($single_document->created_at)) }}</p>
                    </div>
                     <div class="row">
-                        <p>Statut  :  En cours d’édition</p>
+                        <p>Statut : {{ $single_document->archived === 0 ? "En cours d’édition" : "Archivé" }}</p>
                     </div>
                     @if (Auth::user()->hasPermission(['ADMIN', 'EXPERT', 'MANAGER']))
                         <div class="row">
