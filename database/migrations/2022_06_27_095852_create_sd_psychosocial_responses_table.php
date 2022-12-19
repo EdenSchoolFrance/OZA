@@ -20,10 +20,10 @@ class CreateSdPsychosocialResponsesTable extends Migration
             $table->integer('often');
             $table->integer('always');
 
-            $table->foreignUuid('sd_psychosocial_group_id');
+            $table->foreignUuid('sd_psychosocial_group_id')->nullable();
             $table->foreign('sd_psychosocial_group_id')->references('id')->on('sd_psychosocial_groups')->onDelete('cascade');
 
-            $table->foreignUuid('psychosocial_question_id');
+            $table->foreignUuid('psychosocial_question_id')->nullable();
             $table->foreign('psychosocial_question_id')->references('id')->on('psychosocial_questions')->onDelete('cascade');
         });
     }
