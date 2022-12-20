@@ -37,10 +37,10 @@
                                 @endphp
                                 @if($pass)
                                     <tr data-order="{{ $response->question->order }}">
-                                        <td rowspan="{{ count($response->restraints) + 1 }}" class="td_question">{{ $response->question->order }}. {{ $response->question->info }}</td>
-                                        <td rowspan="{{ count($response->restraints) + 1 }}" class="td_priority"><button type="button" class="btn btn-small {{ $response->priority()["class"] }}">{{ $response->priority()["text"] }}</button></td>
+                                        <td rowspan="{{ count($response->checked_restraints) + 1 }}" class="td_question">{{ $response->question->order }}. {{ $response->question->info }}</td>
+                                        <td rowspan="{{ count($response->checked_restraints) + 1 }}" class="td_priority"><button type="button" class="btn btn-small {{ $response->priority()["class"] }}">{{ $response->priority()["text"] }}</button></td>
                                     </tr>
-                                    @foreach($response->restraints as $key => $restraint)
+                                    @foreach($response->checked_restraints as $key => $restraint)
                                         @php
                                             $key++;
                                         @endphp

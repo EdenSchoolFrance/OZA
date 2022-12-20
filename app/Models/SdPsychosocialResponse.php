@@ -41,6 +41,11 @@ class SdPsychosocialResponse extends Model
         return $this->hasMany(SdPsychosocialResponseRestraint::class);
     }
 
+    public function checked_restraints()
+    {
+        return $this->restraints()->where('checked', 1);
+    }
+
     public function intensity(){
         $question = $this->question;
         $number_quiz = $this->group->number_quiz;
