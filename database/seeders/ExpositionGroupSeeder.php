@@ -54,7 +54,7 @@ class ExpositionGroupSeeder extends Seeder
                     ],
                     "intervention_type_label" => "Niveau d’exposition au bruit rapporté à une \n période de référence de huit heures",
                     "value_label" => null,
-                    "duration" => "< 600 h / an",
+                    "duration" => "> 600 h / an",
                     "type" => "duration",
                 ],
                 [
