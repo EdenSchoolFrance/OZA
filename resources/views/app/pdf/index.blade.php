@@ -1863,7 +1863,7 @@
                                     <th class="th_awe">Parfois</th>
                                     <th class="th_awe">Souvent</th>
                                     <th class="th_awe">Toujours</th>
-                                    <th rowspan="2" class="th_awe">Moyen</th>
+                                    <th rowspan="2" class="th_awe">Moyenne</th>
                                 </tr>
                                 <tr>
                                     <th class="th_awe">Non</th>
@@ -1909,7 +1909,7 @@
                                     <th class="th_awe">Parfois</th>
                                     <th class="th_awe">Souvent</th>
                                     <th class="th_awe">Toujours</th>
-                                    <th rowspan="2" class="th_awe">Moyen</th>
+                                    <th rowspan="2" class="th_awe">Moyenne</th>
                                 </tr>
                                 <tr>
                                     <th class="th_awe">Non</th>
@@ -2505,8 +2505,7 @@
                                                         @if ($sd_exposition_question->exposition_question->exposition_group->type === "default")
                                                             <td class="center"></td>
                                                         @else
-                                                            <td class="center">Total h / an : <span
-                                                                    class="text-color-{{$exposition_group->calculation($sd_exposition_question->value)}}">{{$sd_exposition_question->value}}</span>
+                                                            <td class="center">Total h / an : <span class="text-color-{{$exposition_group->calculation($sd_exposition_question->value)}}">{{$sd_exposition_question->value}}</span>
                                                             </td>
                                                         @endif
                                                     @endif
@@ -2551,125 +2550,6 @@
     </div>
 </section>
 
-
-{{--<section class="page">--}}
-{{--    <div class="header">--}}
-{{--        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>--}}
-{{--    </div>--}}
-
-{{--    <div class="body body--notif">--}}
-{{--        <h1 class="head-title" id="expoRiskPro">11. HISTORIQUE DES MISES A JOUR ET DES ACTIONS REALISEES</h1>--}}
-{{--        <table class="table table--risk-post">--}}
-{{--            <thead>--}}
-{{--            <tr>--}}
-{{--                <td class="theader yellow-v" colspan="6">--}}
-{{--                    PLAN D'ACTION--}}
-{{--                </td>--}}
-{{--            </tr>--}}
-{{--            <tr>--}}
-{{--                <td class="theader">--}}
-{{--                    Facteur de risque--}}
-{{--                </td>--}}
-{{--                <td class="theader">--}}
-{{--                    Unité de Travail--}}
-{{--                </td>--}}
-{{--                <td class="theader">--}}
-{{--                    Situation--}}
-{{--                </td>--}}
-{{--                <td class="theader">--}}
-{{--                    Mesure proposée--}}
-{{--                </td>--}}
-{{--                <td class="theader">--}}
-{{--                    Date de réalisation--}}
-{{--                </td>--}}
-{{--                <td class="theader">--}}
-{{--                    Commentaire, complément, autres actions--}}
-{{--                </td>--}}
-{{--            </tr>--}}
-{{--            </thead>--}}
-{{--            <tbody>--}}
-
-
-{{--            @foreach ($single_document->dangers()->whereHas('danger.exposition')->get() as $danger)--}}
-{{--                @php--}}
-{{--                    $pivot = $danger->danger->exposition->pivot($single_document->id);--}}
-{{--                @endphp--}}
-{{--                @if (count($pivot) === 0)--}}
-{{--                    <tr>--}}
-{{--                        <td class="center">{{ $danger->danger->name }}</td>--}}
-{{--                        <td class="center">TOUS</td>--}}
-{{--                        <td class="center">Non concernée</td>--}}
-{{--                        <td>Néant</td>--}}
-{{--                        <td></td>--}}
-{{--                        <td></td>--}}
-{{--                    </tr>--}}
-{{--                @else--}}
-{{--                    @foreach ($single_document->work_unit as $sd_work_unit)--}}
-{{--                        @if ($sd_work_unit->sd_danger($danger->id) && $sd_work_unit->sd_danger($danger->id)->pivot->exist)--}}
-{{--                            @if ($sd_work_unit->sd_danger($danger->id)->pivot->exposition)--}}
-{{--                                @php--}}
-{{--                                    $count = $danger->danger->exposition->exposition_groups;--}}
-{{--                                @endphp--}}
-{{--                                @foreach ($danger->danger->exposition->exposition_groups as $key => $exposition_group)--}}
-{{--                                    @foreach ($exposition_group->exposition_questions as  $exposition_question)--}}
-{{--                                        @php--}}
-{{--                                            $sd_exposition_question = $exposition_question->sd_work_unit_exposition_question($sd_work_unit->id);--}}
-{{--                                            if(isset($sd_exposition_question)){--}}
-{{--                                                $old_sd_exposition_question = $sd_exposition_question;--}}
-{{--                                            }--}}
-{{--                                        @endphp--}}
-
-{{--                                        @if (isset($sd_exposition_question))--}}
-{{--                                            <tr>--}}
-
-{{--                                                @if ($key === 0)--}}
-{{--                                                    <td class="center"--}}
-{{--                                                        rowspan="{{count($count) > 0 ? count($count) : 1 }}">--}}
-{{--                                                        {{ $danger->danger->name }}--}}
-{{--                                                    </td>--}}
-{{--                                                @elseif ($key > 0 && $count[0]->exposition_questions[0]->sd_work_unit_exposition_question($sd_work_unit->id) === null)--}}
-{{--                                                    <td class="center"--}}
-{{--                                                        rowspan="{{1}}">--}}
-{{--                                                        {{ $danger->danger->name }}--}}
-{{--                                                    </td>--}}
-{{--                                                @endif--}}
-{{--                                                @if (isset($sd_exposition_question))--}}
-{{--                                                    <td class="center">{{ $sd_work_unit->name }}</td>--}}
-{{--                                                    <td class="center {{$exposition_group->calculation($sd_exposition_question->value)}}"> {{$exposition_group->translate($sd_exposition_question->value)}} </td>--}}
-{{--                                                    <td class="center">{{ $sd_exposition_question->intervention_type }}</td>--}}
-{{--                                                    <td></td>--}}
-{{--                                                    <td></td>--}}
-{{--                                                @else--}}
-{{--                                                    <td></td>--}}
-{{--                                                    <td class="center">Non concernée</td>--}}
-{{--                                                    <td>Néant</td>--}}
-{{--                                                    <td></td>--}}
-{{--                                                    <td></td>--}}
-
-{{--                                                @endif--}}
-{{--                                            </tr>--}}
-{{--                                        @endif--}}
-
-{{--                                    @endforeach--}}
-{{--                                @endforeach--}}
-{{--                            @endif--}}
-{{--                        @endif--}}
-{{--                    @endforeach--}}
-{{--                @endif--}}
-{{--            @endforeach--}}
-{{--            </tbody>--}}
-{{--        </table>--}}
-{{--        <p class="text-color-red">--}}
-{{--            Lorsque la situation est critique (Exposé), veuillez vous assurer que les mesures proposées lors de--}}
-{{--            l’évaluation des risques de l’UT vous permettent d’agir sur ce facteur.--}}
-{{--        </p>--}}
-{{--    </div>--}}
-
-{{--    <div class="footer">--}}
-{{--        <p> Copyright © OZA DUERP Online</p>--}}
-{{--        <p class="page-num">EVALUATION DE L'EXPOSITION</p>--}}
-{{--    </div>--}}
-{{--</section>--}}
 
 
 <section class="page">
