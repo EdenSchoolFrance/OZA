@@ -50,7 +50,7 @@
                                 } else {
                                     $intensity = ($never * 10) + ($sometimes * 6.6666) + ($often * 3.3333);
                                 }
-                                
+
                                 if ($psychosocial_group->number_quiz > 0) $intensity = ($intensity / $psychosocial_group->number_quiz);
 
                                 $intensity = number_format($intensity, 1);
