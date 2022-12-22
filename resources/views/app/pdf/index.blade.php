@@ -316,6 +316,22 @@
             </tr>
             </tbody>
         </table>
+        <table class="table table--inv-v2" style="margin-top: 320px;">
+            <tbody>
+            <tr>
+                <td>
+                    <p class="info text-color-red">
+                        <span class="bold">Rappel :</span> Pour chaque unité de travail, l’évaluation des risques porte sur
+                        les activités principales.<br>
+                        Lorsqu’une personne affectée à une unité de travail met en œuvre de la polyvalence sur d’autres
+                        unités de travail, l’exposition globale de la personne considérée doit être appréciée en fonction du
+                        temps travaillé dans chaque unité de travail en moyenne sur l’année.
+                    </p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <p></p>
     </div>
 
     <div class="footer">
@@ -327,22 +343,9 @@
 @foreach($works_units as $key => $sd_work_unit)
     <section class="page">
         <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-                , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
+            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
         </div>
-
         <div class="body">
-            @if($key === 0)
-                <table class="table table--inv-v2">
-                    <p class="info text-color-red">
-                        <span class="bold">Rappel :</span> Pour chaque unité de travail, l’évaluation des risques porte sur
-                        les activités principales.<br>
-                        Lorsqu’une personne affectée à une unité de travail met en œuvre de la polyvalence sur d’autres
-                        unités de travail, l’exposition globale de la personne considérée doit être appréciée en fonction du
-                        temps travaillé dans chaque unité de travail en moyenne sur l’année.
-                    </p>
-                </table>
-            @endif
             <table class="table table--work_unit">
                 <thead>
                 <tr>
