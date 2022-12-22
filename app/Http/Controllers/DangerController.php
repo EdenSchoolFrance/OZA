@@ -48,15 +48,15 @@ class DangerController extends Controller
             'checked' => 'required'
         ]);
 
-
-
         if ($id_sd_work_unit === 'global'){
-
-            if ($request->checked === 'false') $sd_danger->sd_risk()->delete();
 
             $sd_works_units = SdWorkUnit::whereHas('single_document', function ($q) use ($single_document){
                 $q->where('id', $single_document->id);
             })->get();
+
+            if ($request->checked === 'false'){
+                $sd_danger->sd_risk()->delete();
+            }
 
             if (!$sd_works_units) abort(404);
 
@@ -100,7 +100,13 @@ class DangerController extends Controller
             })->first();
             if (!$sd_work_unit) abort(404);
 
-            if ($request->checked === 'false') $sd_work_unit->sd_risks()->delete();
+            if ($request->checked === 'false'){
+
+                foreach ($sd_work_unit->sd_danger_risks($sd_danger->id) as $sd_risk){
+                    $sd_risk->delete();
+                }
+            }
+
 
             if ($sd_danger->sd_works_units()->where('sd_work_unit_id', $sd_work_unit->id)->first()){
                 $sd_danger->sd_works_units()->updateExistingPivot($id_sd_work_unit, [
