@@ -2186,6 +2186,12 @@
                 </tr>
                 </thead>
                 <tbody>
+                @php
+                    $all = 0;
+                    foreach ($psychosocial_groups as $psychosocial_group){
+                        $all += $psychosocial_group->employee;
+                    }
+                @endphp
                 @foreach($psychosocial_groups as $psychosocial_group)
                     @foreach($psychosocial_group->responses as $response)
                         @php
@@ -2227,6 +2233,12 @@
                             @endfor
                         @endif
                     @endforeach
+                    @if($all > 0)
+                        <tr>
+                            <td class="td_question" colspan="5">Présence de salariés en souffrance</td>
+                            <td class="td_restraint" colspan="4">Informer le médecin du travail de cette situation afin qu'il puisse intégrer cette problématique dans ses actions de prévention.</td>
+                        </tr>
+                    @endif
                 @endforeach
                 </tbody>
             </table>
