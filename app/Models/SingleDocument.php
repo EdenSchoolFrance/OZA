@@ -78,7 +78,7 @@ class SingleDocument extends Model
     {
         return $this->hasMany(ErrorExcel::class);
     }
-    
+
     public function psychosocial_groups()
     {
         return $this->hasMany(SdPsychosocialGroup::class);
@@ -90,7 +90,7 @@ class SingleDocument extends Model
         $count = 0;
         foreach ($this->dangers as $sd_danger){
             if($sd_danger->exist === 1){
-                foreach ($sd_danger->sd_risk as $sd_risk){
+                foreach ($sd_danger->sd_risk_exist() as $sd_risk){
                     $total = $total+$sd_risk->total();
                     $count++;
                 }
@@ -129,25 +129,13 @@ class SingleDocument extends Model
 
     }
 
-    public function discountRisk() {
-
-        $RB = $this->moyenneRB();
-        $RR = $this->moyenneRR();
-
-        if ($RB != "-" && $RR) {
-            return round(($RB - $RR) / $RB * 100, 1);
-        } else {
-            return "-";
-        }
-    }
-
     public function moyenneRR()
     {
         $total = 0;
         $count = 0;
         foreach ($this->dangers as $sd_danger){
             if($sd_danger->exist === 1){
-                foreach ($sd_danger->sd_risk as $sd_risk){
+                foreach ($sd_danger->sd_risk_exist() as $sd_risk){
 
                     $RR = $sd_risk->totalRR($sd_risk->sd_restraints_exist);
 
@@ -160,9 +148,18 @@ class SingleDocument extends Model
         if ($count === 0) return "-";
 
         return round($total / $count, 1);
+    }
 
-        // if ($count === 0) return "-";
-        // else return round($end / $count, 1);
+    public function discountRisk() {
+
+        $RB = $this->moyenneRB();
+        $RR = $this->moyenneRR();
+
+        if ($RB != "-" && $RR) {
+            return round(($RB - $RR) / $RB * 100, 1);
+        } else {
+            return "-";
+        }
     }
 
 

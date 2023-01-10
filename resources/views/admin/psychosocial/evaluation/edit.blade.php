@@ -66,7 +66,7 @@
 
                                 $total = $never + $sometimes + $often + $always;
 
-                                if ($question->order <= 13) {
+                                if ($question->order < 13) {
                                     $intensity = ($sometimes * 3.3333) + ($often * 6.6666) + ($always * 10);
                                 } else {
                                     $intensity = ($never * 10) + ($sometimes * 6.6666) + ($often * 3.3333);
@@ -98,7 +98,7 @@
                                     ];
                                 }
 
-                                if ($question->order <= 13) {
+                                if ($question->order < 13) {
                                     $extreme = $always;
                                 } else {
                                     $extreme = $never;

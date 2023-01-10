@@ -42,6 +42,22 @@ class SdDanger extends Model
         return $this->hasMany(SdRisk::class);
     }
 
+    public function sd_risk_exist()
+    {
+        $sd_risk_exist = [];
+
+        $works_units = $this->sd_works_units()->wherePivot('exist',1)->get();
+
+        foreach ($works_units as $work_unit){
+
+            foreach ($work_unit->sd_danger_risks($this->id) as $risk){
+                $sd_risk_exist[] = $risk;
+            }
+        }
+
+        return $sd_risk_exist;
+    }
+
     public function sd_works_units()
     {
         return $this->belongsToMany(SdWorkUnit::class, 'sd_danger_sd_work_unit', 'sd_danger_id', 'sd_work_unit_id')->withPivot('exist', 'exposition');

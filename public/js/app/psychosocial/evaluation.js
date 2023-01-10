@@ -36,7 +36,7 @@ on('.card--psychosocial-evaluation-quiz table tbody tr input[type="number"]', 'c
 
     $('.td_total span', row, 0).innerHTML = total;
 
-    if (order <= 13) {
+    if (order < 13) {
         intensity_level = ((sometimes * 3.3333) + (often * 6.6666) + (always * 10)).toFixed(1);
     } else {
         intensity_level = ((never * 10) + (sometimes * 6.6666) + (often * 3.3333)).toFixed(1);
@@ -60,7 +60,7 @@ on('.card--psychosocial-evaluation-quiz table tbody tr input[type="number"]', 'c
         priority.innerHTML = "Elevé";
     }
 
-    if (order <= 13) {
+    if (order < 13) {
         $('.td_extreme', row, 0).innerHTML = always;
     } else {
         $('.td_extreme', row, 0).innerHTML = never;

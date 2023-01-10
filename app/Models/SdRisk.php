@@ -271,9 +271,9 @@ class SdRisk extends Model
                 case ($number <= 12.5) :
                 case ($number <= 24) :
                     return '';
-                case ($number <= 30) :
+                case ($number < 50) :
                     return 'btn-warn';
-                case ($number >= 30) :
+                case ($number >= 50) :
                     return 'btn-danger';
             }
         }else{
@@ -281,9 +281,9 @@ class SdRisk extends Model
                 case ($number <= 12.5) :
                 case ($number <= 24) :
                     return '';
-                case ($number <= 30) :
+                case ($number < 50) :
                     return 'btn-warn';
-                case ($number >= 30) :
+                case ($number >= 50) :
                     return 'btn-danger';
             }
         }
