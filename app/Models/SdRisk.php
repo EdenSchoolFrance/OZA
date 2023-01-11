@@ -246,9 +246,9 @@ class SdRisk extends Model
                 case ($number <= 12.5) :
                 case ($number <= 20) :
                     return '';
-                case ($number <= 30) :
+                case ($number < 50) :
                     return 'btn-warn';
-                case ($number >= 30) :
+                case ($number >= 50) :
                     return 'btn-danger';
             }
         }else{
@@ -256,9 +256,9 @@ class SdRisk extends Model
                 case ($number <= 12.5) :
                 case ($number <= 20) :
                     return '';
-                case ($number <= 30) :
+                case ($number < 50) :
                     return 'btn-warn';
-                case ($number >= 30) :
+                case ($number >= 50) :
                     return 'btn-danger';
             }
         }
@@ -297,9 +297,9 @@ class SdRisk extends Model
                     return 'btn-success';
                 case ($number <= 20) :
                     return 'btn-yellow';
-                case ($number <= 30) :
+                case ($number < 50) :
                     return 'btn-warn';
-                case ($number >= 30) :
+                case ($number >= 50) :
                     return 'btn-danger';
             }
         }else{
@@ -308,9 +308,9 @@ class SdRisk extends Model
                     return 'btn-success';
                 case ($number <= 20) :
                     return 'btn-yellow';
-                case ($number <= 30) :
+                case ($number < 50) :
                     return 'btn-warn';
-                case ($number >= 30) :
+                case ($number >= 50) :
                     return 'btn-danger';
             }
         }
@@ -324,9 +324,9 @@ class SdRisk extends Model
                     return 'green';
                 case ($number <= 20) :
                     return 'yellow';
-                case ($number <= 30) :
+                case ($number < 50) :
                     return 'pink';
-                case ($number >= 30) :
+                case ($number >= 50) :
                     return 'red';
             }
         }else{
@@ -335,9 +335,9 @@ class SdRisk extends Model
                     return 'green';
                 case ($number <= 20) :
                     return 'yellow';
-                case ($number <= 30) :
+                case ($number < 50) :
                     return 'pink';
-                case ($number >= 30) :
+                case ($number >= 50) :
                     return 'red';
             }
         }
@@ -351,9 +351,9 @@ class SdRisk extends Model
                     return 'Acceptable';
                 case ($number <= 20) :
                     return 'A améliorer';
-                case ($number <= 30):
+                case ($number < 50):
                     return 'Agir vite';
-                case ($number >= 30) :
+                case ($number >= 50) :
                     return 'STOP';
             }
         }else {
@@ -362,9 +362,9 @@ class SdRisk extends Model
                     return 'Acceptable';
                 case ($number <= 20) :
                     return 'A améliorer';
-                case ($number <= 30):
+                case ($number < 50):
                     return 'Agir vite';
-                case ($number >= 30) :
+                case ($number >= 50) :
                     return 'STOP';
             }
         }
