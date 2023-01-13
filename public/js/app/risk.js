@@ -398,28 +398,22 @@ function setColor(el,total,RB){
         el.className = ""
         el.classList.add('btn')
         switch (true) {
-            case (total <= 12.5) :
+            case (total < 12.5) :
             case (total < 24) :
                 break;
-            case (total < 50) :
+            case (total <= 50) :
                 el.classList.add('btn-warn');
-                break;
-            case (total >= 50) :
-                el.classList.add('btn-danger');
                 break;
         }
     }else{
         el.className = ""
         el.classList.add('btn')
         switch (true) {
-            case (total <= 12.5) :
+            case (total < 12.5) :
             case (total < 24) :
                 break;
-            case (total < 50) :
+            case (total <= 50) :
                 el.classList.add('btn-warn');
-                break;
-            case (total >= 50) :
-                el.classList.add('btn-danger');
                 break;
         }
     }
@@ -432,34 +426,28 @@ function setColorC(el,total,RB){
         el.className = ""
         el.classList.add('btn')
         switch (true) {
-            case (total <= 12.5) :
+            case (total < 12.5) :
                 el.classList.add('btn-success');
                 break;
             case (total < 24) :
                 el.classList.add('btn-yellow');
                 break;
-            case (total < 50) :
+            case (total <= 50) :
                 el.classList.add('btn-warn');
-                break;
-            case (total >= 50) :
-                el.classList.add('btn-danger');
                 break;
         }
     }else{
         el.className = ""
         el.classList.add('btn')
         switch (true) {
-            case (total <= 12.5) :
+            case (total < 12.5) :
                 el.classList.add('btn-success');
                 break;
             case (total < 24) :
                 el.classList.add('btn-yellow');
                 break;
-            case (total < 50) :
+            case (total <= 50) :
                 el.classList.add('btn-warn');
-                break;
-            case (total >= 50) :
-                el.classList.add('btn-danger');
                 break;
         }
     }
@@ -469,7 +457,7 @@ function setColorC(el,total,RB){
 function totalEnd(el,number,RB){
     if (RB === true){
         switch (true){
-            case (number <= 12.5) :
+            case (number < 12.5) :
                 el.innerText = "Acceptable"
                 break
             case (number < 24) :
@@ -478,13 +466,13 @@ function totalEnd(el,number,RB){
             case (number < 30) :
                 el.innerText = "Agir vite"
                 break
-            case (number >= 30) :
+            case (number <= 50) :
                 el.innerText = "STOP"
                 break
         }
     }else{
         switch (true){
-            case (number <= 12.5) :
+            case (number < 12.5) :
                 el.innerText = "Acceptable"
                 break
             case (number < 24) :
@@ -493,7 +481,7 @@ function totalEnd(el,number,RB){
             case (number < 30) :
                 el.innerText = "Agir vite"
                 break
-            case (number >= 30) :
+            case (number <= 50) :
                 el.innerText = "STOP"
                 break
         }

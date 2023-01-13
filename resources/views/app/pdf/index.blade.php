@@ -1838,6 +1838,9 @@
     </section>
 
     @foreach($psychosocial_groups as $psychosocial_group)
+        @php
+            $all = count($psychosocial_group->responses);
+        @endphp
         <section class="page">
             <div class="header">
                 <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
@@ -1876,7 +1879,6 @@
                                 </thead>
                                 <tbody>
                                 @foreach($questions as $key => $question)
-                                    {{count($questions)}}
                                     @if($key <= 12)
                                         @php
                                             $response = $question->response($psychosocial_group->id)
@@ -1893,7 +1895,7 @@
                                         @endif
                                     @endif
                                 @endforeach
-                                @if(count($questions) == 0)
+                                @if($all === 0)
                                     <tr>
                                         <td colspan="6" class="none center">Evaluation en cours</td>
                                     </tr>
@@ -1943,7 +1945,7 @@
                                         </tr>
                                     @endif
                                 @endfor
-                                @if(count($questions) == 0)
+                                @if($all === 0)
                                     <tr>
                                         <td colspan="6" class="none center">Evaluation en cours</td>
                                     </tr>
@@ -1967,6 +1969,9 @@
 
 
     @foreach($psychosocial_groups as $psychosocial_group)
+        @php
+            $all = count($psychosocial_group->responses);
+        @endphp
         <section class="page">
             <div class="header">
                 <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
@@ -2008,7 +2013,7 @@
                                         @endif
                                     @endif
                                 @endforeach
-                                @if(count($questions) > 0)
+                                @if($all === 0)
                                     <tr>
                                         <td colspan="3" class="none center">Evaluation en cours</td>
                                     </tr>
@@ -2043,7 +2048,7 @@
                                         </tr>
                                     @endif
                                 @endfor
-                                @if(count($questions) > 0)
+                                @if($all === 0)
                                     <tr>
                                         <td colspan="3" class="none center">Evaluation en cours</td>
                                     </tr>
@@ -2067,6 +2072,9 @@
 
 
     @foreach($psychosocial_groups as $psychosocial_group)
+        @php
+            $all = count($psychosocial_group->responses);
+        @endphp
         <section class="page">
             <div class="header">
                 <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
@@ -2106,7 +2114,7 @@
                                         @endif
                                     @endif
                                 @endforeach
-                                @if(count($questions) > 0)
+                                @if($all === 0)
                                     <tr>
                                         <td colspan="2" class="none center">Evaluation en cours</td>
                                     </tr>
@@ -2147,7 +2155,7 @@
                                         @endif
                                     @endif
                                 @endfor
-                                @if(count($questions) > 0)
+                                @if($all === 0)
                                     <tr>
                                         <td colspan="2" class="none center">Evaluation en cours</td>
                                     </tr>
@@ -2218,8 +2226,10 @@
                 <tbody>
                 @php
                     $all = 0;
+                    $is = 0;
                     foreach ($psychosocial_groups as $psychosocial_group){
                         $all += $psychosocial_group->employee;
+                        $is = $is+count($psychosocial_group->responses);
                     }
                 @endphp
                 @foreach($psychosocial_groups as $psychosocial_group)
@@ -2263,13 +2273,18 @@
                             @endfor
                         @endif
                     @endforeach
-                    @if($all > 0)
-                        <tr>
-                            <td class="td_question" colspan="5">Présence de salariés en souffrance</td>
-                            <td class="td_restraint" colspan="4">Informer le médecin du travail de cette situation afin qu'il puisse intégrer cette problématique dans ses actions de prévention.</td>
-                        </tr>
-                    @endif
                 @endforeach
+                @if($all > 0)
+                    <tr>
+                        <td class="td_question" colspan="5">Présence de salariés en souffrance</td>
+                        <td class="td_restraint" colspan="4">Informer le médecin du travail de cette situation afin qu'il puisse intégrer cette problématique dans ses actions de prévention.</td>
+                    </tr>
+                @endif
+                @if($is === 0)
+                    <tr>
+                        <td colspan="9" class="none center">Evaluation en cours</td>
+                    </tr>
+                @endif
                 </tbody>
             </table>
             <p></p>

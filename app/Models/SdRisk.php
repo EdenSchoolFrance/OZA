@@ -243,16 +243,16 @@ class SdRisk extends Model
     public function color($number, $RB){
         if ($RB === true){
             switch (true) {
-                case ($number <= 12.5) :
-                case ($number <= 24) :
+                case ($number < 12.5) :
+                case ($number < 24) :
                     return '';
                 case ($number <= 50) :
                     return 'btn-warn';
             }
         }else{
             switch (true) {
-                case ($number <= 12.5) :
-                case ($number <= 24) :
+                case ($number < 12.5) :
+                case ($number < 24) :
                     return '';
                 case ($number <= 50) :
                     return 'btn-warn';
@@ -264,16 +264,16 @@ class SdRisk extends Model
     public function colorPost($number, $RB){
         if ($RB === true){
             switch (true) {
-                case ($number <= 12.5) :
-                case ($number <= 24) :
+                case ($number < 12.5) :
+                case ($number < 24) :
                     return '';
                 case ($number <= 50) :
                     return 'btn-warn';
             }
         }else{
             switch (true) {
-                case ($number <= 12.5) :
-                case ($number <= 24) :
+                case ($number < 12.5) :
+                case ($number < 24) :
                     return '';
                 case ($number <= 50) :
                     return 'btn-warn';
@@ -285,18 +285,18 @@ class SdRisk extends Model
     public function colorC($number, $RB){
         if ($RB === true){
             switch (true) {
-                case ($number <= 12.5) :
+                case ($number < 12.5) :
                     return 'btn-success';
-                case ($number <= 24) :
+                case ($number < 24) :
                     return 'btn-yellow';
                 case ($number <= 50) :
                     return 'btn-warn';
             }
         }else{
             switch (true) {
-                case ($number <= 12.5) :
+                case ($number < 12.5) :
                     return 'btn-success';
-                case ($number <= 24) :
+                case ($number < 24) :
                     return 'btn-yellow';
                 case ($number <= 50) :
                     return 'btn-warn';
@@ -308,18 +308,18 @@ class SdRisk extends Model
     public function colorPDF($number, $RB){
         if ($RB === true){
             switch (true) {
-                case ($number <= 12.5) :
+                case ($number < 12.5) :
                     return 'green';
-                case ($number <= 24) :
+                case ($number < 24) :
                     return 'yellow';
                 case ($number <= 50) :
                     return 'pink';
             }
         }else{
             switch (true) {
-                case ($number <= 12.5) :
+                case ($number < 12.5) :
                     return 'green';
-                case ($number <= 24) :
+                case ($number < 24) :
                     return 'yellow';
                 case ($number <= 50) :
                     return 'pink';
@@ -331,21 +331,25 @@ class SdRisk extends Model
     public function colorTotal($number, $RB){
         if ($RB === true){
             switch (true) {
-                case ($number <= 12.5) :
+                case ($number < 12.5) :
                     return 'Acceptable';
-                case ($number <= 24) :
+                case ($number < 24) :
                     return 'A améliorer';
-                case ($number <= 50):
+                case ($number < 30):
                     return 'Agir vite';
+                case ($number <= 50):
+                    return 'STOP';
             }
         }else {
             switch (true) {
-                case ($number <= 12.5) :
+                case ($number < 12.5) :
                     return 'Acceptable';
-                case ($number <= 24) :
+                case ($number < 24) :
                     return 'A améliorer';
-                case ($number <= 50):
+                case ($number < 30):
                     return 'Agir vite';
+                case ($number <= 50):
+                    return 'STOP';
             }
         }
     }

@@ -296,14 +296,4 @@ class PDFController extends Controller
 
         return back()->with('status', 'Document unique généré avec succès, vous pouvez maintenant le télécharger !');
     }
-
-    public static function create()
-    {
-
-        $config = '{type:"pie",data:{labels:["Acceptable","A améliorer","Agir vite","STOP"],datasets:[{label:"",data:[75,25,0,0]}]},options:{layout:{padding:0,},plugins:{legend:{display:true,position:"right",labels:{boxHeight:45,boxWidth:45,},title:{display:false,}}}}}';
-        $chartUrl = 'https://quickchart.io/chart?w=500&h=300&c=' . urlencode($config);
-        return PDF::loadView('app.pdf.index', compact('chartUrl'))
-            ->setPaper('a4', 'landscape')
-            ->download('ozaDuTest.pdf');
-    }
 }

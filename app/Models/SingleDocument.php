@@ -107,7 +107,7 @@ class SingleDocument extends Model
         if ($RB === true){
             if ($number === "-") return "text-color-green";
             switch (true) {
-                case ($number <= 12.5) :
+                case ($number < 12.5) :
                     return 'text-color-green';
                 case ($number < 24) :
                     return 'text-color-orange';
@@ -117,7 +117,7 @@ class SingleDocument extends Model
         }else{
             if ($number === "-") return "text-color-green";
             switch (true) {
-                case ($number <= 12.5) :
+                case ($number < 12.5) :
                     return 'text-color-green';
                 case ($number < 24) :
                     return 'text-color-orange';
@@ -173,12 +173,14 @@ class SingleDocument extends Model
                     $count++;
                     $sdRiskTotalRR = $sd_risk->totalRR($sd_risk->sd_restraints_exist);
 
-                    if ($sdRiskTotalRR <= 12.5) {
+                    if ($sdRiskTotalRR < 12.5) {
                         $tab[0] += 1;
                     } elseif ($sdRiskTotalRR < 24) {
                         $tab[1] += 1;
-                    } elseif ($sdRiskTotalRR <= 50) {
+                    } elseif ($sdRiskTotalRR < 30) {
                         $tab[2] += 1;
+                    } elseif ($sdRiskTotalRR <= 50) {
+                        $tab[3] += 1;
                     }
 
                 }
