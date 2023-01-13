@@ -237,6 +237,12 @@
 {{--                        {{ $sd_risk->sd_danger->danger->name }} | {{ $sd_risk->name }} | {{ $sd_risk->total() }} | {{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->totalRR($sd_risk->sd_restraints_exist) : $sd_risk->total() }}--}}
 {{--                    </p>--}}
 {{--                @endforeach--}}
+{{--                <h3>NOM DU RISQUE</h3>--}}
+{{--                @foreach($sd->temp() as $sd_risk)--}}
+{{--                    <p>--}}
+{{--                        {{ $sd_risk->name }}--}}
+{{--                    </p>--}}
+{{--                @endforeach--}}
 {{--            </div>--}}
 
 

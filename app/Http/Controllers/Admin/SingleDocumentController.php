@@ -170,7 +170,7 @@ class SingleDocumentController extends Controller
             $risk_psycho_groups_request = $request->risk_psycho_exposition_groups;
 
             foreach ($single_document->psychosocial_groups as $psychosocial_group) {
-                if (in_array($psychosocial_group->id, $risk_psycho_groups_request)) {
+                if (array_key_exists($psychosocial_group->id, $risk_psycho_groups_request)) {
                     $psychosocial_group->name = $risk_psycho_groups_request[$psychosocial_group->id];
                     unset($risk_psycho_groups_request[$psychosocial_group->id]);
                 } else {
