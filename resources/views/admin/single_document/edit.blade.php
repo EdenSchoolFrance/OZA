@@ -228,22 +228,22 @@
         @endif
 
 
-            <div>
-                <h1>CECI EST UNE PARTIE DÉVELOPPEMENT UNIQUEMENT VISIBLE PAR LES MEMBRES OZA ET LES DÉVELOPPEURS, CETTE PARTIE EST TEMPORAIRE.</h1>
-                <p> Nombre de risque : {{ count($sd->temp()) }}</p>
-                <p> Danger | Nom du risque | RB | RR | Work Unit </p>
-                @foreach($sd->temp() as $sd_risk)
-                    <p>
-                        {{ $sd_risk->sd_danger->danger->name }} | {{ $sd_risk->name }} | {{ $sd_risk->total() }} | {{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->totalRR($sd_risk->sd_restraints_exist) : $sd_risk->total() }} | {{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "Tous" }}
-                    </p>
-                @endforeach
-                <h3>NOM DU RISQUE</h3>
-                @foreach($sd->temp() as $sd_risk)
-                    <p>
-                        {{ $sd_risk->name }}
-                    </p>
-                @endforeach
-            </div>
+{{--            <div>--}}
+{{--                <h1>CECI EST UNE PARTIE DÉVELOPPEMENT UNIQUEMENT VISIBLE PAR LES MEMBRES OZA ET LES DÉVELOPPEURS, CETTE PARTIE EST TEMPORAIRE.</h1>--}}
+{{--                <p> Nombre de risque : {{ count($sd->temp()) }}</p>--}}
+{{--                <p> Danger | Nom du risque | RB | RR | Work Unit </p>--}}
+{{--                @foreach($sd->temp() as $sd_risk)--}}
+{{--                    <p>--}}
+{{--                        {{ $sd_risk->sd_danger->danger->name }} | {{ $sd_risk->name }} | {{ $sd_risk->total() }} | {{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->totalRR($sd_risk->sd_restraints_exist) : $sd_risk->total() }} | {{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "Tous" }}--}}
+{{--                    </p>--}}
+{{--                @endforeach--}}
+{{--                <h3>NOM DU RISQUE</h3>--}}
+{{--                @foreach($sd->temp() as $sd_risk)--}}
+{{--                    <p>--}}
+{{--                        {{ $sd_risk->name }}--}}
+{{--                    </p>--}}
+{{--                @endforeach--}}
+{{--            </div>--}}
 
 
     </div>

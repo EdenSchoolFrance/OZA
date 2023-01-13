@@ -8,8 +8,8 @@ function sortTableByColumn(table, column, asc) {
         const aCol = $(`td:nth-child(${ column + 1 })`, a, false);
         const bCol = $(`td:nth-child(${ column + 1 })`, b, false);
 
-        let aColText = aCol.dataset.sort || aCol.innerText.toLocaleLowerCase();
-        let bColText = bCol.dataset.sort || bCol.innerText.toLocaleLowerCase();
+        let aColText = aCol.dataset.sort || aCol.innerText.toLowerCase();
+        let bColText = bCol.dataset.sort || bCol.innerText.toLowerCase();
 
         if (!isNaN(aColText)) {
             aColText = parseFloat(aColText);

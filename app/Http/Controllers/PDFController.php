@@ -179,7 +179,7 @@ class PDFController extends Controller
             }
         }
 
-        $expos = Exposition::all();
+        $expos = Exposition::all()->sortBy("danger.name",SORT_NATURAL|SORT_FLAG_CASE);
 
 
         $sd_risks_v2 = SdRisk::whereHas('sd_danger', function ($q) use ($single_document){

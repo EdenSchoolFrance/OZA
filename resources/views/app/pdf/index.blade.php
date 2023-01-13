@@ -315,25 +315,18 @@
             </tr>
             </tbody>
         </table>
-        <table class="table table--inv-v2" style="margin-top: 320px;">
-            <tbody>
-            <tr>
-                <td>
-                    <p class="info text-color-red">
-                        <span class="bold">Rappel :</span> Pour chaque unité de travail, l’évaluation des risques porte sur
-                        les activités principales.<br>
-                        Lorsqu’une personne affectée à une unité de travail met en œuvre de la polyvalence sur d’autres
-                        unités de travail, l’exposition globale de la personne considérée doit être appréciée en fonction du
-                        temps travaillé dans chaque unité de travail en moyenne sur l’année.
-                    </p>
-                </td>
-            </tr>
-            </tbody>
-        </table>
         <p></p>
+        <p class="info text-color-red" style="position: absolute; bottom: 10px">
+            <span class="bold">Rappel :</span> Pour chaque unité de travail, l’évaluation des risques porte sur
+            les activités principales.<br>
+            Lorsqu’une personne affectée à une unité de travail met en œuvre de la polyvalence sur d’autres
+            unités de travail, l’exposition globale de la personne considérée doit être appréciée en fonction du
+            temps travaillé dans chaque unité de travail en moyenne sur l’année.
+        </p>
     </div>
 
     <div class="footer">
+
         <p> Copyright © OZA DUERP Online</p>
         <p class="page-num">PRÉSENTATION DÉTAILLÉE DE LA STRUCTURE ET DES UNITÉS DE TAVAIL</p>
     </div>
@@ -2240,36 +2233,38 @@
                             }
                         @endphp
                         <tr>
-                            <td rowspan="{{ count($response->restraints) === 0 ? 1 : count($response->restraints) }}"
+                            <td rowspan="{{ count($response->checked_restraints) === 0 ? 1 : count($response->checked_restraints) }}"
                                 class="psycho-group">{{ $psychosocial_group->name }}</td>
-                            <td rowspan="{{ count($response->restraints) === 0 ? 1 : count($response->restraints) }}"
+                            <td rowspan="{{ count($response->checked_restraints) === 0 ? 1 : count($response->checked_restraints) }}"
                                 class="question">{{ $response->question->info }}</td>
-                            <td rowspan="{{ count($response->restraints) === 0 ? 1 : count($response->restraints) }}"
+                            <td rowspan="{{ count($response->checked_restraints) === 0 ? 1 : count($response->checked_restraints) }}"
                                 class="intensity min-width min-width-left">{{ $response->intensity() }}</td>
-                            <td rowspan="{{ count($response->restraints) === 0 ? 1 : count($response->restraints) }}"
+                            <td rowspan="{{ count($response->checked_restraints) === 0 ? 1 : count($response->checked_restraints) }}"
                                 class="extreme min-width min-width-left">{{ $response->extreme() }}</td>
-                            <td rowspan="{{ count($response->restraints) === 0 ? 1 : count($response->restraints) }}"
+                            <td rowspan="{{ count($response->checked_restraints) === 0 ? 1 : count($response->checked_restraints) }}"
                                 class="action min-width min-width-left {{ $response->priorityPDF()['class'] }}"> {{ $response->priorityPDF()['text'] }}</td>
-                            @if(count($response->restraints) === 0)
+                            @if(count($response->checked_restraints) === 0)
                                 <td class="restraint"></td>
                                 <td class="decision"></td>
                                 <td class="date"></td>
                                 <td class="comment"></td>
                             @else
-                                <td class="restraint">{{ $response->restraints[0]->text }}</td>
-                                <td class="decision">{{ $response->restraints[0]->decision ?  : "" }}</td>
-                                <td class="date">{{ $response->restraints[0]->date ? date("d/m/Y", strtotime($response->restraints[0]->date)) : "" }}</td>
+                                <td class="restraint">{{ $response->checked_restraints[0]->text }}</td>
+                                <td class="decision">{{ $response->checked_restraints[0]->decision ?  : "" }}</td>
+                                <td class="date">{{ $response->checked_restraints[0]->date ? date("d/m/Y", strtotime($response->checked_restraints[0]->date)) : "" }}</td>
                                 <td class="comment"></td>
                             @endif
                         </tr>
-                        @if(count($response->restraints) > 1)
-                            @for($i = 1; $i < count($response->restraints); $i++)
-                                <tr>
-                                    <td class="restraint">{{ $response->restraints[$i]->text }}</td>
-                                    <td class="decision">{{ $response->restraints[$i]->decision ?  : "" }}</td>
-                                    <td class="date">{{ $response->restraints[$i]->date ? date("d/m/Y", strtotime($response->restraints[$i]->date)) : "" }}</td>
-                                    <td class="comment"></td>
-                                </tr>
+                        @if(count($response->checked_restraints) > 1)
+                            @for($i = 1; $i < count($response->checked_restraints); $i++)
+                                @if($response->checked_restraints[$i]->checked)
+                                    <tr>
+                                        <td class="restraint">{{ $response->checked_restraints[$i]->text }}</td>
+                                        <td class="decision">{{ $response->checked_restraints[$i]->decision ?  : "" }}</td>
+                                        <td class="date">{{ $response->checked_restraints[$i]->date ? date("d/m/Y", strtotime($response->checked_restraints[$i]->date)) : "" }}</td>
+                                        <td class="comment"></td>
+                                    </tr>
+                                @endif
                             @endfor
                         @endif
                     @endforeach
