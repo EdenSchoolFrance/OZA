@@ -59,10 +59,10 @@
                                         @endforeach
                                     </div>
                                 </td>
-                                <td class="td_rr" data-sort="{{ $sd_risk->totalRR($sd_risk->sd_restraints_exist) }}">
+                                <td class="td_rr" data-sort="{{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->totalRR($sd_risk->sd_restraints_exist) : $sd_risk->total() }}">
                                     <button class="btn {{ $sd_risk->color( isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->totalRR($sd_risk->sd_restraints_exist) : $sd_risk->total(),false) }} btn-small">{{ isset($sd_risk->sd_restraints_exist[0]) ? ($sd_risk->totalRR($sd_risk->sd_restraints_exist) === 0 ? $sd_risk->total() : $sd_risk->totalRR($sd_risk->sd_restraints_exist)) : $sd_risk->total() }}</button>
                                 </td>
-                                <td class="td_criticality" data-sort="{{ $sd_risk->totalRR($sd_risk->sd_restraints_exist) }}">
+                                <td class="td_criticality" data-sort="{{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->totalRR($sd_risk->sd_restraints_exist) : $sd_risk->total() }}">
                                     <button type="button" class="btn {{ $sd_risk->colorC(isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->totalRR($sd_risk->sd_restraints_exist) : $sd_risk->total(),false) }} btn-small">{{ $sd_risk->colorTotal(isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->totalRR($sd_risk->sd_restraints_exist) : $sd_risk->total(),false) }}</button>
                                 </td>
                                 <td class="td_proposed_measure">

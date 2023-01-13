@@ -149,20 +149,19 @@
             </li>
             <li>
                 <span class="number">7</span>
-                <p><span class="line"><a href="#evalRiskPsycho" class="link">EVALUATION DETAILLEE DU RISQUE PSYCHOSOCIAL ET <span>PLAN D’ACTION</span></a></span>
+                <p><span class="line"><a href="#evalRiskPsycho" class="link">EVALUATION DETAILLEE DU RISQUE PSYCHOSOCIAL ET <span>PLAN D’ACTION</span> @if($single_document->risk_psycho === 0) (partie non présente dans ce DUERP) @endif</a></span>
                 </p>
             </li>
-            {{--            <li>--}}
-            {{--                <span class="number">8</span>--}}
-            {{--                <p><span class="line"><a href="#evalRiskChimi"--}}
-            {{--                                         class="link">EVALUATION DETAILLEE DU RISQUE CHIMIQUE ET <span>PLAN D’ACTION</span></a></span>--}}
-            {{--                </p>--}}
-            {{--            </li>--}}
-            {{--            <li>--}}
-            {{--                <span class="number">9</span>--}}
-            {{--                <p><span class="line"><a href="#explo" class="link">DOCUMENT RELATIF A LA PREVENTION CONTRE L’EXPLOSION ET <span>PLAN D’ACTION</span></a></span>--}}
-            {{--                </p>--}}
-            {{--            </li>--}}
+            <li>
+                <span class="number">8</span>
+                <p><span class="line"><a href="#evalRiskChimi" class="link">EVALUATION DETAILLEE DU RISQUE CHIMIQUE ET <span>PLAN D’ACTION</span> (partie non présente dans ce DUERP)</a></span>
+                </p>
+            </li>
+            <li>
+                <span class="number">9</span>
+                <p><span class="line"><a href="#explo" class="link">DOCUMENT RELATIF A LA PREVENTION CONTRE L’EXPLOSION ET <span>PLAN D’ACTION</span> (partie non présente dans ce DUERP)</a></span>
+                </p>
+            </li>
             <li>
                 <span class="number">10</span>
                 <p><span class="line"><a href="#expoRiskPro" class="link">EXPOSITION AUX FACTEURS DE RISQUES PROFESSIONNELS ET <span>PLAN D’ACTION</span></a></span>
@@ -1858,7 +1857,7 @@
                                 <thead>
                                 <tr>
                                     <th colspan="5">Nombre de questionnaires exploités</th>
-                                    <th>{{ $psychosocial_group->number_quiz }}</th>
+                                    <th>{{ $psychosocial_group->number_quiz }}{{count($questions)}}</th>
                                 </tr>
                                 <tr>
                                     <th rowspan="2" class="th_question">Questions</th>
@@ -1877,6 +1876,7 @@
                                 </thead>
                                 <tbody>
                                 @foreach($questions as $key => $question)
+                                    {{count($questions)}}
                                     @if($key <= 12)
                                         @php
                                             $response = $question->response($psychosocial_group->id)
@@ -1893,6 +1893,11 @@
                                         @endif
                                     @endif
                                 @endforeach
+                                @if(count($questions) == 0)
+                                    <tr>
+                                        <td colspan="6" class="none center">Evaluation en cours</td>
+                                    </tr>
+                                @endif
                                 </tbody>
                             </table>
                             <p></p>
@@ -1938,6 +1943,11 @@
                                         </tr>
                                     @endif
                                 @endfor
+                                @if(count($questions) == 0)
+                                    <tr>
+                                        <td colspan="6" class="none center">Evaluation en cours</td>
+                                    </tr>
+                                @endif
                                 </tbody>
                             </table>
                             <p></p>
@@ -1998,6 +2008,11 @@
                                         @endif
                                     @endif
                                 @endforeach
+                                @if(count($questions) > 0)
+                                    <tr>
+                                        <td colspan="3" class="none center">Evaluation en cours</td>
+                                    </tr>
+                                @endif
                                 </tbody>
                             </table>
                             <p></p>
@@ -2028,6 +2043,11 @@
                                         </tr>
                                     @endif
                                 @endfor
+                                @if(count($questions) > 0)
+                                    <tr>
+                                        <td colspan="3" class="none center">Evaluation en cours</td>
+                                    </tr>
+                                @endif
                                 </tbody>
                             </table>
                             <p></p>
@@ -2086,6 +2106,11 @@
                                         @endif
                                     @endif
                                 @endforeach
+                                @if(count($questions) > 0)
+                                    <tr>
+                                        <td colspan="2" class="none center">Evaluation en cours</td>
+                                    </tr>
+                                @endif
                                 </tbody>
                             </table>
                             <p></p>
@@ -2122,6 +2147,11 @@
                                         @endif
                                     @endif
                                 @endfor
+                                @if(count($questions) > 0)
+                                    <tr>
+                                        <td colspan="2" class="none center">Evaluation en cours</td>
+                                    </tr>
+                                @endif
                                 </tbody>
                             </table>
                             <p></p>

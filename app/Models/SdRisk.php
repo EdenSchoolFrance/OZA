@@ -244,22 +244,18 @@ class SdRisk extends Model
         if ($RB === true){
             switch (true) {
                 case ($number <= 12.5) :
-                case ($number <= 20) :
+                case ($number <= 24) :
                     return '';
-                case ($number < 50) :
+                case ($number <= 50) :
                     return 'btn-warn';
-                case ($number >= 50) :
-                    return 'btn-danger';
             }
         }else{
             switch (true) {
                 case ($number <= 12.5) :
-                case ($number <= 20) :
+                case ($number <= 24) :
                     return '';
-                case ($number < 50) :
+                case ($number <= 50) :
                     return 'btn-warn';
-                case ($number >= 50) :
-                    return 'btn-danger';
             }
         }
 
@@ -271,20 +267,16 @@ class SdRisk extends Model
                 case ($number <= 12.5) :
                 case ($number <= 24) :
                     return '';
-                case ($number < 50) :
+                case ($number <= 50) :
                     return 'btn-warn';
-                case ($number >= 50) :
-                    return 'btn-danger';
             }
         }else{
             switch (true) {
                 case ($number <= 12.5) :
                 case ($number <= 24) :
                     return '';
-                case ($number < 50) :
+                case ($number <= 50) :
                     return 'btn-warn';
-                case ($number >= 50) :
-                    return 'btn-danger';
             }
         }
 
@@ -295,23 +287,19 @@ class SdRisk extends Model
             switch (true) {
                 case ($number <= 12.5) :
                     return 'btn-success';
-                case ($number <= 20) :
+                case ($number <= 24) :
                     return 'btn-yellow';
-                case ($number < 50) :
+                case ($number <= 50) :
                     return 'btn-warn';
-                case ($number >= 50) :
-                    return 'btn-danger';
             }
         }else{
             switch (true) {
                 case ($number <= 12.5) :
                     return 'btn-success';
-                case ($number <= 20) :
+                case ($number <= 24) :
                     return 'btn-yellow';
-                case ($number < 50) :
+                case ($number <= 50) :
                     return 'btn-warn';
-                case ($number >= 50) :
-                    return 'btn-danger';
             }
         }
 
@@ -322,23 +310,19 @@ class SdRisk extends Model
             switch (true) {
                 case ($number <= 12.5) :
                     return 'green';
-                case ($number <= 20) :
+                case ($number <= 24) :
                     return 'yellow';
-                case ($number < 50) :
+                case ($number <= 50) :
                     return 'pink';
-                case ($number >= 50) :
-                    return 'red';
             }
         }else{
             switch (true) {
                 case ($number <= 12.5) :
                     return 'green';
-                case ($number <= 20) :
+                case ($number <= 24) :
                     return 'yellow';
-                case ($number < 50) :
+                case ($number <= 50) :
                     return 'pink';
-                case ($number >= 50) :
-                    return 'red';
             }
         }
 
@@ -349,23 +333,19 @@ class SdRisk extends Model
             switch (true) {
                 case ($number <= 12.5) :
                     return 'Acceptable';
-                case ($number <= 20) :
+                case ($number <= 24) :
                     return 'A améliorer';
-                case ($number < 50):
+                case ($number <= 50):
                     return 'Agir vite';
-                case ($number >= 50) :
-                    return 'STOP';
             }
         }else {
             switch (true) {
                 case ($number <= 12.5) :
                     return 'Acceptable';
-                case ($number <= 20) :
+                case ($number <= 24) :
                     return 'A améliorer';
-                case ($number < 50):
+                case ($number <= 50):
                     return 'Agir vite';
-                case ($number >= 50) :
-                    return 'STOP';
             }
         }
     }

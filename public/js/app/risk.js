@@ -399,7 +399,7 @@ function setColor(el,total,RB){
         el.classList.add('btn')
         switch (true) {
             case (total <= 12.5) :
-            case (total < 20) :
+            case (total < 24) :
                 break;
             case (total < 50) :
                 el.classList.add('btn-warn');
@@ -413,7 +413,7 @@ function setColor(el,total,RB){
         el.classList.add('btn')
         switch (true) {
             case (total <= 12.5) :
-            case (total < 20) :
+            case (total < 24) :
                 break;
             case (total < 50) :
                 el.classList.add('btn-warn');
@@ -694,7 +694,7 @@ function expositionCalculation(el) {
 
     $('.exposition_calculation', table).forEach(el => total += +el.value);
 
-    if (total != 0) {
+    if (total !== 0) {
         for (const key in calculation) {
             if (eval(total + calculation[key])) {
                 criticity = key;

@@ -31,6 +31,8 @@ class SingleDocument extends Model
         'email',
         'phone',
         'function',
+        'work_unit_limit',
+        'risk_psycho',
         'archived',
         'created_at',
         'updated_at',
@@ -97,6 +99,7 @@ class SingleDocument extends Model
             }
         }
         if ($count === 0) return "-";
+        //else return $count;
         else return round($total / $count, 1);
     }
 
@@ -108,22 +111,18 @@ class SingleDocument extends Model
                     return 'text-color-green';
                 case ($number < 24) :
                     return 'text-color-orange';
-                case ($number < 30) :
+                case ($number <= 50) :
                     return 'text-color-pink';
-                case ($number >= 30) :
-                    return 'text-color-red';
             }
         }else{
             if ($number === "-") return "text-color-green";
             switch (true) {
                 case ($number <= 12.5) :
                     return 'text-color-green';
-                case ($number < 20) :
+                case ($number < 24) :
                     return 'text-color-orange';
-                case ($number < 30) :
+                case ($number <= 50) :
                     return 'text-color-pink';
-                case ($number >= 30) :
-                    return 'text-color-red';
             }
         }
 
@@ -139,6 +138,9 @@ class SingleDocument extends Model
 
                     $RR = $sd_risk->totalRR($sd_risk->sd_restraints_exist);
 
+                    if ($RR === 0)
+                    $RR = $sd_risk->total();
+
                     $total = $total+$RR;
                     $count++;
                 }
@@ -146,8 +148,7 @@ class SingleDocument extends Model
         }
 
         if ($count === 0) return "-";
-
-        return round($total / $count, 1);
+        else return round($total / $count, 1);
     }
 
     public function discountRisk() {
@@ -174,14 +175,24 @@ class SingleDocument extends Model
 
                     if ($sdRiskTotalRR <= 12.5) {
                         $tab[0] += 1;
-                    } elseif ($sdRiskTotalRR < 20) {
+                    } elseif ($sdRiskTotalRR < 24) {
                         $tab[1] += 1;
-                    } elseif ($sdRiskTotalRR < 30) {
+                    } elseif ($sdRiskTotalRR <= 50) {
                         $tab[2] += 1;
-                    } elseif ($sdRiskTotalRR >= 30) {
-                        $tab[3] += 1;
                     }
 
+                }
+            }
+        }
+        return $tab;
+    }
+
+    public function temp(){
+        $tab = [];
+        foreach ($this->dangers as $sd_danger){
+            if($sd_danger->exist === 1){
+                foreach ($sd_danger->sd_risk_exist() as $sd_risk){
+                    $tab[] = $sd_risk;
                 }
             }
         }
