@@ -9,6 +9,11 @@
             <div class="nav-tabs">
                 <button class="btn btn-tabs @if($tab == 'du') active @endif" data-url="du" data-tabs="tab-content-du">DU associé</button>
             </div>
+            @if (Auth::user()->hasPermission('ADMIN'))
+                <div class="nav-tabs">
+                    <button class="btn btn-tabs @if($tab == 'add_du') active @endif" data-url="add_du" data-tabs="tab-content-add-du">Ajout d’un DU</button>
+                </div>
+            @endif
         </div>
         <div class="card card--add-client">
             <form id="tab-content-info" class="card-body tabs-content @if($tab != 'info') none @endif" action="{{ route('admin.client.update', [$client->id]) }}" method="POST" enctype="multipart/form-data">
@@ -182,146 +187,145 @@
                             @endif
                         </tbody>
                     </table>
-                    {{ $single_documents->links() }}
                 </div>
-                @if (Auth::user()->hasPermission('ADMIN'))
-                    <form action="{{ route('admin.single_document.store', [$client->id]) }}" method="post">
-                        @csrf
-                        <div class="row">
-                            <h2 class="title">Ajout d’un document unique</h2>
+            </div>
+            @if (Auth::user()->hasPermission('ADMIN'))
+                <form id="tab-content-add-du" class="card-body tabs-content @if($tab != 'add_du') none @endif" action="{{ route('admin.single_document.store', [$client->id]) }}" method="post">
+                    @csrf
+                    <div class="row">
+                        <h2 class="title">Ajout d’un document unique</h2>
+                    </div>
+                    <div class="row">
+                        <div class="line">
+                            <div class="left">
+                                <label for="name_single_document">Intitulé du DU</label>
+                            </div>
+                            <div class="right">
+                                <input type="text" name="name_single_document" id="name_single_document" class="form-control @error('name_single_document') invalid @enderror" value="{{ old('name_single_document') }}" placeholder="Indiquer le nom du DU">
+                                @error('name_single_document')
+                                <p class="message-error">{{ $message }}</p>
+                                @enderror
+                            </div>
                         </div>
-                        <div class="row">
-                            <div class="line">
-                                <div class="left">
-                                    <label for="name_single_document">Intitulé du DU</label>
-                                </div>
-                                <div class="right">
-                                    <input type="text" name="name_single_document" id="name_single_document" class="form-control @error('name_single_document') invalid @enderror" value="{{ old('name_single_document') }}" placeholder="Indiquer le nom du DU">
-                                    @error('name_single_document')
-                                        <p class="message-error">{{ $message }}</p>
-                                    @enderror
-                                </div>
+                        <div class="line">
+                            <div class="left"></div>
+                            <div class="right">
+                                <hr class="separation">
                             </div>
-                            <div class="line">
-                                <div class="left"></div>
-                                <div class="right">
-                                    <hr class="separation">
-                                </div>
+                        </div>
+                        <div class="line">
+                            <div class="left">
+                                <h3>Evaluation des risques professionnels</h3>
                             </div>
-                            <div class="line">
-                                <div class="left">
-                                    <h3>Evaluation des risques professionnels</h3>
-                                </div>
-                                <div class="right"></div>
+                            <div class="right"></div>
+                        </div>
+                        <div class="line">
+                            <div class="left">
+                                <label for="number_ut">Nombre d'UT maximum (0 = illimité)</label>
                             </div>
-                            <div class="line">
-                                <div class="left">
-                                    <label for="number_ut">Nombre d'UT maximum (0 = illimité)</label>
-                                </div>
-                                <div class="right">
-                                    <input type="number" name="number_ut" id="number_ut" class="form-control @error('number_ut') invalid @enderror" value="{{ old('number_ut') }}" placeholder="Nombre d'UT maximum (0 = illimité)">
-                                    @error('number_ut')
-                                        <p class="message-error">{{ $message }}</p>
-                                    @enderror
-                                    @error('dangers')
-                                        <p class="message-error">{{ $message }}</p>
-                                    @enderror
-                                </div>
+                            <div class="right">
+                                <input type="number" name="number_ut" id="number_ut" class="form-control @error('number_ut') invalid @enderror" value="{{ old('number_ut') }}" placeholder="Nombre d'UT maximum (0 = illimité)">
+                                @error('number_ut')
+                                <p class="message-error">{{ $message }}</p>
+                                @enderror
+                                @error('dangers')
+                                <p class="message-error">{{ $message }}</p>
+                                @enderror
                             </div>
-                            <div class="line">
-                                <div class="left">
-                                    <p>Liste des dangers associés</p>
-                                </div>
-                                <div class="right right--btn">
-                                    @foreach ($packs as $pack)
-                                        <button type="button" class="btn btn-yellow btn-text select-pack" data-pack="{{ $pack->id }}">{{ $pack->translate() }}</button>
-                                    @endforeach
-                                    <button type="button" class="btn btn-yellow btn-text uncheck-pack">Tout décocher</button>
-                                </div>
+                        </div>
+                        <div class="line">
+                            <div class="left">
+                                <p>Liste des dangers associés</p>
                             </div>
-                            <div class="line">
-                                <div class="left">
-                                </div>
-                                <div class="right right--check">
-                                    @foreach ($dangers as $danger)
-                                        <div>
-                                            <input type="checkbox" class="radio-checkbox item-pack" data-pack="{{ $danger->packs->pluck('id')->implode(',') }}" id="danger_{{ $danger->id }}" name="dangers[{{ $danger->id }}]" value="{{ $danger->id }}" {{ old('dangers.'. $danger->id) ? 'checked' : '' }}>
-                                            <label for="danger_{{ $danger->id }}">{{ $danger->name }}</label>
-                                        </div>
-                                    @endforeach
-                                </div>
+                            <div class="right right--btn">
+                                @foreach ($packs as $pack)
+                                    <button type="button" class="btn btn-yellow btn-text select-pack" data-pack="{{ $pack->id }}">{{ $pack->translate() }}</button>
+                                @endforeach
+                                <button type="button" class="btn btn-yellow btn-text uncheck-pack">Tout décocher</button>
                             </div>
-                            <div class="line">
-                                <div class="left"></div>
-                                <div class="right">
-                                    <hr class="separation">
-                                </div>
+                        </div>
+                        <div class="line">
+                            <div class="left">
                             </div>
-                            <div class="line">
-                                <div class="left">
-                                    <h3>Evaluation des risques psychosociaux</h3>
-                                </div>
-                                <div class="right"></div>
-                            </div>
-                            <div class="line">
-                                <div class="left">
-                                    <p>Option souscrite</p>
-                                </div>
-                                <div class="right">
+                            <div class="right right--check">
+                                @foreach ($dangers as $danger)
                                     <div>
-                                        <input type="radio" id="risk_psycho_yes" name="risk_psycho" value="yes" {{ old('risk_psycho') && old('risk_psycho') == "yes" ? 'checked' : '' }}>
-                                        <label for="risk_psycho_yes">Oui</label>
+                                        <input type="checkbox" class="radio-checkbox item-pack" data-pack="{{ $danger->packs->pluck('id')->implode(',') }}" id="danger_{{ $danger->id }}" name="dangers[{{ $danger->id }}]" value="{{ $danger->id }}" {{ old('dangers.'. $danger->id) ? 'checked' : '' }}>
+                                        <label for="danger_{{ $danger->id }}">{{ $danger->name }}</label>
                                     </div>
-                                    <div>
-                                        <input type="radio" id="risk_psycho_no" name="risk_psycho" value="no" {{ old('risk_psycho') && old('risk_psycho') == "no" ? 'checked' : '' }}>
-                                        <label for="risk_psycho_no">Non</label>
-                                    </div>
-                                    @error('risk_psycho')
-                                        <p class="message-error">{{ $message }}</p>
-                                    @enderror
-                                </div>
+                                @endforeach
                             </div>
-                            <div class="line">
-                                <div class="left">
-                                    <p>Définition des groupes d'expositions homogènes</p>
+                        </div>
+                        <div class="line">
+                            <div class="left"></div>
+                            <div class="right">
+                                <hr class="separation">
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="left">
+                                <h3>Evaluation des risques psychosociaux</h3>
+                            </div>
+                            <div class="right"></div>
+                        </div>
+                        <div class="line">
+                            <div class="left">
+                                <p>Option souscrite</p>
+                            </div>
+                            <div class="right">
+                                <div>
+                                    <input type="radio" id="risk_psycho_yes" name="risk_psycho" value="yes" {{ old('risk_psycho') && old('risk_psycho') == "yes" ? 'checked' : '' }}>
+                                    <label for="risk_psycho_yes">Oui</label>
                                 </div>
-                                <div class="right">
-                                    <ul class="list-content list-content--exposition">
-                                        @if (old('risk_psycho_exposition_groups'))
-                                            @foreach (old('risk_psycho_exposition_groups') as $key => $item)
-                                                <li class="list-item">
-                                                    <button type="button" class="btn btn-text btn-small btn-delete"><i class="far fa-times-circle"></i></button>
-                                                    <input type="text" class="form-control" name="risk_psycho_exposition_groups[]" placeholder="Nom du groupe d'expositions homogènes" value="{{ $item }}">
-                                                </li>
-                                            @endforeach
-                                        @else
+                                <div>
+                                    <input type="radio" id="risk_psycho_no" name="risk_psycho" value="no" {{ old('risk_psycho') && old('risk_psycho') == "no" ? 'checked' : '' }}>
+                                    <label for="risk_psycho_no">Non</label>
+                                </div>
+                                @error('risk_psycho')
+                                <p class="message-error">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="left">
+                                <p>Définition des groupes d'expositions homogènes</p>
+                            </div>
+                            <div class="right">
+                                <ul class="list-content list-content--exposition">
+                                    @if (old('risk_psycho_exposition_groups'))
+                                        @foreach (old('risk_psycho_exposition_groups') as $key => $item)
                                             <li class="list-item">
                                                 <button type="button" class="btn btn-text btn-small btn-delete"><i class="far fa-times-circle"></i></button>
-                                                <input type="text" class="form-control" name="risk_psycho_exposition_groups[]" placeholder="Nom du groupe d'expositions homogènes" value="">
+                                                <input type="text" class="form-control" name="risk_psycho_exposition_groups[]" placeholder="Nom du groupe d'expositions homogènes" value="{{ $item }}">
                                             </li>
-                                        @endif
-                                    </ul>
-                                    <button type="button" class="btn btn-text btn-yellow btn-add-exposition"><i class="fas fa-plus"></i> Ajouter</button>
-                                    @error('risk_psycho_exposition_groups')
-                                        <p class="message-error">{{ $message }}</p>
-                                    @enderror
-                                    @error('risk_psycho_exposition_groups.*')
-                                        <p class="message-error">{{ $message }}</p>
-                                    @enderror
-                                </div>
+                                        @endforeach
+                                    @else
+                                        <li class="list-item">
+                                            <button type="button" class="btn btn-text btn-small btn-delete"><i class="far fa-times-circle"></i></button>
+                                            <input type="text" class="form-control" name="risk_psycho_exposition_groups[]" placeholder="Nom du groupe d'expositions homogènes" value="">
+                                        </li>
+                                    @endif
+                                </ul>
+                                <button type="button" class="btn btn-text btn-yellow btn-add-exposition"><i class="fas fa-plus"></i> Ajouter</button>
+                                @error('risk_psycho_exposition_groups')
+                                <p class="message-error">{{ $message }}</p>
+                                @enderror
+                                @error('risk_psycho_exposition_groups.*')
+                                <p class="message-error">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="line">
-                                <div class="left"></div>
-                                <div class="right">
-                                    <button class="btn btn-success">Ajouter le DU</button>
-                                </div>
+                    </div>
+                    <div class="row">
+                        <div class="line">
+                            <div class="left"></div>
+                            <div class="right">
+                                <button class="btn btn-success">Ajouter le DU</button>
                             </div>
                         </div>
-                    </form>
-                @endif
-            </div>
+                    </div>
+                </form>
+            @endif
         </div>
 
         <div class="modal modal--archive">

@@ -15,29 +15,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($sd_risks as $sd_risk)
-                            @foreach ($sd_risk->sd_restraints_archived as $sd_restraint)
-                                @if ($sd_restraint->id === $sd_risk->sd_restraints_archived[0]->id)
-                                    <tr>
-                                        <td class="td_work_unit">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : 'UT Tous' }}</td>
-                                        <td class="td_danger">{{ $sd_risk->sd_danger->danger->name }}</td>
-                                        <td class="td_risk">{{ $sd_risk->name }}</td>
-                                        <td class="td_restraint">{{ $sd_restraint->name }}</td>
-                                        <td class="td_date">{{ date("d/m/Y", strtotime($sd_restraint->date)) }}</td>
-                                    </tr>
-                                @else
-                                    <tr>
-                                        <td class="td_none"></td>
-                                        <td class="td_none"></td>
-                                        <td class="td_none"></td>
-                                        <td class="td_restraint">{{ $sd_restraint->name }}</td>
-                                        <td class="td_date">{{ date("d/m/Y", strtotime($sd_restraint->date)) }}</td>
-                                    </tr>
-                                @endif
-                            @endforeach
+                        @foreach ($sd_restraints_archived as $sd_restraint_archived)
+                            <tr>
+                                <td class="td_work_unit">{{ $sd_restraint_archived->sd_work_unit_name }}</td>
+                                <td class="td_danger">{{ $sd_restraint_archived->danger_name }}</td>
+                                <td class="td_risk">{{ $sd_restraint_archived->sd_risk_name }}</td>
+                                <td class="td_restraint">{{ $sd_restraint_archived->name }}</td>
+                                <td class="td_date">{{ date("d/m/Y", strtotime($sd_restraint_archived->date)) }}</td>
+                            </tr>
                         @endforeach
 
-                        @if (count($sd_risks) == 0)
+                        @if (count($sd_restraints_archived) == 0)
                             <tr class="no-data no-data--centered">
                                 <td colspan="5">Aucune mesure archivée</td>
                             </tr>

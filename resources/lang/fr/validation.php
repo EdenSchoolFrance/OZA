@@ -222,5 +222,6 @@ return [
         'questions.*.sometimes' => "parfois / plutôt non",
         'questions.*.often'     => "souvent / plutôt oui",
         'questions.*.always'    => "Toujours / oui",
+        'risk_psycho'           => "\"Risques psychosociaux\""
     ]
 ];

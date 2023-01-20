@@ -122,7 +122,7 @@ class ClientController extends Controller
         $experts = User::where('oza', 1)->get();
         $dangers = Danger::all()->sortBy('name');
         $packs = Pack::all();
-        $single_documents = SingleDocument::where('client_id', $client->id)->paginate(15);
+        $single_documents = SingleDocument::where('client_id', $client->id)->get();
 
         if (isset($_GET['tab']) && ($_GET['tab'] == 'info' || $_GET['tab'] == 'du')) {
             $tab = $_GET['tab'];

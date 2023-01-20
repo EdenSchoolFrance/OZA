@@ -1422,13 +1422,13 @@
                 <td class="theader min-width">
                     F
                 </td>
-                <td class="theader min-width">
+                <td class="theader min-width" style="width: 6%;">
                     P
                 </td>
                 <td class="theader min-width">
                     GP
                 </td>
-                <td class="theader min-width">
+                <td class="theader" style="width: 6%;">
                     ID
                 </td>
                 <td class="theader min-width">
@@ -1450,7 +1450,7 @@
                 <td class="theader">
                     RR
                 </td>
-                <td class="theader">
+                <td class="theader" style="width: 6%">
                     Criticité = situation actuelle
                 </td>
                 <td class="theader max-width">
@@ -1889,7 +1889,7 @@
                                     @endif
                                 @endforeach
                                 @if($all === 0)
-                                    <tr>
+                                    <tr class="space">
                                         <td colspan="6" class="none center">Evaluation en cours</td>
                                     </tr>
                                 @endif
@@ -1939,7 +1939,7 @@
                                     @endif
                                 @endfor
                                 @if($all === 0)
-                                    <tr>
+                                    <tr class="space">
                                         <td colspan="6" class="none center">Evaluation en cours</td>
                                     </tr>
                                 @endif
@@ -1964,6 +1964,12 @@
     @foreach($psychosocial_groups as $psychosocial_group)
         @php
             $all = count($psychosocial_group->responses);
+            $allCal = 0;
+            foreach($questions as $key => $question){
+                $response = $question->response($psychosocial_group->id);
+                if(isset($response)) $allCal = $allCal + $response->intensity();
+            }
+            if ($all !== 0) $allCal = $allCal / $all;
         @endphp
         <section class="page">
             <div class="header">
@@ -1993,13 +1999,13 @@
                                 </thead>
                                 <tbody>
                                 @foreach($questions as $key => $question)
-                                    @if($key <= 12)
+                                    @if($key <= 13)
                                         @php
                                             $response = $question->response($psychosocial_group->id)
                                         @endphp
                                         @if(isset($response))
-                                            <tr>
-                                                <td class="td_question">{{ $question->order }} : {{ $question->info }}</td>
+                                            <tr class="space">
+                                                <td class="td_question">{{ $question->order }} : {{ $question->name }}</td>
                                                 <td class="td_all">{{ $response->intensity() }}</td>
                                                 <td class="td_all {{ $response->priorityPDF()['class'] }}">{{ $response->priorityPDF()['text'] }}</td>
                                             </tr>
@@ -2007,7 +2013,7 @@
                                     @endif
                                 @endforeach
                                 @if($all === 0)
-                                    <tr>
+                                    <tr class="space">
                                         <td colspan="3" class="none center">Evaluation en cours</td>
                                     </tr>
                                 @endif
@@ -2028,22 +2034,31 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @for($i = 13; $i < count($questions); $i++)
+                                @for($i = 14; $i < count($questions); $i++)
                                     @php
                                         $response = $questions[$i]->response($psychosocial_group->id)
                                     @endphp
                                     @if(isset($response))
-                                        <tr>
-                                            <td class="td_question">{{ $questions[$i]->order }}
-                                                : {{ $questions[$i]->info }}</td>
+                                        <tr class="space">
+                                            <td class="td_question">{{ $questions[$i]->order }} : {{ $questions[$i]->name }}</td>
                                             <td class="td_all">{{ $response->intensity() }}</td>
                                             <td class="td_all {{ $response->priorityPDF()['class'] }}">{{ $response->priorityPDF()['text'] }}</td>
                                         </tr>
                                     @endif
                                 @endfor
                                 @if($all === 0)
-                                    <tr>
+                                    <tr class="space">
                                         <td colspan="3" class="none center">Evaluation en cours</td>
+                                    </tr>
+                                @else
+                                    <tr class="space">
+                                        <td class="td_question">Niveau de risque RPS moyen</td>
+                                        <td class="td_all">{{ round($allCal,1) }}</td>
+                                        <td class="td_all {{ $response->priorityPDFCustom($allCal)['class'] }}">{{ $response->priorityPDFCustom($allCal)['text'] }}</td>
+                                    </tr>
+                                    <tr class="space">
+                                        <td class="td_question">D’une façon générale, comment évaluez-vous votre niveau de stress <br> sur une échelle de zéro à 10</td>
+                                        <td class="td_all" colspan="2">{{ $psychosocial_group->stress_level }}</td>
                                     </tr>
                                 @endif
                                 </tbody>
@@ -2100,15 +2115,15 @@
                                             $response = $question->response($psychosocial_group->id)
                                         @endphp
                                         @if(isset($response))
-                                            <tr>
-                                                <td class="td_question">{{ $question->order }} : {{ $question->info }}</td>
+                                            <tr class="space">
+                                                <td class="td_question">{{ $question->order }} : {{ $question->name }}</td>
                                                 <td class="td_all">{{ $response->extreme() }}</td>
                                             </tr>
                                         @endif
                                     @endif
                                 @endforeach
                                 @if($all === 0)
-                                    <tr>
+                                    <tr class="space">
                                         <td colspan="2" class="none center">Evaluation en cours</td>
                                     </tr>
                                 @endif
@@ -2131,7 +2146,7 @@
                                 @for($i = 13; $i < count($questions); $i++)
 
                                     @if($i === (count($questions) - 1))
-                                        <tr>
+                                        <tr class="space">
                                             <td class="td_question">Nombre de salariés en souffrance :</td>
                                             <td class="td_all">{{ $psychosocial_group->employee }}</td>
                                         </tr>
@@ -2140,16 +2155,15 @@
                                             $response = $questions[$i]->response($psychosocial_group->id)
                                         @endphp
                                         @if(isset($response))
-                                            <tr>
-                                                <td class="td_question">{{ $questions[$i]->order }}
-                                                    : {{ $questions[$i]->info }}</td>
+                                            <tr class="space">
+                                                <td class="td_question">{{ $questions[$i]->order }} : {{ $questions[$i]->name }}</td>
                                                 <td class="td_all">{{ $response->extreme() }}</td>
                                             </tr>
                                         @endif
                                     @endif
                                 @endfor
                                 @if($all === 0)
-                                    <tr>
+                                    <tr class="space">
                                         <td colspan="2" class="none center">Evaluation en cours</td>
                                     </tr>
                                 @endif
@@ -2191,13 +2205,13 @@
                     <td class="theader">
                         Famille de facteurs de risques psychosociaux
                     </td>
-                    <td class="theader">
+                    <td class="theader" style="width: 8%">
                         Niveau d’intensité
                     </td>
-                    <td class="theader min-width">
+                    <td class="theader" style="width: 8%">
                         Réponses extrêmes
                     </td>
-                    <td class="theader min-width">
+                    <td class="theader" style="width: 8%">
                         Priorité d'action
                     </td>
                     <td class="theader min-width">
@@ -2232,33 +2246,15 @@
                                 $response->restraints()->delete();
                             }
                         @endphp
-                        <tr>
-                            <td rowspan="{{ count($response->checked_restraints) === 0 ? 1 : count($response->checked_restraints) }}"
-                                class="psycho-group">{{ $psychosocial_group->name }}</td>
-                            <td rowspan="{{ count($response->checked_restraints) === 0 ? 1 : count($response->checked_restraints) }}"
-                                class="question">{{ $response->question->info }}</td>
-                            <td rowspan="{{ count($response->checked_restraints) === 0 ? 1 : count($response->checked_restraints) }}"
-                                class="intensity min-width min-width-left">{{ $response->intensity() }}</td>
-                            <td rowspan="{{ count($response->checked_restraints) === 0 ? 1 : count($response->checked_restraints) }}"
-                                class="extreme min-width min-width-left">{{ $response->extreme() }}</td>
-                            <td rowspan="{{ count($response->checked_restraints) === 0 ? 1 : count($response->checked_restraints) }}"
-                                class="action min-width min-width-left {{ $response->priorityPDF()['class'] }}"> {{ $response->priorityPDF()['text'] }}</td>
-                            @if(count($response->checked_restraints) === 0)
-                                <td class="restraint"></td>
-                                <td class="decision"></td>
-                                <td class="date"></td>
-                                <td class="comment"></td>
-                            @else
-                                <td class="restraint">{{ $response->checked_restraints[0]->text }}</td>
-                                <td class="decision">{{ $response->checked_restraints[0]->decision ?  : "" }}</td>
-                                <td class="date">{{ $response->checked_restraints[0]->date ? date("d/m/Y", strtotime($response->checked_restraints[0]->date)) : "" }}</td>
-                                <td class="comment"></td>
-                            @endif
-                        </tr>
-                        @if(count($response->checked_restraints) > 1)
-                            @for($i = 1; $i < count($response->checked_restraints); $i++)
+                        @if(count($response->checked_restraints) > 0)
+                            @for($i = 0; $i < count($response->checked_restraints); $i++)
                                 @if($response->checked_restraints[$i]->checked)
-                                    <tr>
+                                    <tr class="space">
+                                        <td class="psycho-group">{{ $psychosocial_group->name }}</td>
+                                        <td class="question">{{ $response->question->name }}</td>
+                                        <td class="intensity min-width min-width-left">{{ $response->intensity() }}</td>
+                                        <td class="extreme min-width min-width-left">{{ $response->extreme() }}</td>
+                                        <td class="action min-width min-width-left {{ $response->priorityPDF()['class'] }}"> {{ $response->priorityPDF()['text'] }}</td>
                                         <td class="restraint">{{ $response->checked_restraints[$i]->text }}</td>
                                         <td class="decision">{{ $response->checked_restraints[$i]->decision ?  : "" }}</td>
                                         <td class="date">{{ $response->checked_restraints[$i]->date ? date("d/m/Y", strtotime($response->checked_restraints[$i]->date)) : "" }}</td>
@@ -2270,13 +2266,13 @@
                     @endforeach
                 @endforeach
                 @if($all > 0)
-                    <tr>
+                    <tr class="space">
                         <td class="td_question" colspan="5">Présence de salariés en souffrance</td>
                         <td class="td_restraint" colspan="4">Informer le médecin du travail de cette situation afin qu'il puisse intégrer cette problématique dans ses actions de prévention.</td>
                     </tr>
                 @endif
                 @if($is === 0)
-                    <tr>
+                    <tr class="space">
                         <td colspan="9" class="none center">Evaluation en cours</td>
                     </tr>
                 @endif
@@ -2449,7 +2445,7 @@
                     Nombre de personnes concernées
                 </td>
                 <td class="theader">
-                    Détail de l’exposiatin
+                    Détail de l’exposition
                 </td>
                 <td class="theader">
                     Total
@@ -2539,13 +2535,11 @@
                                                     <td class="center">{{ $sd_exposition_question->number_employee }}</td>
                                                     <td>
                                                         @if ($exposition_group->type === "default")
-                                                            {{ $exposition_group->value_label." : "}} <span
-                                                                class="text-color-{{$exposition_group->calculation($sd_exposition_question->value)}}">{{ $sd_exposition_question->value }}</span>
+                                                            {{ $exposition_group->value_label." : "}} <span class="text-color-{{$exposition_group->calculation($sd_exposition_question->value)}}">{{ $sd_exposition_question->value }}</span>
                                                         @else
-                                                            Durée en mm / j <span
-                                                                class="text-color-{{$exposition_group->calculation($sd_exposition_question->minutes)}}">{{$sd_exposition_question->minutes}} </span>
-                                                            Durée en h / an <span
-                                                                class="text-color-{{$exposition_group->calculation($sd_exposition_question->value)}}">{{$sd_exposition_question->value}}</span>
+                                                            Durée en mm / j <span class="text-color-{{$exposition_group->calculation($sd_exposition_question->minutes)}}">{{$sd_exposition_question->minutes}} </span>
+                                                            <br>
+                                                            Durée en h / an <span class="text-color-{{$exposition_group->calculation($sd_exposition_question->value)}}">{{$sd_exposition_question->value}}</span>
                                                         @endif
                                                     </td>
                                                     @if ($exposition_group->name === "exposition_group_team_work" && $exposition_group->name === "exposition_group_night_work")

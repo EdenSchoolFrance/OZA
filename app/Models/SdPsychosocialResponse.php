@@ -133,6 +133,42 @@ class SdPsychosocialResponse extends Model
         return $priority;
     }
 
+    public function priorityPDFCustom($nb){
+
+        $question = $this->question;
+
+        $intensity = $nb;
+
+        $priority = [
+            "class" => "green",
+            "text" => "Non concerné"
+        ];
+
+        if ($intensity < 2.5) {
+            $priority = [
+                "class" => "green",
+                "text" => "Non concerné"
+            ];
+        } elseif ($intensity >= 2.5 && $intensity < 5) {
+            $priority = [
+                "class" => "yellow",
+                "text" => "Faible"
+            ];
+        } elseif ($intensity >= 5 && $intensity < 7.5) {
+            $priority = [
+                "class" => "pink",
+                "text" => "Modéré"
+            ];
+        } elseif ($intensity >= 7.5) {
+            $priority = [
+                "class" => "red",
+                "text" => "Elevé"
+            ];
+        }
+
+        return $priority;
+    }
+
     public function extreme(){
 
         $question = $this->question;

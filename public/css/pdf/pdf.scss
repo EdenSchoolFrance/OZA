@@ -394,6 +394,12 @@ table {
             }
         }
     }
+    .space{
+        td{
+            padding: 5px;
+        }
+    }
+
 
     &.table {
         &--document_versions {
