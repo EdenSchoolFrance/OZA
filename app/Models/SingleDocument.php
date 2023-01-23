@@ -105,12 +105,10 @@ class SingleDocument extends Model
 
     public function color($number,$RB){
         if ($RB === true){
-            if ($number === "-") return "text-color-green";
+            if ($number === "-") return "";
             switch (true) {
-                case ($number < 12.5) :
-                    return 'text-color-green';
                 case ($number < 24) :
-                    return 'text-color-orange';
+                    return '';
                 case ($number <= 50) :
                     return 'text-color-pink';
             }
@@ -119,10 +117,12 @@ class SingleDocument extends Model
             switch (true) {
                 case ($number < 12.5) :
                     return 'text-color-green';
-                case ($number < 24) :
+                case ($number < 20) :
                     return 'text-color-orange';
-                case ($number <= 50) :
+                case ($number < 30) :
                     return 'text-color-pink';
+                case ($number <= 50) :
+                    return 'text-color-red';
             }
         }
 
@@ -175,7 +175,7 @@ class SingleDocument extends Model
 
                     if ($sdRiskTotalRR < 12.5) {
                         $tab[0] += 1;
-                    } elseif ($sdRiskTotalRR < 24) {
+                    } elseif ($sdRiskTotalRR < 20) {
                         $tab[1] += 1;
                     } elseif ($sdRiskTotalRR < 30) {
                         $tab[2] += 1;

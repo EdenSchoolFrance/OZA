@@ -398,7 +398,6 @@ function setColor(el,total,RB){
         el.className = ""
         el.classList.add('btn')
         switch (true) {
-            case (total < 12.5) :
             case (total < 24) :
                 break;
             case (total <= 50) :
@@ -410,10 +409,16 @@ function setColor(el,total,RB){
         el.classList.add('btn')
         switch (true) {
             case (total < 12.5) :
-            case (total < 24) :
+                el.classList.add('btn-success');
+                break;
+            case (total < 20) :
+                el.classList.add('btn-yellow');
+                break;
+            case (total < 30) :
+                el.classList.add('btn-warn');
                 break;
             case (total <= 50) :
-                el.classList.add('btn-warn');
+                el.classList.add('btn-danger');
                 break;
         }
     }
@@ -426,11 +431,7 @@ function setColorC(el,total,RB){
         el.className = ""
         el.classList.add('btn')
         switch (true) {
-            case (total < 12.5) :
-                el.classList.add('btn-success');
-                break;
             case (total < 24) :
-                el.classList.add('btn-yellow');
                 break;
             case (total <= 50) :
                 el.classList.add('btn-warn');
@@ -443,11 +444,14 @@ function setColorC(el,total,RB){
             case (total < 12.5) :
                 el.classList.add('btn-success');
                 break;
-            case (total < 24) :
+            case (total < 20) :
                 el.classList.add('btn-yellow');
                 break;
-            case (total <= 50) :
+            case (total < 30) :
                 el.classList.add('btn-warn');
+                break;
+            case (total <= 50) :
+                el.classList.add('btn-danger');
                 break;
         }
     }
@@ -475,7 +479,7 @@ function totalEnd(el,number,RB){
             case (number < 12.5) :
                 el.innerText = "Acceptable"
                 break
-            case (number < 24) :
+            case (number < 20) :
                 el.innerText = "A améliorer"
                 break
             case (number < 30) :

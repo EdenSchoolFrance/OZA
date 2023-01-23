@@ -243,7 +243,6 @@ class SdRisk extends Model
     public function color($number, $RB){
         if ($RB === true){
             switch (true) {
-                case ($number < 12.5) :
                 case ($number < 24) :
                     return '';
                 case ($number <= 50) :
@@ -252,10 +251,13 @@ class SdRisk extends Model
         }else{
             switch (true) {
                 case ($number < 12.5) :
-                case ($number < 24) :
-                    return '';
-                case ($number <= 50) :
+                    return 'btn-success';
+                case ($number < 20) :
+                    return 'btn-yellow';
+                case ($number < 30) :
                     return 'btn-warn';
+                case ($number <= 50) :
+                    return 'btn-danger';
             }
         }
 
@@ -264,7 +266,6 @@ class SdRisk extends Model
     public function colorPost($number, $RB){
         if ($RB === true){
             switch (true) {
-                case ($number < 12.5) :
                 case ($number < 24) :
                     return '';
                 case ($number <= 50) :
@@ -273,10 +274,13 @@ class SdRisk extends Model
         }else{
             switch (true) {
                 case ($number < 12.5) :
-                case ($number < 24) :
-                    return '';
-                case ($number <= 50) :
+                    return 'btn-success';
+                case ($number < 20) :
+                    return 'btn-yellow';
+                case ($number < 30) :
                     return 'btn-warn';
+                case ($number <= 50) :
+                    return 'btn-danger';
             }
         }
 
@@ -285,10 +289,8 @@ class SdRisk extends Model
     public function colorC($number, $RB){
         if ($RB === true){
             switch (true) {
-                case ($number < 12.5) :
-                    return 'btn-success';
                 case ($number < 24) :
-                    return 'btn-yellow';
+                    return '';
                 case ($number <= 50) :
                     return 'btn-warn';
             }
@@ -296,10 +298,12 @@ class SdRisk extends Model
             switch (true) {
                 case ($number < 12.5) :
                     return 'btn-success';
-                case ($number < 24) :
+                case ($number < 20) :
                     return 'btn-yellow';
-                case ($number <= 50) :
+                case ($number < 30) :
                     return 'btn-warn';
+                case ($number <= 50) :
+                    return 'btn-danger';
             }
         }
 
@@ -308,10 +312,8 @@ class SdRisk extends Model
     public function colorPDF($number, $RB){
         if ($RB === true){
             switch (true) {
-                case ($number < 12.5) :
-                    return 'green';
                 case ($number < 24) :
-                    return 'yellow';
+                    return '';
                 case ($number <= 50) :
                     return 'pink';
             }
@@ -319,10 +321,12 @@ class SdRisk extends Model
             switch (true) {
                 case ($number < 12.5) :
                     return 'green';
-                case ($number < 24) :
+                case ($number < 20) :
                     return 'yellow';
-                case ($number <= 50) :
+                case ($number < 30) :
                     return 'pink';
+                case ($number <= 50) :
+                    return 'red';
             }
         }
 
@@ -344,7 +348,7 @@ class SdRisk extends Model
             switch (true) {
                 case ($number < 12.5) :
                     return 'Acceptable';
-                case ($number < 24) :
+                case ($number < 20) :
                     return 'A améliorer';
                 case ($number < 30):
                     return 'Agir vite';
