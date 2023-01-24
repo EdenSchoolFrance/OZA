@@ -12,14 +12,13 @@ class RiskExplosionController extends Controller
         $single_document = $this->checkSingleDocument($id);
 
         $page = [
-            'title' => 'Tous les risques',
+            'title' => 'Evaluation du risque d\'explosion',
             'infos' => null,
-            'sidebar' => 'risk_pro',
-            'sub_sidebar' => 'risk_all'
+            'sidebar' => 'risk_explosion'
         ];
 
         $sd_risks = SdRiskExplosion::where('single_document_id', $single_document->id)->get();
 
-        return view('app.risk.all', compact('page', 'single_document', 'sd_risks'));
+        return view('app.risk_explosion.index', compact('page', 'single_document', 'sd_risks'));
     }
 }
