@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Exposition;
 use App\Models\PsychosocialQuestion;
 use App\Models\SdPsychosocialGroup;
+use App\Models\SdRestraintArchived;
 use PDF;
 use App\Models\Item;
 use App\Models\SdRisk;
@@ -203,6 +204,8 @@ class PDFController extends Controller
             $questions = PsychosocialQuestion::all();
         }
 
+        $sd_restraints_archived = SdRestraintArchived::where('single_document_id', $id)->get();
+
 
         setlocale(LC_TIME, 'fr', 'fr_FR', 'fr_FR.ISO8859-1');
         $histories = Historie::find(session('status'));
@@ -287,7 +290,8 @@ class PDFController extends Controller
             'sd_risks_final',
             'sd_risks_v2',
             'psychosocial_groups',
-            'questions')
+            'questions',
+            'sd_restraints_archived')
         )->setPaper('a4', 'landscape');
 
         //return $pdf->stream();

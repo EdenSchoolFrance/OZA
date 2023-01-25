@@ -1,5 +1,9 @@
-table.table{
-    &--risk_explosion{
-        
+.container-table-risk-explosion{
+    overflow-x: scroll;
+    table.table{
+        &--risk_explosion{
+
+        }
     }
 }
+

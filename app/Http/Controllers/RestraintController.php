@@ -78,6 +78,10 @@ class RestraintController extends Controller
         $restraint->exist = 1;
         $restraint->save();
 
+        $rr = 0;
+        if ($restraint->sd_risk->sd_restraints_exist[0]) $rr = $restraint->sd_risk->totalRR($restraint->sd_risk->sd_restraints_exist);
+        else $rr = $restraint->sd_risk->total();
+
         $archived = new SdRestraintArchived();
         $archived->id = uniqid();
         $archived->name = $request->name_restraint;
@@ -86,6 +90,7 @@ class RestraintController extends Controller
         $archived->organizational = $request->orga;
         $archived->human = $request->human;
         $archived->exist = 1;
+        $archived->rr = $rr;
         $archived->sd_work_unit_name = $restraint->sd_risk->sd_work_unit->name ?? "Tous";
         $archived->danger_name = $restraint->sd_risk->sd_danger->danger->name;
         $archived->sd_risk_name = $restraint->sd_risk->name;

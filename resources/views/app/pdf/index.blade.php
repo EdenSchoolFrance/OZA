@@ -1853,7 +1853,7 @@
                                 <thead>
                                 <tr>
                                     <th colspan="5">Nombre de questionnaires exploités</th>
-                                    <th>{{ $psychosocial_group->number_quiz }}{{count($questions)}}</th>
+                                    <th>{{ $psychosocial_group->number_quiz }}</th>
                                 </tr>
                                 <tr>
                                     <th rowspan="2" class="th_question">Questions</th>
@@ -2628,32 +2628,17 @@
             </tr>
             </thead>
             <tbody>
-            @foreach ($sd_risks_v2 as $sd_risk)
-                @foreach ($sd_risk->sd_restraints_archived as $sd_restraint)
-                    @if ($sd_restraint->id === $sd_risk->sd_restraints_archived[0]->id)
-                        <tr>
-                            <td class="td_work_unit">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : 'UT Tous' }}</td>
-                            <td class="td_danger">{{ $sd_risk->sd_danger->danger->name }}</td>
-                            <td class="td_risk">{{ $sd_risk->name }}</td>
-                            <td class="risk_residuel center">{{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->totalRR($sd_risk->sd_restraints_exist) : $sd_risk->total() }}</td>
-                            <td class="criticity center {{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints_exist),false) :  $sd_risk->colorPDF($sd_risk->total(),true) }}">{{ $sd_risk->colorTotal(isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->totalRR($sd_risk->sd_restraints_exist) : $sd_risk->total(),false) }}</td>
-                            <td class="td_restraint">{{ $sd_restraint->name }}</td>
-                            <td class="td_date">{{ date("d/m/Y", strtotime($sd_restraint->date)) }}</td>
-                            <td class="comment"></td>
-                        </tr>
-                    @else
-                        <tr>
-                            <td class="td_none"></td>
-                            <td class="td_none"></td>
-                            <td class="td_none"></td>
-                            <td class="td_none"></td>
-                            <td class="td_none"></td>
-                            <td class="td_restraint">{{ $sd_restraint->name }}</td>
-                            <td class="td_date">{{ date("d/m/Y", strtotime($sd_restraint->date)) }}</td>
-                            <td class="comment"></td>
-                        </tr>
-                    @endif
-                @endforeach
+            @foreach ($sd_restraints_archived as $sd_restraint_archived)
+                <tr>
+                    <td class="td_work_unit">{{ $sd_restraint_archived->sd_work_unit_name }}</td>
+                    <td class="td_danger">{{ $sd_restraint_archived->danger_name }}</td>
+                    <td class="td_risk">{{ $sd_restraint_archived->sd_risk_name }}</td>
+                    <td class="risk_residuel center">{{ $sd_restraint_archived->rr }}</td>
+                    <td class="criticity center {{ $sd_restraint_archived->colorPDF() }}">{{ $sd_restraint_archived->colorTotal() }}</td>
+                    <td class="td_restraint">{{ $sd_restraint_archived->name }}</td>
+                    <td class="td_date">{{ date("d/m/Y", strtotime($sd_restraint_archived->date)) }}</td>
+                    <td class="comment"></td>
+                </tr>
             @endforeach
 
             @if (count($sd_risks_v2) == 0)

@@ -26,6 +26,7 @@ class SdRestraintArchived extends Model
         'organizational',
         'human',
         'exist',
+        'rr',
         'sd_work_unit_name',
         'danger_name'
     ];
@@ -40,43 +41,33 @@ class SdRestraintArchived extends Model
         return $this->belongsTo(SingleDocument::class);
     }
 
-    public function convert($name,$setting){
-        switch ($setting) {
-            case 'technical' :
-                switch ($name) {
-                    case 'very good' :
-                        return 4;
-                    case 'good' :
-                        return 3;
-                    case 'medium' :
-                        return 2;
-                    case 'null' :
-                        return 0;
-                }
-                break;
-            case 'organizational' :
-                switch ($name) {
-                    case 'very good' :
-                        return 3;
-                    case 'good' :
-                        return 2;
-                    case 'medium' :
-                        return 1;
-                    case 'null' :
-                        return 0;
-                }
-                break;
-            case 'human' :
-                switch ($name) {
-                    case 'very good' :
-                        return 3;
-                    case 'good' :
-                        return 2;
-                    case 'medium' :
-                        return 1;
-                    case 'null' :
-                        return 0;
-                }
+    public function colorPDF(){
+        $number = $this->rr;
+
+        switch (true) {
+            case ($number < 12.5) :
+                return 'green';
+            case ($number < 20) :
+                return 'yellow';
+            case ($number < 30) :
+                return 'pink';
+            case ($number <= 50) :
+                return 'red';
+        }
+
+    }
+
+    public function colorTotal(){
+        $number = $this->rr;
+        switch (true) {
+            case ($number < 12.5) :
+                return 'Acceptable';
+            case ($number < 20) :
+                return 'A améliorer';
+            case ($number < 30):
+                return 'Agir vite';
+            case ($number <= 50):
+                return 'STOP';
         }
     }
 }

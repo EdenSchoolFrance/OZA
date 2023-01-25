@@ -21,6 +21,7 @@ class CreateSdRestraintsArchivedTable extends Migration
             $table->string('organizational');
             $table->string('human');
             $table->boolean('exist')->default(0);
+            $table->float('rr');
             $table->text('sd_work_unit_name');
             $table->text('danger_name');
             $table->text('sd_risk_name');
