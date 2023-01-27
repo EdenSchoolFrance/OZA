@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Pack;
+use App\Models\SdRestraintArchived;
+use App\Models\SdRisk;
 use App\Models\SdWorkUnit;
 use App\Models\User;
 use App\Models\Client;
@@ -332,4 +334,47 @@ class SingleDocumentController extends Controller
 
         return back()->with('status','Document unique dupliqué avec succès');
     }
+
+
+//    public function debug(){
+//
+//        $allSd = SingleDocument::all();
+//        $count = 0;
+//        foreach ($allSd as $sd){
+//            $allRisk = SdRisk::whereHas('sd_danger', function ($q) use ($sd) {
+//                $q->where('single_document_id', $sd->id)
+//                    ->where('exist', 1);
+//            })->get();
+//
+//            $old = SdRestraintArchived::where('single_document_id', $sd->id)->delete();
+//
+//            foreach ($allRisk as $sd_risk){
+//                $count = $count + count($sd_risk->sd_restraints_archived);
+//                foreach ($sd_risk->sd_restraints_archived as $sd_restraint){
+//
+//                    $rr = 0;
+//                    if ($sd_risk->sd_restraints_exist[0]) $rr = $sd_risk->totalRR($sd_risk->sd_restraints_exist);
+//                    else $rr = $sd_risk->total();
+//
+//                    $archived = new SdRestraintArchived();
+//                    $archived->id = uniqid();
+//                    $archived->name = $sd_restraint->name;
+//                    $archived->date = $sd_restraint->date;
+//                    $archived->technical = $sd_restraint->technical;
+//                    $archived->organizational = $sd_restraint->organizational;
+//                    $archived->human = $sd_restraint->human;
+//                    $archived->exist = 1;
+//                    $archived->rr = $rr;
+//                    $archived->sd_work_unit_name = $sd_risk->sd_work_unit->name ?? "Tous";
+//                    $archived->danger_name = $sd_risk->sd_danger->danger->name;
+//                    $archived->sd_risk_name = $sd_risk->name;
+//                    $archived->single_document()->associate($sd);
+//                    $archived->save();
+//
+//                }
+//            }
+//        }
+//
+//        return back()->with('status','Messure débuger avec succès ('.$count.')');
+//    }
 }

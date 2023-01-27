@@ -160,6 +160,8 @@ Route::middleware(['auth'])->group(function() {
                 Route::post('/{doc_name}/file/upload', [DocController::class, 'upload'])->name('documentation.upload');
                 Route::post('/{doc_name}/file/delete', [DocController::class, 'delete'])->name('documentation.delete');
 
+                //Route::post('/debug/restraint', [SingleDocumentAdminController::class, 'debug'])->name('admin.debug.restraint');
+
 
             });
 

@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class RestraintExplosion extends Model
+class RestraintChemical extends Model
 {
     use HasFactory;
 
     public $timestamps = false;
     public $incrementing = false;
     protected $keyType = 'string';
-    protected $table = "restraints_explosion";
+    protected $table = "restraints_chimicals";
 
     /**
      * The attributes that are mass assignable.

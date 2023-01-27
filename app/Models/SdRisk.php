@@ -312,10 +312,14 @@ class SdRisk extends Model
     public function colorPDF($number, $RB){
         if ($RB === true){
             switch (true) {
-                case ($number < 24) :
-                    return '';
-                case ($number <= 50) :
+                case ($number < 12.5) :
+                    return 'green';
+                case ($number < 20) :
+                    return 'yellow';
+                case ($number < 30) :
                     return 'pink';
+                case ($number <= 50) :
+                    return 'red';
             }
         }else{
             switch (true) {

@@ -23,7 +23,6 @@
                         </tr>
                     </thead>
                     <tbody>
-
                         @foreach($single_documents as $sd)
                             <tr>
                                 <td class="td_name">{{ $sd->name }}</td>
