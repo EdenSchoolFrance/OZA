@@ -12,7 +12,7 @@ class RestraintChemical extends Model
     public $timestamps = false;
     public $incrementing = false;
     protected $keyType = 'string';
-    protected $table = "restraints_chimicals";
+    protected $table = "restraints_chemicals";
 
     /**
      * The attributes that are mass assignable.

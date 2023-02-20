@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RiskChemicalController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DocController;
 use App\Http\Controllers\PDFController;
@@ -250,6 +251,14 @@ Route::middleware(['auth'])->group(function() {
             Route::post('/{single_document}/danger/{danger}/duplicate', [RiskController::class, 'duplicate'])->name('risk.duplicate');
 
             Route::get('/{single_document}/risk/all', [RiskController::class, 'all'])->name('risk.all');
+        });
+
+        Route::middleware(['permission:ADMIN,EXPERT,MANAGER,EDITOR'])->group(function () {
+
+            Route::get('/{single_document}/risk_chemical/', [RiskChemicalController::class, 'index'])->name('risk.chemical.index');
+            Route::get('/{single_document}/risk_chemical/create', [RiskChemicalController::class, 'create'])->name('risk.chemical.create');
+            Route::post('/{single_document}/risk_chemical/store', [RiskChemicalController::class, 'store'])->name('risk.chemical.store');
+
         });
 
         Route::get('/{single_document}/restraint/', [RestraintController::class, 'index'])->name('restraint.index');

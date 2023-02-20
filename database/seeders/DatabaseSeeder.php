@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->call(WorkUnitSeeder::class);
 
         $this->call(DangerSeeder::class);
-        
+
         $this->call(ReflectionSeeder::class);
 
         $this->call(SingleDocumentSeeder::class);
@@ -61,14 +61,15 @@ class DatabaseSeeder extends Seeder
         $this->call(RestraintSeeder::class);
 
         $this->call(ExpositionSeeder::class);
-        
+
         $this->call(ExpositionGroupSeeder::class);
-        
+
         $this->call(ExpositionQuestionSeeder::class);
 
         $this->call(RiskCalculationSeeder::class);
 
-
         $this->call(PsychosocialQuestionSeeder::class);
+
+        $this->call(RestraintChemicalSeeder::class);
     }
 }
