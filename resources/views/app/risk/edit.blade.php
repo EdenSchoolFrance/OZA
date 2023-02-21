@@ -318,7 +318,7 @@
                     <div class="row">
                         <div class="line">
                             <div class="left">
-                                <label for="nameRisk">Messure</label>
+                                <label for="nameRisk">Mesure</label>
                             </div>
                             <div class="right">
                                 <textarea id="nameRisk" class="form-control auto-resize" placeholder="Décrire la mesure mise en place"></textarea>

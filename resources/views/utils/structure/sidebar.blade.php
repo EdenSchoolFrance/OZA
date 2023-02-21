@@ -85,7 +85,7 @@
                     <li class="sidebar-nav-item {{ $page['sidebar'] == "risk_pro" && $page['sub_sidebar'] == "risk_all" ? 'active' : '' }}">
                         <a href="{{route('risk.all',[$single_document->id])}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Tous les risques</a>
                     </li>
-                    @foreach ($single_document->dangers as $danger)
+                    @foreach ($single_document->dangers->sortBy('danger.name') as $danger)
                         <li class="sidebar-nav-item {{ $page['sidebar'] == "risk_pro" && $page['sub_sidebar'] == "danger_" . $danger->id ? 'active' : '' }}">
                             <a href="{{ route('danger.index', [$single_document->id, $danger->id]) }}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>{{ $danger->danger->name }}</a>
                             <i class="fas fa-check {{ $danger->validated ? 'checked' : 'unchecked' }}"></i>

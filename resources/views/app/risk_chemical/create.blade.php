@@ -14,7 +14,7 @@
                             <label for="workUnit">Unité de travail</label>
                         </div>
                         <div class="right">
-                            <select name="work-unit" id="workUnit" class="form-control">
+                            <select name="work_unit" id="workUnit" class="form-control">
                                 @foreach($works_units as $work)
                                     <option value="{{ $work->id }}">{{ $work->name }}</option>
                                 @endforeach
@@ -36,7 +36,7 @@
                             <label for="nameRisk">Produit concerné</label>
                         </div>
                         <div class="right">
-                            <textarea type="text" class="form-control" name="name_risk" id="workName" placeholder="Nom commercial ou dénomination">@if(old('name_risk')){{ old('name_risk') }}@else{{ isset($risk) ? $risk->name : '' }}@endif</textarea>
+                            <textarea type="text" class="form-control" name="name_risk" id="nameRisk" placeholder="Nom commercial ou dénomination">@if(old('name_risk')){{ old('name_risk') }}@endif</textarea>
                         </div>
                     </div>
                     @error('name_risk')
@@ -51,10 +51,10 @@
                 <div class="row">
                     <div class="line">
                         <div class="left">
-                            <label for="nameRisk">Utilisation activité</label>
+                            <label for="activity">Utilisation activité</label>
                         </div>
                         <div class="right">
-                            <textarea type="text" class="form-control" name="name_risk" id="workName" placeholder="Utilisation du produit / Activité qui génère le produit">@if(old('name_risk')){{ old('name_risk') }}@else{{ isset($risk) ? $risk->name : '' }}@endif</textarea>
+                            <textarea type="text" class="form-control" name="activity" id="activity" placeholder="Utilisation du produit / Activité qui génère le produit">@if(old('activity')){{ old('activity') }}@endif</textarea>
                         </div>
                     </div>
                     @error('name_risk')
@@ -82,7 +82,7 @@
                     <div class="cat-danger">
                         <div class="item">
                             <label for="n1">n1</label>
-                            <select name="n1" id="n1" class="form-control">
+                            <select name="n1" id="n1" class="form-control level">
                                 <option value="2">H315</option>
                                 <option value="2">H317</option>
                                 <option value="2">H335</option>
@@ -131,7 +131,7 @@
                         </div>
                         <div class="item">
                             <label for="n2">n2</label>
-                            <select name="n2" id="n2" class="form-control">
+                            <select name="n2" id="n2" class="form-control level">
                                 <option value="2">H315</option>
                                 <option value="2">H317</option>
                                 <option value="2">H335</option>
@@ -180,7 +180,7 @@
                         </div>
                         <div class="item">
                             <label for="n3">n3</label>
-                            <select name="n3" id="n3" class="form-control">
+                            <select name="n3" id="n3" class="form-control level">
                                 <option value="2">H315</option>
                                 <option value="2">H317</option>
                                 <option value="2">H335</option>
@@ -229,7 +229,7 @@
                         </div>
                         <div class="item">
                             <label for="n4">n4</label>
-                            <select name="n4" id="n4" class="form-control">
+                            <select name="n4" id="n4" class="form-control level">
                                 <option value="2">H315</option>
                                 <option value="2">H317</option>
                                 <option value="2">H335</option>
@@ -278,7 +278,7 @@
                         </div>
                         <div class="item">
                             <label for="n5">n5</label>
-                            <select name="n5" id="n5" class="form-control">
+                            <select name="n5" id="n5" class="form-control level">
                                 <option value="2">H315</option>
                                 <option value="2">H317</option>
                                 <option value="2">H335</option>
@@ -327,7 +327,7 @@
                         </div>
                         <div class="item">
                             <label for="n6">n6</label>
-                            <select name="n6" id="n6" class="form-control">
+                            <select name="n6" id="n6" class="form-control level">
                                 <option value="2">H315</option>
                                 <option value="2">H317</option>
                                 <option value="2">H335</option>
@@ -376,7 +376,7 @@
                         </div>
                         <div class="item">
                             <label for="n7">n7</label>
-                            <select name="n7" id="n7" class="form-control">
+                            <select name="n7" id="n7" class="form-control level">
                                 <option value="2">H315</option>
                                 <option value="2">H317</option>
                                 <option value="2">H335</option>
@@ -425,7 +425,7 @@
                         </div>
                         <div class="item">
                             <label for="n8">n8</label>
-                            <select name="n8" id="n8" class="form-control">
+                            <select name="n8" id="n8" class="form-control level">
                                 <option value="2">H315</option>
                                 <option value="2">H317</option>
                                 <option value="2">H335</option>
@@ -474,7 +474,7 @@
                         </div>
                         <div class="item">
                             <label for="n9">n9</label>
-                            <select name="n9" id="n9" class="form-control">
+                            <select name="n9" id="n9" class="form-control level">
                                 <option value="2">H315</option>
                                 <option value="2">H317</option>
                                 <option value="2">H335</option>
@@ -523,7 +523,7 @@
                         </div>
                         <div class="item">
                             <label for="n10">n10</label>
-                            <select name="n10" id="n10" class="form-control">
+                            <select name="n10" id="n10" class="form-control level">
                                 <option value="2">H315</option>
                                 <option value="2">H317</option>
                                 <option value="2">H335</option>
@@ -576,7 +576,8 @@
                 <div class="row">
                     <div class="line nd">
                         <label for="nd">Niveau de Danger associé au produit (ND)</label>
-                        <input type="text" class="form-control" placeholder="valeur">
+                        <input type="text" id="nd" class="form-control" placeholder="valeur" value="H315">
+                        <input type="hidden" id="nd_hidden" value="0">
                     </div>
                 </div>
 
@@ -588,7 +589,7 @@
                             <label for="date-fds">Date d'élaboration ou de révision de la FDS</label>
                         </div>
                         <div class="right">
-                            <input type="date" id="date-fds" class="form-control">
+                            <input type="date" name="date_fds" id="date-fds" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -634,7 +635,7 @@
                             <label for="time">Durée utilisation jour</label>
                         </div>
                         <div class="right">
-                            <select name="ventilation" id="ventilation" class="form-control">
+                            <select name="time" id="time" class="form-control">
                                 <option value="0">45mn à 8h</option>
                                 <option value="2">5 à 45mn</option>
                                 <option value="4">< 5mn</option>
@@ -661,25 +662,54 @@
                             <div id="modal-list">
                                 <div data-id="" style="">
                                     <label class="contain">
-                                        <input type="checkbox" value="" data-name="" >
-                                        <span class="checkmark">dsqsdsqdsq</span>
+                                        <input type="checkbox" value="Gant" data-name="Gant" name="list_items[]">
+                                        <span class="checkmark">Gant</span>
                                     </label>
                                     <label class="contain">
-                                        <input type="checkbox" value="" data-name="" >
-                                        <span class="checkmark">dsqsdsqdsq</span>
+                                        <input type="checkbox" value="Gant étanche au produit" data-name="Gant étanche au produit" name="list_items[]">
+                                        <span class="checkmark">Gant étanche au produit</span>
                                     </label>
                                     <label class="contain">
-                                        <input type="checkbox" value="" data-name="" >
-                                        <span class="checkmark">dsqsdsqdsq</span>
+                                        <input type="checkbox" value="Lunette de sécurité" data-name="Lunette de sécurité" name="list_items[]">
+                                        <span class="checkmark">Lunette de sécurité</span>
                                     </label>
                                     <label class="contain">
-                                        <input type="checkbox" value="" data-name="" >
-                                        <span class="checkmark">dsqsdsqdsq</span>
+                                        <input type="checkbox" value="Lunette de sécurité étanche" data-name="Lunette de sécurité étanche" name="list_items[]">
+                                        <span class="checkmark">Lunette de sécurité étanche</span>
                                     </label>
                                     <label class="contain">
-                                        <input type="checkbox" value="" data-name="" >
-                                        <span class="checkmark">dsqsdsqdsq</span>
+                                        <input type="checkbox" value="Vêtement de travail" data-name="Vêtement de travail" name="list_items[]">
+                                        <span class="checkmark">Vêtement de travail</span>
                                     </label>
+                                    <label class="contain">
+                                        <input type="checkbox" value="Combinaison étanche au produit" data-name="Combinaison étanche au produit" name="list_items[]">
+                                        <span class="checkmark">Combinaison étanche au produit</span>
+                                    </label>
+                                    <label class="contain">
+                                        <input type="checkbox" value="Masque anti-poussières FFP2" data-name="Masque anti-poussières FFP2" name="list_items[]">
+                                        <span class="checkmark">Masque anti-poussières FFP2</span>
+                                    </label>
+                                    <label class="contain">
+                                        <input type="checkbox" value="Masque anti-poussières FFP3" data-name="Masque anti-poussières FFP3" name="list_items[]">
+                                        <span class="checkmark">Masque anti-poussières FFP3</span>
+                                    </label>
+                                    <label class="contain">
+                                        <input type="checkbox" value="Masque à gaz et vapeur adapté au produit" data-name="Masque à gaz et vapeur adapté au produit" name="list_items[]">
+                                        <span class="checkmark">Masque à gaz et vapeur adapté au produit</span>
+                                    </label>
+                                    <label class="contain">
+                                        <input type="checkbox" value="Masque ventilé adapté au produit" data-name="Masque ventilé adapté au produit" name="list_items[]">
+                                        <span class="checkmark">Masque ventilé adapté au produit</span>
+                                    </label>
+                                    <label class="contain">
+                                        <input type="checkbox" value="Masque à adduction d’air" data-name="Masque à adduction d’air" name="list_items[]">
+                                        <span class="checkmark">Masque à adduction d’air</span>
+                                    </label>
+                                    <label class="contain">
+                                        <input type="checkbox" value="ARI" data-name="ARI" name="list_items[]">
+                                        <span class="checkmark">ARI</span>
+                                    </label>
+
                                 </div>
                             </div>
                         </div>
@@ -690,10 +720,10 @@
                             <div class="right right--inline modal-input">
                                 <label for="name">Intitulé</label>
                                 <div>
-                                    <input type="text" name="name" class="form-control" placeholder="EPI 1, EPI 2, ">
+                                    <input type="text" id="modal-input" name="name" class="form-control" placeholder="EPI 1, EPI 2, ">
                                     <p class="info-input">Il est possible d’ajouter plusieurs matériels en les séparant par une virgule</p>
                                 </div>
-                                <button class="btn btn-text btn-yellow btn-modal-add">Ajouter</button>
+                                <button class="btn btn-text btn-yellow btn-modal-add" type="button">Ajouter</button>
                             </div>
                         </div>
                     </div>
@@ -721,7 +751,7 @@
                             <label for="ir">Indice de Risque (IR)</label>
                         </div>
                         <div class="right">
-                            <input type="text" id="ir" class="form-control value" placeholder="valeur">
+                            <input type="text" id="ir" class="form-control" placeholder="valeur">
                         </div>
                     </div>
                     <div class="line">
@@ -729,7 +759,7 @@
                             <label for="">Risque Résiduel (RR)</label>
                         </div>
                         <div class="right">
-                            <button class="btn btn-danger">STOP</button>
+                            <button class="btn btn-success" id="rr">Acceptable</button>
                         </div>
                     </div>
                 </div>
@@ -751,8 +781,8 @@
 
                                 @foreach($restraints_chemical as $restraint)
                                     <li class="res-pro">
-                                        <input type="checkbox" class="btn-check" data-id="{{ $restraint->id }}" data-tab="none">
-                                        <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed_{{ $restraint->id }}[not-checked][none][]">{{ $restraint->name }}</textarea>
+                                        <input type="checkbox" class="btn-check" data-tab="none">
+                                        <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed[not-checked][none][]">{{ $restraint->name }}</textarea>
                                     </li>
                                 @endforeach
 

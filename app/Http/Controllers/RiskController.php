@@ -186,6 +186,8 @@ class RiskController extends Controller
         if (isset($request->restraint_proposed)) {
             foreach ($request->restraint_proposed as $restraint) {
 
+                if(empty($restraint) || !isset($restraint)) return back()->with('status', 'Des mesures sont incomplete')->with('status_type', 'danger');
+
                 $sd_restraint = new SdRestraint();
                 $sd_restraint->id = uniqid();
                 $sd_restraint->name = $restraint;
@@ -257,6 +259,8 @@ class RiskController extends Controller
 
         if (isset($request->restraint_proposed)) {
             foreach ($request->restraint_proposed as $restraint) {
+
+                if(empty($restraint) || !isset($restraint)) return back()->with('status', 'Des mesures sont incomplete')->with('status_type', 'danger');
 
                 $sd_restraint = new SdRestraint();
                 $sd_restraint->id = uniqid();

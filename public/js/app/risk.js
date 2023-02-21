@@ -125,7 +125,7 @@ on('.btn-add-restraint', 'click', (el, e) => {
             $('.nothing_restraint_pro', document, 0).remove();
         }
         let content ='<button type="button" class="btn btn-text btn-small btn-delete-restraint"><i class="far fa-times-circle"></i></button>\n' +
-            '<textarea class="form-control auto-resize" placeholder="" name="restraint_proposed[]"></textarea>'
+            '<textarea class="form-control auto-resize" placeholder="" name="restraint_proposed[]" required></textarea>'
         let li = document.createElement('li');
         li.setAttribute('class','res-pro')
         li.innerHTML = content;
@@ -579,7 +579,7 @@ function createRestraintProposed(title){
         $('.nothing_restraint_pro', document, 0).remove();
     }
     let content ='<button type="button" class="btn btn-text btn-small btn-delete-restraint"><i class="far fa-times-circle"></i></button>\n' +
-        '<textarea class="form-control auto-resize" placeholder="" name="restraint_proposed[]">'+title+'</textarea>'
+        '<textarea class="form-control auto-resize" placeholder="" name="restraint_proposed[]" required>'+title+'</textarea>'
     let li = document.createElement('li');
     li.innerHTML = content;
     $('.btn-add-restraint',document, 0).closest('li').before(li);
