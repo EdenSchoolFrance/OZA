@@ -17,11 +17,12 @@ class RiskChemicalController extends Controller
 
         $page = [
             'title' => 'Evaluation des risques chimiques',
+            'infos' => null,
             'sidebar' => 'risk_chemical'
         ];
 
         $sd_risks_chemicals = SdRiskChemical::whereHas('single_document', function ($q) use ($single_document){
-            $q->where('id', $single_document);
+            $q->where('id', $single_document->id);
         });
 
         return view('app.risk_chemical.index', compact('page', 'single_document', 'sd_risks_chemicals'));

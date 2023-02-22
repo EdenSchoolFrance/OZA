@@ -39,6 +39,11 @@ class SdRiskChemical extends Model
         'protection'
     ];
 
+    public function single_document()
+    {
+        return $this->belongsTo(SingleDocument::class);
+    }
+
     public function sd_work_unit()
     {
         return $this->belongsTo(SdWorkUnit::class)->orderByDesc("name");
@@ -57,5 +62,10 @@ class SdRiskChemical extends Model
     public function sd_restraints_exist()
     {
         return $this->sd_restraints()->where('exist',1);
+    }
+
+    public function ND()
+    {
+        
     }
 }

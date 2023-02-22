@@ -35,7 +35,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($sd_risks_chemical as $sd_risk)
+                            @foreach($sd_risks_chemicals as $sd_risk)
                                 <tr>
                                     <td class="td_work_unit">{{ $sd_risk->sd_work_unit->name }}</td>
                                     <td class="td_name">{{ $sd_risk->name }}</td>
@@ -84,6 +84,7 @@
                         </tbody>
                     </table>
                 </div>
+                <a href="{{ route('risk.chemical.create', [$single_document->id]) }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN RISQUE</a>
             </div>
         </div>
     </div>

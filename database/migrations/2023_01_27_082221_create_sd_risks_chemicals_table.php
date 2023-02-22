@@ -35,6 +35,9 @@ class CreateSdRisksChemicalsTable extends Migration
 
             $table->foreignUuid('sd_work_unit_id');
             $table->foreign('sd_work_unit_id')->references('id')->on('sd_work_units')->onDelete('cascade');
+
+            $table->foreignUuid('single_document_id');
+            $table->foreign('single_document_id')->references('id')->on('single_documents')->onDelete('cascade');
         });
     }
 
