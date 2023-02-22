@@ -83,491 +83,491 @@
                         <div class="item">
                             <label for="n1">n1</label>
                             <select name="n1" id="n1" class="form-control level">
-                                <option value="2">H315</option>
-                                <option value="2">H317</option>
-                                <option value="2">H335</option>
-                                <option value="2">H362</option>
-                                <option value="2">EUH066</option>
-                                <option value="2">EUH203</option>
-                                <option value="2">EUH204</option>
-                                <option value="2">EUH205</option>
-                                <option value="3">H302</option>
-                                <option value="3">H312</option>
-                                <option value="3">H319</option>
-                                <option value="3">H332</option>
-                                <option value="3">H334</option>
-                                <option value="3">H336</option>
-                                <option value="3">H373</option>
-                                <option value="4">H301</option>
-                                <option value="4">H304</option>
-                                <option value="4">H311</option>
-                                <option value="4">H314</option>
-                                <option value="4">H318</option>
-                                <option value="4">H331</option>
-                                <option value="4">H371</option>
-                                <option value="4">H372</option>
-                                <option value="4">EUH029</option>
-                                <option value="4">EUH031</option>
-                                <option value="4">EUH070</option>
-                                <option value="4">EUH071</option>
-                                <option value="4">EUH206</option>
-                                <option value="4">EUH207</option>
-                                <option value="5">H300</option>
-                                <option value="5">H310</option>
-                                <option value="5">H330</option>
-                                <option value="5">H370</option>
-                                <option value="5">EUH032</option>
-                                <option value="6">H341</option>
-                                <option value="6">H351</option>
-                                <option value="6">H361</option>
-                                <option value="6">CMR2</option>
-                                <option value="6">H340</option>
-                                <option value="6">H350</option>
-                                <option value="6">H360</option>
-                                <option value="6">H362</option>
-                                <option value="6">CMR1A</option>
-                                <option value="6">CMR1B</option>
+                                <option data-value="2" value="H315">H315</option>
+                                <option data-value="2" value="H317">H317</option>
+                                <option data-value="2" value="H335">H335</option>
+                                <option data-value="2" value="H362">H362</option>
+                                <option data-value="2" value="EUH066">EUH066</option>
+                                <option data-value="2" value="EUH203">EUH203</option>
+                                <option data-value="2" value="EUH204">EUH204</option>
+                                <option data-value="2" value="EUH205">EUH205</option>
+                                <option data-value="3" value="H302">H302</option>
+                                <option data-value="3" value="H312">H312</option>
+                                <option data-value="3" value="H319">H319</option>
+                                <option data-value="3" value="H332">H332</option>
+                                <option data-value="3" value="H334">H334</option>
+                                <option data-value="3" value="H336">H336</option>
+                                <option data-value="3" value="H373">H373</option>
+                                <option data-value="4" value="H301">H301</option>
+                                <option data-value="4" value="H304">H304</option>
+                                <option data-value="4" value="H311">H311</option>
+                                <option data-value="4" value="H314">H314</option>
+                                <option data-value="4" value="H318">H318</option>
+                                <option data-value="4" value="H331">H331</option>
+                                <option data-value="4" value="h371">H371</option>
+                                <option data-value="4" value="H372">H372</option>
+                                <option data-value="4" value="EUH029">EUH029</option>
+                                <option data-value="4" value="EUH031">EUH031</option>
+                                <option data-value="4" value="EUH070">EUH070</option>
+                                <option data-value="4" value="EUH071">EUH071</option>
+                                <option data-value="4" value="EUH206">EUH206</option>
+                                <option data-value="4" value="EUH207">EUH207</option>
+                                <option data-value="5" value="H300">H300</option>
+                                <option data-value="5" value="H310">H310</option>
+                                <option data-value="5" value="H330">H330</option>
+                                <option data-value="5" value="H370">H370</option>
+                                <option data-value="5" value="EUH032">EUH032</option>
+                                <option data-value="6" value="H341">H341</option>
+                                <option data-value="6" value="H351">H351</option>
+                                <option data-value="6" value="H361">H361</option>
+                                <option data-value="6" value="CMR2">CMR2</option>
+                                <option data-value="6" value="H340">H340</option>
+                                <option data-value="6" value="H350">H350</option>
+                                <option data-value="6" value="H360">H360</option>
+                                <option data-value="6" value="H362">H362</option>
+                                <option data-value="6" value="CMR1A">CMR1A</option>
+                                <option data-value="6" value="CMR1B">CMR1B</option>
                             </select>
                         </div>
                         <div class="item">
                             <label for="n2">n2</label>
                             <select name="n2" id="n2" class="form-control level">
-                                <option value="2">H315</option>
-                                <option value="2">H317</option>
-                                <option value="2">H335</option>
-                                <option value="2">H362</option>
-                                <option value="2">EUH066</option>
-                                <option value="2">EUH203</option>
-                                <option value="2">EUH204</option>
-                                <option value="2">EUH205</option>
-                                <option value="3">H302</option>
-                                <option value="3">H312</option>
-                                <option value="3">H319</option>
-                                <option value="3">H332</option>
-                                <option value="3">H334</option>
-                                <option value="3">H336</option>
-                                <option value="3">H373</option>
-                                <option value="4">H301</option>
-                                <option value="4">H304</option>
-                                <option value="4">H311</option>
-                                <option value="4">H314</option>
-                                <option value="4">H318</option>
-                                <option value="4">H331</option>
-                                <option value="4">H371</option>
-                                <option value="4">H372</option>
-                                <option value="4">EUH029</option>
-                                <option value="4">EUH031</option>
-                                <option value="4">EUH070</option>
-                                <option value="4">EUH071</option>
-                                <option value="4">EUH206</option>
-                                <option value="4">EUH207</option>
-                                <option value="5">H300</option>
-                                <option value="5">H310</option>
-                                <option value="5">H330</option>
-                                <option value="5">H370</option>
-                                <option value="5">EUH032</option>
-                                <option value="6">H341</option>
-                                <option value="6">H351</option>
-                                <option value="6">H361</option>
-                                <option value="6">CMR2</option>
-                                <option value="6">H340</option>
-                                <option value="6">H350</option>
-                                <option value="6">H360</option>
-                                <option value="6">H362</option>
-                                <option value="6">CMR1A</option>
-                                <option value="6">CMR1B</option>
+                                <option data-value="2" value="H315">H315</option>
+                                <option data-value="2" value="H317">H317</option>
+                                <option data-value="2" value="H335">H335</option>
+                                <option data-value="2" value="H362">H362</option>
+                                <option data-value="2" value="EUH066">EUH066</option>
+                                <option data-value="2" value="EUH203">EUH203</option>
+                                <option data-value="2" value="EUH204">EUH204</option>
+                                <option data-value="2" value="EUH205">EUH205</option>
+                                <option data-value="3" value="H302">H302</option>
+                                <option data-value="3" value="H312">H312</option>
+                                <option data-value="3" value="H319">H319</option>
+                                <option data-value="3" value="H332">H332</option>
+                                <option data-value="3" value="H334">H334</option>
+                                <option data-value="3" value="H336">H336</option>
+                                <option data-value="3" value="H373">H373</option>
+                                <option data-value="4" value="H301">H301</option>
+                                <option data-value="4" value="H304">H304</option>
+                                <option data-value="4" value="H311">H311</option>
+                                <option data-value="4" value="H314">H314</option>
+                                <option data-value="4" value="H318">H318</option>
+                                <option data-value="4" value="H331">H331</option>
+                                <option data-value="4" value="h371">H371</option>
+                                <option data-value="4" value="H372">H372</option>
+                                <option data-value="4" value="EUH029">EUH029</option>
+                                <option data-value="4" value="EUH031">EUH031</option>
+                                <option data-value="4" value="EUH070">EUH070</option>
+                                <option data-value="4" value="EUH071">EUH071</option>
+                                <option data-value="4" value="EUH206">EUH206</option>
+                                <option data-value="4" value="EUH207">EUH207</option>
+                                <option data-value="5" value="H300">H300</option>
+                                <option data-value="5" value="H310">H310</option>
+                                <option data-value="5" value="H330">H330</option>
+                                <option data-value="5" value="H370">H370</option>
+                                <option data-value="5" value="EUH032">EUH032</option>
+                                <option data-value="6" value="H341">H341</option>
+                                <option data-value="6" value="H351">H351</option>
+                                <option data-value="6" value="H361">H361</option>
+                                <option data-value="6" value="CMR2">CMR2</option>
+                                <option data-value="6" value="H340">H340</option>
+                                <option data-value="6" value="H350">H350</option>
+                                <option data-value="6" value="H360">H360</option>
+                                <option data-value="6" value="H362">H362</option>
+                                <option data-value="6" value="CMR1A">CMR1A</option>
+                                <option data-value="6" value="CMR1B">CMR1B</option>
                             </select>
                         </div>
                         <div class="item">
                             <label for="n3">n3</label>
                             <select name="n3" id="n3" class="form-control level">
-                                <option value="2">H315</option>
-                                <option value="2">H317</option>
-                                <option value="2">H335</option>
-                                <option value="2">H362</option>
-                                <option value="2">EUH066</option>
-                                <option value="2">EUH203</option>
-                                <option value="2">EUH204</option>
-                                <option value="2">EUH205</option>
-                                <option value="3">H302</option>
-                                <option value="3">H312</option>
-                                <option value="3">H319</option>
-                                <option value="3">H332</option>
-                                <option value="3">H334</option>
-                                <option value="3">H336</option>
-                                <option value="3">H373</option>
-                                <option value="4">H301</option>
-                                <option value="4">H304</option>
-                                <option value="4">H311</option>
-                                <option value="4">H314</option>
-                                <option value="4">H318</option>
-                                <option value="4">H331</option>
-                                <option value="4">H371</option>
-                                <option value="4">H372</option>
-                                <option value="4">EUH029</option>
-                                <option value="4">EUH031</option>
-                                <option value="4">EUH070</option>
-                                <option value="4">EUH071</option>
-                                <option value="4">EUH206</option>
-                                <option value="4">EUH207</option>
-                                <option value="5">H300</option>
-                                <option value="5">H310</option>
-                                <option value="5">H330</option>
-                                <option value="5">H370</option>
-                                <option value="5">EUH032</option>
-                                <option value="6">H341</option>
-                                <option value="6">H351</option>
-                                <option value="6">H361</option>
-                                <option value="6">CMR2</option>
-                                <option value="6">H340</option>
-                                <option value="6">H350</option>
-                                <option value="6">H360</option>
-                                <option value="6">H362</option>
-                                <option value="6">CMR1A</option>
-                                <option value="6">CMR1B</option>
+                                <option data-value="2" value="H315">H315</option>
+                                <option data-value="2" value="H317">H317</option>
+                                <option data-value="2" value="H335">H335</option>
+                                <option data-value="2" value="H362">H362</option>
+                                <option data-value="2" value="EUH066">EUH066</option>
+                                <option data-value="2" value="EUH203">EUH203</option>
+                                <option data-value="2" value="EUH204">EUH204</option>
+                                <option data-value="2" value="EUH205">EUH205</option>
+                                <option data-value="3" value="H302">H302</option>
+                                <option data-value="3" value="H312">H312</option>
+                                <option data-value="3" value="H319">H319</option>
+                                <option data-value="3" value="H332">H332</option>
+                                <option data-value="3" value="H334">H334</option>
+                                <option data-value="3" value="H336">H336</option>
+                                <option data-value="3" value="H373">H373</option>
+                                <option data-value="4" value="H301">H301</option>
+                                <option data-value="4" value="H304">H304</option>
+                                <option data-value="4" value="H311">H311</option>
+                                <option data-value="4" value="H314">H314</option>
+                                <option data-value="4" value="H318">H318</option>
+                                <option data-value="4" value="H331">H331</option>
+                                <option data-value="4" value="h371">H371</option>
+                                <option data-value="4" value="H372">H372</option>
+                                <option data-value="4" value="EUH029">EUH029</option>
+                                <option data-value="4" value="EUH031">EUH031</option>
+                                <option data-value="4" value="EUH070">EUH070</option>
+                                <option data-value="4" value="EUH071">EUH071</option>
+                                <option data-value="4" value="EUH206">EUH206</option>
+                                <option data-value="4" value="EUH207">EUH207</option>
+                                <option data-value="5" value="H300">H300</option>
+                                <option data-value="5" value="H310">H310</option>
+                                <option data-value="5" value="H330">H330</option>
+                                <option data-value="5" value="H370">H370</option>
+                                <option data-value="5" value="EUH032">EUH032</option>
+                                <option data-value="6" value="H341">H341</option>
+                                <option data-value="6" value="H351">H351</option>
+                                <option data-value="6" value="H361">H361</option>
+                                <option data-value="6" value="CMR2">CMR2</option>
+                                <option data-value="6" value="H340">H340</option>
+                                <option data-value="6" value="H350">H350</option>
+                                <option data-value="6" value="H360">H360</option>
+                                <option data-value="6" value="H362">H362</option>
+                                <option data-value="6" value="CMR1A">CMR1A</option>
+                                <option data-value="6" value="CMR1B">CMR1B</option>
                             </select>
                         </div>
                         <div class="item">
                             <label for="n4">n4</label>
                             <select name="n4" id="n4" class="form-control level">
-                                <option value="2">H315</option>
-                                <option value="2">H317</option>
-                                <option value="2">H335</option>
-                                <option value="2">H362</option>
-                                <option value="2">EUH066</option>
-                                <option value="2">EUH203</option>
-                                <option value="2">EUH204</option>
-                                <option value="2">EUH205</option>
-                                <option value="3">H302</option>
-                                <option value="3">H312</option>
-                                <option value="3">H319</option>
-                                <option value="3">H332</option>
-                                <option value="3">H334</option>
-                                <option value="3">H336</option>
-                                <option value="3">H373</option>
-                                <option value="4">H301</option>
-                                <option value="4">H304</option>
-                                <option value="4">H311</option>
-                                <option value="4">H314</option>
-                                <option value="4">H318</option>
-                                <option value="4">H331</option>
-                                <option value="4">H371</option>
-                                <option value="4">H372</option>
-                                <option value="4">EUH029</option>
-                                <option value="4">EUH031</option>
-                                <option value="4">EUH070</option>
-                                <option value="4">EUH071</option>
-                                <option value="4">EUH206</option>
-                                <option value="4">EUH207</option>
-                                <option value="5">H300</option>
-                                <option value="5">H310</option>
-                                <option value="5">H330</option>
-                                <option value="5">H370</option>
-                                <option value="5">EUH032</option>
-                                <option value="6">H341</option>
-                                <option value="6">H351</option>
-                                <option value="6">H361</option>
-                                <option value="6">CMR2</option>
-                                <option value="6">H340</option>
-                                <option value="6">H350</option>
-                                <option value="6">H360</option>
-                                <option value="6">H362</option>
-                                <option value="6">CMR1A</option>
-                                <option value="6">CMR1B</option>
+                                <option data-value="2" value="H315">H315</option>
+                                <option data-value="2" value="H317">H317</option>
+                                <option data-value="2" value="H335">H335</option>
+                                <option data-value="2" value="H362">H362</option>
+                                <option data-value="2" value="EUH066">EUH066</option>
+                                <option data-value="2" value="EUH203">EUH203</option>
+                                <option data-value="2" value="EUH204">EUH204</option>
+                                <option data-value="2" value="EUH205">EUH205</option>
+                                <option data-value="3" value="H302">H302</option>
+                                <option data-value="3" value="H312">H312</option>
+                                <option data-value="3" value="H319">H319</option>
+                                <option data-value="3" value="H332">H332</option>
+                                <option data-value="3" value="H334">H334</option>
+                                <option data-value="3" value="H336">H336</option>
+                                <option data-value="3" value="H373">H373</option>
+                                <option data-value="4" value="H301">H301</option>
+                                <option data-value="4" value="H304">H304</option>
+                                <option data-value="4" value="H311">H311</option>
+                                <option data-value="4" value="H314">H314</option>
+                                <option data-value="4" value="H318">H318</option>
+                                <option data-value="4" value="H331">H331</option>
+                                <option data-value="4" value="h371">H371</option>
+                                <option data-value="4" value="H372">H372</option>
+                                <option data-value="4" value="EUH029">EUH029</option>
+                                <option data-value="4" value="EUH031">EUH031</option>
+                                <option data-value="4" value="EUH070">EUH070</option>
+                                <option data-value="4" value="EUH071">EUH071</option>
+                                <option data-value="4" value="EUH206">EUH206</option>
+                                <option data-value="4" value="EUH207">EUH207</option>
+                                <option data-value="5" value="H300">H300</option>
+                                <option data-value="5" value="H310">H310</option>
+                                <option data-value="5" value="H330">H330</option>
+                                <option data-value="5" value="H370">H370</option>
+                                <option data-value="5" value="EUH032">EUH032</option>
+                                <option data-value="6" value="H341">H341</option>
+                                <option data-value="6" value="H351">H351</option>
+                                <option data-value="6" value="H361">H361</option>
+                                <option data-value="6" value="CMR2">CMR2</option>
+                                <option data-value="6" value="H340">H340</option>
+                                <option data-value="6" value="H350">H350</option>
+                                <option data-value="6" value="H360">H360</option>
+                                <option data-value="6" value="H362">H362</option>
+                                <option data-value="6" value="CMR1A">CMR1A</option>
+                                <option data-value="6" value="CMR1B">CMR1B</option>
                             </select>
                         </div>
                         <div class="item">
                             <label for="n5">n5</label>
                             <select name="n5" id="n5" class="form-control level">
-                                <option value="2">H315</option>
-                                <option value="2">H317</option>
-                                <option value="2">H335</option>
-                                <option value="2">H362</option>
-                                <option value="2">EUH066</option>
-                                <option value="2">EUH203</option>
-                                <option value="2">EUH204</option>
-                                <option value="2">EUH205</option>
-                                <option value="3">H302</option>
-                                <option value="3">H312</option>
-                                <option value="3">H319</option>
-                                <option value="3">H332</option>
-                                <option value="3">H334</option>
-                                <option value="3">H336</option>
-                                <option value="3">H373</option>
-                                <option value="4">H301</option>
-                                <option value="4">H304</option>
-                                <option value="4">H311</option>
-                                <option value="4">H314</option>
-                                <option value="4">H318</option>
-                                <option value="4">H331</option>
-                                <option value="4">H371</option>
-                                <option value="4">H372</option>
-                                <option value="4">EUH029</option>
-                                <option value="4">EUH031</option>
-                                <option value="4">EUH070</option>
-                                <option value="4">EUH071</option>
-                                <option value="4">EUH206</option>
-                                <option value="4">EUH207</option>
-                                <option value="5">H300</option>
-                                <option value="5">H310</option>
-                                <option value="5">H330</option>
-                                <option value="5">H370</option>
-                                <option value="5">EUH032</option>
-                                <option value="6">H341</option>
-                                <option value="6">H351</option>
-                                <option value="6">H361</option>
-                                <option value="6">CMR2</option>
-                                <option value="6">H340</option>
-                                <option value="6">H350</option>
-                                <option value="6">H360</option>
-                                <option value="6">H362</option>
-                                <option value="6">CMR1A</option>
-                                <option value="6">CMR1B</option>
+                                <option data-value="2" value="H315">H315</option>
+                                <option data-value="2" value="H317">H317</option>
+                                <option data-value="2" value="H335">H335</option>
+                                <option data-value="2" value="H362">H362</option>
+                                <option data-value="2" value="EUH066">EUH066</option>
+                                <option data-value="2" value="EUH203">EUH203</option>
+                                <option data-value="2" value="EUH204">EUH204</option>
+                                <option data-value="2" value="EUH205">EUH205</option>
+                                <option data-value="3" value="H302">H302</option>
+                                <option data-value="3" value="H312">H312</option>
+                                <option data-value="3" value="H319">H319</option>
+                                <option data-value="3" value="H332">H332</option>
+                                <option data-value="3" value="H334">H334</option>
+                                <option data-value="3" value="H336">H336</option>
+                                <option data-value="3" value="H373">H373</option>
+                                <option data-value="4" value="H301">H301</option>
+                                <option data-value="4" value="H304">H304</option>
+                                <option data-value="4" value="H311">H311</option>
+                                <option data-value="4" value="H314">H314</option>
+                                <option data-value="4" value="H318">H318</option>
+                                <option data-value="4" value="H331">H331</option>
+                                <option data-value="4" value="h371">H371</option>
+                                <option data-value="4" value="H372">H372</option>
+                                <option data-value="4" value="EUH029">EUH029</option>
+                                <option data-value="4" value="EUH031">EUH031</option>
+                                <option data-value="4" value="EUH070">EUH070</option>
+                                <option data-value="4" value="EUH071">EUH071</option>
+                                <option data-value="4" value="EUH206">EUH206</option>
+                                <option data-value="4" value="EUH207">EUH207</option>
+                                <option data-value="5" value="H300">H300</option>
+                                <option data-value="5" value="H310">H310</option>
+                                <option data-value="5" value="H330">H330</option>
+                                <option data-value="5" value="H370">H370</option>
+                                <option data-value="5" value="EUH032">EUH032</option>
+                                <option data-value="6" value="H341">H341</option>
+                                <option data-value="6" value="H351">H351</option>
+                                <option data-value="6" value="H361">H361</option>
+                                <option data-value="6" value="CMR2">CMR2</option>
+                                <option data-value="6" value="H340">H340</option>
+                                <option data-value="6" value="H350">H350</option>
+                                <option data-value="6" value="H360">H360</option>
+                                <option data-value="6" value="H362">H362</option>
+                                <option data-value="6" value="CMR1A">CMR1A</option>
+                                <option data-value="6" value="CMR1B">CMR1B</option>
                             </select>
                         </div>
                         <div class="item">
                             <label for="n6">n6</label>
                             <select name="n6" id="n6" class="form-control level">
-                                <option value="2">H315</option>
-                                <option value="2">H317</option>
-                                <option value="2">H335</option>
-                                <option value="2">H362</option>
-                                <option value="2">EUH066</option>
-                                <option value="2">EUH203</option>
-                                <option value="2">EUH204</option>
-                                <option value="2">EUH205</option>
-                                <option value="3">H302</option>
-                                <option value="3">H312</option>
-                                <option value="3">H319</option>
-                                <option value="3">H332</option>
-                                <option value="3">H334</option>
-                                <option value="3">H336</option>
-                                <option value="3">H373</option>
-                                <option value="4">H301</option>
-                                <option value="4">H304</option>
-                                <option value="4">H311</option>
-                                <option value="4">H314</option>
-                                <option value="4">H318</option>
-                                <option value="4">H331</option>
-                                <option value="4">H371</option>
-                                <option value="4">H372</option>
-                                <option value="4">EUH029</option>
-                                <option value="4">EUH031</option>
-                                <option value="4">EUH070</option>
-                                <option value="4">EUH071</option>
-                                <option value="4">EUH206</option>
-                                <option value="4">EUH207</option>
-                                <option value="5">H300</option>
-                                <option value="5">H310</option>
-                                <option value="5">H330</option>
-                                <option value="5">H370</option>
-                                <option value="5">EUH032</option>
-                                <option value="6">H341</option>
-                                <option value="6">H351</option>
-                                <option value="6">H361</option>
-                                <option value="6">CMR2</option>
-                                <option value="6">H340</option>
-                                <option value="6">H350</option>
-                                <option value="6">H360</option>
-                                <option value="6">H362</option>
-                                <option value="6">CMR1A</option>
-                                <option value="6">CMR1B</option>
+                                <option data-value="2" value="H315">H315</option>
+                                <option data-value="2" value="H317">H317</option>
+                                <option data-value="2" value="H335">H335</option>
+                                <option data-value="2" value="H362">H362</option>
+                                <option data-value="2" value="EUH066">EUH066</option>
+                                <option data-value="2" value="EUH203">EUH203</option>
+                                <option data-value="2" value="EUH204">EUH204</option>
+                                <option data-value="2" value="EUH205">EUH205</option>
+                                <option data-value="3" value="H302">H302</option>
+                                <option data-value="3" value="H312">H312</option>
+                                <option data-value="3" value="H319">H319</option>
+                                <option data-value="3" value="H332">H332</option>
+                                <option data-value="3" value="H334">H334</option>
+                                <option data-value="3" value="H336">H336</option>
+                                <option data-value="3" value="H373">H373</option>
+                                <option data-value="4" value="H301">H301</option>
+                                <option data-value="4" value="H304">H304</option>
+                                <option data-value="4" value="H311">H311</option>
+                                <option data-value="4" value="H314">H314</option>
+                                <option data-value="4" value="H318">H318</option>
+                                <option data-value="4" value="H331">H331</option>
+                                <option data-value="4" value="h371">H371</option>
+                                <option data-value="4" value="H372">H372</option>
+                                <option data-value="4" value="EUH029">EUH029</option>
+                                <option data-value="4" value="EUH031">EUH031</option>
+                                <option data-value="4" value="EUH070">EUH070</option>
+                                <option data-value="4" value="EUH071">EUH071</option>
+                                <option data-value="4" value="EUH206">EUH206</option>
+                                <option data-value="4" value="EUH207">EUH207</option>
+                                <option data-value="5" value="H300">H300</option>
+                                <option data-value="5" value="H310">H310</option>
+                                <option data-value="5" value="H330">H330</option>
+                                <option data-value="5" value="H370">H370</option>
+                                <option data-value="5" value="EUH032">EUH032</option>
+                                <option data-value="6" value="H341">H341</option>
+                                <option data-value="6" value="H351">H351</option>
+                                <option data-value="6" value="H361">H361</option>
+                                <option data-value="6" value="CMR2">CMR2</option>
+                                <option data-value="6" value="H340">H340</option>
+                                <option data-value="6" value="H350">H350</option>
+                                <option data-value="6" value="H360">H360</option>
+                                <option data-value="6" value="H362">H362</option>
+                                <option data-value="6" value="CMR1A">CMR1A</option>
+                                <option data-value="6" value="CMR1B">CMR1B</option>
                             </select>
                         </div>
                         <div class="item">
                             <label for="n7">n7</label>
                             <select name="n7" id="n7" class="form-control level">
-                                <option value="2">H315</option>
-                                <option value="2">H317</option>
-                                <option value="2">H335</option>
-                                <option value="2">H362</option>
-                                <option value="2">EUH066</option>
-                                <option value="2">EUH203</option>
-                                <option value="2">EUH204</option>
-                                <option value="2">EUH205</option>
-                                <option value="3">H302</option>
-                                <option value="3">H312</option>
-                                <option value="3">H319</option>
-                                <option value="3">H332</option>
-                                <option value="3">H334</option>
-                                <option value="3">H336</option>
-                                <option value="3">H373</option>
-                                <option value="4">H301</option>
-                                <option value="4">H304</option>
-                                <option value="4">H311</option>
-                                <option value="4">H314</option>
-                                <option value="4">H318</option>
-                                <option value="4">H331</option>
-                                <option value="4">H371</option>
-                                <option value="4">H372</option>
-                                <option value="4">EUH029</option>
-                                <option value="4">EUH031</option>
-                                <option value="4">EUH070</option>
-                                <option value="4">EUH071</option>
-                                <option value="4">EUH206</option>
-                                <option value="4">EUH207</option>
-                                <option value="5">H300</option>
-                                <option value="5">H310</option>
-                                <option value="5">H330</option>
-                                <option value="5">H370</option>
-                                <option value="5">EUH032</option>
-                                <option value="6">H341</option>
-                                <option value="6">H351</option>
-                                <option value="6">H361</option>
-                                <option value="6">CMR2</option>
-                                <option value="6">H340</option>
-                                <option value="6">H350</option>
-                                <option value="6">H360</option>
-                                <option value="6">H362</option>
-                                <option value="6">CMR1A</option>
-                                <option value="6">CMR1B</option>
+                                <option data-value="2" value="H315">H315</option>
+                                <option data-value="2" value="H317">H317</option>
+                                <option data-value="2" value="H335">H335</option>
+                                <option data-value="2" value="H362">H362</option>
+                                <option data-value="2" value="EUH066">EUH066</option>
+                                <option data-value="2" value="EUH203">EUH203</option>
+                                <option data-value="2" value="EUH204">EUH204</option>
+                                <option data-value="2" value="EUH205">EUH205</option>
+                                <option data-value="3" value="H302">H302</option>
+                                <option data-value="3" value="H312">H312</option>
+                                <option data-value="3" value="H319">H319</option>
+                                <option data-value="3" value="H332">H332</option>
+                                <option data-value="3" value="H334">H334</option>
+                                <option data-value="3" value="H336">H336</option>
+                                <option data-value="3" value="H373">H373</option>
+                                <option data-value="4" value="H301">H301</option>
+                                <option data-value="4" value="H304">H304</option>
+                                <option data-value="4" value="H311">H311</option>
+                                <option data-value="4" value="H314">H314</option>
+                                <option data-value="4" value="H318">H318</option>
+                                <option data-value="4" value="H331">H331</option>
+                                <option data-value="4" value="h371">H371</option>
+                                <option data-value="4" value="H372">H372</option>
+                                <option data-value="4" value="EUH029">EUH029</option>
+                                <option data-value="4" value="EUH031">EUH031</option>
+                                <option data-value="4" value="EUH070">EUH070</option>
+                                <option data-value="4" value="EUH071">EUH071</option>
+                                <option data-value="4" value="EUH206">EUH206</option>
+                                <option data-value="4" value="EUH207">EUH207</option>
+                                <option data-value="5" value="H300">H300</option>
+                                <option data-value="5" value="H310">H310</option>
+                                <option data-value="5" value="H330">H330</option>
+                                <option data-value="5" value="H370">H370</option>
+                                <option data-value="5" value="EUH032">EUH032</option>
+                                <option data-value="6" value="H341">H341</option>
+                                <option data-value="6" value="H351">H351</option>
+                                <option data-value="6" value="H361">H361</option>
+                                <option data-value="6" value="CMR2">CMR2</option>
+                                <option data-value="6" value="H340">H340</option>
+                                <option data-value="6" value="H350">H350</option>
+                                <option data-value="6" value="H360">H360</option>
+                                <option data-value="6" value="H362">H362</option>
+                                <option data-value="6" value="CMR1A">CMR1A</option>
+                                <option data-value="6" value="CMR1B">CMR1B</option>
                             </select>
                         </div>
                         <div class="item">
                             <label for="n8">n8</label>
                             <select name="n8" id="n8" class="form-control level">
-                                <option value="2">H315</option>
-                                <option value="2">H317</option>
-                                <option value="2">H335</option>
-                                <option value="2">H362</option>
-                                <option value="2">EUH066</option>
-                                <option value="2">EUH203</option>
-                                <option value="2">EUH204</option>
-                                <option value="2">EUH205</option>
-                                <option value="3">H302</option>
-                                <option value="3">H312</option>
-                                <option value="3">H319</option>
-                                <option value="3">H332</option>
-                                <option value="3">H334</option>
-                                <option value="3">H336</option>
-                                <option value="3">H373</option>
-                                <option value="4">H301</option>
-                                <option value="4">H304</option>
-                                <option value="4">H311</option>
-                                <option value="4">H314</option>
-                                <option value="4">H318</option>
-                                <option value="4">H331</option>
-                                <option value="4">H371</option>
-                                <option value="4">H372</option>
-                                <option value="4">EUH029</option>
-                                <option value="4">EUH031</option>
-                                <option value="4">EUH070</option>
-                                <option value="4">EUH071</option>
-                                <option value="4">EUH206</option>
-                                <option value="4">EUH207</option>
-                                <option value="5">H300</option>
-                                <option value="5">H310</option>
-                                <option value="5">H330</option>
-                                <option value="5">H370</option>
-                                <option value="5">EUH032</option>
-                                <option value="6">H341</option>
-                                <option value="6">H351</option>
-                                <option value="6">H361</option>
-                                <option value="6">CMR2</option>
-                                <option value="6">H340</option>
-                                <option value="6">H350</option>
-                                <option value="6">H360</option>
-                                <option value="6">H362</option>
-                                <option value="6">CMR1A</option>
-                                <option value="6">CMR1B</option>
+                                <option data-value="2" value="H315">H315</option>
+                                <option data-value="2" value="H317">H317</option>
+                                <option data-value="2" value="H335">H335</option>
+                                <option data-value="2" value="H362">H362</option>
+                                <option data-value="2" value="EUH066">EUH066</option>
+                                <option data-value="2" value="EUH203">EUH203</option>
+                                <option data-value="2" value="EUH204">EUH204</option>
+                                <option data-value="2" value="EUH205">EUH205</option>
+                                <option data-value="3" value="H302">H302</option>
+                                <option data-value="3" value="H312">H312</option>
+                                <option data-value="3" value="H319">H319</option>
+                                <option data-value="3" value="H332">H332</option>
+                                <option data-value="3" value="H334">H334</option>
+                                <option data-value="3" value="H336">H336</option>
+                                <option data-value="3" value="H373">H373</option>
+                                <option data-value="4" value="H301">H301</option>
+                                <option data-value="4" value="H304">H304</option>
+                                <option data-value="4" value="H311">H311</option>
+                                <option data-value="4" value="H314">H314</option>
+                                <option data-value="4" value="H318">H318</option>
+                                <option data-value="4" value="H331">H331</option>
+                                <option data-value="4" value="h371">H371</option>
+                                <option data-value="4" value="H372">H372</option>
+                                <option data-value="4" value="EUH029">EUH029</option>
+                                <option data-value="4" value="EUH031">EUH031</option>
+                                <option data-value="4" value="EUH070">EUH070</option>
+                                <option data-value="4" value="EUH071">EUH071</option>
+                                <option data-value="4" value="EUH206">EUH206</option>
+                                <option data-value="4" value="EUH207">EUH207</option>
+                                <option data-value="5" value="H300">H300</option>
+                                <option data-value="5" value="H310">H310</option>
+                                <option data-value="5" value="H330">H330</option>
+                                <option data-value="5" value="H370">H370</option>
+                                <option data-value="5" value="EUH032">EUH032</option>
+                                <option data-value="6" value="H341">H341</option>
+                                <option data-value="6" value="H351">H351</option>
+                                <option data-value="6" value="H361">H361</option>
+                                <option data-value="6" value="CMR2">CMR2</option>
+                                <option data-value="6" value="H340">H340</option>
+                                <option data-value="6" value="H350">H350</option>
+                                <option data-value="6" value="H360">H360</option>
+                                <option data-value="6" value="H362">H362</option>
+                                <option data-value="6" value="CMR1A">CMR1A</option>
+                                <option data-value="6" value="CMR1B">CMR1B</option>
                             </select>
                         </div>
                         <div class="item">
                             <label for="n9">n9</label>
                             <select name="n9" id="n9" class="form-control level">
-                                <option value="2">H315</option>
-                                <option value="2">H317</option>
-                                <option value="2">H335</option>
-                                <option value="2">H362</option>
-                                <option value="2">EUH066</option>
-                                <option value="2">EUH203</option>
-                                <option value="2">EUH204</option>
-                                <option value="2">EUH205</option>
-                                <option value="3">H302</option>
-                                <option value="3">H312</option>
-                                <option value="3">H319</option>
-                                <option value="3">H332</option>
-                                <option value="3">H334</option>
-                                <option value="3">H336</option>
-                                <option value="3">H373</option>
-                                <option value="4">H301</option>
-                                <option value="4">H304</option>
-                                <option value="4">H311</option>
-                                <option value="4">H314</option>
-                                <option value="4">H318</option>
-                                <option value="4">H331</option>
-                                <option value="4">H371</option>
-                                <option value="4">H372</option>
-                                <option value="4">EUH029</option>
-                                <option value="4">EUH031</option>
-                                <option value="4">EUH070</option>
-                                <option value="4">EUH071</option>
-                                <option value="4">EUH206</option>
-                                <option value="4">EUH207</option>
-                                <option value="5">H300</option>
-                                <option value="5">H310</option>
-                                <option value="5">H330</option>
-                                <option value="5">H370</option>
-                                <option value="5">EUH032</option>
-                                <option value="6">H341</option>
-                                <option value="6">H351</option>
-                                <option value="6">H361</option>
-                                <option value="6">CMR2</option>
-                                <option value="6">H340</option>
-                                <option value="6">H350</option>
-                                <option value="6">H360</option>
-                                <option value="6">H362</option>
-                                <option value="6">CMR1A</option>
-                                <option value="6">CMR1B</option>
+                                <option data-value="2" value="H315">H315</option>
+                                <option data-value="2" value="H317">H317</option>
+                                <option data-value="2" value="H335">H335</option>
+                                <option data-value="2" value="H362">H362</option>
+                                <option data-value="2" value="EUH066">EUH066</option>
+                                <option data-value="2" value="EUH203">EUH203</option>
+                                <option data-value="2" value="EUH204">EUH204</option>
+                                <option data-value="2" value="EUH205">EUH205</option>
+                                <option data-value="3" value="H302">H302</option>
+                                <option data-value="3" value="H312">H312</option>
+                                <option data-value="3" value="H319">H319</option>
+                                <option data-value="3" value="H332">H332</option>
+                                <option data-value="3" value="H334">H334</option>
+                                <option data-value="3" value="H336">H336</option>
+                                <option data-value="3" value="H373">H373</option>
+                                <option data-value="4" value="H301">H301</option>
+                                <option data-value="4" value="H304">H304</option>
+                                <option data-value="4" value="H311">H311</option>
+                                <option data-value="4" value="H314">H314</option>
+                                <option data-value="4" value="H318">H318</option>
+                                <option data-value="4" value="H331">H331</option>
+                                <option data-value="4" value="h371">H371</option>
+                                <option data-value="4" value="H372">H372</option>
+                                <option data-value="4" value="EUH029">EUH029</option>
+                                <option data-value="4" value="EUH031">EUH031</option>
+                                <option data-value="4" value="EUH070">EUH070</option>
+                                <option data-value="4" value="EUH071">EUH071</option>
+                                <option data-value="4" value="EUH206">EUH206</option>
+                                <option data-value="4" value="EUH207">EUH207</option>
+                                <option data-value="5" value="H300">H300</option>
+                                <option data-value="5" value="H310">H310</option>
+                                <option data-value="5" value="H330">H330</option>
+                                <option data-value="5" value="H370">H370</option>
+                                <option data-value="5" value="EUH032">EUH032</option>
+                                <option data-value="6" value="H341">H341</option>
+                                <option data-value="6" value="H351">H351</option>
+                                <option data-value="6" value="H361">H361</option>
+                                <option data-value="6" value="CMR2">CMR2</option>
+                                <option data-value="6" value="H340">H340</option>
+                                <option data-value="6" value="H350">H350</option>
+                                <option data-value="6" value="H360">H360</option>
+                                <option data-value="6" value="H362">H362</option>
+                                <option data-value="6" value="CMR1A">CMR1A</option>
+                                <option data-value="6" value="CMR1B">CMR1B</option>
                             </select>
                         </div>
                         <div class="item">
                             <label for="n10">n10</label>
                             <select name="n10" id="n10" class="form-control level">
-                                <option value="2">H315</option>
-                                <option value="2">H317</option>
-                                <option value="2">H335</option>
-                                <option value="2">H362</option>
-                                <option value="2">EUH066</option>
-                                <option value="2">EUH203</option>
-                                <option value="2">EUH204</option>
-                                <option value="2">EUH205</option>
-                                <option value="3">H302</option>
-                                <option value="3">H312</option>
-                                <option value="3">H319</option>
-                                <option value="3">H332</option>
-                                <option value="3">H334</option>
-                                <option value="3">H336</option>
-                                <option value="3">H373</option>
-                                <option value="4">H301</option>
-                                <option value="4">H304</option>
-                                <option value="4">H311</option>
-                                <option value="4">H314</option>
-                                <option value="4">H318</option>
-                                <option value="4">H331</option>
-                                <option value="4">H371</option>
-                                <option value="4">H372</option>
-                                <option value="4">EUH029</option>
-                                <option value="4">EUH031</option>
-                                <option value="4">EUH070</option>
-                                <option value="4">EUH071</option>
-                                <option value="4">EUH206</option>
-                                <option value="4">EUH207</option>
-                                <option value="5">H300</option>
-                                <option value="5">H310</option>
-                                <option value="5">H330</option>
-                                <option value="5">H370</option>
-                                <option value="5">EUH032</option>
-                                <option value="6">H341</option>
-                                <option value="6">H351</option>
-                                <option value="6">H361</option>
-                                <option value="6">CMR2</option>
-                                <option value="6">H340</option>
-                                <option value="6">H350</option>
-                                <option value="6">H360</option>
-                                <option value="6">H362</option>
-                                <option value="6">CMR1A</option>
-                                <option value="6">CMR1B</option>
+                                <option data-value="2" value="H315">H315</option>
+                                <option data-value="2" value="H317">H317</option>
+                                <option data-value="2" value="H335">H335</option>
+                                <option data-value="2" value="H362">H362</option>
+                                <option data-value="2" value="EUH066">EUH066</option>
+                                <option data-value="2" value="EUH203">EUH203</option>
+                                <option data-value="2" value="EUH204">EUH204</option>
+                                <option data-value="2" value="EUH205">EUH205</option>
+                                <option data-value="3" value="H302">H302</option>
+                                <option data-value="3" value="H312">H312</option>
+                                <option data-value="3" value="H319">H319</option>
+                                <option data-value="3" value="H332">H332</option>
+                                <option data-value="3" value="H334">H334</option>
+                                <option data-value="3" value="H336">H336</option>
+                                <option data-value="3" value="H373">H373</option>
+                                <option data-value="4" value="H301">H301</option>
+                                <option data-value="4" value="H304">H304</option>
+                                <option data-value="4" value="H311">H311</option>
+                                <option data-value="4" value="H314">H314</option>
+                                <option data-value="4" value="H318">H318</option>
+                                <option data-value="4" value="H331">H331</option>
+                                <option data-value="4" value="h371">H371</option>
+                                <option data-value="4" value="H372">H372</option>
+                                <option data-value="4" value="EUH029">EUH029</option>
+                                <option data-value="4" value="EUH031">EUH031</option>
+                                <option data-value="4" value="EUH070">EUH070</option>
+                                <option data-value="4" value="EUH071">EUH071</option>
+                                <option data-value="4" value="EUH206">EUH206</option>
+                                <option data-value="4" value="EUH207">EUH207</option>
+                                <option data-value="5" value="H300">H300</option>
+                                <option data-value="5" value="H310">H310</option>
+                                <option data-value="5" value="H330">H330</option>
+                                <option data-value="5" value="H370">H370</option>
+                                <option data-value="5" value="EUH032">EUH032</option>
+                                <option data-value="6" value="H341">H341</option>
+                                <option data-value="6" value="H351">H351</option>
+                                <option data-value="6" value="H361">H361</option>
+                                <option data-value="6" value="CMR2">CMR2</option>
+                                <option data-value="6" value="H340">H340</option>
+                                <option data-value="6" value="H350">H350</option>
+                                <option data-value="6" value="H360">H360</option>
+                                <option data-value="6" value="H362">H362</option>
+                                <option data-value="6" value="CMR1A">CMR1A</option>
+                                <option data-value="6" value="CMR1B">CMR1B</option>
                             </select>
                         </div>
                     </div>
@@ -576,7 +576,7 @@
                 <div class="row">
                     <div class="line nd">
                         <label for="nd">Niveau de Danger associé au produit (ND)</label>
-                        <input type="text" id="nd" class="form-control" placeholder="valeur" value="H315">
+                        <input type="text" id="nd" class="form-control" placeholder="valeur" value="">
                         <input type="hidden" id="nd_hidden" value="0">
                     </div>
                 </div>
@@ -782,7 +782,7 @@
                                 @foreach($restraints_chemical as $restraint)
                                     <li class="res-pro">
                                         <input type="checkbox" class="btn-check" data-tab="none">
-                                        <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed[not-checked][none][]">{{ $restraint->name }}</textarea>
+                                        <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed[not-checked][]">{{ $restraint->name }}</textarea>
                                     </li>
                                 @endforeach
 

@@ -10,7 +10,7 @@ on('.btn-add-restraint', 'click', (el, e) => {
             el.closest('td').querySelector('.nothing_restraint_pro').remove();
         }
         let content ='<input type="checkbox" class="btn-check" data-on="false" data-id="none" data-tab="none" checked>\n' +
-            '<textarea class="form-control auto-resize" placeholder="" name="restraint_proposed[checked][none][]"></textarea>\n' +
+            '<textarea class="form-control auto-resize" placeholder="" name="restraint_proposed[checked][]"></textarea>\n' +
             '<button type="button" class="btn btn-text btn-small btn-delete-restraint"><i class="far fa-times-circle"></i></button>'
         let li = document.createElement('li');
         li.setAttribute('class','res-pro')
@@ -31,10 +31,10 @@ on('.btn-check', 'click', (el, e) => {
 
     if (el.checked){
         el.closest('li').querySelector('textarea').removeAttribute('name')
-        el.closest('li').querySelector('textarea').setAttribute('name', 'restraint_proposed[checked]['+ el.dataset.tab +'][]')
+        el.closest('li').querySelector('textarea').setAttribute('name', 'restraint_proposed[checked][]')
     }else{
         el.closest('li').querySelector('textarea').removeAttribute('name')
-        el.closest('li').querySelector('textarea').setAttribute('name', 'restraint_proposed[not-checked]['+ el.dataset.tab +'][]')
+        el.closest('li').querySelector('textarea').setAttribute('name', 'restraint_proposed[not-checked][]')
     }
 });
 
@@ -63,13 +63,13 @@ function BIG(){
     let all = $('.level')
 
     all = all.sort(function compareNumbers(a, b) {
-        return a.value - b.value;
+        return a.options[a.selectedIndex].dataset.value - b.options[b.selectedIndex].dataset.value;
     });
 
-    $("#nd", document, 0).value = all[all.length - 1].options[all[all.length - 1].selectedIndex].text;
-    $('#nd_hidden', document, 0).value = all[all.length - 1].value;
+    $("#nd", document, 0).value = all[all.length - 1].value;
+    $('#nd_hidden', document, 0).value = all[all.length - 1].options[all[all.length - 1].selectedIndex].dataset.value;
 
-    let nd = all[all.length - 1].value;
+    let nd = all[all.length - 1].options[all[all.length - 1].selectedIndex].dataset.value;
     nd = parseInt(nd);
     let rr = $('#rr', document, 0);
     rr.removeAttribute("class")
@@ -112,6 +112,8 @@ function IR() {
     let cal = nd - vent - con - time - pro;
     let text = "Acceptable";
 
+    console.log(cal)
+
     if (cal <= 0){
         text = "Acceptable";
     }else if(cal < 2){
@@ -122,4 +124,51 @@ function IR() {
 
     $('#ir', document, 0).value = text
 
+}
+
+
+let translate = {
+    "H315" : 2,
+    "H317" : 2,
+    "H335" : 2,
+    "H362" : 2,
+    "EUH066" : 2,
+    "EUH203" : 2,
+    "EUH204" : 2,
+    "EUH205" : 2,
+    "H302" : 3,
+    "H312" : 3,
+    "H319" : 3,
+    "H332" : 3,
+    "H334" : 3,
+    "H336" : 3,
+    "H373" : 3,
+    "H301" : 4,
+    "H304" : 4,
+    "H311" : 4,
+    "H314" : 4,
+    "H318" : 4,
+    "H331" : 4,
+    "H372" : 4,
+    "EUH029" : 4,
+    "EUH031" : 4,
+    "EUH070" : 4,
+    "EUH071" : 4,
+    "EUH206" : 4,
+    "EUH207" : 4,
+    "H300" : 5,
+    "H310" : 5,
+    "H330" : 5,
+    "H370" : 5,
+    "EUH032" : 5,
+    "H341" : 6,
+    "H351" : 6,
+    "H361" : 6,
+    "CMR2" : 6,
+    "H340" : 6,
+    "H350" : 6,
+    "H360" : 6,
+    "H363" : 6,
+    "CMR1A" : 6,
+    "CMR1B" : 6
 }

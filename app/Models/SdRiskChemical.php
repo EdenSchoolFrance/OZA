@@ -12,7 +12,7 @@ class SdRiskChemical extends Model
     public $timestamps = false;
     public $incrementing = false;
     protected $keyType = 'string';
-    protected $table = "sd_risks_chimicals";
+    protected $table = "sd_risks_chemicals";
 
     /**
      * The attributes that are mass assignable.
