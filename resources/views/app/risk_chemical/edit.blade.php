@@ -4,7 +4,7 @@
 
 
     <div class="content">
-        <form action="{{ route('risk.chemical.store', [$single_document->id]) }}" class="card card--add-risk card--risk-chemical" method="post">
+        <form action="{{ route('risk.chemical.update', [$single_document->id, $sd_risk->id]) }}" class="card card--add-risk card--risk-chemical" method="post">
             @csrf
             <div class="card-body">
                 <div class="row">
@@ -16,7 +16,11 @@
                         <div class="right">
                             <select name="work_unit" id="workUnit" class="form-control">
                                 @foreach($works_units as $work)
-                                    <option value="{{ $work->id }}">{{ $work->name }}</option>
+                                    @if($work->id === $sd_risk->sd_work_unit->id)
+                                        <option value="{{ $work->id }}" selected>{{ $work->name }}</option>
+                                    @else
+                                        <option value="{{ $work->id }}">{{ $work->name }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
@@ -36,7 +40,7 @@
                             <label for="nameRisk">Produit concerné</label>
                         </div>
                         <div class="right">
-                            <textarea type="text" class="form-control" name="name_risk" id="nameRisk" placeholder="Nom commercial ou dénomination">@if(old('name_risk')){{ old('name_risk') }}@endif</textarea>
+                            <textarea type="text" class="form-control" name="name_risk" id="nameRisk" placeholder="Nom commercial ou dénomination">@if(old('name_risk')) {{ old('name_risk')  }} @else {{ $sd_risk->name }} @endif</textarea>
                         </div>
                     </div>
                     @error('name_risk')
@@ -54,7 +58,7 @@
                             <label for="activity">Utilisation activité</label>
                         </div>
                         <div class="right">
-                            <textarea type="text" class="form-control" name="activity" id="activity" placeholder="Utilisation du produit / Activité qui génère le produit">@if(old('activity')){{ old('activity') }}@endif</textarea>
+                            <textarea type="text" class="form-control" name="activity" id="activity" placeholder="Utilisation du produit / Activité qui génère le produit">@if(old('activity')) {{ old('activity') }} @else {{ $sd_risk->activity }} @endif</textarea>
                         </div>
                     </div>
                     @error('name_risk')
@@ -84,7 +88,11 @@
                             <label for="n1">n1</label>
                             <select name="n1" id="n1" class="form-control level">
                                 @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
+                                    @if($item->name === $sd_risk->n1)
+                                        <option data-value="{{ $item->value }}" value="{{ $item->name}}" selected>{{ $item->name}}</option>
+                                    @else
+                                        <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
@@ -92,7 +100,11 @@
                             <label for="n2">n2</label>
                             <select name="n2" id="n2" class="form-control level">
                                 @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
+                                    @if($item->name === $sd_risk->n2)
+                                        <option data-value="{{ $item->value }}" value="{{ $item->name}}" selected>{{ $item->name}}</option>
+                                    @else
+                                        <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
@@ -100,7 +112,11 @@
                             <label for="n3">n3</label>
                             <select name="n3" id="n3" class="form-control level">
                                 @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
+                                    @if($item->name === $sd_risk->n3)
+                                        <option data-value="{{ $item->value }}" value="{{ $item->name}}" selected>{{ $item->name}}</option>
+                                    @else
+                                        <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
@@ -108,7 +124,11 @@
                             <label for="n4">n4</label>
                             <select name="n4" id="n4" class="form-control level">
                                 @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
+                                    @if($item->name === $sd_risk->n4)
+                                        <option data-value="{{ $item->value }}" value="{{ $item->name}}" selected>{{ $item->name}}</option>
+                                    @else
+                                        <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
@@ -116,7 +136,11 @@
                             <label for="n5">n5</label>
                             <select name="n5" id="n5" class="form-control level">
                                 @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
+                                    @if($item->name === $sd_risk->n5)
+                                        <option data-value="{{ $item->value }}" value="{{ $item->name}}" selected>{{ $item->name}}</option>
+                                    @else
+                                        <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
@@ -124,7 +148,11 @@
                             <label for="n6">n6</label>
                             <select name="n6" id="n6" class="form-control level">
                                 @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
+                                    @if($item->name === $sd_risk->n6)
+                                        <option data-value="{{ $item->value }}" value="{{ $item->name}}" selected>{{ $item->name}}</option>
+                                    @else
+                                        <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
@@ -132,7 +160,11 @@
                             <label for="n7">n7</label>
                             <select name="n7" id="n7" class="form-control level">
                                 @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
+                                    @if($item->name === $sd_risk->n7)
+                                        <option data-value="{{ $item->value }}" value="{{ $item->name}}" selected>{{ $item->name}}</option>
+                                    @else
+                                        <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
@@ -140,7 +172,11 @@
                             <label for="n8">n8</label>
                             <select name="n8" id="n8" class="form-control level">
                                 @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
+                                    @if($item->name === $sd_risk->n8)
+                                        <option data-value="{{ $item->value }}" value="{{ $item->name}}" selected>{{ $item->name}}</option>
+                                    @else
+                                        <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
@@ -148,7 +184,11 @@
                             <label for="n9">n9</label>
                             <select name="n9" id="n9" class="form-control level">
                                 @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
+                                    @if($item->name === $sd_risk->n9)
+                                        <option data-value="{{ $item->value }}" value="{{ $item->name}}" selected>{{ $item->name}}</option>
+                                    @else
+                                        <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
@@ -156,7 +196,11 @@
                             <label for="n10">n10</label>
                             <select name="n10" id="n10" class="form-control level">
                                 @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
+                                    @if($item->name === $sd_risk->n10)
+                                        <option data-value="{{ $item->value }}" value="{{ $item->name}}" selected>{{ $item->name}}</option>
+                                    @else
+                                        <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
@@ -166,8 +210,8 @@
                 <div class="row">
                     <div class="line nd">
                         <label for="nd">Niveau de Danger associé au produit (ND)</label>
-                        <input type="text" id="nd" class="form-control" placeholder="valeur" value="">
-                        <input type="hidden" id="nd_hidden" value="0">
+                        <input type="text" id="nd" class="form-control" placeholder="valeur" value="{{ $sd_risk->ND()['key'] }}">
+                        <input type="hidden" id="nd_hidden" value="{{ $sd_risk->ND()['value'] }}">
                     </div>
                 </div>
 
@@ -179,7 +223,7 @@
                             <label for="date-fds">Date d'élaboration ou de révision de la FDS</label>
                         </div>
                         <div class="right">
-                            <input type="date" name="date_fds" id="date-fds" class="form-control">
+                            <input type="date" name="date_fds" id="date-fds" class="form-control" value="{{ $sd_risk->date }}">
                         </div>
                     </div>
                 </div>
@@ -200,11 +244,11 @@
                         </div>
                         <div class="right">
                             <select name="ventilation" id="ventilation" class="form-control">
-                                <option value="0">Sans ou dans un local</option>
-                                <option value="1">Médiocre ou travail à l'extérieur</option>
-                                <option value="2">Efficace</option>
-                                <option value="3">Aspiration localisée</option>
-                                <option value="4">Sorbonne de laboratoire</option>
+                                <option value="0" @if($sd_risk->ventilation === 0) selected @endif>Sans ou dans un local</option>
+                                <option value="1" @if($sd_risk->ventilation === 1) selected @endif>Médiocre ou travail à l'extérieur</option>
+                                <option value="2" @if($sd_risk->ventilation === 2) selected @endif>Efficace</option>
+                                <option value="3" @if($sd_risk->ventilation === 3) selected @endif>Aspiration localisée</option>
+                                <option value="4" @if($sd_risk->ventilation === 4) selected @endif>Sorbonne de laboratoire</option>
                             </select>
                         </div>
                     </div>
@@ -214,9 +258,9 @@
                         </div>
                         <div class="right">
                             <select name="concentration" id="concentration" class="form-control">
-                                <option value="0">10 à pur</option>
-                                <option value="2">1 à 10%</option>
-                                <option value="4">< 1%</option>
+                                <option value="0" @if($sd_risk->concentration === 0) selected @endif>10 à pur</option>
+                                <option value="2" @if($sd_risk->concentration === 2) selected @endif>1 à 10%</option>
+                                <option value="4" @if($sd_risk->concentration === 4) selected @endif>< 1%</option>
                             </select>
                         </div>
                     </div>
@@ -226,9 +270,9 @@
                         </div>
                         <div class="right">
                             <select name="time" id="time" class="form-control">
-                                <option value="0">45mn à 8h</option>
-                                <option value="2">5 à 45mn</option>
-                                <option value="4">< 5mn</option>
+                                <option value="0" @if($sd_risk->time === 0) selected @endif>45mn à 8h</option>
+                                <option value="2" @if($sd_risk->time === 2) selected @endif>5 à 45mn</option>
+                                <option value="4" @if($sd_risk->time === 4) selected @endif>< 5mn</option>
                             </select>
                         </div>
                     </div>
@@ -251,55 +295,12 @@
                             <a class="btn-modal-uncheck">Tout decocher</a>
                             <div id="modal-list">
                                 <div data-id="" style="">
-                                    <label class="contain">
-                                        <input type="checkbox" value="Gant" data-name="Gant" name="list_items[]">
-                                        <span class="checkmark">Gant</span>
-                                    </label>
-                                    <label class="contain">
-                                        <input type="checkbox" value="Gant étanche au produit" data-name="Gant étanche au produit" name="list_items[]">
-                                        <span class="checkmark">Gant étanche au produit</span>
-                                    </label>
-                                    <label class="contain">
-                                        <input type="checkbox" value="Lunette de sécurité" data-name="Lunette de sécurité" name="list_items[]">
-                                        <span class="checkmark">Lunette de sécurité</span>
-                                    </label>
-                                    <label class="contain">
-                                        <input type="checkbox" value="Lunette de sécurité étanche" data-name="Lunette de sécurité étanche" name="list_items[]">
-                                        <span class="checkmark">Lunette de sécurité étanche</span>
-                                    </label>
-                                    <label class="contain">
-                                        <input type="checkbox" value="Vêtement de travail" data-name="Vêtement de travail" name="list_items[]">
-                                        <span class="checkmark">Vêtement de travail</span>
-                                    </label>
-                                    <label class="contain">
-                                        <input type="checkbox" value="Combinaison étanche au produit" data-name="Combinaison étanche au produit" name="list_items[]">
-                                        <span class="checkmark">Combinaison étanche au produit</span>
-                                    </label>
-                                    <label class="contain">
-                                        <input type="checkbox" value="Masque anti-poussières FFP2" data-name="Masque anti-poussières FFP2" name="list_items[]">
-                                        <span class="checkmark">Masque anti-poussières FFP2</span>
-                                    </label>
-                                    <label class="contain">
-                                        <input type="checkbox" value="Masque anti-poussières FFP3" data-name="Masque anti-poussières FFP3" name="list_items[]">
-                                        <span class="checkmark">Masque anti-poussières FFP3</span>
-                                    </label>
-                                    <label class="contain">
-                                        <input type="checkbox" value="Masque à gaz et vapeur adapté au produit" data-name="Masque à gaz et vapeur adapté au produit" name="list_items[]">
-                                        <span class="checkmark">Masque à gaz et vapeur adapté au produit</span>
-                                    </label>
-                                    <label class="contain">
-                                        <input type="checkbox" value="Masque ventilé adapté au produit" data-name="Masque ventilé adapté au produit" name="list_items[]">
-                                        <span class="checkmark">Masque ventilé adapté au produit</span>
-                                    </label>
-                                    <label class="contain">
-                                        <input type="checkbox" value="Masque à adduction d’air" data-name="Masque à adduction d’air" name="list_items[]">
-                                        <span class="checkmark">Masque à adduction d’air</span>
-                                    </label>
-                                    <label class="contain">
-                                        <input type="checkbox" value="ARI" data-name="ARI" name="list_items[]">
-                                        <span class="checkmark">ARI</span>
-                                    </label>
-
+                                    @foreach($sd_risk->sd_equipements as $item)
+                                        <label class="contain">
+                                            <input type="checkbox" value="{{ $item->name }}" data-name="{{ $item->name }}" name="list_items[]" checked>
+                                            <span class="checkmark">{{ $item->name }}</span>
+                                        </label>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -329,10 +330,10 @@
                         </div>
                         <div class="right">
                             <select name="protection" id="protection" class="form-control">
-                                <option value="0">Aucune</option>
-                                <option value="1">Une seule</option>
-                                <option value="2">Au moins une adaptée au risque principal</option>
-                                <option value="4">Toutes celles nécessaires</option>
+                                <option value="0" @if($sd_risk->protection === 0) selected @endif>Aucune</option>
+                                <option value="1" @if($sd_risk->protection === 1) selected @endif>Une seule</option>
+                                <option value="2" @if($sd_risk->protection === 2) selected @endif>Au moins une adaptée au risque principal</option>
+                                <option value="4" @if($sd_risk->protection === 4) selected @endif>Toutes celles nécessaires</option>
                             </select>
                         </div>
                     </div>
@@ -341,7 +342,7 @@
                             <label for="ir">Indice de Risque (IR)</label>
                         </div>
                         <div class="right">
-                            <input type="text" id="ir" class="form-control" placeholder="valeur">
+                            <input type="text" id="ir" class="form-control" placeholder="valeur" value="{{ $sd_risk->IR() }}">
                         </div>
                     </div>
                     <div class="line">
@@ -349,7 +350,7 @@
                             <label for="">Risque Résiduel (RR)</label>
                         </div>
                         <div class="right">
-                            <button class="btn btn-success" id="rr">Acceptable</button>
+                            <button class="btn {{ $sd_risk->criticality()['class'] }}" id="rr">{{ $sd_risk->criticality()['text'] }}</button>
                         </div>
                     </div>
                 </div>
@@ -369,20 +370,14 @@
                         <div class="right" style="display: block;">
                             <ul class="restraint-proposed">
 
-                                @foreach($restraints_chemical as $restraint)
+                                @foreach($sd_risk->sd_restraints_exist as $restraint)
                                     <li class="res-pro">
-                                        <input type="checkbox" class="btn-check" data-tab="none">
-                                        <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed[not-checked][]">{{ $restraint->name }}</textarea>
+                                        <input type="checkbox" class="btn-check" data-id="none" checked data-tab="{{ $restraint->id }}">
+                                        <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed_[checked][]">{{ $restraint->name }}</textarea>
+                                        <button type="button" class="btn btn-text btn-small btn-delete-restraint"><i class="far fa-times-circle"></i></button>
                                     </li>
                                 @endforeach
 
-                                {{--
-                                <li class="res-pro">
-                                    <input type="checkbox" class="btn-check" data-id="{{ $response->id }}" {{$restraint->checked === 1 ? 'checked' : ''}} data-tab="{{ $restraint->id }}">
-                                    <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed_{{ $response->id }}[{{$restraint->checked === 1 ? 'checked' : 'not-checked'}}][{{ $restraint->id }}][]">{{ $restraint->text }}</textarea>
-                                    <button type="button" class="btn btn-text btn-small btn-delete-restraint"><i class="far fa-times-circle"></i></button>
-                                </li>
-                                --}}
                                 @error('restraint_proposed')
                                 <li>
                                     <p class="message-error">{{ $message }}</p>
@@ -397,6 +392,7 @@
                 <hr>
 
                 <div class="row row--submit">
+                    <input type="hidden" name="id_risk" value="{{ $sd_risk->id }}">
                     <button class="btn btn-success">Valider le risque</button>
                 </div>
             </div>

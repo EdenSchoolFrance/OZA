@@ -256,8 +256,17 @@ Route::middleware(['auth'])->group(function() {
         Route::middleware(['permission:ADMIN,EXPERT,MANAGER,EDITOR'])->group(function () {
 
             Route::get('/{single_document}/risk_chemical/', [RiskChemicalController::class, 'index'])->name('risk.chemical.index');
+
             Route::get('/{single_document}/risk_chemical/create', [RiskChemicalController::class, 'create'])->name('risk.chemical.create');
             Route::post('/{single_document}/risk_chemical/store', [RiskChemicalController::class, 'store'])->name('risk.chemical.store');
+
+            Route::post('/{single_document}/risk_chemical/delete', [RiskChemicalController::class, 'delete'])->name('risk.chemical.delete');
+
+            Route::get('/{single_document}/risk_chemical/actions/', [RiskChemicalController::class, 'action'])->name('risk.chemical.action.index');
+            Route::post('/{single_document}/risk_chemical/action/store', [RiskChemicalController::class, 'action_store'])->name('risk.chemical.action.store');
+
+            Route::get('/{single_document}/risk_chemical/edit/{risk_chemical}', [RiskChemicalController::class, 'edit'])->name('risk.chemical.edit');
+            Route::post('/{single_document}/risk_chemical/update/{risk_chemical}', [RiskChemicalController::class, 'update'])->name('risk.chemical.update');
 
         });
 

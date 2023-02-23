@@ -6,16 +6,15 @@ on('.btn-add-restraint', 'click', (el, e) => {
         all[all.length - 2].querySelector('textarea').focus();
     }else{
         let restraints = $('li.res-pro')
-        if (restraints.length === 0){
-            el.closest('td').querySelector('.nothing_restraint_pro').remove();
-        }
+
         let content ='<input type="checkbox" class="btn-check" data-on="false" data-id="none" data-tab="none" checked>\n' +
             '<textarea class="form-control auto-resize" placeholder="" name="restraint_proposed[checked][]"></textarea>\n' +
             '<button type="button" class="btn btn-text btn-small btn-delete-restraint"><i class="far fa-times-circle"></i></button>'
         let li = document.createElement('li');
         li.setAttribute('class','res-pro')
         li.innerHTML = content;
-        all[all.length - 1].after(li);
+        if (restraints.length === 0) el.closest('div').querySelector('ul').appendChild(li);
+        else all[all.length - 1].after(li);
         li.querySelector("textarea").focus();
 
     }
@@ -127,48 +126,6 @@ function IR() {
 }
 
 
-let translate = {
-    "H315" : 2,
-    "H317" : 2,
-    "H335" : 2,
-    "H362" : 2,
-    "EUH066" : 2,
-    "EUH203" : 2,
-    "EUH204" : 2,
-    "EUH205" : 2,
-    "H302" : 3,
-    "H312" : 3,
-    "H319" : 3,
-    "H332" : 3,
-    "H334" : 3,
-    "H336" : 3,
-    "H373" : 3,
-    "H301" : 4,
-    "H304" : 4,
-    "H311" : 4,
-    "H314" : 4,
-    "H318" : 4,
-    "H331" : 4,
-    "H372" : 4,
-    "EUH029" : 4,
-    "EUH031" : 4,
-    "EUH070" : 4,
-    "EUH071" : 4,
-    "EUH206" : 4,
-    "EUH207" : 4,
-    "H300" : 5,
-    "H310" : 5,
-    "H330" : 5,
-    "H370" : 5,
-    "EUH032" : 5,
-    "H341" : 6,
-    "H351" : 6,
-    "H361" : 6,
-    "CMR2" : 6,
-    "H340" : 6,
-    "H350" : 6,
-    "H360" : 6,
-    "H363" : 6,
-    "CMR1A" : 6,
-    "CMR1B" : 6
-}
+on('a[data-modal=".modal--delete"]', 'click', (el, e) => {
+    $('.modal--delete input[name="id_risk"]', document, 0).value = el.dataset.risk
+});

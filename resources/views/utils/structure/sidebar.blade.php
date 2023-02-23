@@ -123,6 +123,12 @@
                             @endforeach
                         @endif
                     @endif
+                    <li class="sidebar-nav-item">
+                        <p class="sidebar-nav-link">Risques chimiques</p>
+                    </li>
+                    <li class="sidebar-nav-item {{ $page['sidebar'] == "action_plan" && $page['sub_sidebar'] == "risk_chemical" ? 'active' : '' }}">
+                        <a href="{{route('risk.chemical.action.index', [$single_document->id])}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Mesures à prendre</a>
+                    </li>
                 </ul>
             </li>
             {{--

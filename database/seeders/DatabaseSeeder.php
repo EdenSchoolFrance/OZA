@@ -71,5 +71,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PsychosocialQuestionSeeder::class);
 
         $this->call(RestraintChemicalSeeder::class);
+
+        $this->call(DangerLevelSeeder::class);
     }
 }

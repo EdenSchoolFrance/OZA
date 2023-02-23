@@ -16,8 +16,8 @@ class CreateSdRestraintsChemicalsTable extends Migration
         Schema::create('sd_restraints_chemicals', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->text('name');
-            $table->text('comment');
-            $table->date('date');
+            $table->text('comment')->nullable();
+            $table->date('date')->nullable();
             $table->boolean('exist');
 
             $table->foreignUuid('sd_risk_chemical_id');

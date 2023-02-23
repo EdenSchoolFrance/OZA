@@ -50,46 +50,72 @@
                                     <td class="td_n8">{{ $sd_risk->n8 }}</td>
                                     <td class="td_n9">{{ $sd_risk->n9 }}</td>
                                     <td class="td_n10">{{ $sd_risk->n10 }}</td>
-                                    <td class="td_nd">{{ $sd_risk->ND() }}</td>
-                                    <td class="td_ventilation">{{ $sd_risk->ventilation }}</td>
-                                    <td class="td_concentration">{{ $sd_risk->concentration }}</td>
-                                    <td class="td_time">{{ $sd_risk->time }}</td>
-                                    <td class="td_protection">{{ $sd_risk->protection }}</td>
+                                    <td class="td_nd">{{ $sd_risk->ND()['key'] }}</td>
+                                    <td class="td_ventilation">{{ $sd_risk->T_ventilation() }}</td>
+                                    <td class="td_concentration">{{ $sd_risk->T_concentration() }}</td>
+                                    <td class="td_time">{{ $sd_risk->T_time() }}</td>
+                                    <td class="td_protection">{{ $sd_risk->T_protection() }}</td>
                                     <td class="td_ir">{{ $sd_risk->IR() }}</td>
                                     <td class="td_equipement">
                                         <ul>
                                             @foreach($sd_risk->sd_restraints_exist as $sd_restraint)
-                                                <li>{{ $sd_restraint->name }}</li>
+                                                <li>- {{ $sd_restraint->name }}</li>
                                             @endforeach
                                             @if(count($sd_risk->sd_restraints_exist) === 0)
                                                 <li>Néant</li>
                                             @endif
                                         </ul>
                                     </td>
-                                    <td class="td_RR">{{ $sd_risk->RR() }}</td>
-                                    <td class="td_criticality">{{ $sd_risk->criticality() }}</td>
+                                    <td class="td_RR">{{ $sd_risk->ND()['value'] }}</td>
+                                    <td class="td_criticality"><button class="btn {{ $sd_risk->criticality()['class'] }}">{{ $sd_risk->criticality()['text'] }}</button></td>
                                     <td class="td_restraint_exist">
                                         <ul>
                                             @foreach($sd_risk->sd_restraints_exist as $sd_restraint)
-                                                <li>{{ $sd_restraint->name }}</li>
+                                                <li>- {{ $sd_restraint->name }}</li>
                                             @endforeach
                                             @if(count($sd_risk->sd_restraints_exist) === 0)
                                                 <li>Néant</li>
                                             @endif
                                         </ul>
                                     </td>
-                                    <td class="td_actions"></td>
+                                    <td class="td_actions">
+                                        <div>
+                                            <a href="{{ route('risk.chemical.edit', [$single_document->id, $sd_risk->id]) }}"><i class="far fa-edit"></i></a>
+                                            <a data-modal=".modal--delete" data-risk="{{ $sd_risk->id }}"><i class="fas fa-trash"></i></a>
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
-                <a href="{{ route('risk.chemical.create', [$single_document->id]) }}" class="btn btn-yellow"><i class="fas fa-plus"></i> AJOUTER UN RISQUE</a>
+                <a href="{{ route('risk.chemical.create', [$single_document->id]) }}" class="btn btn-yellow" style="margin-top: 10px;"><i class="fas fa-plus"></i> AJOUTER UN RISQUE</a>
             </div>
         </div>
+
+        <div class="modal modal--delete">
+            <div class="modal-dialog">
+                <form class="modal-content" action="{{ route('risk.chemical.delete', [$single_document->id]) }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="id_risk" value="">
+                    <div class="modal-header">
+                        <p class="title">Confirmer la suppression</p>
+                        <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Êtes-vous sûr.e de vouloir supprimer ce risque ?</p>
+                        <div>
+                            <button type="submit" class="btn btn-yellow">Supprimer</button>
+                            <button type="button" class="btn btn-inv btn-yellow btn-small" data-dismiss="modal"> Annuler</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
     </div>
 @endsection
 
 @section('script')
-    <script src="/js/app/risk.js"></script>
+    <script src="/js/app/risk_chemical.js"></script>
 @endsection
