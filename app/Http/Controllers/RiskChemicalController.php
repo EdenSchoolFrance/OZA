@@ -135,14 +135,16 @@ class RiskChemicalController extends Controller
         $sd_risk->save();
 
 
+        if (!empty($request->list_items)){
+            foreach ($request->list_items as $item){
 
-        foreach ($request->list_items as $item){
+                $sd_equiment = new SdEquipementChemical();
+                $sd_equiment->id = uniqid();
+                $sd_equiment->name = $item;
+                $sd_equiment->sd_risk_chemical()->associate($sd_risk);
+                $sd_equiment->save();
 
-            $sd_equiment = new SdEquipementChemical();
-            $sd_equiment->id = uniqid();
-            $sd_equiment->name = $item;
-            $sd_equiment->sd_risk_chemical()->associate($sd_risk);
-            $sd_equiment->save();
+            }
         }
 
         $restraint = "restraint_proposed";
@@ -220,13 +222,15 @@ class RiskChemicalController extends Controller
 
         $sd_risk->sd_equipements()->delete();
 
-        foreach ($request->list_items as $item){
+        if (!empty($request->list_items)) {
+            foreach ($request->list_items as $item) {
 
-            $sd_equiment = new SdEquipementChemical();
-            $sd_equiment->id = uniqid();
-            $sd_equiment->name = $item;
-            $sd_equiment->sd_risk_chemical()->associate($sd_risk);
-            $sd_equiment->save();
+                $sd_equiment = new SdEquipementChemical();
+                $sd_equiment->id = uniqid();
+                $sd_equiment->name = $item;
+                $sd_equiment->sd_risk_chemical()->associate($sd_risk);
+                $sd_equiment->save();
+            }
         }
 
         $sd_risk->sd_restraints()->delete();
@@ -245,7 +249,7 @@ class RiskChemicalController extends Controller
             }
         }
 
-        return back()->with('status', 'Risque chimique modifier !');
+        return back()->with('status', 'Risque chimique modifié !');
 
     }
 

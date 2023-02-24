@@ -65,7 +65,7 @@ function BIG(){
         return a.options[a.selectedIndex].dataset.value - b.options[b.selectedIndex].dataset.value;
     });
 
-    $("#nd", document, 0).value = all[all.length - 1].value;
+    $("#nd", document, 0).value = all[all.length - 1].options[all[all.length - 1].selectedIndex].dataset.value;
     $('#nd_hidden', document, 0).value = all[all.length - 1].options[all[all.length - 1].selectedIndex].dataset.value;
 
     let nd = all[all.length - 1].options[all[all.length - 1].selectedIndex].dataset.value;

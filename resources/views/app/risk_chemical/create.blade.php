@@ -21,7 +21,7 @@
                             </select>
                         </div>
                     </div>
-                    @error('name_risk')
+                    @error('work_unit')
                     <div class="line">
                         <div class="left"></div>
                         <div class="right">
@@ -57,7 +57,7 @@
                             <textarea type="text" class="form-control" name="activity" id="activity" placeholder="Utilisation du produit / Activité qui génère le produit">@if(old('activity')){{ old('activity') }}@endif</textarea>
                         </div>
                     </div>
-                    @error('name_risk')
+                    @error('activity')
                     <div class="line">
                         <div class="left"></div>
                         <div class="right">
@@ -83,6 +83,7 @@
                         <div class="item">
                             <label for="n1">n1</label>
                             <select name="n1" id="n1" class="form-control level">
+                                <option data-value="0" value="NC">NC</option>
                                 @foreach($danger_level as $item)
                                     <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
                                 @endforeach
@@ -91,6 +92,7 @@
                         <div class="item">
                             <label for="n2">n2</label>
                             <select name="n2" id="n2" class="form-control level">
+                                <option data-value="0" value="NC">NC</option>
                                 @foreach($danger_level as $item)
                                     <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
                                 @endforeach
@@ -99,6 +101,7 @@
                         <div class="item">
                             <label for="n3">n3</label>
                             <select name="n3" id="n3" class="form-control level">
+                                <option data-value="0" value="NC">NC</option>
                                 @foreach($danger_level as $item)
                                     <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
                                 @endforeach
@@ -107,6 +110,7 @@
                         <div class="item">
                             <label for="n4">n4</label>
                             <select name="n4" id="n4" class="form-control level">
+                                <option data-value="0" value="NC">NC</option>
                                 @foreach($danger_level as $item)
                                     <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
                                 @endforeach
@@ -115,6 +119,7 @@
                         <div class="item">
                             <label for="n5">n5</label>
                             <select name="n5" id="n5" class="form-control level">
+                                <option data-value="0" value="NC">NC</option>
                                 @foreach($danger_level as $item)
                                     <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
                                 @endforeach
@@ -123,6 +128,7 @@
                         <div class="item">
                             <label for="n6">n6</label>
                             <select name="n6" id="n6" class="form-control level">
+                                <option data-value="0" value="NC">NC</option>
                                 @foreach($danger_level as $item)
                                     <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
                                 @endforeach
@@ -131,6 +137,7 @@
                         <div class="item">
                             <label for="n7">n7</label>
                             <select name="n7" id="n7" class="form-control level">
+                                <option data-value="0" value="NC">NC</option>
                                 @foreach($danger_level as $item)
                                     <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
                                 @endforeach
@@ -139,6 +146,7 @@
                         <div class="item">
                             <label for="n8">n8</label>
                             <select name="n8" id="n8" class="form-control level">
+                                <option data-value="0" value="NC">NC</option>
                                 @foreach($danger_level as $item)
                                     <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
                                 @endforeach
@@ -147,6 +155,7 @@
                         <div class="item">
                             <label for="n9">n9</label>
                             <select name="n9" id="n9" class="form-control level">
+                                <option data-value="0" value="NC">NC</option>
                                 @foreach($danger_level as $item)
                                     <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
                                 @endforeach
@@ -155,12 +164,21 @@
                         <div class="item">
                             <label for="n10">n10</label>
                             <select name="n10" id="n10" class="form-control level">
+                                <option data-value="0" value="NC">NC</option>
                                 @foreach($danger_level as $item)
                                     <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
+                    @error('name_risk')
+                    <div class="line">
+                        <div class="left"></div>
+                        <div class="right">
+                            <p class="message-error">{{ $message }}</p>
+                        </div>
+                    </div>
+                    @enderror
                 </div>
 
                 <div class="row">
@@ -182,6 +200,14 @@
                             <input type="date" name="date_fds" id="date-fds" class="form-control">
                         </div>
                     </div>
+                    @error('date_fds')
+                    <div class="line">
+                        <div class="left"></div>
+                        <div class="right">
+                            <p class="message-error">{{ $message }}</p>
+                        </div>
+                    </div>
+                    @enderror
                 </div>
 
                 <hr>
@@ -208,6 +234,14 @@
                             </select>
                         </div>
                     </div>
+                    @error('ventilation')
+                    <div class="line">
+                        <div class="left"></div>
+                        <div class="right">
+                            <p class="message-error">{{ $message }}</p>
+                        </div>
+                    </div>
+                    @enderror
                     <div class="line">
                         <div class="left">
                             <label for="concentration">Concentration</label>
@@ -220,6 +254,14 @@
                             </select>
                         </div>
                     </div>
+                    @error('concentration')
+                    <div class="line">
+                        <div class="left"></div>
+                        <div class="right">
+                            <p class="message-error">{{ $message }}</p>
+                        </div>
+                    </div>
+                    @enderror
                     <div class="line">
                         <div class="left">
                             <label for="time">Durée utilisation jour</label>
@@ -232,6 +274,14 @@
                             </select>
                         </div>
                     </div>
+                    @error('time')
+                    <div class="line">
+                        <div class="left"></div>
+                        <div class="right">
+                            <p class="message-error">{{ $message }}</p>
+                        </div>
+                    </div>
+                    @enderror
                 </div>
 
                 <hr>
@@ -239,7 +289,7 @@
                 <div class="row">
                     <div class="line">
                         <div class="left">
-                            <label for="">Equipements de Protection Individuelle</label>
+                            <label for="">Equipements de protection individuelle</label>
                         </div>
                         <div class="right"></div>
                     </div>
@@ -248,7 +298,7 @@
                     <div class="row">
                         <div class="right">
                             <a class="btn-modal-check">Tout cocher</a>
-                            <a class="btn-modal-uncheck">Tout decocher</a>
+                            <a class="btn-modal-uncheck">Tout décocher</a>
                             <div id="modal-list">
                                 <div data-id="" style="">
                                     <label class="contain">
@@ -304,7 +354,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row row--center">
+                    <div class="row">
                         <div>
                             <p>Ajouter de nouveaux EPI</p>
                             <div class="right right--inline modal-input">
@@ -336,6 +386,14 @@
                             </select>
                         </div>
                     </div>
+                    @error('protection')
+                    <div class="line">
+                        <div class="left"></div>
+                        <div class="right">
+                            <p class="message-error">{{ $message }}</p>
+                        </div>
+                    </div>
+                    @enderror
                     <div class="line">
                         <div class="left">
                             <label for="ir">Indice de Risque (IR)</label>
@@ -349,7 +407,7 @@
                             <label for="">Risque Résiduel (RR)</label>
                         </div>
                         <div class="right">
-                            <button class="btn btn-success" id="rr">Acceptable</button>
+                            <button class="btn btn-success" id="rr" type="button">Acceptable</button>
                         </div>
                     </div>
                 </div>

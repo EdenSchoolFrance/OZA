@@ -28,26 +28,27 @@
                             </tr>
                         @endif
                         @foreach($sd_risks as $sd_risk)
-
-                            <tr>
-                                <td rowspan="{{ count($sd_risk->sd_restraints_exist) + 1 }}" class="td_work_unit"> {{ $sd_risk->sd_work_unit->name }}</td>
-                                <td rowspan="{{ count($sd_risk->sd_restraints_exist) + 1 }}" class="td_name">{{ $sd_risk->name }}</td>
-                                <td rowspan="{{ count($sd_risk->sd_restraints_exist) + 1 }}" class="td_ir">{{ $sd_risk->IR() }}</td>
-                                <td rowspan="{{ count($sd_risk->sd_restraints_exist) + 1 }}" class="td_rr"><button class="btn {{ $sd_risk->criticality()['class'] }}">{{ $sd_risk->ND()['value'] }}</button></td>
-                            </tr>
-                            @foreach($sd_risk->sd_restraints_exist as $key => $restraint)
-                                @php
-                                    $key++;
-                                @endphp
+                            @if(isset($sd_risk->sd_restraints_exist[0]))
                                 <tr>
-                                    <td class="td_restraint">{{ $restraint->name }}</td>
-                                    <td class="td_decision">{{ $restraint->comment }}</td>
-                                    <td class="td_date">{{ $restraint->date ? date("d/m/Y", strtotime($restraint->date)) : "" }}</td>
-                                    <td class="td_actions">
-                                        <button type="button" data-modal=".modal--restraint" data-id="{{ $restraint->id }}" data-title="{{ $restraint->name }}" @if($restraint->date) data-date="{{ $restraint->date }}" data-decision="{{ $restraint->comment }}" @endif><i class="far fa-edit" data-tooltip=".tooltip--edit" data-placement="top" data-tooltable="true"></i></button>
-                                    </td>
+                                    <td rowspan="{{ count($sd_risk->sd_restraints_exist) + 1 }}" class="td_work_unit"> {{ $sd_risk->sd_work_unit->name }}</td>
+                                    <td rowspan="{{ count($sd_risk->sd_restraints_exist) + 1 }}" class="td_name">{{ $sd_risk->name }}</td>
+                                    <td rowspan="{{ count($sd_risk->sd_restraints_exist) + 1 }}" class="td_ir">{{ $sd_risk->IR() }}</td>
+                                    <td rowspan="{{ count($sd_risk->sd_restraints_exist) + 1 }}" class="td_rr"><button class="btn {{ $sd_risk->criticality()['class'] }}">{{ $sd_risk->ND()['value'] }}</button></td>
                                 </tr>
-                            @endforeach
+                                @foreach($sd_risk->sd_restraints_exist as $key => $restraint)
+                                    @php
+                                        $key++;
+                                    @endphp
+                                    <tr>
+                                        <td class="td_restraint">{{ $restraint->name }}</td>
+                                        <td class="td_decision">{{ $restraint->comment }}</td>
+                                        <td class="td_date">{{ $restraint->date ? date("d/m/Y", strtotime($restraint->date)) : "" }}</td>
+                                        <td class="td_actions">
+                                            <button type="button" data-modal=".modal--restraint" data-id="{{ $restraint->id }}" data-title="{{ $restraint->name }}" @if($restraint->date) data-date="{{ $restraint->date }}" data-decision="{{ $restraint->comment }}" @endif><i class="far fa-edit" data-tooltip=".tooltip--edit" data-placement="top" data-tooltable="true"></i></button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
                         @endforeach
                     </tbody>
                 </table>
