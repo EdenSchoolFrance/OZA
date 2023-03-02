@@ -126,6 +126,33 @@ function IR() {
 }
 
 
+on('#date-fds', 'change', (el,e)=> {
+
+    let FIVE_YEAR = 5 * 365 * 24 * 60 * 60 * 1000
+
+    let dateNow = Date.now() + FIVE_YEAR
+    el.removeAttribute("class")
+    el.setAttribute("class", "form-control")
+
+    if (Date.parse(el.value) >= dateNow){
+        el.classList.add('input_danger');
+    }
+})
+
+
 on('a[data-modal=".modal--delete"]', 'click', (el, e) => {
     $('.modal--delete input[name="id_risk"]', document, 0).value = el.dataset.risk
 });
+
+function dateCheck(){
+    let el = $("#date-fds", document, 0);
+    let FIVE_YEAR = 5 * 365 * 24 * 60 * 60 * 1000
+
+    let dateNow = Date.now() + FIVE_YEAR
+    el.removeAttribute("class")
+    el.setAttribute("class", "form-control")
+
+    if (Date.parse(el.value) >= dateNow){
+        el.classList.add('input_danger');
+    }
+}

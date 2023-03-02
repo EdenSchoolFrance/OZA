@@ -535,7 +535,7 @@
     </div>
 
     <div class="body">
-        <table class="table table--action-plan">
+        <table class="table table--action">
             <thead>
             <tr>
                 <th colspan="8" class="green">2. PROGRAMME ANNUEL DE PREVENTION ET D'AMELIORATION DES CONDITIONS DE

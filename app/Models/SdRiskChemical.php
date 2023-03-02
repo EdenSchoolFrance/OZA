@@ -109,6 +109,7 @@ class SdRiskChemical extends Model
 
     public function ND(){
         $translate = [
+            "NC" => 0,
             "H315" => 2,
             "H317" => 2,
             "H335" => 2,

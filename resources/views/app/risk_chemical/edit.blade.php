@@ -413,4 +413,7 @@
 
 @section('script')
     <script src="/js/app/risk_chemical.js"></script>
+    <script>
+        dateCheck();
+    </script>
 @endsection

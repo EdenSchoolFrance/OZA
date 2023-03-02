@@ -10,6 +10,7 @@ use App\Models\SdRiskChemical;
 use App\Models\SdWorkUnit;
 use App\Models\WorkUnit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RiskChemicalController extends Controller
 {
@@ -49,8 +50,13 @@ class RiskChemicalController extends Controller
         $restraints_chemical = RestraintChemical::all();
 
         $danger_level = DangerLevel::all();
+        if (Auth::user()->hasAccess('oza')){
+            return view('app.risk_chemical.create_admin', compact('page', 'single_document','works_units','restraints_chemical', 'danger_level'));
+        }else{
+            return view('app.risk_chemical.create_client', compact('page', 'single_document','works_units'));
+        }
 
-        return view('app.risk_chemical.create', compact('page', 'single_document','works_units','restraints_chemical', 'danger_level'));
+
     }
 
 
@@ -161,7 +167,7 @@ class RiskChemicalController extends Controller
             }
         }
 
-        return back()->with('status', 'Risque chimique ajouter !');
+        return redirect()->route('risk.chemical.index', [$single_document->id])->with('status', 'Risque chimique ajouté !');
 
     }
 

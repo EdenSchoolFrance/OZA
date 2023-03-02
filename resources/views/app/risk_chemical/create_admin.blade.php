@@ -1,10 +1,10 @@
-@extends('app')
+@extends('app.risk_chemical.oza.resources.views.app.risk_chemical.oza.resources.views.app')
 
 @section('content')
 
-
     <div class="content">
-        <form action="{{ route('risk.chemical.store', [$single_document->id]) }}" class="card card--add-risk card--risk-chemical" method="post">
+        <form action="{{ route('risk.chemical.store', [$single_document->id]) }}"
+              class="card card--add-risk card--risk-chemical" method="post">
             @csrf
             <div class="card-body">
                 <div class="row">
@@ -36,7 +36,10 @@
                             <label for="nameRisk">Produit concerné</label>
                         </div>
                         <div class="right">
-                            <textarea type="text" class="form-control" name="name_risk" id="nameRisk" placeholder="Nom commercial ou dénomination">@if(old('name_risk')){{ old('name_risk') }}@endif</textarea>
+                            <textarea type="text" class="form-control" name="name_risk" id="nameRisk"
+                                      placeholder="Nom commercial ou dénomination">@if(old('name_risk'))
+                                    {{ old('name_risk') }}
+                                @endif</textarea>
                         </div>
                     </div>
                     @error('name_risk')
@@ -54,7 +57,10 @@
                             <label for="activity">Utilisation activité</label>
                         </div>
                         <div class="right">
-                            <textarea type="text" class="form-control" name="activity" id="activity" placeholder="Utilisation du produit / Activité qui génère le produit">@if(old('activity')){{ old('activity') }}@endif</textarea>
+                            <textarea type="text" class="form-control" name="activity" id="activity"
+                                      placeholder="Utilisation du produit / Activité qui génère le produit">@if(old('activity'))
+                                    {{ old('activity') }}
+                                @endif</textarea>
                         </div>
                     </div>
                     @error('activity')
@@ -85,7 +91,8 @@
                             <select name="n1" id="n1" class="form-control level">
                                 <option data-value="0" value="NC">NC</option>
                                 @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
+                                    <option data-value="{{ $item->value }}"
+                                            value="{{ $item->name}}">{{ $item->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -94,7 +101,8 @@
                             <select name="n2" id="n2" class="form-control level">
                                 <option data-value="0" value="NC">NC</option>
                                 @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
+                                    <option data-value="{{ $item->value }}"
+                                            value="{{ $item->name}}">{{ $item->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -103,7 +111,8 @@
                             <select name="n3" id="n3" class="form-control level">
                                 <option data-value="0" value="NC">NC</option>
                                 @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
+                                    <option data-value="{{ $item->value }}"
+                                            value="{{ $item->name}}">{{ $item->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -112,7 +121,8 @@
                             <select name="n4" id="n4" class="form-control level">
                                 <option data-value="0" value="NC">NC</option>
                                 @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
+                                    <option data-value="{{ $item->value }}"
+                                            value="{{ $item->name}}">{{ $item->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -121,7 +131,8 @@
                             <select name="n5" id="n5" class="form-control level">
                                 <option data-value="0" value="NC">NC</option>
                                 @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
+                                    <option data-value="{{ $item->value }}"
+                                            value="{{ $item->name}}">{{ $item->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -130,7 +141,8 @@
                             <select name="n6" id="n6" class="form-control level">
                                 <option data-value="0" value="NC">NC</option>
                                 @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
+                                    <option data-value="{{ $item->value }}"
+                                            value="{{ $item->name}}">{{ $item->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -139,7 +151,8 @@
                             <select name="n7" id="n7" class="form-control level">
                                 <option data-value="0" value="NC">NC</option>
                                 @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
+                                    <option data-value="{{ $item->value }}"
+                                            value="{{ $item->name}}">{{ $item->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -148,7 +161,8 @@
                             <select name="n8" id="n8" class="form-control level">
                                 <option data-value="0" value="NC">NC</option>
                                 @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
+                                    <option data-value="{{ $item->value }}"
+                                            value="{{ $item->name}}">{{ $item->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -157,7 +171,8 @@
                             <select name="n9" id="n9" class="form-control level">
                                 <option data-value="0" value="NC">NC</option>
                                 @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
+                                    <option data-value="{{ $item->value }}"
+                                            value="{{ $item->name}}">{{ $item->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -166,7 +181,8 @@
                             <select name="n10" id="n10" class="form-control level">
                                 <option data-value="0" value="NC">NC</option>
                                 @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}">{{ $item->name}}</option>
+                                    <option data-value="{{ $item->value }}"
+                                            value="{{ $item->name}}">{{ $item->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -306,43 +322,53 @@
                                         <span class="checkmark">Gant</span>
                                     </label>
                                     <label class="contain">
-                                        <input type="checkbox" value="Gant étanche au produit" data-name="Gant étanche au produit" name="list_items[]">
+                                        <input type="checkbox" value="Gant étanche au produit"
+                                               data-name="Gant étanche au produit" name="list_items[]">
                                         <span class="checkmark">Gant étanche au produit</span>
                                     </label>
                                     <label class="contain">
-                                        <input type="checkbox" value="Lunette de sécurité" data-name="Lunette de sécurité" name="list_items[]">
+                                        <input type="checkbox" value="Lunette de sécurité"
+                                               data-name="Lunette de sécurité" name="list_items[]">
                                         <span class="checkmark">Lunette de sécurité</span>
                                     </label>
                                     <label class="contain">
-                                        <input type="checkbox" value="Lunette de sécurité étanche" data-name="Lunette de sécurité étanche" name="list_items[]">
+                                        <input type="checkbox" value="Lunette de sécurité étanche"
+                                               data-name="Lunette de sécurité étanche" name="list_items[]">
                                         <span class="checkmark">Lunette de sécurité étanche</span>
                                     </label>
                                     <label class="contain">
-                                        <input type="checkbox" value="Vêtement de travail" data-name="Vêtement de travail" name="list_items[]">
+                                        <input type="checkbox" value="Vêtement de travail"
+                                               data-name="Vêtement de travail" name="list_items[]">
                                         <span class="checkmark">Vêtement de travail</span>
                                     </label>
                                     <label class="contain">
-                                        <input type="checkbox" value="Combinaison étanche au produit" data-name="Combinaison étanche au produit" name="list_items[]">
+                                        <input type="checkbox" value="Combinaison étanche au produit"
+                                               data-name="Combinaison étanche au produit" name="list_items[]">
                                         <span class="checkmark">Combinaison étanche au produit</span>
                                     </label>
                                     <label class="contain">
-                                        <input type="checkbox" value="Masque anti-poussières FFP2" data-name="Masque anti-poussières FFP2" name="list_items[]">
+                                        <input type="checkbox" value="Masque anti-poussières FFP2"
+                                               data-name="Masque anti-poussières FFP2" name="list_items[]">
                                         <span class="checkmark">Masque anti-poussières FFP2</span>
                                     </label>
                                     <label class="contain">
-                                        <input type="checkbox" value="Masque anti-poussières FFP3" data-name="Masque anti-poussières FFP3" name="list_items[]">
+                                        <input type="checkbox" value="Masque anti-poussières FFP3"
+                                               data-name="Masque anti-poussières FFP3" name="list_items[]">
                                         <span class="checkmark">Masque anti-poussières FFP3</span>
                                     </label>
                                     <label class="contain">
-                                        <input type="checkbox" value="Masque à gaz et vapeur adapté au produit" data-name="Masque à gaz et vapeur adapté au produit" name="list_items[]">
+                                        <input type="checkbox" value="Masque à gaz et vapeur adapté au produit"
+                                               data-name="Masque à gaz et vapeur adapté au produit" name="list_items[]">
                                         <span class="checkmark">Masque à gaz et vapeur adapté au produit</span>
                                     </label>
                                     <label class="contain">
-                                        <input type="checkbox" value="Masque ventilé adapté au produit" data-name="Masque ventilé adapté au produit" name="list_items[]">
+                                        <input type="checkbox" value="Masque ventilé adapté au produit"
+                                               data-name="Masque ventilé adapté au produit" name="list_items[]">
                                         <span class="checkmark">Masque ventilé adapté au produit</span>
                                     </label>
                                     <label class="contain">
-                                        <input type="checkbox" value="Masque à adduction d’air" data-name="Masque à adduction d’air" name="list_items[]">
+                                        <input type="checkbox" value="Masque à adduction d’air"
+                                               data-name="Masque à adduction d’air" name="list_items[]">
                                         <span class="checkmark">Masque à adduction d’air</span>
                                     </label>
                                     <label class="contain">
@@ -360,8 +386,10 @@
                             <div class="right right--inline modal-input">
                                 <label for="name">Intitulé</label>
                                 <div>
-                                    <input type="text" id="modal-input" name="name" class="form-control" placeholder="EPI 1, EPI 2, ">
-                                    <p class="info-input">Il est possible d’ajouter plusieurs matériels en les séparant par une virgule</p>
+                                    <input type="text" id="modal-input" name="name" class="form-control"
+                                           placeholder="EPI 1, EPI 2, ">
+                                    <p class="info-input">Il est possible d’ajouter plusieurs matériels en les séparant
+                                        par une virgule</p>
                                 </div>
                                 <button class="btn btn-text btn-yellow btn-modal-add" type="button">Ajouter</button>
                             </div>
@@ -430,7 +458,8 @@
                                 @foreach($restraints_chemical as $restraint)
                                     <li class="res-pro">
                                         <input type="checkbox" class="btn-check" data-tab="none">
-                                        <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed[not-checked][]">{{ $restraint->name }}</textarea>
+                                        <textarea class="form-control auto-resize" placeholder=""
+                                                  name="restraint_proposed[not-checked][]">{{ $restraint->name }}</textarea>
                                     </li>
                                 @endforeach
 
@@ -447,7 +476,9 @@
                                 </li>
                                 @enderror
                             </ul>
-                            <button class="btn btn-yellow btn-text btn-add-restraint" data-id="" type="button">+ Ajouter une mesure proposée</button>
+                            <button class="btn btn-yellow btn-text btn-add-restraint" data-id="" type="button">+ Ajouter
+                                une mesure proposée
+                            </button>
                         </div>
                     </div>
                 </div>

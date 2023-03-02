@@ -291,6 +291,15 @@
 }
 
 table.table {
+    .td_restraint{
+        word-break: break-word;
+    }
+    .td_existing_measure{
+        word-break: break-word;
+    }
+    .td_proposed_measure{
+        word-break: break-word;
+    }
     &--risks {
         thead tr th {
             &.th {
@@ -342,6 +351,10 @@ table.table {
                                 max-width: 35px;
                             }
                         }
+                        &_proposed_measure{
+                            width: 18%;
+                        }
+
                     }
                 }
                 .td_existing_measure{
