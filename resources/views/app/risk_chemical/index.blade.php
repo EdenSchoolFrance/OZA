@@ -10,7 +10,7 @@
                             <tr>
                                 <th class="th_work_unit">Unité de travail</th>
                                 <th class="th_name">Nom commercial ou dénomination</th>
-                                <th class="th_activity">Utilisation Activité</th>
+                                <th class="th_activity">Utilisation activité</th>
                                 <th class="th_n1">n°1</th>
                                 <th class="th_n2">n°2</th>
                                 <th class="th_n3">n°3</th>
@@ -22,12 +22,12 @@
                                 <th class="th_n9">n°9</th>
                                 <th class="th_n10">n°10</th>
                                 <th class="th_nd">ND</th>
-                                <th class="th_ventilation">Ventilation Confinement</th>
+                                <th class="th_ventilation">Ventilation confinement</th>
                                 <th class="th_concentration">Concentration</th>
                                 <th class="th_time">Durée utilisation jour</th>
                                 <th class="th_protection">Protection</th>
                                 <th class="th_ir">IR</th>
-                                <th class="th_equipement">Equipements de Protection Individuels</th>
+                                <th class="th_equipement">Equipements de protection individuels</th>
                                 <th class="th_rr">Risque résiduel</th>
                                 <th class="th_criticality">Criticité</th>
                                 <th class="th_restraint">Mesures proposées</th>
@@ -56,7 +56,7 @@
                                     <td class="td_time">{{ $sd_risk->T_time() }}</td>
                                     <td class="td_protection">{{ $sd_risk->T_protection() }}</td>
                                     <td class="td_ir">{{ $sd_risk->IR() }}</td>
-                                    <td class="td_equipement">
+                                    <td class="td_equipement" style="width: 220px; display: block">
                                         <ul>
                                             @foreach($sd_risk->sd_restraints_exist as $sd_restraint)
                                                 <li>- {{ $sd_restraint->name }}</li>
@@ -68,7 +68,7 @@
                                     </td>
                                     <td class="td_RR">{{ $sd_risk->ND()['value'] }}</td>
                                     <td class="td_criticality"><button class="btn {{ $sd_risk->criticality()['class'] }}">{{ $sd_risk->criticality()['text'] }}</button></td>
-                                    <td class="td_restraint_exist">
+                                    <td class="td_restraint_exist" style="width: 220px; display: block">
                                         <ul>
                                             @foreach($sd_risk->sd_restraints_exist as $sd_restraint)
                                                 <li>- {{ $sd_restraint->name }}</li>
