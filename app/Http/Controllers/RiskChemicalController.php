@@ -94,7 +94,7 @@ class RiskChemicalController extends Controller
 
         $request->validate([
             'work_unit' => 'required',
-            'name_risk' => 'required',
+            'name_risk_chemical' => 'required',
             'activity' => 'required',
             'n1' => 'required',
             'n2' => 'required',

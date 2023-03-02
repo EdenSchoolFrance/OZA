@@ -36,19 +36,19 @@
                             <label for="nameRisk">Produit concerné</label>
                         </div>
                         <div class="right">
-                            <textarea type="text" class="form-control" name="name_risk" id="nameRisk"
-                                      placeholder="Nom commercial ou dénomination">@if(old('name_risk'))
-                                    {{ old('name_risk') }}
+                            <textarea type="text" class="form-control" name="name_risk_chemical" id="nameRisk"
+                                      placeholder="Nom commercial ou dénomination">@if(old('name_risk_chemical'))
+                                    {{ old('name_risk_chemical') }}
                                 @endif</textarea>
                         </div>
                     </div>
-                    @error('name_risk')
-                    <div class="line">
-                        <div class="left"></div>
-                        <div class="right">
-                            <p class="message-error">{{ $message }}</p>
+                    @error('name_risk_chemical')
+                        <div class="line">
+                            <div class="left"></div>
+                            <div class="right">
+                                <p class="message-error">{{ $message }}</p>
+                            </div>
                         </div>
-                    </div>
                     @enderror
                 </div>
                 <div class="row">
@@ -57,10 +57,7 @@
                             <label for="activity">Utilisation activité</label>
                         </div>
                         <div class="right">
-                            <textarea type="text" class="form-control" name="activity" id="activity"
-                                      placeholder="Utilisation du produit / Activité qui génère le produit">@if(old('activity'))
-                                    {{ old('activity') }}
-                                @endif</textarea>
+                            <textarea type="text" class="form-control" name="activity" id="activity" placeholder="Utilisation du produit / Activité qui génère le produit">@if(old('activity')){{ old('activity') }}@endif</textarea>
                         </div>
                     </div>
                     @error('activity')
@@ -187,11 +184,11 @@
                             </select>
                         </div>
                     </div>
-                    @error('name_risk')
+                    @error('n1' || 'n2' || 'n3' || 'n4' || 'n5' || 'n6' || 'n7' || 'n8' || 'n9' || 'n10')
                     <div class="line">
                         <div class="left"></div>
                         <div class="right">
-                            <p class="message-error">{{ $message }}</p>
+                            <p class="message-error">Indiquer au moins 1 catégorie et phrase de danger.</p>
                         </div>
                     </div>
                     @enderror
@@ -217,12 +214,12 @@
                         </div>
                     </div>
                     @error('date_fds')
-                    <div class="line">
-                        <div class="left"></div>
-                        <div class="right">
-                            <p class="message-error">{{ $message }}</p>
+                        <div class="line">
+                            <div class="left"></div>
+                            <div class="right">
+                                <p class="message-error">{{ $message }}</p>
+                            </div>
                         </div>
-                    </div>
                     @enderror
                 </div>
 
@@ -251,12 +248,12 @@
                         </div>
                     </div>
                     @error('ventilation')
-                    <div class="line">
-                        <div class="left"></div>
-                        <div class="right">
-                            <p class="message-error">{{ $message }}</p>
+                        <div class="line">
+                            <div class="left"></div>
+                            <div class="right">
+                                <p class="message-error">{{ $message }}</p>
+                            </div>
                         </div>
-                    </div>
                     @enderror
                     <div class="line">
                         <div class="left">
@@ -271,12 +268,12 @@
                         </div>
                     </div>
                     @error('concentration')
-                    <div class="line">
-                        <div class="left"></div>
-                        <div class="right">
-                            <p class="message-error">{{ $message }}</p>
+                        <div class="line">
+                            <div class="left"></div>
+                            <div class="right">
+                                <p class="message-error">{{ $message }}</p>
+                            </div>
                         </div>
-                    </div>
                     @enderror
                     <div class="line">
                         <div class="left">
@@ -291,12 +288,12 @@
                         </div>
                     </div>
                     @error('time')
-                    <div class="line">
-                        <div class="left"></div>
-                        <div class="right">
-                            <p class="message-error">{{ $message }}</p>
+                        <div class="line">
+                            <div class="left"></div>
+                            <div class="right">
+                                <p class="message-error">{{ $message }}</p>
+                            </div>
                         </div>
-                    </div>
                     @enderror
                 </div>
 
@@ -415,12 +412,12 @@
                         </div>
                     </div>
                     @error('protection')
-                    <div class="line">
-                        <div class="left"></div>
-                        <div class="right">
-                            <p class="message-error">{{ $message }}</p>
+                        <div class="line">
+                            <div class="left"></div>
+                            <div class="right">
+                                <p class="message-error">{{ $message }}</p>
+                            </div>
                         </div>
-                    </div>
                     @enderror
                     <div class="line">
                         <div class="left">
@@ -463,17 +460,10 @@
                                     </li>
                                 @endforeach
 
-                                {{--
-                                <li class="res-pro">
-                                    <input type="checkbox" class="btn-check" data-id="{{ $response->id }}" {{$restraint->checked === 1 ? 'checked' : ''}} data-tab="{{ $restraint->id }}">
-                                    <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed_{{ $response->id }}[{{$restraint->checked === 1 ? 'checked' : 'not-checked'}}][{{ $restraint->id }}][]">{{ $restraint->text }}</textarea>
-                                    <button type="button" class="btn btn-text btn-small btn-delete-restraint"><i class="far fa-times-circle"></i></button>
-                                </li>
-                                --}}
                                 @error('restraint_proposed')
-                                <li>
-                                    <p class="message-error">{{ $message }}</p>
-                                </li>
+                                    <li>
+                                        <p class="message-error">{{ $message }}</p>
+                                    </li>
                                 @enderror
                             </ul>
                             <button class="btn btn-yellow btn-text btn-add-restraint" data-id="" type="button">+ Ajouter
