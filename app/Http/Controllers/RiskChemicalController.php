@@ -50,11 +50,11 @@ class RiskChemicalController extends Controller
         $restraints_chemical = RestraintChemical::all();
 
         $danger_level = DangerLevel::all();
-        if (Auth::user()->hasAccess('oza')){
+//        if (Auth::user()->hasAccess('oza')){
             return view('app.risk_chemical.create_admin', compact('page', 'single_document','works_units','restraints_chemical', 'danger_level'));
-        }else{
-            return view('app.risk_chemical.create_client', compact('page', 'single_document','works_units'));
-        }
+//        }else{
+//            return view('app.risk_chemical.create_client', compact('page', 'single_document','works_units'));
+//        }
 
 
     }
