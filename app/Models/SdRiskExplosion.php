@@ -41,7 +41,7 @@ class SdRiskExplosion extends Model
 
     public function sd_restraints()
     {
-        return $this->hasMany(SdRestraint::class);
+        return $this->hasMany(SdRestraintExplosion::class);
     }
 
     public function sd_restraints_porposed()

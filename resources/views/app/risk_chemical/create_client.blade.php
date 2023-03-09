@@ -1,4 +1,4 @@
-@extends('app.risk_chemical.user.resources.views.app.risk_chemical.user.resources.views.app.risk_chemical.oza.resources.views.app')
+@extends('app')
 
 @section('content')
 

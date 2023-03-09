@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\RiskChemicalController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DocController;
 use App\Http\Controllers\PDFController;
@@ -30,6 +29,9 @@ use App\Http\Controllers\Admin\DangerController as DangerAdminController;
 use App\Http\Controllers\Admin\SubItemController as SubItemAdminController;
 use App\Http\Controllers\Admin\WorkUnitController as WorkUnitAdminController;
 use App\Http\Controllers\Admin\SingleDocumentController as SingleDocumentAdminController;
+
+use App\Http\Controllers\RiskChemicalController;
+use App\Http\Controllers\RiskExplosionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -268,6 +270,12 @@ Route::middleware(['auth'])->group(function() {
             Route::get('/{single_document}/risk_chemical/edit/{risk_chemical}', [RiskChemicalController::class, 'edit'])->name('risk.chemical.edit');
             Route::post('/{single_document}/risk_chemical/update/{risk_chemical}', [RiskChemicalController::class, 'update'])->name('risk.chemical.update');
 
+        });
+
+        Route::middleware(['permission:ADMIN,EXPERT,MANAGER,EDITOR'])->group(function () {
+            Route::get('/{single_document}/risk_explosion/', [RiskExplosionController::class, 'index'])->name('risk.explosion.index');
+            Route::post('/{single_document}/risk_explosion/store', [RiskExplosionController::class, 'store'])->name('risk.explosion.store');
+            Route::post('/{single_document}/risk_explosion/delete', [RiskExplosionController::class, 'delete'])->name('risk.explosion.delete');
         });
 
         Route::get('/{single_document}/restraint/', [RestraintController::class, 'index'])->name('restraint.index');
