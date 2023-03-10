@@ -274,8 +274,14 @@ Route::middleware(['auth'])->group(function() {
 
         Route::middleware(['permission:ADMIN,EXPERT,MANAGER,EDITOR'])->group(function () {
             Route::get('/{single_document}/risk_explosion/', [RiskExplosionController::class, 'index'])->name('risk.explosion.index');
+
+            Route::get('/{single_document}/risk_explosion/create', [RiskExplosionController::class, 'create'])->name('risk.explosion.create');
             Route::post('/{single_document}/risk_explosion/store', [RiskExplosionController::class, 'store'])->name('risk.explosion.store');
+
             Route::post('/{single_document}/risk_explosion/delete', [RiskExplosionController::class, 'delete'])->name('risk.explosion.delete');
+
+            Route::get('/{single_document}/risk_explosion/actions/', [RiskExplosionController::class, 'action'])->name('risk.explosion.action.index');
+            Route::post('/{single_document}/risk_explosion/action/store', [RiskExplosionController::class, 'action_store'])->name('risk.explosion.action.store');
         });
 
         Route::get('/{single_document}/restraint/', [RestraintController::class, 'index'])->name('restraint.index');

@@ -29,49 +29,17 @@
                         <tbody>
                             @foreach($sd_risks as $sd_risk)
                                 <tr>
-                                    <td class="td_material_explosion"><input type="text" value="{{$sd_risk->material_explosion}}" disabled style="border: none; background-color: #fff"></td>
-                                    <td class="td_features">
-                                        <select disabled style="border: none; color: #000">
-                                            <option>{{$sd_risk->features}}</option>
-                                        </select>
-                                    </td>
-                                    <td class="td_material_setup"><textarea disabled style="border: none; resize: none">{{$sd_risk->material_setup}}</textarea></td>
-                                    <td class="td_source_clean"><input type="text" value="{{$sd_risk->source_clean}}" disabled style="border: none; background-color: #fff"></td>
-                                    <td class="td_degree_clean">
-                                        <select disabled style="border: none; color: #000">
-                                            <option>{{$sd_risk->degree_clean}}</option>
-                                        </select>
-                                    </td>
-                                    <td class="td_deree_ventilation">
-                                        <select disabled style="border: none; color: #000">
-                                            <option>{{$sd_risk->degree_ventilation}}</option>
-                                        </select>
-                                    </td>
-                                    <td class="td_availability_ventilation">
-                                        <select disabled style="border: none; color: #000">
-                                            <option>{{$sd_risk->availability_ventilation}}</option>
-                                        </select>
-                                    </td>
-                                    <td class="td_size_area">
-                                        <select  style="color: #000; width: 100px;">
-                                            <option>{{$sd_risk->size_area}}</option>
-                                        </select>
-                                    </td>
-                                    <td class="td_gas">
-                                        <select disabled style="color: #000;">
-                                            <option>{{$sd_risk->gas}}</option>
-                                        </select>
-                                    </td>
-                                    <td class="td_dust">
-                                        <select disabled style="color: #000;">
-                                            <option>{{$sd_risk->dust}}</option>
-                                        </select>
-                                    </td>
-                                    <td class="td_spawn_probability">
-                                        <select disabled style="color: #000;">
-                                            <option>{{$sd_risk->spawn_probability}}</option>
-                                        </select>
-                                    </td>
+                                    <td class="td_material_explosion">{{$sd_risk->material_explosion}}</td>
+                                    <td class="td_features">{{$sd_risk->features}}</td>
+                                    <td class="td_material_setup">{{$sd_risk->material_setup}}</td>
+                                    <td class="td_source_clean">{{$sd_risk->source_clean}}</td>
+                                    <td class="td_degree_clean">{{$sd_risk->degree_clean}}</td>
+                                    <td class="td_deree_ventilation">{{$sd_risk->degree_ventilation}}</td>
+                                    <td class="td_availability_ventilation">{{$sd_risk->availability_ventilation}}</td>
+                                    <td class="td_size_area">{{$sd_risk->size_area}}</td>
+                                    <td class="td_gas">{{$sd_risk->gas}}</td>
+                                    <td class="td_dust">{{$sd_risk->dust}}</td>
+                                    <td class="td_spawn_probability">{{$sd_risk->spawn_probability}}</td>
                                     <td class="td_restraint_exist">
                                         <ul>
                                             @foreach($sd_risk->sd_restraints_exist as $sd_restraint)
@@ -80,17 +48,20 @@
                                             @if(count($sd_risk->sd_restraints_exist) === 0)
                                                 <li>Néant</li>
                                             @endif
-                                            <li class="add-restraint">
-                                                <button type="button" class="btn-add-restraint">+ Ajouter</button>
-                                            </li>
                                         </ul>
                                     </td>
-                                    <td class="td_prevention_probability">
-                                        <select disabled style="color: #000;">
-                                            <option style="line-height: 100px">{{$sd_risk->prevention_probability}}</option>
-                                        </select>
+                                    <td class="td_prevention_probability">{{$sd_risk->prevention_probability}}</td>
+                                    <td class="td_criticality"><button class="btn {{ $sd_risk->criticality()['class'] }}">{{ $sd_risk->criticality()['text'] }}</button></td>
+                                    <td class="td_restraint_exist">
+                                        <ul>
+                                            @foreach($sd_risk->sd_restraints_porposed as $sd_restraint)
+                                                <li>- {{ $sd_restraint->name }}</li>
+                                            @endforeach
+                                            @if(count($sd_risk->sd_restraints_exist) === 0)
+                                                <li>Néant</li>
+                                            @endif
+                                        </ul>
                                     </td>
-                                    <td></td>
                                     <td class="td_actions">
                                         <div>
                                             <a data-modal=".modal--delete" data-risk="{{ $sd_risk->id }}"><i class="fas fa-trash"></i></a>
@@ -101,7 +72,7 @@
                         </tbody>
                     </table>
                 </div>
-                <a href="#" class="btn btn-yellow" style="margin-top: 10px;"><i class="fas fa-plus"></i> AJOUTER UN RISQUE</a>
+                <a href="{{ route('risk.explosion.create', [$single_document->id]) }}" class="btn btn-yellow" style="margin-top: 10px;"><i class="fas fa-plus"></i> AJOUTER UN RISQUE</a>
             </div>
         </div>
         <div class="modal modal--delete">
