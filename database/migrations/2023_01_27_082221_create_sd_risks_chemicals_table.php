@@ -15,25 +15,26 @@ class CreateSdRisksChemicalsTable extends Migration
     {
         Schema::create('sd_risks_chemicals', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->text('name');
-            $table->text('activity');
-            $table->string("n1");
-            $table->string("n2");
-            $table->string("n3");
-            $table->string("n4");
-            $table->string("n5");
-            $table->string("n6");
-            $table->string("n7");
-            $table->string("n8");
-            $table->string("n9");
-            $table->string("n10");
-            $table->date('date');
-            $table->text('ventilation');
-            $table->text('concentration');
-            $table->text('time');
-            $table->text('protection');
+            $table->text('name')->nullable();
+            $table->text('activity')->nullable();
+            $table->string("n1")->nullable();
+            $table->string("n2")->nullable();
+            $table->string("n3")->nullable();
+            $table->string("n4")->nullable();
+            $table->string("n5")->nullable();
+            $table->string("n6")->nullable();
+            $table->string("n7")->nullable();
+            $table->string("n8")->nullable();
+            $table->string("n9")->nullable();
+            $table->string("n10")->nullable();
+            $table->date('date')->nullable();
+            $table->text('ventilation')->nullable();
+            $table->text('concentration')->nullable();
+            $table->text('time')->nullable();
+            $table->text('protection')->nullable();
+            $table->boolean("validated")->default(0);
 
-            $table->foreignUuid('sd_work_unit_id');
+            $table->foreignUuid('sd_work_unit_id')->nullable();
             $table->foreign('sd_work_unit_id')->references('id')->on('sd_work_units')->onDelete('cascade');
 
             $table->foreignUuid('single_document_id');

@@ -3,8 +3,7 @@
 @section('content')
 
     <div class="content">
-        <form action="{{ route('risk.chemical.store', [$single_document->id]) }}"
-              class="card card--add-risk card--risk-chemical" method="post">
+        <form action="{{ route('risk.chemical.store', [$single_document->id]) }}" class="card card--add-risk card--risk-chemical" method="post">
             @csrf
             <div class="card-body">
                 <div class="row">
@@ -197,7 +196,7 @@
                             <label for="date-fds">Date d'élaboration ou de révision de la FDS</label>
                         </div>
                         <div class="right">
-                            <input type="date" name="date_fds" id="date-fds" class="form-control">
+                            <input type="date" name="date_fds" id="date-fds" class="form-control" value="{{ old('date_fds') }}">
                         </div>
                     </div>
                     @error('date_fds')
