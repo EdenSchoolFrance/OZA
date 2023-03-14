@@ -8,9 +8,10 @@
                     <table class="table table--risk-explosion">
                         <thead>
                             <tr>
+                                <th class="th_status"></th>
                                 <th class="th_work_unit">Unité de travail</th>
                                 <th class="th_name">Nom commercial ou dénomination</th>
-                                <th class="th_activity">Utilisation Activité</th>
+                                <th class="th_activity">Utilisation activité</th>
                                 <th class="th_n1">n°1</th>
                                 <th class="th_n2">n°2</th>
                                 <th class="th_n3">n°3</th>
@@ -22,12 +23,12 @@
                                 <th class="th_n9">n°9</th>
                                 <th class="th_n10">n°10</th>
                                 <th class="th_nd">ND</th>
-                                <th class="th_ventilation">Ventilation Confinement</th>
+                                <th class="th_ventilation">Ventilation confinement</th>
                                 <th class="th_concentration">Concentration</th>
                                 <th class="th_time">Durée utilisation jour</th>
                                 <th class="th_protection">Protection</th>
                                 <th class="th_ir">IR</th>
-                                <th class="th_equipement">Equipements de Protection Individuels</th>
+                                <th class="th_equipement">Equipements de protection individuels</th>
                                 <th class="th_rr">Risque résiduel</th>
                                 <th class="th_criticality">Criticité</th>
                                 <th class="th_restraint">Mesures proposées</th>
@@ -37,38 +38,41 @@
                         <tbody>
                             @foreach($sd_risks_chemicals as $sd_risk)
                                 <tr>
+                                    <td class="td_status">
+                                        <i class="fas fa-check {{ $sd_risk->validated === 1 ? 'text-color-green' : 'text-color-red' }}"></i>
+                                    </td>
                                     <td class="td_work_unit">{{ $sd_risk->sd_work_unit->name }}</td>
-                                    <td class="td_name">{{ $sd_risk->name }}</td>
-                                    <td class="td_activity">{{ $sd_risk->activity }}</td>
-                                    <td class="td_n1">{{ $sd_risk->n1 }}</td>
-                                    <td class="td_n2">{{ $sd_risk->n2 }}</td>
-                                    <td class="td_n3">{{ $sd_risk->n3 }}</td>
-                                    <td class="td_n4">{{ $sd_risk->n4 }}</td>
-                                    <td class="td_n5">{{ $sd_risk->n5 }}</td>
-                                    <td class="td_n6">{{ $sd_risk->n6 }}</td>
-                                    <td class="td_n7">{{ $sd_risk->n7 }}</td>
-                                    <td class="td_n8">{{ $sd_risk->n8 }}</td>
-                                    <td class="td_n9">{{ $sd_risk->n9 }}</td>
-                                    <td class="td_n10">{{ $sd_risk->n10 }}</td>
+                                    <td class="td_name">{{ !empty($sd_risk->name) ? $sd_risk->name : "NC" }}</td>
+                                    <td class="td_activity">{{ !empty($sd_risk->activity) ? $sd_risk->activity : "NC" }}</td>
+                                    <td class="td_n1">{{ !empty($sd_risk->n1) ? $sd_risk->n1 : "NC" }}</td>
+                                    <td class="td_n2">{{ !empty($sd_risk->n2) ? $sd_risk->n2 : "NC" }}</td>
+                                    <td class="td_n3">{{ !empty($sd_risk->n3) ? $sd_risk->n3 : "NC" }}</td>
+                                    <td class="td_n4">{{ !empty($sd_risk->n4) ? $sd_risk->n4 : "NC" }}</td>
+                                    <td class="td_n5">{{ !empty($sd_risk->n5) ? $sd_risk->n5 : "NC" }}</td>
+                                    <td class="td_n6">{{ !empty($sd_risk->n6) ? $sd_risk->n6 : "NC" }}</td>
+                                    <td class="td_n7">{{ !empty($sd_risk->n7) ? $sd_risk->n7 : "NC" }}</td>
+                                    <td class="td_n8">{{ !empty($sd_risk->n8) ? $sd_risk->n8 : "NC" }}</td>
+                                    <td class="td_n9">{{ !empty($sd_risk->n9) ? $sd_risk->n9 : "NC" }}</td>
+                                    <td class="td_n10">{{ !empty($sd_risk->n10) ? $sd_risk->n10 : "NC" }}</td>
                                     <td class="td_nd">{{ $sd_risk->ND()['key'] }}</td>
                                     <td class="td_ventilation">{{ $sd_risk->T_ventilation() }}</td>
                                     <td class="td_concentration">{{ $sd_risk->T_concentration() }}</td>
                                     <td class="td_time">{{ $sd_risk->T_time() }}</td>
                                     <td class="td_protection">{{ $sd_risk->T_protection() }}</td>
                                     <td class="td_ir">{{ $sd_risk->IR() }}</td>
-                                    <td class="td_equipement">
+                                    <td class="td_equipement" style="width: 220px; display: block">
                                         <ul>
-                                            @foreach($sd_risk->sd_restraints_exist as $sd_restraint)
-                                                <li>- {{ $sd_restraint->name }}</li>
+                                            @foreach($sd_risk->sd_equipements as $sd_equipements)
+                                                <li>- {{ $sd_equipements->name }}</li>
                                             @endforeach
-                                            @if(count($sd_risk->sd_restraints_exist) === 0)
+                                            @if(count($sd_risk->sd_equipements) === 0)
                                                 <li>Néant</li>
                                             @endif
                                         </ul>
                                     </td>
                                     <td class="td_RR">{{ $sd_risk->ND()['value'] }}</td>
                                     <td class="td_criticality"><button class="btn {{ $sd_risk->criticality()['class'] }}">{{ $sd_risk->criticality()['text'] }}</button></td>
-                                    <td class="td_restraint_exist">
+                                    <td class="td_restraint_exist" style="width: 220px; display: block">
                                         <ul>
                                             @foreach($sd_risk->sd_restraints_exist as $sd_restraint)
                                                 <li>- {{ $sd_restraint->name }}</li>

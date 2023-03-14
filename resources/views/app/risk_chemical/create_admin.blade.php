@@ -1,10 +1,9 @@
-@extends('app.risk_chemical.oza.resources.views.app.risk_chemical.oza.resources.views.app')
+@extends('app')
 
 @section('content')
 
     <div class="content">
-        <form action="{{ route('risk.chemical.store', [$single_document->id]) }}"
-              class="card card--add-risk card--risk-chemical" method="post">
+        <form action="{{ route('risk.chemical.store', [$single_document->id]) }}" class="card card--add-risk card--risk-chemical" method="post">
             @csrf
             <div class="card-body">
                 <div class="row">
@@ -16,7 +15,7 @@
                         <div class="right">
                             <select name="work_unit" id="workUnit" class="form-control">
                                 @foreach($works_units as $work)
-                                    <option value="{{ $work->id }}">{{ $work->name }}</option>
+                                    <option value="{{ $work->id }}" {{ old('work_unit') == $work->id ? 'selected' : '' }}>{{ $work->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -36,10 +35,7 @@
                             <label for="nameRisk">Produit concerné</label>
                         </div>
                         <div class="right">
-                            <textarea type="text" class="form-control" name="name_risk_chemical" id="nameRisk"
-                                      placeholder="Nom commercial ou dénomination">@if(old('name_risk_chemical'))
-                                    {{ old('name_risk_chemical') }}
-                                @endif</textarea>
+                            <textarea type="text" class="form-control" name="name_risk_chemical" id="nameRisk" placeholder="Nom commercial ou dénomination">{{ old('name_risk_chemical') }}</textarea>
                         </div>
                     </div>
                     @error('name_risk_chemical')
@@ -57,7 +53,7 @@
                             <label for="activity">Utilisation activité</label>
                         </div>
                         <div class="right">
-                            <textarea type="text" class="form-control" name="activity" id="activity" placeholder="Utilisation du produit / Activité qui génère le produit">@if(old('activity')){{ old('activity') }}@endif</textarea>
+                            <textarea type="text" class="form-control" name="activity" id="activity" placeholder="Utilisation du produit / Activité qui génère le produit">{{ old('activity') }}</textarea>
                         </div>
                     </div>
                     @error('activity')
@@ -88,8 +84,7 @@
                             <select name="n1" id="n1" class="form-control level">
                                 <option data-value="0" value="NC">NC</option>
                                 @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}"
-                                            value="{{ $item->name}}">{{ $item->name}}</option>
+                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}" {{ old('n1') == $item->id ? 'selected' : '' }}>{{ $item->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -98,8 +93,7 @@
                             <select name="n2" id="n2" class="form-control level">
                                 <option data-value="0" value="NC">NC</option>
                                 @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}"
-                                            value="{{ $item->name}}">{{ $item->name}}</option>
+                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}" {{ old('n2') == $item->id ? 'selected' : '' }}>{{ $item->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -108,8 +102,7 @@
                             <select name="n3" id="n3" class="form-control level">
                                 <option data-value="0" value="NC">NC</option>
                                 @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}"
-                                            value="{{ $item->name}}">{{ $item->name}}</option>
+                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}" {{ old('n3') == $item->id ? 'selected' : '' }}>{{ $item->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -118,8 +111,7 @@
                             <select name="n4" id="n4" class="form-control level">
                                 <option data-value="0" value="NC">NC</option>
                                 @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}"
-                                            value="{{ $item->name}}">{{ $item->name}}</option>
+                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}" {{ old('n4') == $item->id ? 'selected' : '' }}>{{ $item->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -128,8 +120,7 @@
                             <select name="n5" id="n5" class="form-control level">
                                 <option data-value="0" value="NC">NC</option>
                                 @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}"
-                                            value="{{ $item->name}}">{{ $item->name}}</option>
+                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}" {{ old('n5') == $item->id ? 'selected' : '' }}>{{ $item->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -138,8 +129,7 @@
                             <select name="n6" id="n6" class="form-control level">
                                 <option data-value="0" value="NC">NC</option>
                                 @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}"
-                                            value="{{ $item->name}}">{{ $item->name}}</option>
+                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}" {{ old('n6') == $item->id ? 'selected' : '' }}>{{ $item->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -148,8 +138,7 @@
                             <select name="n7" id="n7" class="form-control level">
                                 <option data-value="0" value="NC">NC</option>
                                 @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}"
-                                            value="{{ $item->name}}">{{ $item->name}}</option>
+                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}" {{ old('n7') == $item->id ? 'selected' : '' }}>{{ $item->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -158,8 +147,7 @@
                             <select name="n8" id="n8" class="form-control level">
                                 <option data-value="0" value="NC">NC</option>
                                 @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}"
-                                            value="{{ $item->name}}">{{ $item->name}}</option>
+                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}" {{ old('n8') == $item->id ? 'selected' : '' }}>{{ $item->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -168,8 +156,7 @@
                             <select name="n9" id="n9" class="form-control level">
                                 <option data-value="0" value="NC">NC</option>
                                 @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}"
-                                            value="{{ $item->name}}">{{ $item->name}}</option>
+                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}" {{ old('n9') == $item->id ? 'selected' : '' }}>{{ $item->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -178,8 +165,7 @@
                             <select name="n10" id="n10" class="form-control level">
                                 <option data-value="0" value="NC">NC</option>
                                 @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}"
-                                            value="{{ $item->name}}">{{ $item->name}}</option>
+                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}" {{ old('n10') == $item->id ? 'selected' : '' }}>{{ $item->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -210,7 +196,7 @@
                             <label for="date-fds">Date d'élaboration ou de révision de la FDS</label>
                         </div>
                         <div class="right">
-                            <input type="date" name="date_fds" id="date-fds" class="form-control">
+                            <input type="date" name="date_fds" id="date-fds" class="form-control" value="{{ old('date_fds') }}">
                         </div>
                     </div>
                     @error('date_fds')
@@ -239,11 +225,11 @@
                         </div>
                         <div class="right">
                             <select name="ventilation" id="ventilation" class="form-control">
-                                <option value="0">Sans ou dans un local</option>
-                                <option value="1">Médiocre ou travail à l'extérieur</option>
-                                <option value="2">Efficace</option>
-                                <option value="3">Aspiration localisée</option>
-                                <option value="4">Sorbonne de laboratoire</option>
+                                <option value="0" {{ old('ventilation') === "0" ? 'selected' : '' }}>Sans ou dans un local</option>
+                                <option value="1" {{ old('ventilation') === "1" ? 'selected' : '' }}>Médiocre ou travail à l'extérieur</option>
+                                <option value="2" {{ old('ventilation') === "2" ? 'selected' : '' }}>Efficace</option>
+                                <option value="3" {{ old('ventilation') === "3" ? 'selected' : '' }}>Aspiration localisée</option>
+                                <option value="4" {{ old('ventilation') === "4" ? 'selected' : '' }}>Sorbonne de laboratoire</option>
                             </select>
                         </div>
                     </div>
@@ -261,9 +247,9 @@
                         </div>
                         <div class="right">
                             <select name="concentration" id="concentration" class="form-control">
-                                <option value="0">10 à pur</option>
-                                <option value="2">1 à 10%</option>
-                                <option value="4">< 1%</option>
+                                <option value="0" {{ old('concentration') === "0" ? 'selected' : '' }}>10 à pur</option>
+                                <option value="2" {{ old('concentration') === "2" ? 'selected' : '' }}>1 à 10%</option>
+                                <option value="4" {{ old('concentration') === "4" ? 'selected' : '' }}>< 1%</option>
                             </select>
                         </div>
                     </div>
@@ -281,9 +267,9 @@
                         </div>
                         <div class="right">
                             <select name="time" id="time" class="form-control">
-                                <option value="0">45mn à 8h</option>
-                                <option value="2">5 à 45mn</option>
-                                <option value="4">< 5mn</option>
+                                <option value="0" {{ old('time') === "0" ? 'selected' : '' }}>45mn à 8h</option>
+                                <option value="2" {{ old('time') === "2" ? 'selected' : '' }}>5 à 45mn</option>
+                                <option value="4" {{ old('time') === "4" ? 'selected' : '' }}>< 5mn</option>
                             </select>
                         </div>
                     </div>
@@ -404,10 +390,10 @@
                         </div>
                         <div class="right">
                             <select name="protection" id="protection" class="form-control">
-                                <option value="0">Aucune</option>
-                                <option value="1">Une seule</option>
-                                <option value="2">Au moins une adaptée au risque principal</option>
-                                <option value="4">Toutes celles nécessaires</option>
+                                <option value="0" {{ old('protection') === "0" ? 'selected' : '' }}>Aucune</option>
+                                <option value="1" {{ old('protection') === "1" ? 'selected' : '' }}>Une seule</option>
+                                <option value="2" {{ old('protection') === "2" ? 'selected' : '' }}>Au moins une adaptée au risque principal</option>
+                                <option value="4" {{ old('protection') === "4" ? 'selected' : '' }}>Toutes celles nécessaires</option>
                             </select>
                         </div>
                     </div>
@@ -432,7 +418,7 @@
                             <label for="">Risque Résiduel (RR)</label>
                         </div>
                         <div class="right">
-                            <button class="btn btn-success" id="rr" type="button">Acceptable</button>
+                            <button class="btn btn-success btn-hidden" id="rr" type="button">Acceptable</button>
                         </div>
                     </div>
                 </div>

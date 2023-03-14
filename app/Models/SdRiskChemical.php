@@ -36,7 +36,8 @@ class SdRiskChemical extends Model
         'ventilation',
         'concentration',
         'time',
-        'protection'
+        'protection',
+        'validated'
     ];
 
     public function single_document()
@@ -76,7 +77,7 @@ class SdRiskChemical extends Model
         else if ($vent === 2) return "Efficace";
         else if ($vent === 3) return "Aspiration localisée";
         else if ($vent === 4) return "Sorbonne de laboratoire";
-        else return "NULL";
+        else return "NC";
     }
 
     public function T_concentration(){
@@ -85,7 +86,7 @@ class SdRiskChemical extends Model
         if ($con === 0) return "10 à pur";
         else if ($con === 2) return "1 à 10%";
         else if ($con === 4) return "< 1%";
-        else return "NULL";
+        else return "NC";
     }
 
     public function T_time(){
@@ -94,7 +95,7 @@ class SdRiskChemical extends Model
         if ($time === 0) return "45mn à 8h";
         else if ($time === 2) return "5 à 45mn";
         else if ($time === 4) return "< 5mn";
-        else return "NULL";
+        else return "NC";
     }
 
     public function T_protection(){
@@ -104,7 +105,7 @@ class SdRiskChemical extends Model
         else if ($pro === 1) return "Une seule";
         else if ($pro === 2) return "Au moins une adaptée au risque principal";
         else if ($pro === 4) return "Toutes celles nécessaires";
-        else return "NULL";
+        else return "NC";
     }
 
     public function ND(){
@@ -161,7 +162,7 @@ class SdRiskChemical extends Model
             $temp = "n" . ($i + 1);
             $final[] = [
                 "key" => $this->$temp,
-                "value" => $translate[$this->$temp]
+                "value" => $translate[$this->$temp] ?? 0
             ];
         }
 

@@ -50,12 +50,12 @@ class RiskChemicalController extends Controller
         $restraints_chemical = RestraintChemical::all();
 
         $danger_level = DangerLevel::all();
+
         if (Auth::user()->hasAccess('oza')){
             return view('app.risk_chemical.create_admin', compact('page', 'single_document','works_units','restraints_chemical', 'danger_level'));
         }else{
             return view('app.risk_chemical.create_client', compact('page', 'single_document','works_units'));
         }
-
 
     }
 
@@ -85,61 +85,110 @@ class RiskChemicalController extends Controller
 
         $danger_level = DangerLevel::all();
 
-        return view('app.risk_chemical.edit', compact('page', 'single_document','works_units','restraints_chemical', 'sd_risk', 'danger_level'));
+        if (Auth::user()->hasAccess('oza')){
+            return view('app.risk_chemical.edit_admin', compact('page', 'single_document','works_units','restraints_chemical', 'sd_risk', 'danger_level'));
+        }else{
+            return view('app.risk_chemical.edit_client', compact('page', 'single_document','works_units', 'sd_risk', 'danger_level', 'restraints_chemical'));
+        }
+
     }
 
     public function store(Request $request,$id)
     {
         $single_document = $this->checkSingleDocument($id);
 
-        $request->validate([
-            'work_unit' => 'required',
-            'name_risk_chemical' => 'required',
-            'activity' => 'required',
-            'n1' => 'required',
-            'n2' => 'required',
-            'n3' => 'required',
-            'n4' => 'required',
-            'n5' => 'required',
-            'n6' => 'required',
-            'n7' => 'required',
-            'n8' => 'required',
-            'n9' => 'required',
-            'n10' => 'required',
-            'date_fds' => 'required',
-            'ventilation' => 'required',
-            'concentration' => 'required',
-            'time' => 'required',
-            'protection' => 'required'
-        ]);
+        if (Auth::user()->hasAccess('oza')){
 
-        $sd_work_unit = SdWorkUnit::find($request->work_unit);
+            // OZA SECTION
 
-        if (!$sd_work_unit) abort(404);
+            $request->validate([
+                'n1' => 'required',
+                'n2' => 'required',
+                'n3' => 'required',
+                'n4' => 'required',
+                'n5' => 'required',
+                'n6' => 'required',
+                'n7' => 'required',
+                'n8' => 'required',
+                'n9' => 'required',
+                'n10' => 'required',
+                'date_fds' => 'required',
+                'protection' => 'required'
+            ]);
 
-        $sd_risk = new SdRiskChemical();
-        $sd_risk->id = uniqid();
-        $sd_risk->name = $request->name_risk;
-        $sd_risk->activity = $request->activity;
-        $sd_risk->n1 = $request->n1;
-        $sd_risk->n2 = $request->n2;
-        $sd_risk->n3 = $request->n3;
-        $sd_risk->n4 = $request->n4;
-        $sd_risk->n5 = $request->n5;
-        $sd_risk->n6 = $request->n6;
-        $sd_risk->n7 = $request->n7;
-        $sd_risk->n8 = $request->n8;
-        $sd_risk->n9 = $request->n9;
-        $sd_risk->n10 = $request->n10;
-        $sd_risk->date = $request->date_fds;
-        $sd_risk->ventilation = $request->ventilation;
-        $sd_risk->concentration = $request->concentration;
-        $sd_risk->time = $request->time;
-        $sd_risk->protection = $request->protection;
-        $sd_risk->sd_work_unit()->associate($sd_work_unit);
-        $sd_risk->single_document()->associate($single_document);
-        $sd_risk->save();
+            if (!empty($request->work_unit)){
+                $sd_work_unit = SdWorkUnit::find($request->work_unit);
 
+                if (!$sd_work_unit) abort(404);
+            }
+
+            $sd_risk = new SdRiskChemical();
+            $sd_risk->id = uniqid();
+            $sd_risk->name = !empty($request->name_risk_chemical) ? $request->name_risk_chemical : null;
+            $sd_risk->activity = !empty($request->activity) ? $request->activity : null;
+            $sd_risk->n1 = $request->n1;
+            $sd_risk->n2 = $request->n2;
+            $sd_risk->n3 = $request->n3;
+            $sd_risk->n4 = $request->n4;
+            $sd_risk->n5 = $request->n5;
+            $sd_risk->n6 = $request->n6;
+            $sd_risk->n7 = $request->n7;
+            $sd_risk->n8 = $request->n8;
+            $sd_risk->n9 = $request->n9;
+            $sd_risk->n10 = $request->n10;
+            $sd_risk->date = $request->date_fds;
+            $sd_risk->ventilation = !empty($request->ventilation) ? $request->ventilation : null;
+            $sd_risk->concentration = !empty($request->concentration) ? $request->concentration : null;
+            $sd_risk->time = !empty($request->time) ? $request->time : null;
+            $sd_risk->protection = $request->protection;
+            if (isset($sd_work_unit)) $sd_risk->sd_work_unit()->associate($sd_work_unit);
+            $sd_risk->single_document()->associate($single_document);
+            $sd_risk->save();
+
+            $restraint = "restraint_proposed";
+
+            if (isset($request->$restraint['checked'])){
+                foreach ($request->$restraint['checked'] as $restraint){
+
+                    $sd_restraint = new SdRestraintChemical();
+                    $sd_restraint->id = uniqid();
+                    $sd_restraint->name = $restraint;
+                    $sd_restraint->exist = true;
+                    $sd_restraint->sd_risk_chemical()->associate($sd_risk);
+                    $sd_restraint->save();
+                }
+            }
+
+        }else{
+
+            //CLIENT SECTION
+
+            $request->validate([
+                'work_unit' => 'required',
+                'name_risk_chemical' => 'required',
+                'activity' => 'required',
+                'ventilation' => 'required',
+                'concentration' => 'required',
+                'time' => 'required'
+            ]);
+
+            $sd_work_unit = SdWorkUnit::find($request->work_unit);
+
+            if (!$sd_work_unit) abort(404);
+
+            $sd_risk = new SdRiskChemical();
+            $sd_risk->id = uniqid();
+            $sd_risk->name = $request->name_risk_chemical;
+            $sd_risk->activity = $request->activity;
+            $sd_risk->ventilation = $request->ventilation;
+            $sd_risk->concentration = $request->concentration;
+            $sd_risk->time = $request->time;
+            $sd_risk->sd_work_unit()->associate($sd_work_unit);
+            $sd_risk->single_document()->associate($single_document);
+            $sd_risk->save();
+        }
+
+        // FOR ALL
 
         if (!empty($request->list_items)){
             foreach ($request->list_items as $item){
@@ -153,20 +202,6 @@ class RiskChemicalController extends Controller
             }
         }
 
-        $restraint = "restraint_proposed";
-
-        if (isset($request->$restraint['checked'])){
-            foreach ($request->$restraint['checked'] as $restraint){
-
-                $sd_restraint = new SdRestraintChemical();
-                $sd_restraint->id = uniqid();
-                $sd_restraint->name = $restraint;
-                $sd_restraint->exist = true;
-                $sd_restraint->sd_risk_chemical()->associate($sd_risk);
-                $sd_restraint->save();
-            }
-        }
-
         return redirect()->route('risk.chemical.index', [$single_document->id])->with('status', 'Risque chimique ajouté !');
 
     }
@@ -175,55 +210,115 @@ class RiskChemicalController extends Controller
     {
         $single_document = $this->checkSingleDocument($id);
 
-        $request->validate([
-            'work_unit' => 'required',
-            'name_risk' => 'required',
-            'activity' => 'required',
-            'n1' => 'required',
-            'n2' => 'required',
-            'n3' => 'required',
-            'n4' => 'required',
-            'n5' => 'required',
-            'n6' => 'required',
-            'n7' => 'required',
-            'n8' => 'required',
-            'n9' => 'required',
-            'n10' => 'required',
-            'date_fds' => 'required',
-            'ventilation' => 'required',
-            'concentration' => 'required',
-            'time' => 'required',
-            'protection' => 'required'
-        ]);
-
         $sd_risk = SdRiskChemical::find($risk_chemical);
 
         if (!$sd_risk) abort(404);
 
-        $sd_work_unit = SdWorkUnit::find($request->work_unit);
+        if (Auth::user()->hasAccess('oza')){
 
-        if (!$sd_work_unit) abort(404);
+            $request->validate([
+                'n1' => 'required',
+                'n2' => 'required',
+                'n3' => 'required',
+                'n4' => 'required',
+                'n5' => 'required',
+                'n6' => 'required',
+                'n7' => 'required',
+                'n8' => 'required',
+                'n9' => 'required',
+                'n10' => 'required',
+                'date_fds' => 'required',
+                'protection' => 'required'
+            ]);
+
+            if (!empty($request->work_unit)){
+                $sd_work_unit = SdWorkUnit::find($request->work_unit);
+
+                if (!$sd_work_unit) abort(404);
+            }
+
+            $sd_risk->name = !empty($request->name_risk_chemical) ? $request->name_risk_chemical : null;
+            $sd_risk->activity = !empty($request->activity) ? $request->activity : null;
+            $sd_risk->n1 = $request->n1;
+            $sd_risk->n2 = $request->n2;
+            $sd_risk->n3 = $request->n3;
+            $sd_risk->n4 = $request->n4;
+            $sd_risk->n5 = $request->n5;
+            $sd_risk->n6 = $request->n6;
+            $sd_risk->n7 = $request->n7;
+            $sd_risk->n8 = $request->n8;
+            $sd_risk->n9 = $request->n9;
+            $sd_risk->n10 = $request->n10;
+            $sd_risk->date = $request->date_fds;
+            $sd_risk->ventilation = !empty($request->ventilation) ? $request->ventilation : null;
+            $sd_risk->concentration = !empty($request->concentration) ? $request->concentration : null;
+            $sd_risk->time = !empty($request->time) ? $request->time : null;
+            $sd_risk->protection = $request->protection;
+            if (isset($sd_work_unit)) $sd_risk->sd_work_unit()->associate($sd_work_unit);
+            $sd_risk->single_document()->associate($single_document);
+            $sd_risk->save();
+
+            $tabDelete = [];
+            foreach ($sd_risk->sd_restraints as $res) {
+                $tabDelete[] = $res->id;
+            }
+
+            $P = "restraint_proposed_".$sd_risk->id;
+
+            if (isset($request->$P['checked'])) {
+                foreach ((array)$request->$P['checked'] as $key => $res) {
+                    if ($res[0] !== null){
+                        if ($key === "new"){
+                            for ($i = 0; $i < count($res); $i++) {
+                                $restraint = new SdRestraintChemical();
+                                $restraint->id = uniqid();
+                                $restraint->name = $res[$i];
+                                $restraint->exist = true;
+                                $restraint->sd_risk_chemical()->associate($sd_risk);
+                                $restraint->save();
+                            }
+                        }else{
+                            $restraint = SdRestraintChemical::find($key);
+                            $restraint->name = $res[0];
+                            $restraint->exist = true;
+                            $restraint->save();
+
+                            $index = array_search($key, $tabDelete);
+                            array_splice($tabDelete, $index, $index+1);
+                        }
+                    }
+                }
+            }
+            if (count($tabDelete) > 0){
+                for ($i = 0; $i < count($tabDelete); $i++){
+                    SdRestraintChemical::find($tabDelete[$i])->delete();
+                }
+            }
 
 
-        $sd_risk->name = $request->name_risk;
-        $sd_risk->activity = $request->activity;
-        $sd_risk->n1 = $request->n1;
-        $sd_risk->n2 = $request->n2;
-        $sd_risk->n3 = $request->n3;
-        $sd_risk->n4 = $request->n4;
-        $sd_risk->n5 = $request->n5;
-        $sd_risk->n6 = $request->n6;
-        $sd_risk->n7 = $request->n7;
-        $sd_risk->n8 = $request->n8;
-        $sd_risk->n9 = $request->n9;
-        $sd_risk->n10 = $request->n10;
-        $sd_risk->date = $request->date_fds;
-        $sd_risk->ventilation = $request->ventilation;
-        $sd_risk->concentration = $request->concentration;
-        $sd_risk->time = $request->time;
-        $sd_risk->protection = $request->protection;
-        $sd_risk->sd_work_unit()->associate($sd_work_unit);
-        $sd_risk->save();
+        }else{
+
+            $request->validate([
+                'work_unit' => 'required',
+                'name_risk_chemical' => 'required',
+                'activity' => 'required',
+                'ventilation' => 'required',
+                'concentration' => 'required',
+                'time' => 'required',
+            ]);
+
+            $sd_work_unit = SdWorkUnit::find($request->work_unit);
+
+            if (!$sd_work_unit) abort(404);
+
+            $sd_risk->name = $request->name_risk_chemical;
+            $sd_risk->activity = $request->activity;
+            $sd_risk->ventilation = $request->ventilation;
+            $sd_risk->concentration = $request->concentration;
+            $sd_risk->time = $request->time;
+            $sd_risk->sd_work_unit()->associate($sd_work_unit);
+            $sd_risk->save();
+        }
 
 
         $sd_risk->sd_equipements()->delete();
@@ -239,21 +334,7 @@ class RiskChemicalController extends Controller
             }
         }
 
-        $sd_risk->sd_restraints()->delete();
-
-        $restraint = "restraint_proposed";
-
-        if (isset($request->$restraint['checked'])){
-            foreach ($request->$restraint['checked'] as $restraint){
-
-                $sd_restraint = new SdRestraintChemical();
-                $sd_restraint->id = uniqid();
-                $sd_restraint->name = $restraint;
-                $sd_restraint->exist = true;
-                $sd_restraint->sd_risk_chemical()->associate($sd_risk);
-                $sd_restraint->save();
-            }
-        }
+        $this->checkValidRisk($sd_risk);
 
         return back()->with('status', 'Risque chimique modifié !');
 
@@ -315,5 +396,40 @@ class RiskChemicalController extends Controller
         $sd_restraint->save();
 
         return back()->with('status', 'La mesure a bien été mise à jour !');
+    }
+
+
+    private function checkValidRisk(SdRiskChemical $sd_risk): void
+    {
+         $fillable = [
+            'name',
+            'activity',
+            'n1',
+            'n2',
+            'n3',
+            'n4',
+            'n5',
+            'n6',
+            'n7',
+            'n8',
+            'n9',
+            'n10',
+            'date',
+            'ventilation',
+            'concentration',
+            'time',
+            'protection'
+        ];
+
+        for ($i = 0; $i < count($fillable); $i++){
+            $temp = $fillable[$i];
+            if (empty($sd_risk->$temp)) return;
+
+        }
+        if (empty($sd_risk->sd_work_unit->name)) return;
+
+        $sd_risk->validated = true;
+        $sd_risk->save();
+
     }
 }

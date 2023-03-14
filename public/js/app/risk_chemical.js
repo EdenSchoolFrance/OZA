@@ -20,6 +20,27 @@ on('.btn-add-restraint', 'click', (el, e) => {
     }
 });
 
+on('.btn-add-restraint-edit', 'click', (el, e) => {
+    let all = el.closest('div').querySelectorAll('li')
+    console.log(all)
+    if (all[all.length - 2] !== undefined && all[all.length - 2] !== el.closest('li') && all[all.length - 2].querySelector('textarea').value === ''){
+        all[all.length - 2].querySelector('textarea').focus();
+    }else{
+        let restraints = $('li.res-pro')
+
+        let content ='<input type="checkbox" class="btn-check-edit" data-on="false" data-id="'+el.dataset.id+'" data-tab="new" checked>\n' +
+            '<textarea class="form-control auto-resize" placeholder="" name="restraint_proposed_'+el.dataset.id+'[checked][new][]"></textarea>\n' +
+            '<button type="button" class="btn btn-text btn-small btn-delete-restraint"><i class="far fa-times-circle"></i></button>'
+        let li = document.createElement('li');
+        li.setAttribute('class','res-pro')
+        li.innerHTML = content;
+        if (restraints.length === 0) el.closest('div').querySelector('ul').appendChild(li);
+        else all[all.length - 1].after(li);
+        li.querySelector("textarea").focus();
+
+    }
+});
+
 on('.btn-delete-restraint', 'click', (el, e) => {
 
     el.closest('li').remove();
@@ -37,12 +58,23 @@ on('.btn-check', 'click', (el, e) => {
     }
 });
 
+on('.btn-check-edit', 'click', (el, e) => {
+
+    if (el.checked){
+        el.closest('li').querySelector('textarea').removeAttribute('name')
+        el.closest('li').querySelector('textarea').setAttribute('name', 'restraint_proposed_'+el.dataset.id+'[checked]['+el.dataset.tab+'][]')
+    }else{
+        el.closest('li').querySelector('textarea').removeAttribute('name')
+        el.closest('li').querySelector('textarea').setAttribute('name', 'restraint_proposed_'+el.dataset.id+'[not-checked]['+el.dataset.tab+'][]')
+    }
+});
+
 on('.btn-modal-add', 'click', (el,e)=>{
 
     let values = el.closest("div").querySelector('input').value.split(",");
 
     for (let i = 0; i < values.length ; i++) {
-        let content = '<input type="checkbox" value="'+ values[i] +'" data-name="'+ values[i] +'" name="list_items[]" >\n' +
+        let content = '<input type="checkbox" value="'+ values[i] +'" data-name="'+ values[i] +'" name="list_items[]" checked>\n' +
             '<span class="checkmark">'+ values[i] +'</span>'
         let label = document.createElement("label");
         label.setAttribute('class','contain')
@@ -52,6 +84,20 @@ on('.btn-modal-add', 'click', (el,e)=>{
     }
 
 })
+
+on('.btn-modal-check', 'click', (el, e) => {
+    let check = $('#modal-list div[data-id=""] input')
+    for (let i = 0; i < check.length; i++) {
+        check[i].checked = true
+    }
+});
+
+on('.btn-modal-uncheck', 'click', (el, e) => {
+    let check = $('#modal-list div[data-id=""] input')
+    for (let i = 0; i < check.length; i++) {
+        check[i].checked = false
+    }
+});
 
 
 on('.level', 'change', (el, e) =>{
@@ -106,8 +152,6 @@ function IR() {
     let pro = $('#protection', document, 0).value;
     let nd = $('#nd_hidden', document, 0).value;
 
-    console.log(`${vent} | ${con} | ${time} | ${pro} | ${nd}`)
-
     let cal = nd - vent - con - time - pro;
     let text = "Acceptable";
 
@@ -121,20 +165,20 @@ function IR() {
         text = "Inacceptable"
     }
 
-    $('#ir', document, 0).value = text
+    $('#ir', document, 0).value = cal
 
 }
 
 
 on('#date-fds', 'change', (el,e)=> {
 
-    let FIVE_YEAR = 5 * 365 * 24 * 60 * 60 * 1000
+    let TWO_YEAR = 2 * 365 * 24 * 60 * 60 * 1000
 
-    let dateNow = Date.now() + FIVE_YEAR
+    let dateNow = Date.now() - TWO_YEAR
     el.removeAttribute("class")
     el.setAttribute("class", "form-control")
 
-    if (Date.parse(el.value) >= dateNow){
+    if (dateNow >= Date.parse(el.value)){
         el.classList.add('input_danger');
     }
 })
@@ -146,13 +190,13 @@ on('a[data-modal=".modal--delete"]', 'click', (el, e) => {
 
 function dateCheck(){
     let el = $("#date-fds", document, 0);
-    let FIVE_YEAR = 5 * 365 * 24 * 60 * 60 * 1000
+    let TWO_YEAR = 2 * 365 * 24 * 60 * 60 * 1000
 
-    let dateNow = Date.now() + FIVE_YEAR
+    let dateNow = Date.now() - TWO_YEAR
     el.removeAttribute("class")
     el.setAttribute("class", "form-control")
 
-    if (Date.parse(el.value) >= dateNow){
+    if (dateNow >= Date.parse(el.value)){
         el.classList.add('input_danger');
     }
 }

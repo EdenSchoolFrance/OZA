@@ -1,4 +1,4 @@
-@extends('app.risk_chemical.user.resources.views.app.risk_chemical.user.resources.views.app.risk_chemical.oza.resources.views.app')
+@extends('app')
 
 @section('content')
 
@@ -7,6 +7,9 @@
               class="card card--add-risk card--risk-chemical" method="post">
             @csrf
             <div class="card-body">
+
+                {{-- CLIENT SECTION --}}
+
                 <div class="row">
                     <h3 class="section-client">Section à remplir par le client</h3>
                     <div class="line">
@@ -16,7 +19,7 @@
                         <div class="right">
                             <select name="work_unit" id="workUnit" class="form-control">
                                 @foreach($works_units as $work)
-                                    <option value="{{ $work->id }}">{{ $work->name }}</option>
+                                    <option value="{{ $work->id }}" {{ old('work_unit') == $work->id ? 'selected' : '' }}>{{ $work->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -36,13 +39,10 @@
                             <label for="nameRisk">Produit concerné</label>
                         </div>
                         <div class="right">
-                            <textarea type="text" class="form-control" name="name_risk" id="nameRisk"
-                                      placeholder="Nom commercial ou dénomination">@if(old('name_risk'))
-                                    {{ old('name_risk') }}
-                                @endif</textarea>
+                            <textarea type="text" class="form-control" name="name_risk_chemical" id="nameRisk" placeholder="Nom commercial ou dénomination">{{ old('name_risk_chemical') }}</textarea>
                         </div>
                     </div>
-                    @error('name_risk')
+                    @error('name_risk_chemical')
                     <div class="line">
                         <div class="left"></div>
                         <div class="right">
@@ -57,10 +57,7 @@
                             <label for="activity">Utilisation activité</label>
                         </div>
                         <div class="right">
-                            <textarea type="text" class="form-control" name="activity" id="activity"
-                                      placeholder="Utilisation du produit / Activité qui génère le produit">@if(old('activity'))
-                                    {{ old('activity') }}
-                                @endif</textarea>
+                            <textarea type="text" class="form-control" name="activity" id="activity" placeholder="Utilisation du produit / Activité qui génère le produit">{{ old('activity') }}</textarea>
                         </div>
                     </div>
                     @error('activity')
@@ -72,7 +69,11 @@
                     </div>
                     @enderror
                 </div>
+
                 <hr>
+
+                {{-- OZA SECTION --}}
+
                 <div class="row">
                     <h3 class="section-admin">Section à remplir par l'expert OZA</h3>
                     <div class="line">
@@ -147,14 +148,6 @@
                             </select>
                         </div>
                     </div>
-                    @error('name_risk')
-                    <div class="line">
-                        <div class="left"></div>
-                        <div class="right">
-                            <p class="message-error">{{ $message }}</p>
-                        </div>
-                    </div>
-                    @enderror
                 </div>
 
                 <div class="row">
@@ -176,17 +169,11 @@
                             <input type="date" id="date-fds" class="form-control" disabled>
                         </div>
                     </div>
-                    @error('date_fds')
-                    <div class="line">
-                        <div class="left"></div>
-                        <div class="right">
-                            <p class="message-error">{{ $message }}</p>
-                        </div>
-                    </div>
-                    @enderror
                 </div>
 
                 <hr>
+
+                {{-- CLIENT SECTION --}}
 
                 <div class="row">
                     <h3 class="section-client">Section à remplir par le client</h3>
@@ -202,11 +189,11 @@
                         </div>
                         <div class="right">
                             <select name="ventilation" id="ventilation" class="form-control">
-                                <option value="0">Sans ou dans un local</option>
-                                <option value="1">Médiocre ou travail à l'extérieur</option>
-                                <option value="2">Efficace</option>
-                                <option value="3">Aspiration localisée</option>
-                                <option value="4">Sorbonne de laboratoire</option>
+                                <option value="0" {{ old('ventilation') == 0 ? 'selected' : '' }}>Sans ou dans un local</option>
+                                <option value="1" {{ old('ventilation') == 1 ? 'selected' : '' }}>Médiocre ou travail à l'extérieur</option>
+                                <option value="2" {{ old('ventilation') == 2 ? 'selected' : '' }}>Efficace</option>
+                                <option value="3" {{ old('ventilation') == 3 ? 'selected' : '' }}>Aspiration localisée</option>
+                                <option value="4" {{ old('ventilation') == 4 ? 'selected' : '' }}>Sorbonne de laboratoire</option>
                             </select>
                         </div>
                     </div>
@@ -224,9 +211,9 @@
                         </div>
                         <div class="right">
                             <select name="concentration" id="concentration" class="form-control">
-                                <option value="0">10 à pur</option>
-                                <option value="2">1 à 10%</option>
-                                <option value="4">< 1%</option>
+                                <option value="0" {{ old('concentration') == 0 ? 'selected' : '' }}>10 à pur</option>
+                                <option value="2" {{ old('concentration') == 2 ? 'selected' : '' }}>1 à 10%</option>
+                                <option value="4" {{ old('concentration') == 4 ? 'selected' : '' }}>< 1%</option>
                             </select>
                         </div>
                     </div>
@@ -244,9 +231,9 @@
                         </div>
                         <div class="right">
                             <select name="time" id="time" class="form-control">
-                                <option value="0">45mn à 8h</option>
-                                <option value="2">5 à 45mn</option>
-                                <option value="4">< 5mn</option>
+                                <option value="0" {{ old('time') == 0 ? 'selected' : '' }}>45mn à 8h</option>
+                                <option value="2" {{ old('time') == 2 ? 'selected' : '' }}>5 à 45mn</option>
+                                <option value="4" {{ old('time') == 4 ? 'selected' : '' }}>< 5mn</option>
                             </select>
                         </div>
                     </div>
@@ -359,6 +346,8 @@
 
                 <hr>
 
+                {{-- OZA SECTION --}}
+
                 <div class="row">
                     <h3 class="section-admin">Section à remplir par l'expert OZA</h3>
                     <div class="line">
@@ -368,20 +357,9 @@
                         <div class="right">
                             <select id="protection" class="form-control" disabled>
                                 <option value="0">Aucune</option>
-                                <option value="1">Une seule</option>
-                                <option value="2">Au moins une adaptée au risque principal</option>
-                                <option value="4">Toutes celles nécessaires</option>
                             </select>
                         </div>
                     </div>
-                    @error('protection')
-                    <div class="line">
-                        <div class="left"></div>
-                        <div class="right">
-                            <p class="message-error">{{ $message }}</p>
-                        </div>
-                    </div>
-                    @enderror
                     <div class="line">
                         <div class="left">
                             <label for="ir">Indice de Risque (IR)</label>
@@ -395,7 +373,7 @@
                             <label for="">Risque Résiduel (RR)</label>
                         </div>
                         <div class="right">
-                            <button class="btn btn-success" id="rr" type="button">Acceptable</button>
+                            <button class="btn btn-success btn-hidden" id="rr" type="button">Acceptable</button>
                         </div>
                     </div>
                 </div>
@@ -423,9 +401,7 @@
                                 </li>
                                 @enderror
                             </ul>
-                            <button class="btn btn-yellow btn-text" data-id="" type="button">+ Ajouter une mesure
-                                proposée
-                            </button>
+                            <button class="btn btn-yellow btn-text" data-id="" type="button">+ Ajouter une mesure proposée</button>
                         </div>
                     </div>
                 </div>
