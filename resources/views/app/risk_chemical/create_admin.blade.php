@@ -225,11 +225,11 @@
                         </div>
                         <div class="right">
                             <select name="ventilation" id="ventilation" class="form-control">
-                                <option value="0" {{ old('ventilation') == 0 ? 'selected' : '' }}>Sans ou dans un local</option>
-                                <option value="1" {{ old('ventilation') == 1 ? 'selected' : '' }}>Médiocre ou travail à l'extérieur</option>
-                                <option value="2" {{ old('ventilation') == 2 ? 'selected' : '' }}>Efficace</option>
-                                <option value="3" {{ old('ventilation') == 3 ? 'selected' : '' }}>Aspiration localisée</option>
-                                <option value="4" {{ old('ventilation') == 4 ? 'selected' : '' }}>Sorbonne de laboratoire</option>
+                                <option value="0" {{ old('ventilation') === "0" ? 'selected' : '' }}>Sans ou dans un local</option>
+                                <option value="1" {{ old('ventilation') === "1" ? 'selected' : '' }}>Médiocre ou travail à l'extérieur</option>
+                                <option value="2" {{ old('ventilation') === "2" ? 'selected' : '' }}>Efficace</option>
+                                <option value="3" {{ old('ventilation') === "3" ? 'selected' : '' }}>Aspiration localisée</option>
+                                <option value="4" {{ old('ventilation') === "4" ? 'selected' : '' }}>Sorbonne de laboratoire</option>
                             </select>
                         </div>
                     </div>
@@ -247,9 +247,9 @@
                         </div>
                         <div class="right">
                             <select name="concentration" id="concentration" class="form-control">
-                                <option value="0" {{ old('concentration') == 0 ? 'selected' : '' }}>10 à pur</option>
-                                <option value="2" {{ old('concentration') == 2 ? 'selected' : '' }}>1 à 10%</option>
-                                <option value="4" {{ old('concentration') == 4 ? 'selected' : '' }}>< 1%</option>
+                                <option value="0" {{ old('concentration') === "0" ? 'selected' : '' }}>10 à pur</option>
+                                <option value="2" {{ old('concentration') === "2" ? 'selected' : '' }}>1 à 10%</option>
+                                <option value="4" {{ old('concentration') === "4" ? 'selected' : '' }}>< 1%</option>
                             </select>
                         </div>
                     </div>
@@ -267,9 +267,9 @@
                         </div>
                         <div class="right">
                             <select name="time" id="time" class="form-control">
-                                <option value="0" {{ old('time') == 0 ? 'selected' : '' }}>45mn à 8h</option>
-                                <option value="2" {{ old('time') == 2 ? 'selected' : '' }}>5 à 45mn</option>
-                                <option value="4" {{ old('time') == 4 ? 'selected' : '' }}>< 5mn</option>
+                                <option value="0" {{ old('time') === "0" ? 'selected' : '' }}>45mn à 8h</option>
+                                <option value="2" {{ old('time') === "2" ? 'selected' : '' }}>5 à 45mn</option>
+                                <option value="4" {{ old('time') === "4" ? 'selected' : '' }}>< 5mn</option>
                             </select>
                         </div>
                     </div>
@@ -390,10 +390,10 @@
                         </div>
                         <div class="right">
                             <select name="protection" id="protection" class="form-control">
-                                <option value="0" {{ old('protection') == 0 ? 'selected' : '' }}>Aucune</option>
-                                <option value="1" {{ old('protection') == 1 ? 'selected' : '' }}>Une seule</option>
-                                <option value="2" {{ old('protection') == 2 ? 'selected' : '' }}>Au moins une adaptée au risque principal</option>
-                                <option value="4" {{ old('protection') == 4 ? 'selected' : '' }}>Toutes celles nécessaires</option>
+                                <option value="0" {{ old('protection') === "0" ? 'selected' : '' }}>Aucune</option>
+                                <option value="1" {{ old('protection') === "1" ? 'selected' : '' }}>Une seule</option>
+                                <option value="2" {{ old('protection') === "2" ? 'selected' : '' }}>Au moins une adaptée au risque principal</option>
+                                <option value="4" {{ old('protection') === "4" ? 'selected' : '' }}>Toutes celles nécessaires</option>
                             </select>
                         </div>
                     </div>

@@ -88,7 +88,7 @@ class RiskChemicalController extends Controller
         if (Auth::user()->hasAccess('oza')){
             return view('app.risk_chemical.edit_admin', compact('page', 'single_document','works_units','restraints_chemical', 'sd_risk', 'danger_level'));
         }else{
-            return view('app.risk_chemical.edit_client', compact('page', 'single_document','works_units', 'sd_risk'));
+            return view('app.risk_chemical.edit_client', compact('page', 'single_document','works_units', 'sd_risk', 'danger_level', 'restraints_chemical'));
         }
 
     }

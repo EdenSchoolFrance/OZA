@@ -18,9 +18,19 @@
                         </div>
                         <div class="right">
                             <select name="work_unit" id="workUnit" class="form-control">
-                                @foreach($works_units as $work)
-                                    <option value="{{ $work->id }}" {{ old('work_unit') == $work->id ? 'selected' : '' }}>{{ $work->name }}</option>
-                                @endforeach
+                                @if(old("work_unit"))
+                                    @foreach($works_units as $work)
+                                        <option value="{{ $work->id }}" {{ old('work_unit') == $work->id ? 'selected' : '' }}>{{ $work->name }}</option>
+                                    @endforeach
+                                @else
+                                    @foreach($works_units as $work)
+                                        @if($work->id === $sd_risk->sd_work_unit->id)
+                                            <option value="{{ $work->id }}" selected>{{ $work->name }}</option>
+                                        @else
+                                            <option value="{{ $work->id }}">{{ $work->name }}</option>
+                                        @endif
+                                    @endforeach
+                                @endif
                             </select>
                         </div>
                     </div>
@@ -39,7 +49,7 @@
                             <label for="nameRisk">Produit concerné</label>
                         </div>
                         <div class="right">
-                            <textarea type="text" class="form-control" name="name_risk_chemical" id="nameRisk" placeholder="Nom commercial ou dénomination">{{ old('name_risk_chemical') }}</textarea>
+                            <textarea type="text" class="form-control" name="name_risk_chemical" id="nameRisk" placeholder="Nom commercial ou dénomination">@if(old('name_risk_chemical')) {{ old('name_risk_chemical')  }}@else{{ $sd_risk->name }}@endif</textarea>
                         </div>
                     </div>
                     @error('name_risk_chemical')
@@ -57,7 +67,7 @@
                             <label for="activity">Utilisation activité</label>
                         </div>
                         <div class="right">
-                            <textarea type="text" class="form-control" name="activity" id="activity" placeholder="Utilisation du produit / Activité qui génère le produit">{{ old('activity') }}</textarea>
+                            <textarea type="text" class="form-control" name="activity" id="activity" placeholder="Utilisation du produit / Activité qui génère le produit">@if(old('activity')) {{ old('activity') }}@else{{ $sd_risk->activity }}@endif</textarea>
                         </div>
                     </div>
                     @error('activity')
@@ -236,14 +246,14 @@
                             <label for="date-fds">Date d'élaboration ou de révision de la FDS</label>
                         </div>
                         <div class="right">
-                            <input type="date" name="date_fds" id="date-fds" class="form-control" value="{{ $sd_risk->date }}" disabled>
+                            <input type="date" name="date_fds" id="date-fds" class="form-control" value="{{ old('date_fds') ? old('date_fds') : $sd_risk->date }}" disabled>
                         </div>
                     </div>
                 </div>
 
                 <hr>
 
-                {{-- OZA SECTION --}}
+                {{-- CLIENT SECTION --}}
 
                 <div class="row">
                     <h3 class="section-client">Section à remplir par le client</h3>
@@ -260,17 +270,17 @@
                         <div class="right">
                             <select name="ventilation" id="ventilation" class="form-control">
                                 @if(old('ventilation'))
-                                    <option value="0" {{ old('ventilation') == 0 ? 'selected' : '' }}>Sans ou dans un local</option>
-                                    <option value="1" {{ old('ventilation') == 1 ? 'selected' : '' }}>Médiocre ou travail à l'extérieur</option>
-                                    <option value="2" {{ old('ventilation') == 2 ? 'selected' : '' }}>Efficace</option>
-                                    <option value="3" {{ old('ventilation') == 3 ? 'selected' : '' }}>Aspiration localisée</option>
-                                    <option value="4" {{ old('ventilation') == 4 ? 'selected' : '' }}>Sorbonne de laboratoire</option>
+                                    <option value="0" {{ old('ventilation') === "0" ? 'selected' : '' }}>Sans ou dans un local</option>
+                                    <option value="1" {{ old('ventilation') === "1" ? 'selected' : '' }}>Médiocre ou travail à l'extérieur</option>
+                                    <option value="2" {{ old('ventilation') === "2" ? 'selected' : '' }}>Efficace</option>
+                                    <option value="3" {{ old('ventilation') === "3" ? 'selected' : '' }}>Aspiration localisée</option>
+                                    <option value="4" {{ old('ventilation') === "4" ? 'selected' : '' }}>Sorbonne de laboratoire</option>
                                 @else
-                                    <option value="0" @if($sd_risk->ventilation === 0) selected @endif>Sans ou dans un local</option>
-                                    <option value="1" @if($sd_risk->ventilation === 1) selected @endif>Médiocre ou travail à l'extérieur</option>
-                                    <option value="2" @if($sd_risk->ventilation === 2) selected @endif>Efficace</option>
-                                    <option value="3" @if($sd_risk->ventilation === 3) selected @endif>Aspiration localisée</option>
-                                    <option value="4" @if($sd_risk->ventilation === 4) selected @endif>Sorbonne de laboratoire</option>
+                                    <option value="0" @if($sd_risk->ventilation === "0") selected @endif>Sans ou dans un local</option>
+                                    <option value="1" @if($sd_risk->ventilation === "1") selected @endif>Médiocre ou travail à l'extérieur</option>
+                                    <option value="2" @if($sd_risk->ventilation === "2") selected @endif>Efficace</option>
+                                    <option value="3" @if($sd_risk->ventilation === "3") selected @endif>Aspiration localisée</option>
+                                    <option value="4" @if($sd_risk->ventilation === "4") selected @endif>Sorbonne de laboratoire</option>
                                 @endif
                             </select>
                         </div>
@@ -290,13 +300,13 @@
                         <div class="right">
                             <select name="concentration" id="concentration" class="form-control">
                                 @if(old('concentration'))
-                                    <option value="0" {{ old('concentration') == 0 ? 'selected' : '' }}>10 à pur</option>
-                                    <option value="2" {{ old('concentration') == 2 ? 'selected' : '' }}>1 à 10%</option>
-                                    <option value="4" {{ old('concentration') == 4 ? 'selected' : '' }}>< 1%</option>
+                                    <option value="0" {{ old('concentration') === "0" ? 'selected' : '' }}>10 à pur</option>
+                                    <option value="2" {{ old('concentration') === "2" ? 'selected' : '' }}>1 à 10%</option>
+                                    <option value="4" {{ old('concentration') === "4" ? 'selected' : '' }}>< 1%</option>
                                 @else
-                                    <option value="0" @if($sd_risk->concentration === 0) selected @endif>10 à pur</option>
-                                    <option value="2" @if($sd_risk->concentration === 2) selected @endif>1 à 10%</option>
-                                    <option value="4" @if($sd_risk->concentration === 4) selected @endif>< 1%</option>
+                                    <option value="0" @if($sd_risk->concentration === "0") selected @endif>10 à pur</option>
+                                    <option value="2" @if($sd_risk->concentration === "2") selected @endif>1 à 10%</option>
+                                    <option value="4" @if($sd_risk->concentration === "4") selected @endif>< 1%</option>
                                 @endif
                             </select>
                         </div>
@@ -316,13 +326,13 @@
                         <div class="right">
                             <select name="time" id="time" class="form-control">
                                 @if(old('time'))
-                                    <option value="0" {{ old('time') == 0 ? 'selected' : '' }}>45mn à 8h</option>
-                                    <option value="2" {{ old('time') == 2 ? 'selected' : '' }}>5 à 45mn</option>
-                                    <option value="4" {{ old('time') == 4 ? 'selected' : '' }}>< 5mn</option>
+                                    <option value="0" {{ old('time') === "0" ? 'selected' : '' }}>45mn à 8h</option>
+                                    <option value="2" {{ old('time') === "2" ? 'selected' : '' }}>5 à 45mn</option>
+                                    <option value="4" {{ old('time') === "4" ? 'selected' : '' }}>< 5mn</option>
                                 @else
-                                    <option value="0" @if($sd_risk->time === 0) selected @endif>45mn à 8h</option>
-                                    <option value="2" @if($sd_risk->time === 2) selected @endif>5 à 45mn</option>
-                                    <option value="4" @if($sd_risk->time === 4) selected @endif>< 5mn</option>
+                                    <option value="0" @if($sd_risk->time === "0") selected @endif>45mn à 8h</option>
+                                    <option value="2" @if($sd_risk->time === "2") selected @endif>5 à 45mn</option>
+                                    <option value="4" @if($sd_risk->time === "4") selected @endif>< 5mn</option>
                                 @endif
                             </select>
                         </div>
@@ -381,6 +391,8 @@
 
                 <hr>
 
+                {{-- OZA SECTION --}}
+
                 <div class="row">
                     <h3 class="section-admin">Section à remplir par l'expert OZA</h3>
                     <div class="line">
@@ -388,11 +400,11 @@
                             <label for="protection">Protection</label>
                         </div>
                         <div class="right">
-                            <select name="protection" id="protection" class="form-control">
-                                <option value="0" @if($sd_risk->protection === 0) selected @endif>Aucune</option>
-                                <option value="1" @if($sd_risk->protection === 1) selected @endif>Une seule</option>
-                                <option value="2" @if($sd_risk->protection === 2) selected @endif>Au moins une adaptée au risque principal</option>
-                                <option value="4" @if($sd_risk->protection === 4) selected @endif>Toutes celles nécessaires</option>
+                            <select id="protection" class="form-control" disabled>
+                                <option value="0" @if($sd_risk->protection === "0") selected @endif>Aucune</option>
+                                <option value="1" @if($sd_risk->protection === "1") selected @endif>Une seule</option>
+                                <option value="2" @if($sd_risk->protection === "2") selected @endif>Au moins une adaptée au risque principal</option>
+                                <option value="4" @if($sd_risk->protection === "4") selected @endif>Toutes celles nécessaires</option>
                             </select>
                         </div>
                     </div>
@@ -401,7 +413,7 @@
                             <label for="ir">Indice de Risque (IR)</label>
                         </div>
                         <div class="right">
-                            <input type="text" id="ir" class="form-control" placeholder="valeur" value="{{ $sd_risk->IR() }}">
+                            <input type="text" id="ir" class="form-control" placeholder="valeur" value="{{ $sd_risk->IR() }}" disabled>
                         </div>
                     </div>
                     <div class="line">
@@ -429,11 +441,12 @@
                         <div class="right" style="display: block;">
                             <ul class="restraint-proposed">
 
+                                <li>Cette section n'est disponible uniquement que pour les experts OZA.</li>
+
                                 @foreach($sd_risk->sd_restraints_exist as $restraint)
                                     <li class="res-pro">
-                                        <input type="checkbox" class="btn-check" data-id="none" checked data-tab="{{ $restraint->id }}">
-                                        <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed_[checked][]">{{ $restraint->name }}</textarea>
-                                        <button type="button" class="btn btn-text btn-small btn-delete-restraint"><i class="far fa-times-circle"></i></button>
+                                        <input type="checkbox" class="btn-check" data-id="none" checked data-tab="{{ $restraint->id }}" disabled>
+                                        <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed_[checked][]" disabled>{{ $restraint->name }}</textarea>
                                     </li>
                                 @endforeach
 
@@ -443,7 +456,7 @@
                                 </li>
                                 @enderror
                             </ul>
-                            <button class="btn btn-yellow btn-text btn-add-restraint" data-id="" type="button">+ Ajouter une mesure proposée</button>
+                            <button class="btn btn-yellow btn-text" type="button">+ Ajouter une mesure proposée</button>
                         </div>
                     </div>
                 </div>
