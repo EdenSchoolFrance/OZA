@@ -74,7 +74,7 @@ on('.btn-modal-add', 'click', (el,e)=>{
     let values = el.closest("div").querySelector('input').value.split(",");
 
     for (let i = 0; i < values.length ; i++) {
-        let content = '<input type="checkbox" value="'+ values[i] +'" data-name="'+ values[i] +'" name="list_items[]" >\n' +
+        let content = '<input type="checkbox" value="'+ values[i] +'" data-name="'+ values[i] +'" name="list_items[]" checked>\n' +
             '<span class="checkmark">'+ values[i] +'</span>'
         let label = document.createElement("label");
         label.setAttribute('class','contain')
@@ -84,6 +84,20 @@ on('.btn-modal-add', 'click', (el,e)=>{
     }
 
 })
+
+on('.btn-modal-check', 'click', (el, e) => {
+    let check = $('#modal-list div[data-id=""] input')
+    for (let i = 0; i < check.length; i++) {
+        check[i].checked = true
+    }
+});
+
+on('.btn-modal-uncheck', 'click', (el, e) => {
+    let check = $('#modal-list div[data-id=""] input')
+    for (let i = 0; i < check.length; i++) {
+        check[i].checked = false
+    }
+});
 
 
 on('.level', 'change', (el, e) =>{
@@ -138,8 +152,6 @@ function IR() {
     let pro = $('#protection', document, 0).value;
     let nd = $('#nd_hidden', document, 0).value;
 
-    console.log(`${vent} | ${con} | ${time} | ${pro} | ${nd}`)
-
     let cal = nd - vent - con - time - pro;
     let text = "Acceptable";
 
@@ -153,7 +165,7 @@ function IR() {
         text = "Inacceptable"
     }
 
-    $('#ir', document, 0).value = text
+    $('#ir', document, 0).value = cal
 
 }
 

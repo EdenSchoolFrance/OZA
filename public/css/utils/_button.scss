@@ -18,6 +18,9 @@
     &:disabled {
         cursor: not-allowed;
     }
+    &-hidden{
+        cursor: default;
+    }
 
     &-yellow {
         background-color: $yellow;

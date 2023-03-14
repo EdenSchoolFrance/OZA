@@ -418,7 +418,7 @@
                             <label for="">Risque Résiduel (RR)</label>
                         </div>
                         <div class="right">
-                            <button class="btn btn-success" id="rr" type="button">Acceptable</button>
+                            <button class="btn btn-success btn-hidden" id="rr" type="button">Acceptable</button>
                         </div>
                     </div>
                 </div>

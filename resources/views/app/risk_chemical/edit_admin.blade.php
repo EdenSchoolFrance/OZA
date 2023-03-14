@@ -512,7 +512,7 @@
                             <label for="">Risque Résiduel (RR)</label>
                         </div>
                         <div class="right">
-                            <button class="btn {{ $sd_risk->criticality()['class'] }}" id="rr" type="button">{{ $sd_risk->criticality()['text'] }}</button>
+                            <button class="btn {{ $sd_risk->criticality()['class'] }} btn-hidden" id="rr" type="button">{{ $sd_risk->criticality()['text'] }}</button>
                         </div>
                     </div>
                 </div>
