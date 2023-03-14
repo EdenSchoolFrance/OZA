@@ -41,7 +41,7 @@ class SdRiskExplosion extends Model
 
     public function sd_restraints()
     {
-        return $this->hasMany(SdRestraint::class);
+        return $this->hasMany(SdRestraintExplosion::class);
     }
 
     public function sd_restraints_porposed()
@@ -52,5 +52,11 @@ class SdRiskExplosion extends Model
     public function sd_restraints_exist()
     {
         return $this->sd_restraints()->where('exist',1);
+    }
+
+    public function criticality(){
+        $final['text'] = "Inacceptable";
+        $final['class'] = 'btn-danger';
+        return $final;
     }
 }

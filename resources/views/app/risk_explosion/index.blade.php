@@ -29,17 +29,17 @@
                         <tbody>
                             @foreach($sd_risks as $sd_risk)
                                 <tr>
-                                    <td class="td_material_explosion"></td>
-                                    <td class="td_features"></td>
-                                    <td class="td_material_setup"></td>
-                                    <td class="td_source_clean"></td>
-                                    <td class="td_degree_clean"></td>
-                                    <td class="td_deree_ventilation"></td>
-                                    <td class="td_availability_ventilation"></td>
-                                    <td class="td_size_area"></td>
-                                    <td class="td_gas"></td>
-                                    <td class="td_dust"></td>
-                                    <td class="td_spawn_probability"></td>
+                                    <td class="td_material_explosion">{{$sd_risk->material_explosion}}</td>
+                                    <td class="td_features">{{$sd_risk->features}}</td>
+                                    <td class="td_material_setup">{{$sd_risk->material_setup}}</td>
+                                    <td class="td_source_clean">{{$sd_risk->source_clean}}</td>
+                                    <td class="td_degree_clean">{{$sd_risk->degree_clean}}</td>
+                                    <td class="td_deree_ventilation">{{$sd_risk->degree_ventilation}}</td>
+                                    <td class="td_availability_ventilation">{{$sd_risk->availability_ventilation}}</td>
+                                    <td class="td_size_area">{{$sd_risk->size_area}}</td>
+                                    <td class="td_gas">{{$sd_risk->gas}}</td>
+                                    <td class="td_dust">{{$sd_risk->dust}}</td>
+                                    <td class="td_spawn_probability">{{$sd_risk->spawn_probability}}</td>
                                     <td class="td_restraint_exist">
                                         <ul>
                                             @foreach($sd_risk->sd_restraints_exist as $sd_restraint)
@@ -48,19 +48,50 @@
                                             @if(count($sd_risk->sd_restraints_exist) === 0)
                                                 <li>Néant</li>
                                             @endif
-                                            <li class="add-restraint">
-                                                <button type="button" class="btn-add-restraint">+ Ajouter</button>
-                                            </li>
                                         </ul>
                                     </td>
-                                    <td class="td_prevention_probability"></td>
-                                    <td class="td_restraint"></td>
-                                    <td class="td_actions"></td>
+                                    <td class="td_prevention_probability">{{$sd_risk->prevention_probability}}</td>
+                                    <td class="td_criticality"><button class="btn {{ $sd_risk->criticality()['class'] }}">{{ $sd_risk->criticality()['text'] }}</button></td>
+                                    <td class="td_restraint_exist">
+                                        <ul>
+                                            @foreach($sd_risk->sd_restraints_porposed as $sd_restraint)
+                                                <li>- {{ $sd_restraint->name }}</li>
+                                            @endforeach
+                                            @if(count($sd_risk->sd_restraints_exist) === 0)
+                                                <li>Néant</li>
+                                            @endif
+                                        </ul>
+                                    </td>
+                                    <td class="td_actions">
+                                        <div>
+                                            <a data-modal=".modal--delete" data-risk="{{ $sd_risk->id }}"><i class="fas fa-trash"></i></a>
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
+                <a href="{{ route('risk.explosion.create', [$single_document->id]) }}" class="btn btn-yellow" style="margin-top: 10px;"><i class="fas fa-plus"></i> AJOUTER UN RISQUE</a>
+            </div>
+        </div>
+        <div class="modal modal--delete">
+            <div class="modal-dialog">
+                <form class="modal-content" action="{{ route('risk.explosion.delete', [$single_document->id]) }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="id_risk" value="">
+                    <div class="modal-header">
+                        <p class="title">Confirmer la suppression</p>
+                        <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Êtes-vous sûr.e de vouloir supprimer ce risque ?</p>
+                        <div>
+                            <button type="submit" class="btn btn-yellow">Supprimer</button>
+                            <button type="button" class="btn btn-inv btn-yellow btn-small" data-dismiss="modal"> Annuler</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -73,5 +73,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RestraintChemicalSeeder::class);
 
         $this->call(DangerLevelSeeder::class);
+
+        $this->call(SdRiskExplosionSeeder::class);
     }
 }

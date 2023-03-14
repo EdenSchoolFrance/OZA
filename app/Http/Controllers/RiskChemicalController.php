@@ -8,7 +8,6 @@ use App\Models\SdEquipementChemical;
 use App\Models\SdRestraintChemical;
 use App\Models\SdRiskChemical;
 use App\Models\SdWorkUnit;
-use App\Models\WorkUnit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
