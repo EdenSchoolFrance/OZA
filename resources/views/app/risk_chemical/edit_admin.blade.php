@@ -49,7 +49,7 @@
                             <label for="nameRisk">Produit concerné</label>
                         </div>
                         <div class="right">
-                            <textarea type="text" class="form-control" name="name_risk_chemical" id="nameRisk" placeholder="Nom commercial ou dénomination">@if(old('name_risk_chemical')) {{ old('name_risk_chemical')  }} @else {{ $sd_risk->name }} @endif</textarea>
+                            <textarea type="text" class="form-control" name="name_risk_chemical" id="nameRisk" placeholder="Nom commercial ou dénomination">@if(old('name_risk_chemical')) {{ old('name_risk_chemical')  }}@else{{ $sd_risk->name }}@endif</textarea>
                         </div>
                     </div>
                     @error('name_risk_chemical')
@@ -67,7 +67,7 @@
                             <label for="activity">Utilisation activité</label>
                         </div>
                         <div class="right">
-                            <textarea type="text" class="form-control" name="activity" id="activity" placeholder="Utilisation du produit / Activité qui génère le produit">@if(old('activity')) {{ old('activity') }} @else {{ $sd_risk->activity }} @endif</textarea>
+                            <textarea type="text" class="form-control" name="activity" id="activity" placeholder="Utilisation du produit / Activité qui génère le produit">@if(old('activity')) {{ old('activity') }}@else{{ $sd_risk->activity }}@endif</textarea>
                         </div>
                     </div>
                     @error('activity')
@@ -534,19 +534,19 @@
 
                                 @foreach($sd_risk->sd_restraints_exist as $restraint)
                                     <li class="res-pro">
-                                        <input type="checkbox" class="btn-check" data-id="none" checked data-tab="{{ $restraint->id }}">
-                                        <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed_[checked][]">{{ $restraint->name }}</textarea>
+                                        <input type="checkbox" class="btn-check-edit" data-id="{{ $sd_risk->id }}" checked data-tab="{{ $restraint->id }}">
+                                        <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed_{{ $sd_risk->id }}[checked][{{ $restraint->id }}][]">{{ $restraint->name }}</textarea>
                                         <button type="button" class="btn btn-text btn-small btn-delete-restraint"><i class="far fa-times-circle"></i></button>
                                     </li>
                                 @endforeach
 
                                 @error('restraint_proposed')
-                                <li>
-                                    <p class="message-error">{{ $message }}</p>
-                                </li>
+                                    <li>
+                                        <p class="message-error">{{ $message }}</p>
+                                    </li>
                                 @enderror
                             </ul>
-                            <button class="btn btn-yellow btn-text btn-add-restraint" data-id="" type="button">+ Ajouter une mesure proposée</button>
+                            <button class="btn btn-yellow btn-text btn-add-restraint-edit" data-id="{{ $sd_risk->id }}" type="button">+ Ajouter une mesure proposée</button>
                         </div>
                     </div>
                 </div>

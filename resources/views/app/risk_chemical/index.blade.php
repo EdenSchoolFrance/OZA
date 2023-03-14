@@ -39,7 +39,7 @@
                             @foreach($sd_risks_chemicals as $sd_risk)
                                 <tr>
                                     <td class="td_status">
-                                        <i class="fas fa-check {{ $sd_risk->validated === 1 ? 'fa-check-checked' : '' }}"></i>
+                                        <i class="fas fa-check {{ $sd_risk->validated === 1 ? 'text-color-green' : 'text-color-red' }}"></i>
                                     </td>
                                     <td class="td_work_unit">{{ $sd_risk->sd_work_unit->name }}</td>
                                     <td class="td_name">{{ !empty($sd_risk->name) ? $sd_risk->name : "NC" }}</td>

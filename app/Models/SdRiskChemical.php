@@ -36,7 +36,8 @@ class SdRiskChemical extends Model
         'ventilation',
         'concentration',
         'time',
-        'protection'
+        'protection',
+        'validated'
     ];
 
     public function single_document()
