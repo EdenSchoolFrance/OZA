@@ -8,120 +8,211 @@
             @csrf
             <div class="card-body">
                 <div class="row">
-                    <h3 class="section-admin">Section à remplir par l'expert OZA</h3>
                     <div class="line">
                         <div class="left">
                             <h3>Zonage</h3>
                         </div>
+                        <div class="right"></div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="line">
-                        <label for="">Matière explosive</label>
-                        <input type="text" id="" class="form-control" placeholder="valeur" value="">
-                    </div>
-                    <div class="line">
                         <div class="left">
-                            <label for="">Caractèristique phases H</label>
+                            <label for="materialExplosion">Matière explosive</label>
                         </div>
                         <div class="right">
-                            <select name="" id="" class="form-control">
-                                <option value="0"></option>
-                                <option value="1"></option>
-                                <option value="2"></option>
-                                <option value="3"></option>
-                                <option value="4"></option>
+                            <input type="text" name="material_explosion" id="materialExplosion" class="form-control" placeholder="valeur" value="{{ old('material_explosion') }}">
+                        </div>
+                    </div>
+                    @error('material_explosion')
+                        <div class="line">
+                            <div class="left"></div>
+                            <div class="right">
+                                <p class="message-error">{{ $message }}</p>
+                            </div>
+                        </div>
+                    @enderror
+
+                    <div class="line">
+                        <div class="left">
+                            <label for="features">Caractèristique phases H</label>
+                        </div>
+                        <div class="right">
+                            <select name="features" id="features" class="form-control">
+                                <option value="0" {{ old('features') === "0" ? "selected" : "" }}></option>
                             </select>
                         </div>
                     </div>
-                    <div class="line">
-                        <label for="">Matériel Installation</label>
-                        <input type="text" id="" class="form-control" placeholder="valeur" value="">
-                    </div>
-                    <div class="line">
-                        <label for="">Source de dégagement</label>
-                        <input type="text" id="" class="form-control" placeholder="valeur" value="">
-                    </div>
-                    <div class="line">
-                        <div class="left">
-                            <label for="">Degré de dégagement</label>
+                    @error('features')
+                        <div class="line">
+                            <div class="left"></div>
+                            <div class="right">
+                                <p class="message-error">{{ $message }}</p>
+                            </div>
                         </div>
-                        <div class="right">
-                            <select name="" id="" class="form-control">
-                                <option value="0"></option>
-                                <option value="1"></option>
-                                <option value="2"></option>
-                                <option value="3"></option>
-                                <option value="4"></option>
-                            </select>
-                        </div>
-                    </div>
+                    @enderror
+
                     <div class="line">
                         <div class="left">
-                            <label for="">Degré de ventilation</label>
+                            <label for="materialSetup">Matériel Installation</label>
                         </div>
                         <div class="right">
-                            <select name="" id="" class="form-control">
-                                <option value="0"></option>
-                                <option value="1"></option>
-                                <option value="2"></option>
-                                <option value="3"></option>
-                                <option value="4"></option>
-                            </select>
+                            <input type="text" name="material_setup" id="materialSetup" class="form-control" placeholder="valeur" value="{{ old('material_setup') }}">
                         </div>
                     </div>
+                    @error('material_setup')
+                        <div class="line">
+                            <div class="left"></div>
+                            <div class="right">
+                                <p class="message-error">{{ $message }}</p>
+                            </div>
+                        </div>
+                    @enderror
+
                     <div class="line">
                         <div class="left">
-                            <label for="">Disponibilité de la ventilation</label>
+                            <label for="sourceClean">Source de dégagement</label>
                         </div>
                         <div class="right">
-                            <select name="" id="" class="form-control">
-                                <option value="0"></option>
-                                <option value="1"></option>
-                                <option value="2"></option>
-                                <option value="3"></option>
-                                <option value="4"></option>
-                            </select>
+                            <input type="text" name="source_clean" id="sourceClean" class="form-control" placeholder="valeur" value="{{ old('source_clean') }}">
                         </div>
                     </div>
-                    <div class="line">
-                        <div class="left">
-                            <label for="">Volume de la zone</label>
+                    @error('source_clean')
+                        <div class="line">
+                            <div class="left"></div>
+                            <div class="right">
+                                <p class="message-error">{{ $message }}</p>
+                            </div>
                         </div>
-                        <div class="right">
-                            <select name="" id="" class="form-control">
-                                <option value="0">Hors zone ATEX sous réserve de l'entretien et des contrôles périodiques.</option>
-                                <option value="1"></option>
-                                <option value="2"></option>
-                                <option value="3"></option>
-                                <option value="4"></option>
-                            </select>
-                        </div>
-                    </div>
+                    @enderror
                 </div>
+
                 <hr>
+
                 <div class="row">
-                    <div class="cat-danger">
-                        <div class="item">
-                            <label for="">Gaz</label>
-                            <select name="" id="" class="form-control level">
-                                <option data-value="0" value="NC">NC</option>
-                            </select>
+                    <div class="line">
+                        <div class="left">
+                            <label for="degreeClean">Degré de dégagement</label>
                         </div>
-                        <div class="item">
-                            <label for="">Poussière</label>
-                            <select name="" id="" class="form-control level">
-                                <option data-value="0" value="NC">NC</option>
+                        <div class="right">
+                            <select name="degree_clean" id="degreeClean" class="form-control">
+                                <option value="0" {{ old('degree_clean') === 0 ? "selected" : "" }}></option>
                             </select>
                         </div>
                     </div>
-                    @error('name_risk')
+                    @error('degree_clean')
                     <div class="line">
                         <div class="left"></div>
                         <div class="right">
                             <p class="message-error">{{ $message }}</p>
                         </div>
                     </div>
+                    @enderror
+
+                    <div class="line">
+                        <div class="left">
+                            <label for="degreeVentilation">Degré de ventilation</label>
+                        </div>
+                        <div class="right">
+                            <select name="degree_ventilation" id="degreeVentilation" class="form-control">
+                                <option value="0" {{ old('degree_ventilation') === "0" ? "selected" : "" }}></option>
+                            </select>
+                        </div>
+                    </div>
+                    @error('degree_ventilation')
+                        <div class="line">
+                            <div class="left"></div>
+                            <div class="right">
+                                <p class="message-error">{{ $message }}</p>
+                            </div>
+                        </div>
+                    @enderror
+
+                    <div class="line">
+                        <div class="left">
+                            <label for="availabilityVentilation">Disponibilité de la ventilation</label>
+                        </div>
+                        <div class="right">
+                            <select name="availability_ventilation" id="availabilityVentilation" class="form-control">
+                                <option value="0" {{ old('availability_ventilation') === "0" ? "selected" : "" }}></option>
+                            </select>
+                        </div>
+                    </div>
+                    @error('availability_ventilation')
+                        <div class="line">
+                            <div class="left"></div>
+                            <div class="right">
+                                <p class="message-error">{{ $message }}</p>
+                            </div>
+                        </div>
+                    @enderror
+
+                    <div class="line">
+                        <div class="left">
+                            <label for="sizeArea">Volume de la zone</label>
+                        </div>
+                        <div class="right">
+                            <select name="size_area" id="sizeArea" class="form-control">
+                                <option value="0" {{ old('size_area') === "0" ? "selected" : "" }}></option>
+                            </select>
+                        </div>
+                    </div>
+                    @error('size_area')
+                        <div class="line">
+                            <div class="left"></div>
+                            <div class="right">
+                                <p class="message-error">{{ $message }}</p>
+                            </div>
+                        </div>
+                    @enderror
+                </div>
+
+                <hr>
+
+                <div class="row">
+                    <div class="line">
+                        <div class="left">
+                            <h3>Type de zone</h3>
+                        </div>
+                        <div class="right"></div>
+                    </div>
+
+                    <div class="line">
+                        <div class="left">
+                            <label for="gaz">Gaz</label>
+                        </div>
+                        <div class="right">
+                            <select name="gaz" id="gaz" class="form-control">
+                                <option value="0" {{ old('gaz') === "0" ? "selected" : ""}}></option>
+                            </select>
+                        </div>
+                    </div>
+                    @error('gaz')
+                        <div class="line">
+                            <div class="left"></div>
+                            <div class="right">
+                                <p class="message-error">{{ $message }}</p>
+                            </div>
+                        </div>
+                    @enderror
+
+                    <div class="line">
+                        <div class="left">
+                            <label for="dust">Poussière</label>
+                        </div>
+                        <div class="right">
+                            <select name="dust" id="dust" class="form-control">
+                                <option value="0" {{ old('dust') ? "selected" : ""}}></option>
+                            </select>
+                        </div>
+                    </div>
+                    @error('dust')
+                        <div class="line">
+                            <div class="left"></div>
+                            <div class="right">
+                                <p class="message-error">{{ $message }}</p>
+                            </div>
+                        </div>
                     @enderror
                 </div>
 
@@ -134,109 +225,28 @@
                         </div>
                     </div>
 
-                </div>
-
-                <hr>
-
-                <div class="row">
                     <div class="line">
                         <div class="left">
-                            <label for="date-fds">Date d'élaboration ou de révision de la FDS</label>
+                            <label for="spawnProbability">Probabilité d'apparition</label>
                         </div>
                         <div class="right">
-                            <input type="date" name="date_fds" id="date-fds" class="form-control">
-                        </div>
-                    </div>
-                    @error('date_fds')
-                    <div class="line">
-                        <div class="left"></div>
-                        <div class="right">
-                            <p class="message-error">{{ $message }}</p>
-                        </div>
-                    </div>
-                    @enderror
-                </div>
-
-                <hr>
-
-                <div class="row">
-                    <h3 class="section-client">Section à remplir par le client</h3>
-                    <div class="line">
-                        <div class="left">
-                            <label for="">Caractéristiques de l'exposition</label>
-                        </div>
-                        <div class="right"></div>
-                    </div>
-                    <div class="line">
-                        <div class="left">
-                            <label for="ventilation">Ventilation Confinement</label>
-                        </div>
-                        <div class="right">
-                            <select name="ventilation" id="ventilation" class="form-control">
-                                <option value="0">Sans ou dans un local</option>
-                                <option value="1">Médiocre ou travail à l'extérieur</option>
-                                <option value="2">Efficace</option>
-                                <option value="3">Aspiration localisée</option>
-                                <option value="4">Sorbonne de laboratoire</option>
+                            <select name="spawn_probability" id="spawnProbability" class="form-control">
+                                <option value="0" {{ old('spawn_probability') === "0" ? "selected" : ""}}></option>
                             </select>
                         </div>
                     </div>
-                    @error('ventilation')
-                    <div class="line">
-                        <div class="left"></div>
-                        <div class="right">
-                            <p class="message-error">{{ $message }}</p>
+                    @error('spawn_probability')
+                        <div class="line">
+                            <div class="left"></div>
+                            <div class="right">
+                                <p class="message-error">{{ $message }}</p>
+                            </div>
                         </div>
-                    </div>
                     @enderror
-                    <div class="line">
-                        <div class="left">
-                            <label for="concentration">Concentration</label>
-                        </div>
-                        <div class="right">
-                            <select name="concentration" id="concentration" class="form-control">
-                                <option value="0">10 à pur</option>
-                                <option value="2">1 à 10%</option>
-                                <option value="4">< 1%</option>
-                            </select>
-                        </div>
-                    </div>
-                    @error('concentration')
-                    <div class="line">
-                        <div class="left"></div>
-                        <div class="right">
-                            <p class="message-error">{{ $message }}</p>
-                        </div>
-                    </div>
-                    @enderror
-                    <div class="line">
-                        <div class="left">
-                            <label for="time">Durée utilisation jour</label>
-                        </div>
-                        <div class="right">
-                            <select name="time" id="time" class="form-control">
-                                <option value="0">45mn à 8h</option>
-                                <option value="2">5 à 45mn</option>
-                                <option value="4">< 5mn</option>
-                            </select>
-                        </div>
-                    </div>
-                    @error('time')
-                    <div class="line">
-                        <div class="left"></div>
-                        <div class="right">
-                            <p class="message-error">{{ $message }}</p>
-                        </div>
-                    </div>
-                    @enderror
-                </div>
 
-                <hr>
-
-                <div class="row">
                     <div class="line">
                         <div class="left">
-                            <label for="">Equipements de protection individuelle</label>
+                            <label for="">Moyens de prévention existants</label>
                         </div>
                         <div class="right"></div>
                     </div>

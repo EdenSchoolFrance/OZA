@@ -40,7 +40,7 @@
                                     <td class="td_gas">{{$sd_risk->gas}}</td>
                                     <td class="td_dust">{{$sd_risk->dust}}</td>
                                     <td class="td_spawn_probability">{{$sd_risk->spawn_probability}}</td>
-                                    <td class="td_restraint_exist">
+                                    <td class="td_restraint_exist" style="width: 220px; display: block">
                                         <ul>
                                             @foreach($sd_risk->sd_restraints_exist as $sd_restraint)
                                                 <li>{{ $sd_restraint->name }}</li>
@@ -51,8 +51,8 @@
                                         </ul>
                                     </td>
                                     <td class="td_prevention_probability">{{$sd_risk->prevention_probability}}</td>
-                                    <td class="td_criticality"><button class="btn {{ $sd_risk->criticality()['class'] }}">{{ $sd_risk->criticality()['text'] }}</button></td>
-                                    <td class="td_restraint_exist">
+                                    <td class="td_criticality"><button class="btn {{ $sd_risk->criticality()['class'] }} btn-hidden">{{ $sd_risk->criticality()['text'] }}</button></td>
+                                    <td class="td_restraint_exist" style="width: 220px; display: block">
                                         <ul>
                                             @foreach($sd_risk->sd_restraints_porposed as $sd_restraint)
                                                 <li>- {{ $sd_restraint->name }}</li>

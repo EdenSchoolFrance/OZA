@@ -47,7 +47,7 @@ class RiskExplosionController extends Controller
 
         $danger_level = DangerLevel::all();
 
-        return view('app.risk_explosion.create_admin', compact('page', 'single_document','works_units','restraints_explosion', 'danger_level'));
+        return view('app.risk_explosion.create', compact('page', 'single_document','works_units','restraints_explosion', 'danger_level'));
 
     }
 
