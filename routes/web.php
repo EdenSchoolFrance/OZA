@@ -262,13 +262,13 @@ Route::middleware(['auth'])->group(function() {
             Route::get('/{single_document}/risk_chemical/create', [RiskChemicalController::class, 'create'])->name('risk.chemical.create');
             Route::post('/{single_document}/risk_chemical/store', [RiskChemicalController::class, 'store'])->name('risk.chemical.store');
 
+            Route::get('/{single_document}/risk_chemical/edit/{risk_chemical}', [RiskChemicalController::class, 'edit'])->name('risk.chemical.edit');
+            Route::post('/{single_document}/risk_chemical/update/{risk_chemical}', [RiskChemicalController::class, 'update'])->name('risk.chemical.update');
+
             Route::post('/{single_document}/risk_chemical/delete', [RiskChemicalController::class, 'delete'])->name('risk.chemical.delete');
 
             Route::get('/{single_document}/risk_chemical/actions/', [RiskChemicalController::class, 'action'])->name('risk.chemical.action.index');
             Route::post('/{single_document}/risk_chemical/action/store', [RiskChemicalController::class, 'action_store'])->name('risk.chemical.action.store');
-
-            Route::get('/{single_document}/risk_chemical/edit/{risk_chemical}', [RiskChemicalController::class, 'edit'])->name('risk.chemical.edit');
-            Route::post('/{single_document}/risk_chemical/update/{risk_chemical}', [RiskChemicalController::class, 'update'])->name('risk.chemical.update');
 
         });
 
@@ -277,6 +277,9 @@ Route::middleware(['auth'])->group(function() {
 
             Route::get('/{single_document}/risk_explosion/create', [RiskExplosionController::class, 'create'])->name('risk.explosion.create');
             Route::post('/{single_document}/risk_explosion/store', [RiskExplosionController::class, 'store'])->name('risk.explosion.store');
+
+            Route::get('/{single_document}/risk_explosion/edit/{risk_explosionl}', [RiskExplosionController::class, 'edit'])->name('risk.explosion.edit');
+            Route::post('/{single_document}/risk_explosion/update/{risk_explosion}', [RiskExplosionController::class, 'update'])->name('risk.explosion.update');
 
             Route::post('/{single_document}/risk_explosion/delete', [RiskExplosionController::class, 'delete'])->name('risk.explosion.delete');
 

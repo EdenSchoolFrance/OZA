@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="content">
-        <form action="{{ route('risk.explosion.store', [$single_document->id]) }}"
+        <form action="{{ route('risk.explosion.update', [$single_document->id, $sd_risk->id]) }}"
               class="card card--add-risk card--risk-chemical" method="post">
             @csrf
             <div class="card-body">
@@ -21,16 +21,16 @@
                             <label for="materialExplosion">Matière explosive</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="material_explosion" id="materialExplosion" class="form-control" placeholder="Matière explosive" value="{{ old('material_explosion') }}">
+                            <input type="text" name="material_explosion" id="materialExplosion" class="form-control" placeholder="Matière explosive" value="{{ old('material_explosion') ? old('material_explosion') : $sd_risk->material_explosion }}">
                         </div>
                     </div>
                     @error('material_explosion')
-                        <div class="line">
-                            <div class="left"></div>
-                            <div class="right">
-                                <p class="message-error">{{ $message }}</p>
-                            </div>
+                    <div class="line">
+                        <div class="left"></div>
+                        <div class="right">
+                            <p class="message-error">{{ $message }}</p>
                         </div>
+                    </div>
                     @enderror
 
                     <div class="line">
@@ -38,7 +38,7 @@
                             <label for="features">Caractèristique phases H</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="features" id="features" list="featuresList" class="form-control" placeholder="Caractèristique phases H" value="{{ old('features') }}">
+                            <input type="text" name="features" id="features" list="featuresList" class="form-control" placeholder="Caractèristique phases H" value="{{ old('features') ? old('features') : $sd_risk->features }}">
                             <datalist id="featuresList">
                                 <option value="Poussière explosible">
                                 <option value="H200 Explosif instable.">
@@ -88,12 +88,12 @@
                         </div>
                     </div>
                     @error('features')
-                        <div class="line">
-                            <div class="left"></div>
-                            <div class="right">
-                                <p class="message-error">{{ $message }}</p>
-                            </div>
+                    <div class="line">
+                        <div class="left"></div>
+                        <div class="right">
+                            <p class="message-error">{{ $message }}</p>
                         </div>
+                    </div>
                     @enderror
 
                     <div class="line">
@@ -101,16 +101,16 @@
                             <label for="materialSetup">Matériel Installation</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="material_setup" id="materialSetup" class="form-control" placeholder="Matériel Installation" value="{{ old('material_setup') }}">
+                            <input type="text" name="material_setup" id="materialSetup" class="form-control" placeholder="Matériel Installation" value="{{ old('material_setup') ? old('material_setup') : $sd_risk->material_setup }}">
                         </div>
                     </div>
                     @error('material_setup')
-                        <div class="line">
-                            <div class="left"></div>
-                            <div class="right">
-                                <p class="message-error">{{ $message }}</p>
-                            </div>
+                    <div class="line">
+                        <div class="left"></div>
+                        <div class="right">
+                            <p class="message-error">{{ $message }}</p>
                         </div>
+                    </div>
                     @enderror
 
                     <div class="line">
@@ -118,16 +118,16 @@
                             <label for="sourceClean">Source de dégagement</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="source_clean" id="sourceClean" class="form-control" placeholder="Source de dégagement" value="{{ old('source_clean') }}">
+                            <input type="text" name="source_clean" id="sourceClean" class="form-control" placeholder="Source de dégagement" value="{{ old('source_clean') ? old('source_clean') : $sd_risk->source_clean }}">
                         </div>
                     </div>
                     @error('source_clean')
-                        <div class="line">
-                            <div class="left"></div>
-                            <div class="right">
-                                <p class="message-error">{{ $message }}</p>
-                            </div>
+                    <div class="line">
+                        <div class="left"></div>
+                        <div class="right">
+                            <p class="message-error">{{ $message }}</p>
                         </div>
+                    </div>
                     @enderror
                 </div>
 
@@ -139,7 +139,7 @@
                             <label for="degreeClean">Degré de dégagement</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="degree_clean" id="degreeClean" list="degreeCleanList" class="form-control" placeholder="Degré de dégagement" value="{{ old('degree_clean') }}">
+                            <input type="text" name="degree_clean" id="degreeClean" list="degreeCleanList" class="form-control" placeholder="Degré de dégagement" value="{{ old('degree_clean') ? old('degree_clean') : $sd_risk->degree_clean }}">
                             <datalist id="degreeCleanList">
                                 <option value="Continu">
                                 <option value="Premier degré">
@@ -162,7 +162,7 @@
                             <label for="degreeVentilation">Degré de ventilation</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="degree_ventilation" id="degreeVentilation" list="degreeVentilationList" class="form-control" placeholder="Degré de ventilation" value="{{ old('degree_ventilation') }}">
+                            <input type="text" name="degree_ventilation" id="degreeVentilation" list="degreeVentilationList" class="form-control" placeholder="Degré de ventilation" value="{{ old('degree_ventilation') ? old('degree_ventilation') : $sd_risk->degree_ventilation }}">
                             <datalist id="degreeCleanList">
                                 <option value="Fort">
                                 <option value="Moyen">
@@ -173,12 +173,12 @@
                         </div>
                     </div>
                     @error('degree_ventilation')
-                        <div class="line">
-                            <div class="left"></div>
-                            <div class="right">
-                                <p class="message-error">{{ $message }}</p>
-                            </div>
+                    <div class="line">
+                        <div class="left"></div>
+                        <div class="right">
+                            <p class="message-error">{{ $message }}</p>
                         </div>
+                    </div>
                     @enderror
 
                     <div class="line">
@@ -186,7 +186,7 @@
                             <label for="availabilityVentilation">Disponibilité de la ventilation</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="availability_ventilation" id="availabilityVentilation" list="availabilityVentilationList" class="form-control" placeholder="Disponibilité de la ventilation" value="{{ old('availability_ventilation') }}">
+                            <input type="text" name="availability_ventilation" id="availabilityVentilation" list="availabilityVentilationList" class="form-control" placeholder="Disponibilité de la ventilation" value="{{ old('availability_ventilation') ? old('availability_ventilation') : $sd_risk->availability_ventilation }}">
                             <datalist id="availabilityVentilationList">
                                 <option value="Bonne">
                                 <option value="Assez bonne">
@@ -197,12 +197,12 @@
                         </div>
                     </div>
                     @error('availability_ventilation')
-                        <div class="line">
-                            <div class="left"></div>
-                            <div class="right">
-                                <p class="message-error">{{ $message }}</p>
-                            </div>
+                    <div class="line">
+                        <div class="left"></div>
+                        <div class="right">
+                            <p class="message-error">{{ $message }}</p>
                         </div>
+                    </div>
                     @enderror
 
                     <div class="line">
@@ -210,7 +210,7 @@
                             <label for="sizeArea">Volume de la zone</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="size_area" id="sizeArea" list="sizeAreaList" class="form-control" placeholder="Volume de la zone" value="{{ old('size_area') }}">
+                            <input type="text" name="size_area" id="sizeArea" list="sizeAreaList" class="form-control" placeholder="Volume de la zone" value="{{ old('size_area') ? old('size_area') : $sd_risk->size_area }}">
                             <datalist id="sizeAreaList">
                                 <option value="Tout le local">
                                 <option value="Intérieur de la cuve">
@@ -227,12 +227,12 @@
                         </div>
                     </div>
                     @error('size_area')
-                        <div class="line">
-                            <div class="left"></div>
-                            <div class="right">
-                                <p class="message-error">{{ $message }}</p>
-                            </div>
+                    <div class="line">
+                        <div class="left"></div>
+                        <div class="right">
+                            <p class="message-error">{{ $message }}</p>
                         </div>
+                    </div>
                     @enderror
                 </div>
 
@@ -251,7 +251,7 @@
                             <label for="gas">Gaz</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="gas" id="gas" list="gasList" class="form-control" placeholder="Gaz" value="{{ old('gas') }}">
+                            <input type="text" name="gas" id="gas" list="gasList" class="form-control" placeholder="Gaz" value="{{ old('gas') ? old('gas') : $sd_risk->gas }}">
                             <datalist id="gasList">
                                 <option value="END">
                                 <option value="0">
@@ -262,12 +262,12 @@
                         </div>
                     </div>
                     @error('gas')
-                        <div class="line">
-                            <div class="left"></div>
-                            <div class="right">
-                                <p class="message-error">{{ $message }}</p>
-                            </div>
+                    <div class="line">
+                        <div class="left"></div>
+                        <div class="right">
+                            <p class="message-error">{{ $message }}</p>
                         </div>
+                    </div>
                     @enderror
 
                     <div class="line">
@@ -275,7 +275,7 @@
                             <label for="dust">Poussière</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="dust" id="dust" list="dustList" class="form-control" placeholder="Poussière" value="{{ old('dust') }}">
+                            <input type="text" name="dust" id="dust" list="dustList" class="form-control" placeholder="Poussière" value="{{ old('dust') ? old('dust') : $sd_risk->dust }}">
                             <datalist id="dustList">
                                 <option value="END">
                                 <option value="20">
@@ -286,12 +286,12 @@
                         </div>
                     </div>
                     @error('dust')
-                        <div class="line">
-                            <div class="left"></div>
-                            <div class="right">
-                                <p class="message-error">{{ $message }}</p>
-                            </div>
+                    <div class="line">
+                        <div class="left"></div>
+                        <div class="right">
+                            <p class="message-error">{{ $message }}</p>
                         </div>
+                    </div>
                     @enderror
                 </div>
 
@@ -309,7 +309,7 @@
                             <label for="spawnProbability">Probabilité d'apparition</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="spawn_probability" id="spawnProbability" list="spawnProbabilityList" class="form-control" placeholder="Probabilité d'apparition" value="{{ old('spawn_probability') }}">
+                            <input type="text" name="spawn_probability" id="spawnProbability" list="spawnProbabilityList" class="form-control" placeholder="Probabilité d'apparition" value="{{ old('spawn_probability') ? old('spawn_probability') : $sd_risk->spawn_probability }}">
                             <datalist id="spawnProbabilityList">
                                 <option value="4">
                                 <option value="3">
@@ -319,12 +319,12 @@
                         </div>
                     </div>
                     @error('spawn_probability')
-                        <div class="line">
-                            <div class="left"></div>
-                            <div class="right">
-                                <p class="message-error">{{ $message }}</p>
-                            </div>
+                    <div class="line">
+                        <div class="left"></div>
+                        <div class="right">
+                            <p class="message-error">{{ $message }}</p>
                         </div>
+                    </div>
                     @enderror
 
                     <div class="line">
@@ -332,7 +332,7 @@
                             <label for="preventionProbability">Probabilité avec prévention</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="prevention_probability" id="preventionProbability" list="preventionProbabilityList" class="form-control" placeholder="Probabilité avec prévention" value="{{ old('prevention_probability') }}">
+                            <input type="text" name="prevention_probability" id="preventionProbability" list="preventionProbabilityList" class="form-control" placeholder="Probabilité avec prévention" value="{{ old('prevention_probability') ? old('prevention_probability') : $sd_risk->prevention_probability }}">
                             <datalist id="preventionProbabilityList">
                                 <option value="4">
                                 <option value="3">
@@ -364,7 +364,12 @@
                             <a class="btn-modal-uncheck">Tout décocher</a>
                             <div id="modal-list">
                                 <div class="content-list" data-id="" style="">
-
+                                    @foreach($sd_risk->sd_preventions as $item)
+                                        <label class="contain">
+                                            <input type="checkbox" value="{{ $item->name }}" data-name="{{ $item->name }}" name="list_items[]" checked>
+                                            <span class="checkmark">{{ $item->name }}</span>
+                                        </label>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -376,8 +381,7 @@
                                 <label for="name">Intitulé</label>
                                 <div>
                                     <input type="text" id="modal-input" name="name" class="form-control" placeholder="EPI 1, EPI 2, ">
-                                    <p class="info-input">Il est possible d’ajouter plusieurs matériels en les séparant
-                                        par une virgule</p>
+                                    <p class="info-input">Il est possible d’ajouter plusieurs matériels en les séparant par une virgule</p>
                                 </div>
                                 <button class="btn btn-text btn-yellow btn-modal-add" type="button">Ajouter</button>
                             </div>
@@ -413,28 +417,20 @@
                         <div class="right" style="display: block;">
                             <ul class="restraint-proposed">
 
-                                @foreach($restraints_explosion as $restraint)
+                                @foreach($sd_risk->sd_restraints_exist as $sd_restraint)
                                     <li class="res-pro">
-                                        <input type="checkbox" class="btn-check" data-tab="none">
-                                        <textarea class="form-control auto-resize" placeholder=""
-                                                  name="restraint_proposed[not-checked][]">{{ $restraint->name }}</textarea>
+                                        <input type="checkbox" class="btn-check" data-id="{{ $sd_risk->id }}" checked data-tab="{{ $sd_restraint->id }}">
+                                        <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed_{{ $sd_risk->id }}[checked][{{ $sd_restraint->id }}][]">{{ $sd_restraint->name }}</textarea>
                                     </li>
                                 @endforeach
 
-                                {{--
-                                <li class="res-pro">
-                                    <input type="checkbox" class="btn-check" data-id="{{ $response->id }}" {{$restraint->checked === 1 ? 'checked' : ''}} data-tab="{{ $restraint->id }}">
-                                    <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed_{{ $response->id }}[{{$restraint->checked === 1 ? 'checked' : 'not-checked'}}][{{ $restraint->id }}][]">{{ $restraint->text }}</textarea>
-                                    <button type="button" class="btn btn-text btn-small btn-delete-restraint"><i class="far fa-times-circle"></i></button>
-                                </li>
-                                --}}
                                 @error('restraint_proposed')
                                 <li>
                                     <p class="message-error">{{ $message }}</p>
                                 </li>
                                 @enderror
                             </ul>
-                            <button class="btn btn-yellow btn-text btn-add-restraint" data-id="" type="button">+ Ajouter
+                            <button class="btn btn-yellow btn-text btn-add-restraint-edit" data-id="{{ $sd_risk->id }}" type="button">+ Ajouter
                                 une mesure proposée
                             </button>
                         </div>

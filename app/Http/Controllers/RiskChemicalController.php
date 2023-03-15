@@ -335,7 +335,7 @@ class RiskChemicalController extends Controller
 
         $this->checkValidRisk($sd_risk);
 
-        return back()->with('status', 'Risque chimique modifié !');
+        return redirect()->route('risk.chemical.index', [$single_document->id])->with('status', 'Risque chimique modifié !');
 
     }
 
