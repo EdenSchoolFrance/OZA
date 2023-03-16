@@ -393,7 +393,7 @@
                         <div class="right" style="display: block;">
                             <ul class="restraint-proposed">
 
-                                <li>Cette section n'est disponible uniquement que pour les experts OZA.</li>
+                                <li>Aucune messure proposée</li>
 
                                 @error('restraint_proposed')
                                 <li>

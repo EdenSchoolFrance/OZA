@@ -390,12 +390,25 @@
                 <div class="row">
                     <div class="line">
                         <div class="left">
-                            <label for="">Criticité</label>
+                            <label for="criticity">Criticité</label>
                         </div>
                         <div class="right">
-                            <button class="btn btn-success" id="criticity" type="button">Acceptable</button>
+                            <select name="criticity" id="criticity" class="form-control">
+                                <option value="Acceptable" {{ old('criticity') === "Acceptable" ? 'selected' : '' }}>Acceptable</option>
+                                <option value="A améliorer" {{ old('criticity') === "A améliorer" ? 'selected' : '' }}>A améliorer</option>
+                                <option value="Agir vite" {{ old('criticity') === "Agir vite" ? 'selected' : '' }}>Agir vite</option>
+                                <option value="Inacceptable" {{ old('criticity') === "Inacceptable" ? 'selected' : '' }}>Inacceptable</option>
+                            </select>
                         </div>
                     </div>
+                    @error('criticity')
+                    <div class="line">
+                        <div class="left"></div>
+                        <div class="right">
+                            <p class="message-error">{{ $message }}</p>
+                        </div>
+                    </div>
+                    @enderror
                 </div>
 
                 <hr>

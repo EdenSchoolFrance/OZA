@@ -93,12 +93,16 @@
                     @endforeach
                 </ul>
             </li>
-            <li class="sidebar-nav-item {{ $page['sidebar'] == "risk_chemical" ? 'active' : '' }}">
-                <a href="{{ route('risk.chemical.index',[$single_document->id]) }}" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Risques chimiques</span></a>
-            </li>
-            <li class="sidebar-nav-item {{ $page['sidebar'] == "risk_explosion" ? 'active' : '' }}">
-                <a href="{{ route('risk.explosion.index',[$single_document->id]) }}" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Risques d'explosion</span></a>
-            </li>
+            @if($single_document->risk_chemical)
+                <li class="sidebar-nav-item {{ $page['sidebar'] == "risk_chemical" ? 'active' : '' }}">
+                    <a href="{{ route('risk.chemical.index',[$single_document->id]) }}" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Risques chimiques</span></a>
+                </li>
+            @endif
+            @if($single_document->risk_explosion)
+                <li class="sidebar-nav-item {{ $page['sidebar'] == "risk_explosion" ? 'active' : '' }}">
+                    <a href="{{ route('risk.explosion.index',[$single_document->id]) }}" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Risques d'explosion</span></a>
+                </li>
+            @endif
             <li class="sidebar-nav-item {{ $page['sidebar'] == "risk_post" ? 'active' : '' }}">
                 <a href="{{ route('risk.post',[$single_document->id]) }}" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Postes à risque</span></a>
             </li>
@@ -126,18 +130,22 @@
                             @endforeach
                         @endif
                     @endif
-                    <li class="sidebar-nav-item">
-                        <p class="sidebar-nav-link">Risques chimiques</p>
-                    </li>
-                    <li class="sidebar-nav-item {{ $page['sidebar'] == "action_plan" && $page['sub_sidebar'] == "risk_chemical" ? 'active' : '' }}">
-                        <a href="{{route('risk.chemical.action.index', [$single_document->id])}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Mesures à prendre</a>
-                    </li>
-                    <li class="sidebar-nav-item">
-                        <p class="sidebar-nav-link">Risques explosion</p>
-                    </li>
-                    <li class="sidebar-nav-item {{ $page['sidebar'] == "action_plan" && $page['sub_sidebar'] == "risk_explosion" ? 'active' : '' }}">
-                        <a href="{{route('risk.explosion.action.index', [$single_document->id])}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Mesures à prendre</a>
-                    </li>
+                    @if($single_document->risk_chemical)
+                        <li class="sidebar-nav-item">
+                            <p class="sidebar-nav-link">Risques chimiques</p>
+                        </li>
+                        <li class="sidebar-nav-item {{ $page['sidebar'] == "action_plan" && $page['sub_sidebar'] == "risk_chemical" ? 'active' : '' }}">
+                            <a href="{{route('risk.chemical.action.index', [$single_document->id])}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Mesures à prendre</a>
+                        </li>
+                    @endif
+                    @if($single_document->risk_explosion)
+                        <li class="sidebar-nav-item">
+                            <p class="sidebar-nav-link">Risques explosion</p>
+                        </li>
+                        <li class="sidebar-nav-item {{ $page['sidebar'] == "action_plan" && $page['sub_sidebar'] == "risk_explosion" ? 'active' : '' }}">
+                            <a href="{{route('risk.explosion.action.index', [$single_document->id])}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Mesures à prendre</a>
+                        </li>
+                    @endif
                 </ul>
             </li>
             {{--

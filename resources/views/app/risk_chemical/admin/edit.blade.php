@@ -431,12 +431,73 @@
                             <a class="btn-modal-uncheck">Tout décocher</a>
                             <div id="modal-list">
                                 <div class="content-list" data-id="" style="">
-                                    @foreach($sd_risk->sd_equipements as $item)
+                                    @if(count($sd_risk->sd_equipements) > 0)
+                                        @foreach($sd_risk->sd_equipements as $item)
+                                            <label class="contain">
+                                                <input type="checkbox" value="{{ $item->name }}" data-name="{{ $item->name }}" name="list_items[]" checked>
+                                                <span class="checkmark">{{ $item->name }}</span>
+                                            </label>
+                                        @endforeach
+                                    @else
                                         <label class="contain">
-                                            <input type="checkbox" value="{{ $item->name }}" data-name="{{ $item->name }}" name="list_items[]" checked>
-                                            <span class="checkmark">{{ $item->name }}</span>
+                                            <input type="checkbox" value="Gant" data-name="Gant" name="list_items[]">
+                                            <span class="checkmark">Gant</span>
                                         </label>
-                                    @endforeach
+                                        <label class="contain">
+                                            <input type="checkbox" value="Gant étanche au produit"
+                                                   data-name="Gant étanche au produit" name="list_items[]">
+                                            <span class="checkmark">Gant étanche au produit</span>
+                                        </label>
+                                        <label class="contain">
+                                            <input type="checkbox" value="Lunette de sécurité"
+                                                   data-name="Lunette de sécurité" name="list_items[]">
+                                            <span class="checkmark">Lunette de sécurité</span>
+                                        </label>
+                                        <label class="contain">
+                                            <input type="checkbox" value="Lunette de sécurité étanche"
+                                                   data-name="Lunette de sécurité étanche" name="list_items[]">
+                                            <span class="checkmark">Lunette de sécurité étanche</span>
+                                        </label>
+                                        <label class="contain">
+                                            <input type="checkbox" value="Vêtement de travail"
+                                                   data-name="Vêtement de travail" name="list_items[]">
+                                            <span class="checkmark">Vêtement de travail</span>
+                                        </label>
+                                        <label class="contain">
+                                            <input type="checkbox" value="Combinaison étanche au produit"
+                                                   data-name="Combinaison étanche au produit" name="list_items[]">
+                                            <span class="checkmark">Combinaison étanche au produit</span>
+                                        </label>
+                                        <label class="contain">
+                                            <input type="checkbox" value="Masque anti-poussières FFP2"
+                                                   data-name="Masque anti-poussières FFP2" name="list_items[]">
+                                            <span class="checkmark">Masque anti-poussières FFP2</span>
+                                        </label>
+                                        <label class="contain">
+                                            <input type="checkbox" value="Masque anti-poussières FFP3"
+                                                   data-name="Masque anti-poussières FFP3" name="list_items[]">
+                                            <span class="checkmark">Masque anti-poussières FFP3</span>
+                                        </label>
+                                        <label class="contain">
+                                            <input type="checkbox" value="Masque à gaz et vapeur adapté au produit"
+                                                   data-name="Masque à gaz et vapeur adapté au produit" name="list_items[]">
+                                            <span class="checkmark">Masque à gaz et vapeur adapté au produit</span>
+                                        </label>
+                                        <label class="contain">
+                                            <input type="checkbox" value="Masque ventilé adapté au produit"
+                                                   data-name="Masque ventilé adapté au produit" name="list_items[]">
+                                            <span class="checkmark">Masque ventilé adapté au produit</span>
+                                        </label>
+                                        <label class="contain">
+                                            <input type="checkbox" value="Masque à adduction d’air"
+                                                   data-name="Masque à adduction d’air" name="list_items[]">
+                                            <span class="checkmark">Masque à adduction d’air</span>
+                                        </label>
+                                        <label class="contain">
+                                            <input type="checkbox" value="ARI" data-name="ARI" name="list_items[]">
+                                            <span class="checkmark">ARI</span>
+                                        </label>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -522,14 +583,22 @@
                         </div>
                         <div class="right" style="display: block;">
                             <ul class="restraint-proposed">
-
-                                @foreach($sd_risk->sd_restraints_exist as $restraint)
-                                    <li class="res-pro">
-                                        <input type="checkbox" class="btn-check-edit" data-id="{{ $sd_risk->id }}" checked data-tab="{{ $restraint->id }}">
-                                        <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed_{{ $sd_risk->id }}[checked][{{ $restraint->id }}][]">{{ $restraint->name }}</textarea>
-                                        <button type="button" class="btn btn-text btn-small btn-delete-restraint"><i class="far fa-times-circle"></i></button>
-                                    </li>
-                                @endforeach
+                                @if(count($sd_risk->sd_restraints_exist) > 0)
+                                    @foreach($sd_risk->sd_restraints_exist as $restraint)
+                                        <li class="res-pro">
+                                            <input type="checkbox" class="btn-check-edit" data-id="{{ $sd_risk->id }}" checked data-tab="{{ $restraint->id }}">
+                                            <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed_{{ $sd_risk->id }}[checked][{{ $restraint->id }}][]">{{ $restraint->name }}</textarea>
+                                            <button type="button" class="btn btn-text btn-small btn-delete-restraint"><i class="far fa-times-circle"></i></button>
+                                        </li>
+                                    @endforeach
+                                @else
+                                    @foreach($restraints_chemical as $restraint)
+                                        <li class="res-pro">
+                                            <input type="checkbox" class="btn-check-edit" data-id="{{ $sd_risk->id }}" data-tab="new">
+                                            <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed_{{ $sd_risk->id }}[not-checked][new][]">{{ $restraint->name }}</textarea>
+                                        </li>
+                                    @endforeach
+                                @endif
 
                                 @error('restraint_proposed')
                                     <li>

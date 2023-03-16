@@ -16,6 +16,8 @@ class RiskChemicalController extends Controller
     public function index($id){
         $single_document = $this->checkSingleDocument($id);
 
+        $this->checkRiskChemical($single_document);
+
         $page = [
             'title' => 'Evaluation des risques chimiques',
             'infos' => null,
@@ -32,6 +34,8 @@ class RiskChemicalController extends Controller
     public function create($id){
 
         $single_document = $this->checkSingleDocument($id);
+
+        $this->checkRiskChemical($single_document);
 
         $page = [
             'title' => 'Créer un risque chimique',
@@ -64,6 +68,8 @@ class RiskChemicalController extends Controller
     public function edit($id, $risk_chemical){
 
         $single_document = $this->checkSingleDocument($id);
+
+        $this->checkRiskChemical($single_document);
 
         $page = [
             'title' => 'Modifier le risque chimique',
@@ -100,6 +106,8 @@ class RiskChemicalController extends Controller
     {
         $single_document = $this->checkSingleDocument($id);
 
+        $this->checkRiskChemical($single_document);
+
         if (Auth::user()->hasAccess('oza')){
 
             // OZA SECTION
@@ -123,6 +131,19 @@ class RiskChemicalController extends Controller
                 $sd_work_unit = SdWorkUnit::find($request->work_unit);
 
                 if (!$sd_work_unit) abort(404);
+            }
+
+            if ($request->n1 === "NC" &&
+                $request->n2 === "NC" &&
+                $request->n3 === "NC" &&
+                $request->n4 === "NC" &&
+                $request->n5 === "NC" &&
+                $request->n6 === "NC" &&
+                $request->n7 === "NC" &&
+                $request->n8 === "NC" &&
+                $request->n9 === "NC" &&
+                $request->n10 === "NC"){
+                return back()->with('status','Vous devez renseigner au moins un danger')->with('status_type','danger');
             }
 
             $sd_risk = new SdRiskChemical();
@@ -211,6 +232,8 @@ class RiskChemicalController extends Controller
     public function update(Request $request,$id, $risk_chemical)
     {
         $single_document = $this->checkSingleDocument($id);
+
+        $this->checkRiskChemical($single_document);
 
         $sd_risk = SdRiskChemical::find($risk_chemical);
 
@@ -352,6 +375,8 @@ class RiskChemicalController extends Controller
 
         $single_document = $this->checkSingleDocument($id);
 
+        $this->checkRiskChemical($single_document);
+
         $sd_risk = SdRiskChemical::find($request->id_risk);
 
         if (!$sd_risk) abort(404);
@@ -364,6 +389,8 @@ class RiskChemicalController extends Controller
     public function action($id){
 
         $single_document = $this->checkSingleDocument($id);
+
+        $this->checkRiskChemical($single_document);
 
         $page = [
             'title' => 'Plan d’action de réduction des risques chimiques',
@@ -382,6 +409,8 @@ class RiskChemicalController extends Controller
     public function action_store(Request $request,$id){
 
         $single_document = $this->checkSingleDocument($id);
+
+        $this->checkRiskChemical($single_document);
 
         $request->validate([
             'id' => 'required',
