@@ -2,7 +2,6 @@
 
 @section('content')
 
-
     <div class="content">
         <form action="{{ route('risk.chemical.update', [$single_document->id, $sd_risk->id]) }}" class="card card--add-risk card--risk-chemical" method="post">
             @csrf
@@ -49,16 +48,16 @@
                             <label for="nameRisk">Produit concerné</label>
                         </div>
                         <div class="right">
-                            <textarea type="text" class="form-control" name="name_risk_chemical" id="nameRisk" placeholder="Nom commercial ou dénomination">@if(old('name_risk_chemical')) {{ old('name_risk_chemical')  }}@else{{ $sd_risk->name }}@endif</textarea>
+                            <textarea type="text" class="form-control" name="name_risk_chemical" id="nameRisk" placeholder="Nom commercial ou dénomination">@if(old('name_risk_chemical')){{ old('name_risk_chemical')  }}@else{{ $sd_risk->name }}@endif</textarea>
                         </div>
                     </div>
                     @error('name_risk_chemical')
-                    <div class="line">
-                        <div class="left"></div>
-                        <div class="right">
-                            <p class="message-error">{{ $message }}</p>
+                        <div class="line">
+                            <div class="left"></div>
+                            <div class="right">
+                                <p class="message-error">{{ $message }}</p>
+                            </div>
                         </div>
-                    </div>
                     @enderror
                 </div>
                 <div class="row">
@@ -67,7 +66,7 @@
                             <label for="activity">Utilisation activité</label>
                         </div>
                         <div class="right">
-                            <textarea type="text" class="form-control" name="activity" id="activity" placeholder="Utilisation du produit / Activité qui génère le produit">@if(old('activity')) {{ old('activity') }}@else{{ $sd_risk->activity }}@endif</textarea>
+                            <textarea type="text" class="form-control" name="activity" id="activity" placeholder="Utilisation du produit / Activité qui génère le produit">@if(old('activity')){{ old('activity') }}@else{{ $sd_risk->activity }}@endif</textarea>
                         </div>
                     </div>
                     @error('activity')
@@ -288,14 +287,6 @@
                             </select>
                         </div>
                     </div>
-                    @error('n1' || 'n2' || 'n3' || 'n4' || 'n5' || 'n6' || 'n7' || 'n8' || 'n9' || 'n10')
-                    <div class="line">
-                        <div class="left"></div>
-                        <div class="right">
-                            <p class="message-error">Indiquer au moins 1 catégorie et phrase de danger.</p>
-                        </div>
-                    </div>
-                    @enderror
                 </div>
 
                 <div class="row">
@@ -439,7 +430,7 @@
                             <a class="btn-modal-check">Tout cocher</a>
                             <a class="btn-modal-uncheck">Tout décocher</a>
                             <div id="modal-list">
-                                <div data-id="" style="">
+                                <div class="content-list" data-id="" style="">
                                     @foreach($sd_risk->sd_equipements as $item)
                                         <label class="contain">
                                             <input type="checkbox" value="{{ $item->name }}" data-name="{{ $item->name }}" name="list_items[]" checked>

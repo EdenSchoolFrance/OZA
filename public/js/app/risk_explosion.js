@@ -82,7 +82,6 @@ on('.btn-modal-add', 'click', (el,e)=>{
         let all = $('#modal-list', document, 0).querySelectorAll('label')
 
         if (all.length === 0){
-            console.log($('#modal-list', document, 0).querySelector('.content-list'))
             $('#modal-list', document, 0).querySelector('.content-list').appendChild(label);
         }else{
             all[all.length - 1].after(label);

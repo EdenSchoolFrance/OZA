@@ -170,14 +170,6 @@
                             </select>
                         </div>
                     </div>
-                    @error('n1' || 'n2' || 'n3' || 'n4' || 'n5' || 'n6' || 'n7' || 'n8' || 'n9' || 'n10')
-                    <div class="line">
-                        <div class="left"></div>
-                        <div class="right">
-                            <p class="message-error">Indiquer au moins 1 catégorie et phrase de danger.</p>
-                        </div>
-                    </div>
-                    @enderror
                 </div>
 
                 <div class="row">
@@ -299,7 +291,7 @@
                             <a class="btn-modal-check">Tout cocher</a>
                             <a class="btn-modal-uncheck">Tout décocher</a>
                             <div id="modal-list">
-                                <div data-id="" style="">
+                                <div class="content-list" data-id="" style="">
                                     <label class="contain">
                                         <input type="checkbox" value="Gant" data-name="Gant" name="list_items[]">
                                         <span class="checkmark">Gant</span>
@@ -418,7 +410,7 @@
                             <label for="">Risque Résiduel (RR)</label>
                         </div>
                         <div class="right">
-                            <button class="btn btn-success btn-hidden" id="rr" type="button">Acceptable</button>
+                            <button class="btn btn-hidden" id="rr" type="button">-</button>
                         </div>
                     </div>
                 </div>
