@@ -54,6 +54,11 @@ class SdRiskExplosion extends Model
         return $this->sd_restraints()->where('exist',1);
     }
 
+    public function sd_preventions()
+    {
+        return $this->hasMany(SdPreventionExplosion::class);
+    }
+
     public function criticality(){
         $final['text'] = "Inacceptable";
         $final['class'] = 'btn-danger';

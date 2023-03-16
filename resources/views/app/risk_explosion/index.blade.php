@@ -40,21 +40,21 @@
                                     <td class="td_gas">{{$sd_risk->gas}}</td>
                                     <td class="td_dust">{{$sd_risk->dust}}</td>
                                     <td class="td_spawn_probability">{{$sd_risk->spawn_probability}}</td>
-                                    <td class="td_restraint_exist">
+                                    <td class="td_restraint_exist" style="width: 220px; display: block">
                                         <ul>
-                                            @foreach($sd_risk->sd_restraints_exist as $sd_restraint)
-                                                <li>{{ $sd_restraint->name }}</li>
+                                            @foreach($sd_risk->sd_preventions as $sd_prevention)
+                                                <li>- {{ $sd_prevention->name }}</li>
                                             @endforeach
-                                            @if(count($sd_risk->sd_restraints_exist) === 0)
+                                            @if(count($sd_risk->sd_preventions) === 0)
                                                 <li>Néant</li>
                                             @endif
                                         </ul>
                                     </td>
                                     <td class="td_prevention_probability">{{$sd_risk->prevention_probability}}</td>
-                                    <td class="td_criticality"><button class="btn {{ $sd_risk->criticality()['class'] }}">{{ $sd_risk->criticality()['text'] }}</button></td>
-                                    <td class="td_restraint_exist">
+                                    <td class="td_criticality"><button class="btn {{ $sd_risk->criticality()['class'] }} btn-hidden">{{ $sd_risk->criticality()['text'] }}</button></td>
+                                    <td class="td_restraint_exist" style="width: 220px; display: block">
                                         <ul>
-                                            @foreach($sd_risk->sd_restraints_porposed as $sd_restraint)
+                                            @foreach($sd_risk->sd_restraints_exist as $sd_restraint)
                                                 <li>- {{ $sd_restraint->name }}</li>
                                             @endforeach
                                             @if(count($sd_risk->sd_restraints_exist) === 0)
@@ -64,6 +64,7 @@
                                     </td>
                                     <td class="td_actions">
                                         <div>
+                                            <a href="{{ route('risk.explosion.edit', [$single_document->id, $sd_risk->id]) }}"><i class="far fa-edit"></i></a>
                                             <a data-modal=".modal--delete" data-risk="{{ $sd_risk->id }}"><i class="fas fa-trash"></i></a>
                                         </div>
                                     </td>

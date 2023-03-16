@@ -48,12 +48,14 @@ class RiskChemicalController extends Controller
 
         $restraints_chemical = RestraintChemical::all();
 
-        $danger_level = DangerLevel::all();
+        $danger = DangerLevel::all();
+
+        $danger_level = $danger->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE);
 
         if (Auth::user()->hasAccess('oza')){
-            return view('app.risk_chemical.create_admin', compact('page', 'single_document','works_units','restraints_chemical', 'danger_level'));
+            return view('app.risk_chemical.admin.create', compact('page', 'single_document','works_units','restraints_chemical', 'danger_level'));
         }else{
-            return view('app.risk_chemical.create_client', compact('page', 'single_document','works_units'));
+            return view('app.risk_chemical.client.create', compact('page', 'single_document','works_units'));
         }
 
     }
@@ -82,12 +84,14 @@ class RiskChemicalController extends Controller
 
         $restraints_chemical = RestraintChemical::all();
 
-        $danger_level = DangerLevel::all();
+        $danger = DangerLevel::all();
+
+        $danger_level = $danger->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE);
 
         if (Auth::user()->hasAccess('oza')){
-            return view('app.risk_chemical.edit_admin', compact('page', 'single_document','works_units','restraints_chemical', 'sd_risk', 'danger_level'));
+            return view('app.risk_chemical.admin.edit', compact('page', 'single_document','works_units','restraints_chemical', 'sd_risk', 'danger_level'));
         }else{
-            return view('app.risk_chemical.edit_client', compact('page', 'single_document','works_units', 'sd_risk', 'danger_level', 'restraints_chemical'));
+            return view('app.risk_chemical.client.edit', compact('page', 'single_document','works_units', 'sd_risk', 'danger_level', 'restraints_chemical'));
         }
 
     }
@@ -188,7 +192,6 @@ class RiskChemicalController extends Controller
         }
 
         // FOR ALL
-
         if (!empty($request->list_items)){
             foreach ($request->list_items as $item){
 
@@ -335,7 +338,7 @@ class RiskChemicalController extends Controller
 
         $this->checkValidRisk($sd_risk);
 
-        return back()->with('status', 'Risque chimique modifié !');
+        return redirect()->route('risk.chemical.index', [$single_document->id])->with('status', 'Risque chimique modifié !');
 
     }
 
@@ -373,7 +376,7 @@ class RiskChemicalController extends Controller
         })->get();
 
 
-        return view('app.risk_chemical.restraint', compact('page', 'single_document', 'sd_risks'));
+        return view('app.risk_chemical.action.restraint', compact('page', 'single_document', 'sd_risks'));
     }
 
     public function action_store(Request $request,$id){

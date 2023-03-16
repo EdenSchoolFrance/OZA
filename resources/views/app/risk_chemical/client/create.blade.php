@@ -3,9 +3,13 @@
 @section('content')
 
     <div class="content">
-        <form action="{{ route('risk.chemical.store', [$single_document->id]) }}" class="card card--add-risk card--risk-chemical" method="post">
+        <form action="{{ route('risk.chemical.store', [$single_document->id]) }}"
+              class="card card--add-risk card--risk-chemical" method="post">
             @csrf
             <div class="card-body">
+
+                {{-- CLIENT SECTION --}}
+
                 <div class="row">
                     <h3 class="section-client">Section à remplir par le client</h3>
                     <div class="line">
@@ -39,12 +43,12 @@
                         </div>
                     </div>
                     @error('name_risk_chemical')
-                        <div class="line">
-                            <div class="left"></div>
-                            <div class="right">
-                                <p class="message-error">{{ $message }}</p>
-                            </div>
+                    <div class="line">
+                        <div class="left"></div>
+                        <div class="right">
+                            <p class="message-error">{{ $message }}</p>
                         </div>
+                    </div>
                     @enderror
                 </div>
                 <div class="row">
@@ -65,7 +69,11 @@
                     </div>
                     @enderror
                 </div>
+
                 <hr>
+
+                {{-- OZA SECTION --}}
+
                 <div class="row">
                     <h3 class="section-admin">Section à remplir par l'expert OZA</h3>
                     <div class="line">
@@ -81,109 +89,71 @@
                     <div class="cat-danger">
                         <div class="item">
                             <label for="n1">n1</label>
-                            <select name="n1" id="n1" class="form-control level">
+                            <select id="n1" class="form-control level" disabled>
                                 <option data-value="0" value="NC">NC</option>
-                                @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}" {{ old('n1') == $item->id ? 'selected' : '' }}>{{ $item->name}}</option>
-                                @endforeach
                             </select>
                         </div>
                         <div class="item">
                             <label for="n2">n2</label>
-                            <select name="n2" id="n2" class="form-control level">
+                            <select id="n2" class="form-control level" disabled>
                                 <option data-value="0" value="NC">NC</option>
-                                @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}" {{ old('n2') == $item->id ? 'selected' : '' }}>{{ $item->name}}</option>
-                                @endforeach
                             </select>
                         </div>
                         <div class="item">
                             <label for="n3">n3</label>
-                            <select name="n3" id="n3" class="form-control level">
+                            <select id="n3" class="form-control level" disabled>
                                 <option data-value="0" value="NC">NC</option>
-                                @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}" {{ old('n3') == $item->id ? 'selected' : '' }}>{{ $item->name}}</option>
-                                @endforeach
                             </select>
                         </div>
                         <div class="item">
                             <label for="n4">n4</label>
-                            <select name="n4" id="n4" class="form-control level">
+                            <select id="n4" class="form-control level" disabled>
                                 <option data-value="0" value="NC">NC</option>
-                                @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}" {{ old('n4') == $item->id ? 'selected' : '' }}>{{ $item->name}}</option>
-                                @endforeach
                             </select>
                         </div>
                         <div class="item">
                             <label for="n5">n5</label>
-                            <select name="n5" id="n5" class="form-control level">
+                            <select id="n5" class="form-control level" disabled>
                                 <option data-value="0" value="NC">NC</option>
-                                @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}" {{ old('n5') == $item->id ? 'selected' : '' }}>{{ $item->name}}</option>
-                                @endforeach
                             </select>
                         </div>
                         <div class="item">
                             <label for="n6">n6</label>
-                            <select name="n6" id="n6" class="form-control level">
+                            <select id="n6" class="form-control level" disabled>
                                 <option data-value="0" value="NC">NC</option>
-                                @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}" {{ old('n6') == $item->id ? 'selected' : '' }}>{{ $item->name}}</option>
-                                @endforeach
                             </select>
                         </div>
                         <div class="item">
                             <label for="n7">n7</label>
-                            <select name="n7" id="n7" class="form-control level">
+                            <select id="n7" class="form-control level" disabled>
                                 <option data-value="0" value="NC">NC</option>
-                                @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}" {{ old('n7') == $item->id ? 'selected' : '' }}>{{ $item->name}}</option>
-                                @endforeach
                             </select>
                         </div>
                         <div class="item">
                             <label for="n8">n8</label>
-                            <select name="n8" id="n8" class="form-control level">
+                            <select id="n8" class="form-control level" disabled>
                                 <option data-value="0" value="NC">NC</option>
-                                @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}" {{ old('n8') == $item->id ? 'selected' : '' }}>{{ $item->name}}</option>
-                                @endforeach
                             </select>
                         </div>
                         <div class="item">
                             <label for="n9">n9</label>
-                            <select name="n9" id="n9" class="form-control level">
+                            <select id="n9" class="form-control level" disabled>
                                 <option data-value="0" value="NC">NC</option>
-                                @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}" {{ old('n9') == $item->id ? 'selected' : '' }}>{{ $item->name}}</option>
-                                @endforeach
                             </select>
                         </div>
                         <div class="item">
                             <label for="n10">n10</label>
-                            <select name="n10" id="n10" class="form-control level">
+                            <select id="n10" class="form-control level" disabled>
                                 <option data-value="0" value="NC">NC</option>
-                                @foreach($danger_level as $item)
-                                    <option data-value="{{ $item->value }}" value="{{ $item->name}}" {{ old('n10') == $item->id ? 'selected' : '' }}>{{ $item->name}}</option>
-                                @endforeach
                             </select>
                         </div>
                     </div>
-                    @error('n1' || 'n2' || 'n3' || 'n4' || 'n5' || 'n6' || 'n7' || 'n8' || 'n9' || 'n10')
-                    <div class="line">
-                        <div class="left"></div>
-                        <div class="right">
-                            <p class="message-error">Indiquer au moins 1 catégorie et phrase de danger.</p>
-                        </div>
-                    </div>
-                    @enderror
                 </div>
 
                 <div class="row">
                     <div class="line nd">
                         <label for="nd">Niveau de Danger associé au produit (ND)</label>
-                        <input type="text" id="nd" class="form-control" placeholder="valeur" value="">
+                        <input type="text" id="nd" class="form-control" placeholder="valeur" value="" disabled>
                         <input type="hidden" id="nd_hidden" value="0">
                     </div>
                 </div>
@@ -196,20 +166,14 @@
                             <label for="date-fds">Date d'élaboration ou de révision de la FDS</label>
                         </div>
                         <div class="right">
-                            <input type="date" name="date_fds" id="date-fds" class="form-control" value="{{ old('date_fds') }}">
+                            <input type="date" id="date-fds" class="form-control" disabled>
                         </div>
                     </div>
-                    @error('date_fds')
-                        <div class="line">
-                            <div class="left"></div>
-                            <div class="right">
-                                <p class="message-error">{{ $message }}</p>
-                            </div>
-                        </div>
-                    @enderror
                 </div>
 
                 <hr>
+
+                {{-- CLIENT SECTION --}}
 
                 <div class="row">
                     <h3 class="section-client">Section à remplir par le client</h3>
@@ -225,21 +189,21 @@
                         </div>
                         <div class="right">
                             <select name="ventilation" id="ventilation" class="form-control">
-                                <option value="0" {{ old('ventilation') === "0" ? 'selected' : '' }}>Sans ou dans un local</option>
-                                <option value="1" {{ old('ventilation') === "1" ? 'selected' : '' }}>Médiocre ou travail à l'extérieur</option>
-                                <option value="2" {{ old('ventilation') === "2" ? 'selected' : '' }}>Efficace</option>
-                                <option value="3" {{ old('ventilation') === "3" ? 'selected' : '' }}>Aspiration localisée</option>
-                                <option value="4" {{ old('ventilation') === "4" ? 'selected' : '' }}>Sorbonne de laboratoire</option>
+                                <option value="0" {{ old('ventilation') == 0 ? 'selected' : '' }}>Sans ou dans un local</option>
+                                <option value="1" {{ old('ventilation') == 1 ? 'selected' : '' }}>Médiocre ou travail à l'extérieur</option>
+                                <option value="2" {{ old('ventilation') == 2 ? 'selected' : '' }}>Efficace</option>
+                                <option value="3" {{ old('ventilation') == 3 ? 'selected' : '' }}>Aspiration localisée</option>
+                                <option value="4" {{ old('ventilation') == 4 ? 'selected' : '' }}>Sorbonne de laboratoire</option>
                             </select>
                         </div>
                     </div>
                     @error('ventilation')
-                        <div class="line">
-                            <div class="left"></div>
-                            <div class="right">
-                                <p class="message-error">{{ $message }}</p>
-                            </div>
+                    <div class="line">
+                        <div class="left"></div>
+                        <div class="right">
+                            <p class="message-error">{{ $message }}</p>
                         </div>
+                    </div>
                     @enderror
                     <div class="line">
                         <div class="left">
@@ -247,19 +211,19 @@
                         </div>
                         <div class="right">
                             <select name="concentration" id="concentration" class="form-control">
-                                <option value="0" {{ old('concentration') === "0" ? 'selected' : '' }}>10 à pur</option>
-                                <option value="2" {{ old('concentration') === "2" ? 'selected' : '' }}>1 à 10%</option>
-                                <option value="4" {{ old('concentration') === "4" ? 'selected' : '' }}>< 1%</option>
+                                <option value="0" {{ old('concentration') == 0 ? 'selected' : '' }}>10 à pur</option>
+                                <option value="2" {{ old('concentration') == 2 ? 'selected' : '' }}>1 à 10%</option>
+                                <option value="4" {{ old('concentration') == 4 ? 'selected' : '' }}>< 1%</option>
                             </select>
                         </div>
                     </div>
                     @error('concentration')
-                        <div class="line">
-                            <div class="left"></div>
-                            <div class="right">
-                                <p class="message-error">{{ $message }}</p>
-                            </div>
+                    <div class="line">
+                        <div class="left"></div>
+                        <div class="right">
+                            <p class="message-error">{{ $message }}</p>
                         </div>
+                    </div>
                     @enderror
                     <div class="line">
                         <div class="left">
@@ -267,19 +231,19 @@
                         </div>
                         <div class="right">
                             <select name="time" id="time" class="form-control">
-                                <option value="0" {{ old('time') === "0" ? 'selected' : '' }}>45mn à 8h</option>
-                                <option value="2" {{ old('time') === "2" ? 'selected' : '' }}>5 à 45mn</option>
-                                <option value="4" {{ old('time') === "4" ? 'selected' : '' }}>< 5mn</option>
+                                <option value="0" {{ old('time') == 0 ? 'selected' : '' }}>45mn à 8h</option>
+                                <option value="2" {{ old('time') == 2 ? 'selected' : '' }}>5 à 45mn</option>
+                                <option value="4" {{ old('time') == 4 ? 'selected' : '' }}>< 5mn</option>
                             </select>
                         </div>
                     </div>
                     @error('time')
-                        <div class="line">
-                            <div class="left"></div>
-                            <div class="right">
-                                <p class="message-error">{{ $message }}</p>
-                            </div>
+                    <div class="line">
+                        <div class="left"></div>
+                        <div class="right">
+                            <p class="message-error">{{ $message }}</p>
                         </div>
+                    </div>
                     @enderror
                 </div>
 
@@ -299,7 +263,7 @@
                             <a class="btn-modal-check">Tout cocher</a>
                             <a class="btn-modal-uncheck">Tout décocher</a>
                             <div id="modal-list">
-                                <div data-id="" style="">
+                                <div class="content-list" data-id="" style="">
                                     <label class="contain">
                                         <input type="checkbox" value="Gant" data-name="Gant" name="list_items[]">
                                         <span class="checkmark">Gant</span>
@@ -382,6 +346,8 @@
 
                 <hr>
 
+                {{-- OZA SECTION --}}
+
                 <div class="row">
                     <h3 class="section-admin">Section à remplir par l'expert OZA</h3>
                     <div class="line">
@@ -389,28 +355,17 @@
                             <label for="protection">Protection</label>
                         </div>
                         <div class="right">
-                            <select name="protection" id="protection" class="form-control">
-                                <option value="0" {{ old('protection') === "0" ? 'selected' : '' }}>Aucune</option>
-                                <option value="1" {{ old('protection') === "1" ? 'selected' : '' }}>Une seule</option>
-                                <option value="2" {{ old('protection') === "2" ? 'selected' : '' }}>Au moins une adaptée au risque principal</option>
-                                <option value="4" {{ old('protection') === "4" ? 'selected' : '' }}>Toutes celles nécessaires</option>
+                            <select id="protection" class="form-control" disabled>
+                                <option value="0">Aucune</option>
                             </select>
                         </div>
                     </div>
-                    @error('protection')
-                        <div class="line">
-                            <div class="left"></div>
-                            <div class="right">
-                                <p class="message-error">{{ $message }}</p>
-                            </div>
-                        </div>
-                    @enderror
                     <div class="line">
                         <div class="left">
                             <label for="ir">Indice de Risque (IR)</label>
                         </div>
                         <div class="right">
-                            <input type="text" id="ir" class="form-control" placeholder="valeur">
+                            <input type="text" id="ir" class="form-control" placeholder="valeur" disabled>
                         </div>
                     </div>
                     <div class="line">
@@ -418,7 +373,7 @@
                             <label for="">Risque Résiduel (RR)</label>
                         </div>
                         <div class="right">
-                            <button class="btn btn-success btn-hidden" id="rr" type="button">Acceptable</button>
+                            <button class="btn btn-hidden" id="rr" type="button">-</button>
                         </div>
                     </div>
                 </div>
@@ -438,23 +393,15 @@
                         <div class="right" style="display: block;">
                             <ul class="restraint-proposed">
 
-                                @foreach($restraints_chemical as $restraint)
-                                    <li class="res-pro">
-                                        <input type="checkbox" class="btn-check" data-tab="none">
-                                        <textarea class="form-control auto-resize" placeholder=""
-                                                  name="restraint_proposed[not-checked][]">{{ $restraint->name }}</textarea>
-                                    </li>
-                                @endforeach
+                                <li>Cette section n'est disponible uniquement que pour les experts OZA.</li>
 
                                 @error('restraint_proposed')
-                                    <li>
-                                        <p class="message-error">{{ $message }}</p>
-                                    </li>
+                                <li>
+                                    <p class="message-error">{{ $message }}</p>
+                                </li>
                                 @enderror
                             </ul>
-                            <button class="btn btn-yellow btn-text btn-add-restraint" data-id="" type="button">+ Ajouter
-                                une mesure proposée
-                            </button>
+                            <button class="btn btn-yellow btn-text" data-id="" type="button">+ Ajouter une mesure proposée</button>
                         </div>
                     </div>
                 </div>

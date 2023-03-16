@@ -182,19 +182,25 @@ class SdRiskChemical extends Model
 
         $final = [];
 
-        if ($ND < 0){
-            $final['text'] = "Acceptable";
-            $final['class'] = 'btn-success';
-        }else if ($ND < 2){
+        if ($ND === 6) {
             $final['text'] = "A améliorer";
             $final['class'] = 'btn-warning';
-        }else if ($ND === 6){
-            $final['text'] = "A améliorer";
-            $final['class'] = 'btn-warning';
-        }else if ($ND >= 2){
-            $final['text'] = "Inacceptable";
-            $final['class'] = 'btn-danger';
+        }else{
+            $cal = $this->IR();
+
+            if ($cal < 0){
+                $final['text'] = "Acceptable";
+                $final['class'] = 'btn-success';
+            }else if ($cal < 2){
+                $final['text'] = "A améliorer";
+                $final['class'] = 'btn-warning';
+            }else if ($cal >= 2){
+                $final['text'] = "Inacceptable";
+                $final['class'] = 'btn-danger';
+            }
         }
+
+
 
         return $final;
     }

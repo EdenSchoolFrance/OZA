@@ -23,10 +23,10 @@ class CreateSdRisksExplosionTable extends Migration
             $table->text("degree_ventilation");
             $table->text("availability_ventilation");
             $table->text("size_area");
-            $table->float("gas");
-            $table->float("dust");
-            $table->float("spawn_probability");
-            $table->float("prevention_probability");
+            $table->text("gas");
+            $table->text("dust");
+            $table->text("spawn_probability");
+            $table->text("prevention_probability");
 
             $table->foreignUuid('single_document_id');
 

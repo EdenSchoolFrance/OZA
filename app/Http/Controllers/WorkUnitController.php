@@ -199,9 +199,7 @@ class WorkUnitController extends Controller
                     }
                 }
             }
-
         }
-
 
         return redirect()->route('work.index', [$single_document->id]);
     }

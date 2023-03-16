@@ -9,11 +9,11 @@
                 <table class="table table--work_units">
                     <thead>
                         <tr>
-                            <th class="td_work_unit" style="width: 15%">Unité de travail</th>
-                            <th class="th_name" style="width: 15%">Nom commercial ou dénomination</th>
-                            <th class="th_ir" style="width: 10%">IR</th>
-                            <th class="th_rr" style="width: 10%">RR</th>
-                            <th class="th_restraint" style="width: 20%">Mesure proposée</th>
+                            <th class="th_material_explosion" style="width: 15%">Matière explosible</th>
+                            <th class="th_gas" style="width: 15%">Gaz</th>
+                            <th class="th_dust" style="width: 10%">Poussière</th>
+                            <th class="th_criticality" style="width: 10%">Criticité</th>
+                            <th class="th_restraint" style="width: 20%">Mesures de prévention et de protection proposées</th>
                             <th class="th_comment" style="width: 15%">Décision</th>
                             <th class="th_date" style="width: 15%">Date de réalisation</th>
                             <th class="th_actions"></th>
@@ -30,10 +30,10 @@
                         @foreach($sd_risks as $sd_risk)
                             @if(isset($sd_risk->sd_restraints_exist[0]))
                                 <tr>
-                                    <td rowspan="{{ count($sd_risk->sd_restraints_exist) + 1 }}" class="td_work_unit"> {{ $sd_risk->sd_work_unit->name }}</td>
-                                    <td rowspan="{{ count($sd_risk->sd_restraints_exist) + 1 }}" class="td_name">{{ $sd_risk->name }}</td>
-                                    <td rowspan="{{ count($sd_risk->sd_restraints_exist) + 1 }}" class="td_ir">{{ $sd_risk->IR() }}</td>
-                                    <td rowspan="{{ count($sd_risk->sd_restraints_exist) + 1 }}" class="td_rr"><button class="btn {{ $sd_risk->criticality()['class'] }}">{{ $sd_risk->ND()['value'] }}</button></td>
+                                    <td rowspan="{{ count($sd_risk->sd_restraints_exist) + 1 }}" class="td_material_explosion"> {{ $sd_risk->material_explosion }}</td>
+                                    <td rowspan="{{ count($sd_risk->sd_restraints_exist) + 1 }}" class="td_gas">{{ $sd_risk->gas }}</td>
+                                    <td rowspan="{{ count($sd_risk->sd_restraints_exist) + 1 }}" class="td_dust">{{ $sd_risk->dust }}</td>
+                                    <td rowspan="{{ count($sd_risk->sd_restraints_exist) + 1 }}" class="td_criticality"><button class="btn btn-danger">Critique</button></td>
                                 </tr>
                                 @foreach($sd_risk->sd_restraints_exist as $key => $restraint)
                                     @php
@@ -57,7 +57,7 @@
 
         <div class="modal modal--restraint modal-add-risk">
             <div class="modal-dialog modal-dialog-large">
-                <form class="modal-content" action="{{ route('risk.chemical.action.store', [$single_document->id]) }}" method="POST">
+                <form class="modal-content" action="{{ route('risk.explosion.action.store', [$single_document->id]) }}" method="POST">
                     @csrf
                     <input type="hidden" name="id" value="">
                     <div class="modal-header">
@@ -74,7 +74,7 @@
                                 <div class="right">
                                     <input type="date" class="form-control" name="date_restraint" placeholder="JJ/MM/AAAA" value="{{ old('date_restraint') }}">
                                     @error('date_restraint')
-                                    <p class="message-error">{{ $message }}</p>
+                                        <p class="message-error">{{ $message }}</p>
                                     @enderror
                                 </div>
                             </div>

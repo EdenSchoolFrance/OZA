@@ -87,6 +87,7 @@ on('.btn-modal-add', 'click', (el,e)=>{
             all[all.length - 1].after(label);
         }
     }
+    el.closest("div").querySelector('input').value = "";
 
 })
 
@@ -107,18 +108,7 @@ on('.btn-modal-uncheck', 'click', (el, e) => {
 
 on('.level', 'change', (el, e) =>{
     BIG();
-    IR();
 })
-
-function IR_CAL(){
-    let vent = $('#ventilation', document, 0).value;
-    let con = $('#concentration', document, 0).value;
-    let time = $('#time', document, 0).value;
-    let pro = $('#protection', document, 0).value;
-    let nd = $('#nd_hidden', document, 0).value;
-
-    return nd - vent - con - time - pro;
-}
 
 function BIG(){
     let all = $('.level')
@@ -132,55 +122,46 @@ function BIG(){
 
     let nd = all[all.length - 1].options[all[all.length - 1].selectedIndex].dataset.value;
     nd = parseInt(nd);
-
     let rr = $('#rr', document, 0);
     rr.removeAttribute("class")
     rr.setAttribute('class', 'btn')
     rr.innerText = "";
-    if (nd === 6){
+    if (nd < 0){
+        rr.innerText = "Acceptable";
+        rr.classList.add('btn-success');
+    }else if (nd < 2){
         rr.innerText = "A améliorer";
         rr.classList.add('btn-warning');
-    }else{
-        let cal = IR_CAL();
-
-        if (cal < 0){
-            rr.innerText = "Acceptable";
-            rr.classList.add('btn-success');
-        }else if (cal < 2){
-            rr.innerText = "A améliorer";
-            rr.classList.add('btn-warning');
-        }else if (cal >= 2){
-            rr.innerText = "Inacceptable";
-            rr.classList.add('btn-danger');
-        }
+    }else if (nd === 6){
+        rr.innerText = "A améliorer";
+        rr.classList.add('btn-warning');
+    }else if (nd >= 2){
+        rr.innerText = "Inacceptable";
+        rr.classList.add('btn-danger');
     }
-
 
 }
 
 
 
-on('#ventilation', 'change', (el, e) =>{
-    IR()
-    BIG()
-})
-on('#concentration', 'change', (el, e) =>{
-    IR()
-    BIG()
-})
-on('#time', 'change', (el, e) =>{
-    IR()
-    BIG()
-})
-on('#protection', 'change', (el, e) =>{
-    IR()
-    BIG()
-})
+on('#ventilation', 'change', (el, e) =>{ IR() })
+on('#concentration', 'change', (el, e) =>{ IR() })
+on('#time', 'change', (el, e) =>{ IR() })
+on('#protection', 'change', (el, e) =>{ IR() })
+
+
 
 function IR() {
+    let vent = $('#ventilation', document, 0).value;
+    let con = $('#concentration', document, 0).value;
+    let time = $('#time', document, 0).value;
+    let pro = $('#protection', document, 0).value;
+    let nd = $('#nd_hidden', document, 0).value;
 
-    let cal = IR_CAL();
-    let text = "-";
+    let cal = nd - vent - con - time - pro;
+    let text = "Acceptable";
+
+    console.log(cal)
 
     if (cal <= 0){
         text = "Acceptable";
