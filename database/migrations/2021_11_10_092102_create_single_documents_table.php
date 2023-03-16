@@ -31,6 +31,8 @@ class CreateSingleDocumentsTable extends Migration
             $table->string("function")->nullable();
             $table->integer('work_unit_limit');
             $table->boolean('risk_psycho')->default(0);
+            $table->boolean('risk_chemical')->default(0);
+            $table->boolean('risk_explosion')->default(0);
             $table->boolean('archived')->default(0);
 
             $table->foreignUuid('client_id');

@@ -27,4 +27,23 @@ class Controller extends BaseController
 
         return $single_document;
     }
+
+    protected function checkRiskChemical(SingleDocument $sd){
+
+        if ($sd->risk_chemical === 0){
+            abort(404);
+        }
+        return true;
+
+    }
+
+    protected function checkRiskExplosion(SingleDocument $sd){
+
+        if ($sd->risk_explosion){
+            return true;
+        }else{
+            abort(404);
+        }
+
+    }
 }

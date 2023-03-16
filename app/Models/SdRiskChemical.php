@@ -200,8 +200,6 @@ class SdRiskChemical extends Model
             }
         }
 
-
-
         return $final;
     }
 }

@@ -30,6 +30,7 @@ class SdRiskExplosionSeeder extends Seeder
         $rc->dust = 20;
         $rc->spawn_probability = 3;
         $rc->prevention_probability = 3;
+        $rc->criticity = "Acceptable";
         $rc->single_document()->associate($singleDocument);
         $rc->save();
     }

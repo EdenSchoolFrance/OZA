@@ -315,6 +315,67 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="line">
+                            <div class="left"></div>
+                            <div class="right">
+                                <hr class="separation">
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="left">
+                                <h3>Evaluation des risques chimiques</h3>
+                            </div>
+                            <div class="right"></div>
+                        </div>
+                        <div class="line">
+                            <div class="left">
+                                <p>Option souscrite</p>
+                            </div>
+                            <div class="right">
+                                <div>
+                                    <input type="radio" id="risk_chemical_yes" name="risk_chemical" value="yes" {{ (old('risk_chemical') == "yes" ? 'checked' : '') }}>
+                                    <label for="risk_chemical_yes">Oui</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="risk_chemical_no" name="risk_chemical" value="no" {{ (old('risk_chemical') == "no" ? 'checked' : '') }}>
+                                    <label for="risk_chemical_no">Non</label>
+                                </div>
+                                @error('risk_chemical')
+                                <p class="message-error">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="line">
+                            <div class="left"></div>
+                            <div class="right">
+                                <hr class="separation">
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="left">
+                                <h3>Evaluation des risques d'explosions</h3>
+                            </div>
+                            <div class="right"></div>
+                        </div>
+                        <div class="line">
+                            <div class="left">
+                                <p>Option souscrite</p>
+                            </div>
+                            <div class="right">
+                                <div>
+                                    <input type="radio" id="risk_explosion_yes" name="risk_explosion" value="yes" {{ (old('risk_explosion') == "yes" ? 'checked' : '') }}>
+                                    <label for="risk_explosion_yes">Oui</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="risk_explosion_no" name="risk_explosion" value="no" {{ (old('risk_explosion') == "no" ? 'checked' : '') }}>
+                                    <label for="risk_explosion_no">Non</label>
+                                </div>
+                                @error('risk_explosion')
+                                <p class="message-error">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="line">

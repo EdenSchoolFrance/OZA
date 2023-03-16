@@ -33,6 +33,8 @@ class SingleDocument extends Model
         'function',
         'work_unit_limit',
         'risk_psycho',
+        'risk_chemical',
+        'risk_explosion',
         'archived',
         'created_at',
         'updated_at',

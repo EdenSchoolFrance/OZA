@@ -31,7 +31,8 @@ class SdRiskExplosion extends Model
         'gas',
         'dust',
         'spawn_probability',
-        'prevention_probability'
+        'prevention_probability',
+        'criticity'
     ];
 
     public function single_document()
@@ -60,8 +61,26 @@ class SdRiskExplosion extends Model
     }
 
     public function criticality(){
-        $final['text'] = "Inacceptable";
-        $final['class'] = 'btn-danger';
+
+        $final = [];
+
+        if ($this->criticity === "Acceptable"){
+            $final['text'] = "Acceptable";
+            $final['class'] = 'btn-success';
+        }else if ($this->criticity === "A améliorer"){
+            $final['text'] = "A améliorer";
+            $final['class'] = 'btn-warning';
+        }else if ($this->criticity === "Agir vite"){
+            $final['text'] = "Agir vite";
+            $final['class'] = 'btn-warning';
+        }else if ($this->criticity === "Inacceptable"){
+            $final['text'] = "Inacceptable";
+            $final['class'] = 'btn-danger';
+        }else {
+            $final['text'] = "-";
+            $final['class'] = '';
+        }
+
         return $final;
     }
 }

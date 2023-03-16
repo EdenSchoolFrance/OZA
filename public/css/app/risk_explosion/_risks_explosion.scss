@@ -1,8 +1,14 @@
 .container-table-risk-explosion{
     overflow-x: scroll;
-    table.table{
-        &--risk_explosion{
-
+    table.table--risk-explosion{
+        tbody{
+            td{
+                ul{
+                    li{
+                        word-break: break-all;
+                    }
+                }
+            }
         }
     }
 }

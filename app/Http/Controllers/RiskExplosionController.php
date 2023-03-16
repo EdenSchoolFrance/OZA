@@ -79,7 +79,8 @@ class RiskExplosionController extends Controller
             'gas' => 'required',
             'dust' => 'required',
             'spawn_probability' => 'required',
-            'prevention_probability' => 'required'
+            'prevention_probability' => 'required',
+            'criticity' => 'required'
         ]);
 
         $sd_risk = new SdRiskExplosion();
@@ -96,6 +97,7 @@ class RiskExplosionController extends Controller
         $sd_risk->dust = $request->dust;
         $sd_risk->spawn_probability = $request->spawn_probability;
         $sd_risk->prevention_probability = $request->prevention_probability;
+        $sd_risk->criticity = $request->criticity;
         $sd_risk->single_document()->associate($single_document);
         $sd_risk->save();
 
@@ -149,7 +151,8 @@ class RiskExplosionController extends Controller
             'gas' => 'required',
             'dust' => 'required',
             'spawn_probability' => 'required',
-            'prevention_probability' => 'required'
+            'prevention_probability' => 'required',
+            'criticity' => 'required'
         ]);
 
 
@@ -165,6 +168,7 @@ class RiskExplosionController extends Controller
         $sd_risk->dust = $request->dust;
         $sd_risk->spawn_probability = $request->spawn_probability;
         $sd_risk->prevention_probability = $request->prevention_probability;
+        $sd_risk->criticity = $request->criticity;
         $sd_risk->single_document()->associate($single_document);
         $sd_risk->save();
 

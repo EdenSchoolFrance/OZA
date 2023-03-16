@@ -33,7 +33,7 @@
                                     <td rowspan="{{ count($sd_risk->sd_restraints_exist) + 1 }}" class="td_material_explosion"> {{ $sd_risk->material_explosion }}</td>
                                     <td rowspan="{{ count($sd_risk->sd_restraints_exist) + 1 }}" class="td_gas">{{ $sd_risk->gas }}</td>
                                     <td rowspan="{{ count($sd_risk->sd_restraints_exist) + 1 }}" class="td_dust">{{ $sd_risk->dust }}</td>
-                                    <td rowspan="{{ count($sd_risk->sd_restraints_exist) + 1 }}" class="td_criticality"><button class="btn btn-danger">Critique</button></td>
+                                    <td rowspan="{{ count($sd_risk->sd_restraints_exist) + 1 }}" class="td_criticality"><button class="btn {{ $sd_risk->criticality()['class'] }} btn-hidden">{{ $sd_risk->criticality()['text'] }}</button></td>
                                 </tr>
                                 @foreach($sd_risk->sd_restraints_exist as $key => $restraint)
                                     @php

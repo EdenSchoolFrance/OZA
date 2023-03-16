@@ -394,12 +394,32 @@
                 <div class="row">
                     <div class="line">
                         <div class="left">
-                            <label for="">Criticité</label>
+                            <label for="criticity">Criticité</label>
                         </div>
                         <div class="right">
-                            <button class="btn btn-success" id="criticity" type="button">Acceptable</button>
+                            <select name="criticity" id="criticity" class="form-control">
+                                @if(old('criticity'))
+                                    <option value="Acceptable" {{ old('criticity') === "Acceptable" ? 'selected' : '' }}>Acceptable</option>
+                                    <option value="A améliorer" {{ old('criticity') === "A améliorer" ? 'selected' : '' }}>A améliorer</option>
+                                    <option value="Agir vite" {{ old('criticity') === "Agir vite" ? 'selected' : '' }}>Agir vite</option>
+                                    <option value="Inacceptable" {{ old('criticity') === "Inacceptable" ? 'selected' : '' }}>Inacceptable</option>
+                                @else
+                                    <option value="Acceptable" @if($sd_risk->criticity === "Acceptable") selected @endif>Acceptable</option>
+                                    <option value="A améliorer" @if($sd_risk->criticity === "A améliorer") selected @endif>A améliorer</option>
+                                    <option value="Agir vite" @if($sd_risk->criticity === "Agir vite") selected @endif>Agir vite</option>
+                                    <option value="Inacceptable" @if($sd_risk->criticity === "Inacceptable") selected @endif>Inacceptable</option>
+                                @endif
+                            </select>
                         </div>
                     </div>
+                    @error('criticity')
+                    <div class="line">
+                        <div class="left"></div>
+                        <div class="right">
+                            <p class="message-error">{{ $message }}</p>
+                        </div>
+                    </div>
+                    @enderror
                 </div>
 
                 <hr>
