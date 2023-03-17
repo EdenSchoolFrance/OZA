@@ -139,13 +139,13 @@
                             <label for="degreeClean">Degré de dégagement</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="degree_clean" id="degreeClean" list="degreeCleanList" class="form-control" placeholder="Degré de dégagement" value="{{ old('degree_clean') }}">
-                            <datalist id="degreeCleanList">
-                                <option value="Continu">
-                                <option value="Premier degré">
-                                <option value="Deuxième degré">
-                                <option value="Non applicable">
-                            </datalist>
+                            <select name="degree_clean" id="degreeClean" class="form-control">
+                                <option value="Continu" {{ old('degree_clean') === "Continu" ? "selected" : "" }}>Continu</option>
+                                <option value="Premier degré" {{ old('degree_clean') === "Premier degré" ? "selected" : "" }}>Premier degré</option>
+                                <option value="Deuxième degré" {{ old('degree_clean') === "Deuxième degré" ? "selected" : "" }}>Deuxième degré</option>
+                                <option value="Non applicable" {{ old('degree_clean') === "Non applicable" ? "selected" : "" }}>Non applicable</option>
+                            </select>
+                            <i class="far fa-question-circle" data-tooltip=".tooltip--dc" data-placement="left"></i>
                         </div>
                     </div>
                     @error('degree_clean')
@@ -162,14 +162,14 @@
                             <label for="degreeVentilation">Degré de ventilation</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="degree_ventilation" id="degreeVentilation" list="degreeVentilationList" class="form-control" placeholder="Degré de ventilation" value="{{ old('degree_ventilation') }}">
-                            <datalist id="degreeCleanList">
-                                <option value="Fort">
-                                <option value="Moyen">
-                                <option value="Faible">
-                                <option value="Pas de ventilation">
-                                <option value="Non applicable">
-                            </datalist>
+                            <select name="degree_ventilation" id="degreeVentilation" class="form-control">
+                                <option value="Fort" {{ old('degree_ventilation') === "Fort" ? "selected" : "" }}>Fort</option>
+                                <option value="Moyen" {{ old('degree_ventilation') === "Moyen" ? "selected" : "" }}>Moyen</option>
+                                <option value="Faible" {{ old('degree_ventilation') === "Faible" ? "selected" : "" }}>Faible</option>
+                                <option value="Pas de ventilation" {{ old('degree_ventilation') === "Pas de ventilation" ? "selected" : "" }}>Pas de ventilation</option>
+                                <option value="Non applicable" {{ old('degree_ventilation') === "Non applicable" ? "selected" : "" }}>Non applicable</option>
+                            </select>
+                            <i class="far fa-question-circle" data-tooltip=".tooltip--dv" data-placement="left"></i>
                         </div>
                     </div>
                     @error('degree_ventilation')
@@ -186,14 +186,14 @@
                             <label for="availabilityVentilation">Disponibilité de la ventilation</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="availability_ventilation" id="availabilityVentilation" list="availabilityVentilationList" class="form-control" placeholder="Disponibilité de la ventilation" value="{{ old('availability_ventilation') }}">
-                            <datalist id="availabilityVentilationList">
-                                <option value="Bonne">
-                                <option value="Assez bonne">
-                                <option value="Faible">
-                                <option value="Pas de ventilation">
-                                <option value="Non applicable">
-                            </datalist>
+                            <select name="availability_ventilation" id="availabilityVentilation" class="form-control">
+                                <option value="Bonne" {{ old('availability_ventilation') === "Bonne" ? "selected" : "" }}>Bonne</option>
+                                <option value="Assez bonne" {{ old('availability_ventilation') === "Assez bonne" ? "selected" : "" }}>Assez bonne</option>
+                                <option value="Faible" {{ old('availability_ventilation') === "Faible" ? "selected" : "" }}>Faible</option>
+                                <option value="Pas de ventilation" {{ old('availability_ventilation') === "Pas de ventilation" ? "selected" : "" }}>Pas de ventilation</option>
+                                <option value="Non applicable" {{ old('availability_ventilation') === "Non applicable" ? "selected" : "" }}>Non applicable</option>
+                            </select>
+                            <i class="far fa-question-circle" data-tooltip=".tooltip--disv" data-placement="left"></i>
                         </div>
                     </div>
                     @error('availability_ventilation')
@@ -251,14 +251,14 @@
                             <label for="gas">Gaz</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="gas" id="gas" list="gasList" class="form-control" placeholder="Gaz" value="{{ old('gas') }}">
-                            <datalist id="gasList">
-                                <option value="END">
-                                <option value="0">
-                                <option value="1">
-                                <option value="2">
-                                <option value="NC">
-                            </datalist>
+                            <select name="gas" id="gas" class="form-control">
+                                <option value="END" {{ old('gas') === "END" ? "selected" : "" }}>END</option>
+                                <option value="0" {{ old('gas') === "0" ? "selected" : "" }}>0</option>
+                                <option value="1" {{ old('gas') === "1" ? "selected" : "" }}>1</option>
+                                <option value="2" {{ old('gas') === "2" ? "selected" : "" }}>2</option>
+                                <option value="NC" {{ old('gas') === "NC" ? "selected" : "" }}>NC</option>
+                            </select>
+                            <i class="far fa-question-circle" data-tooltip=".tooltip--gas" data-placement="left"></i>
                         </div>
                     </div>
                     @error('gas')
@@ -275,14 +275,14 @@
                             <label for="dust">Poussière</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="dust" id="dust" list="dustList" class="form-control" placeholder="Poussière" value="{{ old('dust') }}">
-                            <datalist id="dustList">
-                                <option value="END">
-                                <option value="20">
-                                <option value="21">
-                                <option value="22">
-                                <option value="NC">
-                            </datalist>
+                            <select name="dust" id="dust" class="form-control">
+                                <option value="END" {{ old('dust') === "END" ? "selected" : "" }}>END</option>
+                                <option value="20" {{ old('dust') === "20" ? "selected" : "" }}>20</option>
+                                <option value="21" {{ old('dust') === "21" ? "selected" : "" }}>21</option>
+                                <option value="22" {{ old('dust') === "22" ? "selected" : "" }}>22</option>
+                                <option value="NC" {{ old('dust') === "NC" ? "selected" : "" }}>NC</option>
+                            </select>
+                            <i class="far fa-question-circle" data-tooltip=".tooltip--dust" data-placement="left"></i>
                         </div>
                     </div>
                     @error('dust')
@@ -309,13 +309,13 @@
                             <label for="spawnProbability">Probabilité d'apparition</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="spawn_probability" id="spawnProbability" list="spawnProbabilityList" class="form-control" placeholder="Probabilité d'apparition" value="{{ old('spawn_probability') }}">
-                            <datalist id="spawnProbabilityList">
-                                <option value="4">
-                                <option value="3">
-                                <option value="2">
-                                <option value="1">
-                            </datalist>
+                            <select name="spawn_probability" id="spawnProbability" class="form-control">
+                                <option value="4" {{ old('spawn_probability') === "4" ? "selected" : "" }}>4</option>
+                                <option value="3" {{ old('spawn_probability') === "3" ? "selected" : "" }}>3</option>
+                                <option value="2" {{ old('spawn_probability') === "2" ? "selected" : "" }}>2</option>
+                                <option value="1" {{ old('spawn_probability') === "1" ? "selected" : "" }}>1</option>
+                            </select>
+                            <i class="far fa-question-circle" data-tooltip=".tooltip--pa" data-placement="left"></i>
                         </div>
                     </div>
                     @error('spawn_probability')
@@ -332,13 +332,12 @@
                             <label for="preventionProbability">Probabilité avec prévention</label>
                         </div>
                         <div class="right">
-                            <input type="text" name="prevention_probability" id="preventionProbability" list="preventionProbabilityList" class="form-control" placeholder="Probabilité avec prévention" value="{{ old('prevention_probability') }}">
-                            <datalist id="preventionProbabilityList">
-                                <option value="4">
-                                <option value="3">
-                                <option value="2">
-                                <option value="1">
-                            </datalist>
+                            <select name="prevention_probability" id="preventionProbability" class="form-control">
+                                <option value="4" {{ old('prevention_probability') === "4" ? "selected" : "" }}>4</option>
+                                <option value="3" {{ old('prevention_probability') === "3" ? "selected" : "" }}>3</option>
+                                <option value="2" {{ old('prevention_probability') === "2" ? "selected" : "" }}>2</option>
+                                <option value="1" {{ old('prevention_probability') === "1" ? "selected" : "" }}>1</option>
+                            </select>
                         </div>
                     </div>
                     @error('prevention_probability')
@@ -349,38 +348,35 @@
                         </div>
                     </div>
                     @enderror
+                </div>
 
+                <div class="row">
                     <div class="line">
                         <div class="left">
                             <label for="">Moyens de prévention existants</label>
                         </div>
-                        <div class="right"></div>
                     </div>
-                </div>
-                <div class="list-items">
-                    <div class="row">
-                        <div class="right">
-                            <a class="btn-modal-check">Tout cocher</a>
-                            <a class="btn-modal-uncheck">Tout décocher</a>
-                            <div id="modal-list">
-                                <div class="content-list" data-id="" style="">
-
-                                </div>
-                            </div>
+                    <div class="line">
+                        <div class="left">
+                            <label for="">Prévention existants</label>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div>
-                            <p>Ajouter de nouveaux EPI</p>
-                            <div class="right right--inline modal-input">
-                                <label for="name">Intitulé</label>
-                                <div>
-                                    <input type="text" id="modal-input" name="name" class="form-control" placeholder="EPI 1, EPI 2, ">
-                                    <p class="info-input">Il est possible d’ajouter plusieurs matériels en les séparant
-                                        par une virgule</p>
-                                </div>
-                                <button class="btn btn-text btn-yellow btn-modal-add" type="button">Ajouter</button>
-                            </div>
+                        <div class="right" style="display: block;">
+                            <ul class="restraint-proposed">
+
+                                @foreach($preventions_explosion as $prevention)
+                                    <li class="res-pro">
+                                        <input type="checkbox" class="btn-check-prevention" data-tab="none">
+                                        <textarea class="form-control auto-resize" placeholder="" name="prevention_proposed[not-checked][]">{{ $prevention->name }}</textarea>
+                                    </li>
+                                @endforeach
+
+                                @error('preventions_explosion')
+                                <li>
+                                    <p class="message-error">{{ $message }}</p>
+                                </li>
+                                @enderror
+                            </ul>
+                            <button class="btn btn-yellow btn-text btn-add-prevention" data-id="" type="button">+ Ajouter une prévention existants</button>
                         </div>
                     </div>
                 </div>
@@ -429,18 +425,10 @@
                                 @foreach($restraints_explosion as $restraint)
                                     <li class="res-pro">
                                         <input type="checkbox" class="btn-check" data-tab="none">
-                                        <textarea class="form-control auto-resize" placeholder=""
-                                                  name="restraint_proposed[not-checked][]">{{ $restraint->name }}</textarea>
+                                        <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed[not-checked][]">{{ $restraint->name }}</textarea>
                                     </li>
                                 @endforeach
 
-                                {{--
-                                <li class="res-pro">
-                                    <input type="checkbox" class="btn-check" data-id="{{ $response->id }}" {{$restraint->checked === 1 ? 'checked' : ''}} data-tab="{{ $restraint->id }}">
-                                    <textarea class="form-control auto-resize" placeholder="" name="restraint_proposed_{{ $response->id }}[{{$restraint->checked === 1 ? 'checked' : 'not-checked'}}][{{ $restraint->id }}][]">{{ $restraint->text }}</textarea>
-                                    <button type="button" class="btn btn-text btn-small btn-delete-restraint"><i class="far fa-times-circle"></i></button>
-                                </li>
-                                --}}
                                 @error('restraint_proposed')
                                 <li>
                                     <p class="message-error">{{ $message }}</p>
@@ -461,6 +449,43 @@
                 </div>
             </div>
         </form>
+
+        <div class="tooltip tooltip--dc">
+            <p>Continu : normal : > 1000 h par an.</p>
+            <p>Premier degré : périodique ou occasionnel : 10 à 1000 h par an.</p>
+            <p>Deuxième degré : accidentel : < 10 h par an.</p>
+        </div>
+
+        <div class="tooltip tooltip--dv">
+            <p>- Ventilation forte : réduit la concentration de façon pratiquement instantanée sous la limite inférieure d’explosivité = zone d’étendue négligeable.</p>
+            <p>- Ventilation moyenne : maîtrise la concentration = situation stable dans la limite de la zone pendant que le dégagement est en cours, et dans laquelle l’atmosphère explosible ne persiste pas de façon indue après la fin du dégagement.</p>
+            <p>- Ventilation faible : ne peut maîtriser la concentration pendant que le dégagement est en cours et/ou ne peut empêcher que l’atmosphère explosible persiste de façon indue après la fin du dégagement.</p>
+        </div>
+
+        <div class="tooltip tooltip--disv">
+            <p>- Bonne : la ventilation existe pratiquement en permanence comme à l'extérieur.</p>
+            <p>- Assez bonne : on s’attend à ce que la ventilation existe pendant le fonctionnement normal. Des interruptions sont permises, pourvu qu’elles se produisent de façon peu fréquente et pour de courtes périodes.</p>
+            <p>- Faible : la ventilation ne satisfait pas aux critères d’une ventilation bonne ou assez bonne, toutefois, on ne prévoit pas qu’il y ait des interruptions prolongées.</p>
+        </div>
+
+        <div class="tooltip tooltip--gas">
+            <p>0 gaz - 20 poussières : permanent.</p>
+            <p>1 gaz - 21 poussières : occasionnel en fonctionnement normal.</p>
+            <p>2 gaz - 22 poussières : accidentel.</p>
+        </div>
+
+        <div class="tooltip tooltip--dust">
+            <p>0 gaz - 20 poussières : permanent.</p>
+            <p>1 gaz - 21 poussières : occasionnel en fonctionnement normal.</p>
+            <p>2 gaz - 22 poussières : accidentel.</p>
+        </div>
+
+        <div class="tooltip tooltip--pa">
+            <p>Probabilité 4  : source présente constamment ou fréquemment, Ex : four.</p>
+            <p>Probabilité 3 : pas présente constamment ou fréquemment, Ex : électricité statique, point chaud lié à un véhicule, choc métal/métal.</p>
+            <p>Probabilité 2 : présente dans des circonstances rares, Ex : foudre.</p>
+            <p>Probabilité 1 : présente dans des circonstances très rares, Ex : défaillance sur un équipement.</p>
+        </div>
 
     </div>
 @endsection

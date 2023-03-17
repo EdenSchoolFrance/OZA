@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\DomainActivitie;
 use App\Models\Item;
+use App\Models\PreventionExplosion;
 use App\Models\SubItem;
 use Illuminate\Database\Seeder;
 
@@ -77,5 +78,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SdRiskExplosionSeeder::class);
 
         $this->call(RestraintExplosionSeeder::class);
+
+        $this->call(PreventionExplosionSeeder::class);
     }
 }

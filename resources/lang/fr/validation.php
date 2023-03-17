@@ -225,6 +225,19 @@ return [
         'date_fds'              => "date",
         'name_risk_chemical'    => "Produit concerné",
         'activity'              => "Utilisation",
-        ''
+        'material_explosion'    => "Matière explosive",
+        'features'              => "Caractèristique",
+        'material_setup'        => "Matériel d'installation",
+        'source_clean'          => "Source de dégagement",
+        'degree_clean'          => "Degré de dégagement",
+        'degree_ventilation'    => "Degré de ventilation",
+        'availability_ventilation' => "Disponibilité de la ventilation",
+        'size_area'             => "Volume de la zone",
+        'gas'                   => "Gaz",
+        'dust'                  => "Poussière",
+        'spawn_probability'     => "Probabilité d'apparition",
+        'prevention_probability'=> "Probabilité avec prévention",
+        'preventions_explosion' => "Prévention existants",
+        'criticity'             => "Criticité"
     ]
 ];

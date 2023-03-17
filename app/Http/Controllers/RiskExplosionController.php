@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DangerLevel;
+use App\Models\PreventionExplosion;
 use App\Models\RestraintExplosion;
 use App\Models\SdPreventionExplosion;
 use App\Models\SdRestraintExplosion;
@@ -38,9 +39,11 @@ class RiskExplosionController extends Controller
             'sidebar' => 'risk_explosion'
         ];
 
+        $preventions_explosion = PreventionExplosion::all();
+
         $restraints_explosion = RestraintExplosion::all();
 
-        return view('app.risk_explosion.create', compact('page', 'single_document','restraints_explosion'));
+        return view('app.risk_explosion.create', compact('page', 'single_document','preventions_explosion','restraints_explosion'));
 
     }
 
@@ -59,7 +62,11 @@ class RiskExplosionController extends Controller
             'sidebar' => 'risk_explosion'
         ];
 
-        return view('app.risk_explosion.edit', compact('page', 'single_document','sd_risk'));
+        $preventions_explosion = PreventionExplosion::all();
+
+        $restraints_explosion = RestraintExplosion::all();
+
+        return view('app.risk_explosion.edit', compact('page', 'single_document','sd_risk','preventions_explosion','restraints_explosion'));
 
     }
 
@@ -78,8 +85,8 @@ class RiskExplosionController extends Controller
             'size_area' => 'required',
             'gas' => 'required',
             'dust' => 'required',
-            'spawn_probability' => 'required',
-            'prevention_probability' => 'required',
+            'spawn_probability' => 'required|numeric',
+            'prevention_probability' => 'required|numeric',
             'criticity' => 'required'
         ]);
 
@@ -102,15 +109,16 @@ class RiskExplosionController extends Controller
         $sd_risk->save();
 
 
-        if (!empty($request->list_items)){
-            foreach ($request->list_items as $item){
+        $prevention = "prevention_proposed";
 
-                $sd_equiment = new SdPreventionExplosion();
-                $sd_equiment->id = uniqid();
-                $sd_equiment->name = $item;
-                $sd_equiment->sd_risk_explosion()->associate($sd_risk);
-                $sd_equiment->save();
+        if (isset($request->$prevention['checked'])){
+            foreach ($request->$prevention['checked'] as $prevention){
 
+                $sd_restraint = new SdPreventionExplosion();
+                $sd_restraint->id = uniqid();
+                $sd_restraint->name = $prevention;
+                $sd_restraint->sd_risk_explosion()->associate($sd_risk);
+                $sd_restraint->save();
             }
         }
 
@@ -150,8 +158,8 @@ class RiskExplosionController extends Controller
             'size_area' => 'required',
             'gas' => 'required',
             'dust' => 'required',
-            'spawn_probability' => 'required',
-            'prevention_probability' => 'required',
+            'spawn_probability' => 'required|numeric',
+            'prevention_probability' => 'required|numeric',
             'criticity' => 'required'
         ]);
 
@@ -172,18 +180,42 @@ class RiskExplosionController extends Controller
         $sd_risk->single_document()->associate($single_document);
         $sd_risk->save();
 
-        $sd_risk->sd_preventions()->delete();
+        $tabDeleteP = [];
+        foreach ($sd_risk->sd_preventions as $res) {
+            $tabDeleteP[] = $res->id;
+        }
 
-        if (!empty($request->list_items)) {
-            foreach ($request->list_items as $item) {
+        $P = "prevention_proposed_".$sd_risk->id;
 
-                $sd_equiment = new SdPreventionExplosion();
-                $sd_equiment->id = uniqid();
-                $sd_equiment->name = $item;
-                $sd_equiment->sd_risk_explosion()->associate($sd_risk);
-                $sd_equiment->save();
+        if (isset($request->$P['checked'])) {
+            foreach ((array)$request->$P['checked'] as $key => $res) {
+                if ($res[0] !== null){
+                    if ($key === "new"){
+                        for ($i = 0; $i < count($res); $i++) {
+                            $restraint = new SdPreventionExplosion();
+                            $restraint->id = uniqid();
+                            $restraint->name = $res[$i];
+                            $restraint->sd_risk_explosion()->associate($sd_risk);
+                            $restraint->save();
+                        }
+                    }else{
+                        $restraint = SdPreventionExplosion::find($key);
+                        $restraint->name = $res[0];
+                        $restraint->save();
+
+                        $index = array_search($key, $tabDeleteP);
+                        array_splice($tabDeleteP, $index, $index+1);
+                    }
+                }
             }
         }
+        if (count($tabDeleteP) > 0){
+            for ($i = 0; $i < count($tabDeleteP); $i++){
+                SdPreventionExplosion::find($tabDeleteP[$i])->delete();
+            }
+        }
+
+
 
         $tabDelete = [];
         foreach ($sd_risk->sd_restraints as $res) {

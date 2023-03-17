@@ -41,6 +41,48 @@ on('.btn-add-restraint-edit', 'click', (el, e) => {
     }
 });
 
+on('.btn-add-prevention', 'click', (el, e) => {
+    let all = el.closest('div').querySelectorAll('li')
+    console.log(all)
+    if (all[all.length - 2] !== undefined && all[all.length - 2] !== el.closest('li') && all[all.length - 2].querySelector('textarea').value === ''){
+        all[all.length - 2].querySelector('textarea').focus();
+    }else{
+        let restraints = $('li.res-pro')
+
+        let content ='<input type="checkbox" class="btn-check-prevention" data-on="false" data-id="none" data-tab="none" checked>\n' +
+            '<textarea class="form-control auto-resize" placeholder="" name="prevention_proposed[checked][]"></textarea>\n' +
+            '<button type="button" class="btn btn-text btn-small btn-delete-restraint"><i class="far fa-times-circle"></i></button>'
+        let li = document.createElement('li');
+        li.setAttribute('class','res-pro')
+        li.innerHTML = content;
+        if (restraints.length === 0) el.closest('div').querySelector('ul').appendChild(li);
+        else all[all.length - 1].after(li);
+        li.querySelector("textarea").focus();
+
+    }
+});
+
+on('.btn-add-prevention-edit', 'click', (el, e) => {
+    let all = el.closest('div').querySelectorAll('li')
+    console.log(all)
+    if (all[all.length - 2] !== undefined && all[all.length - 2] !== el.closest('li') && all[all.length - 2].querySelector('textarea').value === ''){
+        all[all.length - 2].querySelector('textarea').focus();
+    }else{
+        let restraints = $('li.res-pro')
+
+        let content ='<input type="checkbox" class="btn-check-prevention-edit" data-on="false" data-id="'+el.dataset.id+'" data-tab="new" checked>\n' +
+            '<textarea class="form-control auto-resize" placeholder="" name="prevention_proposed_'+el.dataset.id+'[checked][new][]"></textarea>\n' +
+            '<button type="button" class="btn btn-text btn-small btn-delete-restraint"><i class="far fa-times-circle"></i></button>'
+        let li = document.createElement('li');
+        li.setAttribute('class','res-pro')
+        li.innerHTML = content;
+        if (restraints.length === 0) el.closest('div').querySelector('ul').appendChild(li);
+        else all[all.length - 1].after(li);
+        li.querySelector("textarea").focus();
+
+    }
+});
+
 on('.btn-delete-restraint', 'click', (el, e) => {
 
     el.closest('li').remove();
@@ -66,6 +108,28 @@ on('.btn-check-edit', 'click', (el, e) => {
     }else{
         el.closest('li').querySelector('textarea').removeAttribute('name')
         el.closest('li').querySelector('textarea').setAttribute('name', 'restraint_proposed_'+el.dataset.id+'[not-checked]['+el.dataset.tab+'][]')
+    }
+});
+
+on('.btn-check-prevention', 'click', (el, e) => {
+
+    if (el.checked){
+        el.closest('li').querySelector('textarea').removeAttribute('name')
+        el.closest('li').querySelector('textarea').setAttribute('name', 'prevention_proposed[checked][]')
+    }else{
+        el.closest('li').querySelector('textarea').removeAttribute('name')
+        el.closest('li').querySelector('textarea').setAttribute('name', 'prevention_proposed[not-checked][]')
+    }
+});
+
+on('.btn-check-prevention-edit', 'click', (el, e) => {
+
+    if (el.checked){
+        el.closest('li').querySelector('textarea').removeAttribute('name')
+        el.closest('li').querySelector('textarea').setAttribute('name', 'prevention_proposed_'+el.dataset.id+'[checked]['+el.dataset.tab+'][]')
+    }else{
+        el.closest('li').querySelector('textarea').removeAttribute('name')
+        el.closest('li').querySelector('textarea').setAttribute('name', 'prevention_proposed_'+el.dataset.id+'[not-checked]['+el.dataset.tab+'][]')
     }
 });
 
