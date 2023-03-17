@@ -39,7 +39,7 @@
                             <label for="nameRisk">Produit concerné</label>
                         </div>
                         <div class="right">
-                            <textarea type="text" class="form-control" name="name_risk_chemical" id="nameRisk" placeholder="Nom commercial ou dénomination">{{ old('name_risk_chemical') }}</textarea>
+                            <textarea type="text" class="form-control" name="name_risk_chemical" id="nameRisk" placeholder="Nom commercial ou dénomination" required>{{ old('name_risk_chemical') }}</textarea>
                         </div>
                     </div>
                     @error('name_risk_chemical')
@@ -57,7 +57,7 @@
                             <label for="activity">Utilisation activité</label>
                         </div>
                         <div class="right">
-                            <textarea type="text" class="form-control" name="activity" id="activity" placeholder="Utilisation du produit / Activité qui génère le produit">{{ old('activity') }}</textarea>
+                            <textarea type="text" class="form-control" name="activity" id="activity" placeholder="Utilisation du produit / Activité qui génère le produit" required>{{ old('activity') }}</textarea>
                         </div>
                     </div>
                     @error('activity')

@@ -161,9 +161,9 @@ class RiskChemicalController extends Controller
             $sd_risk->n9 = $request->n9;
             $sd_risk->n10 = $request->n10;
             $sd_risk->date = $request->date_fds;
-            $sd_risk->ventilation = !empty($request->ventilation) ? $request->ventilation : null;
-            $sd_risk->concentration = !empty($request->concentration) ? $request->concentration : null;
-            $sd_risk->time = !empty($request->time) ? $request->time : null;
+            $sd_risk->ventilation = !empty($request->ventilation) ? $request->ventilation : 0;
+            $sd_risk->concentration = !empty($request->concentration) ? $request->concentration : 0;
+            $sd_risk->time = !empty($request->time) ? $request->time : 0;
             $sd_risk->protection = $request->protection;
             if (isset($sd_work_unit)) $sd_risk->sd_work_unit()->associate($sd_work_unit);
             $sd_risk->single_document()->associate($single_document);
@@ -225,6 +225,8 @@ class RiskChemicalController extends Controller
             }
         }
 
+        $this->checkValidRisk($sd_risk);
+
         return redirect()->route('risk.chemical.index', [$single_document->id])->with('status', 'Risque chimique ajouté !');
 
     }
@@ -275,9 +277,9 @@ class RiskChemicalController extends Controller
             $sd_risk->n9 = $request->n9;
             $sd_risk->n10 = $request->n10;
             $sd_risk->date = $request->date_fds;
-            $sd_risk->ventilation = !empty($request->ventilation) ? $request->ventilation : null;
-            $sd_risk->concentration = !empty($request->concentration) ? $request->concentration : null;
-            $sd_risk->time = !empty($request->time) ? $request->time : null;
+            $sd_risk->ventilation = !empty($request->ventilation) ? $request->ventilation : 0;
+            $sd_risk->concentration = !empty($request->concentration) ? $request->concentration : 0;
+            $sd_risk->time = !empty($request->time) ? $request->time : 0;
             $sd_risk->protection = $request->protection;
             if (isset($sd_work_unit)) $sd_risk->sd_work_unit()->associate($sd_work_unit);
             $sd_risk->single_document()->associate($single_document);
@@ -454,7 +456,7 @@ class RiskChemicalController extends Controller
 
         for ($i = 0; $i < count($fillable); $i++){
             $temp = $fillable[$i];
-            if (empty($sd_risk->$temp)) return;
+            if ($sd_risk->$temp === null) return;
 
         }
         if (empty($sd_risk->sd_work_unit->name)) return;

@@ -305,7 +305,7 @@
                             <label for="date-fds">Date d'élaboration ou de révision de la FDS</label>
                         </div>
                         <div class="right">
-                            <input type="date" name="date_fds" id="date-fds" class="form-control" value="{{ old('activity') ?? $sd_risk->date }}">
+                            <input type="date" name="date_fds" id="date-fds" class="form-control" value="{{ old('date_fds') ?? $sd_risk->date }}" required>
                         </div>
                     </div>
                     @error('date_fds')

@@ -188,7 +188,7 @@
                             <label for="date-fds">Date d'élaboration ou de révision de la FDS</label>
                         </div>
                         <div class="right">
-                            <input type="date" name="date_fds" id="date-fds" class="form-control" value="{{ old('date_fds') }}">
+                            <input type="date" name="date_fds" id="date-fds" class="form-control" value="{{ old('date_fds') }}" required>
                         </div>
                     </div>
                     @error('date_fds')
