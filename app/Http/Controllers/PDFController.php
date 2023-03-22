@@ -6,6 +6,8 @@ use App\Models\Exposition;
 use App\Models\PsychosocialQuestion;
 use App\Models\SdPsychosocialGroup;
 use App\Models\SdRestraintArchived;
+use App\Models\SdRiskChemical;
+use App\Models\SdRiskExplosion;
 use PDF;
 use App\Models\Item;
 use App\Models\SdRisk;
@@ -207,6 +209,15 @@ class PDFController extends Controller
         $sd_restraints_archived = SdRestraintArchived::where('single_document_id', $id)->get();
 
 
+        $sd_risks_chemicals = SdRiskChemical::whereHas('single_document', function ($q) use ($single_document){
+            $q->where('id', $single_document->id);
+        })->get()->sort(function ($a, $b){
+            return $b->IR() - $a->IR();
+        })->all();
+
+        $sd_risks_explosions = SdRiskExplosion::where('single_document_id', $single_document->id)->get();
+
+
         setlocale(LC_TIME, 'fr', 'fr_FR', 'fr_FR.ISO8859-1');
         $histories = Historie::find(session('status'));
 
@@ -291,13 +302,15 @@ class PDFController extends Controller
             'sd_risks_v2',
             'psychosocial_groups',
             'questions',
-            'sd_restraints_archived')
+            'sd_restraints_archived',
+            'sd_risks_chemicals',
+            'sd_risks_explosions')
         )->setPaper('a4', 'landscape');
 
-        //return $pdf->stream();
+        return $pdf->stream();
 
-        Storage::put('/private/' . $single_document->client->id . '/du/' . $histories->id . '.pdf', $pdf->download()->getOriginalContent());
-
-        return back()->with('status', 'Document unique généré avec succès, vous pouvez maintenant le télécharger !');
+//        Storage::put('/private/' . $single_document->client->id . '/du/' . $histories->id . '.pdf', $pdf->download()->getOriginalContent());
+//
+//        return back()->with('status', 'Document unique généré avec succès, vous pouvez maintenant le télécharger !');
     }
 }

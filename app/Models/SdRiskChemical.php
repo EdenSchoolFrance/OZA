@@ -202,4 +202,30 @@ class SdRiskChemical extends Model
 
         return $final;
     }
+
+    public function criticality_PDF(){
+        $ND = $this->ND();
+
+        $final = [];
+
+        if ($ND === 6) {
+            $final['text'] = "A améliorer";
+            $final['class'] = 'btn-warning';
+        }else{
+            $cal = $this->IR();
+
+            if ($cal < 0){
+                $final['text'] = "Acceptable";
+                $final['class'] = 'green';
+            }else if ($cal < 2){
+                $final['text'] = "A améliorer";
+                $final['class'] = 'yellow';
+            }else if ($cal >= 2){
+                $final['text'] = "Inacceptable";
+                $final['class'] = 'red';
+            }
+        }
+
+        return $final;
+    }
 }

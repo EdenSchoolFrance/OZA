@@ -1,5 +1,6 @@
 // Variables
 @import "../global/variables";
+@import "../utils/button";
 
 $pageY: 30px;
 
@@ -654,7 +655,50 @@ table {
             }
 
         }
+        &--chemical{
+            margin: 10px 0;
+            table-layout: fixed;
+
+            th{
+                color: $black;
+            }
+            td{
+                text-align: center;
+                border: none;
+            }
+
+        }
+        &--chemical-data{
+            margin: 10px 0;
+            table-layout: fixed;
+            word-wrap: break-word;
+            tr{
+                th{
+                    color: $black;
+                }
+            }
+            td, th{
+                border: 1px solid rgb(134,141,150);
+                font-size: 10px;
+            }
+            td{
+                padding: 5px;
+                text-align: center;
+            }
+            .cat_danger{
+                padding: 0;
+                margin: 0;
+                width: 4%;
+                border: none !important;
+            }
+        }
     }
+}
+
+button{
+    border-radius: 50px;
+    border: none;
+    padding: 5px 20px;
 }
 
 .chart-risk {

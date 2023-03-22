@@ -83,4 +83,28 @@ class SdRiskExplosion extends Model
 
         return $final;
     }
+
+    public function criticality_PDF(){
+
+        $final = [];
+
+        if ($this->criticity === "Acceptable"){
+            $final['text'] = "Acceptable";
+            $final['class'] = 'green';
+        }else if ($this->criticity === "A améliorer"){
+            $final['text'] = "A améliorer";
+            $final['class'] = 'yellow';
+        }else if ($this->criticity === "Agir vite"){
+            $final['text'] = "Agir vite";
+            $final['class'] = 'yellow';
+        }else if ($this->criticity === "Inacceptable"){
+            $final['text'] = "Inacceptable";
+            $final['class'] = 'red';
+        }else {
+            $final['text'] = "-";
+            $final['class'] = '';
+        }
+
+        return $final;
+    }
 }

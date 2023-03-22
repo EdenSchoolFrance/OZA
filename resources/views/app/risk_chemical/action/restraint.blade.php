@@ -38,7 +38,7 @@
                                     class="td_ir">{{ $sd_risk->IR() }}</td>
                                 <td rowspan="{{ count($sd_risk->sd_restraints_exist) + 1 }}" class="td_rr">
                                     <button
-                                        class="btn {{ $sd_risk->criticality()['class'] }}">{{ $sd_risk->ND()['value'] }}</button>
+                                        class="btn {{ $sd_risk->criticality()['class'] }}">{{ $sd_risk->criticality()['text'] }}</button>
                                 </td>
                             </tr>
                             @foreach($sd_risk->sd_restraints_exist as $key => $restraint)
