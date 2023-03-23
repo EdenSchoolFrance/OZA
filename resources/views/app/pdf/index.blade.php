@@ -2457,28 +2457,30 @@
                     <tbody>
                     @if(count($sd_risks_chemicals) > 0)
                         @foreach($sd_risks_chemicals as $sd_risk)
-                            <tr>
-                                <td class="td_work_unit">{{ $sd_risk->sd_work_unit->name }}</td>
-                                <td class="td_name">{{ $sd_risk->name }}</td>
-                                <td class="td_activity">{{ $sd_risk->activity }}</td>
-                                <td class="td_p1 cat_danger">{{$sd_risk->n1}}</td>
-                                <td class="td_p2 cat_danger">{{$sd_risk->n2}}</td>
-                                <td class="td_p3 cat_danger">{{$sd_risk->n3}}</td>
-                                <td class="td_p4 cat_danger">{{$sd_risk->n4}}</td>
-                                <td class="td_p5 cat_danger">{{$sd_risk->n5}}</td>
-                                <td class="td_p6 cat_danger">{{$sd_risk->n6}}</td>
-                                <td class="td_p7 cat_danger">{{$sd_risk->n7}}</td>
-                                <td class="td_p8 cat_danger">{{$sd_risk->n8}}</td>
-                                <td class="td_p9 cat_danger">{{$sd_risk->n9}}</td>
-                                <td class="td_p10 cat_danger">{{$sd_risk->n10}}</td>
-                                <td class="td_ND cat_danger">{{ $sd_risk->ND()['key'] }}</td>
-                                <td class="td_ventilation">{{ $sd_risk->T_ventilation() }}</td>
-                                <td class="td_concentration">{{ $sd_risk->T_concentration() }}</td>
-                                <td class="td_time">{{ $sd_risk->T_time() }}</td>
-                                <td class="td_protection">{{ $sd_risk->T_protection() }}</td>
-                                <td class="td_IR">{{ $sd_risk->IR() }}</td>
-                                <td class="td_RR {{ $sd_risk->criticality_PDF()['class'] }}">{{ $sd_risk->criticality_PDF()['text'] }}</td>
-                            </tr>
+                            @if($sd_risk->validated)
+                                <tr>
+                                    <td class="td_work_unit">{{ $sd_risk->sd_work_unit->name }}</td>
+                                    <td class="td_name">{{ $sd_risk->name }}</td>
+                                    <td class="td_activity">{{ $sd_risk->activity }}</td>
+                                    <td class="td_p1 cat_danger">{{$sd_risk->n1}}</td>
+                                    <td class="td_p2 cat_danger">{{$sd_risk->n2}}</td>
+                                    <td class="td_p3 cat_danger">{{$sd_risk->n3}}</td>
+                                    <td class="td_p4 cat_danger">{{$sd_risk->n4}}</td>
+                                    <td class="td_p5 cat_danger">{{$sd_risk->n5}}</td>
+                                    <td class="td_p6 cat_danger">{{$sd_risk->n6}}</td>
+                                    <td class="td_p7 cat_danger">{{$sd_risk->n7}}</td>
+                                    <td class="td_p8 cat_danger">{{$sd_risk->n8}}</td>
+                                    <td class="td_p9 cat_danger">{{$sd_risk->n9}}</td>
+                                    <td class="td_p10 cat_danger">{{$sd_risk->n10}}</td>
+                                    <td class="td_ND cat_danger">{{ $sd_risk->ND()['key'] }}</td>
+                                    <td class="td_ventilation">{{ $sd_risk->T_ventilation() }}</td>
+                                    <td class="td_concentration">{{ $sd_risk->T_concentration() }}</td>
+                                    <td class="td_time">{{ $sd_risk->T_time() }}</td>
+                                    <td class="td_protection">{{ $sd_risk->T_protection() }}</td>
+                                    <td class="td_IR">{{ $sd_risk->IR() }}</td>
+                                    <td class="td_RR {{ $sd_risk->criticality_PDF()['class'] }}">{{ $sd_risk->criticality_PDF()['text'] }}</td>
+                                </tr>
+                            @endif
                         @endforeach
                     @else
                         <tr>
@@ -2532,19 +2534,21 @@
                 <tbody>
                 @if(count($sd_risks_chemicals) > 0)
                     @foreach($sd_risks_chemicals as $sd_risk)
-                        @if(isset($sd_risk->sd_restraints_exist[0]))
-                            @foreach($sd_risk->sd_restraints_exist as $sd_restraint)
-                                <tr>
-                                    <td class="td_work_unit">{{ $sd_risk->sd_work_unit->name }}</td>
-                                    <td class="td_name">{{ $sd_risk->name }}</td>
-                                    <td class="td_activity">{{ $sd_risk->activity }}</td>
-                                    <td class="td_IR">{{ $sd_risk->IR() }}</td>
-                                    <td class="td_RR {{ $sd_risk->criticality_PDF()['class'] }}">{{ $sd_risk->criticality_PDF()['text'] }}</td>
-                                    <td class="td_restraint">{{ $sd_restraint->name }}</td>
-                                    <td class="td_date">{{ $sd_restraint->date ? date("d/m/Y", strtotime($sd_restraint->date)) : "" }}</td>
-                                    <td class="td_comment">{{ $sd_restraint->comment }}</td>
-                                </tr>
-                            @endforeach
+                        @if($sd_risk->validated)
+                            @if(isset($sd_risk->sd_restraints_exist[0]))
+                                @foreach($sd_risk->sd_restraints_exist as $sd_restraint)
+                                    <tr>
+                                        <td class="td_work_unit">{{ $sd_risk->sd_work_unit->name }}</td>
+                                        <td class="td_name">{{ $sd_risk->name }}</td>
+                                        <td class="td_activity">{{ $sd_risk->activity }}</td>
+                                        <td class="td_IR">{{ $sd_risk->IR() }}</td>
+                                        <td class="td_RR {{ $sd_risk->criticality_PDF()['class'] }}">{{ $sd_risk->criticality_PDF()['text'] }}</td>
+                                        <td class="td_restraint">{{ $sd_restraint->name }}</td>
+                                        <td class="td_date">{{ $sd_restraint->date ? date("d/m/Y", strtotime($sd_restraint->date)) : "" }}</td>
+                                        <td class="td_comment">{{ $sd_restraint->comment }}</td>
+                                    </tr>
+                                @endforeach
+                            @endif
                         @endif
                     @endforeach
                 @else
