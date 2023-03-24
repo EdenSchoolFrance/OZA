@@ -10,10 +10,10 @@
                     <thead>
                         <tr>
                             <th class="th_material_explosion" style="width: 15%">Matière explosible</th>
-                            <th class="th_gas" style="width: 15%">Gaz</th>
-                            <th class="th_dust" style="width: 10%">Poussière</th>
-                            <th class="th_criticality" style="width: 10%">Criticité</th>
-                            <th class="th_restraint" style="width: 20%">Mesures de prévention et de protection proposées</th>
+                            <th class="th_gas" style="width: 5%">Gaz</th>
+                            <th class="th_dust" style="width: 5%">Poussière</th>
+                            <th class="th_criticality" style="width: 15%">Criticité</th>
+                            <th class="th_restraint" style="width: 30%">Mesures de prévention et de protection proposées</th>
                             <th class="th_comment" style="width: 15%">Décision</th>
                             <th class="th_date" style="width: 15%">Date de réalisation</th>
                             <th class="th_actions"></th>
@@ -31,8 +31,8 @@
                             @if(isset($sd_risk->sd_restraints_exist[0]))
                                 <tr>
                                     <td rowspan="{{ count($sd_risk->sd_restraints_exist) + 1 }}" class="td_material_explosion"> {{ $sd_risk->material_explosion }}</td>
-                                    <td rowspan="{{ count($sd_risk->sd_restraints_exist) + 1 }}" class="td_gas">{{ $sd_risk->gas }}</td>
-                                    <td rowspan="{{ count($sd_risk->sd_restraints_exist) + 1 }}" class="td_dust">{{ $sd_risk->dust }}</td>
+                                    <td rowspan="{{ count($sd_risk->sd_restraints_exist) + 1 }}" class="td_gas center">{{ $sd_risk->gas }}</td>
+                                    <td rowspan="{{ count($sd_risk->sd_restraints_exist) + 1 }}" class="td_dust center">{{ $sd_risk->dust }}</td>
                                     <td rowspan="{{ count($sd_risk->sd_restraints_exist) + 1 }}" class="td_criticality"><button class="btn {{ $sd_risk->criticality()['class'] }} btn-hidden">{{ $sd_risk->criticality()['text'] }}</button></td>
                                 </tr>
                                 @foreach($sd_risk->sd_restraints_exist as $key => $restraint)

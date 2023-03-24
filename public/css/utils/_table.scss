@@ -2,6 +2,10 @@ table.table {
     width: 100%;
     border-collapse: collapse;
 
+    .center{
+        text-align: center;
+    }
+
     &.table-sortable {
         thead {
             th {

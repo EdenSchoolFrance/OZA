@@ -15,7 +15,9 @@ class ForgotPasswordController extends Controller
     {
         $page = [
             'title' => 'Mot de passe oublié',
-            'sidebar' => false
+            'sidebar' => false,
+            'text_back' => 'Retour à la page de connexion',
+            'url_back' => route('login')
         ];
 
         return view('auth.forgetPassword', compact('page'));

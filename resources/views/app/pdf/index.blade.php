@@ -2424,7 +2424,7 @@
                 <table class="table table--chemical-data">
                     <thead>
                     <tr>
-                        <th colspan="20" class="green">ÉVALUATION DU RISQUE CHIMIQUE</th>
+                        <th colspan="20" class="green text-color-white">ÉVALUATION DU RISQUE CHIMIQUE</th>
                     </tr>
                     <tr>
                         <th class="th_work_unit center theader" rowspan="2">Unité de Travail</th>
@@ -2432,10 +2432,10 @@
                         <th class="th_cat center theader" colspan="11">Catégories et phrases de danger</th>
                         <th class="th_cat center theader" colspan="4">Caractéristiques de l'exposition</th>
                         <th class="th_IR theader" rowspan="2">IR</th>
-                        <th class="th_RR theader" rowspan="2">Risque résiduel</th>
+                        <th class="th_RR theader" rowspan="2" style="width: 7%">Risque résiduel</th>
                     </tr>
                     <tr>
-                        <th class="th_name theader">Nom commercial ou dénomination</th>
+                        <th class="th_name theader" style="width: 7%">Nom commercial ou dénomination</th>
                         <th class="th_activity theader">Utilisation Activité</th>
                         <th class="th_p1 cat_danger theader">p1</th>
                         <th class="th_p2 cat_danger theader">p2</th>
@@ -2449,7 +2449,7 @@
                         <th class="th_p10 cat_danger theader">p10</th>
                         <th class="th_ND cat_danger theader">ND</th>
                         <th class="th_ventilation theader">Ventilation Confinement</th>
-                        <th class="th_concentration theader">Concentration</th>
+                        <th class="th_concentration theader" style="width: 7%">Concentration</th>
                         <th class="th_time theader">Durée utilisation jour</th>
                         <th class="th_protection theader">Protection</th>
                     </tr>
@@ -2514,7 +2514,7 @@
             <table class="table table--chemical-data">
                 <thead>
                 <tr>
-                    <th colspan="8" class="green">PLAN D'ACTION DE RÉDUCTION DU RISQUE CHIMIQUE</th>
+                    <th colspan="8" class="green text-color-white">PLAN D'ACTION DE RÉDUCTION DU RISQUE CHIMIQUE</th>
                 </tr>
                 <tr>
                     <th class="th_work_unit center theader" rowspan="2">Unité de Travail</th>
@@ -2854,7 +2854,7 @@
             <table class="table table--chemical-data">
                 <thead>
                 <tr>
-                    <th colspan="14" class="green">ÉVALUATION DES RISQUE D'EXPLOSION</th>
+                    <th colspan="14" class="green text-color-white">ÉVALUATION DES RISQUE D'EXPLOSION</th>
                 </tr>
                 <tr>
                     <th class="th_cat center theader" colspan="8">Zonage</th>
@@ -2934,7 +2934,7 @@
             <table class="table table--chemical-data">
                 <thead>
                 <tr>
-                    <th colspan="7" class="green">PLAN D'ACTION DE RÉDUCTION DU RISQUE D'EXPLOSION</th>
+                    <th colspan="7" class="green text-color-white">PLAN D'ACTION DE RÉDUCTION DU RISQUE D'EXPLOSION</th>
                 </tr>
                 <tr>
                     <th class="th_material_explosion center theader" rowspan="2">Matière explosible</th>
@@ -3103,7 +3103,6 @@
         <p class="page-num">EVALUATION DE L'EXPOSITION</p>
     </div>
 </section>
-
 
 <section class="page">
     <div class="header">
@@ -3296,8 +3295,6 @@
         <p class="page-num">EVALUATION DE L'EXPOSITION</p>
     </div>
 </section>
-
-
 
 <section class="page">
     <div class="header">
