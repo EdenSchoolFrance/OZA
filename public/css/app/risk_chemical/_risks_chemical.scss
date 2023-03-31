@@ -99,5 +99,14 @@
             overflow-y: scroll;
             max-height: 200px;
         }
+        .checkmark{
+            padding-right: 20px;
+        }
+        .contain .checkmark:after {
+            top: 5px;
+            right: 15px;
+            width: 5px;
+            height: 10px;
+        }
     }
 }

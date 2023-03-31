@@ -158,7 +158,7 @@
             </li>
             <li>
                 <span class="number">9</span>
-                <p><span class="line"><a href="#evalRiskExplo" class="link">DOCUMENT RELATIF A LA PREVENTION CONTRE L’EXPLOSION ET <span>PLAN D’ACTION</span> @if($single_document->risk_explosion === 0) (partie non présente dans ce DUERP) @endif</a></span>
+                <p><span class="line"><a href="#evalRiskExplosion" class="link">DOCUMENT RELATIF A LA PREVENTION CONTRE L’EXPLOSION ET <span>PLAN D’ACTION</span> @if($single_document->risk_explosion === 0) (partie non présente dans ce DUERP) @endif</a></span>
                 </p>
             </li>
             <li>
@@ -342,9 +342,6 @@
                 <tr>
                     <th class="yellow" colspan="1">UNITÉ DE TRAVAIL</th>
                 </tr>
-                <tr>
-                    <th colspan="1"><span class="bold">{{ $sd_work_unit->name }}</span></th>
-                </tr>
                 </thead>
                 <tbody>
                     @php
@@ -354,6 +351,9 @@
                         }
 
                     @endphp
+                        <tr>
+                            <td><span class="bold">{{ $sd_work_unit->name }} - {{$sd_work_unit->number_employee}} salarié(s)</span></td>
+                        </tr>
                         <tr>
                             <td>
                                 <p>
@@ -551,10 +551,10 @@
                 <td class="theader">
                     RISQUE <br> Phase de travail modes et caractéristiques de l'exposition
                 </td>
-                <td class="theader">
+                <td class="theader" style="width: 5%">
                     Risque résiduel
                 </td>
-                <td class="theader">
+                <td class="theader" style="width: 10%">
                     Criticité = situation actuelle
                 </td>
                 <td class="theader">
@@ -1464,7 +1464,7 @@
                         <tr>
                             <td class="workunit">{{ $final["sd_work_unit"] === "Tous" ? "Tous" : $final["sd_work_unit"]->name }}</td>
                             <td class="danger">{{ $final["sd_danger"]->danger->name }}</td>
-                            <td class="risk">@stripTags($sd_risk->name)</td>
+                            <td class="risk">{{$sd_risk->name}}</td>
                             <td class="center min-width min-width-left">{{ $sd_risk->translate($sd_risk->frequency,'frequency') }}</td>
                             <td class="center min-width min-width-left">{{ $sd_risk->translate($sd_risk->probability,'probability') }}</td>
                             <td class="center min-width min-width-left">{{ $sd_risk->translate($sd_risk->gravity,'gravity') }}</td>
@@ -1472,7 +1472,7 @@
                             <td class="center min-width min-width-left {{ $sd_risk->total() >= 24 ? "pink" : "" }}">{{ $sd_risk->total() }}</td>
                             <td class="restraint">
                                 @foreach($sd_risk->sd_restraints_exist as $sd_restraint)
-                                    * @stripTags($sd_restraint->name) <br>
+                                    * {{$sd_restraint->name}} <br>
                                 @endforeach
                             </td>
                             {{--                            <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneTech(), 1), "tech") }}</td>--}}
@@ -1482,7 +1482,7 @@
                             <td class="center criticity {{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints_exist),false) :  $sd_risk->colorPDF($sd_risk->total(),true) }}">{{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints_exist),false) : $sd_risk->colorTotal($sd_risk->total(),true) }}</td>
                             <td class="restraint_proposed">
                                 @foreach($sd_risk->sd_restraints_porposed as $sd_restraint)
-                                    * @stripTags($sd_restraint->name) <br>
+                                    * {{$sd_restraint->name}} <br>
                                 @endforeach
                             </td>
                         </tr>
@@ -1570,7 +1570,7 @@
                 <tr>
                     <td class="grey">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "Tous" }}</td>
                     <td>{{ $sd_risk->sd_danger->danger->name }}</td>
-                    <td>@stripTags($sd_risk->name)</td>
+                    <td>{{$sd_risk->name}}</td>
                     <td class="center">{{ $sd_risk->translate($sd_risk->frequency,'frequency') }}</td>
                     <td class="center">{{ $sd_risk->translate($sd_risk->probability,'probability') }}</td>
                     <td class="center">{{ $sd_risk->translate($sd_risk->gravity,'gravity') }}</td>
@@ -2297,7 +2297,7 @@
         </div>
 
         <div class="body body--rules">
-            <h1 class="head-title" id="evalRiskChemical">8. LES RISQUES CHIMIQUES</h1>
+            <h1 class="head-title" id="evalRiskChemical">8. ÉVALUATION DU RISQUE CHIMIQUE</h1>
 
             <p>
                 <span class="bold">1ère étape : </span> Identifier chaque agent chimique avec pour chacun d’eux l’unité de travail concernée, le nom commercial ou la dénomination de l’agent, et l’utilisation qui en est faite, ou bien quelle activité professionnelle le génère.
@@ -2407,7 +2407,7 @@
 
         <div class="footer">
             <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">LES RISQUES CHIMIQUES</p>
+            <p class="page-num">ÉVALUATION DU RISQUE CHIMIQUE</p>
         </div>
     </section>
 
@@ -2419,7 +2419,7 @@
         </div>
 
         <div class="body body--notif">
-            <h1 class="head-title">8. LES RISQUES CHIMIQUES</h1>
+            <h1 class="head-title">8. ÉVALUATION DU RISQUE CHIMIQUE</h1>
 
                 <table class="table table--chemical-data">
                     <thead>
@@ -2427,7 +2427,7 @@
                         <th colspan="20" class="green text-color-white">ÉVALUATION DU RISQUE CHIMIQUE</th>
                     </tr>
                     <tr>
-                        <th class="th_work_unit center theader" rowspan="2">Unité de Travail</th>
+                        <th class="th_work_unit center theader" rowspan="2" style="width: 7%">Unité de Travail</th>
                         <th class="th_cat center theader" colspan="2">Produit concerné</th>
                         <th class="th_cat center theader" colspan="11">Catégories et phrases de danger</th>
                         <th class="th_cat center theader" colspan="4">Caractéristiques de l'exposition</th>
@@ -2497,7 +2497,7 @@
 
         <div class="footer">
             <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">LES RISQUES CHIMIQUES</p>
+            <p class="page-num">ÉVALUATION DU RISQUE CHIMIQUE</p>
         </div>
     </section>
 
@@ -2509,7 +2509,7 @@
         </div>
 
         <div class="body body--notif">
-            <h1 class="head-title">8. LES RISQUES CHIMIQUES</h1>
+            <h1 class="head-title">8. ÉVALUATION DU RISQUE CHIMIQUE</h1>
 
             <table class="table table--chemical-data">
                 <thead>
@@ -2566,7 +2566,7 @@
 
         <div class="footer">
             <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">LES RISQUES CHIMIQUES</p>
+            <p class="page-num">ÉVALUATION DU RISQUE CHIMIQUE</p>
         </div>
     </section>
 
@@ -2600,12 +2600,6 @@
                 6° Le cas échéant, la liste des travaux devant être accomplis selon les instructions écrites de l'employeur ou dont l'exécution est subordonnée à la délivrance d'une autorisation par l'employeur ou par une personne habilitée par celui-ci à cet effet<br>
                 7° La nature des dispositions prises pour que l'utilisation des équipements de travail soit sûre, conformément aux dispositions prévues au livre III<br>
             </p>
-
-            <p class="text-color-green">Rappels sur l'explosion</p>
-
-            <p>Une explosion se produira si les six conditions suivantes sont remplies :</p>
-
-            <p>IMAGE A INSERER TELLE QUELLE</p>
 
             <p class="text-color-green">Probabilité d'une atmosphère explosive</p>
 
@@ -2860,7 +2854,7 @@
                     <th class="th_cat center theader" colspan="8">Zonage</th>
                     <th class="th_cat center theader" colspan="2">Type de zone</th>
                     <th class="th_cat center theader" colspan="3">Ignition</th>
-                    <th class="th_criticality theader" rowspan="2">Criticité</th>
+                    <th class="th_criticality theader" rowspan="2" style="width: 8%">Criticité</th>
                 </tr>
                 <tr>
                     <th class="th_material_explosion theader">Matière explosible</th>
@@ -2873,7 +2867,7 @@
                     <th class="th_size_area theader">Volume de la zone</th>
                     <th class="th_gas theader" style="width: 5%">Gaz</th>
                     <th class="th_dust theader" style="width: 5%">Poussière</th>
-                    <th class="th_spawn_probability theader" style="width: 5%">Probabilité d'apparition</th>
+                    <th class="th_spawn_probability theader" style="width: 6%">Probabilité d'apparition</th>
                     <th class="th_prevention theader">Moyens de prévention existants</th>
                     <th class="th_prevention_probability theader" style="width: 5%">Probabilité avec prévention</th>
                 </tr>
@@ -3303,7 +3297,7 @@
     </div>
 
     <div class="body body--notif">
-        <h1 class="head-title" id="expoRiskPro">11. HISTORIQUE DES MISES A JOUR ET DES ACTIONS REALISEES</h1>
+        <h1 class="head-title" id="historie">11. HISTORIQUE DES MISES A JOUR ET DES ACTIONS REALISEES</h1>
         <table class="table table--document_versions">
             <thead>
             <tr>

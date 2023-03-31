@@ -114,7 +114,7 @@ class SdRiskChemical extends Model
             "H315" => 2,
             "H317" => 2,
             "H335" => 2,
-            "H362" => 2,
+            "H362" => 6,
             "EUH066" => 2,
             "EUH203" => 2,
             "EUH204" => 2,
@@ -151,7 +151,6 @@ class SdRiskChemical extends Model
             "H340" => 6,
             "H350" => 6,
             "H360" => 6,
-            "H363" => 6,
             "CMR1A" => 6,
             "CMR1B" => 6
         ];

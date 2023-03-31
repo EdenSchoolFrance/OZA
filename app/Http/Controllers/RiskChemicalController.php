@@ -19,7 +19,7 @@ class RiskChemicalController extends Controller
         $this->checkRiskChemical($single_document);
 
         $page = [
-            'title' => 'Evaluation des risques chimiques',
+            'title' => 'Evaluation du risque chimique',
             'infos' => null,
             'sidebar' => 'risk_chemical'
         ];
@@ -40,7 +40,7 @@ class RiskChemicalController extends Controller
         $page = [
             'title' => 'Créer un risque chimique',
             'url_back' => route('risk.chemical.index', [$id]),
-            'text_back' => 'Retour à l’évaluation des risques chimiques',
+            'text_back' => 'Retour à l’évaluation du risque chimique',
             'sidebar' => 'risk_chemical'
         ];
 
@@ -131,19 +131,6 @@ class RiskChemicalController extends Controller
                 $sd_work_unit = SdWorkUnit::find($request->work_unit);
 
                 if (!$sd_work_unit) abort(404);
-            }
-
-            if ($request->n1 === "NC" &&
-                $request->n2 === "NC" &&
-                $request->n3 === "NC" &&
-                $request->n4 === "NC" &&
-                $request->n5 === "NC" &&
-                $request->n6 === "NC" &&
-                $request->n7 === "NC" &&
-                $request->n8 === "NC" &&
-                $request->n9 === "NC" &&
-                $request->n10 === "NC"){
-                return back()->with('status','Vous devez renseigner au moins un danger')->with('status_type','danger');
             }
 
             $sd_risk = new SdRiskChemical();

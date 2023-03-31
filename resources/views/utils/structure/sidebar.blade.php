@@ -95,12 +95,12 @@
             </li>
             @if($single_document->risk_chemical)
                 <li class="sidebar-nav-item {{ $page['sidebar'] == "risk_chemical" ? 'active' : '' }}">
-                    <a href="{{ route('risk.chemical.index',[$single_document->id]) }}" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Risques chimiques</span></a>
+                    <a href="{{ route('risk.chemical.index',[$single_document->id]) }}" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Risque chimique</span></a>
                 </li>
             @endif
             @if($single_document->risk_explosion)
                 <li class="sidebar-nav-item {{ $page['sidebar'] == "risk_explosion" ? 'active' : '' }}">
-                    <a href="{{ route('risk.explosion.index',[$single_document->id]) }}" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Risques d'explosion</span></a>
+                    <a href="{{ route('risk.explosion.index',[$single_document->id]) }}" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Risque d'explosion</span></a>
                 </li>
             @endif
             <li class="sidebar-nav-item {{ $page['sidebar'] == "risk_post" ? 'active' : '' }}">
