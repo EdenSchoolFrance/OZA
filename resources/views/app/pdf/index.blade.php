@@ -71,11 +71,12 @@
                 </p>
             </li>
             <li><p>2° Des membres de la délégation du personnel du comité social et économique ;</p></li>
-            <li><p>3° Des agents du système d'inspection du travail ;</p></li>
-            <li><p>4° Des agents des services de prévention des organismes de sécurité sociale ;</p></li>
-            <li><p>5° Des agents des organismes professionnels de santé, de sécurité et des conditions de travail des
+            <li><p>3° Du service de prévention et de santé au travail ;</p></li>
+            <li><p>4° Des agents du système d'inspection du travail ;</p></li>
+            <li><p>5° Des agents des services de prévention des organismes de sécurité sociale ;</p></li>
+            <li><p>6° Des agents des organismes professionnels de santé, de sécurité et des conditions de travail des
                     branches d'activités présentant des risques particuliers ;</p></li>
-            <li><p>6° Des inspecteurs de la radioprotection et de la santé publique, en ce qui concerne les résultats
+            <li><p>7° Des inspecteurs de la radioprotection et de la santé publique, en ce qui concerne les résultats
                     des évaluations liées à l'exposition des travailleurs aux rayonnements ionisants, pour les
                     installations et activités dont ils ont respectivement la charge.</p></li>
             <li>
@@ -2300,11 +2301,11 @@
             <h1 class="head-title" id="evalRiskChemical">8. ÉVALUATION DU RISQUE CHIMIQUE</h1>
 
             <p>
-                <span class="bold">1ère étape : </span> Identifier chaque agent chimique avec pour chacun d’eux l’unité de travail concernée, le nom commercial ou la dénomination de l’agent, et l’utilisation qui en est faite, ou bien quelle activité professionnelle le génère.
+                <span class="bold">1ère étape : </span> Le Niveau de Danger "ND" de chaque agent chimique utilisé ou généré par l'activité est défini en fonction des phrases de danger de l'agent chimique sur la base de sa FDS ou de sa Fiche Toxicologique INRS.
             </p>
 
             <p>
-                <span class="bold">2e étape : </span> Obtenir auprès du fournisseur la Fiche de Données de Sécurité de chaque agent chimique, la transmettre à OZA avec un nom de fichier identique au nom commercial ou la dénomination de l’agent renseignée à l’étape 1.
+                <span class="bold">2e étape : </span> L'indice de Risque "IR" de chaque agent chimique est défini en fonction des caractéristiques de l’exposition ; ventilation, concentration, durée d’utilisation, protection individuelle utilisée. Cet IR définit le "Risque Résiduel" de chaque agent chimique.
             </p>
 
             <p>
@@ -2319,75 +2320,6 @@
                 <span class="bold">5e étape : </span> Calcul de l’Indice de Risque et du Risque Résiduel de chaque agent chimique en soustrayant les caractéristiques de l’exposition au niveau de danger.
             </p>
 
-            <table class="table table--chemical">
-
-                <thead>
-                    <tr>
-                       <th>IC + ID + DE + IP <br> ND</th>
-                        <th>O</th>
-                        <th>1</th>
-                        <th>2</th>
-                        <th>3</th>
-                        <th>4</th>
-                        <th>5</th>
-                        <th>6</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td><button class="btn btn-warning btn-hidden">1</button></td>
-                        <td><button class="btn btn-warning btn-hidden">0</button></td>
-                        <td><button class="btn btn-success btn-hidden">-1</button></td>
-                        <td><button class="btn btn-success btn-hidden">-2</button></td>
-                        <td><button class="btn btn-success btn-hidden">-3</button></td>
-                        <td><button class="btn btn-success btn-hidden">-4</button></td>
-                        <td><button class="btn btn-success btn-hidden">-5</button></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td><button class="btn btn-danger btn-hidden">2</button></td>
-                        <td><button class="btn btn-warning btn-hidden">1</button></td>
-                        <td><button class="btn btn-warning btn-hidden">0</button></td>
-                        <td><button class="btn btn-success btn-hidden">-1</button></td>
-                        <td><button class="btn btn-success btn-hidden">-2</button></td>
-                        <td><button class="btn btn-success btn-hidden">-3</button></td>
-                        <td><button class="btn btn-success btn-hidden">-4</button></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td><button class="btn btn-danger btn-hidden">3</button></td>
-                        <td><button class="btn btn-danger btn-hidden">2</button></td>
-                        <td><button class="btn btn-warning btn-hidden">1</button></td>
-                        <td><button class="btn btn-warning btn-hidden">0</button></td>
-                        <td><button class="btn btn-success btn-hidden">-1</button></td>
-                        <td><button class="btn btn-success btn-hidden">-2</button></td>
-                        <td><button class="btn btn-success btn-hidden">-3</button></td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td><button class="btn btn-danger btn-hidden">4</button></td>
-                        <td><button class="btn btn-danger btn-hidden">3</button></td>
-                        <td><button class="btn btn-danger btn-hidden">2</button></td>
-                        <td><button class="btn btn-warning btn-hidden">1</button></td>
-                        <td><button class="btn btn-warning btn-hidden">0</button></td>
-                        <td><button class="btn btn-success btn-hidden">-1</button></td>
-                        <td><button class="btn btn-success btn-hidden">-2</button></td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td><button class="btn btn-danger btn-hidden">5</button></td>
-                        <td><button class="btn btn-danger btn-hidden">4</button></td>
-                        <td><button class="btn btn-danger btn-hidden">3</button></td>
-                        <td><button class="btn btn-danger btn-hidden">2</button></td>
-                        <td><button class="btn btn-warning btn-hidden">1</button></td>
-                        <td><button class="btn btn-warning btn-hidden">0</button></td>
-                        <td><button class="btn btn-success btn-hidden">-1</button></td>
-                    </tr>
-                </tbody>
-
-            </table>
-
             <table class="table table--inv-v2">
                 <tr>
                     <td colspan="3" style="padding-bottom: 20px">La valeur de l'IR obtenue permet de définir les conditions d'utilisation suivantes : </td>
@@ -2398,10 +2330,6 @@
                     <td><button class="btn btn-success btn-hidden">Acceptable</button><span> de IR -1 à IR -5</span></td>
                 </tr>
             </table>
-
-            <p>
-                <span class="bold">6e étape : </span> Si le Risque Résiduel ne fait pas apparaitre une situation acceptable, proposition d’actions correctives et correctives.
-            </p>
 
         </div>
 
@@ -2448,7 +2376,7 @@
                         <th class="th_p9 cat_danger theader">p9</th>
                         <th class="th_p10 cat_danger theader">p10</th>
                         <th class="th_ND cat_danger theader">ND</th>
-                        <th class="th_ventilation theader">Ventilation Confinement</th>
+                        <th class="th_ventilation theader" style="width: 7%">Ventilation Confinement</th>
                         <th class="th_concentration theader" style="width: 7%">Concentration</th>
                         <th class="th_time theader">Durée utilisation jour</th>
                         <th class="th_protection theader">Protection</th>
@@ -2472,7 +2400,7 @@
                                     <td class="td_p8 cat_danger">{{$sd_risk->n8}}</td>
                                     <td class="td_p9 cat_danger">{{$sd_risk->n9}}</td>
                                     <td class="td_p10 cat_danger">{{$sd_risk->n10}}</td>
-                                    <td class="td_ND cat_danger">{{ $sd_risk->ND()['key'] }}</td>
+                                    <td class="td_ND cat_danger">{{ $sd_risk->ND()['value'] }}</td>
                                     <td class="td_ventilation">{{ $sd_risk->T_ventilation() }}</td>
                                     <td class="td_concentration">{{ $sd_risk->T_concentration() }}</td>
                                     <td class="td_time">{{ $sd_risk->T_time() }}</td>
@@ -2521,7 +2449,7 @@
                     <th class="th_cat center theader" colspan="2">Produit concerné</th>
                     <th class="th_IR theader" rowspan="2">IR</th>
                     <th class="th_RR theader" rowspan="2">Risque résiduel</th>
-                    <th class="th_restraint center theader" rowspan="2" style="width: 35%">Mesure de prévention et de protection proposées</th>
+                    <th class="th_restraint theader" rowspan="2" style="width: 35%">Mesure de prévention et de protection proposées</th>
                     <th class="th_date center theader" rowspan="2" >Date de réalisation</th>
                     <th class="th_actions center theader" rowspan="2">Commentaire, complément, autres actions</th>
 
@@ -2543,7 +2471,7 @@
                                         <td class="td_activity">{{ $sd_risk->activity }}</td>
                                         <td class="td_IR">{{ $sd_risk->IR() }}</td>
                                         <td class="td_RR {{ $sd_risk->criticality_PDF()['class'] }}">{{ $sd_risk->criticality_PDF()['text'] }}</td>
-                                        <td class="td_restraint">{{ $sd_restraint->name }}</td>
+                                        <td class="td_restraint" style="text-align: left">{{ $sd_restraint->name }}</td>
                                         <td class="td_date">{{ $sd_restraint->date ? date("d/m/Y", strtotime($sd_restraint->date)) : "" }}</td>
                                         <td class="td_comment">{{ $sd_restraint->comment }}</td>
                                     </tr>
@@ -2582,7 +2510,8 @@
         </div>
 
         <div class="body body--rules">
-            <h1 class="head-title" id="evalRiskExplosion">9. LES RISQUES D'EXPLOSIONS</h1>
+            <h1 class="head-title" id="evalRiskExplosion">9. DRPCE</h1>
+            <p>Document Relatif à la Protection Contre l'Explosion</p>
 
             <p><span class="text-color-green">1. Rappel réglementaire</span></p>
 
@@ -2601,7 +2530,7 @@
                 7° La nature des dispositions prises pour que l'utilisation des équipements de travail soit sûre, conformément aux dispositions prévues au livre III<br>
             </p>
 
-            <p class="text-color-green">Probabilité d'une atmosphère explosive</p>
+            <p class="text-color-green">2. Probabilité d'une atmosphère explosive</p>
 
             <p>
                 1. Identifier les matières inflammables présentes ou pouvant se former sur le site (liquides inflammables, gaz combustibles, poussières combustibles)<br>
@@ -2640,7 +2569,7 @@
                 6. Caractériser le type et l'étendue de la zone : 0, 1, 2 et 20, 21, 22, END (Emplacement Non Dangereux) selon le paragraphe ci-après.<br>
             </p>
 
-            <p class="text-color-green">Identification des zones ATEX :</p>
+            <p class="text-color-green">3. Identification des zones ATEX :</p>
 
             <p>
                 Les zones ATEX sont des zones potentiellement explosibles, c'est-à-dire qu'en présence d'une source d'inflammation, une explosion peut se produire, Pour avoir une zone ATEX, toutes les conditions de l'hexagone ci-dessus doivent donc être réunies, à l'exception de la source d'inflammation,
@@ -2662,7 +2591,7 @@
                 L'analyse des zones ATEX ne se fait qu'en fonctionnement normal. Seul des dysfonctionnement raisonnablement prévisibles sont étudiés (fuite, renversement …)<br>
             </p>
 
-            <p class="text-color-green">Analyse du risque d'ignition</p>
+            <p class="text-color-green">4. Analyse du risque d'ignition</p>
 
             <p>
                 <span class="bold">Types de sources d'ignition</span><br>
@@ -2700,7 +2629,7 @@
                 Probabilité 1 : présente dans des circonstances très rares, Ex : défaillance sur un équipement<br>
             </p>
 
-            <p class="text-color-green">Evaluation de la criticité du risque d'explosion</p>
+            <p class="text-color-green">5. Evaluation de la criticité du risque d'explosion</p>
 
             <p>
                 <span class="bold">Types de sources d'ignition</span><br>
@@ -2717,7 +2646,7 @@
                 <span class="bold">Probabilité d'apparition d'une source d'ignition</span><br>
                 La criticité "<span class="text-color-green">Acceptable</span>" correspond à une explosion improbable, elle est associé à la couleur verte et ne nécessite pas d'amélioration.<br>
                 La criticité "<span class="text-color-yellow">A améliorer</span>" correspond à une explosion peu probable, elle est associée à la couleur orange et nécessite une amélioration qui peut être planifiée à moyen terme.<br>
-                La criticité "<span class="text-color-orange">Agir vite</span>" correspond à une explosion probable, elle est associée à la couleur rouge et nécessite une amélioration à planifier en priorité.<br>
+                La criticité "<span class="text-color-pink">Agir vite</span>" correspond à une explosion probable, elle est associée à la couleur rouge et nécessite une amélioration à planifier en priorité.<br>
                 La criticité "<span class="text-color-red">STOP</span>" correspond à une explosion très probable, elle est associée à un fond rouge et nécessite l'arrêt des activités afin d'identifier et de mettre en place des actions de réduction de risques immédiates.<br>
             </p>
 
@@ -2739,22 +2668,22 @@
                 <tr>
                     <td>4</td>
                     <td><button class="btn btn-success btn-hidden">Acceptable</button></td>
-                    <td><button class="btn btn-warning btn-hidden">A améliorer</button></td>
-                    <td><button class="btn btn-warning btn-hidden">A améliorer</button></td>
-                    <td><button class="btn btn-danger btn-hidden">Agir vite</button></td>
-                    <td><button class="btn btn-danger btn-hidden">Agir vite</button></td>
-                    <td><button class="btn btn-hidden">STOP</button></td>
-                    <td><button class="btn btn-hidden">STOP</button></td>
+                    <td><button class="btn btn-yellow btn-hidden">A améliorer</button></td>
+                    <td><button class="btn btn-yellow btn-hidden">A améliorer</button></td>
+                    <td><button class="btn btn-warn btn-hidden">Agir vite</button></td>
+                    <td><button class="btn btn-warn btn-hidden">Agir vite</button></td>
+                    <td><button class="btn btn-danger btn-hidden">STOP</button></td>
+                    <td><button class="btn btn-danger btn-hidden">STOP</button></td>
                 </tr>
                 <tr>
                     <td>3</td>
                     <td><button class="btn btn-success btn-hidden">Acceptable</button></td>
                     <td><button class="btn btn-success btn-hidden">Acceptable</button></td>
                     <td><button class="btn btn-success btn-hidden">Acceptable</button></td>
-                    <td><button class="btn btn-warning btn-hidden">A améliorer</button></td>
-                    <td><button class="btn btn-warning btn-hidden">A améliorer</button></td>
-                    <td><button class="btn btn-danger btn-hidden">Agir vite</button></td>
-                    <td><button class="btn btn-danger btn-hidden">Agir vite</button></td>
+                    <td><button class="btn btn-yellow btn-hidden">A améliorer</button></td>
+                    <td><button class="btn btn-yellow btn-hidden">A améliorer</button></td>
+                    <td><button class="btn btn-warn btn-hidden">Agir vite</button></td>
+                    <td><button class="btn btn-warn btn-hidden">Agir vite</button></td>
                 </tr>
                 <tr>
                     <td>2</td>
@@ -2763,8 +2692,8 @@
                     <td><button class="btn btn-success btn-hidden">Acceptable</button></td>
                     <td><button class="btn btn-success btn-hidden">Acceptable</button></td>
                     <td><button class="btn btn-success btn-hidden">Acceptable</button></td>
-                    <td><button class="btn btn-warning btn-hidden">A améliorer</button></td>
-                    <td><button class="btn btn-warning btn-hidden">A améliorer</button></td>
+                    <td><button class="btn btn-yellow btn-hidden">A améliorer</button></td>
+                    <td><button class="btn btn-yellow btn-hidden">A améliorer</button></td>
                 </tr>
                 <tr>
                     <td>1</td>
@@ -2797,7 +2726,7 @@
 
         <div class="body body--rules">
 
-            <p class="text-color-green">Cas particuliers</p>
+            <p class="text-color-green">6. Cas particuliers</p>
 
             <p>
                 <span class="bold">Appareils à gaz</span> <br>
@@ -2821,7 +2750,7 @@
                 Les risques liés spécifiquement aux produits comburants (oxygène, bioxyde de chlore, chlorate de soude) ou aux réactions chimiques potentiellement explosives ne sont pas pris en compte dans le cadre de la présente analyse (ces phénomènes étant indépendants de la maîtrise des sources d’ignition).
             </p>
 
-            <p class="text-color-green">Remarques générales</p>
+            <p class="text-color-green">7. Remarques générales</p>
 
             <p>
                 Concernant l’utilisation de produits étiquetés inflammables, le stockage de faibles quantités de récipients contenant des liquides inflammables ne nécessite pas de classement.<br>
@@ -2843,7 +2772,7 @@
         </div>
 
         <div class="body body--notif">
-            <h1 class="head-title" >9. LES RISQUES D'EXPLOSIONS</h1>
+            <h1 class="head-title" >9. DRPCE</h1>
 
             <table class="table table--chemical-data">
                 <thead>
@@ -2923,7 +2852,7 @@
         </div>
 
         <div class="body body--notif">
-            <h1 class="head-title">9. LES RISQUES D'EXPLOSIONS</h1>
+            <h1 class="head-title">9. DRPCE</h1>
 
             <table class="table table--chemical-data">
                 <thead>
@@ -2934,13 +2863,13 @@
                     <th class="th_material_explosion center theader" rowspan="2">Matière explosible</th>
                     <th class="th_cat center theader" colspan="2">Produit concerné</th>
                     <th class="th_criticality theader" rowspan="2">Criticité</th>
-                    <th class="th_restraint center theader" rowspan="2" style="width: 35%">Mesure de prévention et de protection proposées</th>
+                    <th class="th_restraint theader" rowspan="2" style="width: 35%">Mesure de prévention et de protection proposées</th>
                     <th class="th_date center theader" rowspan="2" >Date de réalisation</th>
                     <th class="th_actions center theader" rowspan="2">Commentaire, complément, autres actions</th>
                 </tr>
                 <tr>
                     <th class="th_gas theader">Gaz</th>
-                    <th class="th_dust theader">Dust</th>
+                    <th class="th_dust theader">Poussière</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -2953,7 +2882,7 @@
                                     <td class="td_gas">{{ $sd_risk->gas }}</td>
                                     <td class="td_dust">{{ $sd_risk->dust }}</td>
                                     <td class="td_criticality {{ $sd_risk->criticality_PDF()['class'] }}">{{ $sd_risk->criticality_PDF()['text'] }}</td>
-                                    <td class="td_restraint">{{ $sd_restraint->name }}</td>
+                                    <td class="td_restraint" style="text-align: left">{{ $sd_restraint->name }}</td>
                                     <td class="td_date">{{ $sd_restraint->date ? date("d/m/Y", strtotime($sd_restraint->date)) : "" }}</td>
                                     <td class="td_actions">{{ $sd_restraint->comment }}</td>
                                 </tr>
