@@ -80,6 +80,7 @@
                                         <a href="{{ route('risk.edit', [$single_document->id,$sd_risk->sd_danger->id,$sd_risk->id]) }}">
                                             <i class="far fa-eye"></i>
                                         </a>
+                                        <a data-modal=".modal--delete-from-all" data-risk="{{ $sd_risk->id }}" data-danger="{{ $sd_risk->sd_danger->id }}"><i class="fas fa-trash"></i></a>
                                     </td>
                                 @endif
                             </tr>
@@ -94,11 +95,34 @@
                 </table>
             </div>
         </div>
+
+        <div class="modal modal--delete-from-all">
+            <div class="modal-dialog">
+                <form class="modal-content" action="{{ route('risk.delete.from.all', [$single_document->id]) }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="id_risk" value="">
+                    <input type="hidden" name="id_danger" value="">
+                    <div class="modal-header">
+                        <p class="title">Confirmer la suppression</p>
+                        <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Êtes-vous sûr.e de vouloir supprimer ce risque ?</p>
+                        <div>
+                            <button type="submit" class="btn btn-yellow">Supprimer</button>
+                            <button type="button" class="btn btn-inv btn-yellow btn-small" data-dismiss="modal"> Annuler</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
     </div>
 @endsection
 
 @section('script')
     <script src="/js/app/restraint.js"></script>
+    <script src="/js/app/risk.js"></script>
     @if(old('id_restraint'))
         <script>
             let id = '{{ old('id_restraint') }}'

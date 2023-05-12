@@ -233,6 +233,10 @@ on('a[data-modal=".modal--duplicate"]', 'click', (el, e) => {
 on('a[data-modal=".modal--delete"]', 'click', (el, e) => {
     $('.modal--delete input[name="id_risk"]', document, 0).value = el.dataset.risk
 });
+on('a[data-modal=".modal--delete-from-all"]', 'click', (el, e) => {
+    $('.modal--delete-from-all input[name="id_risk"]', document, 0).value = el.dataset.risk
+    $('.modal--delete-from-all input[name="id_danger"]', document, 0).value = el.dataset.danger
+});
 
 /*==============================
           Calcul function

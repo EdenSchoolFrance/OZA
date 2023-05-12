@@ -250,6 +250,7 @@ Route::middleware(['auth'])->group(function() {
             Route::post('/{single_document}/danger/{danger}/store/{sd_work_unit}', [RiskController::class, 'store'])->name('risk.store');
             Route::post('/{single_document}/danger/{danger}/update/{sd_work_unit}/{risk}', [RiskController::class, 'update'])->name('risk.update');
             Route::post('/{single_document}/danger/{danger}/delete', [RiskController::class, 'delete'])->name('risk.delete');
+            Route::post('/{single_document}/risk/delete', [RiskController::class, 'deleteFromAll'])->name('risk.delete.from.all');
             Route::post('/{single_document}/danger/{danger}/duplicate', [RiskController::class, 'duplicate'])->name('risk.duplicate');
 
             Route::get('/{single_document}/risk/all', [RiskController::class, 'all'])->name('risk.all');

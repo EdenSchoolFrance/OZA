@@ -82,6 +82,7 @@ body.modal-openned{
     &--archive,
     &--unarchive,
     &--delete,
+    &--delete-from-all,
     &--duplicate {
         .modal-body {
             display: flex;

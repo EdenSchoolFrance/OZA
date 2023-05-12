@@ -298,6 +298,7 @@
 
             <div class="row row--submit">
                 <button class="btn btn-success">Mettre à jour le risque</button>
+                <a class="btn btn-danger" data-modal=".modal--delete" data-risk="{{ $risk->id }}">Supprimer le risque</a>
             </div>
         </div>
     </form>
@@ -305,6 +306,26 @@
     {{--
         Modal
     --}}
+
+    <div class="modal modal--delete">
+        <div class="modal-dialog">
+            <form class="modal-content" action="{{ route('risk.delete', [$single_document->id, $danger->id]) }}" method="POST">
+                @csrf
+                <input type="hidden" name="id_risk" value="">
+                <div class="modal-header">
+                    <p class="title">Confirmer la suppression</p>
+                    <button type="button" class="btn-close" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <p>Êtes-vous sûr.e de vouloir supprimer ce risque ?</p>
+                    <div>
+                        <button type="submit" class="btn btn-yellow">Supprimer</button>
+                        <button type="button" class="btn btn-inv btn-yellow btn-small" data-dismiss="modal"> Annuler</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <div class="modal modal--risk modal-add-risk">
         <div class="modal-dialog modal-dialog-large">

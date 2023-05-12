@@ -375,6 +375,31 @@ class RiskController extends Controller
 
         $risk->delete();
 
+        return redirect()->route('danger.index', [$single_document->id, $danger->id])->with('status', 'Le risque a bien été supprimé !');
+    }
+
+    public function deleteFromAll(Request $request, $id)
+    {
+
+        $request->validate([
+            'id_danger' => 'required',
+            'id_risk' => 'required'
+        ]);
+
+        $single_document = $this->checkSingleDocument($id);
+
+        $danger = SdDanger::where('id', $request->id_danger)->whereHas('single_document', function ($q) use ($single_document) {
+            $q->where('id', $single_document->id);
+        })->first();
+        if (!$danger) abort(404);
+
+        $risk = SdRisk::where('id', $request->id_risk)->whereHas('sd_danger', function ($q) use ($danger) {
+            $q->where('id', $danger->id);
+        })->first();
+        if (!$risk) abort(404);
+
+        $risk->delete();
+
         return back()->with('status', 'Le risque a bien été supprimé !');
     }
 
