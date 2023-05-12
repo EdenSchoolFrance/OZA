@@ -256,9 +256,10 @@ Route::middleware(['auth'])->group(function() {
             Route::get('/{single_document}/risk/all', [RiskController::class, 'all'])->name('risk.all');
         });
 
-        Route::middleware(['permission:ADMIN,EXPERT,MANAGER,EDITOR'])->group(function () {
+        Route::get('/{single_document}/risk_chemical/', [RiskChemicalController::class, 'index'])->name('risk.chemical.index');
+        Route::get('/{single_document}/risk_chemical/actions/', [RiskChemicalController::class, 'action'])->name('risk.chemical.action.index');
 
-            Route::get('/{single_document}/risk_chemical/', [RiskChemicalController::class, 'index'])->name('risk.chemical.index');
+        Route::middleware(['permission:ADMIN,EXPERT,MANAGER,EDITOR'])->group(function () {
 
             Route::get('/{single_document}/risk_chemical/create', [RiskChemicalController::class, 'create'])->name('risk.chemical.create');
             Route::post('/{single_document}/risk_chemical/store', [RiskChemicalController::class, 'store'])->name('risk.chemical.store');
@@ -268,13 +269,14 @@ Route::middleware(['auth'])->group(function() {
 
             Route::post('/{single_document}/risk_chemical/delete', [RiskChemicalController::class, 'delete'])->name('risk.chemical.delete');
 
-            Route::get('/{single_document}/risk_chemical/actions/', [RiskChemicalController::class, 'action'])->name('risk.chemical.action.index');
             Route::post('/{single_document}/risk_chemical/action/store', [RiskChemicalController::class, 'action_store'])->name('risk.chemical.action.store');
 
         });
 
+        Route::get('/{single_document}/risk_explosion/', [RiskExplosionController::class, 'index'])->name('risk.explosion.index');
+        Route::get('/{single_document}/risk_explosion/actions/', [RiskExplosionController::class, 'action'])->name('risk.explosion.action.index');
+
         Route::middleware(['permission:ADMIN,EXPERT,MANAGER,EDITOR'])->group(function () {
-            Route::get('/{single_document}/risk_explosion/', [RiskExplosionController::class, 'index'])->name('risk.explosion.index');
 
             Route::get('/{single_document}/risk_explosion/create', [RiskExplosionController::class, 'create'])->name('risk.explosion.create');
             Route::post('/{single_document}/risk_explosion/store', [RiskExplosionController::class, 'store'])->name('risk.explosion.store');
@@ -284,7 +286,6 @@ Route::middleware(['auth'])->group(function() {
 
             Route::post('/{single_document}/risk_explosion/delete', [RiskExplosionController::class, 'delete'])->name('risk.explosion.delete');
 
-            Route::get('/{single_document}/risk_explosion/actions/', [RiskExplosionController::class, 'action'])->name('risk.explosion.action.index');
             Route::post('/{single_document}/risk_explosion/action/store', [RiskExplosionController::class, 'action_store'])->name('risk.explosion.action.store');
         });
 
