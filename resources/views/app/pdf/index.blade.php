@@ -2057,7 +2057,7 @@
                                         <td class="td_all {{ $response->priorityPDFCustom($allCal)['class'] }}">{{ $response->priorityPDFCustom($allCal)['text'] }}</td>
                                     </tr>
                                     <tr class="space">
-                                        <td class="td_question">D’une façon générale, comment évaluez-vous votre niveau de stress <br> sur une échelle de zéro à 10</td>
+                                        <td class="td_question">D’une façon générale, comment évaluez-vous votre niveau de stress <br> sur une échelle de zéro à 100</td>
                                         <td class="td_all" colspan="2">{{ $psychosocial_group->stress_level }}</td>
                                     </tr>
                                 @endif
@@ -2990,16 +2990,7 @@
                 @if ($expo->danger->name === "Travail de nuit")
                     <tr>
                         <td>
-                            Travail de nuit dans les conditions fixées aux articles L. 3122-2 à L. 3122-5
-                        </td>
-                        <td class="center">
-                            {{ count($expo->pivot($single_document->id)) === 0 ? "Non" : "Oui"  }}
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            Travail en équipes successives alternantes
+                            Travail de nuit ou Travail en équipes alternantes
                         </td>
                         <td class="center">
                             {{ count($expo->pivot($single_document->id)) === 0 ? "Non" : "Oui"  }}

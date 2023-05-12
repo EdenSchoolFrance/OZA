@@ -80,7 +80,7 @@
             </div>
             <div class="card card--submit card--submit-danger">
                 <div class="card-body">
-                    <button type="submit" data-value="true" class="btn btn-success btn-submit">VALIDER LE QUESTIONNAIRE</button>
+                    <button type="submit" data-value="true" class="btn btn-success btn-submit">VALIDER LE PLAN D'ACTION</button>
                     <button type="submit" data-value="false" class="btn btn-text btn-submit">Enregistrer le brouillon</button>
                 </div>
             </div>

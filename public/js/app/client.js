@@ -38,7 +38,7 @@ on('.btn-add-exposition', 'click', (el, e) => {
         let newInput = document.createElement('input');
         newInput.className = 'form-control';
         newInput.type = "text";
-        newInput.placeholder = "Nom du groupe d'expositions homogènes";
+        newInput.placeholder = "Nom du groupe d'exposition homogène";
         newInput.name = "risk_psycho_exposition_groups[]";
 
         newItem.appendChild(newButton);

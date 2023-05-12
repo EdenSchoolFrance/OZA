@@ -136,10 +136,10 @@ return [
             'regex' => 'Votre mot de passe doit contenir au moins 8 caractères, dont 1 majuscule, 1 minuscule, 1 chiffre et 1 caractère spécial'
         ],
         'risk_psycho_exposition_groups' => [
-            'required_if' => 'Veuillez renseigner le nom du groupe d\'expositions homogènes'
+            'required_if' => 'Veuillez renseigner le nom du groupe d\'exposition homogène'
         ],
         'risk_psycho_exposition_groups.*' => [
-            'required' => 'Veuillez renseigner un nom au groupe d\'expositions homogènes'
+            'required' => 'Veuillez renseigner un nom au groupe d\'exposition homogène'
         ],
     ],
     'attributes' =>[

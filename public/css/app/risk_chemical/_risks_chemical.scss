@@ -110,3 +110,21 @@
         }
     }
 }
+
+table{
+    &.table{
+        &--chemical{
+            margin: 20px 0;
+
+            th{
+                text-align: center !important;
+                color: $black;
+            }
+            td{
+                text-align: center;
+                border: none;
+            }
+
+        }
+    }
+}

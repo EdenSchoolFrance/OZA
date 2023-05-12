@@ -407,6 +407,69 @@
                     @enderror
                 </div>
 
+                <div class="row">
+                    <div class="line">
+                        <table class="table table--chemical">
+
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>END</th>
+                                <th>2</th>
+                                <th>22</th>
+                                <th>1</th>
+                                <th>21</th>
+                                <th>0</th>
+                                <th>20</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>4</td>
+                                <td><button class="btn btn-success btn-hidden" type="button">Acceptable</button></td>
+                                <td><button class="btn btn-yellow btn-hidden" type="button">A améliorer</button></td>
+                                <td><button class="btn btn-yellow btn-hidden" type="button">A améliorer</button></td>
+                                <td><button class="btn btn-warn btn-hidden" type="button">Agir vite</button></td>
+                                <td><button class="btn btn-warn btn-hidden" type="button">Agir vite</button></td>
+                                <td><button class="btn btn-danger btn-hidden" type="button">STOP</button></td>
+                                <td><button class="btn btn-danger btn-hidden" type="button">STOP</button></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td><button class="btn btn-success btn-hidden" type="button">Acceptable</button></td>
+                                <td><button class="btn btn-success btn-hidden" type="button">Acceptable</button></td>
+                                <td><button class="btn btn-success btn-hidden" type="button">Acceptable</button></td>
+                                <td><button class="btn btn-yellow btn-hidden" type="button">A améliorer</button></td>
+                                <td><button class="btn btn-yellow btn-hidden" type="button">A améliorer</button></td>
+                                <td><button class="btn btn-warn btn-hidden" type="button">Agir vite</button></td>
+                                <td><button class="btn btn-warn btn-hidden" type="button">Agir vite</button></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td><button class="btn btn-success btn-hidden" type="button">Acceptable</button></td>
+                                <td><button class="btn btn-success btn-hidden" type="button">Acceptable</button></td>
+                                <td><button class="btn btn-success btn-hidden" type="button">Acceptable</button></td>
+                                <td><button class="btn btn-success btn-hidden" type="button">Acceptable</button></td>
+                                <td><button class="btn btn-success btn-hidden" type="button">Acceptable</button></td>
+                                <td><button class="btn btn-yellow btn-hidden" type="button">A améliorer</button></td>
+                                <td><button class="btn btn-yellow btn-hidden" type="button">A améliorer</button></td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td><button class="btn btn-success btn-hidden" type="button">Acceptable</button></td>
+                                <td><button class="btn btn-success btn-hidden" type="button">Acceptable</button></td>
+                                <td><button class="btn btn-success btn-hidden" type="button">Acceptable</button></td>
+                                <td><button class="btn btn-success btn-hidden" type="button">Acceptable</button></td>
+                                <td><button class="btn btn-success btn-hidden" type="button">Acceptable</button></td>
+                                <td><button class="btn btn-success btn-hidden" type="button">Acceptable</button></td>
+                                <td><button class="btn btn-success btn-hidden" type="button">Acceptable</button></td>
+                            </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+
                 <hr>
 
                 <div class="row">

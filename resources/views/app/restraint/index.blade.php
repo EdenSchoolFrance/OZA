@@ -28,7 +28,7 @@
                                         </div>
                                         <div class="list-row">
                                             <p class="list-point list-point--text">C</p>
-                                            <button type="button" class="btn {{ $sd_risk->colorC(isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->totalRR($sd_risk->sd_restraints_exist) : $sd_risk->total(),false) }} btn-small">{{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints_exist),false) : $sd_risk->colorTotal($sd_risk->total(),true) }}</button>
+                                            <button type="button" class="btn {{ $sd_risk->colorC(isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->totalRR($sd_risk->sd_restraints_exist) : $sd_risk->total(),false) }} btn-small">{{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints_exist),false) : $sd_risk->colorTotal($sd_risk->total(),false) }}</button>
                                         </div>
                                     </div>
                                 </td>
