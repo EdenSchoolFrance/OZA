@@ -139,7 +139,7 @@ return [
             'required_if' => 'Veuillez renseigner le nom du groupe d\'exposition homogène'
         ],
         'risk_psycho_exposition_groups.*' => [
-            'required' => 'Veuillez renseigner un nom au groupe d\'exposition homogène'
+            'required' => 'Veuillez renseigner le nom du groupe d\'exposition homogène'
         ],
     ],
     'attributes' =>[
