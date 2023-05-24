@@ -608,19 +608,23 @@
         </div>
 
         <div class="tooltip tooltip--gas">
+            <p>END : Emplacement Non Dangereux trop faible quantité.</p>
             <p>0 gaz - 20 poussières : permanent.</p>
             <p>1 gaz - 21 poussières : occasionnel en fonctionnement normal.</p>
             <p>2 gaz - 22 poussières : accidentel.</p>
+            <p>NC : Non Concerné.</p>
         </div>
 
         <div class="tooltip tooltip--dust">
+            <p>END : Emplacement Non Dangereux trop faible quantité.</p>
             <p>0 gaz - 20 poussières : permanent.</p>
             <p>1 gaz - 21 poussières : occasionnel en fonctionnement normal.</p>
             <p>2 gaz - 22 poussières : accidentel.</p>
+            <p>NC : Non Concerné.</p>
         </div>
 
         <div class="tooltip tooltip--pa">
-            <p>Probabilité 4  : source présente constamment ou fréquemment, Ex : four.</p>
+            <p>Probabilité 4 : source présente constamment ou fréquemment, Ex : four.</p>
             <p>Probabilité 3 : pas présente constamment ou fréquemment, Ex : électricité statique, point chaud lié à un véhicule, choc métal/métal.</p>
             <p>Probabilité 2 : présente dans des circonstances rares, Ex : foudre.</p>
             <p>Probabilité 1 : présente dans des circonstances très rares, Ex : défaillance sur un équipement.</p>
