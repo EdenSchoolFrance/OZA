@@ -187,17 +187,8 @@ Route::middleware(['auth'])->group(function() {
 
 
                 //Temporaire
-                Route::get('/{single_document}/{psychosocial_group}/evaluation', [PyschosocialAdminController::class, 'evaluation'])->name('risk_psycho.evaluation');
 
-                Route::post('/{single_document}/{psychosocial_group}/evaluation', [PyschosocialAdminController::class, 'evaluation_store'])->name('risk_psycho.evaluation.store');
 
-                Route::get('/{single_document}/{psychosocial_group}/restraint', [PyschosocialAdminController::class, 'restraint'])->name('risk_psycho.restraint');
-
-                Route::post('/{single_document}/{psychosocial_group}/restraint', [PyschosocialAdminController::class, 'restraint_store'])->name('risk_psycho.restraint.store');
-
-                Route::get('/{single_document}/{psychosocial_group}/action', [PyschosocialAdminController::class, 'action'])->name('risk_psycho.action');
-
-                Route::post('/{single_document}/{psychosocial_group}/action', [PyschosocialAdminController::class, 'action_store'])->name('risk_psycho.action.store');
             });
         });
 
@@ -310,12 +301,12 @@ Route::middleware(['auth'])->group(function() {
         Route::middleware(['access:oza'])->group(function () {
 
             Route::post('/{single_document}/{psychosocial_group}/evaluation', [PyschosocialAdminController::class, 'evaluation_store'])->name('risk_psycho.evaluation.store');
-            Route::get('/{single_document}/{psychosocial_group}/restraint', [PyschosocialAdminController::class, 'restraint'])->name('risk_psycho.restraint');
             Route::post('/{single_document}/{psychosocial_group}/restraint', [PyschosocialAdminController::class, 'restraint_store'])->name('risk_psycho.restraint.store');
 
         });
 
         Route::get('/{single_document}/{psychosocial_group}/evaluation', [PyschosocialAdminController::class, 'evaluation'])->name('risk_psycho.evaluation');
+        Route::get('/{single_document}/{psychosocial_group}/restraint', [PyschosocialAdminController::class, 'restraint'])->name('risk_psycho.restraint');
         Route::get('/{single_document}/{psychosocial_group}/action', [PyschosocialAdminController::class, 'action'])->name('risk_psycho.action');
         Route::post('/{single_document}/{psychosocial_group}/action', [PyschosocialAdminController::class, 'action_store'])->name('risk_psycho.action.store');
 

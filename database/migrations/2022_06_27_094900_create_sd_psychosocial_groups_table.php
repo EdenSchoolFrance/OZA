@@ -20,6 +20,7 @@ class CreateSdPsychosocialGroupsTable extends Migration
             $table->float('stress_level', 5, 1)->default(0);
             $table->float('employee', 5, 1)->default(0);
             $table->boolean('validated')->default(0);
+            $table->boolean('restraint')->default(0);
 
             $table->foreignUuid('single_document_id');
             $table->foreign('single_document_id')->references('id')->on('single_documents')->onDelete('cascade');

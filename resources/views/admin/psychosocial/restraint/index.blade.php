@@ -3,6 +3,7 @@
 @section('content')
     <div class="content">
         <form action="{{ route('risk_psycho.restraint.store', [$single_document->id, $psychosocial_group->id]) }}"  method="post">
+            <input type="hidden" name="checked" value=""/>
             <div class="card card--add-risk">
                 @csrf
                 <div class="card-body">

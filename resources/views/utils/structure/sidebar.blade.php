@@ -103,26 +103,33 @@
                     <a href="{{ route('risk.explosion.index',[$single_document->id]) }}" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Risque d'explosion</span></a>
                 </li>
             @endif
-            @if(Auth::user()->hasAccess('oza'))
+
                 @if ($single_document->risk_psycho)
                     <li class="sidebar-nav-item {{ $page['sidebar'] == "risk_psycho" ? 'active' : '' }}">
                         <a href="#" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Risques psychosociaux</span></a>
                         <ul class="sub-group-menu" style="{{ $page['sidebar'] == "risk_psycho" ? 'display: block' : '' }}">
                             @foreach ($single_document->psychosocial_groups as $psychosocial_group)
-                                <li class="sidebar-nav-item {{ $page['sidebar'] == "risk_psycho" && ($page['sub_sidebar'] == $psychosocial_group->id . ".evaluation" || $page['sub_sidebar'] == $psychosocial_group->id . ".restraint") ? 'active' : '' }}">
-                                    <p class="sidebar-nav-link">{{ $psychosocial_group->name }}</p>
-                                </li>
-                                <li class="sidebar-nav-item {{ $page['sidebar'] == "risk_psycho" && $page['sub_sidebar'] == $psychosocial_group->id . ".evaluation" ? 'active' : '' }}">
-                                    <a href="{{ route('risk_psycho.evaluation', [$single_document->id, $psychosocial_group->id]) }}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Evaluations</a>
-                                </li>
-                                <li class="sidebar-nav-item {{ $page['sidebar'] == "risk_psycho" && $page['sub_sidebar'] == $psychosocial_group->id . ".restraint" ? 'active' : '' }}">
-                                    <a href="{{ route('risk_psycho.restraint', [$single_document->id, $psychosocial_group->id]) }}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Mesures</a>
-                                </li>
+                                @if(Auth::user()->hasAccess('oza') || $psychosocial_group->validated || $psychosocial_group->restraint)
+                                    <li class="sidebar-nav-item {{ $page['sidebar'] == "risk_psycho" && ($page['sub_sidebar'] == $psychosocial_group->id . ".evaluation" || $page['sub_sidebar'] == $psychosocial_group->id . ".restraint") ? 'active' : '' }}">
+                                        <p class="sidebar-nav-link">{{ $psychosocial_group->name }}</p>
+                                    </li>
+                                @endif
+                                @if(Auth::user()->hasAccess('oza') || $psychosocial_group->validated)
+                                    <li class="sidebar-nav-item {{ $page['sidebar'] == "risk_psycho" && $page['sub_sidebar'] == $psychosocial_group->id . ".evaluation" ? 'active' : '' }}">
+                                        <a href="{{ route('risk_psycho.evaluation', [$single_document->id, $psychosocial_group->id]) }}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Evaluations</a>
+                                        <i class="fas fa-check {{ $psychosocial_group->validated ? 'checked' : 'unchecked' }}"></i>
+                                    </li>
+                                @endif
+                                @if(Auth::user()->hasAccess('oza') || $psychosocial_group->restraint)
+                                    <li class="sidebar-nav-item {{ $page['sidebar'] == "risk_psycho" && $page['sub_sidebar'] == $psychosocial_group->id . ".restraint" ? 'active' : '' }}">
+                                        <a href="{{ route('risk_psycho.restraint', [$single_document->id, $psychosocial_group->id]) }}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Mesures</a>
+                                        <i class="fas fa-check {{ $psychosocial_group->restraint ? 'checked' : 'unchecked' }}"></i>
+                                    </li>
+                                @endif
                             @endforeach
                         </ul>
                     </li>
                 @endif
-            @endif
             <li class="sidebar-nav-item {{ $page['sidebar'] == "action_plan" ? 'active' : '' }}">
                 <a href="#" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Plan d'action</span></a>
                 <ul class="sub-group-menu" style="{{ $page['sidebar'] == "action_plan" ? 'display: block' : '' }}">
@@ -135,17 +142,15 @@
                     <li class="sidebar-nav-item {{ $page['sidebar'] == "action_plan" && $page['sub_sidebar'] == "restraint_archived" ? 'active' : '' }}">
                         <a href="{{route('restraint.archived',[$single_document->id])}}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>Mesures archivées</a>
                     </li>
-                    @if(Auth::user()->hasAccess('oza'))
-                        @if ($single_document->risk_psycho)
-                            <li class="sidebar-nav-item">
-                                <p class="sidebar-nav-link">Risques psychosociaux</p>
+                    @if ($single_document->risk_psycho)
+                        <li class="sidebar-nav-item">
+                            <p class="sidebar-nav-link">Risques psychosociaux</p>
+                        </li>
+                        @foreach ($single_document->psychosocial_groups as $psychosocial_group)
+                            <li class="sidebar-nav-item {{ $page['sidebar'] == "action_plan" && $page['sub_sidebar'] == $psychosocial_group->id ? 'active' : '' }}">
+                                <a href="{{ route('risk_psycho.action', [$single_document->id, $psychosocial_group->id]) }}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>{{ $psychosocial_group->name }}</a>
                             </li>
-                            @foreach ($single_document->psychosocial_groups as $psychosocial_group)
-                                <li class="sidebar-nav-item {{ $page['sidebar'] == "action_plan" && $page['sub_sidebar'] == $psychosocial_group->id ? 'active' : '' }}">
-                                    <a href="{{ route('risk_psycho.action', [$single_document->id, $psychosocial_group->id]) }}" class="sidebar-nav-link"><i class="fas fa-angle-right"></i>{{ $psychosocial_group->name }}</a>
-                                </li>
-                            @endforeach
-                        @endif
+                        @endforeach
                     @endif
                     @if($single_document->risk_chemical)
                         <li class="sidebar-nav-item">

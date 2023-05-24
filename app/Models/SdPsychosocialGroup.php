@@ -24,6 +24,7 @@ class SdPsychosocialGroup extends Model
         'stress_level',
         'employee',
         'validated',
+        'restraint'
     ];
 
     public function single_document()

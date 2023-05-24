@@ -70,3 +70,6 @@ on('button[data-modal=".modal--restraint"]', 'click', (el, e) => {
     }
 
 });
+on('.btn-submit', 'click', (el, e) => {
+    $('input[name="checked"]', el.closest('form'), 0).value = el.dataset.value;
+});

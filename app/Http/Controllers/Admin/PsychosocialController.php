@@ -156,6 +156,17 @@ class PsychosocialController extends Controller
 
         if (!$psychosocial_group) abort(404);
 
+        $request->validate([
+            'checked' => 'required'
+        ]);
+
+        if ($request->checked == "true") {
+            $psychosocial_group->restraint = true;
+        } else {
+            $psychosocial_group->restraint = false;
+        }
+        $psychosocial_group->save();
+
         $responses = SdPsychosocialResponse::whereHas('group' , function ($q) use ($psychosocial_group){
             $q->where('id', $psychosocial_group->id);
         })->get()->filter(function ($rep, $key){
