@@ -2467,9 +2467,9 @@
                                 @foreach($sd_risk->sd_restraints_exist as $sd_restraint)
                                     <tr>
                                         <td class="td_work_unit">{{ $sd_risk->sd_work_unit->name }}</td>
-                                        <td class="td_name">{{ $sd_risk->name }}</td>
-                                        <td class="td_activity">{{ $sd_risk->activity }}</td>
-                                        <td class="td_IR">{{ $sd_risk->IR() }}</td>
+                                        <td class="td_name" style="width: 15% ">{{ $sd_risk->name }}</td>
+                                        <td class="td_activity" style="width: 15%">{{ $sd_risk->activity }}</td>
+                                        <td class="td_IR" style="width: 4%">{{ $sd_risk->IR() }}</td>
                                         <td class="td_RR {{ $sd_risk->criticality_PDF()['class'] }}">{{ $sd_risk->criticality_PDF()['text'] }}</td>
                                         <td class="td_restraint" style="text-align: left">{{ $sd_restraint->name }}</td>
                                         <td class="td_date">{{ $sd_restraint->date ? date("d/m/Y", strtotime($sd_restraint->date)) : "" }}</td>
