@@ -19,7 +19,6 @@ class CreateClientsTable extends Migration
             $table->string('image');
             $table->string('client_number');
             $table->string('adress');
-            $table->string('additional_adress')->nullable();
             $table->string('city_zipcode');
             $table->string('city');
             $table->boolean('archived')->default(0);

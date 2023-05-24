@@ -85,7 +85,6 @@ class ClientController extends Controller
         $client->image = $name.'.'.$file->extension();
         $client->client_number = $request->client_number;
         $client->adress = $request->adress;
-        $client->additional_adress = $request->additional_adress;
         $client->city_zipcode = $request->city_zipcode;
         $client->city = $request->city;
         $client->expert()->associate($request->expert);
@@ -160,7 +159,6 @@ class ClientController extends Controller
         if ($file) $client->image = $name.'.'.$file->extension();
         $client->client_number = $request->client_number;
         $client->adress = $request->adress;
-        $client->additional_adress = $request->additional_adress;
         $client->city_zipcode = $request->city_zipcode;
         $client->city = $request->city;
         $client->expert()->associate($request->expert);

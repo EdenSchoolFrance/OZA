@@ -76,16 +76,6 @@
                             </div>
                             <div class="line">
                                 <div class="left">
-                                </div>
-                                <div class="right">
-                                    <input type="text" name="additional_adress" class="form-control @error('additional_adress') invalid @enderror" placeholder="Ligne 2" value="{{ old('additional_adress') }}">
-                                    @error('additional_adress')
-                                        <p class="message-error">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="line">
-                                <div class="left">
                                     <label for="city_zipcode">Code postal</label>
                                 </div>
                                 <div class="right">

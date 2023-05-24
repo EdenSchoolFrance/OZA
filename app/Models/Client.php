@@ -23,7 +23,6 @@ class Client extends Model
         'client_number',
         'image',
         'adress',
-        'additional_adress',
         'city_zipcode',
         'city',
     ];
