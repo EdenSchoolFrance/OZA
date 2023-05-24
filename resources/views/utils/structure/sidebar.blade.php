@@ -54,9 +54,6 @@
                 </ul>
             </li>
             @endif
-            <li class="sidebar-nav-item">
-                <a href="#" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Liste des risques</span></a>
-            </li>
         @endif
 
         @isset($single_document)
