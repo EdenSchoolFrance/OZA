@@ -360,7 +360,7 @@
                                 <p>
                                     <span class="bold">Principale(s) activité(s) : </span><br>
                                     @foreach($sd_work_unit->activities as $activitie)
-                                        - @stripTags($activitie->text) <br>
+                                        - {{ $activitie->text }} <br>
                                     @endforeach
                                 </p>
                             </td>
