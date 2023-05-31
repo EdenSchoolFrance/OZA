@@ -268,7 +268,7 @@ class PDFController extends Controller
         }
 
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, "https://quickchart.io/chart?w=500&h=300&c=" . urlencode(json_encode($chartConfig)));
+        curl_setopt($ch, CURLOPT_URL, "https://quickchart.io/chart?w=500&h=450&c=" . urlencode(json_encode($chartConfig)));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $chart = curl_exec($ch);
         curl_close($ch);
