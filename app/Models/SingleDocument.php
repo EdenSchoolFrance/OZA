@@ -173,7 +173,9 @@ class SingleDocument extends Model
             if($sd_danger->exist === 1){
                 foreach ($sd_danger->sd_risk as $sd_risk){
                     $count++;
-                    $sdRiskTotalRR = $sd_risk->totalRR($sd_risk->sd_restraints_exist);
+                    $sdRiskTotalRR = isset($sd_risk->sd_restraints_exist[0])
+                        ? $sd_risk->totalRR($sd_risk->sd_restraints_exist)
+                        : $sd_risk->total();
 
                     if ($sdRiskTotalRR < 12.5) {
                         $tab[0] += 1;
