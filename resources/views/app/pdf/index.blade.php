@@ -433,9 +433,9 @@
             , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
     </div>
 
-    <div class="body">
+    <div class="body" style="min-height: 500px;">
         <h1 class="head-title" id="tabBord">1. TABLEAU DE BORD DE L'ÉVALUATION DES RISQUES</h1>
-        <table class="table table--no-border table--dashboard">
+        <table class="table table--no-border table--dashboard vertical-center">
             <tr>
                 <td>
                     <div>
@@ -470,10 +470,23 @@
                 </td>
             </tr>
         </table>
-        <p class="center bold">Risque résiduel</p>
-        <img src="{{ $chartUrl }}" alt="" class="chart-risk">
     </div>
 
+    <div class="footer">
+        <p> Copyright © OZA DUERP Online</p>
+        <p class="page-num">TABLEAU DE BORD DE L’EVALUATION DES RISQUES </p>
+    </div>
+</section>
+<section class="page">
+    <div class="header">
+        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
+            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
+    </div>
+    <div class="body">
+        <h1 class="head-title" id="tabBord">1. TABLEAU DE BORD DE L'ÉVALUATION DES RISQUES</h1>
+        <p class="center bold">Risque résiduel</p>
+        <img src="{{ $chartUrl }}" alt="" class="chart-risk center">
+    </div>
     <div class="footer">
         <p> Copyright © OZA DUERP Online</p>
         <p class="page-num">TABLEAU DE BORD DE L’EVALUATION DES RISQUES </p>
