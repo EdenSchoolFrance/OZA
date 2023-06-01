@@ -44,7 +44,7 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="line {{ !$single_document->additional_adress ? 'hidden' : '' }}">
+                    {{-- <div class="line {{ !$single_document->additional_adress ? 'hidden' : '' }}">
                         <div class="left">
                         </div>
                         <div class="right">
@@ -53,7 +53,7 @@
                                 <p class="message-error">{{ $message }}</p>
                             @enderror
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="line">
                         <div class="left">
                             <label for="city_zipcode">Code postal</label>
