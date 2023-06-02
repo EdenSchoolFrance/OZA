@@ -2369,7 +2369,7 @@
                         <th class="th_ventilation theader" style="width: 7%">Ventilation Confinement</th>
                         <th class="th_concentration theader" style="width: 7%">Concentration</th>
                         <th class="th_time theader">Durée utilisation jour</th>
-                        <th class="th_protection theader">Protection</th>
+                        <th class="th_protection theader" style="width: 7%">Protection</th>
                     </tr>
                     </thead>
                     <tbody>
