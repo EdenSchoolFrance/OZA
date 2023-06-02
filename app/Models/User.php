@@ -42,6 +42,8 @@ class User extends Authenticatable
         'password'
     ];
 
+    // TODO: User should have many roles , or if you are using role/permission, it should be another implementation set
+    // All code related to this relation it will have a temporary implementation
     public function role()
     {
         return $this->belongsTo(Role::class);
@@ -55,18 +57,10 @@ class User extends Authenticatable
             return false;
         }
 
+        $roles = resolve('AppCacheService')->getRoles();
+
         if ($role) {
-            if (gettype($role) == 'array') {
-                foreach ($role as $value) {
-                    if ($this->role()->where('permission', $value)->first()) {
-                        return true;
-                    }
-                }
-    
-                return false;
-            } else {
-                return null !== $this->role()->where('permission', $role)->first();
-            }
+            return $roles->whereIn('permission', is_array($role)  ? $role : [$role])->count() > 0;
         }
 
         return true;
@@ -74,17 +68,9 @@ class User extends Authenticatable
 
     public function hasPermission($role = null)
     {
-        if (gettype($role) == 'array') {
-            foreach ($role as $value) {
-                if ($this->role()->where('permission', $value)->first()) {
-                    return true;
-                }
-            }
+        $roles = resolve('AppCacheService')->getRoles();
 
-            return false;
-        } else {
-            return null !== $this->role()->where('permission', $role)->first();
-        }
+        return $roles->whereIn('permission', is_array($role)  ? $role : [$role])->count() > 0;
     }
 
 

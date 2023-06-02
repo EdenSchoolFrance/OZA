@@ -153,12 +153,12 @@ class SingleDocument extends Model
         else return round($total / $count, 1);
     }
 
-    public function discountRisk() {
+    public function discountRisk($moyenneRB = null, $moyenneRR = null) {
 
-        $RB = $this->moyenneRB();
-        $RR = $this->moyenneRR();
+        $RB = $moyenneRB ?? $this->moyenneRB();
+        $RR = $moyenneRR ?? $this->moyenneRR();
 
-        if ($RB != "-" && $RR) {
+        if ($RB !== "-" && $RB !== 0 && $RR) {
             return round(($RB - $RR) / $RB * 100, 1);
         } else {
             return "-";
