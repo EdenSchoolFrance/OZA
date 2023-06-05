@@ -168,12 +168,13 @@ class SingleDocument extends Model
 
     public function graphique(){
         $tab = [0, 0, 0, 0];
-        $count = 0;
         foreach ($this->dangers as $sd_danger){
             if($sd_danger->exist === 1){
                 foreach ($sd_danger->sd_risk as $sd_risk){
-                    $count++;
-                    $sdRiskTotalRR = $sd_risk->totalRR($sd_risk->sd_restraints->where('exists', 1));
+                    $existSDRestraint = $sd_risk->sd_restraints->where('exists', 1);
+                    $sdRiskTotalRR = count($existSDRestraint)
+                        ? $sd_risk->totalRR($existSDRestraint)
+                        : $sd_risk->total();
 
                     if ($sdRiskTotalRR < 12.5) {
                         $tab[0] += 1;
