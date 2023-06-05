@@ -28,8 +28,9 @@ class DashboardController extends Controller
         $single_document = $this->checkSingleDocument($id);
         $single_document->loadMissing(
             'dangers.danger',
-            'dangers.danger.sd_works_units.sd_risks',
-            'dangers.danger.sd_risks_ut_all',
+            'dangers.sd_risk',
+            'dangers.sd_risk.sd_restraints',
+            'dangers.sd_works_units.sd_risks',
             'client.single_documents',
             'psychosocial_groups',
             'histories'

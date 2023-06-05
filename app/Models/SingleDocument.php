@@ -94,7 +94,7 @@ class SingleDocument extends Model
         $count = 0;
         foreach ($this->dangers as $sd_danger){
             if($sd_danger->exist === 1){
-                foreach ($sd_danger->sd_risk_exist() as $sd_risk){
+                foreach ($sd_danger->sd_risk_exist_optimized() as $sd_risk){
                     $total = $total+$sd_risk->total();
                     $count++;
                 }
@@ -136,9 +136,9 @@ class SingleDocument extends Model
         $count = 0;
         foreach ($this->dangers as $sd_danger){
             if($sd_danger->exist === 1){
-                foreach ($sd_danger->sd_risk_exist() as $sd_risk){
+                foreach ($sd_danger->sd_risk_exist_optimized() as $sd_risk){
 
-                    $RR = $sd_risk->totalRR($sd_risk->sd_restraints_exist);
+                    $RR = $sd_risk->totalRR($sd_risk->sd_restraints->where('exists', 1));
 
                     if ($RR === 0)
                     $RR = $sd_risk->total();
@@ -173,7 +173,7 @@ class SingleDocument extends Model
             if($sd_danger->exist === 1){
                 foreach ($sd_danger->sd_risk as $sd_risk){
                     $count++;
-                    $sdRiskTotalRR = $sd_risk->totalRR($sd_risk->sd_restraints_exist);
+                    $sdRiskTotalRR = $sd_risk->totalRR($sd_risk->sd_restraints->where('exists', 1));
 
                     if ($sdRiskTotalRR < 12.5) {
                         $tab[0] += 1;
@@ -195,7 +195,7 @@ class SingleDocument extends Model
         $tab = [];
         foreach ($this->dangers as $sd_danger){
             if($sd_danger->exist === 1){
-                foreach ($sd_danger->sd_risk_exist() as $sd_risk){
+                foreach ($sd_danger->sd_risk_exist_optimized() as $sd_risk){
                     $tab[] = $sd_risk;
                 }
             }
