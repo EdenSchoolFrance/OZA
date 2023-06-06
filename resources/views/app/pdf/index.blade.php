@@ -585,15 +585,26 @@
             </thead>
             <tbody>
             @foreach($sd_risks as $sd_risk)
-                @if (count($sd_risk->sd_restraints_porposed) >= 1)
+                @if (count($sd_risk->sd_restraints->where('exist', 0)) >= 1)
+                    @php
+                        $existsSDrestraints = $sd_risk->sd_restraints->where('exist', 1);
+                    @endphp
                     <tr>
                         <td class="workunit">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "Tous" }}</td>
                         <td class="danger">{{ $sd_risk->sd_danger->danger->name }}</td>
                         <td class="risk">@stripTags($sd_risk->name)</td>
-                        <td class="risk_residuel center">{{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->totalRR($sd_risk->sd_restraints_exist) : $sd_risk->total() }}</td>
-                        <td class="criticity center {{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints_exist),false) :  $sd_risk->colorPDF($sd_risk->total(),true) }}">{{ $sd_risk->colorTotal(isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->totalRR($sd_risk->sd_restraints_exist) : $sd_risk->total(),false) }}</td>
+                        <td class="risk_residuel center">{{ count($existsSDrestraints) ? $sd_risk->totalRR($existsSDrestraints) : $sd_risk->total() }}</td>
+                        <td class="criticity center {{
+                            count($existsSDrestraints)
+                                ? $sd_risk->colorPDF($sd_risk->totalRR($existsSDrestraints),false)
+                                :  $sd_risk->colorPDF($sd_risk->total(),true) }}">
+
+                            {{ $sd_risk->colorTotal(count($existsSDrestraints)
+                                ? $sd_risk->totalRR($existsSDrestraints)
+                                : $sd_risk->total(),false) 
+                            }}</td>
                         <td class="restraint">
-                            @foreach($sd_risk->sd_restraints_porposed as $sd_restraint)
+                            @foreach($sd_risk->sd_restraints->where('exist', 0) as $sd_restraint)
                                 * @stripTags($sd_restraint->name)<br>
                             @endforeach
                         </td>
@@ -1485,17 +1496,20 @@
                             <td class="center min-width min-width-left">{{ $sd_risk->translate($sd_risk->impact,'impact') }}</td>
                             <td class="center min-width min-width-left {{ $sd_risk->total() >= 24 ? "pink" : "" }}">{{ $sd_risk->total() }}</td>
                             <td class="restraint">
-                                @foreach($sd_risk->sd_restraints_exist as $sd_restraint)
+                                @php
+                                    $existsRestraints = $sd_risk->sd_restraints->where('exist', 1);
+                                @endphp
+                                @foreach($existsRestraints as $sd_restraint)
                                     * {{$sd_restraint->name}} <br>
                                 @endforeach
                             </td>
                             {{--                            <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneTech(), 1), "tech") }}</td>--}}
                             {{--                            <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneOrga(), 1), "orga") }}</td>--}}
                             {{--                            <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneHum(), 1), "hum") }}</td>--}}
-                            <td class="center min-width min-width-right"> {{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->totalRR($sd_risk->sd_restraints_exist) : $sd_risk->total() }}</td>
-                            <td class="center criticity {{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints_exist),false) :  $sd_risk->colorPDF($sd_risk->total(),true) }}">{{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints_exist),false) : $sd_risk->colorTotal($sd_risk->total(),true) }}</td>
+                            <td class="center min-width min-width-right"> {{ count($existsRestraints) ? $sd_risk->totalRR($existsRestraints) : $sd_risk->total() }}</td>
+                            <td class="center criticity {{ count($existsRestraints) ? $sd_risk->colorPDF($sd_risk->totalRR($existsRestraints),false) :  $sd_risk->colorPDF($sd_risk->total(),true) }}">{{ count($existsRestraints) ? $sd_risk->colorTotal($sd_risk->totalRR($existsRestraints),false) : $sd_risk->colorTotal($sd_risk->total(),true) }}</td>
                             <td class="restraint_proposed">
-                                @foreach($sd_risk->sd_restraints_porposed as $sd_restraint)
+                                @foreach($sd_risk->sd_restraints->where('exist', 0) as $sd_restraint)
                                     * {{$sd_restraint->name}} <br>
                                 @endforeach
                             </td>
@@ -3240,7 +3254,7 @@
                 </tr>
             @endforeach
 
-            @if (count($sd_risks_v2) == 0)
+            @if ($sd_risks_restraints_count == 0)
                 <tr class="no-data no-data--centered">
                     <td colspan="8" class="center">Aucune mesure archivée</td>
                 </tr>

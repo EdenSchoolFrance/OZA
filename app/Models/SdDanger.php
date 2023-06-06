@@ -75,19 +75,14 @@ class SdDanger extends Model
 
     public function exist_risk()
     {
-        $temp = false;
-        $works_units = $this->sd_works_units()->wherePivot('exist',1)->get();
+        $works_units = $this->sd_works_units->where('pivot.exist', 1);
 
         foreach ($works_units as $work_unit){
-
-            if (count($work_unit->sd_danger_risks($this->id)) > 0)
-                $temp = true;
+            if (count($work_unit->sd_danger_risks($this->id)) > 0){
+                return true;
+            }
         }
-
-        if ($temp === false)
-            return false;
-        else
-            return true;
+        return false;
     }
 
 }

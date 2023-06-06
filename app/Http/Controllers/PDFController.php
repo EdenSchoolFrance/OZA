@@ -11,14 +11,12 @@ use App\Models\SdRiskExplosion;
 use PDF;
 use App\Models\Item;
 use App\Models\SdRisk;
-use App\Models\SubItem;
 use App\Models\Historie;
 use App\Models\SdDanger;
 use App\Models\SdExpositionQuestion;
 use App\Models\SdWorkUnit;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
@@ -27,33 +25,43 @@ class PDFController extends Controller
     public function viewpdf($id)
     {
         $single_document = $this->checkSingleDocument($id);
+        $single_document->loadMissing(
+            'work_unit_pdf.sd_risks',
+            'dangers.danger',
+            'dangers.sd_works_units',
+            'dangers.sd_risk.sd_restraints'
+        );
 
-        $item_mat = Item::where('name', 'Matériels')->first();
-        $item_veh = Item::where('name', 'Véhicules')->first();
-        $item_eng = Item::where('name', 'Engins')->first();
+        $items = Item::with('sub_items')
+            ->whereIn('name', ['Matériels', 'Véhicules', 'Engins'])
+            ->get();
+        $item_mat = $items->where('name', 'Matériels')->first();
+        $item_veh = $items->where('name', 'Véhicules')->first();
+        $item_eng = $items->where('name', 'Engins')->first();
+
 
         $sd_risks = SdRisk::whereHas('sd_danger', function ($q) use ($single_document) {
             $q->where('single_document_id', $single_document->id);
-        })->whereHas('sd_restraints', function ($q) {
-            $q->where('exist', 0);
-        })->get()->sortByDesc(function ($sd_risk, $key) {
-            if (isset($sd_risk->sd_restraints_exist[0]))
-                return $sd_risk->totalRR($sd_risk->sd_restraints_exist);
-            else
-                return $sd_risk->total();
+        })
+        ->with(['sd_restraints', 'sd_work_unit', 'sd_danger.danger'])
+        ->get()
+        ->sortByDesc(function ($sd_risk, $key) {
+            $existSDRestraints = $sd_risk->sd_restraints->where('exist', 1);
+            return count($existSDRestraints)
+                        ? $sd_risk->totalRR($existSDRestraints)
+                        : $sd_risk->total();
         });
 
-        $sd_risks_posts = SdRisk::whereHas('sd_danger', function ($q) use ($single_document) {
-            $q->where('single_document_id', $single_document->id);
-        })->get()->sort(function ($a, $b){
-            return $b->total() - $a->total();
-        })->filter(function ($sd_risk, $key) {
-            return $sd_risk->total() > 23;
-        })->all();
+        $sd_risks_posts = $sd_risks
+            ->filter(function ($sd_risk, $key) {
+                return $sd_risk->total() > 23;
+            })
+            ->sort(function ($a, $b){
+                return $b->total() - $a->total();
+            })
+            ->all();
 
-        $works = SdWorkUnit::whereHas('single_document', function ($q) use ($single_document) {
-            $q->where('id', $single_document->id);
-        })->get();
+        
 
         $sd_dangers = SdDanger::whereHas('single_document', function ($q) use ($single_document) {
             $q->where('id', $single_document->id);
@@ -67,8 +75,9 @@ class PDFController extends Controller
 
         $sd_works = $single_document->work_unit_pdf;
 
-        foreach($single_document->dangers->sortBy('danger.name') as $sd_danger) {
-
+        $singDocumentSdDangers = $single_document->dangers->sortBy('danger.name');
+        
+        foreach($singDocumentSdDangers as $sd_danger) {
             if (count($sd_works) > 1) {
 
                 $verif = $sd_danger->exist_risk();
@@ -119,7 +128,7 @@ class PDFController extends Controller
                         $all["sd_risks"][] = $sd_risk;
                     }
                     $sd_risks_final[] = $all;
-
+    
                     foreach ($sd_works as $sd_work) {
                         if (count($sd_work->sd_danger_risks($sd_danger->id)) > 0) {
                             $item = [
@@ -138,7 +147,6 @@ class PDFController extends Controller
                     }
                 }
             }else{
-
                 foreach ($sd_works as $sd_work) {
                     $item = [
                         "info" => "notAll",
@@ -153,9 +161,10 @@ class PDFController extends Controller
                     }
                     $sd_risks_final[] = $item;
                 }
-
             }
         }
+
+        // dd($sd_risks_final);
 
         $final = array_multisort(
             array_column($sd_risks_final, 'sd_work_unit_name'),  SORT_NATURAL|SORT_FLAG_CASE,
@@ -163,33 +172,29 @@ class PDFController extends Controller
             $sd_risks_final);
 
 
-        //dd($sd_risks_final);
-
         $dangers = $single_document->dangers()->whereHas('danger.exposition')->get();
 
+        $works = SdWorkUnit::whereHas('single_document', function ($q) use ($single_document) {
+            $q->where('id', $single_document->id);
+        })->get();
 
-        $numberEmUt = 0;
-        $numberEmExpo = 0;
-        foreach ($works as $work){
-            $numberEmUt = $numberEmUt + $work->number_employee;
-
-            $expos_questions = SdExpositionQuestion::whereHas('sd_work_unit', function ($q) use ($work) {
-                $q->where('sd_work_unit_id', $work->id);
-            })->get();
-
-            foreach ($expos_questions as $expo_question){
-                $numberEmExpo = $numberEmExpo + $expo_question->number_employee;
-            }
-        }
-
-        $expos = Exposition::all()->sortBy("danger.name",SORT_NATURAL|SORT_FLAG_CASE);
+        $numberEmUt = $works->sum('number_employee');
+        $numberEmExpo = (int) SdExpositionQuestion::
+            whereHas('sd_work_unit', fn ($q) =>
+                $q->whereIn('sd_work_unit_id', $works->pluck('id'))
+            )->sum('number_employee');
+        
+        
+        $expos = Exposition::with('danger')
+            ->get()
+            ->sortBy("danger.name",SORT_NATURAL|SORT_FLAG_CASE);
 
 
-        $sd_risks_v2 = SdRisk::whereHas('sd_danger', function ($q) use ($single_document){
+        $sd_risks_restraints_count = SdRisk::whereHas('sd_danger', function ($q) use ($single_document){
             $q->where('single_document_id', $single_document->id);
         })->whereHas('sd_restraints', function ($q) {
             $q->where('exist', 1)->whereNotNull('date');
-        })->get();
+        })->count();
 
 
         //Psycho
@@ -273,7 +278,6 @@ class PDFController extends Controller
         $chart = curl_exec($ch);
         curl_close($ch);
 
-        //$chart = file_get_contents("https://quickchart.io/chart?w=500&h=300&c=" . urlencode(json_encode($chartConfig)));
         if ( !Storage::exists('private/' . $single_document->client->id ) ) {
             Storage::makeDirectory('private/' . $single_document->client->id, 0775, true );
         }
@@ -299,7 +303,7 @@ class PDFController extends Controller
             'dangers',
             'works_units',
             'sd_risks_final',
-            'sd_risks_v2',
+            'sd_risks_restraints_count',
             'psychosocial_groups',
             'questions',
             'sd_restraints_archived',
@@ -307,7 +311,7 @@ class PDFController extends Controller
             'sd_risks_explosions')
         )->setPaper('a4', 'landscape');
 
-        //return $pdf->stream();
+        return $pdf->stream();
 
         Storage::put('/private/' . $single_document->client->id . '/du/' . $histories->id . '.pdf', $pdf->download()->getOriginalContent());
 
