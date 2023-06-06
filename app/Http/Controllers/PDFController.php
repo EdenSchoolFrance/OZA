@@ -15,6 +15,7 @@ use App\Models\Historie;
 use App\Models\SdDanger;
 use App\Models\SdExpositionQuestion;
 use App\Models\SdWorkUnit;
+use App\Models\SingleDocument;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -164,8 +165,6 @@ class PDFController extends Controller
             }
         }
 
-        // dd($sd_risks_final);
-
         $final = array_multisort(
             array_column($sd_risks_final, 'sd_work_unit_name'),  SORT_NATURAL|SORT_FLAG_CASE,
             array_column($sd_risks_final, 'sd_danger_name'), SORT_NATURAL|SORT_FLAG_CASE,
@@ -222,12 +221,47 @@ class PDFController extends Controller
 
         $sd_risks_explosions = SdRiskExplosion::where('single_document_id', $single_document->id)->get();
 
-
         setlocale(LC_TIME, 'fr', 'fr_FR', 'fr_FR.ISO8859-1');
-        $histories = Historie::find(session('status'));
 
         $date = Carbon::now('Europe/Paris')->translatedFormat('d F Y');
 
+        $chartUrl = $this->generateSingleDocumentRiskChartImage($single_document);
+
+        $pdf = PDF::loadView('app.pdf.index',
+            compact(
+            'chartUrl',
+            'single_document',
+            'item_mat',
+            'item_veh',
+            'item_eng',
+            'sd_risks',
+            'sd_risks_posts',
+            'numberEmUt',
+            'numberEmExpo',
+            'expos',
+            'date',
+            'sd_dangers',
+            'works',
+            'dangers',
+            'works_units',
+            'sd_risks_final',
+            'sd_risks_restraints_count',
+            'psychosocial_groups',
+            'questions',
+            'sd_restraints_archived',
+            'sd_risks_chemicals',
+            'sd_risks_explosions')
+        )->setPaper('a4', 'landscape');
+
+        return $pdf->stream();
+
+        $histories = Historie::find(session('status'));
+        Storage::put('/private/' . $single_document->client->id . '/du/' . $histories->id . '.pdf', $pdf->download()->getOriginalContent());
+
+        return back()->with('status', 'Document unique généré avec succès, vous pouvez maintenant le télécharger !');
+    }
+
+    private function generateSingleDocumentRiskChartImage(SingleDocument $singleDocument){
         $chartConfig = [
             'type' => 'outlabeledPie',
             'data' => [
@@ -235,7 +269,7 @@ class PDFController extends Controller
                 'datasets' => [
                     [
                         'backgroundColor' => ["#43A389", "#F8912A","#FF7D8E","#B32A3C"],
-                        'data' => $single_document->graphique(),
+                        'data' => $singleDocument->graphique(),
                         'borderWidth' => 0
                     ]
                 ]
@@ -271,50 +305,20 @@ class PDFController extends Controller
         {
             die('CURL is not installed!');
         }
-
+        //TODO: Handle failed cURL
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "https://quickchart.io/chart?w=650&h=600&c=" . urlencode(json_encode($chartConfig)));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $chart = curl_exec($ch);
         curl_close($ch);
 
-        if ( !Storage::exists('private/' . $single_document->client->id ) ) {
-            Storage::makeDirectory('private/' . $single_document->client->id, 0775, true );
+        if ( !Storage::exists('private/' . $singleDocument->client->id ) ) {
+            Storage::makeDirectory('private/' . $singleDocument->client->id, 0775, true );
         }
-        $chartUrl = storage_path('app/private/' . $single_document->client->id . '/chart.png');
+        $chartUrl = storage_path('app/private/' . $singleDocument->client->id . '/chart.png');
 
         File::put($chartUrl, $chart);
 
-        $pdf = PDF::loadView('app.pdf.index',
-            compact(
-            'chartUrl',
-            'single_document',
-            'item_mat',
-            'item_veh',
-            'item_eng',
-            'sd_risks',
-            'sd_risks_posts',
-            'numberEmUt',
-            'numberEmExpo',
-            'expos',
-            'date',
-            'sd_dangers',
-            'works',
-            'dangers',
-            'works_units',
-            'sd_risks_final',
-            'sd_risks_restraints_count',
-            'psychosocial_groups',
-            'questions',
-            'sd_restraints_archived',
-            'sd_risks_chemicals',
-            'sd_risks_explosions')
-        )->setPaper('a4', 'landscape');
-
-        return $pdf->stream();
-
-        Storage::put('/private/' . $single_document->client->id . '/du/' . $histories->id . '.pdf', $pdf->download()->getOriginalContent());
-
-        return back()->with('status', 'Document unique généré avec succès, vous pouvez maintenant le télécharger !');
+        return $chartUrl;
     }
 }
