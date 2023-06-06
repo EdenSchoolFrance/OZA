@@ -170,7 +170,9 @@ class SdRisk extends Model
     public function totalRR($restraints){
         $RB = $this->total();
         $totalEnd = 0;
-        $count = 0;
+        $count = count($restraints);
+        if ($count === 0) return 0;
+
         foreach ($restraints as $restraint){
             $tech = 0;
             $orga = 0;
@@ -223,16 +225,21 @@ class SdRisk extends Model
             $total = $tech + $orga + $human;
 
             $totalEnd = $total+$totalEnd;
-
-            $count++;
         }
-        if ($count === 0) return 0;
 
         $A = $totalEnd + 1/10 * $count;
 
-        if ($A >= 18.6) $Pon = RiskCalculation::where('sum', 18.6)->first();
-        else if ($A <= 1.0) $Pon = RiskCalculation::where('sum', 1.0)->first();
-        else $Pon = RiskCalculation::where('sum', $A)->first();
+        /**
+         * This method used in loop which leads to create duplicate queries
+         * Since RiskCalculation is a seed table we may save its data in cache as a collection
+         * So we can resolve it as seen below
+         */
+        $Pons = resolve('AppCacheService')
+            ->getRiskCalculation();
+
+        if ($A >= 18.6) $Pon = $Pons->where('sum', 18.6)->first();
+        elseif ($A <= 1.0) $Pon = $Pons->where('sum', 1.0)->first();
+        else $Pon = $Pons->where('sum', $A)->first();
 
 
         $cal = $Pon->weighting * $RB;

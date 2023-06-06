@@ -9,7 +9,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row row--center">
-                        <label class="{{ $single_document->color($single_document->moyenneRB(),true) }}">{{ $single_document->moyenneRB() }}</label>
+                        <label class="{{ $colorRB }}">{{ $moyenneRB }}</label>
                     </div>
                     <div class="row row--center">
                         <p>Maxi = 50</p>
@@ -22,7 +22,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row row--center">
-                        <label class="text-color-green">{{ $single_document->discountRisk() }} %</label>
+                        <label class="text-color-green">{{ $discountRisk }} %</label>
                     </div>
                 </div>
             </form>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row row--center">
-                        <label class="{{ $single_document->color($single_document->moyenneRR(),false) }}">{{ $single_document->moyenneRR() }}</label>
+                        <label class="{{ $colorRR }}">{{ $moyenneRR }}</label>
                     </div>
                     <div class="row row--center">
                         <p>Maxi = 50</p>
@@ -189,8 +189,7 @@
 @section('script')
     <script src="/js/libs/chart.min.js"></script>
     <script>
-        let tabData =[{!! $single_document->graphique()[0] !!},{!! $single_document->graphique()[1] !!},{!! $single_document->graphique()[2] !!},{!! $single_document->graphique()[3] !!}];
-        let tab = [75,25,0,0]
+        const tabData = {{ Illuminate\Support\Js::from($single_document->graphique()) }};
     </script>
     <script src="/js/app/dashboard.js"></script>
     @if (session('error') == 'history')

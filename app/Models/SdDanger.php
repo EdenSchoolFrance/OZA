@@ -63,6 +63,29 @@ class SdDanger extends Model
         return $sd_risk_exist;
     }
 
+    //TODO: replace the logic of sd_risk_exist() by this one
+    // This works perfectly with loop but only when the relation is eager/lazy loaded
+    public function sd_risk_exist_optimized()
+    {
+        $sd_risk_exist = [];
+
+        $works_units = $this->sd_works_units->where('pivot.exist', 1);
+
+        foreach ($works_units as $work_unit){
+
+            foreach ($work_unit->sd_danger_risks($this->id) as $sd_risk){
+                $sd_risk_exist[] = $sd_risk;
+            }
+        }
+        if ($this->ut_all === 1){
+            foreach ($this->sd_risks_ut_all() as $sd_risk){
+                $sd_risk_exist[] = $sd_risk;
+            }
+        }
+
+        return $sd_risk_exist;
+    }
+
     public function sd_works_units()
     {
         return $this->belongsToMany(SdWorkUnit::class, 'sd_danger_sd_work_unit', 'sd_danger_id', 'sd_work_unit_id')->withPivot('exist', 'exposition');
