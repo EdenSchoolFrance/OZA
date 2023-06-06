@@ -2903,10 +2903,10 @@
             2° La proportion de salariés exposés aux facteurs de risques professionnels, au-delà des seuils
             réglementaires. <br>
         </p>
-        <table class="table table--risk-post">
+        <table class="table table--frp">
             <thead>
             <tr>
-                <td class="theader yellow-v" colspan="3">
+                <td class="theader yellow" colspan="3">
                     Déclaration des expositions de l’année écoulée du 1er janvier au 31 décembre.
                 </td>
             </tr>
@@ -2951,38 +2951,27 @@
             </tbody>
         </table>
 
-        <table class="table table--risk-post">
+        <table class="table table--frp">
             <thead>
             <tr>
-                <td class="theader yellow-v">
+                <td class="theader yellow">
                     Facteurs de risques professionnels
                 </td>
-                <td class="theader yellow-v">
+                <td class="theader yellow">
                     Unité exposée au-delà des seuils
                 </td>
             </tr>
             </thead>
             <tbody>
             @foreach ($expos as $expo)
-                @if ($expo->danger->name === "Travail de nuit")
-                    <tr>
-                        <td>
-                            Travail de nuit ou Travail en équipes alternantes
-                        </td>
-                        <td class="center">
-                            {{ count($expo->pivot($single_document->id)) === 0 ? "Non" : "Oui"  }}
-                        </td>
-                    </tr>
-                @else
-                    <tr>
-                        <td>
-                            {{ $expo->danger->name }}
-                        </td>
-                        <td class="center">
-                            {{ count($expo->pivot($single_document->id)) === 0 ? "Non" : "Oui"  }}
-                        </td>
-                    </tr>
-                @endif
+                <tr>
+                    <td>
+                        {{ $expo->danger->name }}
+                    </td>
+                    <td class="center">
+                        {{ count($expo->pivot($single_document->id)) === 0 ? "Non" : "Oui"  }}
+                    </td>
+                </tr>
             @endforeach
             </tbody>
         </table>
@@ -3012,7 +3001,7 @@
         <table class="table table--risk-post">
             <thead>
             <tr>
-                <td class="theader yellow-v" colspan="8">
+                <td class="theader yellow" colspan="8">
                     ANNEXE D’EVALUATION DE L’EXPOSITION AUX FACTEURS DE RISQUES PROFESSIONNELS
                 </td>
             </tr>
@@ -3044,135 +3033,47 @@
             </tr>
             </thead>
             <tbody>
-
-
-            @foreach ($single_document->dangers()->whereHas('danger.exposition')->get() as $danger)
-                @php
-                    $pivot = $danger->danger->exposition->pivot($single_document->id);
-                @endphp
-                @if (count($pivot) === 0)
-                    <tr>
-                        <td class="center">{{ $danger->danger->name }}</td>
-                        <td class="center">TOUS</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td class="center">Non concernée</td>
-                    </tr>
-                @else
-                    @foreach ($single_document->work_unit as $sd_work_unit)
-                        @if ($sd_work_unit->sd_danger($danger->id) && $sd_work_unit->sd_danger($danger->id)->pivot->exist)
-                            @if ($sd_work_unit->sd_danger($danger->id)->pivot->exposition)
-
+                @foreach ($single_document->dangers()->whereHas('danger.exposition')->get() as $danger)
+                    @php
+                        $pivot = $danger->danger->exposition->pivot($single_document->id);
+                    @endphp
+                        @if (count($pivot) > 0)
+                            @foreach($danger->sd_works_units()->whereHas('sd_expositions_questions')->get() as $sd_work_unit)
                                 @foreach ($danger->danger->exposition->exposition_groups as $key => $exposition_group)
-                                    @php
-                                        $count = $exposition_group->exposition_questions;
-                                    @endphp
-                                    @foreach ($exposition_group->exposition_questions as  $exposition_question)
+                                    @foreach ($exposition_group->exposition_questions as $key => $exposition_question)
                                         @php
-                                            $sd_exposition_question = $exposition_question->sd_work_unit_exposition_question($sd_work_unit->id);
-                                            if(isset($sd_exposition_question)){
-                                                $old_sd_exposition_question = $sd_exposition_question;
-                                            }
+                                            $sd_expo_question = $exposition_question->sd_work_unit_exposition_question($sd_work_unit->id);
+                                            $sd_expos_questions = $exposition_question->sd_work_unit_expositions_questions($sd_work_unit->id);
                                         @endphp
-
-                                        @if (isset($sd_exposition_question))
+                                        @if (count($sd_expos_questions))
                                             <tr>
-
-                                                @if ($key === 0 && $exposition_question->id === $count[0]->id)
-                                                    <td class="center"
-                                                        rowspan="{{count($count) > 0 ? count($count) : 1 }}">
-                                                        {{ $danger->danger->name }}
-                                                    </td>
-                                                    <td class="center"
-                                                        rowspan="{{count($count) > 0 ? count($count) : 1 }}">
-                                                        {{ $sd_work_unit->name }}
-                                                    </td>
-                                                    <td rowspan="{{count($count) > 0 ? count($count) : 1 }}">
-                                                        {{ $exposition_group->intervention_type_label }}
-                                                    </td>
-                                                @elseif ($key > 0 && $count[0]->sd_work_unit_exposition_question($sd_work_unit->id) === null)
-                                                    <td class="center"
-                                                        rowspan="{{1}}">
-                                                        {{ $danger->danger->name }}
-                                                    </td>
-                                                    <td class="center"
-                                                        rowspan="{{1}}">
-                                                        {{ $sd_work_unit->name }}
-                                                    </td>
-                                                    <td rowspan="{{1}}">
-                                                        {{ $exposition_group->intervention_type_label }}
-                                                    </td>
-                                                @elseif($key > 0 && count($count) === 1)
-                                                    <td class="center"
-                                                        rowspan="{{1}}">
-                                                        {{ $danger->danger->name }}
-                                                    </td>
-                                                    <td class="center"
-                                                        rowspan="{{1}}">
-                                                        {{ $sd_work_unit->name }}
-                                                    </td>
-                                                    <td rowspan="{{1}}">
-                                                        {{ $exposition_group->intervention_type_label }}
-                                                    </td>
-                                                @endif
-                                                @if (isset($sd_exposition_question))
-                                                    <td>{{ $sd_exposition_question->intervention_type }}</td>
-                                                    <td class="center">{{ $sd_exposition_question->number_employee }}</td>
-                                                    <td>
-                                                        @if ($exposition_group->type === "default")
-                                                            {{ $exposition_group->value_label." : "}} <span class="text-color-{{$exposition_group->calculation($sd_exposition_question->value)}}">{{ $sd_exposition_question->value }}</span>
-                                                        @else
-                                                            Durée en mm / j <span class="text-color-{{$exposition_group->calculation($sd_exposition_question->minutes)}}">{{$sd_exposition_question->minutes}} </span>
-                                                            <br>
-                                                            Durée en h / an <span class="text-color-{{$exposition_group->calculation($sd_exposition_question->value)}}">{{$sd_exposition_question->value}}</span>
-                                                        @endif
-                                                    </td>
-                                                    @if ($exposition_group->name === "exposition_group_team_work" && $exposition_group->name === "exposition_group_night_work")
-                                                        @php
-                                                            $result = 0;
-                                                        @endphp
-                                                        <td class="center" rowspan="{{ count($count) }}">Total h / an :
-                                                            <span
-                                                                class="text-color-{{$exposition_group->calculation($result)}}">{{ $result }}</span>
-                                                        </td>
+                                                <td class="center">{{ $danger->danger->name }}</td>
+                                                <td class="center">{{ $sd_work_unit->name }}</td>
+                                                <td>{{ $exposition_group->intervention_type_label }}</td>
+                                                <td>{{ $sd_expo_question->intervention_type }}</td>
+                                                <td class="center">{{ $sd_expo_question->number_employee }}</td>
+                                                <td>
+                                                    @if ($exposition_group->type === "default")
+                                                        {{ $exposition_group->value_label." : "}} <span class="text-color-{{$exposition_group->calculation($sd_expo_question->value)}}">{{ $sd_expo_question->value }}</span>
                                                     @else
-                                                        @if ($sd_exposition_question->exposition_question->exposition_group->type === "default")
-                                                            <td class="center"></td>
-                                                        @else
-                                                            <td class="center">Total h / an : <span class="text-color-{{$exposition_group->calculation($sd_exposition_question->value)}}">{{$sd_exposition_question->value}}</span>
-                                                            </td>
-                                                        @endif
+                                                        Durée en mm / j <span class="text-color-{{$exposition_group->calculation($sd_expo_question->minutes)}}">{{$sd_expo_question->minutes}} </span>
+                                                        <br>
+                                                        Durée en h / an <span class="text-color-{{$exposition_group->calculation($sd_expo_question->value)}}">{{$sd_expo_question->value}}</span>
                                                     @endif
-                                                    <td rowspan="{{1}}"
-                                                        class="center {{$exposition_group->calculation($sd_exposition_question->value)}}"> {{$exposition_group->translate($sd_exposition_question->value)}} </td>
+                                                </td>
+                                                @if ($exposition_group->type === "default")
+                                                    <td class="center"></td>
                                                 @else
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td class="center">Non concernée</td>
+                                                    <td class="center">Total h / an : <span class="text-color-{{$exposition_group->calculation($sd_expo_question->value)}}">{{$sd_expo_question->value}}</span></td>
                                                 @endif
-                                            </tr>
-
-                                        @elseif (!isset($sd_exposition_question) && $key === 1 && isset($old_sd_exposition_question))
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td class="center {{$exposition_group->calculation($sd_expo_question->value)}}"> {{$exposition_group->translate($sd_expo_question->value)}} </td>
                                             </tr>
                                         @endif
-
                                     @endforeach
                                 @endforeach
-                            @endif
+                            @endforeach
                         @endif
-                    @endforeach
-                @endif
-            @endforeach
+                @endforeach
             </tbody>
         </table>
         <p class="text-color-red">

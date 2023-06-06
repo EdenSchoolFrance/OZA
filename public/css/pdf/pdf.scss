@@ -696,6 +696,23 @@ table {
                 border: none !important;
             }
         }
+        &--frp{
+            margin-top: 15px;
+            margin-bottom: 15px;
+            tr td {
+                padding: 10px 20px;
+            }
+            thead{
+                tr td{
+                    font-size: 16px;
+                }
+            }
+            tbody{
+                tr td {
+                    font-size: 14px;
+                }
+            }
+        }
     }
 }
 
