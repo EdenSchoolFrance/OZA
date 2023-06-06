@@ -30,7 +30,7 @@ class DashboardController extends Controller
             'dangers.danger',
             'dangers.sd_risk',
             'dangers.sd_risk.sd_restraints',
-            'dangers.sd_works_units.sd_risks',
+            'dangers.sd_works_units.sd_risks.sd_restraints',
             'client.single_documents',
             'psychosocial_groups',
             'histories'
