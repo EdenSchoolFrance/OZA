@@ -2321,6 +2321,17 @@
                 <span class="bold">2e étape : </span> L'indice de Risque "IR" de chaque agent chimique est défini en fonction des caractéristiques de l’exposition ; ventilation, concentration, durée d’utilisation, protection individuelle utilisée. Cet IR définit le "Risque Résiduel" de chaque agent chimique.
             </p>
 
+            <table class="table table--inv-v2">
+                <tr>
+                    <td colspan="3" style="padding-bottom: 20px">La valeur de l'IR obtenue permet de définir les conditions d'utilisation suivantes : </td>
+                </tr>
+                <tr>
+                    <td><button class="btn btn-danger btn-hidden">Inacceptable</button><span> de IR 2 à IR 5</span></td>
+                    <td><button class="btn btn-warning btn-hidden">A améliorer</button><span> de IR 1 à IR 0</span></td>
+                    <td><button class="btn btn-success btn-hidden">Acceptable</button><span> de IR -1 à IR -5</span></td>
+                </tr>
+            </table>
+
         </div>
 
         <div class="footer">
