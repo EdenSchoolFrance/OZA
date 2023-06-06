@@ -381,6 +381,14 @@ class DangerSeeder extends Seeder
                 ]
             ],
             [
+                "name" => "Travail d'équipe",
+                "info" => "Travail d'équipe",
+                "packs" => [
+                    "tranquility",
+                    "serenity"
+                ]
+            ],
+            [
                 "name" => "Travail de nuit",
                 "info" => "Travail de nuit entre 21h et 6 heures, ou en équipes successives alternantes pouvant générer des troubles du sommeil, des troubles cardiovasculaires, des cancers",
                 "packs" => [
