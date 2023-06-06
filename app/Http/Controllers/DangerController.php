@@ -143,6 +143,16 @@ class DangerController extends Controller
         })->first();
         if (!$exposition) abort(404);
 
+        if ($request->checked === "false"){
+            foreach ($exposition->exposition_groups as $key => $exposition_group){
+                foreach ($exposition_group->exposition_questions as $key => $exposition_question){
+                    foreach ($exposition_question->sd_work_unit_expositions_questions($sd_work_unit->id) as $sd_expo_question){
+                        $sd_expo_question->delete();
+                    }
+                }
+            }
+        }
+
         $sd_danger->sd_works_units()->updateExistingPivot($id_sd_work_unit, [
             'exposition' => $request->checked === 'true' ? 1 : 0
         ]);
