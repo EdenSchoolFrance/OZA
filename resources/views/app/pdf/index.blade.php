@@ -272,7 +272,7 @@
             <tr>
                 <td colspan="2">
                     <span class="bold">Nombre de salarié(s) inscrit(s) sur le registre du personnel au moment de la rédaction du Document Unique : </span><br>
-                    {{ $single_document->work_unit->pluck('number_employee')->sum() }} salarié(s) <br>
+                    {{ $numberEmUt }} salarié(s) <br>
                 </td>
             </tr>
             </tbody>
@@ -444,7 +444,7 @@
                             Permet de situer le niveau de risque total de la structure, évalué sans prendre en compte
                             les mesures de prévention ; sur une échelle de zéro (risque nul) à 50 (risque maximal).
                         </p>
-                        <p class="{{ $single_document->color($single_document->moyenneRB(),true) }} number">{{ $single_document->moyenneRB() }}</p>
+                        <p class="{{ $colorRB }} number">{{ $moyenneRB }}</p>
                     </div>
                 </td>
                 <td>
@@ -454,7 +454,7 @@
                             Réduction du risque BRUT grâce aux mesures de prévention existantes : met en évidence les
                             efforts de prévention de la structure.
                         </p>
-                        <p class="text-color-green number">{{ $single_document->discountRisk() }} %</p>
+                        <p class="text-color-green number">{{ $discountRisk }} %</p>
                     </div>
                 </td>
                 <td>
@@ -465,7 +465,7 @@
                             mesures de prévention existantes ;
                             sur une échelle de zéro (risque nul) à 50 (risque maximal).
                         </p>
-                        <p class="{{ $single_document->color($single_document->moyenneRR(),false) }} number">{{ $single_document->moyenneRR() }}</p>
+                        <p class="{{ $colorRB }} number">{{ $moyenneRR }}</p>
                     </div>
                 </td>
             </tr>
@@ -2991,25 +2991,18 @@
             </thead>
             <tbody>
             @foreach ($expos as $expo)
-                @if ($expo->danger->name === "Travail de nuit")
-                    <tr>
-                        <td>
-                            Travail de nuit ou Travail en équipes alternantes
-                        </td>
-                        <td class="center">
-                            {{ count($expo->pivot($single_document->id)) === 0 ? "Non" : "Oui"  }}
-                        </td>
-                    </tr>
-                @else
-                    <tr>
-                        <td>
-                            {{ $expo->danger->name }}
-                        </td>
-                        <td class="center">
-                            {{ count($expo->pivot($single_document->id)) === 0 ? "Non" : "Oui"  }}
-                        </td>
-                    </tr>
-                @endif
+                <tr>
+                    <td>
+                        {{ ($expo->danger->name === "Travail de nuit")
+                            ? 'Travail de nuit ou Travail en équipes alternantes'
+                            : $expo->danger->name
+                        }}
+                    </td>
+                    <td class="center">
+                        {{-- Refactoring needed --}}
+                        {{ count($expo->pivot($single_document->id)) === 0 ? "Non" : "Oui"  }}
+                    </td>
+                </tr>
             @endforeach
             </tbody>
         </table>

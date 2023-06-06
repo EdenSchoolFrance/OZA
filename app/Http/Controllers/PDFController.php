@@ -27,11 +27,19 @@ class PDFController extends Controller
     {
         $single_document = $this->checkSingleDocument($id);
         $single_document->loadMissing(
-            'work_unit_pdf.sd_risks',
+            'work_unit_pdf.activities',
+            'work_unit_pdf.sd_risks.sd_restraints',
+            'work_unit_pdf.items',
             'dangers.danger',
-            'dangers.sd_works_units',
+            'dangers.sd_works_units.sd_risks.sd_restraints',
             'dangers.sd_risk.sd_restraints'
         );
+
+        $moyenneRB = $single_document->moyenneRB();
+        $colorRB = $single_document->color($moyenneRB, true);
+        $moyenneRR = $single_document->moyenneRR();
+        $colorRR = $single_document->color($moyenneRR, false);
+        $discountRisk = $single_document->discountRisk($moyenneRB, $moyenneRR);
 
         $items = Item::with('sub_items')
             ->whereIn('name', ['Matériels', 'Véhicules', 'Engins'])
@@ -250,10 +258,16 @@ class PDFController extends Controller
             'questions',
             'sd_restraints_archived',
             'sd_risks_chemicals',
-            'sd_risks_explosions')
+            'sd_risks_explosions',
+            'moyenneRB',
+            'colorRB',
+            'moyenneRR',
+            'colorRR',
+            'discountRisk'
+        )
         )->setPaper('a4', 'landscape');
 
-        return $pdf->stream();
+        //return $pdf->stream();
 
         $histories = Historie::find(session('status'));
         Storage::put('/private/' . $single_document->client->id . '/du/' . $histories->id . '.pdf', $pdf->download()->getOriginalContent());
