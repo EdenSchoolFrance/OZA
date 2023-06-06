@@ -138,7 +138,7 @@ class SingleDocument extends Model
             if($sd_danger->exist === 1){
                 foreach ($sd_danger->sd_risk_exist_optimized() as $sd_risk){
 
-                    $RR = $sd_risk->totalRR($sd_risk->sd_restraints->where('exists', 1));
+                    $RR = $sd_risk->totalRR($sd_risk->sd_restraints->where('exist', 1));
 
                     if ($RR === 0)
                     $RR = $sd_risk->total();
@@ -171,7 +171,7 @@ class SingleDocument extends Model
         foreach ($this->dangers as $sd_danger){
             if($sd_danger->exist === 1){
                 foreach ($sd_danger->sd_risk as $sd_risk){
-                    $existSDRestraint = $sd_risk->sd_restraints->where('exists', 1);
+                    $existSDRestraint = $sd_risk->sd_restraints->where('exist', 1);
                     $sdRiskTotalRR = count($existSDRestraint)
                         ? $sd_risk->totalRR($existSDRestraint)
                         : $sd_risk->total();

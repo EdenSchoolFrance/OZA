@@ -26,7 +26,7 @@ class DashboardController extends Controller
     public function index($id)
     {
         $single_document = $this->checkSingleDocument($id);
-        $single_document->loadMissing(
+        $single_document->loadMissing( 
             'dangers.danger',
             'dangers.sd_risk',
             'dangers.sd_risk.sd_restraints',
@@ -45,7 +45,7 @@ class DashboardController extends Controller
         $moyenneRB = $single_document->moyenneRB();
         $colorRB = $single_document->color($moyenneRB, true);
         $moyenneRR = $single_document->moyenneRR();
-        $colorRR = $single_document->color($moyenneRB, false);
+        $colorRR = $single_document->color($moyenneRR, false);
         $discountRisk = $single_document->discountRisk($moyenneRB, $moyenneRR);
 
         $data = compact(

@@ -63,11 +63,13 @@ class SdDanger extends Model
         return $sd_risk_exist;
     }
 
+    //TODO: replace the logic of sd_risk_exist() by this one
+    // This works perfectly with loop but only when the relation is eager/lazy loaded
     public function sd_risk_exist_optimized()
     {
         $sd_risk_exist = [];
 
-        $works_units = $this->sd_works_units->where('exist', 1);
+        $works_units = $this->sd_works_units->where('pivot.exist', 1);
 
         foreach ($works_units as $work_unit){
 
