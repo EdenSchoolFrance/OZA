@@ -427,6 +427,8 @@
     </section>
 @endforeach
 
+
+
 <section class="page">
     <div class="header">
         <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
