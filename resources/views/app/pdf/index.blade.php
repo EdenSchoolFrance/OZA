@@ -3003,12 +3003,6 @@
             <tbody>
             @foreach ($expos as $expo)
                 <tr>
-                    <td>
-                        {{ ($expo->danger->name === "Travail de nuit")
-                            ? 'Travail de nuit ou Travail en équipes alternantes'
-                            : $expo->danger->name
-                        }}
-                    </td>
                     <td class="center">
                         {{ $expo->danger->name }}
                     </td>
