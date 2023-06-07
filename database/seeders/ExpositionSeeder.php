@@ -41,6 +41,12 @@ class ExpositionSeeder extends Seeder
                 "danger" => "Travail de nuit"
             ],
             [
+                "name" => "exposition_team_work",
+                "info" => "Ne pas travailler une heure ou plus entre 24 heures et 5 heures plus de 120 nuits par an (hors nuits effectuées dans le cadre d’équipes successives alternantes). Et ne pas travailler une heure ou plus entre 24 heures et 5 heures plus de 50 nuits par an dans le cadre d’un travail en équipes successives alternantes.",
+                "alert" => "l’exposition étant critique, veuillez vous assurer que les mesures proposées lors de l’évaluation des risques de l’UT vous permettent d’agir sur ce facteur.",
+                "danger" => "Travail d'équipe"
+            ],
+            [
                 "name" => "exposition_repetitive_work",
                 "info" => "Le travail répétitif ne doit pas dépasser plus de 900 heures par an incluant : </br> - les temps pendant lesquels plus de 15 actions techniques sont réalisées sur un temps de cycle inférieur ou égal à 30 secondes </br> - ET les temps pendant lesquels plus de 30 actions techniques par minute sont réalisées sur un temps de cycle supérieur à 30 secondes ou sur un temps de cycle variable ou si absence de cycle",
                 "alert" => "l’exposition étant critique, veuillez vous assurer que les mesures proposées lors de l’évaluation des risques de l’UT vous permettent d’agir sur ce facteur.",

@@ -83,6 +83,9 @@ class ExpositionGroupSeeder extends Seeder
                     "duration" => "> 120 fois / an",
                     "type" => "default",
                 ],
+
+            ],
+            "exposition_team_work" => [
                 [
                     "name" => "exposition_group_team_work",
                     "calculation" => [
