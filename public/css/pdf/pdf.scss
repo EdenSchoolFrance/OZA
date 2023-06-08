@@ -92,12 +92,13 @@ span {
 .page {
     height: 100%;
     page-break-after: always;
+    position: relative;
 
     &>.header {
         width: 100%;
         height: 30px;
         position: absolute;
-        top: -$pageY;
+        top: 0;
 
         .center {
             margin-top: 8px;
@@ -204,7 +205,7 @@ span {
         width: 100%;
         height: 30px;
         position: absolute;
-        bottom: -$pageY;
+        top: 940px;
 
         .center {
             margin-top: 9px;
@@ -217,6 +218,8 @@ span {
             bottom: 10px;
             right: 15px;
             font-size: 12px;
+            width: 600px;
+            text-align: right;
 
             span:before {
                 content: counter(page);
@@ -224,6 +227,7 @@ span {
         }
 
         p:first-child {
+            margin-top: 9px;
             margin-left: 10px;
         }
     }
@@ -264,7 +268,7 @@ span {
             .info-single_document {
                 text-align: center;
                 position: absolute;
-                bottom: 30px;
+                top : 850px;
                 right: 0;
             }
         }
@@ -304,7 +308,7 @@ span {
 table,
 tr,
 td {
-    border: 1px solid $dark;
+    border: 1px solid $border_table;
 }
 
 table {
@@ -410,6 +414,14 @@ table {
         &--document_versions {
             tbody tr td {
                 height: 50px;
+            }
+            td, th {
+                font-size: 13px;
+                padding: 10px;
+            }
+            tr, td {
+                font-size: 13px;
+                padding: 10px;
             }
 
             .name {
@@ -554,12 +566,17 @@ table {
         }
 
         &--action {
-            table-layout: fixed;
+            //table-layout: fixed;
 
             tr,
             td {
-                font-size: 10px;
+                font-size: 13px;
                 overflow-wrap: break-word;
+                padding: 10px;
+            }
+            th{
+                font-size: 20px;
+
             }
 
             .min-width {
@@ -602,12 +619,13 @@ table {
             margin-top: 15px;
             margin-bottom: 15px;
             tr td {
-                font-size: 10px;
+                font-size: 13px;
+                padding: 10px;
             }
         }
 
         &--inv{
-            height: 500px;
+            //height: 500px;
             border: none;
             th{
                 border: none;
@@ -636,11 +654,14 @@ table {
             tr{
                 th{
                     color: $black;
+                    text-align: center;
+                    font-size: 11px;
                 }
             }
             td, th{
                 border: 1px solid black !important;
-                font-size: 10px;
+                font-size: 11px;
+                text-align: center;
             }
             .th_question{
                 width: 70%;
@@ -661,7 +682,7 @@ table {
         }
         &--chemical{
             margin: 10px 0;
-            table-layout: fixed;
+            //table-layout: fixed;
 
             th{
                 color: $black;
@@ -670,11 +691,15 @@ table {
                 text-align: center;
                 border: none;
             }
+            tr td {
+                font-size: 13px;
+                padding: 10px;
+            }
 
         }
         &--chemical-data{
             margin: 10px 0;
-            table-layout: fixed;
+            //table-layout: fixed;
             word-wrap: break-word;
             tr{
                 th{
@@ -683,11 +708,16 @@ table {
             }
             td, th{
                 border: 1px solid rgb(134,141,150);
-                font-size: 10px;
+                font-size: 13px;
+                padding: 10px;
             }
             td{
                 padding: 5px;
                 text-align: center;
+            }
+            tr, td {
+                font-size: 13px;
+                padding: 10px;
             }
             .cat_danger{
                 padding: 0;
@@ -738,7 +768,7 @@ button{
 
 .vertical-center{
     margin: 0;
-    position: absolute;
+    position: relative;
     top: 50%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);

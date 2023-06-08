@@ -71,7 +71,7 @@ class PDFController extends Controller
             })
             ->all();
 
-        
+
 
         $sd_dangers = SdDanger::whereHas('single_document', function ($q) use ($single_document) {
             $q->where('id', $single_document->id);
@@ -86,7 +86,7 @@ class PDFController extends Controller
         $sd_works = $single_document->work_unit_pdf;
 
         $singDocumentSdDangers = $single_document->dangers->sortBy('danger.name');
-        
+
         foreach($singDocumentSdDangers as $sd_danger) {
             if (count($sd_works) > 1) {
 
@@ -138,7 +138,7 @@ class PDFController extends Controller
                         $all["sd_risks"][] = $sd_risk;
                     }
                     $sd_risks_final[] = $all;
-    
+
                     foreach ($sd_works as $sd_work) {
                         if (count($sd_work->sd_danger_risks($sd_danger->id)) > 0) {
                             $item = [
@@ -191,12 +191,16 @@ class PDFController extends Controller
             whereHas('sd_work_unit', fn ($q) =>
                 $q->whereIn('sd_work_unit_id', $works->pluck('id'))
             )->sum('number_employee');
-        
-        
+
+
         $expos = Exposition::with('danger')
             ->get()
             ->sortBy("danger.name",SORT_NATURAL|SORT_FLAG_CASE);
 
+//        foreach ($expos as $expo){
+//            var_dump($expo->HisExpose($single_document));
+//        }
+//        die;
 
         $sd_risks_restraints_count = SdRisk::whereHas('sd_danger', function ($q) use ($single_document){
             $q->where('single_document_id', $single_document->id);
@@ -269,12 +273,12 @@ class PDFController extends Controller
         )
         )->setPaper('a4', 'landscape');
 
-        //return $pdf->stream();
+        return $pdf->stream();
 
-        $histories = Historie::find(session('status'));
-        Storage::put('/private/' . $single_document->client->id . '/du/' . $histories->id . '.pdf', $pdf->download()->getOriginalContent());
+        //$histories = Historie::find(session('status'));
+        //Storage::put('/private/' . $single_document->client->id . '/du/' . $histories->id . '.pdf', $pdf->download()->getOriginalContent());
 
-        return back()->with('status', 'Document unique généré avec succès, vous pouvez maintenant le télécharger !');
+        //return back()->with('status', 'Document unique généré avec succès, vous pouvez maintenant le télécharger !');
     }
 
     private function generateSingleDocumentRiskChartImage(SingleDocument $singleDocument){

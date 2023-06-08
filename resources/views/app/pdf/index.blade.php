@@ -465,28 +465,15 @@
                             mesures de prévention existantes ;
                             sur une échelle de zéro (risque nul) à 50 (risque maximal).
                         </p>
-                        <p class="{{ $colorRB }} number">{{ $moyenneRR }}</p>
+                        <p class="{{ $colorRR }} number">{{ $moyenneRR }}</p>
                     </div>
                 </td>
             </tr>
         </table>
-    </div>
-
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">TABLEAU DE BORD DE L’EVALUATION DES RISQUES </p>
-    </div>
-</section>
-<section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
-    <div class="body">
-        <h1 class="head-title" id="tabBord">1. TABLEAU DE BORD DE L'ÉVALUATION DES RISQUES</h1>
         <p class="center bold">Risque résiduel</p>
         <img src="{{ $chartUrl }}" alt="" class="chart-risk center">
     </div>
+
     <div class="footer">
         <p> Copyright © OZA DUERP Online</p>
         <p class="page-num">TABLEAU DE BORD DE L’EVALUATION DES RISQUES </p>
@@ -601,7 +588,7 @@
 
                             {{ $sd_risk->colorTotal(count($existsSDrestraints)
                                 ? $sd_risk->totalRR($existsSDrestraints)
-                                : $sd_risk->total(),false) 
+                                : $sd_risk->total(),false)
                             }}</td>
                         <td class="restraint">
                             @foreach($sd_risk->sd_restraints->where('exist', 0) as $sd_restraint)
@@ -1419,14 +1406,14 @@
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
+
+{{--    <div class="header">--}}
+{{--        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}, {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>--}}
+{{--    </div>--}}
 
     <div class="body">
         <p class="center legend info"> F = Fréquence | P = Probabilité | GP = Gravité potentiel | ID = Impact
-            différencié | RB = Risque brut{{--| T = Technique | O = Oragnisationnelle | H = Humain--}} | RR = Risque
+            différencié | RB = Risque brut | RR = Risque
             résiduel</p>
         <table class="table table--action">
             <thead>
@@ -1446,13 +1433,13 @@
                 <td class="theader min-width">
                     F
                 </td>
-                <td class="theader min-width" style="width: 6%;">
+                <td class="theader min-width">
                     P
                 </td>
                 <td class="theader min-width">
                     GP
                 </td>
-                <td class="theader" style="width: 6%;">
+                <td class="theader">
                     ID
                 </td>
                 <td class="theader min-width">
@@ -1462,15 +1449,6 @@
                     Mesures de prévention et de protection existantes : Technique, Organisationnelle, Protection,
                     Humaine (information)
                 </td>
-                {{--                <td class="theader">--}}
-                {{--                    T--}}
-                {{--                </td>--}}
-                {{--                <td class="theader">--}}
-                {{--                    O--}}
-                {{--                </td>--}}
-                {{--                <td class="theader">--}}
-                {{--                    H--}}
-                {{--                </td>--}}
                 <td class="theader">
                     RR
                 </td>
@@ -1503,9 +1481,6 @@
                                     * {{$sd_restraint->name}} <br>
                                 @endforeach
                             </td>
-                            {{--                            <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneTech(), 1), "tech") }}</td>--}}
-                            {{--                            <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneOrga(), 1), "orga") }}</td>--}}
-                            {{--                            <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneHum(), 1), "hum") }}</td>--}}
                             <td class="center min-width min-width-right"> {{ count($existsRestraints) ? $sd_risk->totalRR($existsRestraints) : $sd_risk->total() }}</td>
                             <td class="center criticity {{ count($existsRestraints) ? $sd_risk->colorPDF($sd_risk->totalRR($existsRestraints),false) :  $sd_risk->colorPDF($sd_risk->total(),true) }}">{{ count($existsRestraints) ? $sd_risk->colorTotal($sd_risk->totalRR($existsRestraints),false) : $sd_risk->colorTotal($sd_risk->total(),true) }}</td>
                             <td class="restraint_proposed">
@@ -1526,9 +1501,6 @@
                         <td class="center min-width min-width-left">NON</td>
                         <td class="center min-width min-width-left">0</td>
                         <td class="restraint"></td>
-                        {{--                        <td class="center min-width min-width-right">0</td>--}}
-                        {{--                        <td class="center min-width min-width-right">0</td>--}}
-                        {{--                        <td class="center min-width min-width-right">0</td>--}}
                         <td class="center min-width min-width-right">0</td>
                         <td class="center green criticity">0</td>
                         <td class="restraint_proposed"></td>
@@ -2016,7 +1988,7 @@
                             <table class="table table--psycho">
                                 <thead>
                                 <tr>
-                                    <th colspan="3" class="green">Niveau de risque Psychosocial moyen</th>
+                                    <th colspan="3" class="green text-color-white">Niveau de risque Psychosocial moyen</th>
                                 </tr>
                                 <tr>
                                     <th class="th_question">Facteurs de risques psychosociaux</th>
@@ -2052,7 +2024,7 @@
                             <table class="table table--psycho">
                                 <thead>
                                 <tr>
-                                    <th colspan="3" class="green">Niveau de risque Psychosocial moyen</th>
+                                    <th colspan="3" class="green text-color-white">Niveau de risque Psychosocial moyen</th>
                                 </tr>
                                 <tr>
                                     <th class="th_question">Facteurs de risques psychosociaux</th>
@@ -2128,7 +2100,7 @@
                             <table class="table table--psycho">
                                 <thead>
                                 <tr>
-                                    <th colspan="2" class="green">Risque Psychosocial individuel</th>
+                                    <th colspan="2" class="green text-color-white">Risque Psychosocial individuel</th>
                                 </tr>
                                 <tr>
                                     <th class="th_question">Facteurs de risques psychosociaux</th>
@@ -2162,7 +2134,7 @@
                             <table class="table table--psycho">
                                 <thead>
                                 <tr>
-                                    <th colspan="2" class="green">Risque Psychosocial individuel</th>
+                                    <th colspan="2" class="green text-color-white">Risque Psychosocial individuel</th>
                                 </tr>
                                 <tr>
                                     <th class="th_question">Facteurs de risques psychosociaux</th>
@@ -3008,7 +2980,7 @@
                     </td>
                     <td class="center">
                         {{-- Refactoring needed --}}
-                        {{ count($expo->pivot($single_document->id)) === 0 ? "Non" : "Oui"  }}
+                        {{ $expo->HisExpose($single_document)  }}
                     </td>
                 </tr>
             @endforeach
@@ -3174,6 +3146,7 @@
             @endif
             </tbody>
         </table>
+        <div></div>
     </div>
 
     <div class="footer">
