@@ -1901,7 +1901,7 @@
                                 @foreach($questions as $key => $question)
                                     @if($key <= 12)
                                         @php
-                                            $response = $question->response($psychosocial_group->id)
+                                            $response = $question->responseOfPsyGroupID($psychosocial_group->id)
                                         @endphp
                                         @if(isset($response))
                                             <tr>
@@ -1951,7 +1951,7 @@
                                 <tbody>
                                 @for($i = 13; $i < count($questions); $i++)
                                     @php
-                                        $response = $questions[$i]->response($psychosocial_group->id)
+                                        $response = $questions[$i]->responseOfPsyGroupID($psychosocial_group->id)
                                     @endphp
                                     @if(isset($response))
                                         <tr>
@@ -1993,7 +1993,7 @@
             $all = count($psychosocial_group->responses);
             $allCal = 0;
             foreach($questions as $key => $question){
-                $response = $question->response($psychosocial_group->id);
+                $response = $question->responseOfPsyGroupID($psychosocial_group->id);
                 if(isset($response)) $allCal = $allCal + $response->intensity();
             }
             if ($all !== 0) $allCal = $allCal / $all;
@@ -2028,7 +2028,7 @@
                                 @foreach($questions as $key => $question)
                                     @if($key <= 13)
                                         @php
-                                            $response = $question->response($psychosocial_group->id)
+                                            $response = $question->responseOfPsyGroupID($psychosocial_group->id)
                                         @endphp
                                         @if(isset($response))
                                             <tr class="space">
@@ -2063,7 +2063,7 @@
                                 <tbody>
                                 @for($i = 14; $i < count($questions); $i++)
                                     @php
-                                        $response = $questions[$i]->response($psychosocial_group->id)
+                                        $response = $questions[$i]->responseOfPsyGroupID($psychosocial_group->id)
                                     @endphp
                                     @if(isset($response))
                                         <tr class="space">
@@ -2139,7 +2139,7 @@
                                 @foreach($questions as $key => $question)
                                     @if($key <= 12)
                                         @php
-                                            $response = $question->response($psychosocial_group->id)
+                                            $response = $question->responseOfPsyGroupID($psychosocial_group->id)
                                         @endphp
                                         @if(isset($response))
                                             <tr class="space">
@@ -2179,7 +2179,7 @@
                                         </tr>
                                     @else
                                         @php
-                                            $response = $questions[$i]->response($psychosocial_group->id)
+                                            $response = $questions[$i]->responseOfPsyGroupID($psychosocial_group->id)
                                         @endphp
                                         @if(isset($response))
                                             <tr class="space">
@@ -3072,17 +3072,17 @@
             </tr>
             </thead>
             <tbody>
-                @foreach ($single_document->dangers()->whereHas('danger.exposition')->get() as $danger)
+                @foreach ($single_document->dangers->whereNotNull('danger.exposition') as $danger)
                     @php
                         $pivot = $danger->danger->exposition->pivot($single_document->id);
                     @endphp
                         @if (count($pivot) > 0)
-                            @foreach($danger->sd_works_units()->whereHas('sd_expositions_questions')->get() as $sd_work_unit)
+                            @foreach($danger->sd_works_units->whereNotNull('sd_expositions_questions') as $sd_work_unit)
                                 @foreach ($danger->danger->exposition->exposition_groups as $key => $exposition_group)
                                     @foreach ($exposition_group->exposition_questions as $key => $exposition_question)
                                         @php
                                             $sd_expo_question = $exposition_question->sd_work_unit_exposition_question($sd_work_unit->id);
-                                            $sd_expos_questions = $exposition_question->sd_work_unit_expositions_questions($sd_work_unit->id);
+                                            $sd_expos_questions = $exposition_question->sd_work_unit_expositions_questionsById($sd_work_unit->id);
                                         @endphp
                                         @if (count($sd_expos_questions))
                                             <tr>

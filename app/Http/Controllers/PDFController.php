@@ -30,7 +30,8 @@ class PDFController extends Controller
             'work_unit_pdf.activities',
             'work_unit_pdf.sd_risks.sd_restraints',
             'work_unit_pdf.items',
-            'dangers.danger',
+            'dangers.danger.exposition.exposition_groups.exposition_questions.sd_exposition_questions',
+            'dangers.sd_works_units.sd_expositions_questions',
             'dangers.sd_works_units.sd_risks.sd_restraints',
             'dangers.sd_risk.sd_restraints'
         );
@@ -211,11 +212,12 @@ class PDFController extends Controller
 
         if ($single_document->risk_psycho){
 
-            $psychosocial_groups = SdPsychosocialGroup::whereHas('single_document', function ($q) use ($single_document){
+            $psychosocial_groups = SdPsychosocialGroup::with('responses')
+            ->whereHas('single_document', function ($q) use ($single_document){
                 $q->where('id', $single_document->id);
             })->get();
 
-            $questions = PsychosocialQuestion::all();
+            $questions = PsychosocialQuestion::with('responses')->get();
         }
 
         $sd_restraints_archived = SdRestraintArchived::where('single_document_id', $id)->get();
