@@ -22,25 +22,19 @@ class ClientController extends Controller
             'sub_sidebar' => 'list',
         ];
 
-        $clients = Client::all();
-        $filter = null;
+        $clients = Client::with('expert');
 
-        if (isset($_GET['filter'])) {
-            $filter = $_GET['filter'];
-
-            if ($_GET['filter']['client'] !== "") {
-                $clients = Client::where('name','LIKE','%' . $_GET['filter']['client'] . '%')->get();
+        if ($filter = request('filter')) {
+            if (!empty($filter['client'])) {
+                $clients->filterByName($filter['client']);
             }
 
-            if ($_GET['filter']['status'] !== "") {
-                if ($_GET['filter']['status'] == "in_progress") {
-                    $clients = $clients->where('archived', 0);
-                } elseif ($_GET['filter']['status'] == "archived") {
-                    $clients = $clients->where('archived', 1);
-                }
+            if (!empty($filter['status'])) {
+                $clients->filterByStatus($filter['status']);
             }
         }
 
+        $clients = $clients->get();
         return view('admin.client.index', compact('page', 'clients', 'filter'));
     }
 
@@ -52,7 +46,7 @@ class ClientController extends Controller
             'sub_sidebar' => 'create',
         ];
 
-        $experts = User::where('oza', 1)->get();
+        $experts = User::with('role')->where('oza', 1)->get();
 
         return view('admin.client.create', compact('page', 'experts'));
     }
@@ -118,16 +112,13 @@ class ClientController extends Controller
             'sub_sidebar' => '',
         ];
 
-        $experts = User::where('oza', 1)->get();
-        $dangers = Danger::all()->sortBy('name');
+        $client->load('expert');
+        $experts = User::with('role')->where('oza', 1)->get();
+        $dangers = Danger::with('packs')->get()->sortBy('name');
         $packs = Pack::all();
         $single_documents = SingleDocument::where('client_id', $client->id)->get();
 
-        if (isset($_GET['tab']) && ($_GET['tab'] == 'info' || $_GET['tab'] == 'du')) {
-            $tab = $_GET['tab'];
-        } else {
-            $tab = 'info';
-        }
+        $tab = in_array($tab = request('tab'), ['info','du', 'add_du']) ? $tab : 'info';
 
         return view('admin.client.edit', compact('page', 'client', 'experts', 'dangers', 'single_documents', 'packs', 'tab'));
     }
@@ -175,10 +166,12 @@ class ClientController extends Controller
 
         $client = Client::find($request->id);
 
-        if ($client) {
-            $client->archived = true;
-            $client->save();
+        if (!$client) {
+            abort(404)
         }
+        
+        $client->archived = true;
+        $client->save();
 
         return back()->with('status', 'Le client a bien été archivé !');
     }
@@ -191,20 +184,22 @@ class ClientController extends Controller
 
         $client = Client::find($request->id);
 
-        if ($client) {
-            $client->archived = false;
-            $client->save();
+        if (!$client) {
+            abort(404);
         }
+        
+        $client->archived = false;
+        $client->save();
 
         return back()->with('status', 'Le client a bien été désarchivé !');
     }
 
     public function delete(Client $client)
     {
-        Storage::deleteDirectory('/public/' . $client->id);
-        Storage::deleteDirectory('/private/' . $client->id);
-
-        $client->delete();
+        if($client->delete()){
+            Storage::deleteDirectory('/public/' . $client->id);
+            Storage::deleteDirectory('/private/' . $client->id);
+        }
 
         return redirect()->route('admin.clients')->with('status', 'Le client a bien été supprimé !');
     }
