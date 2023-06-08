@@ -273,12 +273,12 @@ class PDFController extends Controller
         )
         )->setPaper('a4', 'landscape');
 
-        return $pdf->stream();
+        //return $pdf->stream();
 
-        //$histories = Historie::find(session('status'));
-        //Storage::put('/private/' . $single_document->client->id . '/du/' . $histories->id . '.pdf', $pdf->download()->getOriginalContent());
+        $histories = Historie::find(session('status'));
+        Storage::put('/private/' . $single_document->client->id . '/du/' . $histories->id . '.pdf', $pdf->download()->getOriginalContent());
 
-        //return back()->with('status', 'Document unique généré avec succès, vous pouvez maintenant le télécharger !');
+        return back()->with('status', 'Document unique généré avec succès, vous pouvez maintenant le télécharger !');
     }
 
     private function generateSingleDocumentRiskChartImage(SingleDocument $singleDocument){
