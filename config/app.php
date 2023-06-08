@@ -244,33 +244,3 @@ return [
     ],
 
 ];
-
-
-/*
- * 'pdf' => [
-        'enabled' => true,
-        // Binary config for ubuntu server
-        //'binary'  => '/usr/bin/xvfb-run -- /usr/local/bin/wkhtmltopdf',
-        // Binary config for OS X
-        'binary'  => env('WKHTML_PDF_BINARY', '/usr/local/bin/wkhtmltopdf'),
-        'timeout' => false,
-        'options' => [
-            'enable-local-file-access' => true,
-            'encoding' => "UTF-8",
-            'margin-top' => 5,
-            'margin-bottom' => 0,
-        ],
-        'env'     => [],
-    ],
-
-    'image' => [
-        'enabled' => true,
-        'binary'  => env('WKHTML_IMG_BINARY', '/usr/local/bin/wkhtmltoimage'),
-        'timeout' => false,
-        'options' => [
-            'enable-local-file-access' => true,
-            'encoding' => "UTF-8"
-        ],
-        'env'     => [],
-    ],
- * */
