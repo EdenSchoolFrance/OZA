@@ -7,11 +7,11 @@
                 <table class="table table--restraint">
                     <thead>
                         <tr>
-                            <th class="th_work_unit">Unité de travail</th>
-                            <th class="th_danger">Danger</th>
-                            <th class="th_risk">Risque</th>
-                            <th class="th_evaluation">Évaluations</th>
-                            <th class="th_restraint">RB</th>
+                            <th class="th_work_unit" style="width: 20%">Unité de travail</th>
+                            <th class="th_danger" style="width: 15%">Danger</th>
+                            <th class="th_risk" style="width: 40%">Risque</th>
+                            <th class="th_evaluation" style="width: 15%">Évaluations</th>
+                            <th class="th_restraint" style="width: 10%">RB</th>
                         </tr>
                     </thead>
                     <tbody>

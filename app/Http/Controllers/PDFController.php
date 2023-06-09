@@ -271,7 +271,7 @@ class PDFController extends Controller
             'colorRR',
             'discountRisk'
         )
-        )->setPaper('a4', 'landscape');
+        )->setOrientation('landscape')->setPaper('a4');
 
         //return $pdf->stream();
 

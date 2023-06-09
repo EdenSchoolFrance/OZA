@@ -36,7 +36,7 @@
                                     @foreach ($sd_risk->sd_restraints_porposed as $sd_restraint)
                                         <div>
                                             {{ $sd_restraint->name }}
-                                            @if (!Auth::user()->hasPermission('READER'))
+                                            @if (Auth::user()->hasPermission('ADMIN','EXPERT','MANAGER','EDITOR') )
                                                 <a data-modal=".modal--restraint" data-id="{{ $sd_restraint->id }}" data-name="{{ $sd_restraint->name }}">
                                                     <i class="far fa-edit"></i>
                                                 </a>

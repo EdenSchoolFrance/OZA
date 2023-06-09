@@ -151,8 +151,10 @@ class UserController extends Controller
             $q->where('id', $single_document->id);
         })->first();
 
-        if (!$user || ($user->hasPermission('ADMIN') && Auth::user()->hasPermission('MANAGER')) || ($user->id == Auth::user()->id)) {
-            abort(404);
+        if (!Auth::user()->hasAccess('oza')) {
+            if (!$user || (!$user->hasPermission('ADMIN') && !Auth::user()->hasPermission('MANAGER')) || ($user->id == Auth::user()->id)) {
+                abort(404);
+            }
         }
 
         $user_manager = User::whereHas('client', function ($q) use ($single_document) {
@@ -169,8 +171,11 @@ class UserController extends Controller
             array_push($roles_array, 'MANAGER');
         }
 
-        $roles = Role::whereNotIn('permission', $roles_array)->get();
-
+        if (!Auth::user()->hasAccess('oza')) {
+            $roles = Role::whereNotIn('permission', $roles_array)->get();
+        }else{
+            $roles = Role::all();
+        }
         $page = [
             'title' => 'Modification de l\'utilisateur : ' . $user->lastname . ' ' . $user->firstname,
             'url_back' => route('user.client.index', [$id]),
@@ -189,9 +194,10 @@ class UserController extends Controller
         $user = User::where('id', $user_id)->whereHas('single_documents', function ($q) use ($single_document) {
             $q->where('id', $single_document->id);
         })->first();
-
-        if (!$user || ($user->hasPermission('ADMIN') && Auth::user()->hasPermission('MANAGER')) || ($user->id == Auth::user()->id)) {
-            abort(404);
+        if (!Auth::user()->hasAccess('oza')) {
+            if (!$user || (!$user->hasPermission('ADMIN') && !Auth::user()->hasPermission('MANAGER')) || ($user->id == Auth::user()->id)) {
+                abort(404);
+            }
         }
 
         $request->validate([
