@@ -174,7 +174,7 @@ class UserController extends Controller
         if (!Auth::user()->hasAccess('oza')) {
             $roles = Role::whereNotIn('permission', $roles_array)->get();
         }else{
-            $roles = Role::all();
+            $roles = Role::whereNotIn('permission', ['EXPERT'])->get();
         }
         $page = [
             'title' => 'Modification de l\'utilisateur : ' . $user->lastname . ' ' . $user->firstname,
@@ -217,12 +217,10 @@ class UserController extends Controller
                 $q->where('permission', 'MANAGER');
             })->first();
 
-        if (Auth::user()->hasPermission('MANAGER')) {
-            array_push($roles_array, 'ADMIN');
-        }
-
-        if ($user_manager && $user != $user_manager) {
-            array_push($roles_array, 'MANAGER');
+        if (!Auth::user()->hasAccess('oza')) {
+            $roles = Role::whereNotIn('permission', $roles_array)->get();
+        }else{
+            $roles = Role::whereNotIn('permission', ['EXPERT'])->get();
         }
 
         $role = Role::where('id', $request->role)->whereNotIn('permission', $roles_array)->first();
