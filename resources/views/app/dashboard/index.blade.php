@@ -85,7 +85,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach($single_document->histories()->orderBy('date', 'DESC')->get() as $historie)
+                            @foreach($single_document->histories->sortByDesc('date') as $historie)
                                 <tr>
                                     <td class="td_resp">{{ $single_document->firstname }} {{ $single_document->lastname }}</td>
                                     <td class="td_work">{{ $historie->work }}</td>
