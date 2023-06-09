@@ -76,7 +76,7 @@ class ClientController extends Controller
         $client = new Client();
         $client->id = uniqid();
         $client->name = $request->name_enterprise;
-        $client->image = $name.'.'.$file->extension();
+        $client->image = $name . '.' . $file->extension();
         $client->client_number = $request->client_number;
         $client->adress = $request->adress;
         $client->city_zipcode = $request->city_zipcode;
@@ -99,7 +99,7 @@ class ClientController extends Controller
         Storage::makeDirectory('/public/' . $client->id);
         Storage::makeDirectory('/private/' . $client->id . '/du');
 
-        Storage::putFileAs('/public/' . $client->id, $file, $name.'.' . $file->extension());
+        Storage::putFileAs('/public/' . $client->id, $file, $name . '.' . $file->extension());
 
         return redirect()->route('admin.client.edit', [$client->id, 'tab' => 'du'])->with('status', 'Le client a bien été créé !');
     }
@@ -118,7 +118,7 @@ class ClientController extends Controller
         $packs = Pack::all();
         $single_documents = SingleDocument::where('client_id', $client->id)->get();
 
-        $tab = in_array($tab = request('tab'), ['info','du', 'add_du']) ? $tab : 'info';
+        $tab = in_array($tab = request('tab'), ['info', 'du', 'add_du']) ? $tab : 'info';
 
         return view('admin.client.edit', compact('page', 'client', 'experts', 'dangers', 'single_documents', 'packs', 'tab'));
     }
@@ -139,15 +139,15 @@ class ClientController extends Controller
         $file = $request->file('logo');
         $name = uniqid();
         if ($file) {
-            if ( !Storage::exists('/public/' . $client->id ) ) {
-                Storage::makeDirectory('/public/' . $client->id, 0775, true );
+            if (!Storage::exists('/public/' . $client->id)) {
+                Storage::makeDirectory('/public/' . $client->id, 0775, true);
             }
-            Storage::delete('/public/' . $client->id ."/". $client->image);
-            Storage::putFileAs('/public/' . $client->id, $file, $name.'.' . $file->extension());
+            Storage::delete('/public/' . $client->id . "/" . $client->image);
+            Storage::putFileAs('/public/' . $client->id, $file, $name . '.' . $file->extension());
         }
 
         $client->name = $request->name_enterprise;
-        if ($file) $client->image = $name.'.'.$file->extension();
+        if ($file) $client->image = $name . '.' . $file->extension();
         $client->client_number = $request->client_number;
         $client->adress = $request->adress;
         $client->city_zipcode = $request->city_zipcode;
@@ -167,9 +167,9 @@ class ClientController extends Controller
         $client = Client::find($request->id);
 
         if (!$client) {
-            abort(404)
+            abort(404);
         }
-        
+
         $client->archived = true;
         $client->save();
 
@@ -187,7 +187,7 @@ class ClientController extends Controller
         if (!$client) {
             abort(404);
         }
-        
+
         $client->archived = false;
         $client->save();
 
@@ -196,7 +196,7 @@ class ClientController extends Controller
 
     public function delete(Client $client)
     {
-        if($client->delete()){
+        if ($client->delete()) {
             Storage::deleteDirectory('/public/' . $client->id);
             Storage::deleteDirectory('/private/' . $client->id);
         }
