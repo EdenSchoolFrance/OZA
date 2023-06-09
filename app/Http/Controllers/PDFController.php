@@ -197,11 +197,6 @@ class PDFController extends Controller
             ->get()
             ->sortBy("danger.name",SORT_NATURAL|SORT_FLAG_CASE);
 
-//        foreach ($expos as $expo){
-//            var_dump($expo->HisExpose($single_document));
-//        }
-//        die;
-
         $sd_risks_restraints_count = SdRisk::whereHas('sd_danger', function ($q) use ($single_document){
             $q->where('single_document_id', $single_document->id);
         })->whereHas('sd_restraints', function ($q) {
@@ -216,12 +211,12 @@ class PDFController extends Controller
 
         if ($single_document->risk_psycho){
 
-            $psychosocial_groups = SdPsychosocialGroup::with('responses')
+            $psychosocial_groups = SdPsychosocialGroup::with(['responses.question', 'responses.group'])
             ->whereHas('single_document', function ($q) use ($single_document){
                 $q->where('id', $single_document->id);
             })->get();
 
-            $questions = PsychosocialQuestion::with('responses')->get();
+            $questions = PsychosocialQuestion::with(['responses.question', 'responses.group'])->get();
         }
 
         $sd_restraints_archived = SdRestraintArchived::where('single_document_id', $id)->get();
@@ -270,10 +265,16 @@ class PDFController extends Controller
             'moyenneRR',
             'colorRR',
             'discountRisk'
-        )
-        )->setOrientation('landscape')->setPaper('a4');
+        ))
+        ->setOption('header-center', "$single_document->name_enterprise - $single_document->adress, $single_document->city_zipcode $single_document->city")
+        ->setOption('header-font-size', 7)
+        ->setOption('footer-left', 'Copyright © OZA DUERP Online')
+        ->setOption('footer-right', '[section]')
+        ->setOption('footer-font-size', 7)
+        ->setOrientation('landscape')
+        ->setPaper('a4');
 
-        //return $pdf->stream();
+        // return $pdf->inline();
 
         $histories = Historie::find(session('status'));
         Storage::put('/private/' . $single_document->client->id . '/du/' . $histories->id . '.pdf', $pdf->download()->getOriginalContent());

@@ -36,18 +36,9 @@
             <p>Version : <span class="bold">{{ count($single_document->histories) }}</span></p>
         </div>
     </div>
-
-    <div class="footer">
-        <p class="center"> Copyright © OZA DUERP Online</p>
-        <p class="page-num"></p>
-    </div>
 </section>
 
 <section class="page page--second">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
 
     <div class="body">
         <div class="header">
@@ -97,17 +88,9 @@
         </ul>
     </div>
 
-    <div class="footer">
-        <p class="center"> Copyright © OZA DUERP Online</p>
-        <p class="page-num"></p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
 
     <div class="body">
         <h1 class="head-title">SOMMAIRE</h1>
@@ -177,18 +160,9 @@
             </li>
         </ul>
     </div>
-
-    <div class="footer">
-        <p class="center"> Copyright © OZA DUERP Online</p>
-        <p class="page-num"></p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
 
     <div class="body">
         <h1 class="head-title" id="actu">ACTUALISATION DU DOCUMENT UNIQUE</h1>
@@ -223,17 +197,9 @@
         </table>
     </div>
 
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">ACTUALISATION DU DOCUMENT UNIQUE</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
 
     <div class="body">
         <h1 class="head-title" id="structure">PRÉSENTATION DE LA STRUCTURE</h1>
@@ -281,17 +247,9 @@
             document, l’a été uniquement dans le but d’alléger sa rédaction et sa lecture.</p>
     </div>
 
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">PRÉSENTATION DÉTAILLÉE DE LA STRUCTURE ET DES UNITÉS DE TAVAIL</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
 
     <div class="body">
         <table class="table table--activity">
@@ -323,12 +281,6 @@
             unités de travail, l’exposition globale de la personne considérée doit être appréciée en fonction du
             temps travaillé dans chaque unité de travail en moyenne sur l’année.
         </p>
-    </div>
-
-    <div class="footer">
-
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">PRÉSENTATION DÉTAILLÉE DE LA STRUCTURE ET DES UNITÉS DE TAVAIL</p>
     </div>
 </section>
 
@@ -420,18 +372,10 @@
             </table>
         </div>
 
-        <div class="footer">
-            <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">PRÉSENTATION DÉTAILLÉE DE LA STRUCTURE ET DES UNITÉS DE TAVAIL</p>
-        </div>
     </section>
 @endforeach
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
 
     <div class="body" style="min-height: 500px;">
         <h1 class="head-title" id="tabBord">1. TABLEAU DE BORD DE L'ÉVALUATION DES RISQUES</h1>
@@ -474,17 +418,9 @@
         <img src="{{ $chartUrl }}" alt="" class="chart-risk center">
     </div>
 
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">TABLEAU DE BORD DE L’EVALUATION DES RISQUES </p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
 
     <div class="body body--notif">
         <h1 class="head-title" id="proAnnuel">2. PROGRAMME ANNUEL DE PREVENTION ET D'AMELIORATION DES CONDITIONS DE
@@ -522,17 +458,9 @@
         </p>
     </div>
 
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">PROGRAMME ANNUEL DE PREVENTION ET D'AMELIORATION DES CONDITIONS DE TRAVAIL</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
 
     <div class="body">
         <table class="table table--action">
@@ -604,17 +532,9 @@
         </table>
     </div>
 
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">PROGRAMME ANNUEL DE PREVENTION ET D'AMELIORATION DES CONDITIONS DE TRAVAIL</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
 
     <div class="body body--notif">
         <h1 class="head-title" id="rules">3. RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</h1>
@@ -657,17 +577,9 @@
         </p>
     </div>
 
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
 
     <div class="body body--notif">
         <p>
@@ -722,17 +634,9 @@
         </p>
     </div>
 
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
     <div class="body body--notif">
         <p>
                 <span class="bold">
@@ -787,17 +691,9 @@
             DE RISQUES PROFESSIONNELS. <br>
         </p>
     </div>
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
     <div class="body body--notif">
         <p>
             <span
@@ -861,17 +757,9 @@
         </p>
 
     </div>
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
     <div class="body body--notif">
         <p>
             <span class="bold">3.2. Quelles méthodes et quels outils ?</span>
@@ -935,17 +823,9 @@
             les postes occupés. <br>
         </p>
     </div>
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
     <div class="body body--notif">
         <h1 class="head-title" id="evalRisk">4. NOTICE EXPLICATIVE DE L'EVALUATION DES RISQUES</h1>
         <p>
@@ -999,17 +879,9 @@
             le seul paramètre qui influence la survenue d'un accident ou d'une atteinte à la santé.
         </p>
     </div>
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">NOTICE EXPLICATIVE DE L'EVALUATION DES RISQUES</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
     <div class="body body--notif">
         <p>
             <span class="bold">Par exemple,</span> une personne emprunte plusieurs fois par jour un escalier en se
@@ -1076,17 +948,9 @@
             €uros en cas de non présentation art.<br>
         </p>
     </div>
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">NOTICE EXPLICATIVE DE L'EVALUATION DES RISQUES</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
     <div class="body body--notif">
         <p>
             <span class="bold">Mesures de prévention et de protection existantes</span> <br>
@@ -1130,17 +994,9 @@
             sûre.
         </p>
     </div>
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">NOTICE EXPLICATIVE DE L'EVALUATION DES RISQUES</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
     <div class="body body--rules">
         <h1 class="head-title" id="evalRiskPro">5. EVALUATION DES RISQUES PROFESSIONNELS PAR UNITÉ DE TRAVAIL</h1>
         <p class="bold">
@@ -1200,17 +1056,9 @@
             accident du travail.
         </p>
     </div>
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">EVALUATION DES RISQUES PROFESSIONNELS PAR UNITÉ DE TRAVAIL</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
     <div class="body body--rules">
         <p class="bold">
             9. Bruit pouvant provoquer atteinte auditive, surdité, stress, fatigue FACTEUR DE RISQUE PROFESSIONNEL.
@@ -1277,17 +1125,9 @@
             d’ensevelissement
         </p>
     </div>
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">EVALUATION DES RISQUES PROFESSIONNELS PAR UNITÉ DE TRAVAIL</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
     <div class="body body--rules">
         <p class="bold">
             26. Machines ; outils électroportatifs, thermiques et pneumatiques ; outils à main et équipements de travail
@@ -1359,17 +1199,9 @@
             dorso-lombalgies, et atteintes traumatiques plus ou moins sévères.
         </p>
     </div>
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">EVALUATION DES RISQUES PROFESSIONNELS PAR UNITÉ DE TRAVAIL</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
     <div class="body body--rules">
         <p class="bold">
             43 Télétravail réalisé au domicile pouvant engendrer des risques physiques (musculosquelettiques, visuels,
@@ -1398,10 +1230,6 @@
             49 Vibrations transmises aux mains et aux bras pouvant générer des pathologies des articulations du poignet
             ou du coude, un syndrome de Raynaud ou des troubles neurologiques.
         </p>
-    </div>
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">EVALUATION DES RISQUES PROFESSIONNELS PAR UNITÉ DE TRAVAIL</p>
     </div>
 </section>
 
@@ -1511,18 +1339,9 @@
         </table>
         <p></p>
     </div>
-
-    <div class="footer">
-        <p>Copyright © OZA DUERP Online</p>
-        <p class="page-num">EVALUATION DES RISQUES PROFESSIONNELS</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
 
     <div class="body body--notif">
         <h1 class="head-title" id="listPost">6. LISTE DES POSTES DE TRAVAIL "A RISQUE PARTICULIER" (CODE DU TRAVAIL ART.
@@ -1582,10 +1401,6 @@
         <p></p>
     </div>
 
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">LISTE DES POSTES DE TRAVAIL</p>
-    </div>
 </section>
 
 @if($single_document->risk_psycho)
@@ -1652,10 +1467,6 @@
             </p>
         </div>
 
-        <div class="footer">
-            <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">LES RISQUES PSYCHOSOCIAUX</p>
-        </div>
     </section>
 
     <section class="page">
@@ -1725,10 +1536,6 @@
             </p>
         </div>
 
-        <div class="footer">
-            <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">LES RISQUES PSYCHOSOCIAUX</p>
-        </div>
     </section>
 
 
@@ -1776,10 +1583,6 @@
             </p>
         </div>
 
-        <div class="footer">
-            <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">LES RISQUES PSYCHOSOCIAUX</p>
-        </div>
     </section>
 
 
@@ -1823,10 +1626,6 @@
             </p>
         </div>
 
-        <div class="footer">
-            <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">LES RISQUES PSYCHOSOCIAUX</p>
-        </div>
     </section>
 
     @foreach($psychosocial_groups as $psychosocial_group)
@@ -1952,10 +1751,7 @@
             </div>
 
 
-            <div class="footer">
-                <p> Copyright © OZA DUERP Online</p>
-                <p class="page-num">LES RISQUES PSYCHOSOCIAUX</p>
-            </div>
+            
         </section>
     @endforeach
 
@@ -2070,10 +1866,7 @@
             </div>
 
 
-            <div class="footer">
-                <p> Copyright © OZA DUERP Online</p>
-                <p class="page-num">LES RISQUES PSYCHOSOCIAUX</p>
-            </div>
+            
         </section>
     @endforeach
 
@@ -2176,10 +1969,7 @@
             </div>
 
 
-            <div class="footer">
-                <p> Copyright © OZA DUERP Online</p>
-                <p class="page-num">LES RISQUES PSYCHOSOCIAUX</p>
-            </div>
+            
         </section>
     @endforeach
 
@@ -2280,10 +2070,6 @@
             <p></p>
         </div>
 
-        <div class="footer">
-            <p>Copyright © OZA DUERP Online</p>
-            <p class="page-num">EVALUATION DES RISQUES PROFESSIONNELS</p>
-        </div>
     </section>
 
 @endif
@@ -2320,10 +2106,6 @@
 
         </div>
 
-        <div class="footer">
-            <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">ÉVALUATION DU RISQUE CHIMIQUE</p>
-        </div>
     </section>
 
 
@@ -2410,10 +2192,6 @@
         </div>
 
 
-        <div class="footer">
-            <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">ÉVALUATION DU RISQUE CHIMIQUE</p>
-        </div>
     </section>
 
 
@@ -2479,10 +2257,6 @@
         </div>
 
 
-        <div class="footer">
-            <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">ÉVALUATION DU RISQUE CHIMIQUE</p>
-        </div>
     </section>
 
 @endif
@@ -2534,10 +2308,6 @@
 
         </div>
 
-        <div class="footer">
-            <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">LES RISQUES D'EXPLOSIONS</p>
-        </div>
     </section>
 
 
@@ -2593,10 +2363,6 @@
 
         </div>
 
-        <div class="footer">
-            <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">LES RISQUES D'EXPLOSIONS</p>
-        </div>
     </section>
 
 
@@ -2699,10 +2465,6 @@
 
         </div>
 
-        <div class="footer">
-            <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">LES RISQUES D'EXPLOSIONS</p>
-        </div>
     </section>
 
 
@@ -2747,10 +2509,6 @@
 
         </div>
 
-        <div class="footer">
-            <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">LES RISQUES D'EXPLOSIONS</p>
-        </div>
     </section>
 
     <section class="page">
@@ -2825,10 +2583,6 @@
         </div>
 
 
-        <div class="footer">
-            <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">LES RISQUES D'EXPLOSIONS</p>
-        </div>
     </section>
 
 
@@ -2889,19 +2643,11 @@
         </div>
 
 
-        <div class="footer">
-            <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">LES RISQUES D'EXPLOSIONS</p>
-        </div>
     </section>
 
 @endif
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
 
     <div class="body body--notif">
         <h1 class="head-title" id="expoRiskPro">10. EVALUATION DE L'EXPOSITION AUX "FACTEURS DE RISQUES
@@ -2989,17 +2735,9 @@
         <p></p>
     </div>
 
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">EVALUATION DE L'EXPOSITION</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
 
     <div class="body body--notif">
         <h1 class="head-title" id="expoRiskPro">10. EVALUATION DE L'EXPOSITION AUX "FACTEURS DE RISQUES
@@ -3093,17 +2831,9 @@
         </p>
     </div>
 
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">EVALUATION DE L'EXPOSITION</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
 
     <div class="body body--notif">
         <h1 class="head-title" id="historie">11. HISTORIQUE DES MISES A JOUR ET DES ACTIONS REALISEES</h1>
@@ -3149,10 +2879,6 @@
         <div></div>
     </div>
 
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">EVALUATION DE L'EXPOSITION</p>
-    </div>
 </section>
 
 

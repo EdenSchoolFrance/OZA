@@ -44,7 +44,7 @@ return [
             'enable-local-file-access' => true,
             'encoding' => "UTF-8",
             'margin-top' => 5,
-            'margin-bottom' => 0,
+            'margin-bottom' => 4,
         ],
         'env'     => [],
     ],
