@@ -5,7 +5,7 @@
         <div class="card">
             <div class="card-body">
                 <form class="row row--filter" method="GET">
-                    <input type="text" class="form-control" name="filter[du]" id="input_filter_client" value="{{ isset($filter) ? $filter['du'] : '' }}" placeholder="Recherche par nom de DU">
+                    <input type="search" class="form-control" name="filter[du]" id="input_filter_client" value="{{ isset($filter) ? $filter['du'] : '' }}" placeholder="Recherche par nom de DU">
                     <select id="input_filter_status" class="form-control" name="filter[status]">
                         <option value="">Statut</option>
                         <option value="in_progress" {{ isset($filter) && ($filter['status'] == 'in_progress') ? 'selected' : '' }}>En cours</option>
