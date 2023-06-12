@@ -25,26 +25,20 @@ class SingleDocumentController extends Controller
             'sub_sidebar' => 'single_document',
         ];
 
-        $single_documents = SingleDocument::all();
-        $filter = null;
+        $single_documents = SingleDocument::with('client');
         $clients = Client::all();
 
-        if (isset($_GET['filter'])) {
-            $filter = $_GET['filter'];
-
-            if ($_GET['filter']['du'] !== "") {
-                $single_documents = SingleDocument::where('name', 'LIKE', '%' . $_GET['filter']['du'] . '%')->get();
+        if ($filter = request('filter')) {
+            if (!empty($filter['du'])) {
+                $single_documents->filterByName($filter['du']);
             }
 
-            if ($_GET['filter']['status'] !== "") {
-                if ($_GET['filter']['status'] == "in_progress") {
-                    $single_documents = $single_documents->where('archived', 0);
-                } elseif ($_GET['filter']['status'] == "archived") {
-                    $single_documents = $single_documents->where('archived', 1);
-                }
+            if (!empty($filter['status'])) {
+                $single_documents->filterByStatus($filter['status']);
             }
         }
 
+        $single_documents = $single_documents->get();
         return view('admin.single_document.index', compact('page', 'single_documents', 'filter', 'clients'));
     }
 
