@@ -76,7 +76,7 @@ class DangerController extends Controller
 
         }
 
-        return back()->with('status', 'Le danger a bien été enregisté !');
+        return back()->with('status', 'Le danger a bien été enregistré !');
     }
 
     public function update(Request $request, $id_danger) {
@@ -107,7 +107,7 @@ class DangerController extends Controller
 
         }
 
-        return back()->with('status', 'Le danger a bien été enregisté !');
+        return back()->with('status', 'Le danger a bien été enregistré !');
     }
 
     public function delete(Request $request)
