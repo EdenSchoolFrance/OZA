@@ -95,18 +95,18 @@
             </li>
             @if($single_document->risk_chemical)
                 <li class="sidebar-nav-item {{ $page['sidebar'] == "risk_chemical" ? 'active' : '' }}">
-                    <a href="{{ route('risk.chemical.index',[$single_document->id]) }}" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Risque chimique</span></a>
+                    <a href="{{ route('risk.chemical.index',[$single_document->id]) }}" class="sidebar-nav-link"><i class="fas fa-exclamation-triangle"></i><span>Risque chimique</span></a>
                 </li>
             @endif
             @if($single_document->risk_explosion)
                 <li class="sidebar-nav-item {{ $page['sidebar'] == "risk_explosion" ? 'active' : '' }}">
-                    <a href="{{ route('risk.explosion.index',[$single_document->id]) }}" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Risque d'explosion</span></a>
+                    <a href="{{ route('risk.explosion.index',[$single_document->id]) }}" class="sidebar-nav-link"><i class="fas fa-exclamation-triangle"></i><span>Risque d'explosion</span></a>
                 </li>
             @endif
 
             @if ($single_document->risk_psycho)
                 <li class="sidebar-nav-item {{ $page['sidebar'] == "risk_psycho" ? 'active' : '' }}">
-                    <a href="#" class="sidebar-nav-link"><i class="fas fa-info-circle"></i><span>Risques psychosociaux</span></a>
+                    <a href="#" class="sidebar-nav-link"><i class="fas fa-exclamation-triangle"></i><span>Risques psychosociaux</span></a>
                     <ul class="sub-group-menu" style="{{ $page['sidebar'] == "risk_psycho" ? 'display: block' : '' }}">
                         @foreach ($single_document->psychosocial_groups as $psychosocial_group)
                             @if(Auth::user()->hasAccess('oza') || $psychosocial_group->validated || $psychosocial_group->restraint)

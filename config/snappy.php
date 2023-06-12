@@ -36,9 +36,9 @@ return [
     'pdf' => [
         'enabled' => true,
         // Binary config for ubuntu server
-        'binary'  => '/usr/bin/xvfb-run -- /usr/local/bin/wkhtmltopdf',
+//        'binary'  => '/usr/bin/xvfb-run -- /usr/local/bin/wkhtmltopdf',
         // Binary config for OS X
-//        'binary'  => env('WKHTML_PDF_BINARY', '/usr/local/bin/wkhtmltopdf'),
+        'binary'  => env('WKHTML_PDF_BINARY', '/usr/local/bin/wkhtmltopdf'),
         'timeout' => false,
         'options' => [
             'enable-local-file-access' => true,

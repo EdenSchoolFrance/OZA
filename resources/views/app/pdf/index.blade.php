@@ -274,7 +274,7 @@
             </tbody>
         </table>
         <p></p>
-        <p class="info text-color-red" style="position: absolute; bottom: 10px">
+        <p class="info text-color-red" style="position: absolute; top: 800px">
             <span class="bold">Rappel :</span> Pour chaque unité de travail, l’évaluation des risques porte sur
             les activités principales.<br>
             Lorsqu’une personne affectée à une unité de travail met en œuvre de la polyvalence sur d’autres
@@ -414,7 +414,7 @@
                 </td>
             </tr>
         </table>
-        <p class="center bold">Risque résiduel</p>
+        <p class="center bold" style="margin: 0; padding: 0;">Risque résiduel</p>
         <img src="{{ $chartUrl }}" alt="" class="chart-risk center">
     </div>
 
@@ -1405,10 +1405,6 @@
 
 @if($single_document->risk_psycho)
     <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-                , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-        </div>
 
         <div class="body body--rules">
             <h1 class="head-title" id="evalRiskPsycho">7. LES RISQUES PSYCHOSOCIAUX</h1>
@@ -1470,10 +1466,6 @@
     </section>
 
     <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-                , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-        </div>
 
         <div class="body body--rules">
             <h1 class="head-title">7. LES RISQUES PSYCHOSOCIAUX</h1>
@@ -1540,10 +1532,6 @@
 
 
     <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-                , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-        </div>
 
         <div class="body body--rules">
             <h1 class="head-title">7. LES RISQUES PSYCHOSOCIAUX</h1>
@@ -1587,10 +1575,6 @@
 
 
     <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-                , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-        </div>
 
         <div class="body body--rules">
             <h1 class="head-title">7. LES RISQUES PSYCHOSOCIAUX</h1>
@@ -1633,10 +1617,6 @@
             $all = count($psychosocial_group->responses);
         @endphp
         <section class="page">
-            <div class="header">
-                <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-                    , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-            </div>
 
             <div class="body body--notif">
                 <h1 class="head-title">QUESTIONNAIRES D'ÉVALUATION DES RISQUES PSYCHOSOCIAUX</h1>
@@ -1751,7 +1731,7 @@
             </div>
 
 
-            
+
         </section>
     @endforeach
 
@@ -1767,10 +1747,6 @@
             if ($all !== 0) $allCal = $allCal / $all;
         @endphp
         <section class="page">
-            <div class="header">
-                <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-                    , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-            </div>
 
             <div class="body body--notif">
                 <h1 class="head-title">NIVEAU DE RISQUE PSYCHOSOCIAL MOYEN</h1>
@@ -1866,7 +1842,7 @@
             </div>
 
 
-            
+
         </section>
     @endforeach
 
@@ -1876,10 +1852,6 @@
             $all = count($psychosocial_group->responses);
         @endphp
         <section class="page">
-            <div class="header">
-                <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-                    , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-            </div>
 
             <div class="body body--notif">
                 <h1 class="head-title">RISQUE PSYCHOSOCIAL INDIVIDUEL</h1>
@@ -1969,15 +1941,11 @@
             </div>
 
 
-            
+
         </section>
     @endforeach
 
     <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-                , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-        </div>
 
         <div class="body">
             <h1 class="head-title" id="listPost">PLAN D'ACTION DE RÉDUCTION DES RISQUES PSYCHOSOCIAUX</h1>
@@ -2077,10 +2045,6 @@
 @if($single_document->risk_chemical)
 
     <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-                , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-        </div>
 
         <div class="body body--rules">
             <h1 class="head-title" id="evalRiskChemical">8. ÉVALUATION DU RISQUE CHIMIQUE</h1>
@@ -2110,10 +2074,6 @@
 
 
     <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-                , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-        </div>
 
         <div class="body body--notif">
             <h1 class="head-title">8. ÉVALUATION DU RISQUE CHIMIQUE</h1>
@@ -2196,10 +2156,6 @@
 
 
     <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-                , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-        </div>
 
         <div class="body body--notif">
             <h1 class="head-title">8. ÉVALUATION DU RISQUE CHIMIQUE</h1>
@@ -2265,10 +2221,6 @@
 
 
     <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-                , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-        </div>
 
         <div class="body body--rules">
             <h1 class="head-title" id="evalRiskExplosion">9. DRPCE</h1>
@@ -2312,9 +2264,6 @@
 
 
     <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-        </div>
 
         <div class="body body--rules">
 
@@ -2367,9 +2316,6 @@
 
 
     <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-        </div>
 
         <div class="body body--rules">
 
@@ -2469,9 +2415,6 @@
 
 
     <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-        </div>
 
         <div class="body body--rules">
 
@@ -2512,9 +2455,6 @@
     </section>
 
     <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-        </div>
 
         <div class="body body--notif">
             <h1 class="head-title" >9. DRPCE</h1>
@@ -2587,10 +2527,6 @@
 
 
     <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-                , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-        </div>
 
         <div class="body body--notif">
             <h1 class="head-title">9. DRPCE</h1>

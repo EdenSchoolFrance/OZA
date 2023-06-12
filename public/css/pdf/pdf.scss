@@ -34,11 +34,12 @@ h4 {
 }
 
 p {
-    //font-size: 16px !important;
+    font-size: 16px !important;
     margin: 0;
 }
 
 li {
+    font-size: 16px !important;
     list-style: none;
 }
 
@@ -48,10 +49,12 @@ ul {
 }
 
 a {
+    font-size: 16px !important;
     text-decoration: none;
 }
 
 span {
+    font-size: 16px !important;
     font-family: Arial, sans-serif !important;
 }
 
@@ -136,13 +139,13 @@ span {
 
             li {
                 height: 20px;
-                margin-top: 5px;
+                margin-top: 10px;
 
                 p {
                     width: 95%;
                     border-bottom: 1px solid $dark;
                     margin-left: 30px;
-                    font-size: 13px;
+                    font-size: 16px;
 
                     .line {
                         width: 100%;
@@ -166,7 +169,7 @@ span {
             }
 
             .no-border {
-                margin-top: 0;
+                margin-top: 10px;
 
                 p {
                     border: none;
@@ -499,7 +502,7 @@ table {
         }
 
         &--dashboard {
-            margin-bottom: 30px;
+            margin-bottom: 15px;
 
             tr {
                 td {
@@ -507,11 +510,13 @@ table {
                     padding: 5px;
                     text-align: center;
                     font-size: 13px;
+                    //background: red;
 
                     div {
-                        margin-left: 20px;
+                        position: relative;
+                        margin-left: 30px;
                         height: 180px;
-                        width: 300px;
+                        width: 340px;
                         border: 1px solid rgba(0, 0, 0, 0.16);
                         box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.16);
 
@@ -626,12 +631,13 @@ table {
         }
 
         &--inv{
-            //height: 500px;
+            height: 500px;
             border: none;
             th{
                 border: none;
             }
             td{
+                vertical-align: top;
                 border: none;
             }
             tr{
@@ -651,17 +657,17 @@ table {
             }
         }
         &--psycho{
-            height: 70%;
+            //height: 70%;
             tr{
                 th{
                     color: $black;
                     text-align: center;
-                    font-size: 11px;
+                    font-size: 14px;
                 }
             }
             td, th{
                 border: 1px solid black !important;
-                font-size: 11px;
+                font-size: 14px;
                 text-align: center;
             }
             .th_question{
@@ -672,11 +678,11 @@ table {
             }
 
             .td_question{
-                font-size: 10px;
+                font-size: 14px;
                 text-align: start;
             }
             .td_all{
-                font-size: 10px;
+                font-size: 14px;
                 text-align: center;
             }
 
