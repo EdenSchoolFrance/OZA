@@ -203,4 +203,24 @@ class SingleDocument extends Model
         }
         return $tab;
     }
+
+    public function scopeOnlyArchived($query)
+    {
+        return $query->where('archived', 1);
+    }
+
+    public function scopeOnlyUnArchived($query)
+    {
+        return $query->where('archived', 0);
+    }
+
+    public function scopeFilterByName($query, $name = null)
+    {
+        return $query->when($name, fn ($q) => $q->where('name', 'LIKE', '%' . $name . '%'));
+    }
+
+    public function scopeFilterByStatus($query, $status = null)
+    {
+        return $query->when($status, fn ($q) => $status === 'in_progress' ? $q->onlyUnArchived() : $q->onlyArchived());
+    }
 }
