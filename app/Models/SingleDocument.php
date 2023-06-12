@@ -94,7 +94,7 @@ class SingleDocument extends Model
         $count = 0;
         foreach ($this->dangers as $sd_danger){
             if($sd_danger->exist === 1){
-                foreach ($sd_danger->sd_risk_exist() as $sd_risk){
+                foreach ($sd_danger->sd_risk_exist_optimized() as $sd_risk){
                     $total = $total+$sd_risk->total();
                     $count++;
                 }
@@ -136,9 +136,9 @@ class SingleDocument extends Model
         $count = 0;
         foreach ($this->dangers as $sd_danger){
             if($sd_danger->exist === 1){
-                foreach ($sd_danger->sd_risk_exist() as $sd_risk){
+                foreach ($sd_danger->sd_risk_exist_optimized() as $sd_risk){
 
-                    $RR = $sd_risk->totalRR($sd_risk->sd_restraints_exist);
+                    $RR = $sd_risk->totalRR($sd_risk->sd_restraints->where('exist', 1));
 
                     if ($RR === 0)
                     $RR = $sd_risk->total();
@@ -153,12 +153,12 @@ class SingleDocument extends Model
         else return round($total / $count, 1);
     }
 
-    public function discountRisk() {
+    public function discountRisk($moyenneRB = null, $moyenneRR = null) {
 
-        $RB = $this->moyenneRB();
-        $RR = $this->moyenneRR();
+        $RB = $moyenneRB ?? $this->moyenneRB();
+        $RR = $moyenneRR ?? $this->moyenneRR();
 
-        if ($RB != "-" && $RR) {
+        if ($RB !== "-" && $RB !== 0 && $RR) {
             return round(($RB - $RR) / $RB * 100, 1);
         } else {
             return "-";
@@ -168,13 +168,12 @@ class SingleDocument extends Model
 
     public function graphique(){
         $tab = [0, 0, 0, 0];
-        $count = 0;
         foreach ($this->dangers as $sd_danger){
             if($sd_danger->exist === 1){
                 foreach ($sd_danger->sd_risk as $sd_risk){
-                    $count++;
-                    $sdRiskTotalRR = isset($sd_risk->sd_restraints_exist[0])
-                        ? $sd_risk->totalRR($sd_risk->sd_restraints_exist)
+                    $existSDRestraint = $sd_risk->sd_restraints->where('exist', 1);
+                    $sdRiskTotalRR = count($existSDRestraint)
+                        ? $sd_risk->totalRR($existSDRestraint)
                         : $sd_risk->total();
 
                     if ($sdRiskTotalRR < 12.5) {
@@ -197,7 +196,7 @@ class SingleDocument extends Model
         $tab = [];
         foreach ($this->dangers as $sd_danger){
             if($sd_danger->exist === 1){
-                foreach ($sd_danger->sd_risk_exist() as $sd_risk){
+                foreach ($sd_danger->sd_risk_exist_optimized() as $sd_risk){
                     $tab[] = $sd_risk;
                 }
             }

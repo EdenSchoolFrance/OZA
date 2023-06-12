@@ -36,18 +36,9 @@
             <p>Version : <span class="bold">{{ count($single_document->histories) }}</span></p>
         </div>
     </div>
-
-    <div class="footer">
-        <p class="center"> Copyright © OZA DUERP Online</p>
-        <p class="page-num"></p>
-    </div>
 </section>
 
 <section class="page page--second">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
 
     <div class="body">
         <div class="header">
@@ -97,17 +88,9 @@
         </ul>
     </div>
 
-    <div class="footer">
-        <p class="center"> Copyright © OZA DUERP Online</p>
-        <p class="page-num"></p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
 
     <div class="body">
         <h1 class="head-title">SOMMAIRE</h1>
@@ -177,18 +160,9 @@
             </li>
         </ul>
     </div>
-
-    <div class="footer">
-        <p class="center"> Copyright © OZA DUERP Online</p>
-        <p class="page-num"></p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
 
     <div class="body">
         <h1 class="head-title" id="actu">ACTUALISATION DU DOCUMENT UNIQUE</h1>
@@ -223,17 +197,9 @@
         </table>
     </div>
 
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">ACTUALISATION DU DOCUMENT UNIQUE</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
 
     <div class="body">
         <h1 class="head-title" id="structure">PRÉSENTATION DE LA STRUCTURE</h1>
@@ -272,7 +238,7 @@
             <tr>
                 <td colspan="2">
                     <span class="bold">Nombre de salarié(s) inscrit(s) sur le registre du personnel au moment de la rédaction du Document Unique : </span><br>
-                    {{ $single_document->work_unit->pluck('number_employee')->sum() }} salarié(s) <br>
+                    {{ $numberEmUt }} salarié(s) <br>
                 </td>
             </tr>
             </tbody>
@@ -281,17 +247,9 @@
             document, l’a été uniquement dans le but d’alléger sa rédaction et sa lecture.</p>
     </div>
 
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">PRÉSENTATION DÉTAILLÉE DE LA STRUCTURE ET DES UNITÉS DE TAVAIL</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
 
     <div class="body">
         <table class="table table--activity">
@@ -316,19 +274,13 @@
             </tbody>
         </table>
         <p></p>
-        <p class="info text-color-red" style="position: absolute; bottom: 10px">
+        <p class="info text-color-red" style="position: absolute; top: 800px">
             <span class="bold">Rappel :</span> Pour chaque unité de travail, l’évaluation des risques porte sur
             les activités principales.<br>
             Lorsqu’une personne affectée à une unité de travail met en œuvre de la polyvalence sur d’autres
             unités de travail, l’exposition globale de la personne considérée doit être appréciée en fonction du
             temps travaillé dans chaque unité de travail en moyenne sur l’année.
         </p>
-    </div>
-
-    <div class="footer">
-
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">PRÉSENTATION DÉTAILLÉE DE LA STRUCTURE ET DES UNITÉS DE TAVAIL</p>
     </div>
 </section>
 
@@ -420,18 +372,10 @@
             </table>
         </div>
 
-        <div class="footer">
-            <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">PRÉSENTATION DÉTAILLÉE DE LA STRUCTURE ET DES UNITÉS DE TAVAIL</p>
-        </div>
     </section>
 @endforeach
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
 
     <div class="body" style="min-height: 500px;">
         <h1 class="head-title" id="tabBord">1. TABLEAU DE BORD DE L'ÉVALUATION DES RISQUES</h1>
@@ -444,7 +388,7 @@
                             Permet de situer le niveau de risque total de la structure, évalué sans prendre en compte
                             les mesures de prévention ; sur une échelle de zéro (risque nul) à 50 (risque maximal).
                         </p>
-                        <p class="{{ $single_document->color($single_document->moyenneRB(),true) }} number">{{ $single_document->moyenneRB() }}</p>
+                        <p class="{{ $colorRB }} number">{{ $moyenneRB }}</p>
                     </div>
                 </td>
                 <td>
@@ -454,7 +398,7 @@
                             Réduction du risque BRUT grâce aux mesures de prévention existantes : met en évidence les
                             efforts de prévention de la structure.
                         </p>
-                        <p class="text-color-green number">{{ $single_document->discountRisk() }} %</p>
+                        <p class="text-color-green number">{{ $discountRisk }} %</p>
                     </div>
                 </td>
                 <td>
@@ -465,39 +409,18 @@
                             mesures de prévention existantes ;
                             sur une échelle de zéro (risque nul) à 50 (risque maximal).
                         </p>
-                        <p class="{{ $single_document->color($single_document->moyenneRR(),false) }} number">{{ $single_document->moyenneRR() }}</p>
+                        <p class="{{ $colorRR }} number">{{ $moyenneRR }}</p>
                     </div>
                 </td>
             </tr>
         </table>
-    </div>
-
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">TABLEAU DE BORD DE L’EVALUATION DES RISQUES </p>
-    </div>
-</section>
-<section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
-    <div class="body">
-        <h1 class="head-title" id="tabBord">1. TABLEAU DE BORD DE L'ÉVALUATION DES RISQUES</h1>
-        <p class="center bold">Risque résiduel</p>
+        <p class="center bold" style="margin: 0; padding: 0;">Risque résiduel</p>
         <img src="{{ $chartUrl }}" alt="" class="chart-risk center">
     </div>
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">TABLEAU DE BORD DE L’EVALUATION DES RISQUES </p>
-    </div>
+
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
 
     <div class="body body--notif">
         <h1 class="head-title" id="proAnnuel">2. PROGRAMME ANNUEL DE PREVENTION ET D'AMELIORATION DES CONDITIONS DE
@@ -535,17 +458,9 @@
         </p>
     </div>
 
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">PROGRAMME ANNUEL DE PREVENTION ET D'AMELIORATION DES CONDITIONS DE TRAVAIL</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
 
     <div class="body">
         <table class="table table--action">
@@ -585,15 +500,26 @@
             </thead>
             <tbody>
             @foreach($sd_risks as $sd_risk)
-                @if (count($sd_risk->sd_restraints_porposed) >= 1)
+                @if (count($sd_risk->sd_restraints->where('exist', 0)) >= 1)
+                    @php
+                        $existsSDrestraints = $sd_risk->sd_restraints->where('exist', 1);
+                    @endphp
                     <tr>
                         <td class="workunit">{{ $sd_risk->sd_work_unit ? $sd_risk->sd_work_unit->name : "Tous" }}</td>
                         <td class="danger">{{ $sd_risk->sd_danger->danger->name }}</td>
                         <td class="risk">@stripTags($sd_risk->name)</td>
-                        <td class="risk_residuel center">{{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->totalRR($sd_risk->sd_restraints_exist) : $sd_risk->total() }}</td>
-                        <td class="criticity center {{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints_exist),false) :  $sd_risk->colorPDF($sd_risk->total(),true) }}">{{ $sd_risk->colorTotal(isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->totalRR($sd_risk->sd_restraints_exist) : $sd_risk->total(),false) }}</td>
+                        <td class="risk_residuel center">{{ count($existsSDrestraints) ? $sd_risk->totalRR($existsSDrestraints) : $sd_risk->total() }}</td>
+                        <td class="criticity center {{
+                            count($existsSDrestraints)
+                                ? $sd_risk->colorPDF($sd_risk->totalRR($existsSDrestraints),false)
+                                :  $sd_risk->colorPDF($sd_risk->total(),true) }}">
+
+                            {{ $sd_risk->colorTotal(count($existsSDrestraints)
+                                ? $sd_risk->totalRR($existsSDrestraints)
+                                : $sd_risk->total(),false)
+                            }}</td>
                         <td class="restraint">
-                            @foreach($sd_risk->sd_restraints_porposed as $sd_restraint)
+                            @foreach($sd_risk->sd_restraints->where('exist', 0) as $sd_restraint)
                                 * @stripTags($sd_restraint->name)<br>
                             @endforeach
                         </td>
@@ -606,17 +532,9 @@
         </table>
     </div>
 
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">PROGRAMME ANNUEL DE PREVENTION ET D'AMELIORATION DES CONDITIONS DE TRAVAIL</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
 
     <div class="body body--notif">
         <h1 class="head-title" id="rules">3. RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</h1>
@@ -659,17 +577,9 @@
         </p>
     </div>
 
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
 
     <div class="body body--notif">
         <p>
@@ -724,17 +634,9 @@
         </p>
     </div>
 
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
     <div class="body body--notif">
         <p>
                 <span class="bold">
@@ -789,17 +691,9 @@
             DE RISQUES PROFESSIONNELS. <br>
         </p>
     </div>
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
     <div class="body body--notif">
         <p>
             <span
@@ -863,17 +757,9 @@
         </p>
 
     </div>
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
     <div class="body body--notif">
         <p>
             <span class="bold">3.2. Quelles méthodes et quels outils ?</span>
@@ -937,17 +823,9 @@
             les postes occupés. <br>
         </p>
     </div>
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">RAPPEL RÉGLEMENTAIRE "DOCUMENT UNIQUE"</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
     <div class="body body--notif">
         <h1 class="head-title" id="evalRisk">4. NOTICE EXPLICATIVE DE L'EVALUATION DES RISQUES</h1>
         <p>
@@ -1001,17 +879,9 @@
             le seul paramètre qui influence la survenue d'un accident ou d'une atteinte à la santé.
         </p>
     </div>
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">NOTICE EXPLICATIVE DE L'EVALUATION DES RISQUES</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
     <div class="body body--notif">
         <p>
             <span class="bold">Par exemple,</span> une personne emprunte plusieurs fois par jour un escalier en se
@@ -1078,17 +948,9 @@
             €uros en cas de non présentation art.<br>
         </p>
     </div>
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">NOTICE EXPLICATIVE DE L'EVALUATION DES RISQUES</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
     <div class="body body--notif">
         <p>
             <span class="bold">Mesures de prévention et de protection existantes</span> <br>
@@ -1132,17 +994,9 @@
             sûre.
         </p>
     </div>
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">NOTICE EXPLICATIVE DE L'EVALUATION DES RISQUES</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
     <div class="body body--rules">
         <h1 class="head-title" id="evalRiskPro">5. EVALUATION DES RISQUES PROFESSIONNELS PAR UNITÉ DE TRAVAIL</h1>
         <p class="bold">
@@ -1202,17 +1056,9 @@
             accident du travail.
         </p>
     </div>
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">EVALUATION DES RISQUES PROFESSIONNELS PAR UNITÉ DE TRAVAIL</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
     <div class="body body--rules">
         <p class="bold">
             9. Bruit pouvant provoquer atteinte auditive, surdité, stress, fatigue FACTEUR DE RISQUE PROFESSIONNEL.
@@ -1279,17 +1125,9 @@
             d’ensevelissement
         </p>
     </div>
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">EVALUATION DES RISQUES PROFESSIONNELS PAR UNITÉ DE TRAVAIL</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
     <div class="body body--rules">
         <p class="bold">
             26. Machines ; outils électroportatifs, thermiques et pneumatiques ; outils à main et équipements de travail
@@ -1361,17 +1199,9 @@
             dorso-lombalgies, et atteintes traumatiques plus ou moins sévères.
         </p>
     </div>
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">EVALUATION DES RISQUES PROFESSIONNELS PAR UNITÉ DE TRAVAIL</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
     <div class="body body--rules">
         <p class="bold">
             43 Télétravail réalisé au domicile pouvant engendrer des risques physiques (musculosquelettiques, visuels,
@@ -1401,21 +1231,17 @@
             ou du coude, un syndrome de Raynaud ou des troubles neurologiques.
         </p>
     </div>
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">EVALUATION DES RISQUES PROFESSIONNELS PAR UNITÉ DE TRAVAIL</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
+
+{{--    <div class="header">--}}
+{{--        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}, {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>--}}
+{{--    </div>--}}
 
     <div class="body">
         <p class="center legend info"> F = Fréquence | P = Probabilité | GP = Gravité potentiel | ID = Impact
-            différencié | RB = Risque brut{{--| T = Technique | O = Oragnisationnelle | H = Humain--}} | RR = Risque
+            différencié | RB = Risque brut | RR = Risque
             résiduel</p>
         <table class="table table--action">
             <thead>
@@ -1435,13 +1261,13 @@
                 <td class="theader min-width">
                     F
                 </td>
-                <td class="theader min-width" style="width: 6%;">
+                <td class="theader min-width">
                     P
                 </td>
                 <td class="theader min-width">
                     GP
                 </td>
-                <td class="theader" style="width: 6%;">
+                <td class="theader">
                     ID
                 </td>
                 <td class="theader min-width">
@@ -1451,15 +1277,6 @@
                     Mesures de prévention et de protection existantes : Technique, Organisationnelle, Protection,
                     Humaine (information)
                 </td>
-                {{--                <td class="theader">--}}
-                {{--                    T--}}
-                {{--                </td>--}}
-                {{--                <td class="theader">--}}
-                {{--                    O--}}
-                {{--                </td>--}}
-                {{--                <td class="theader">--}}
-                {{--                    H--}}
-                {{--                </td>--}}
                 <td class="theader">
                     RR
                 </td>
@@ -1485,17 +1302,17 @@
                             <td class="center min-width min-width-left">{{ $sd_risk->translate($sd_risk->impact,'impact') }}</td>
                             <td class="center min-width min-width-left {{ $sd_risk->total() >= 24 ? "pink" : "" }}">{{ $sd_risk->total() }}</td>
                             <td class="restraint">
-                                @foreach($sd_risk->sd_restraints_exist as $sd_restraint)
+                                @php
+                                    $existsRestraints = $sd_risk->sd_restraints->where('exist', 1);
+                                @endphp
+                                @foreach($existsRestraints as $sd_restraint)
                                     * {{$sd_restraint->name}} <br>
                                 @endforeach
                             </td>
-                            {{--                            <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneTech(), 1), "tech") }}</td>--}}
-                            {{--                            <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneOrga(), 1), "orga") }}</td>--}}
-                            {{--                            <td class="center min-width min-width-right">{{ $sd_risk->translateRR(round($sd_risk->moyenneHum(), 1), "hum") }}</td>--}}
-                            <td class="center min-width min-width-right"> {{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->totalRR($sd_risk->sd_restraints_exist) : $sd_risk->total() }}</td>
-                            <td class="center criticity {{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->colorPDF($sd_risk->totalRR($sd_risk->sd_restraints_exist),false) :  $sd_risk->colorPDF($sd_risk->total(),true) }}">{{ isset($sd_risk->sd_restraints_exist[0]) ? $sd_risk->colorTotal($sd_risk->totalRR($sd_risk->sd_restraints_exist),false) : $sd_risk->colorTotal($sd_risk->total(),true) }}</td>
+                            <td class="center min-width min-width-right"> {{ count($existsRestraints) ? $sd_risk->totalRR($existsRestraints) : $sd_risk->total() }}</td>
+                            <td class="center criticity {{ count($existsRestraints) ? $sd_risk->colorPDF($sd_risk->totalRR($existsRestraints),false) :  $sd_risk->colorPDF($sd_risk->total(),true) }}">{{ count($existsRestraints) ? $sd_risk->colorTotal($sd_risk->totalRR($existsRestraints),false) : $sd_risk->colorTotal($sd_risk->total(),true) }}</td>
                             <td class="restraint_proposed">
-                                @foreach($sd_risk->sd_restraints_porposed as $sd_restraint)
+                                @foreach($sd_risk->sd_restraints->where('exist', 0) as $sd_restraint)
                                     * {{$sd_restraint->name}} <br>
                                 @endforeach
                             </td>
@@ -1512,9 +1329,6 @@
                         <td class="center min-width min-width-left">NON</td>
                         <td class="center min-width min-width-left">0</td>
                         <td class="restraint"></td>
-                        {{--                        <td class="center min-width min-width-right">0</td>--}}
-                        {{--                        <td class="center min-width min-width-right">0</td>--}}
-                        {{--                        <td class="center min-width min-width-right">0</td>--}}
                         <td class="center min-width min-width-right">0</td>
                         <td class="center green criticity">0</td>
                         <td class="restraint_proposed"></td>
@@ -1525,18 +1339,9 @@
         </table>
         <p></p>
     </div>
-
-    <div class="footer">
-        <p>Copyright © OZA DUERP Online</p>
-        <p class="page-num">EVALUATION DES RISQUES PROFESSIONNELS</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
 
     <div class="body body--notif">
         <h1 class="head-title" id="listPost">6. LISTE DES POSTES DE TRAVAIL "A RISQUE PARTICULIER" (CODE DU TRAVAIL ART.
@@ -1596,18 +1401,10 @@
         <p></p>
     </div>
 
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">LISTE DES POSTES DE TRAVAIL</p>
-    </div>
 </section>
 
 @if($single_document->risk_psycho)
     <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-                , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-        </div>
 
         <div class="body body--rules">
             <h1 class="head-title" id="evalRiskPsycho">7. LES RISQUES PSYCHOSOCIAUX</h1>
@@ -1666,17 +1463,9 @@
             </p>
         </div>
 
-        <div class="footer">
-            <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">LES RISQUES PSYCHOSOCIAUX</p>
-        </div>
     </section>
 
     <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-                , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-        </div>
 
         <div class="body body--rules">
             <h1 class="head-title">7. LES RISQUES PSYCHOSOCIAUX</h1>
@@ -1739,18 +1528,10 @@
             </p>
         </div>
 
-        <div class="footer">
-            <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">LES RISQUES PSYCHOSOCIAUX</p>
-        </div>
     </section>
 
 
     <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-                , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-        </div>
 
         <div class="body body--rules">
             <h1 class="head-title">7. LES RISQUES PSYCHOSOCIAUX</h1>
@@ -1790,18 +1571,10 @@
             </p>
         </div>
 
-        <div class="footer">
-            <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">LES RISQUES PSYCHOSOCIAUX</p>
-        </div>
     </section>
 
 
     <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-                , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-        </div>
 
         <div class="body body--rules">
             <h1 class="head-title">7. LES RISQUES PSYCHOSOCIAUX</h1>
@@ -1837,10 +1610,6 @@
             </p>
         </div>
 
-        <div class="footer">
-            <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">LES RISQUES PSYCHOSOCIAUX</p>
-        </div>
     </section>
 
     @foreach($psychosocial_groups as $psychosocial_group)
@@ -1848,10 +1617,6 @@
             $all = count($psychosocial_group->responses);
         @endphp
         <section class="page">
-            <div class="header">
-                <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-                    , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-            </div>
 
             <div class="body body--notif">
                 <h1 class="head-title">QUESTIONNAIRES D'ÉVALUATION DES RISQUES PSYCHOSOCIAUX</h1>
@@ -1887,7 +1652,7 @@
                                 @foreach($questions as $key => $question)
                                     @if($key <= 12)
                                         @php
-                                            $response = $question->response($psychosocial_group->id)
+                                            $response = $question->responseOfPsyGroupID($psychosocial_group->id)
                                         @endphp
                                         @if(isset($response))
                                             <tr>
@@ -1937,7 +1702,7 @@
                                 <tbody>
                                 @for($i = 13; $i < count($questions); $i++)
                                     @php
-                                        $response = $questions[$i]->response($psychosocial_group->id)
+                                        $response = $questions[$i]->responseOfPsyGroupID($psychosocial_group->id)
                                     @endphp
                                     @if(isset($response))
                                         <tr>
@@ -1966,10 +1731,7 @@
             </div>
 
 
-            <div class="footer">
-                <p> Copyright © OZA DUERP Online</p>
-                <p class="page-num">LES RISQUES PSYCHOSOCIAUX</p>
-            </div>
+
         </section>
     @endforeach
 
@@ -1979,16 +1741,12 @@
             $all = count($psychosocial_group->responses);
             $allCal = 0;
             foreach($questions as $key => $question){
-                $response = $question->response($psychosocial_group->id);
+                $response = $question->responseOfPsyGroupID($psychosocial_group->id);
                 if(isset($response)) $allCal = $allCal + $response->intensity();
             }
             if ($all !== 0) $allCal = $allCal / $all;
         @endphp
         <section class="page">
-            <div class="header">
-                <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-                    , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-            </div>
 
             <div class="body body--notif">
                 <h1 class="head-title">NIVEAU DE RISQUE PSYCHOSOCIAL MOYEN</h1>
@@ -2002,7 +1760,7 @@
                             <table class="table table--psycho">
                                 <thead>
                                 <tr>
-                                    <th colspan="3" class="green">Niveau de risque Psychosocial moyen</th>
+                                    <th colspan="3" class="green text-color-white">Niveau de risque Psychosocial moyen</th>
                                 </tr>
                                 <tr>
                                     <th class="th_question">Facteurs de risques psychosociaux</th>
@@ -2014,7 +1772,7 @@
                                 @foreach($questions as $key => $question)
                                     @if($key <= 13)
                                         @php
-                                            $response = $question->response($psychosocial_group->id)
+                                            $response = $question->responseOfPsyGroupID($psychosocial_group->id)
                                         @endphp
                                         @if(isset($response))
                                             <tr class="space">
@@ -2038,7 +1796,7 @@
                             <table class="table table--psycho">
                                 <thead>
                                 <tr>
-                                    <th colspan="3" class="green">Niveau de risque Psychosocial moyen</th>
+                                    <th colspan="3" class="green text-color-white">Niveau de risque Psychosocial moyen</th>
                                 </tr>
                                 <tr>
                                     <th class="th_question">Facteurs de risques psychosociaux</th>
@@ -2049,7 +1807,7 @@
                                 <tbody>
                                 @for($i = 14; $i < count($questions); $i++)
                                     @php
-                                        $response = $questions[$i]->response($psychosocial_group->id)
+                                        $response = $questions[$i]->responseOfPsyGroupID($psychosocial_group->id)
                                     @endphp
                                     @if(isset($response))
                                         <tr class="space">
@@ -2084,10 +1842,7 @@
             </div>
 
 
-            <div class="footer">
-                <p> Copyright © OZA DUERP Online</p>
-                <p class="page-num">LES RISQUES PSYCHOSOCIAUX</p>
-            </div>
+
         </section>
     @endforeach
 
@@ -2097,10 +1852,6 @@
             $all = count($psychosocial_group->responses);
         @endphp
         <section class="page">
-            <div class="header">
-                <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-                    , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-            </div>
 
             <div class="body body--notif">
                 <h1 class="head-title">RISQUE PSYCHOSOCIAL INDIVIDUEL</h1>
@@ -2114,7 +1865,7 @@
                             <table class="table table--psycho">
                                 <thead>
                                 <tr>
-                                    <th colspan="2" class="green">Risque Psychosocial individuel</th>
+                                    <th colspan="2" class="green text-color-white">Risque Psychosocial individuel</th>
                                 </tr>
                                 <tr>
                                     <th class="th_question">Facteurs de risques psychosociaux</th>
@@ -2125,7 +1876,7 @@
                                 @foreach($questions as $key => $question)
                                     @if($key <= 12)
                                         @php
-                                            $response = $question->response($psychosocial_group->id)
+                                            $response = $question->responseOfPsyGroupID($psychosocial_group->id)
                                         @endphp
                                         @if(isset($response))
                                             <tr class="space">
@@ -2148,7 +1899,7 @@
                             <table class="table table--psycho">
                                 <thead>
                                 <tr>
-                                    <th colspan="2" class="green">Risque Psychosocial individuel</th>
+                                    <th colspan="2" class="green text-color-white">Risque Psychosocial individuel</th>
                                 </tr>
                                 <tr>
                                     <th class="th_question">Facteurs de risques psychosociaux</th>
@@ -2165,7 +1916,7 @@
                                         </tr>
                                     @else
                                         @php
-                                            $response = $questions[$i]->response($psychosocial_group->id)
+                                            $response = $questions[$i]->responseOfPsyGroupID($psychosocial_group->id)
                                         @endphp
                                         @if(isset($response))
                                             <tr class="space">
@@ -2190,18 +1941,11 @@
             </div>
 
 
-            <div class="footer">
-                <p> Copyright © OZA DUERP Online</p>
-                <p class="page-num">LES RISQUES PSYCHOSOCIAUX</p>
-            </div>
+
         </section>
     @endforeach
 
     <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-                , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-        </div>
 
         <div class="body">
             <h1 class="head-title" id="listPost">PLAN D'ACTION DE RÉDUCTION DES RISQUES PSYCHOSOCIAUX</h1>
@@ -2294,10 +2038,6 @@
             <p></p>
         </div>
 
-        <div class="footer">
-            <p>Copyright © OZA DUERP Online</p>
-            <p class="page-num">EVALUATION DES RISQUES PROFESSIONNELS</p>
-        </div>
     </section>
 
 @endif
@@ -2305,10 +2045,6 @@
 @if($single_document->risk_chemical)
 
     <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-                , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-        </div>
 
         <div class="body body--rules">
             <h1 class="head-title" id="evalRiskChemical">8. ÉVALUATION DU RISQUE CHIMIQUE</h1>
@@ -2334,18 +2070,10 @@
 
         </div>
 
-        <div class="footer">
-            <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">ÉVALUATION DU RISQUE CHIMIQUE</p>
-        </div>
     </section>
 
 
     <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-                , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-        </div>
 
         <div class="body body--notif">
             <h1 class="head-title">8. ÉVALUATION DU RISQUE CHIMIQUE</h1>
@@ -2424,18 +2152,10 @@
         </div>
 
 
-        <div class="footer">
-            <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">ÉVALUATION DU RISQUE CHIMIQUE</p>
-        </div>
     </section>
 
 
     <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-                , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-        </div>
 
         <div class="body body--notif">
             <h1 class="head-title">8. ÉVALUATION DU RISQUE CHIMIQUE</h1>
@@ -2493,10 +2213,6 @@
         </div>
 
 
-        <div class="footer">
-            <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">ÉVALUATION DU RISQUE CHIMIQUE</p>
-        </div>
     </section>
 
 @endif
@@ -2505,10 +2221,6 @@
 
 
     <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-                , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-        </div>
 
         <div class="body body--rules">
             <h1 class="head-title" id="evalRiskExplosion">9. DRPCE</h1>
@@ -2548,17 +2260,10 @@
 
         </div>
 
-        <div class="footer">
-            <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">LES RISQUES D'EXPLOSIONS</p>
-        </div>
     </section>
 
 
     <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-        </div>
 
         <div class="body body--rules">
 
@@ -2607,17 +2312,10 @@
 
         </div>
 
-        <div class="footer">
-            <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">LES RISQUES D'EXPLOSIONS</p>
-        </div>
     </section>
 
 
     <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-        </div>
 
         <div class="body body--rules">
 
@@ -2713,17 +2411,10 @@
 
         </div>
 
-        <div class="footer">
-            <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">LES RISQUES D'EXPLOSIONS</p>
-        </div>
     </section>
 
 
     <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-        </div>
 
         <div class="body body--rules">
 
@@ -2761,16 +2452,9 @@
 
         </div>
 
-        <div class="footer">
-            <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">LES RISQUES D'EXPLOSIONS</p>
-        </div>
     </section>
 
     <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-        </div>
 
         <div class="body body--notif">
             <h1 class="head-title" >9. DRPCE</h1>
@@ -2839,18 +2523,10 @@
         </div>
 
 
-        <div class="footer">
-            <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">LES RISQUES D'EXPLOSIONS</p>
-        </div>
     </section>
 
 
     <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}
-                , {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-        </div>
 
         <div class="body body--notif">
             <h1 class="head-title">9. DRPCE</h1>
@@ -2903,19 +2579,11 @@
         </div>
 
 
-        <div class="footer">
-            <p> Copyright © OZA DUERP Online</p>
-            <p class="page-num">LES RISQUES D'EXPLOSIONS</p>
-        </div>
     </section>
 
 @endif
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
 
     <div class="body body--notif">
         <h1 class="head-title" id="expoRiskPro">10. EVALUATION DE L'EXPOSITION AUX "FACTEURS DE RISQUES
@@ -2989,11 +2657,12 @@
             <tbody>
             @foreach ($expos as $expo)
                 <tr>
-                    <td>
+                    <td class="center">
                         {{ $expo->danger->name }}
                     </td>
                     <td class="center">
-                        {{ count($expo->pivot($single_document->id)) === 0 ? "Non" : "Oui"  }}
+                        {{-- Refactoring needed --}}
+                        {{ $expo->HisExpose($single_document)  }}
                     </td>
                 </tr>
             @endforeach
@@ -3002,17 +2671,9 @@
         <p></p>
     </div>
 
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">EVALUATION DE L'EXPOSITION</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
 
     <div class="body body--notif">
         <h1 class="head-title" id="expoRiskPro">10. EVALUATION DE L'EXPOSITION AUX "FACTEURS DE RISQUES
@@ -3057,17 +2718,17 @@
             </tr>
             </thead>
             <tbody>
-                @foreach ($single_document->dangers()->whereHas('danger.exposition')->get() as $danger)
+                @foreach ($single_document->dangers->whereNotNull('danger.exposition') as $danger)
                     @php
                         $pivot = $danger->danger->exposition->pivot($single_document->id);
                     @endphp
                         @if (count($pivot) > 0)
-                            @foreach($danger->sd_works_units()->whereHas('sd_expositions_questions')->get() as $sd_work_unit)
+                            @foreach($danger->sd_works_units->whereNotNull('sd_expositions_questions') as $sd_work_unit)
                                 @foreach ($danger->danger->exposition->exposition_groups as $key => $exposition_group)
                                     @foreach ($exposition_group->exposition_questions as $key => $exposition_question)
                                         @php
                                             $sd_expo_question = $exposition_question->sd_work_unit_exposition_question($sd_work_unit->id);
-                                            $sd_expos_questions = $exposition_question->sd_work_unit_expositions_questions($sd_work_unit->id);
+                                            $sd_expos_questions = $exposition_question->sd_work_unit_expositions_questionsById($sd_work_unit->id);
                                         @endphp
                                         @if (count($sd_expos_questions))
                                             <tr>
@@ -3106,17 +2767,9 @@
         </p>
     </div>
 
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">EVALUATION DE L'EXPOSITION</p>
-    </div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->adress }}
-            , {{ $single_document->city_zipcode }} {{ $single_document->city }}</p>
-    </div>
 
     <div class="body body--notif">
         <h1 class="head-title" id="historie">11. HISTORIQUE DES MISES A JOUR ET DES ACTIONS REALISEES</h1>
@@ -3152,19 +2805,16 @@
                 </tr>
             @endforeach
 
-            @if (count($sd_risks_v2) == 0)
+            @if ($sd_risks_restraints_count == 0)
                 <tr class="no-data no-data--centered">
                     <td colspan="8" class="center">Aucune mesure archivée</td>
                 </tr>
             @endif
             </tbody>
         </table>
+        <div></div>
     </div>
 
-    <div class="footer">
-        <p> Copyright © OZA DUERP Online</p>
-        <p class="page-num">EVALUATION DE L'EXPOSITION</p>
-    </div>
 </section>
 
 

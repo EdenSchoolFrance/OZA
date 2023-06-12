@@ -38,4 +38,9 @@ class PsychosocialQuestion extends Model
     {
         return $this->responses()->where('sd_psychosocial_group_id', $sd_psychosocial_group_id)->first();
     }
+
+    public function responseOfPsyGroupID($sd_psychosocial_group_id)
+    {
+        return $this->responses->where('sd_psychosocial_group_id', $sd_psychosocial_group_id)->first();
+    }
 }

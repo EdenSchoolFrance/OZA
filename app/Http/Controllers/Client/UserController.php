@@ -53,7 +53,8 @@ class UserController extends Controller
             })->whereDoesntHave('single_documents', function ($q) use ($single_document) {
                 $q->where('id', $single_document->id);
             })->get();
-        $roles = Role::whereNotIn('permission', $roles_array)->get();
+
+        $roles = resolve('AppCacheService')->getRoles()->whereNotIn('permission', $roles_array);
 
         $page = [
             'title' => 'Ajouter un utilisateur',
@@ -114,7 +115,7 @@ class UserController extends Controller
                 array_push($roles_array, 'MANAGER');
             }
 
-            $role = Role::where('id', $request->role)->whereNotIn('permission', $roles_array)->first();
+            $role = resolve('AppCacheService')->getRoles()->whereNotIn('permission', $roles_array)->first();
 
             if (!$role) {
                 return back()->with('status', 'Une erreur est survenue !')->with('status_type', 'danger')->withInput();
@@ -151,8 +152,10 @@ class UserController extends Controller
             $q->where('id', $single_document->id);
         })->first();
 
-        if (!$user || ($user->hasPermission('ADMIN') && Auth::user()->hasPermission('MANAGER')) || ($user->id == Auth::user()->id)) {
-            abort(404);
+        if (!Auth::user()->hasAccess('oza')) {
+            if (!$user || (!$user->hasPermission('ADMIN') && !Auth::user()->hasPermission('MANAGER')) || ($user->id == Auth::user()->id)) {
+                abort(404);
+            }
         }
 
         $user_manager = User::whereHas('client', function ($q) use ($single_document) {
@@ -169,7 +172,8 @@ class UserController extends Controller
             array_push($roles_array, 'MANAGER');
         }
 
-        $roles = Role::whereNotIn('permission', $roles_array)->get();
+        $roles = resolve('AppCacheService')->getRoles()
+            ->whereNotIn('permission', !Auth::user()->hasAccess('oza') ? $roles_array : ['EXPERT']);
 
         $page = [
             'title' => 'Modification de l\'utilisateur : ' . $user->lastname . ' ' . $user->firstname,
@@ -189,9 +193,10 @@ class UserController extends Controller
         $user = User::where('id', $user_id)->whereHas('single_documents', function ($q) use ($single_document) {
             $q->where('id', $single_document->id);
         })->first();
-
-        if (!$user || ($user->hasPermission('ADMIN') && Auth::user()->hasPermission('MANAGER')) || ($user->id == Auth::user()->id)) {
-            abort(404);
+        if (!Auth::user()->hasAccess('oza')) {
+            if (!$user || (!$user->hasPermission('ADMIN') && !Auth::user()->hasPermission('MANAGER')) || ($user->id == Auth::user()->id)) {
+                abort(404);
+            }
         }
 
         $request->validate([
@@ -205,19 +210,20 @@ class UserController extends Controller
         ]);
 
         $roles_array = ['EXPERT'];
+
+        //TODO: Remove unused blocks - Start
         $user_manager = User::whereHas('client', function ($q) use ($single_document) {
                 $q->where('id', $single_document->client->id);
             })->whereHas('role', function ($q) {
                 $q->where('permission', 'MANAGER');
             })->first();
 
-        if (Auth::user()->hasPermission('MANAGER')) {
-            array_push($roles_array, 'ADMIN');
+        if (!Auth::user()->hasAccess('oza')) {
+            $roles = Role::whereNotIn('permission', $roles_array)->get();
+        }else{
+            $roles = Role::whereNotIn('permission', ['EXPERT'])->get();
         }
-
-        if ($user_manager && $user != $user_manager) {
-            array_push($roles_array, 'MANAGER');
-        }
+        //TODO: Remove unused blocks - End
 
         $role = Role::where('id', $request->role)->whereNotIn('permission', $roles_array)->first();
 

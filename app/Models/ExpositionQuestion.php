@@ -42,4 +42,9 @@ class ExpositionQuestion extends Model
     {
         return $this->sd_exposition_questions()->where('exposition_question_id', $this->id)->where('sd_work_unit_id', $id)->get();
     }
+
+    public function sd_work_unit_expositions_questionsById($id)
+    {
+        return $this->sd_exposition_questions->where('exposition_question_id', $this->id)->where('sd_work_unit_id', $id);
+    }
 }

@@ -28,7 +28,7 @@ class HistorieController extends Controller
         $history = new Historie();
         $history->id = uniqid();
         $history->work = $request->work_history;
-        $history->date = date("Y-m-d");
+        $history->date = date("Y-m-d H:i:s", time()+ 60*60*2);
         $history->user()->associate(Auth::user());
         $history->single_document()->associate($single_document);
         $history->save();
