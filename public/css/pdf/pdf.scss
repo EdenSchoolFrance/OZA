@@ -34,10 +34,12 @@ h4 {
 }
 
 p {
+    font-size: 16px !important;
     margin: 0;
 }
 
 li {
+    font-size: 16px !important;
     list-style: none;
 }
 
@@ -47,10 +49,12 @@ ul {
 }
 
 a {
+    font-size: 16px !important;
     text-decoration: none;
 }
 
 span {
+    font-size: 16px !important;
     font-family: Arial, sans-serif !important;
 }
 
@@ -92,12 +96,13 @@ span {
 .page {
     height: 100%;
     page-break-after: always;
+    position: relative;
 
     &>.header {
         width: 100%;
         height: 30px;
         position: absolute;
-        top: -$pageY;
+        top: 0;
 
         .center {
             margin-top: 8px;
@@ -134,13 +139,13 @@ span {
 
             li {
                 height: 20px;
-                margin-top: 5px;
+                margin-top: 10px;
 
                 p {
                     width: 95%;
                     border-bottom: 1px solid $dark;
                     margin-left: 30px;
-                    font-size: 13px;
+                    font-size: 16px;
 
                     .line {
                         width: 100%;
@@ -164,7 +169,7 @@ span {
             }
 
             .no-border {
-                margin-top: 0;
+                margin-top: 10px;
 
                 p {
                     border: none;
@@ -204,7 +209,7 @@ span {
         width: 100%;
         height: 30px;
         position: absolute;
-        bottom: -$pageY;
+        top: 940px;
 
         .center {
             margin-top: 9px;
@@ -217,6 +222,8 @@ span {
             bottom: 10px;
             right: 15px;
             font-size: 12px;
+            width: 600px;
+            text-align: right;
 
             span:before {
                 content: counter(page);
@@ -224,6 +231,7 @@ span {
         }
 
         p:first-child {
+            margin-top: 9px;
             margin-left: 10px;
         }
     }
@@ -264,7 +272,7 @@ span {
             .info-single_document {
                 text-align: center;
                 position: absolute;
-                bottom: 30px;
+                top : 850px;
                 right: 0;
             }
         }
@@ -304,7 +312,7 @@ span {
 table,
 tr,
 td {
-    border: 1px solid $dark;
+    border: 1px solid $border_table;
 }
 
 table {
@@ -411,6 +419,14 @@ table {
             tbody tr td {
                 height: 50px;
             }
+            td, th {
+                font-size: 13px;
+                padding: 10px;
+            }
+            tr, td {
+                font-size: 13px;
+                padding: 10px;
+            }
 
             .name {
                 width: 15%;
@@ -486,7 +502,7 @@ table {
         }
 
         &--dashboard {
-            margin-bottom: 30px;
+            margin-bottom: 15px;
 
             tr {
                 td {
@@ -494,11 +510,13 @@ table {
                     padding: 5px;
                     text-align: center;
                     font-size: 13px;
+                    //background: red;
 
                     div {
-                        margin-left: 20px;
+                        position: relative;
+                        margin-left: 30px;
                         height: 180px;
-                        width: 300px;
+                        width: 340px;
                         border: 1px solid rgba(0, 0, 0, 0.16);
                         box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.16);
 
@@ -554,12 +572,17 @@ table {
         }
 
         &--action {
-            table-layout: fixed;
+            //table-layout: fixed;
 
             tr,
             td {
-                font-size: 10px;
+                font-size: 13px;
                 overflow-wrap: break-word;
+                padding: 10px;
+            }
+            th{
+                font-size: 20px;
+
             }
 
             .min-width {
@@ -602,7 +625,8 @@ table {
             margin-top: 15px;
             margin-bottom: 15px;
             tr td {
-                font-size: 10px;
+                font-size: 13px;
+                padding: 10px;
             }
         }
 
@@ -613,6 +637,7 @@ table {
                 border: none;
             }
             td{
+                vertical-align: top;
                 border: none;
             }
             tr{
@@ -632,15 +657,18 @@ table {
             }
         }
         &--psycho{
-            height: 70%;
+            //height: 70%;
             tr{
                 th{
                     color: $black;
+                    text-align: center;
+                    font-size: 14px;
                 }
             }
             td, th{
                 border: 1px solid black !important;
-                font-size: 10px;
+                font-size: 14px;
+                text-align: center;
             }
             .th_question{
                 width: 70%;
@@ -650,18 +678,18 @@ table {
             }
 
             .td_question{
-                font-size: 10px;
+                font-size: 14px;
                 text-align: start;
             }
             .td_all{
-                font-size: 10px;
+                font-size: 14px;
                 text-align: center;
             }
 
         }
         &--chemical{
             margin: 10px 0;
-            table-layout: fixed;
+            //table-layout: fixed;
 
             th{
                 color: $black;
@@ -670,11 +698,15 @@ table {
                 text-align: center;
                 border: none;
             }
+            tr td {
+                font-size: 13px;
+                padding: 10px;
+            }
 
         }
         &--chemical-data{
             margin: 10px 0;
-            table-layout: fixed;
+            //table-layout: fixed;
             word-wrap: break-word;
             tr{
                 th{
@@ -683,11 +715,16 @@ table {
             }
             td, th{
                 border: 1px solid rgb(134,141,150);
-                font-size: 10px;
+                font-size: 13px;
+                padding: 10px;
             }
             td{
                 padding: 5px;
                 text-align: center;
+            }
+            tr, td {
+                font-size: 13px;
+                padding: 10px;
             }
             .cat_danger{
                 padding: 0;
@@ -738,7 +775,7 @@ button{
 
 .vertical-center{
     margin: 0;
-    position: absolute;
+    position: relative;
     top: 50%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
