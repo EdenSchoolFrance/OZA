@@ -11,12 +11,13 @@
         <form action="#" method="post" class="card">
             <div class="card-body">
                 <div class="row row--center cancel">
-                    <h1 class="text-color-yellow">Page indisponible pour cette version de OZA</h1>
+                    <h1 class="text-color-yellow">Cette page n’existe pas.</h1>
                 </div>
             </div>
             <div class="card-body">
                 <div class="row row--center cancel">
-                    <a href="{{ url()->previous() }}" class="btn btn-yellow">Retour</a>
+                    <a style="margin-right: 5px;" href="{{ url()->previous() }}" class="btn btn-yellow">Retour</a>
+                    <a href="{{ url('/') }}" class="btn btn-yellow">Mon tableau de bord</a>
                 </div>
             </div>
         </form>
