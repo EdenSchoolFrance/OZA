@@ -286,9 +286,6 @@
 
 @foreach($works_units as $key => $sd_work_unit)
     <section class="page">
-        <div class="header">
-            <p class="center">{{ $single_document->name_enterprise }} - {{ $single_document->client->adress }}, {{ $single_document->client->city_zipcode }} {{ $single_document->client->city }}</p>
-        </div>
         <div class="body">
             <table class="table table--work_unit">
                 <thead>
@@ -375,7 +372,7 @@
     </section>
 @endforeach
 
-<section class="page">
+<section class="page" style="padding-top: 0 !important;">
 
     <div class="body" style="min-height: 500px;">
         <h1 class="head-title" id="tabBord">1. TABLEAU DE BORD DE L'ÉVALUATION DES RISQUES</h1>

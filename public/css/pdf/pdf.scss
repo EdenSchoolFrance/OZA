@@ -97,6 +97,7 @@ span {
     height: 100%;
     page-break-after: always;
     position: relative;
+    padding-top: 25px;
 
     &>.header {
         width: 100%;
@@ -139,7 +140,7 @@ span {
 
             li {
                 height: 20px;
-                margin-top: 10px;
+                margin-top: 25px;
 
                 p {
                     width: 95%;
@@ -162,7 +163,7 @@ span {
 
                 .number {
                     position: absolute;
-                    left: 10px;
+                    left: 0;
                     font-weight: 700;
                     font-size: 13px;
                 }
