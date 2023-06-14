@@ -66,11 +66,11 @@ class Exposition extends Model
                         if ($sd_expo_question){
                             if ($exposition_group->type === "default"){
                                 if ($sd_expo_question->minutes !== null){
-                                    if ($exposition_group->calculation($sd_expo_question->minutes) == "red") return "Oui"; break;
+                                    if ($exposition_group->calculation($sd_expo_question->minutes) == "red" || $exposition_group->calculation($sd_expo_question->minutes) == "orange") return "Oui"; break;
                                 }
                             }
                             else{
-                                if($exposition_group->calculation($sd_expo_question->value) == "red") return "Oui"; break;
+                                if($exposition_group->calculation($sd_expo_question->value) == "red" || $exposition_group->calculation($sd_expo_question->value) == "orange") return "Oui"; break;
                             }
                         }
                     }
