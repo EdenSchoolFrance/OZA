@@ -116,8 +116,7 @@ class UserController extends Controller
                 array_push($roles_array, 'MANAGER');
             }
 
-            $roles = resolve('AppCacheService')->getRoles()
-                ->whereNotIn('permission', !Auth::user()->hasAccess('oza') ? $roles_array : ['EXPERT']);
+            $role = resolve('AppCacheService')->getRoles()->whereNotIn('permission', $roles_array)->first();
 
             if (!$role) {
                 return back()->with('status', 'Une erreur est survenue !')->with('status_type', 'danger')->withInput();
@@ -227,8 +226,7 @@ class UserController extends Controller
         }
         //TODO: Remove unused blocks - End
 
-        $roles = resolve('AppCacheService')->getRoles()
-            ->whereNotIn('permission', !Auth::user()->hasAccess('oza') ? $roles_array : ['EXPERT']);
+        $role = resolve('AppCacheService')->getRoles()->whereNotIn('permission', $roles_array)->first();
 
         if (!$role) {
             return back()->with('status', 'Une erreur est survenue !')->with('status_type', 'danger')->withInput();
