@@ -282,7 +282,6 @@ Route::middleware(['auth'])->group(function() {
 
         Route::get('/{single_document}/restraint/', [RestraintController::class, 'index'])->name('restraint.index');
         Route::get('/{single_document}/restraint/archived', [RestraintController::class, 'archived'])->name('restraint.archived');
-        Route::post('/{single_document}/restraint/archived/delete', [RestraintController::class, 'delete'])->name('restraint.archived.delete');
 
 
 

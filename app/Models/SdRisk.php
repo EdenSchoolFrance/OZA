@@ -234,7 +234,7 @@ class SdRisk extends Model
          * Since RiskCalculation is a seed table we may save its data in cache as a collection
          * So we can resolve it as seen below
          */
-        $Pons = app('AppCacheService')
+        $Pons = resolve('AppCacheService')
             ->getRiskCalculation();
 
         if ($A >= 18.6) $Pon = $Pons->where('sum', 18.6)->first();

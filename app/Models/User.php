@@ -57,7 +57,7 @@ class User extends Authenticatable
             return false;
         }
 
-        $roles = app('AppCacheService')->getRoles();
+        $roles = resolve('AppCacheService')->getRoles();
 
         if ($role) {
             return $roles->whereIn('permission', is_array($role)  ? $role : [$role])->count() > 0;
@@ -68,7 +68,7 @@ class User extends Authenticatable
 
     public function hasPermission($role = null)
     {
-        $roles = app('AppCacheService')->getRoles();
+        $roles = resolve('AppCacheService')->getRoles();
 
         return $roles->whereIn('permission', is_array($role)  ? $role : [$role])->count() > 0;
     }

@@ -100,18 +100,4 @@ class RestraintController extends Controller
 
         return back()->with('status','La mesure a bien été enregistrée');
     }
-
-
-    public function delete(Request $request){
-        $request->validate([
-            'id' => 'required'
-        ]);
-
-        $sd_restraint_archived = SdRestraintArchived::find($request->id);
-
-        if (!$sd_restraint_archived) return back()->with('status','Un problème est survenue')->with('status_type','danger');
-        $sd_restraint_archived->delete();
-
-        return back()->with('status', 'La mesure archivée a bien été supprimé !');
-    }
 }
