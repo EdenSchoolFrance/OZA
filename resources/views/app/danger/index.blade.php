@@ -300,7 +300,7 @@
                                                 <form class="row" action="{{ route('danger.exposition.exist', [$single_document->id, $danger->id, $sd_work_unit->id, $danger->danger->exposition->id]) }}" method="post">
                                                     @csrf
                                                     <input type="hidden" name="checked" value=""/>
-                                                    <p>Après mesure de protection collective et individuelle, l’UT est-elle exposée au delà du seuil règlementaire ?</p>
+                                                    <p>Après mesure de protection collective et individuelle, l’UT est-elle exposée à ce facteur de risque ?</p>
 
                                                     <button type="button" data-value="true" class="btn btn-radio btn-check-work-unit {{ $sd_work_unit->sd_danger($danger->id)->pivot->exposition === 1 ? "btn-radio--checked" : "" }}" {{ $sd_work_unit->sd_danger($danger->id)->pivot->exposition === 1 ? "disabled" : ""  }}>Oui</button>
                                                     <button type="button" data-value="false" class="btn btn-radio btn-check-work-unit {{ $sd_work_unit->sd_danger($danger->id)->pivot->exposition === 0 ? "btn-radio--checked" : "" }}" {{ $sd_work_unit->sd_danger($danger->id)->pivot->exposition === 0 ? "disabled" : ""  }}>Non</button>
