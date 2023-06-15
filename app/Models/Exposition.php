@@ -63,15 +63,9 @@ class Exposition extends Model
                     foreach ($exposition_group->exposition_questions as $key => $exposition_question){
                         $sd_expo_question = $exposition_question->sd_work_unit_exposition_question($sd_work_unit->id);
                         $sd_expos_questions = $exposition_question->sd_work_unit_expositions_questionsById($sd_work_unit->id);
-                        if ($sd_expo_question){
-                            if ($exposition_group->type === "default"){
-                                if ($sd_expo_question->minutes !== null){
-                                    if ($exposition_group->calculation($sd_expo_question->minutes) == "red" || $exposition_group->calculation($sd_expo_question->minutes) == "orange") return "Oui"; break;
-                                }
-                            }
-                            else{
-                                if($exposition_group->calculation($sd_expo_question->value) == "red" || $exposition_group->calculation($sd_expo_question->value) == "orange") return "Oui"; break;
-                            }
+                        if (count($sd_expos_questions) > 0){
+                            return "Oui";
+                            break;
                         }
                     }
                 }
