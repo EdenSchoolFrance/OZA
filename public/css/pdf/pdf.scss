@@ -597,24 +597,26 @@ table {
             }
 
             .workunit {
-                width: 8%;
+                width: 3%;
             }
 
             .danger {
-                width: 10%;
+                width: 3%;
             }
 
             .risk {
-                width: 15%;
+                font-size: 12px;
+                width: 20%;
             }
 
             .restraint,
             .restraint_proposed {
+                font-size: 12px;
                 width: 20%;
             }
 
             .criticity {
-                width: 4%;
+                width: 2%;
             }
         }
 
@@ -670,6 +672,9 @@ table {
                 border: 1px solid black !important;
                 font-size: 14px;
                 text-align: center;
+            }
+            td{
+                height: 30px;
             }
             .th_question{
                 width: 70%;
@@ -731,7 +736,6 @@ table {
                 padding: 0;
                 margin: 0;
                 width: 4%;
-                border: none !important;
             }
         }
         &--frp{

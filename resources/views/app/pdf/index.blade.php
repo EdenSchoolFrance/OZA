@@ -1627,8 +1627,8 @@
                             <table class="table table--psycho">
                                 <thead>
                                 <tr>
-                                    <th colspan="5">Nombre de questionnaires exploités</th>
-                                    <th>{{ $psychosocial_group->number_quiz }}</th>
+                                    <th colspan="5" style="height: 28px;">Nombre de questionnaires exploités</th>
+                                    <th style="height: 28px;">{{ $psychosocial_group->number_quiz }}</th>
                                 </tr>
                                 <tr>
                                     <th rowspan="2" class="th_question">Questions</th>
@@ -1676,10 +1676,10 @@
                             <table class="table table--psycho">
                                 <thead>
                                 <tr>
-                                    <th colspan="5">D’une façon générale, comment évaluez-vous votre niveau de stress
+                                    <th colspan="5" style="height: 25px;">D’une façon générale, comment évaluez-vous votre niveau de stress
                                         sur une échelle de zéro à 100
                                     </th>
-                                    <th>{{ $psychosocial_group->stress_level }}</th>
+                                    <th style="height: 25px;">{{ $psychosocial_group->stress_level }}</th>
                                 </tr>
                                 <tr>
                                     <th rowspan="2" class="th_question">Questions</th>
