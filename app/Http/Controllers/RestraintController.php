@@ -7,6 +7,7 @@ use App\Models\SdRestraintArchived;
 use App\Models\SdRisk;
 use App\Models\SdWorkUnit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RestraintController extends Controller
 {
@@ -106,6 +107,8 @@ class RestraintController extends Controller
         $request->validate([
             'id' => 'required'
         ]);
+
+        if(!Auth::user()->hasAccess('oza')) abort(404);
 
         $sd_restraint_archived = SdRestraintArchived::find($request->id);
 

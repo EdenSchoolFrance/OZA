@@ -2612,6 +2612,23 @@
             </tr>
             </thead>
             <tbody>
+            @php
+                $numberEmExpo = 0;
+                foreach($single_document->dangers->whereNotNull('danger.exposition') as $danger){
+                    $pivot = $danger->danger->exposition->pivot($single_document->id);
+                    if(count($pivot) > 0){
+                        foreach($danger->sd_works_units->whereNotNull('sd_expositions_questions') as $sd_work_unit){
+                            foreach($danger->danger->exposition->exposition_groups as $key => $exposition_group){
+                                foreach($exposition_group->exposition_questions as $key => $exposition_question){
+                                    $sd_expo_question = $exposition_question->sd_work_unit_exposition_question($sd_work_unit->id);
+                                    if($sd_expo_question)
+                                        if($exposition_group->calculation($sd_expo_question->value) === "red") $numberEmExpo = ($numberEmExpo + $sd_expo_question->number_employee);
+                                }
+                            }
+                        }
+                    }
+                }
+            @endphp
             @if($numberEmUt !== 0)
                 <tr>
                     <td class="center">
@@ -2621,7 +2638,7 @@
                         {{ $numberEmExpo }}
                     </td>
                     <td class="{{$numberEmExpo/$numberEmUt === 0 ? "green" : "red" }} center">
-                        {{ 100 * ($numberEmExpo/$numberEmUt) >= 100 ? "100%" : round(100 * ($numberEmExpo/$numberEmUt),2)."%"}}
+                        {{ 100 * ($numberEmExpo/$numberEmUt) >= 100 ? "100%" : round(($numberEmExpo/$numberEmUt) * 100)."%"}}
                     </td>
                 </tr>
             @else
@@ -2652,17 +2669,17 @@
             </tr>
             </thead>
             <tbody>
-            @foreach ($expos as $expo)
-                <tr>
-                    <td class="center">
-                        {{ $expo->danger->name }}
-                    </td>
-                    <td class="center">
-                        {{-- Refactoring needed --}}
-                        {{ $expo->HisExpose($single_document)  }}
-                    </td>
-                </tr>
-            @endforeach
+                @foreach ($expos as $expo)
+                    <tr>
+                        <td class="center">
+                            {{ $expo->danger->name }}
+                        </td>
+                        <td class="center">
+                            {{-- Refactoring needed --}}
+                            {{ $expo->HisExpose($single_document)  }}
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
         <p></p>
@@ -2715,6 +2732,7 @@
             </tr>
             </thead>
             <tbody>
+
                 @foreach ($single_document->dangers->whereNotNull('danger.exposition') as $danger)
                     @php
                         $pivot = $danger->danger->exposition->pivot($single_document->id);
