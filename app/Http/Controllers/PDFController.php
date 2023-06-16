@@ -187,10 +187,6 @@ class PDFController extends Controller
         })->get();
 
         $numberEmUt = $works->sum('number_employee');
-        $numberEmExpo = (int) SdExpositionQuestion::
-            whereHas('sd_work_unit', fn ($q) =>
-                $q->whereIn('sd_work_unit_id', $works->pluck('id'))
-            )->sum('number_employee');
 
 
         $expos = Exposition::with('danger')
@@ -246,7 +242,6 @@ class PDFController extends Controller
             'sd_risks',
             'sd_risks_posts',
             'numberEmUt',
-            'numberEmExpo',
             'expos',
             'date',
             'sd_dangers',
