@@ -55,30 +55,26 @@ class Exposition extends Model
         return $result;
     }
 
-    public function HisExpose(SingleDocument $single_document){
+    public function HisExpose(SingleDocument $single_document)
+    {
 
-        foreach ($single_document->dangers->whereNotNull('danger.exposition') as $danger){
-            foreach ($danger->sd_works_units->whereNotNull('sd_expositions_questions') as $sd_work_unit){
-                foreach ($this->exposition_groups as $key => $exposition_group){
-                    foreach ($exposition_group->exposition_questions as $key => $exposition_question){
-                        $sd_expo_question = $exposition_question->sd_work_unit_exposition_question($sd_work_unit->id);
+        foreach ($single_document->dangers->whereNotNull('danger.exposition') as $danger) {
+            foreach ($danger->sd_works_units->whereNotNull('sd_expositions_questions') as $sd_work_unit) {
+                foreach ($this->exposition_groups as $key => $exposition_group) {
+                    foreach ($exposition_group->exposition_questions as $key => $exposition_question) {
                         $sd_expos_questions = $exposition_question->sd_work_unit_expositions_questionsById($sd_work_unit->id);
-                        if ($sd_expo_question){
-                            if ($exposition_group->type === "default"){
-                                if ($sd_expo_question->minutes !== null){
-                                    if ($exposition_group->calculation($sd_expo_question->minutes) == "red") return "Oui"; break;
-                                }
-                            }
-                            else{
-                                if($exposition_group->calculation($sd_expo_question->value) == "red") return "Oui"; break;
+                        if (count($sd_expos_questions) > 0) {
+                            foreach ($sd_expos_questions as $sd_expo_question){
+                                if ($exposition_group->calculation($sd_expo_question->value) == "red") return "Oui"; break;
                             }
                         }
                     }
                 }
             }
         }
-
         return "Non";
-
     }
+
+
+
 }

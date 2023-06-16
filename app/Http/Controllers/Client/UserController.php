@@ -54,7 +54,8 @@ class UserController extends Controller
                 $q->where('id', $single_document->id);
             })->get();
 
-        $roles = resolve('AppCacheService')->getRoles()->whereNotIn('permission', $roles_array);
+        $roles = resolve('AppCacheService')->getRoles()
+            ->whereNotIn('permission', !Auth::user()->hasAccess('oza') ? $roles_array : ['EXPERT']);
 
         $page = [
             'title' => 'Ajouter un utilisateur',
@@ -225,7 +226,7 @@ class UserController extends Controller
         }
         //TODO: Remove unused blocks - End
 
-        $role = Role::where('id', $request->role)->whereNotIn('permission', $roles_array)->first();
+        $role = resolve('AppCacheService')->getRoles()->whereNotIn('permission', $roles_array)->first();
 
         if (!$role) {
             return back()->with('status', 'Une erreur est survenue !')->with('status_type', 'danger')->withInput();
