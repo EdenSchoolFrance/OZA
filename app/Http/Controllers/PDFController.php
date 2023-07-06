@@ -269,12 +269,40 @@ class PDFController extends Controller
         ->setOrientation('landscape')
         ->setPaper('a4');
 
-//         return $pdf->inline();
+//        return view('app.pdf.index', compact(
+//            'chartUrl',
+//            'single_document',
+//            'item_mat',
+//            'item_veh',
+//            'item_eng',
+//            'sd_risks',
+//            'sd_risks_posts',
+//            'numberEmUt',
+//            'expos',
+//            'date',
+//            'sd_dangers',
+//            'works',
+//            'dangers',
+//            'works_units',
+//            'sd_risks_final',
+//            'sd_risks_restraints_count',
+//            'psychosocial_groups',
+//            'questions',
+//            'sd_restraints_archived',
+//            'sd_risks_chemicals',
+//            'sd_risks_explosions',
+//            'moyenneRB',
+//            'colorRB',
+//            'moyenneRR',
+//            'colorRR',
+//            'discountRisk'
+//        ));
+         return $pdf->inline();
 
-        $histories = Historie::find(session('status'));
-        Storage::put('/private/' . $single_document->client->id . '/du/' . $histories->id . '.pdf', $pdf->download()->getOriginalContent());
-
-        return back()->with('status', 'Document unique généré avec succès, vous pouvez maintenant le télécharger !');
+//        $histories = Historie::find(session('status'));
+//        Storage::put('/private/' . $single_document->client->id . '/du/' . $histories->id . '.pdf', $pdf->download()->getOriginalContent());
+//
+//        return back()->with('status', 'Document unique généré avec succès, vous pouvez maintenant le télécharger !');
     }
 
     private function generateSingleDocumentRiskChartImage(SingleDocument $singleDocument){
