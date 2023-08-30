@@ -46,7 +46,7 @@
                                     <td class="td_n8">{{ !empty($sd_risk->n8) ? $sd_risk->n8 : "NC" }}</td>
                                     <td class="td_n9">{{ !empty($sd_risk->n9) ? $sd_risk->n9 : "NC" }}</td>
                                     <td class="td_n10">{{ !empty($sd_risk->n10) ? $sd_risk->n10 : "NC" }}</td>
-                                    <td class="td_nd">{{ $sd_risk->ND()['key'] }}</td>
+                                    <td class="td_nd">{{ $sd_risk->ND()['value'] }}</td>
                                     <td class="td_ventilation">{{ $sd_risk->T_ventilation() }}</td>
                                     <td class="td_concentration">{{ $sd_risk->T_concentration() }}</td>
                                     <td class="td_time">{{ $sd_risk->T_time() }}</td>
