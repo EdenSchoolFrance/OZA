@@ -1,3 +1,6 @@
+# Mise en prod du 31/08/2023
+Mettre tout les fichiers de oza sur le serveur, et fait attention car il faut renommer le dossier qui est au chemin suivant : ressources/views/admin/Item le dossier "Item" est a renommer en "item"
+
 # IMPORTANT
 Si vous rencontrez le moindre problème lors du guide d'installation qui va suivre
 nous ne pourrons pas vous aider.
