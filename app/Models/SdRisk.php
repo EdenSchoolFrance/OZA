@@ -229,17 +229,9 @@ class SdRisk extends Model
 
         $A = $totalEnd + 1/10 * $count;
 
-        /**
-         * This method used in loop which leads to create duplicate queries
-         * Since RiskCalculation is a seed table we may save its data in cache as a collection
-         * So we can resolve it as seen below
-         */
-        $Pons = app('AppCacheService')
-            ->getRiskCalculation();
-
-        if ($A >= 18.6) $Pon = $Pons->where('sum', 18.6)->first();
-        elseif ($A <= 1.0) $Pon = $Pons->where('sum', 1.0)->first();
-        else $Pon = $Pons->where('sum', $A)->first();
+        if ($A >= 18.6) $Pon = RiskCalculation::where('sum', 18.6)->first();
+        else if ($A <= 1.0) $Pon = RiskCalculation::where('sum', 1.0)->first();
+        else $Pon = RiskCalculation::where('sum', $A)->first();
 
 
         $cal = $Pon->weighting * $RB;
