@@ -59,7 +59,7 @@
                     <div class="right">
                         <select name="sector_activitie" id="sector_activitie" class="form-control">
                             @foreach($sectors_activities as $sector_activitie)
-                                <option value="{{ $sector_activitie->id }}">{{ $sector_activitie->name }}</option>
+                                <option value="{{ $sector_activitie->id }}"><option value="{{ $sector_activitie->id }}" {{ old('sector_activitie') ? (old('sector_activitie') == $sector_activitie->id ? 'selected' : '') : ($work->sector_activitie && $work->sector_activitie->id == $sector_activitie->id ? 'selected' : '')}}>{{ $sector_activitie->name }}</option>
                             @endforeach
                         </select>
                     </div>
