@@ -102,7 +102,7 @@
                     <tfoot>
                         <tr>
                             <td colspan="9">Nombre de salariés en souffrance</td>
-                            <td class="td_extreme_all">{{ $extreme_all }}</td>
+                            <td class="td_extreme_all">{{ $psychosocial_group->employee }}</td>
                         </tr>
                     </tfoot>
                 </table>
