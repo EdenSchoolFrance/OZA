@@ -261,11 +261,8 @@ class PDFController extends Controller
             'colorRR',
             'discountRisk'
         ))
-        ->setOption('header-center', "$single_document->name_enterprise - $single_document->adress, $single_document->city_zipcode $single_document->city")
-        ->setOption('header-font-size', 7)
-        ->setOption('footer-left', 'Copyright © OZA DUERP Online')
-        ->setOption('footer-right', '[section]')
-        ->setOption('footer-font-size', 7)
+        ->setOption('header-html', view('app.pdf.header', compact('single_document'))->render())
+        ->setOption('footer-html', view('app.pdf.footer', compact('single_document'))->render())
         ->setOrientation('landscape')
         ->setPaper('a4');
 
