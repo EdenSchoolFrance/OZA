@@ -31,11 +31,13 @@ class WorkUnitController extends Controller
             'sub_sidebar' => 'work_unit'
         ];
 
-        $works = WorkUnit::all();
+        // $works = WorkUnit::all();
+        $works = WorkUnit::orderBy('name')->get();
+
 
         $items = Item::all();
 
-        return view('admin.work_unit.index', compact('page','works','items'));
+        return view('admin.work_unit.index', compact('page', 'works', 'items'));
     }
 
     public function create()
@@ -53,7 +55,7 @@ class WorkUnitController extends Controller
 
         $sectors_activities = SectorActivitie::all();
 
-        return view('admin.work_unit.create', compact('page','items','sectors_activities'));
+        return view('admin.work_unit.create', compact('page', 'items', 'sectors_activities'));
     }
 
     public function edit($id_work)
@@ -62,21 +64,34 @@ class WorkUnitController extends Controller
         $work = WorkUnit::find($id_work);
 
         $page = [
-            'title' => 'Modifier l\'unité de travail : '.$work->name,
+            'title' => 'Modifier l\'unité de travail : ' . $work->name,
             'url_back' => route('admin.help.workunit'),
             'text_back' => 'Retour vers les unités de travail (complétion)',
             'sidebar' => 'help',
             'sub_sidebar' => 'work_unit'
         ];
 
-        $items = Item::all();
+
+        $items = Item::with(['Sub_Items.child_sub_items' => function ($query) use ($id_work) {
+            $query->whereHas('work_unit', function ($subQuery) use ($id_work) {
+                $subQuery->where('id', $id_work);
+            });
+        }])->get();
+
 
         $sectors_activities = SectorActivitie::all();
 
-        return view('admin.work_unit.edit', compact('page','work','items','sectors_activities'));
+        return view('admin.work_unit.edit', compact(
+            'page',
+            'work',
+            'items',
+            'sectors_activities',
+            // 'childSubItems'
+        ));
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
         $request->validate([
             'name_enterprise' => 'required',
@@ -86,7 +101,7 @@ class WorkUnitController extends Controller
 
         $sector = SectorActivitie::find($request->sector_activitie);
 
-        if (!$sector) return back()->with('status','Un problème est survenue')->with('status_type','danger');
+        if (!$sector) return back()->with('status', 'Un problème est survenu')->with('status_type', 'danger');
 
         $work = new WorkUnit();
         $work->id = uniqid();
@@ -104,35 +119,40 @@ class WorkUnitController extends Controller
 
         //Get all example item
         $items = Item::all();
-        foreach ($items as $item){
+        foreach ($items as $item) {
 
 
 
-            foreach ($item->sub_items as $sub_item){
-                $name = $item->id.'-'.$sub_item->id;
+            foreach ($item->sub_items as $sub_item) {
+                $name = $item->id . '-' . $sub_item->id;
 
 
-                if (isset($request->$name)){
-                    foreach ($request->$name as $child_sub_item){
+                if (isset($request->$name)) {
+                    foreach ($request->$name as $key => $child_sub_item) {
 
-                        $sd_item = new ChildSubItem();
-                        $sd_item->id = uniqid();
-                        $sd_item->name = $child_sub_item;
-                        $sd_item->sub_item()->associate($sub_item);
-                        $sd_item->save();
+                        $sd_item = ChildSubItem::firstOrNew(['id' => $key]);
+
+                        $isNew = ! $sd_item->exists;
+
+                        if ($isNew === true) {
+
+                            // $sd_item = new ChildSubItem();
+                            $sd_item->id = uniqid();
+                            $sd_item->name = $child_sub_item;
+                            $sd_item->sub_item()->associate($sub_item);
+                            $sd_item->save();
+                        }
                         $sd_item->work_unit()->save($work);
-
                     }
                 }
             }
-
         }
         return redirect()->route('admin.help.workunit');
     }
 
 
-    public function update(Request $request, $id_work){
-
+    public function update(Request $request, $id_work)
+    {
         $request->validate([
             'name_enterprise' => 'required',
             'sector_activitie' => 'required',
@@ -141,7 +161,7 @@ class WorkUnitController extends Controller
 
         $sector = SectorActivitie::find($request->sector_activitie);
 
-        if (!$sector) return back()->with('status','Un problème est survenue')->with('status_type','danger');
+        if (!$sector) return back()->with('status', 'Un problème est survenu')->with('status_type', 'danger');
 
         $work = new WorkUnit();
         $work->id = uniqid();
@@ -149,7 +169,7 @@ class WorkUnitController extends Controller
         $work->sector_activitie()->associate($sector);
         $work->save();
 
-        foreach ($request->activities as $activitie){
+        foreach ($request->activities as $activitie) {
             $acti = new Activitie();
             $acti->id = uniqid();
             $acti->text = $activitie;
@@ -160,18 +180,23 @@ class WorkUnitController extends Controller
         $work1 = WorkUnit::find($id_work);
 
         $items = Item::all();
-        foreach ($items as $item){
+        foreach ($items as $item) {
 
-            foreach ($item->sub_items as $sub_item){
-                $name = $item->id.'-'.$sub_item->id;
-
-                if (isset($request->$name)){
-                    foreach ($request->$name as $child_sub_item){
-                        $sd_item = new ChildSubItem();
-                        $sd_item->id = uniqid();
-                        $sd_item->name = $child_sub_item;
-                        $sd_item->sub_item()->associate($sub_item);
-                        $sd_item->save();
+            foreach ($item->sub_items as $sub_item) {
+                $name = $item->id . '-' . $sub_item->id;
+                if (isset($request->$name)) {
+                    foreach ($request->$name as $key => $child_sub_item) {
+                        $sd_item = ChildSubItem::firstOrNew(['id' => $key]);
+                        
+                        $isNew = ! $sd_item->exists;
+                        
+                        if ($isNew === true) {
+                            // $sd_item = new ChildSubItem();
+                            $sd_item->id = uniqid();
+                            $sd_item->name = $child_sub_item;
+                            $sd_item->sub_item()->associate($sub_item);
+                            $sd_item->save();
+                        }
                         $sd_item->work_unit()->save($work);
                     }
                 }
@@ -179,6 +204,7 @@ class WorkUnitController extends Controller
         }
 
         $work1->delete();
+
 
         return redirect()->route('admin.help.workunit');
     }
@@ -191,7 +217,7 @@ class WorkUnitController extends Controller
 
         $work_unit = WorkUnit::find($request->id);
 
-        if (!$work_unit) return back()->with('status','Un problème est survenue')->with('status_type','danger');
+        if (!$work_unit) return back()->with('status', 'Un problème est survenu')->with('status_type', 'danger');
         $work_unit->delete();
 
         return back()->with('status', 'L\'unité de travail a bien été supprimé !');

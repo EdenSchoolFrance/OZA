@@ -95,7 +95,7 @@
                                                                 <li class="list-item">
                                                                     <button type="button" class="btn btn-text btn-small btn-delete" data-value="{{ $sd_item }}"><i class="far fa-times-circle"></i></button>
                                                                     <p>{{ $sd_item }}</p>
-                                                                    <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[]" value="{{ $sd_item }}" data-id="{{ $sd_item.now() }}">
+                                                                    <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[{{ $sd_item->id }}]" value="{{ $sd_item }}" data-id="{{ $sd_item.now() }}">
                                                                 </li>
                                                             @endforeach
                                                         @elseif (count(old($item->id.'-'.$subItem->id)) === 0)
@@ -109,7 +109,7 @@
                                                                 <li class="list-item">
                                                                     <button type="button" class="btn btn-text btn-small btn-delete" data-value="{{ $childSubItem->name }}"><i class="far fa-times-circle"></i></button>
                                                                     <p>{{ $childSubItem->name }}</p>
-                                                                    <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[]" value="{{ $childSubItem->name }}" data-id="{{ $childSubItem->id }}">
+                                                                    <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[{{ $childSubItem->id }}]" value="{{ $childSubItem->name }}" data-id="{{ $childSubItem->id }}">
                                                                 </li>
                                                             @endforeach
                                                         @else

@@ -108,7 +108,9 @@ on('.modal--work_unit .btn-modal-valid', 'click', (el, e) => {
             '            <button type="button" class="btn btn-text btn-small btn-delete" data-value="' + inputAdd[i].dataset.name + '"><i\n' +
             '                class="far fa-times-circle"></i></button>\n' +
             '            <p>' + inputAdd[i].dataset.name + '</p>\n' +
-            '            <input type="hidden" class="btn-item" name="' + el.dataset.list + '[]" value="' + inputAdd[i].dataset.name + '" data-id="' + inputAdd[i].value + '">'
+            // '            <input type="hidden" class="btn-item" name="' + el.dataset.list + '[]" value="' + inputAdd[i].dataset.name + '" data-id="' + inputAdd[i].value + '">'
+            '            <input type="hidden" class="btn-item" name="' + el.dataset.list + '[' + inputAdd[i].value + ']" value="' + inputAdd[i].dataset.name + '" data-id="' + inputAdd[i].value + '">'
+
         let li = document.createElement('li');
         li.innerHTML = content;
         li.className = 'list-item'

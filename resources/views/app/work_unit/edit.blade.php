@@ -1,6 +1,7 @@
 @extends('app')
 
 @section('content')
+
 <div class="content">
     <form class="card card--add_work_unit" action="{{ route('work.update', [$single_document->id, $work->id]) }}" method="post" id="formWorkUnit">
         @csrf

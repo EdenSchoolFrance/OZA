@@ -150,11 +150,6 @@ class RiskController extends Controller
             'impact' => 'required'
         ]);
 
-        // var_dump($request->res_title);
-        // var_dump($request->res_tech);
-        // var_dump($request->res_orga);
-        // var_dump($request->res_human);
-        // die;
 
         $sd_risk = new SdRisk();
         $sd_risk->id = uniqid();

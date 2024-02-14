@@ -20,7 +20,6 @@ class Access
         if (!Auth::check()) {
             return redirect()->route('login');
         }
-        //dd($user_type, $roles);
         if (Auth::user()->hasAccess($user_type, $roles)) {
             return $next($request);
         } else {

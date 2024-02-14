@@ -76,7 +76,8 @@
                                                             <li class="list-item">
                                                                 <button type="button" class="btn btn-text btn-small btn-delete" data-value="{{ $child }}"><i class="far fa-times-circle"></i></button>
                                                                 <p>{{ $child }}</p>
-                                                                <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[]" value="{{ $child }}" data-id="{{ $child.now() }}">
+                                                                <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[{{ $sd_item->id }}]" value="{{ $sd_item->name }}" data-id="{{ $sd_item->id . now() }}">
+
                                                             </li>
                                                         @endforeach
                                                     @else

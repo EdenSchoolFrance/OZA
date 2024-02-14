@@ -70,7 +70,7 @@
                             <label>{{ $item->name }}</label>
                         </div>
                         <div class="right right--wrap">
-                            @foreach($item->sub_items as $subItem)
+                            @foreach($item->Sub_Items as $subItem)
                                 <div>
                                     <ul class="list-main">
                                         <li>
@@ -78,13 +78,14 @@
                                         </li>
                                         <li>
                                             <ul class="list-content" data-list="{{ $item->id.'-'.$subItem->id }}">
-                                                @if(old($item->id.'-'.$subItem->id))
-                                                    @if (count(old($item->id.'-'.$subItem->id)) > 0)
-                                                        @foreach(old($item->id.'-'.$subItem->id) as $sd_item)
+                                                @if($item->id.'-'.$subItem->id)
+                                                    @if (count($item->Sub_Items) > 0)
+                                                        @foreach($subItem->child_sub_items as $sd_item)
                                                             <li class="list-item">
-                                                                <button type="button" class="btn btn-text btn-small btn-delete" data-value="{{ $sd_item }}"><i class="far fa-times-circle"></i></button>
-                                                                <p>{{ $sd_item }}</p>
-                                                                <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[]" value="{{ $sd_item }}" data-id="{{ $sd_item.now() }}">
+                                                                <button type="button" class="btn btn-text btn-small btn-delete" data-value="{{ $sd_item->name }}"><i class="far fa-times-circle"></i></button>
+                                                                <p>{{ $sd_item->name }}</p>
+                                                                <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[{{$sd_item->id}}]" value="{{ $sd_item->name }}" data-id="{{ $sd_item->id }}">
+
                                                             </li>
                                                         @endforeach
                                                     @else
@@ -95,10 +96,11 @@
                                                 @else
                                                     @if (count($subItem->sd_work_unit_sd_items($work->id)) > 0)
                                                         @foreach ($subItem->sd_work_unit_sd_items($work->id) as $sd_item)
-                                                            <li class="list-item">
+                                                        <li class="list-item">
                                                                 <button type="button" class="btn btn-text btn-small btn-delete" data-value="{{ $sd_item->name }}"><i class="far fa-times-circle"></i></button>
                                                                 <p>{{ $sd_item->name }}</p>
-                                                                <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[]" value="{{ $sd_item->name }}" data-id="{{ $sd_item->id }}">
+                                                                
+                                                                <input type="hidden" class="btn-item" name="{{ $item->id.'-'.$subItem->id }}[{{$sd_item->id}}]" value="{{ $sd_item->name }}" data-id="{{ $sd_item->id }}">
                                                             </li>
                                                         @endforeach
                                                     @else
@@ -152,6 +154,7 @@
                             @foreach($items as $item)
                                 @foreach($item->sub_items as $subItem)
                                     <div data-id="{{ $item->id.'-'.$subItem->id }}" style="display: none">
+                                        
                                         @foreach($subItem->child_sub_items as $child)
                                             @if(!in_array($child->name, $work->items->where('sub_item_id', $subItem->id)->pluck('name')->toArray()))
                                                 <label class="contain">
